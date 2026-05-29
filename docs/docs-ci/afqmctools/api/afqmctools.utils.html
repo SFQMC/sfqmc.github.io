@@ -1,0 +1,1827 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>afqmctools.utils package &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'afqmctools/api/afqmctools.utils';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="afqmctools.wavefunction package" href="afqmctools.wavefunction.html" />
+    <link rel="prev" title="afqmctools.systems package" href="afqmctools.systems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afqmctools_cli.html">Command line tools</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lattice_models.html">Lattice Model Tools for AFQMC</a></li>
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="afqmctools.html">afqmctools package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html">afqmctools.analysis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="afqmctools.hamiltonian.html">afqmctools.hamiltonian package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html">afqmctools.inputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html">afqmctools.observables package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html">afqmctools.systems package</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">afqmctools.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html">afqmctools.wavefunction package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../afqmctools.html" class="nav-link">afqmctools Python package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="afqmctools.html" class="nav-link">afqmctools package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">afqmctools.utils package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="afqmctools-utils-package">
+<h1>afqmctools.utils package<a class="headerlink" href="#afqmctools-utils-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-afqmctools.utils.aimbes_utils">
+<span id="afqmctools-utils-aimbes-utils-module"></span><h2>afqmctools.utils.aimbes_utils module<a class="headerlink" href="#module-afqmctools.utils.aimbes_utils" title="Link to this heading">#</a></h2>
+<p>Utilities for Interfacing with AIMBES</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.AIMBESHamiltonian">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">AIMBESHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerated type corresponding to the Hamiltonian types from AIMBES.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.AIMBESHamiltonian.BARE">
+<span class="sig-name descname"><span class="pre">BARE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.BARE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.AIMBESHamiltonian.CRPA">
+<span class="sig-name descname"><span class="pre">CRPA</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.CRPA" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.AIMBESHamiltonian.FROZEN_CORE">
+<span class="sig-name descname"><span class="pre">FROZEN_CORE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.FROZEN_CORE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">TRIQS_HDF5_File</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proj_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wan_centres</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass to contain orbitals and relevant data
+from the TRIQS internal format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.band_window">
+<span class="sig-name descname"><span class="pre">band_window</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.band_window" title="Link to this definition">#</a></dt>
+<dd><p>An array containing the range of KS bands used as inputs to the ‘proj_mat’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.kpts">
+<span class="sig-name descname"><span class="pre">kpts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.kpts" title="Link to this definition">#</a></dt>
+<dd><p>Array containing all k-points in fractional coordinates.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.name" title="Link to this definition">#</a></dt>
+<dd><p>The name of the file that Wannier orbitals were read from.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.proj_mat">
+<span class="sig-name descname"><span class="pre">proj_mat</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.proj_mat" title="Link to this definition">#</a></dt>
+<dd><p>Has shape (Nspin x Nkpt x Ndefect x Norb x Nband). Defines the
+projection from the Kohn-Sham (KS) band basis into
+the basis defined in the file called “name”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.wan_centres">
+<span class="sig-name descname"><span class="pre">wan_centres</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.wan_centres" title="Link to this definition">#</a></dt>
+<dd><p>(if applicable) contains the spatial centers of Wannier orbitals. These are
+used within AIMBES to translate Wannier orbitals into the home cell. Do not
+set these if you aren’t using Wannier orbitals!</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.aimb_1body_2_afqmc">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">aimb_1body_2_afqmc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gw'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gw_iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_dc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_band_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.aimb_1body_2_afqmc" title="Link to this definition">#</a></dt>
+<dd><p>Generate the 1-body Hamiltonian from am AIMBES checkpoint file.</p>
+<p>There are a few variants of the 1-body Hamiltonian to treat.
+All variants include the terms: <cite>Heff_base_sIab = H0_sIab - mu * I</cite>.</p>
+<p>The variants are:
+1. for DFT-based downfolding, we have <cite>Heff_sIab = Heff_base_sIab + (Vhf_gw_sIab - Vhf_dc_sIab)</cite>
+2. for GW-based downfolding, we have  <cite>Heff_sIab = Heff_base_sIab + (Vhf_gw_sIab - Vhf_dc_sIab) + (Vcorr_gw_sIab - Vcorr_dc_sIab)</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.aimb_2body_2_afqmc">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">aimb_2body_2_afqmc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_crpa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.aimb_2body_2_afqmc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.check_aimbes_energy">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">check_aimbes_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aimbes_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_abcd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mixed'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.check_aimbes_energy" title="Link to this definition">#</a></dt>
+<dd><p>Calculates and prints the “Hartree-Fock” energy based on the density
+in the given AIMBES checkpoint file, ‘aimbes_file’, and provided
+Hamiltonian.</p>
+<p>Can evaluate the energy in two modes:</p>
+<ul>
+<li><p>(default) : ‘mixed_mode’ mimics the output of AIMBES. The energy
+at iteration n is defined as:</p>
+<p>E^{mixed HF}_{n} = Tr[ D_{n} H1 ] + Tr[ F[ D_{n-1} ] D_{n} ]</p>
+</li>
+<li><p>‘variational’ : uses the same density for building the Fock matrix
+and for evaluating the energy</p>
+<p>E^{mixed HF}_{n} = Tr[ D_{n} H1 ] + Tr[ F[ D_{n} ] D_{n} ]</p>
+</li>
+</ul>
+<p>Convenience function to calculation the energy that AIMBES will output.
+AIMBES computes the “Hartree-Fock” energy at iteration <cite>m+1</cite> by:
+- computing the Fock matrix (F) with the Dm at iteration <cite>m</cite>
+- diagonalize F -&gt; generate new density matrix
+- evaluate the energy with the same F[D_{m}] but using the new D_{m+1}</p>
+<dl class="simple">
+<dt>TODO: for cRPA and frozen core, we need to be able to map the density matrix</dt><dd><p>into the local Hilbert space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.get_aimbes_2body">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">get_aimbes_2body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_screened</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetrize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reshape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.get_aimbes_2body" title="Link to this definition">#</a></dt>
+<dd><p>Get 2-body interaction term from the AIMBES HDF5 output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.get_aimbes_hamil_enum">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">get_aimbes_hamil_enum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamil_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.get_aimbes_hamil_enum" title="Link to this definition">#</a></dt>
+<dd><p>Maps general inputs into the AIMBESHamiltonian enumerated type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hamil_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <a class="reference internal" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian" title="afqmctools.utils.aimbes_utils.AIMBESHamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">AIMBESHamiltonian</span></code></a></span>) – A description of the Hamiltonian type. If an AIMBESHamiltonian enum is provided,
+it is immediately returned. If a string is provided, a corresponding AIMBESHamitlonian
+enum is returned. See the table above for the mapping from strings to AIMBESHamiltonian</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a AIMBESHamiltonian enum corresponding to the input hamil_type parameter</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian" title="afqmctools.utils.aimbes_utils.AIMBESHamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">AIMBESHamiltonian</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Input strings are not case sensitive and acceptable input strings include:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>AIMBESHamiltonian</p></th>
+<th class="head"><p>strings</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BARE</p></td>
+<td><p>“bare”, “hamil”, “hamiltonian”, “hamil_bare”, “hamil bare”</p></td>
+</tr>
+<tr class="row-odd"><td><p>FROZEN_CORE</p></td>
+<td><p>“frozen_core”, “frozen core”, “mf_downfold”, “mf downfold”</p></td>
+</tr>
+<tr class="row-even"><td><p>CRPA</p></td>
+<td><p>“downfolded”, “crpa”, “crpa downfolded”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_aimbes_Hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_aimbes_Hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_aimbes_Hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Read aimbes Hamiltonian from an aimbes HDF5 file.</p>
+<p>The most general Hamiltonian that can be read is:</p>
+<div class="math notranslate nohighlight">
+\[\hat{H} = \hat{H}_0 + (\hat{V}_{HF} - \hat{V}_{HF-DC}) +
+            + (\hat{V}_{Corr} - \hat{V}_{Corr-DC})
+            + \hat{V}_{bare} + \hat{U}(omega)\]</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{H}_0\)</span> is the non-interacting Hamiltonian</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{V}_{HF}\)</span> is the Hartree-Fock potential (i.e. 2*J - K ) evaluated over the full hilbert space</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{V}_{HF-DC}\)</span> is the double counting correction for <span class="math notranslate nohighlight">\(\hat{V}_{HF}\)</span> (2*J -K evaluated in the active space. For calculations in the full Hilbert space, this is identical to <span class="math notranslate nohighlight">\(\hat{V}_{HF}\)</span>)</p></li>
+</ul>
+<p>The “types” of Hamiltonian that can be read are:</p>
+<ol class="arabic simple">
+<li><p>the bare Hamiltonian - consists of <span class="math notranslate nohighlight">\(\hat{H}_0 + \hat{V}_{bare}\)</span></p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The name of an aimbes HDF5 file to read</p></li>
+<li><p><strong>hamil_type</strong> (<em>str</em><em>, </em><em>optional</em>) – The type of Hamiltonian to read from the HDF5 file.
+If not specified, the hamil_type will be inferred based on
+the contents of the ‘fname’.</p></li>
+<li><p><strong>omega</strong> (<em>int</em><em>, </em><em>optional</em>) – The index of the frequency to use for the partially screened
+Coulomb interaction</p></li>
+<li><p><strong>chol_tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Cholesky tolerance</p></li>
+<li><p><strong>sc_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – Self-consistent iteration number</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_aimbes_dm">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_aimbes_dm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_aimbes_dm" title="Link to this definition">#</a></dt>
+<dd><p>Read the density matrix from an AIMBES output file.</p>
+<p>By default, reads the initial density matrix - i.e. <cite>scf_iter=0</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_bare_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_bare_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_bare_hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Read Hamiltonian from the output of AIMBES’s ‘hamil’ directive.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_coqui_orbitals">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_coqui_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forbs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_coqui_orbitals" title="Link to this definition">#</a></dt>
+<dd><p>Extract orbitals and metadata from COQUÍ HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>forbs</strong> (<em>str</em>) – orbital HDF file from Coqui</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>meta</strong> (<em>dict</em>) – metadata</p></li>
+<li><p><strong>orbs</strong> (<em>numpy.ndarray</em>) – orbitals</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_crpa_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_crpa_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_crpa_hamiltonian" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_frozen_core_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_frozen_core_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_frozen_core_hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Read Hamiltonian from the output of AIMBES’s ‘hamil’ directive.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.read_triqs_hdf5">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">read_triqs_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.read_triqs_hdf5" title="Link to this definition">#</a></dt>
+<dd><p>Read a TRIQS_HDF5_File from fname.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File" title="afqmctools.utils.aimbes_utils.TRIQS_HDF5_File"><code class="xref py py-class docutils literal notranslate"><span class="pre">TRIQS_HDF5_File</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.aimbes_utils.write_downfolding_orbitals">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.aimbes_utils.</span></span><span class="sig-name descname"><span class="pre">write_downfolding_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_ksIai</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wan_centres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.aimbes_utils.write_downfolding_orbitals" title="Link to this definition">#</a></dt>
+<dd><p>Save orbitals in Wannier90’s h5 format to be read into AIMBES</p>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.chemistry">
+<span id="afqmctools-utils-chemistry-module"></span><h2>afqmctools.utils.chemistry module<a class="headerlink" href="#module-afqmctools.utils.chemistry" title="Link to this heading">#</a></h2>
+<p>Chemistry Reference Utilities.</p>
+<section id="routine-listings">
+<h3>Routine Listings<a class="headerlink" href="#routine-listings" title="Link to this heading">#</a></h3>
+<p>atomic_num_to_symbol : Convert atomic number to atomic symbol.
+atomic_symbol_to_num : Convert atomic symbol to atomic number.</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.chemistry.atomic_num_to_symbol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.chemistry.</span></span><span class="sig-name descname"><span class="pre">atomic_num_to_symbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.chemistry.atomic_num_to_symbol" title="Link to this definition">#</a></dt>
+<dd><p>Convert atomic number to atomic symbol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atomic_num</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Atomic number.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Atomic symbol.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.chemistry.atomic_symbol_to_num">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.chemistry.</span></span><span class="sig-name descname"><span class="pre">atomic_symbol_to_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_symbol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.chemistry.atomic_symbol_to_num" title="Link to this definition">#</a></dt>
+<dd><p>Convert atomic symbol to atomic number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atomic_symbol</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Atomic symbol.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Atomic number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.gto_basis_utils">
+<span id="afqmctools-utils-gto-basis-utils-module"></span><h2>afqmctools.utils.gto_basis_utils module<a class="headerlink" href="#module-afqmctools.utils.gto_basis_utils" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.gto_basis_utils.default_basis_map">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.gto_basis_utils.</span></span><span class="sig-name descname"><span class="pre">default_basis_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Lmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.gto_basis_utils.default_basis_map" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.gto_basis_utils.double_basis_map">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.gto_basis_utils.</span></span><span class="sig-name descname"><span class="pre">double_basis_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Lmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.gto_basis_utils.double_basis_map" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.gto_basis_utils.extend_gto">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.gto_basis_utils.</span></span><span class="sig-name descname"><span class="pre">extend_gto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.gto_basis_utils.extend_gto" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.gto_basis_utils.extend_gto_id">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.gto_basis_utils.</span></span><span class="sig-name descname"><span class="pre">extend_gto_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.gto_basis_utils.extend_gto_id" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.io">
+<span id="afqmctools-utils-io-module"></span><h2>afqmctools.utils.io module<a class="headerlink" href="#module-afqmctools.utils.io" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.add_dataset">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">add_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.add_dataset" title="Link to this definition">#</a></dt>
+<dd><p>Adds value to dataset, and creates dataset if it does not exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">File</span></code></span>) – File object to write to.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of dataset.</p></li>
+<li><p><strong>value</strong> (<em>np.array</em>) – Value to write to dataset.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.add_group">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">add_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.add_group" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Add a group called “name” to h5py.File instance “fh5”,</dt><dd><p>deleting fh5[name] <em>if it already exists</em></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">File</span></code></span>) – File object to write to.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of group.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Group object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>h5py.Group</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.dump_dict">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">dump_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.dump_dict" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.format_fixed_width_floats">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">format_fixed_width_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">floats</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.format_fixed_width_floats" title="Link to this definition">#</a></dt>
+<dd><p>Format a list of floats to be fixed width.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.format_fixed_width_strings">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">format_fixed_width_strings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.format_fixed_width_strings" title="Link to this definition">#</a></dt>
+<dd><p>Format a list of strings to be fixed width.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.from_complex">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">from_complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.from_complex" title="Link to this definition">#</a></dt>
+<dd><p>Convert from internal complex format to numpy.complex128</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.get_hamiltonian_spin_symm">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">get_hamiltonian_spin_symm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.get_hamiltonian_spin_symm" title="Link to this definition">#</a></dt>
+<dd><p>Get the spin symmetry of the Hamiltonian from a Hamiltonian HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – File name of HDF5 file containing the Hamiltonian.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the spin symmetry of the Hamiltonian.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm">SpinSymm</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.h5_as_dict">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">h5_as_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.h5_as_dict" title="Link to this definition">#</a></dt>
+<dd><p>Load an HDF5 file as a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – File name of HDF5 file to load.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing the contents of the HDF5 file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.read_input_params">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">read_input_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.read_input_params" title="Link to this definition">#</a></dt>
+<dd><p>Read parameters from a human-readable TOML input file and return them in a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.read_nmo">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">read_nmo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.read_nmo" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.read_one_body">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">read_one_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csr'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.read_one_body" title="Link to this definition">#</a></dt>
+<dd><p>Read one-body Hamiltonian from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – File name to read from.</p></li>
+<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Format of the file. Default is ‘csr’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.to_complex">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">to_complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.to_complex" title="Link to this definition">#</a></dt>
+<dd><p>Convert from numpy.complex128 to internal complex format</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.write_csr">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">write_csr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csr_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.write_csr" title="Link to this definition">#</a></dt>
+<dd><p>Write CSR matrix to HDF5.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>h5py.File</em><em> or </em><em>h5py.Group</em>) – HDF5 object to write to.</p></li>
+<li><p><strong>csr_array</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">csr_array</span></code></span>) – CSR matrix to write.</p></li>
+<li><p><strong>prefix</strong> (<em>str</em>) – Prefix to write to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.write_model_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">write_model_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hamiltonian/ModelHamiltonian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.write_model_hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Writes a lattice model Hamiltonian to an HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hamiltonian</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian" title="afqmctools.hamiltonian.model.ham_class.Hamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></span>) – Hamiltonian object to write.</p></li>
+<li><p><strong>fname</strong> (<em>str</em>) – File name of HDF5 file to write to.</p></li>
+<li><p><strong>prefix</strong> (<em>str</em><em>, </em><em>optional</em>) – Prefix to write to.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of electrons in the system.</p></li>
+<li><p><strong>spin_symm</strong> (<a class="reference internal" href="#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – Spin symmetry of the Walkers to use in AFQMC. If not provided, the spin symmetry is read from the Hamiltonian object.</p></li>
+<li><p><strong>TODO</strong> (<em>consider removing the prefix argument since it should always be the same.</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.write_model_params">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">write_model_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.write_model_params" title="Link to this definition">#</a></dt>
+<dd><p>Write Model Hamiltonian parameters to a human-readable TOML file.</p>
+<dl class="simple">
+<dt>The files produced by this function can be used as an input files via the</dt><dd><p><cite>read_input_params(fname)</cite> function.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – File name to write to.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – Dictionary of model parameters to write. This dictionary has the same conventions as the model
+Hamiltonian builder. See the User Guide for more information.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.write_pair_correlators">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">write_pair_correlators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.write_pair_correlators" title="Link to this definition">#</a></dt>
+<dd><p>Write pair correlators to an HDF5 file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is an experimental feature and is not officially supported.
+Use at your own risk.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – File name of HDF5 file to write to.</p></li>
+<li><p><strong>pairs_dict</strong> (<em>dict</em>) – Dictionary of pair correlators to write.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.linalg">
+<span id="afqmctools-utils-linalg-module"></span><h2>afqmctools.utils.linalg module<a class="headerlink" href="#module-afqmctools.utils.linalg" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.linalg.get_ortho_ao">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.linalg.</span></span><span class="sig-name descname"><span class="pre">get_ortho_ao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LINDEP_CUTOFF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.linalg.get_ortho_ao" title="Link to this definition">#</a></dt>
+<dd><p>Generate canonical orthogonalization transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cell</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pyscf.pbc.cell</span></code> object) – PBC cell object.</p></li>
+<li><p><strong>kpts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code>) – List of kpoints.</p></li>
+<li><p><strong>LINDEP_CUTOFF</strong> (<em>float</em>) – Linear dependency cutoff. Basis functions whose eigenvalues lie below
+this value are removed from the basis set. Should be set in accordance
+with value in <code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf.scf.addons.remove_linear_dep()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code>) – Transformation matrix.</p></li>
+<li><p><strong>nmo_per_kpt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code>) – Number of OAOs orbitals per kpoint.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.linalg.get_ortho_ao_mol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.linalg.</span></span><span class="sig-name descname"><span class="pre">get_ortho_ao_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LINDEP_CUTOFF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.linalg.get_ortho_ao_mol" title="Link to this definition">#</a></dt>
+<dd><p>Generate canonical orthogonalization transformation matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Overlap matrix.</p></li>
+<li><p><strong>LINDEP_CUTOFF</strong> (<em>float</em>) – Linear dependency cutoff. Basis functions whose eigenvalues lie below
+this value are removed from the basis set. Should be set in accordance
+with value in <code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf.scf.addons.remove_linear_dep()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X</strong> – Transformation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.linalg.modified_cholesky_direct">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.linalg.</span></span><span class="sig-name descname"><span class="pre">modified_cholesky_direct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.linalg.modified_cholesky_direct" title="Link to this definition">#</a></dt>
+<dd><p>Modified cholesky decomposition of matrix.</p>
+<p>See, e.g. <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../../afqmc.html#id8" title="Mario Motta and Shiwei Zhang. Ab initio computations of molecular systems by the auxiliary-field quantum Monte Carlo method. WIREs Computational Molecular Science, 8(5):e1364, 2018. doi:10.1002/wcms.1364.">MZ18</a>]</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Positive semi-definite, symmetric matrix.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Accuracy desired. Optional. Default : 1e-5.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If true print out convergence progress. Optional. Default : False.</p></li>
+<li><p><strong>cmax</strong> (<em>int</em>) – Number of cholesky vectors to store N_gamma = cmax M.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>chol_vecs</strong> – Matrix of cholesky vectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.matrix">
+<span id="afqmctools-utils-matrix-module"></span><h2>afqmctools.utils.matrix module<a class="headerlink" href="#module-afqmctools.utils.matrix" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.matrix.force_herm">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.matrix.</span></span><span class="sig-name descname"><span class="pre">force_herm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper_triangular'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.matrix.force_herm" title="Link to this definition">#</a></dt>
+<dd><p>Force a matrix to be Hermitian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> (<em>array_like</em><em> or </em><em>sparse matrix</em>) – Input matrix to be forced to Hermitian.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Method to use for forcing Hermitian. Default is ‘upper_triangular’. See notes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>M_herm</strong> – Hermitian matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array_like or sparse matrix</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The following methods are available:</p>
+<dl class="simple">
+<dt><cite>‘upper_triangular’</cite> or <cite>‘triu’</cite>:</dt><dd><p>Set the lower triangular part of the matrix to zero and add the
+conjugate transpose of the upper triangular part. This effectively ignores the lower triangular
+part of the matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.matrix.is_hermitian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.matrix.</span></span><span class="sig-name descname"><span class="pre">is_hermitian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.matrix.is_hermitian" title="Link to this definition">#</a></dt>
+<dd><p>Check if a matrix (NumPy array or SciPy sparse array) is Hermitian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sps.spmatrix</strong><strong>)</strong> (<em>M</em><em> (</em><em>np.ndarray or</em>)</p></li>
+<li><p><strong>(</strong><strong>float</strong><strong>)</strong> (<em>tol</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>bool</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the matrix is Hermitian, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.misc">
+<span id="afqmctools-utils-misc-module"></span><h2>afqmctools.utils.misc module<a class="headerlink" href="#module-afqmctools.utils.misc" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.misc.dotdict">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.misc.</span></span><span class="sig-name descname"><span class="pre">dotdict</span></span><a class="headerlink" href="#afqmctools.utils.misc.dotdict" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>dot.notation access to dictionary attributes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.misc.get_git_hash">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.misc.</span></span><span class="sig-name descname"><span class="pre">get_git_hash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.misc.get_git_hash" title="Link to this definition">#</a></dt>
+<dd><p>Return git revision.</p>
+<dl class="simple">
+<dt>Adapted from:</dt><dd><p><a class="reference external" href="http://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script">http://stackoverflow.com/questions/14989858/get-the-current-git-hash-in-a-python-script</a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sha1</strong> – git hash with -dirty appended if uncommitted changes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.optimizable_basis_set">
+<span id="afqmctools-utils-optimizable-basis-set-module"></span><h2>afqmctools.utils.optimizable_basis_set module<a class="headerlink" href="#module-afqmctools.utils.optimizable_basis_set" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.BasisBlock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.optimizable_basis_set.</span></span><span class="sig-name descname"><span class="pre">BasisBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gauss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fun</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.BasisBlock" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Objects of this class hold a list of exponents and contraction coefficients
+defining a block of a set angular momentum in the basis set.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.BasisBlock.basis_str">
+<span class="sig-name descname"><span class="pre">basis_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.BasisBlock.basis_str" title="Link to this definition">#</a></dt>
+<dd><p>Returns the string associated with this basis block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array</em>) – <p>Parameters of the basis set in linearized array.
+The expected order is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">exp1</span><span class="p">,</span> <span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">exp2</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">exp3</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where expn is the exponent of the nth basis function and
+cni is the nth contraction coefficient of the ith basis.</p>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Basis block.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.optimizable_basis_set.</span></span><span class="sig-name descname"><span class="pre">EvenTemperedBasisBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gauss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fun</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Objects of this class hold a list of exponents and contraction coefficients
+defining a block of a set angular momentum in the basis set.
+Exponents are generated from even tempered set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">beta</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For now, only beta and contraction coefficients are mutable.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock.basis_str">
+<span class="sig-name descname"><span class="pre">basis_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock.basis_str" title="Link to this definition">#</a></dt>
+<dd><p>Returns the string associated with this basis block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array</em>) – <p>Parameters of the basis set in linearized array.
+The expected order is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">exp1</span><span class="p">,</span> <span class="n">c11</span><span class="p">,</span> <span class="n">c12</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">exp2</span><span class="p">,</span> <span class="n">c21</span><span class="p">,</span> <span class="n">c22</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">exp3</span><span class="p">,</span> <span class="n">c31</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where expn is the exponent of the nth basis function and
+cni is the nth contraction coefficient of the ith basis.</p>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Basis block.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.optimizable_basis_set.</span></span><span class="sig-name descname"><span class="pre">OptimizableBasisSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def_basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bblk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.add" title="Link to this definition">#</a></dt>
+<dd><p>Extends the basis set of a species by adding a new (possibly optimizable)block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bblk</strong> (<em>Object</em><em> of </em><em>type BasisBlock</em><em> or </em><em>EvenTemperedBasisBlock.</em>) – A basis set block.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.basis_str">
+<span class="sig-name descname"><span class="pre">basis_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.basis_str" title="Link to this definition">#</a></dt>
+<dd><p>Returns a string with the basis set of a given species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atm</strong> (<em>string</em>) – String with the label of a species.</p></li>
+<li><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>extra_basis: String</dt><dd><p>A string with the basis set of species atm.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.extended_basis">
+<span class="sig-name descname"><span class="pre">extended_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.extended_basis" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns a string that corresponds to the extended part of the basis set for</dt><dd><dl class="simple">
+<dt>species atm. The extended part of the basis corresponds to the blocks</dt><dd><p>included with self.add(…)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atm</strong> (<em>string</em>) – String with the label of a species.</p></li>
+<li><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>extra_basis</strong> – A string with the extended basis of species atm.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_file">
+<span class="sig-name descname"><span class="pre">print_all_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_file" title="Link to this definition">#</a></dt>
+<dd><p>Prints all the requested basis sets to separate file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fnames</strong> (<em>Python Dictionary</em>) – Dictionary with file names. Only those species contained in the object
+and defined in the dictionary will be printed.</p></li>
+<li><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_stdout">
+<span class="sig-name descname"><span class="pre">print_all_to_stdout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_stdout" title="Link to this definition">#</a></dt>
+<dd><p>Prints all the basis sets contained by the object to stdout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_file">
+<span class="sig-name descname"><span class="pre">print_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_file" title="Link to this definition">#</a></dt>
+<dd><p>Prints the basis set of a species to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>string</em>) – Name of file.</p></li>
+<li><p><strong>atm</strong> (<em>string</em>) – String with the label of a species.</p></li>
+<li><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_stdout">
+<span class="sig-name descname"><span class="pre">print_to_stdout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_stdout" title="Link to this definition">#</a></dt>
+<dd><p>Prints the basis set of a species to a stdout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atm</strong> (<em>string</em>) – String with the label of a species.</p></li>
+<li><p><strong>x</strong> (<em>1-D floating point array.</em>) – Array with variational parameters in the basis.
+Dimension must be equal to self.number_of_params.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.optimizable_basis_set.default_basis_set">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.optimizable_basis_set.</span></span><span class="sig-name descname"><span class="pre">default_basis_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Lmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.optimizable_basis_set.default_basis_set" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Generates a OptimizableBasisSet object with default parameters.</dt><dd><p>A single uncontracted gaussian per angular momentum will be used.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Lmax</strong> (<em>integer. Requirement: 2 &lt;= L &lt;= 6</em>) – Maximum angular momentum. For each l=2,3,…,Lmax,
+shells will be added with angular momentum: 0,1,…,l.</p></li>
+<li><p><strong>atoms</strong> (<em>array</em><em> of </em><em>strrings</em>) – For each symbol in the array, a new basis set is created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>OptimizableBasisSet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.parallel">
+<span id="afqmctools-utils-parallel-module"></span><h2>afqmctools.utils.parallel module<a class="headerlink" href="#module-afqmctools.utils.parallel" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.parallel.bisect">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.parallel.</span></span><span class="sig-name descname"><span class="pre">bisect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.parallel.bisect" title="Link to this definition">#</a></dt>
+<dd><p>Return the index where to insert item x in list a, assuming a is sorted.</p>
+<p>The return value i is such that all e in a[:i] have e &lt;= x, and all e in
+a[i:] have e &gt; x.  So if x already appears in the list, a.insert(x) will
+insert just after the rightmost x already there.</p>
+<p>Optional args lo (default 0) and hi (default len(a)) bound the
+slice of a to be searched.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.parallel.fair_share">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.parallel.</span></span><span class="sig-name descname"><span class="pre">fair_share</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.parallel.fair_share" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="afqmctools-utils-pyscf-utils-module">
+<h2>afqmctools.utils.pyscf_utils module<a class="headerlink" href="#afqmctools-utils-pyscf-utils-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="afqmctools-utils-qe-tools-module">
+<h2>afqmctools.utils.qe_tools module<a class="headerlink" href="#afqmctools-utils-qe-tools-module" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-afqmctools.utils.qe_utils">
+<span id="afqmctools-utils-qe-utils-module"></span><h2>afqmctools.utils.qe_utils module<a class="headerlink" href="#module-afqmctools.utils.qe_utils" title="Link to this heading">#</a></h2>
+<p>Utilities for interacting with Quantum Espresso</p>
+<p>Functionality:
+1. Read orbitals and DFT density from PWSCF in HDF5 format</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.cubic_pos">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">cubic_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spaces</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.cubic_pos" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.get_qe_realspace_grid">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">get_qe_realspace_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fft_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.get_qe_realspace_grid" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.get_rvecs">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">get_rvecs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.get_rvecs" title="Link to this definition">#</a></dt>
+<dd><p>Regular grid in positive quadrant</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.read_orbitals">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">read_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_fft_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realspace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.read_orbitals" title="Link to this definition">#</a></dt>
+<dd><p>Read orbitals from Quantum Espresso output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prefix</strong> (<em>str</em>) – prefix of the output files</p></li>
+<li><p><strong>path</strong> (<em>str</em><em> | </em><em>Path</em><em>, </em><em>optional</em>) – path to directory containing the output files. If not specified,
+it is assumed that the files are in the current directory.</p></li>
+<li><p><strong>new_fft_grid</strong> (<em>list</em><em>(</em><em>int</em><em>)</em><em>, </em><em>optional</em>) – new FFT grid to use for the orbitals.</p></li>
+<li><p><strong>cartesian</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return real space grid in Cartesian coordinates.
+If False, return real space grid in fractional coordinates.
+If ‘realspace’ is False, then this has no effect.
+If ‘return_grid’ is False, then this has no effect.</p></li>
+<li><p><strong>realspace</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return orbitals in real space. If False, return orbitals
+in reciprocal space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>if realspace is True, then return a tuple containing:
+- dense representation of the realspace grid : np.ndarray with shape (3,N_grid)
+- orbitals : np.ndarray with shape (N_kpts,N_bands,N_grid)
+- fft_grid : np.ndarray with shape (3,) containing the size of the FFT grid
+if realspace is False, then return a tuple containing:
+- metadata : dict containing metadata
+- orbitals : list of np.ndarray with shape (N_kpts,N_bands,N_fft)
+- None : for tuple length consistency with the realspace case</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.read_qe_density">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">read_qe_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_fft_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cartesian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.read_qe_density" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.read_qe_metadata">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">read_qe_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.read_qe_metadata" title="Link to this definition">#</a></dt>
+<dd><p>Read metadata from Quantum Espresso output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>forbs</strong> (<em>str</em>) – orbital HDF file from Coqui</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – path to directory containing the output files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>meta</strong> (<em>dict</em>) – metadata</p></li>
+<li><p><strong>orbs</strong> (<em>numpy.ndarray</em>) – orbitals</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_utils.shift_m">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_utils.</span></span><span class="sig-name descname"><span class="pre">shift_m</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_utils.shift_m" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.slater_types">
+<span id="afqmctools-utils-slater-types-module"></span><h2>afqmctools.utils.slater_types module<a class="headerlink" href="#module-afqmctools.utils.slater_types" title="Link to this heading">#</a></h2>
+<p>Define an enumerated type to simplify specifying a Slater determinant type.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.slater_types.MultiSlater">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.slater_types.</span></span><span class="sig-name descname"><span class="pre">MultiSlater</span></span><a class="headerlink" href="#afqmctools.utils.slater_types.MultiSlater" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.slater_types.NonorthMSD">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.slater_types.</span></span><span class="sig-name descname"><span class="pre">NonorthMSD</span></span><a class="headerlink" href="#afqmctools.utils.slater_types.NonorthMSD" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#afqmctools.utils.slater_types.MultiSlater" title="afqmctools.utils.slater_types.MultiSlater"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiSlater</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.slater_types.ParticleHoleMSD">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.slater_types.</span></span><span class="sig-name descname"><span class="pre">ParticleHoleMSD</span></span><a class="headerlink" href="#afqmctools.utils.slater_types.ParticleHoleMSD" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#afqmctools.utils.slater_types.MultiSlater" title="afqmctools.utils.slater_types.MultiSlater"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiSlater</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.slater_types.SlaterDeterminant">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.slater_types.</span></span><span class="sig-name descname"><span class="pre">SlaterDeterminant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slater_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.slater_types.SlaterDeterminant" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.types">
+<span id="afqmctools-utils-types-module"></span><h2>afqmctools.utils.types module<a class="headerlink" href="#module-afqmctools.utils.types" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.utils.types.SpinSymm">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.utils.types.</span></span><span class="sig-name descname"><span class="pre">SpinSymm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.types.SpinSymm" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+<dl class="simple">
+<dt>An enumerated class/type in order to</dt><dd><p>document the different types of
+spin_symmetry.</p>
+</dd>
+<dt>The values are meaningful!! a larger</dt><dd><p>value implies less symmetry. This
+convention is used to match the
+internal conventions in the C++</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.types.SpinSymm.CLOSED">
+<span class="sig-name descname"><span class="pre">CLOSED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#afqmctools.utils.types.SpinSymm.CLOSED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.types.SpinSymm.COLLINEAR">
+<span class="sig-name descname"><span class="pre">COLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#afqmctools.utils.types.SpinSymm.COLLINEAR" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.types.SpinSymm.FULLYPOLARIZED">
+<span class="sig-name descname"><span class="pre">FULLYPOLARIZED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#afqmctools.utils.types.SpinSymm.FULLYPOLARIZED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="afqmctools.utils.types.SpinSymm.NONCOLLINEAR">
+<span class="sig-name descname"><span class="pre">NONCOLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#afqmctools.utils.types.SpinSymm.NONCOLLINEAR" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.types.get_spin_symm_enum">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.types.</span></span><span class="sig-name descname"><span class="pre">get_spin_symm_enum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.types.get_spin_symm_enum" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.utils.visualize">
+<span id="afqmctools-utils-visualize-module"></span><h2>afqmctools.utils.visualize module<a class="headerlink" href="#module-afqmctools.utils.visualize" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.visualize.plot_lattice">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.visualize.</span></span><span class="sig-name descname"><span class="pre">plot_lattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_direct_nearest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_image_nearest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Density'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_lattice_vecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.visualize.plot_lattice" title="Link to this definition">#</a></dt>
+<dd><p>Plot a lattice with nearest neighbors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – Lattice object to plot.</p></li>
+<li><p><strong>show_direct_nearest</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show direct nearest neighbors, by default True. Direct neighbors are connected by solid lines.</p></li>
+<li><p><strong>show_image_nearest</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show image nearest neighbors, by default True. Image neighbors are connected by dashed lines.</p></li>
+<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optional</em>) – Save the plot to a file, by default False. If False, the plot is displayed.</p></li>
+<li><p><strong>show_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show site labels, by default True.</p></li>
+<li><p><strong>density</strong> (<em>np.array</em><em>, </em><em>optional</em>) – Array of site densities with shape (nsites,nsites), by default None. If provided, the site color is scaled by the density.</p></li>
+<li><p><strong>norm_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Type of normalization to use for the density, by default ‘linear’. Options are ‘linear’ and ‘log’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.visualize.plot_site">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.visualize.</span></span><span class="sig-name descname"><span class="pre">plot_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.visualize.plot_site" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools.utils" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="afqmctools.systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">afqmctools.systems package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="afqmctools.wavefunction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">afqmctools.wavefunction package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.aimbes_utils">afqmctools.utils.aimbes_utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.BARE"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.BARE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.CRPA"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.CRPA</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.FROZEN_CORE"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.FROZEN_CORE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.band_window"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.band_window</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.kpts"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.kpts</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.name"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.name</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.proj_mat"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.proj_mat</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.wan_centres"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.wan_centres</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.aimb_1body_2_afqmc"><code class="docutils literal notranslate"><span class="pre">aimb_1body_2_afqmc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.aimb_2body_2_afqmc"><code class="docutils literal notranslate"><span class="pre">aimb_2body_2_afqmc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.check_aimbes_energy"><code class="docutils literal notranslate"><span class="pre">check_aimbes_energy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.get_aimbes_2body"><code class="docutils literal notranslate"><span class="pre">get_aimbes_2body()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.get_aimbes_hamil_enum"><code class="docutils literal notranslate"><span class="pre">get_aimbes_hamil_enum()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_aimbes_Hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_aimbes_Hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_aimbes_dm"><code class="docutils literal notranslate"><span class="pre">read_aimbes_dm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_bare_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_bare_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_coqui_orbitals"><code class="docutils literal notranslate"><span class="pre">read_coqui_orbitals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_crpa_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_crpa_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_frozen_core_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_frozen_core_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.read_triqs_hdf5"><code class="docutils literal notranslate"><span class="pre">read_triqs_hdf5()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.aimbes_utils.write_downfolding_orbitals"><code class="docutils literal notranslate"><span class="pre">write_downfolding_orbitals()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.chemistry">afqmctools.utils.chemistry module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#routine-listings">Routine Listings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.chemistry.atomic_num_to_symbol"><code class="docutils literal notranslate"><span class="pre">atomic_num_to_symbol()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.chemistry.atomic_symbol_to_num"><code class="docutils literal notranslate"><span class="pre">atomic_symbol_to_num()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.gto_basis_utils">afqmctools.utils.gto_basis_utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.gto_basis_utils.default_basis_map"><code class="docutils literal notranslate"><span class="pre">default_basis_map()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.gto_basis_utils.double_basis_map"><code class="docutils literal notranslate"><span class="pre">double_basis_map()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.gto_basis_utils.extend_gto"><code class="docutils literal notranslate"><span class="pre">extend_gto()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.gto_basis_utils.extend_gto_id"><code class="docutils literal notranslate"><span class="pre">extend_gto_id()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.io">afqmctools.utils.io module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.add_dataset"><code class="docutils literal notranslate"><span class="pre">add_dataset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.add_group"><code class="docutils literal notranslate"><span class="pre">add_group()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.dump_dict"><code class="docutils literal notranslate"><span class="pre">dump_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.format_fixed_width_floats"><code class="docutils literal notranslate"><span class="pre">format_fixed_width_floats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.format_fixed_width_strings"><code class="docutils literal notranslate"><span class="pre">format_fixed_width_strings()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.from_complex"><code class="docutils literal notranslate"><span class="pre">from_complex()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.get_hamiltonian_spin_symm"><code class="docutils literal notranslate"><span class="pre">get_hamiltonian_spin_symm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.h5_as_dict"><code class="docutils literal notranslate"><span class="pre">h5_as_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_input_params"><code class="docutils literal notranslate"><span class="pre">read_input_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_nmo"><code class="docutils literal notranslate"><span class="pre">read_nmo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_one_body"><code class="docutils literal notranslate"><span class="pre">read_one_body()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.to_complex"><code class="docutils literal notranslate"><span class="pre">to_complex()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.write_csr"><code class="docutils literal notranslate"><span class="pre">write_csr()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.write_model_hamiltonian"><code class="docutils literal notranslate"><span class="pre">write_model_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.write_model_params"><code class="docutils literal notranslate"><span class="pre">write_model_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.write_pair_correlators"><code class="docutils literal notranslate"><span class="pre">write_pair_correlators()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.linalg">afqmctools.utils.linalg module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.linalg.get_ortho_ao"><code class="docutils literal notranslate"><span class="pre">get_ortho_ao()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.linalg.get_ortho_ao_mol"><code class="docutils literal notranslate"><span class="pre">get_ortho_ao_mol()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.linalg.modified_cholesky_direct"><code class="docutils literal notranslate"><span class="pre">modified_cholesky_direct()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.matrix">afqmctools.utils.matrix module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.matrix.force_herm"><code class="docutils literal notranslate"><span class="pre">force_herm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.matrix.is_hermitian"><code class="docutils literal notranslate"><span class="pre">is_hermitian()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.misc">afqmctools.utils.misc module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.misc.dotdict"><code class="docutils literal notranslate"><span class="pre">dotdict</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.misc.get_git_hash"><code class="docutils literal notranslate"><span class="pre">get_git_hash()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.optimizable_basis_set">afqmctools.utils.optimizable_basis_set module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.BasisBlock"><code class="docutils literal notranslate"><span class="pre">BasisBlock</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.BasisBlock.basis_str"><code class="docutils literal notranslate"><span class="pre">BasisBlock.basis_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock"><code class="docutils literal notranslate"><span class="pre">EvenTemperedBasisBlock</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock.basis_str"><code class="docutils literal notranslate"><span class="pre">EvenTemperedBasisBlock.basis_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.add"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.add()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.basis_str"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.basis_str()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.extended_basis"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.extended_basis()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_file"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_all_to_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_stdout"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_all_to_stdout()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_file"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_to_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_stdout"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_to_stdout()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.optimizable_basis_set.default_basis_set"><code class="docutils literal notranslate"><span class="pre">default_basis_set()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.parallel">afqmctools.utils.parallel module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.parallel.bisect"><code class="docutils literal notranslate"><span class="pre">bisect()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.parallel.fair_share"><code class="docutils literal notranslate"><span class="pre">fair_share()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-utils-pyscf-utils-module">afqmctools.utils.pyscf_utils module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-utils-qe-tools-module">afqmctools.utils.qe_tools module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.qe_utils">afqmctools.utils.qe_utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.cubic_pos"><code class="docutils literal notranslate"><span class="pre">cubic_pos()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.get_qe_realspace_grid"><code class="docutils literal notranslate"><span class="pre">get_qe_realspace_grid()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.get_rvecs"><code class="docutils literal notranslate"><span class="pre">get_rvecs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.read_orbitals"><code class="docutils literal notranslate"><span class="pre">read_orbitals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.read_qe_density"><code class="docutils literal notranslate"><span class="pre">read_qe_density()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.read_qe_metadata"><code class="docutils literal notranslate"><span class="pre">read_qe_metadata()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.shift_m"><code class="docutils literal notranslate"><span class="pre">shift_m()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.slater_types">afqmctools.utils.slater_types module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.slater_types.MultiSlater"><code class="docutils literal notranslate"><span class="pre">MultiSlater</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.slater_types.NonorthMSD"><code class="docutils literal notranslate"><span class="pre">NonorthMSD</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.slater_types.ParticleHoleMSD"><code class="docutils literal notranslate"><span class="pre">ParticleHoleMSD</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.slater_types.SlaterDeterminant"><code class="docutils literal notranslate"><span class="pre">SlaterDeterminant</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.types">afqmctools.utils.types module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.SpinSymm"><code class="docutils literal notranslate"><span class="pre">SpinSymm</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.SpinSymm.CLOSED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.CLOSED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.SpinSymm.COLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.COLLINEAR</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.SpinSymm.FULLYPOLARIZED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.FULLYPOLARIZED</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.SpinSymm.NONCOLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.NONCOLLINEAR</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.types.get_spin_symm_enum"><code class="docutils literal notranslate"><span class="pre">get_spin_symm_enum()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.visualize">afqmctools.utils.visualize module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.visualize.plot_lattice"><code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.visualize.plot_site"><code class="docutils literal notranslate"><span class="pre">plot_site()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/afqmctools/api/afqmctools.utils.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

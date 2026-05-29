@@ -1,0 +1,1062 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>afqmctools package &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'afqmctools/api/afqmctools';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="afqmctools.analysis package" href="afqmctools.analysis.html" />
+    <link rel="prev" title="Lattice Model Tools for AFQMC" href="../lattice_models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afqmctools_cli.html">Command line tools</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lattice_models.html">Lattice Model Tools for AFQMC</a></li>
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">afqmctools package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html">afqmctools.analysis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="afqmctools.hamiltonian.html">afqmctools.hamiltonian package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html">afqmctools.inputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html">afqmctools.observables package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html">afqmctools.systems package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html">afqmctools.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html">afqmctools.wavefunction package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../afqmctools.html" class="nav-link">afqmctools Python package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">afqmctools package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="afqmctools-package">
+<h1>afqmctools package<a class="headerlink" href="#afqmctools-package" title="Link to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.analysis.html">afqmctools.analysis package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.average">afqmctools.analysis.average module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.analyse_ekt"><code class="docutils literal notranslate"><span class="pre">analyse_ekt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_atom_correlations"><code class="docutils literal notranslate"><span class="pre">average_atom_correlations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_diag_two_rdm"><code class="docutils literal notranslate"><span class="pre">average_diag_two_rdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_gen_fock"><code class="docutils literal notranslate"><span class="pre">average_gen_fock()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_observable"><code class="docutils literal notranslate"><span class="pre">average_observable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_on_top_pdm"><code class="docutils literal notranslate"><span class="pre">average_on_top_pdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_one_rdm"><code class="docutils literal notranslate"><span class="pre">average_one_rdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_pair_correlation"><code class="docutils literal notranslate"><span class="pre">average_pair_correlation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_realspace_correlations"><code class="docutils literal notranslate"><span class="pre">average_realspace_correlations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_spinspin"><code class="docutils literal notranslate"><span class="pre">average_spinspin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.average_two_rdm"><code class="docutils literal notranslate"><span class="pre">average_two_rdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.estimate_error_eig"><code class="docutils literal notranslate"><span class="pre">estimate_error_eig()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.gen_sample_matrix"><code class="docutils literal notranslate"><span class="pre">gen_sample_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.get_noons"><code class="docutils literal notranslate"><span class="pre">get_noons()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.regularised_ortho"><code class="docutils literal notranslate"><span class="pre">regularised_ortho()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.solve_gen_eig"><code class="docutils literal notranslate"><span class="pre">solve_gen_eig()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.average.spectral_function"><code class="docutils literal notranslate"><span class="pre">spectral_function()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.common">afqmctools.analysis.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.common.batched"><code class="docutils literal notranslate"><span class="pre">batched()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.common.batched_np_array"><code class="docutils literal notranslate"><span class="pre">batched_np_array()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.common.get_bp_taus"><code class="docutils literal notranslate"><span class="pre">get_bp_taus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.common.get_metadata"><code class="docutils literal notranslate"><span class="pre">get_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.common.reblock"><code class="docutils literal notranslate"><span class="pre">reblock()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.extraction">afqmctools.analysis.extraction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.extraction.extract_data"><code class="docutils literal notranslate"><span class="pre">extract_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.extraction.extract_observable"><code class="docutils literal notranslate"><span class="pre">extract_observable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.extraction.get_estimator_len"><code class="docutils literal notranslate"><span class="pre">get_estimator_len()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.new_rdm">afqmctools.analysis.new_rdm module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.extract_qmc_dm"><code class="docutils literal notranslate"><span class="pre">extract_qmc_dm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.extract_rdm_single"><code class="docutils literal notranslate"><span class="pre">extract_rdm_single()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.get_metadata"><code class="docutils literal notranslate"><span class="pre">get_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.get_one_rdm_av"><code class="docutils literal notranslate"><span class="pre">get_one_rdm_av()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.get_qmc_dm_trace"><code class="docutils literal notranslate"><span class="pre">get_qmc_dm_trace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.new_rdm.get_rdm_len"><code class="docutils literal notranslate"><span class="pre">get_rdm_len()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.rdm">afqmctools.analysis.rdm module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.average_afqmc_rdm"><code class="docutils literal notranslate"><span class="pre">average_afqmc_rdm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.check_1rdm_convergence"><code class="docutils literal notranslate"><span class="pre">check_1rdm_convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.get_afqmc_rdm_samples"><code class="docutils literal notranslate"><span class="pre">get_afqmc_rdm_samples()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.get_natural_orbs"><code class="docutils literal notranslate"><span class="pre">get_natural_orbs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.plot_1rdm_convergence"><code class="docutils literal notranslate"><span class="pre">plot_1rdm_convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.plot_rdm_diagonal"><code class="docutils literal notranslate"><span class="pre">plot_rdm_diagonal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.rdm.resample"><code class="docutils literal notranslate"><span class="pre">resample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis.transform">afqmctools.analysis.transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.check_integer"><code class="docutils literal notranslate"><span class="pre">check_integer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.eval_hubbard_from_diag_two_rdm_factory"><code class="docutils literal notranslate"><span class="pre">eval_hubbard_from_diag_two_rdm_factory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.eval_one_body_obs_factory"><code class="docutils literal notranslate"><span class="pre">eval_one_body_obs_factory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.eval_two_body_obs_factory"><code class="docutils literal notranslate"><span class="pre">eval_two_body_obs_factory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.hermitize_factory"><code class="docutils literal notranslate"><span class="pre">hermitize_factory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.analysis.html#afqmctools.analysis.transform.upper_triangle_factory"><code class="docutils literal notranslate"><span class="pre">upper_triangle_factory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html#module-afqmctools.analysis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.hamiltonian.html">afqmctools.hamiltonian package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.builder">afqmctools.hamiltonian.model.builder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.director">afqmctools.hamiltonian.model.director module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.ham_class">afqmctools.hamiltonian.model.ham_class module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#module-afqmctools.hamiltonian.converter">afqmctools.hamiltonian.converter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.check_sym"><code class="docutils literal notranslate"><span class="pre">check_sym()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.fcidump_header"><code class="docutils literal notranslate"><span class="pre">fcidump_header()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.fmt_integral"><code class="docutils literal notranslate"><span class="pre">fmt_integral()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.get_kpoint_chol"><code class="docutils literal notranslate"><span class="pre">get_kpoint_chol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.get_kpoint_chol_coqui"><code class="docutils literal notranslate"><span class="pre">get_kpoint_chol_coqui()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.h1_spat2spin"><code class="docutils literal notranslate"><span class="pre">h1_spat2spin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.h2_spat2spin"><code class="docutils literal notranslate"><span class="pre">h2_spat2spin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_cholesky_kpoint"><code class="docutils literal notranslate"><span class="pre">read_cholesky_kpoint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_cholesky_kpoint_coqui"><code class="docutils literal notranslate"><span class="pre">read_cholesky_kpoint_coqui()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_common_input"><code class="docutils literal notranslate"><span class="pre">read_common_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_dense"><code class="docutils literal notranslate"><span class="pre">read_dense()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_fcidump"><code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_fcidump_header"><code class="docutils literal notranslate"><span class="pre">read_fcidump_header()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_hamil_type"><code class="docutils literal notranslate"><span class="pre">read_hamil_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_model"><code class="docutils literal notranslate"><span class="pre">read_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.write_fcidump"><code class="docutils literal notranslate"><span class="pre">write_fcidump()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.write_fcidump_kpoint"><code class="docutils literal notranslate"><span class="pre">write_fcidump_kpoint()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#module-afqmctools.hamiltonian.io">afqmctools.hamiltonian.io module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.io.to_sparse"><code class="docutils literal notranslate"><span class="pre">to_sparse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.io.write_dense"><code class="docutils literal notranslate"><span class="pre">write_dense()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.io.write_to_hdf5"><code class="docutils literal notranslate"><span class="pre">write_to_hdf5()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools-hamiltonian-kpoint-module">afqmctools.hamiltonian.kpoint module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#module-afqmctools.hamiltonian.mol">afqmctools.hamiltonian.mol module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.chunked_cholesky"><code class="docutils literal notranslate"><span class="pre">chunked_cholesky()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.core_contribution_cholesky"><code class="docutils literal notranslate"><span class="pre">core_contribution_cholesky()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.freeze_core"><code class="docutils literal notranslate"><span class="pre">freeze_core()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.gab"><code class="docutils literal notranslate"><span class="pre">gab()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.generate_hamiltonian"><code class="docutils literal notranslate"><span class="pre">generate_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.local_energy_generic_cholesky"><code class="docutils literal notranslate"><span class="pre">local_energy_generic_cholesky()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.process_generic_hamiltonian"><code class="docutils literal notranslate"><span class="pre">process_generic_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.transform_cholesky"><code class="docutils literal notranslate"><span class="pre">transform_cholesky()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.write_hamil_mol"><code class="docutils literal notranslate"><span class="pre">write_hamil_mol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.write_hamiltonian_generic"><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#afqmctools-hamiltonian-supercell-module">afqmctools.hamiltonian.supercell module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.html#module-afqmctools.hamiltonian">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.inputs.html">afqmctools.inputs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#module-afqmctools.inputs.energy">afqmctools.inputs.energy module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.energy.calculate_hf_energy"><code class="docutils literal notranslate"><span class="pre">calculate_hf_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.energy.local_energy_mol"><code class="docutils literal notranslate"><span class="pre">local_energy_mol()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#afqmctools-inputs-from-autohf-module">afqmctools.inputs.from_autohf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#module-afqmctools.inputs.from_hdf">afqmctools.inputs.from_hdf module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.from_hdf.default_inputs"><code class="docutils literal notranslate"><span class="pre">default_inputs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.from_hdf.get_estimator_settings"><code class="docutils literal notranslate"><span class="pre">get_estimator_settings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.from_hdf.read_info"><code class="docutils literal notranslate"><span class="pre">read_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.inputs.html#afqmctools.inputs.from_hdf.write_json"><code class="docutils literal notranslate"><span class="pre">write_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#afqmctools-inputs-from-pyscf-module">afqmctools.inputs.from_pyscf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html#module-afqmctools.inputs">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.observables.html">afqmctools.observables package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#module-afqmctools.observables.generic">afqmctools.observables.generic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.generic.observable_1body"><code class="docutils literal notranslate"><span class="pre">observable_1body()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#module-afqmctools.observables.greens">afqmctools.observables.greens module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.greens.greens_1body"><code class="docutils literal notranslate"><span class="pre">greens_1body()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.greens.sd_overlap"><code class="docutils literal notranslate"><span class="pre">sd_overlap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#module-afqmctools.observables.rhonk">afqmctools.observables.rhonk module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.calc_nofk"><code class="docutils literal notranslate"><span class="pre">calc_nofk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.calc_rhor"><code class="docutils literal notranslate"><span class="pre">calc_rhor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.calc_rhor_from_r"><code class="docutils literal notranslate"><span class="pre">calc_rhor_from_r()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.calc_rhor_old"><code class="docutils literal notranslate"><span class="pre">calc_rhor_old()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.charge_density"><code class="docutils literal notranslate"><span class="pre">charge_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.cubic_pos"><code class="docutils literal notranslate"><span class="pre">cubic_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.dm_in_basis"><code class="docutils literal notranslate"><span class="pre">dm_in_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.get_gvecs"><code class="docutils literal notranslate"><span class="pre">get_gvecs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.get_rvecs"><code class="docutils literal notranslate"><span class="pre">get_rvecs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.load_dict"><code class="docutils literal notranslate"><span class="pre">load_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.open_read"><code class="docutils literal notranslate"><span class="pre">open_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.open_write"><code class="docutils literal notranslate"><span class="pre">open_write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.read_dm"><code class="docutils literal notranslate"><span class="pre">read_dm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.read_gaussian_cube"><code class="docutils literal notranslate"><span class="pre">read_gaussian_cube()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.read_group"><code class="docutils literal notranslate"><span class="pre">read_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.save_dict"><code class="docutils literal notranslate"><span class="pre">save_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.save_vec"><code class="docutils literal notranslate"><span class="pre">save_vec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.write_dict"><code class="docutils literal notranslate"><span class="pre">write_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.write_gaussian_cube"><code class="docutils literal notranslate"><span class="pre">write_gaussian_cube()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.rhonk.write_gaussian_cube_text"><code class="docutils literal notranslate"><span class="pre">write_gaussian_cube_text()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#module-afqmctools.observables.spin">afqmctools.observables.spin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#routines">Routines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.spin.local_spin"><code class="docutils literal notranslate"><span class="pre">local_spin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.spin.spin_spin"><code class="docutils literal notranslate"><span class="pre">spin_spin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.spin.spin_squared"><code class="docutils literal notranslate"><span class="pre">spin_squared()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.observables.html#afqmctools.observables.spin.spin_z"><code class="docutils literal notranslate"><span class="pre">spin_z()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html#module-afqmctools.observables">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.systems.html">afqmctools.systems package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html#module-afqmctools.systems.lattice">afqmctools.systems.lattice module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Boundary"><code class="docutils literal notranslate"><span class="pre">Boundary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Boundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">Boundary.is_allowed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Boundary.is_image"><code class="docutils literal notranslate"><span class="pre">Boundary.is_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Boundary.is_valid"><code class="docutils literal notranslate"><span class="pre">Boundary.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Boundary.is_valid_image"><code class="docutils literal notranslate"><span class="pre">Boundary.is_valid_image()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.CustomLattice"><code class="docutils literal notranslate"><span class="pre">CustomLattice</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.HoneycombLattice"><code class="docutils literal notranslate"><span class="pre">HoneycombLattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.HoneycombLattice.ROTATION_ANGLES"><code class="docutils literal notranslate"><span class="pre">HoneycombLattice.ROTATION_ANGLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.HoneycombLattice.ROTATION_GROUP"><code class="docutils literal notranslate"><span class="pre">HoneycombLattice.ROTATION_GROUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.HoneycombLattice.pi"><code class="docutils literal notranslate"><span class="pre">HoneycombLattice.pi</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.KagomeLattice"><code class="docutils literal notranslate"><span class="pre">KagomeLattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.KagomeLattice.ROTATION_ANGLES"><code class="docutils literal notranslate"><span class="pre">KagomeLattice.ROTATION_ANGLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.KagomeLattice.ROTATION_GROUP"><code class="docutils literal notranslate"><span class="pre">KagomeLattice.ROTATION_GROUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.KagomeLattice.pi"><code class="docutils literal notranslate"><span class="pre">KagomeLattice.pi</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice"><code class="docutils literal notranslate"><span class="pre">Lattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.ROTATION_GROUP"><code class="docutils literal notranslate"><span class="pre">Lattice.ROTATION_GROUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.add_site"><code class="docutils literal notranslate"><span class="pre">Lattice.add_site()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.build"><code class="docutils literal notranslate"><span class="pre">Lattice.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_kvecs"><code class="docutils literal notranslate"><span class="pre">Lattice.get_kvecs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_nth_direct_neighbors"><code class="docutils literal notranslate"><span class="pre">Lattice.get_nth_direct_neighbors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_nth_image_neighbors"><code class="docutils literal notranslate"><span class="pre">Lattice.get_nth_image_neighbors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_nth_neighbors"><code class="docutils literal notranslate"><span class="pre">Lattice.get_nth_neighbors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_planewaves"><code class="docutils literal notranslate"><span class="pre">Lattice.get_planewaves()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_positions"><code class="docutils literal notranslate"><span class="pre">Lattice.get_positions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.get_sites"><code class="docutils literal notranslate"><span class="pre">Lattice.get_sites()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.is_image"><code class="docutils literal notranslate"><span class="pre">Lattice.is_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.metric"><code class="docutils literal notranslate"><span class="pre">Lattice.metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice.remove_distances"><code class="docutils literal notranslate"><span class="pre">Lattice.remove_distances()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.LatticeSite"><code class="docutils literal notranslate"><span class="pre">LatticeSite</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.LatticeSite.coord"><code class="docutils literal notranslate"><span class="pre">LatticeSite.coord</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.LatticeSite.index"><code class="docutils literal notranslate"><span class="pre">LatticeSite.index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.LatticeSite.position"><code class="docutils literal notranslate"><span class="pre">LatticeSite.position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.NeighborPair"><code class="docutils literal notranslate"><span class="pre">NeighborPair</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.NeighborPair.i"><code class="docutils literal notranslate"><span class="pre">NeighborPair.i</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.NeighborPair.j"><code class="docutils literal notranslate"><span class="pre">NeighborPair.j</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.NeighborPair.phase"><code class="docutils literal notranslate"><span class="pre">NeighborPair.phase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.NeighborPair.r_relative"><code class="docutils literal notranslate"><span class="pre">NeighborPair.r_relative</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.OpenBoundary"><code class="docutils literal notranslate"><span class="pre">OpenBoundary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.OpenBoundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">OpenBoundary.is_allowed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.OpenBoundary.is_valid"><code class="docutils literal notranslate"><span class="pre">OpenBoundary.is_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.PBCBoundary"><code class="docutils literal notranslate"><span class="pre">PBCBoundary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.PBCBoundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">PBCBoundary.is_allowed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.PBCBoundary.is_valid"><code class="docutils literal notranslate"><span class="pre">PBCBoundary.is_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.SquareLattice"><code class="docutils literal notranslate"><span class="pre">SquareLattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.SquareLattice.ROTATION_ANGLES"><code class="docutils literal notranslate"><span class="pre">SquareLattice.ROTATION_ANGLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.SquareLattice.ROTATION_GROUP"><code class="docutils literal notranslate"><span class="pre">SquareLattice.ROTATION_GROUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.SquareLattice.get_directed_pairs"><code class="docutils literal notranslate"><span class="pre">SquareLattice.get_directed_pairs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.TriangularLattice"><code class="docutils literal notranslate"><span class="pre">TriangularLattice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.TriangularLattice.ROTATION_ANGLES"><code class="docutils literal notranslate"><span class="pre">TriangularLattice.ROTATION_ANGLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.TriangularLattice.ROTATION_GROUP"><code class="docutils literal notranslate"><span class="pre">TriangularLattice.ROTATION_GROUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.TriangularLattice.pi"><code class="docutils literal notranslate"><span class="pre">TriangularLattice.pi</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.euclid_nd"><code class="docutils literal notranslate"><span class="pre">euclid_nd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.get_directed_pairs"><code class="docutils literal notranslate"><span class="pre">get_directed_pairs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.get_lattice"><code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.valid_L"><code class="docutils literal notranslate"><span class="pre">valid_L()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html#module-afqmctools.systems">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.utils.html">afqmctools.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.aimbes_utils">afqmctools.utils.aimbes_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.AIMBESHamiltonian"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.BARE"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.BARE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.CRPA"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.CRPA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.AIMBESHamiltonian.FROZEN_CORE"><code class="docutils literal notranslate"><span class="pre">AIMBESHamiltonian.FROZEN_CORE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.band_window"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.band_window</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.kpts"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.kpts</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.name"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.proj_mat"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.proj_mat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.TRIQS_HDF5_File.wan_centres"><code class="docutils literal notranslate"><span class="pre">TRIQS_HDF5_File.wan_centres</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.aimb_1body_2_afqmc"><code class="docutils literal notranslate"><span class="pre">aimb_1body_2_afqmc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.aimb_2body_2_afqmc"><code class="docutils literal notranslate"><span class="pre">aimb_2body_2_afqmc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.check_aimbes_energy"><code class="docutils literal notranslate"><span class="pre">check_aimbes_energy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.get_aimbes_2body"><code class="docutils literal notranslate"><span class="pre">get_aimbes_2body()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.get_aimbes_hamil_enum"><code class="docutils literal notranslate"><span class="pre">get_aimbes_hamil_enum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_aimbes_Hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_aimbes_Hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_aimbes_dm"><code class="docutils literal notranslate"><span class="pre">read_aimbes_dm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_bare_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_bare_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_coqui_orbitals"><code class="docutils literal notranslate"><span class="pre">read_coqui_orbitals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_crpa_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_crpa_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_frozen_core_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_frozen_core_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.read_triqs_hdf5"><code class="docutils literal notranslate"><span class="pre">read_triqs_hdf5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.aimbes_utils.write_downfolding_orbitals"><code class="docutils literal notranslate"><span class="pre">write_downfolding_orbitals()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.chemistry">afqmctools.utils.chemistry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#routine-listings">Routine Listings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.chemistry.atomic_num_to_symbol"><code class="docutils literal notranslate"><span class="pre">atomic_num_to_symbol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.chemistry.atomic_symbol_to_num"><code class="docutils literal notranslate"><span class="pre">atomic_symbol_to_num()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.gto_basis_utils">afqmctools.utils.gto_basis_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.gto_basis_utils.default_basis_map"><code class="docutils literal notranslate"><span class="pre">default_basis_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.gto_basis_utils.double_basis_map"><code class="docutils literal notranslate"><span class="pre">double_basis_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.gto_basis_utils.extend_gto"><code class="docutils literal notranslate"><span class="pre">extend_gto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.gto_basis_utils.extend_gto_id"><code class="docutils literal notranslate"><span class="pre">extend_gto_id()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.io">afqmctools.utils.io module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.add_dataset"><code class="docutils literal notranslate"><span class="pre">add_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.add_group"><code class="docutils literal notranslate"><span class="pre">add_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.dump_dict"><code class="docutils literal notranslate"><span class="pre">dump_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.format_fixed_width_floats"><code class="docutils literal notranslate"><span class="pre">format_fixed_width_floats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.format_fixed_width_strings"><code class="docutils literal notranslate"><span class="pre">format_fixed_width_strings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.from_complex"><code class="docutils literal notranslate"><span class="pre">from_complex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.get_hamiltonian_spin_symm"><code class="docutils literal notranslate"><span class="pre">get_hamiltonian_spin_symm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.h5_as_dict"><code class="docutils literal notranslate"><span class="pre">h5_as_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.read_input_params"><code class="docutils literal notranslate"><span class="pre">read_input_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.read_nmo"><code class="docutils literal notranslate"><span class="pre">read_nmo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.read_one_body"><code class="docutils literal notranslate"><span class="pre">read_one_body()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.to_complex"><code class="docutils literal notranslate"><span class="pre">to_complex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.write_csr"><code class="docutils literal notranslate"><span class="pre">write_csr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.write_model_hamiltonian"><code class="docutils literal notranslate"><span class="pre">write_model_hamiltonian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.write_model_params"><code class="docutils literal notranslate"><span class="pre">write_model_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.io.write_pair_correlators"><code class="docutils literal notranslate"><span class="pre">write_pair_correlators()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.linalg">afqmctools.utils.linalg module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.linalg.get_ortho_ao"><code class="docutils literal notranslate"><span class="pre">get_ortho_ao()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.linalg.get_ortho_ao_mol"><code class="docutils literal notranslate"><span class="pre">get_ortho_ao_mol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.linalg.modified_cholesky_direct"><code class="docutils literal notranslate"><span class="pre">modified_cholesky_direct()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.matrix">afqmctools.utils.matrix module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.matrix.force_herm"><code class="docutils literal notranslate"><span class="pre">force_herm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.matrix.is_hermitian"><code class="docutils literal notranslate"><span class="pre">is_hermitian()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.misc">afqmctools.utils.misc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.misc.dotdict"><code class="docutils literal notranslate"><span class="pre">dotdict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.misc.get_git_hash"><code class="docutils literal notranslate"><span class="pre">get_git_hash()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.optimizable_basis_set">afqmctools.utils.optimizable_basis_set module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.BasisBlock"><code class="docutils literal notranslate"><span class="pre">BasisBlock</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.BasisBlock.basis_str"><code class="docutils literal notranslate"><span class="pre">BasisBlock.basis_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock"><code class="docutils literal notranslate"><span class="pre">EvenTemperedBasisBlock</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.EvenTemperedBasisBlock.basis_str"><code class="docutils literal notranslate"><span class="pre">EvenTemperedBasisBlock.basis_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.add"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.basis_str"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.basis_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.extended_basis"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.extended_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_file"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_all_to_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_all_to_stdout"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_all_to_stdout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_file"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_to_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.OptimizableBasisSet.print_to_stdout"><code class="docutils literal notranslate"><span class="pre">OptimizableBasisSet.print_to_stdout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.optimizable_basis_set.default_basis_set"><code class="docutils literal notranslate"><span class="pre">default_basis_set()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.parallel">afqmctools.utils.parallel module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.parallel.bisect"><code class="docutils literal notranslate"><span class="pre">bisect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.parallel.fair_share"><code class="docutils literal notranslate"><span class="pre">fair_share()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#afqmctools-utils-pyscf-utils-module">afqmctools.utils.pyscf_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#afqmctools-utils-qe-tools-module">afqmctools.utils.qe_tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.qe_utils">afqmctools.utils.qe_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.cubic_pos"><code class="docutils literal notranslate"><span class="pre">cubic_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.get_qe_realspace_grid"><code class="docutils literal notranslate"><span class="pre">get_qe_realspace_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.get_rvecs"><code class="docutils literal notranslate"><span class="pre">get_rvecs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.read_orbitals"><code class="docutils literal notranslate"><span class="pre">read_orbitals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.read_qe_density"><code class="docutils literal notranslate"><span class="pre">read_qe_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.read_qe_metadata"><code class="docutils literal notranslate"><span class="pre">read_qe_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.qe_utils.shift_m"><code class="docutils literal notranslate"><span class="pre">shift_m()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.slater_types">afqmctools.utils.slater_types module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.slater_types.MultiSlater"><code class="docutils literal notranslate"><span class="pre">MultiSlater</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.slater_types.NonorthMSD"><code class="docutils literal notranslate"><span class="pre">NonorthMSD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.slater_types.ParticleHoleMSD"><code class="docutils literal notranslate"><span class="pre">ParticleHoleMSD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.slater_types.SlaterDeterminant"><code class="docutils literal notranslate"><span class="pre">SlaterDeterminant</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.types">afqmctools.utils.types module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm"><code class="docutils literal notranslate"><span class="pre">SpinSymm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm.CLOSED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.CLOSED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm.COLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.COLLINEAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm.FULLYPOLARIZED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.FULLYPOLARIZED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm.NONCOLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.NONCOLLINEAR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.get_spin_symm_enum"><code class="docutils literal notranslate"><span class="pre">get_spin_symm_enum()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils.visualize">afqmctools.utils.visualize module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.visualize.plot_lattice"><code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.visualize.plot_site"><code class="docutils literal notranslate"><span class="pre">plot_site()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html#module-afqmctools.utils">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.wavefunction.html">afqmctools.wavefunction package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.common">afqmctools.wavefunction.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.check_orthonormality"><code class="docutils literal notranslate"><span class="pre">check_orthonormality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.check_slater_matrix_orthonormality"><code class="docutils literal notranslate"><span class="pre">check_slater_matrix_orthonormality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.modified_gram_schmidt"><code class="docutils literal notranslate"><span class="pre">modified_gram_schmidt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.write_nomsd"><code class="docutils literal notranslate"><span class="pre">write_nomsd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.write_nomsd_ghf"><code class="docutils literal notranslate"><span class="pre">write_nomsd_ghf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.write_nomsd_single"><code class="docutils literal notranslate"><span class="pre">write_nomsd_single()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.write_phmsd"><code class="docutils literal notranslate"><span class="pre">write_phmsd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.common.write_wfn"><code class="docutils literal notranslate"><span class="pre">write_wfn()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.converter">afqmctools.wavefunction.converter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.convert_string"><code class="docutils literal notranslate"><span class="pre">convert_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.orbs_from_dset"><code class="docutils literal notranslate"><span class="pre">orbs_from_dset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_dice_ascii_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_dice_ascii_wavefunction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_dice_h5_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_dice_h5_wavefunction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_nomsd_hdf5"><code class="docutils literal notranslate"><span class="pre">read_nomsd_hdf5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_phmsd_hdf5"><code class="docutils literal notranslate"><span class="pre">read_phmsd_hdf5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_wavefunction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.converter.read_with_check"><code class="docutils literal notranslate"><span class="pre">read_with_check()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.free_electron">afqmctools.wavefunction.free_electron module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.free_electron.free_electron"><code class="docutils literal notranslate"><span class="pre">free_electron()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.model">afqmctools.wavefunction.model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.model.make_free_elec"><code class="docutils literal notranslate"><span class="pre">make_free_elec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.model.write_free_electron_wfn"><code class="docutils literal notranslate"><span class="pre">write_free_electron_wfn()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.mol">afqmctools.wavefunction.mol module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.mol.generate_wavefunction"><code class="docutils literal notranslate"><span class="pre">generate_wavefunction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.mol.write_cas_wfn"><code class="docutils literal notranslate"><span class="pre">write_cas_wfn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.mol.write_wfn_mol"><code class="docutils literal notranslate"><span class="pre">write_wfn_mol()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction.pbc">afqmctools.wavefunction.pbc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.create_wavefunction"><code class="docutils literal notranslate"><span class="pre">create_wavefunction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.determine_occupancies"><code class="docutils literal notranslate"><span class="pre">determine_occupancies()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.generate_orbitals"><code class="docutils literal notranslate"><span class="pre">generate_orbitals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.print_eigenvalues"><code class="docutils literal notranslate"><span class="pre">print_eigenvalues()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.rediag_fock"><code class="docutils literal notranslate"><span class="pre">rediag_fock()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.reoccupy"><code class="docutils literal notranslate"><span class="pre">reoccupy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.slater_gto2mo"><code class="docutils literal notranslate"><span class="pre">slater_gto2mo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.write_wfn_pbc"><code class="docutils literal notranslate"><span class="pre">write_wfn_pbc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.wavefunction.html#afqmctools.wavefunction.pbc.write_wfn_pbc_old"><code class="docutils literal notranslate"><span class="pre">write_wfn_pbc_old()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html#module-afqmctools.wavefunction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-afqmctools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.dev">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.</span></span><span class="sig-name descname"><span class="pre">dev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.dev" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../lattice_models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lattice Model Tools for AFQMC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="afqmctools.analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">afqmctools.analysis package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/afqmctools/api/afqmctools.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

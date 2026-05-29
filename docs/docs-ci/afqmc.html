@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Auxiliary-Field Quantum Monte Carlo &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'afqmc';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Auxiliary-Field Quantum Monte Carlo</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="auxiliary-field-quantum-monte-carlo">
+<span id="afqmc"></span><h1>Auxiliary-Field Quantum Monte Carlo<a class="headerlink" href="#auxiliary-field-quantum-monte-carlo" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The AFQMC method is an orbitally-based many-body method which is formulated in terms of a generic, interacting second-quantized Hamiltonian.
+We refer the reader to one of the review articles on the method <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id23" title="Fionn D. Malone, Shuai Zhang, and Miguel A. Morales. Accelerating auxiliary-field quantum monte carlo simulations of solids with graphical processing units. Journal of Chemical Theory and Computation, 16(7):4286-4297, 2020. URL: https://doi.org/10.1021/acs.jctc.0c00262, doi:10.1021/acs.jctc.0c00262.">MZM20</a>, <a class="reference internal" href="#id11" title="Wirawan Purwanto and Shiwei Zhang. Quantum monte carlo method for the ground state of many-boson systems. Phys. Rev. E, 70:056702, November 2004. doi:10.1103/PhysRevE.70.056702.">PZ04</a>, <a class="reference internal" href="#id12" title="Shiwei Zhang. Auxiliary-field quantum monte carlo for correlated electron systems. Modeling and Simulation, 3:, 2013. URL: http://hdl.handle.net/2128/5389, doi:.">Zha13</a>, <a class="reference internal" href="#id10" title="Shiwei Zhang and Henry Krakauer. Quantum monte carlo method using phase-free random walks with slater determinants. Phys. Rev. Lett., 90:136401, April 2003. doi:10.1103/PhysRevLett.90.136401.">ZK03</a>]</span>
+for a detailed description of the algorithm.
+Here, we provide an overview of AFQMC with a focus on how the formalism and the inputs to the SAFIRE code relate to each other.</p>
+<p>AFQMC uses imaginary-time projection to generate a many-body wavefunction, <span class="math notranslate nohighlight">\(| \Psi \rangle\)</span>, starting from an initial wavefunction,
+<span class="math notranslate nohighlight">\(| \Psi_I \rangle\)</span>, which has non-zero overlap with the target wavefunction - i.e. <span class="math notranslate nohighlight">\(\langle \Psi | \Psi_I \rangle \neq 0\)</span></p>
+<div class="math notranslate nohighlight" id="eq-imag-time-prop">
+<span id="equation-eq-imag-time-prop"></span><span class="eqno">(11)<a class="headerlink" href="#eq-imag-time-prop" title="Link to this equation">#</a></span>\[\lim_{\beta \to \infty} e^{-\beta \hat{H}} | \Psi_I \rangle \rightarrow | \Psi \rangle\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta\)</span> is the total projection time, and <span class="math notranslate nohighlight">\(\hat{H}\)</span> is the interacting Hamiltonian which,
+in its most general form, is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-h012-af">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-h012-af" title="Link to this equation">#</a></span>\[\begin{split}H =&amp; H_0 + \hat{H}_1 + \hat{H}_2 \\
+  =&amp; E_0 + \sum\limits_{il\sigma\sigma'} h^{\sigma \sigma'}_{il} \hat{c}^\dagger_{i\sigma}\hat{c}_{l\sigma'}
+  + \sum\limits_{ijkl\sigma\sigma'\sigma'\sigma} v_{ijkl}^{\sigma\sigma'\sigma'\sigma} \hat{c}^\dagger_{i\sigma}
+    \hat{c}^\dagger_{j\sigma'}\hat{c}_{k\sigma'}\hat{c}_{l\sigma}\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\hat{c}^\dagger_{i\sigma}\)</span>/ <span class="math notranslate nohighlight">\(\hat{c}_{i\sigma}\)</span> are fermionic creation/annihilation operators which
+create/annihilate a particle in orbital <span class="math notranslate nohighlight">\(i\)</span> with spin <span class="math notranslate nohighlight">\(\sigma\)</span>,
+<span class="math notranslate nohighlight">\(H_0\)</span> contains all constant contributions to the Hamiltonian,
+<span class="math notranslate nohighlight">\(\hat{H}_1\)</span> contains all one-body Hamiltonian terms (for example, the kinetic energy in <em>ab initio</em>
+calculations, or the hoping matrix in lattice models ), and <span class="math notranslate nohighlight">\(\hat{H}_2\)</span> contains all two-body interactions
+such as the Coulomb interaction in <em>ab initio</em> calculations or the Hubbard U in lattice models.
+The matrix elements of <span class="math notranslate nohighlight">\(\hat{H}_1\)</span> are given generically as <span class="math notranslate nohighlight">\(h_{ij}^{\sigma\sigma'}\)</span> and the
+details of which terms are included depends on the specific system of interest.
+Similarly for the matrix elements of <span class="math notranslate nohighlight">\(\hat{H}_2\)</span> which are generally <span class="math notranslate nohighlight">\(v_{ijkl}^{\sigma\sigma'\sigma'\sigma}\)</span>.
+In specific calculations, the general form of the Hamiltonian simplifies considerably especially for <span class="math notranslate nohighlight">\(\hat{H}_2\)</span>.
+The different forms of Hamiltonian implement in SAFIRE are described in
+the <a class="reference internal" href="user_manual/hamiltonians.html#hamiltonian-classes"><span class="std std-ref">The Hamiltonian file formats</span></a> section.</p>
+</section>
+<section id="imaginary-time-projection">
+<h2>Imaginary-time projection<a class="headerlink" href="#imaginary-time-projection" title="Link to this heading">#</a></h2>
+<p>Thouless’ theorem <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id24" title="D.J. Thouless. Stability conditions and nuclear rotations in the hartree-fock theory. Nuclear Physics, 21:225-232, 1960. URL: https://www.sciencedirect.com/science/article/pii/0029558260900481, doi:https://doi.org/10.1016/0029-5582(60)90048-1.">Tho60</a>]</span> states that the operation of the exponential of a one-body operator on a Slater
+determinant is simply another Slater determinant.
+However, the application of the <a class="reference internal" href="#eq-imag-time-prop"><span class="std std-ref">imaginary-time projection operator</span></a> is non-trivial due to the interaction term in
+the hamiltonian.
+To handle the interaction term, the projection operator is mapped onto a high-dimensional integral where the integrand consists of exponentials
+of one-body operators only.
+This achieved as follows.
+First, the imaginary-time projection is divided into <span class="math notranslate nohighlight">\(N_{steps}\)</span> imaginary-time steps of size <span class="math notranslate nohighlight">\(\tau\)</span>
+which allows a Trotter–Suzuki (TS) <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id26" title="M. Suzuki. Generalized trotter's formula and systematic approximants of exponential operators and inner derivations with applications to many-body problems. Communications in Mathematical Physics, 51:183-190, 1976. URL: https://link.springer.com/article/10.1007/BF01609348, doi:https://doi.org/10.1007/BF01609348.">Suz76</a>, <a class="reference internal" href="#id25" title="H. F. Trotter. On the product of semi-groups of operators. Proceedings of the American Mathematical Society, 10:545-551, 1959. URL: https://www.ams.org/journals/proc/1959-010-04/S0002-9939-1959-0108732-6/, doi:https://doi.org/10.1090/S0002-9939-1959-0108732-6.">Tro59</a>]</span> decomposition to be applied such that the propagator now has the form,</p>
+<div class="math notranslate nohighlight" id="ts-decomp">
+<span id="equation-ts-decomp"></span><span class="eqno">(13)<a class="headerlink" href="#ts-decomp" title="Link to this equation">#</a></span>\[e^{-\tau \hat{H}} \approx  e^{-\tau \hat{H}_1/2} e^{-\tau \hat{H}_2} e^{-\tau \hat{H}_1 / 2} + \mathcal(O)(\tau^3)\]</div>
+<p>where the accuracy of the TS decomposition can be improved by using a smaller time step.
+Next, the interaction term is rewritten as a quadratic form of one-body operators,</p>
+<div class="math notranslate nohighlight" id="quadratic-h2">
+<span id="equation-quadratic-h2"></span><span class="eqno">(14)<a class="headerlink" href="#quadratic-h2" title="Link to this equation">#</a></span>\[\hat{H}_2 = \sum_\lambda (\hat{v}^\gamma)^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{v}^\gamma\)</span> are one-body operators.
+Next, <span class="math notranslate nohighlight">\(exp[-\tau \hat{H}_2]\)</span> can be rewritten via a Hubbard-Stratonovich (HS) transformation as</p>
+<div class="math notranslate nohighlight" id="hsint">
+<span id="equation-hsint"></span><span class="eqno">(15)<a class="headerlink" href="#hsint" title="Link to this equation">#</a></span>\[e^{-\tau \sum_\lambda (\hat{v}^\gamma)^2} = \int d\mathbf{\sigma} P(\mathbf{\sigma}) e^{-\tau \mathbf{\sigma} \cdot \hat{\mathbf{v}}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\sigma}\)</span> is a vector of auxiliary fields,
+<span class="math notranslate nohighlight">\(\hat{\mathbf{v}}\)</span> is the vector of one-body operators <span class="math notranslate nohighlight">\(\hat{v}^\gamma\)</span>, and <span class="math notranslate nohighlight">\(P(\mathbf{\sigma})\)</span> is a normal distribution function.
+Combining the TS decomposition and the HS transformation, we arrive at</p>
+<div class="math notranslate nohighlight" id="hsprop">
+<span id="equation-hsprop"></span><span class="eqno">(16)<a class="headerlink" href="#hsprop" title="Link to this equation">#</a></span>\[\begin{split}e^{-\tau \hat{H} } \approx&amp; \int d\mathbf{\sigma} P(\mathbf{\sigma}) e^{-\tau \hat{H}_1/2}  e^{-\tau \mathbf{\sigma} \cdot \hat{\mathbf{v}}} e^{-\tau \hat{H}_1/2} , \\
+                   \approx&amp; \int d\mathbf{\sigma} P(\mathbf{\sigma}) B(\mathbf{\sigma})\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B(\sigma) =  exp^{-\tau \hat{H}_1/2}  exp^{-\tau \mathbf{\sigma} \cdot \hat{\mathbf{v}}} exp^{-\tau \hat{H}_1/2}\)</span>.
+Additionally, the many-body wavefunction is represented, at time step <span class="math notranslate nohighlight">\(s\)</span>, in an over-complete basis of non-orthogonal Slater determinants, <span class="math notranslate nohighlight">\(| \Phi^s_n \rangle\)</span>, as,</p>
+<div class="math notranslate nohighlight" id="mbwfnwalkers">
+<span id="equation-mbwfnwalkers"></span><span class="eqno">(17)<a class="headerlink" href="#mbwfnwalkers" title="Link to this equation">#</a></span>\[| \Psi^s \rangle \doteq \sum_n W^s_n | \Phi^s_n \rangle,\]</div>
+<p>where <span class="math notranslate nohighlight">\(W^s_n\)</span> is a weight which is accumulated during the projection.</p>
+<p>Finally, the many-body wavefunction can be sampled as</p>
+<div class="math notranslate nohighlight" id="mbprojection">
+<span id="equation-mbprojection"></span><span class="eqno">(18)<a class="headerlink" href="#mbprojection" title="Link to this equation">#</a></span>\[e^{-\tau \hat{H} } | \Psi^s \rangle \approx \int d\mathbf{\sigma} P(\mathbf{\sigma}) B(\mathbf{\sigma}) | \Psi^{s-1} \rangle\]</div>
+<p>by sampling auxiliary-field configurations from <span class="math notranslate nohighlight">\(P(\mathbf{\sigma})\)</span>,
+constructing <span class="math notranslate nohighlight">\(B(\mathbf{\sigma})\)</span> with the sampled set of <span class="math notranslate nohighlight">\(\mathbf{\sigma}\)</span>,
+and evaluating <span class="math notranslate nohighlight">\(B(\mathbf{\sigma}) | \Phi^s_n \rangle\)</span> for each walker.
+Observables are computed on the fly to achieve low-order polynomial scaling with system size.
+For example, the energy is evaluated as</p>
+<div class="math notranslate nohighlight">
+\[E = \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Psi^s \rangle}{\langle \Psi_\mathrm{T} | \Psi^s \rangle} \approx
+\frac{1}{\sum_n W^s_n} \sum_n W^s_n \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Phi^s_n \rangle}{\langle \Psi_\mathrm{T} | \Phi^s_n \rangle},\]</div>
+</section>
+<section id="importance-sampling">
+<h2>Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h2>
+<p>In practice, importance sampling is used to reduce variance.
+The auxiliary fields from the Hubbard-Stratonovich
+transformation are shifted by the so-called “force bias”,
+<span class="math notranslate nohighlight">\(\bar{\mathbf{\sigma}}\)</span> and the walkers
+are re-weighted according to an importance function, <span class="math notranslate nohighlight">\(I(\mathbf{\sigma},\bar{\mathbf{\sigma}},\Phi^{s-1}_n)\)</span>,
+at each projection step.
+Formally, the force bias is given by</p>
+<div class="math notranslate nohighlight" id="forcebias">
+<span id="equation-forcebias"></span><span class="eqno">(19)<a class="headerlink" href="#forcebias" title="Link to this equation">#</a></span>\[\bar{\mathbf{\sigma}}=-\sqrt{\tau}\frac{\langle\Psi_\mathrm{T}|\hat{\mathbf{v}}|\Phi^s_n \rangle}{\langle\Psi_\mathrm{T}|\Phi^s_n \rangle},\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction which is essentially a guess of the true many-body wavefunction.
+The walkers weights are updated at each projection step based on the importance function as</p>
+<div class="math notranslate nohighlight" id="importancetransform">
+<span id="equation-importancetransform"></span><span class="eqno">(20)<a class="headerlink" href="#importancetransform" title="Link to this equation">#</a></span>\[W^s_n = I(\mathbf{\sigma},\bar{\mathbf{\sigma}},\Phi^{s-1}_n) W^{s-1}_n,\]</div>
+<p>where <span class="math notranslate nohighlight">\(I(\mathbf{\sigma},\bar{\mathbf{\sigma}},\Phi^{s-1}_n)\)</span> is given by</p>
+<div class="math notranslate nohighlight" id="importancefunction">
+<span id="equation-importancefunction"></span><span class="eqno">(21)<a class="headerlink" href="#importancefunction" title="Link to this equation">#</a></span>\[I(\mathbf{\sigma},\bar{\mathbf{\sigma}},\Phi) \equiv \frac{\langle\Psi_\mathrm{T}|\hat{B}(\mathbf{\sigma} - \bar{\mathbf{\sigma}})|\Phi \rangle}
+{\langle\Psi_\mathrm{T}|\Phi \rangle} \textrm{Exp}\left(\bar{\mathbf{\sigma}} \cdot \mathbf{\sigma} - \frac{\bar{\mathbf{\sigma}}
+\cdot \bar{\mathbf{\sigma}}}{2}\right)\]</div>
+<p>For lattice models, some of the details are slightly different since the form of the interactions is simpler.</p>
+</section>
+<section id="the-sign-phase-problem">
+<h2>The Sign/Phase Problem<a class="headerlink" href="#the-sign-phase-problem" title="Link to this heading">#</a></h2>
+<p>As formulated above, the imaginary-time projection suffers from an exponential decrease in the signal-to-noise ratio
+which arises from the invariance of any observable to an overall phase of the many-body wavefunction, <span class="math notranslate nohighlight">\(e^{-i \theta} | \Psi \rangle\)</span>.
+This is a manifestation of the generic fermionic sign problem that arises in all quantum Monte Carlo approaches.
+The projector, <span class="math notranslate nohighlight">\(B(\mathbf{\sigma})\)</span>, is typically complex-valued and introduces an arbitrary phase to the Slater determinant random walkers.
+As the projection proceeds, the random walkers accumulate random phases, leading to a finite density of walkers
+in the complex plane defined by <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T} | \Phi^s_n \rangle\)</span>.
+This leads to large fluctuations in the weights that ultimately diverge.
+This is known as the phase problem in the AFQMC literature <span class="bibtex-citation" id="id4">[<a class="reference internal" href="#id10" title="Shiwei Zhang and Henry Krakauer. Quantum monte carlo method using phase-free random walks with slater determinants. Phys. Rev. Lett., 90:136401, April 2003. doi:10.1103/PhysRevLett.90.136401.">ZK03</a>]</span>.
+For lattice models, it is possible to choose a HS transformation such that <span class="math notranslate nohighlight">\(B(\mathbf{\sigma})\)</span> is real-valued.
+In this case, the random walkers accumulate random signs — i.e., <span class="math notranslate nohighlight">\(\theta \in \{0, \pi\}\)</span> — leading to the fermionic sign problem.</p>
+<p>The sign/phase problem is controlled using importance sampling, as shown above, and by imposing
+a constraint based on the trial wavefunction, <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span>.
+For the phase problem, the so-called “phaseless” approximation <span class="bibtex-citation" id="id5">[<a class="reference internal" href="#id10" title="Shiwei Zhang and Henry Krakauer. Quantum monte carlo method using phase-free random walks with slater determinants. Phys. Rev. Lett., 90:136401, April 2003. doi:10.1103/PhysRevLett.90.136401.">ZK03</a>]</span> is used.
+At each step, walkers are individually projected onto an
+evolving line in the complex plane defined by <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T} | \Phi^s_n \rangle\)</span> by multiplying
+the walker weights by <span class="math notranslate nohighlight">\(\max\{0, \cos(\Delta \theta)\}\)</span>, where
+<span class="math notranslate nohighlight">\(\Delta \theta = \arg\left[\frac{\langle\Psi_\mathrm{T}|\hat{B}(\mathbf{\sigma} - \bar{\mathbf{\sigma}})|\Phi^s_n \rangle}{\langle\Psi_\mathrm{T}|\Phi^s_n \rangle}\right]\)</span>.
+For the sign problem, the “constrained path” approximation <span class="bibtex-citation" id="id6">[<a class="reference internal" href="#id9" title="Shiwei Zhang, J. Carlson, and J. E. Gubernatis. Constrained path Monte Carlo method for fermion ground states. Phys. Rev. B, 55(12):7464–7477, March 1997. doi:10.1103/PhysRevB.55.7464.">ZCG97</a>]</span> is used,
+where walkers are eliminated if <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T} | \Phi^s_n \rangle &lt; 0\)</span>.
+This can be viewed as a special case of the phaseless approximation.
+In both cases, the constraint introduces a bias that can be reduced based on the quality of the trial wavefunction.</p>
+</section>
+<section id="observables">
+<h2>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h2>
+<p>Observables are evaluated stochastically as</p>
+<div class="math notranslate nohighlight" id="mixedestimators-af">
+<span id="equation-mixedestimators-af"></span><span class="eqno">(22)<a class="headerlink" href="#mixedestimators-af" title="Link to this equation">#</a></span>\[\langle \hat{O} \rangle_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the projection step index,
+<span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are Slater determinant random walkers with weight <span class="math notranslate nohighlight">\(W_{n,k}\)</span> (from importance sampling),
+and <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction.
+The mixed estimator provides an unbiased estimate for any observable which commutes with the Hamiltonian.
+For the AFQMC energy, <span class="math notranslate nohighlight">\(\hat{O} = \hat{H}\)</span>, and trivially <span class="math notranslate nohighlight">\([ \hat{O}, \hat{H} ] = 0\)</span>;
+therefore, the mixed estimator is an unbiased choice for the total ground state energy.</p>
+<p>On the other hand, it is often interesting to compute observables which do not commute with the Hamiltonian.
+For example, the one-body reduced density matrix, from which many properties can be computed, does not commute
+with the Hamiltonian.
+In these cases, a back-propagated estimator is necessary to mitigate the bias that would be incurred
+by using a mixed-estimator.
+The back-propagated estimator has the form,</p>
+<div class="math notranslate nohighlight" id="equation-bpestimators-af">
+<span class="eqno">(23)<a class="headerlink" href="#equation-bpestimators-af" title="Link to this equation">#</a></span>\[\langle \hat{O} \rangle_\mathrm{BP} = \frac{1}{\sum_k W_{s+m,k}} \sum_k W_{s+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{s,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{s,k}\rangle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(| \Phi_{s,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
+and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,</p>
+<div class="math notranslate nohighlight">
+\[| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{s,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{s+m-1,k} ) | \Psi_\mathrm{T} \rangle.\]</div>
+<p>The index <span class="math notranslate nohighlight">\(s\)</span> corresponds to the current forward projection step,
+and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.
+We note that each random walker has a corresponding back-propagated partner
+which share the same path in auxiliary-field space.
+It is important to note that the two Slater determinants are
+distinct from each other since the propagator <span class="math notranslate nohighlight">\(B(x - \bar{x})\)</span> is applied differently to each.
+i.e. the propagator is applied to different Slater determinants when moving in the forward-, and backward-directions.</p>
+</section>
+<section id="glossary-of-symbols-and-notation">
+<h2>Glossary of Symbols and Notation<a class="headerlink" href="#glossary-of-symbols-and-notation" title="Link to this heading">#</a></h2>
+<section id="indices">
+<h3>Indices<a class="headerlink" href="#indices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i,j,k,l\)</span> are orbital basis indices. In quantum chemistry or in solids, these typically refer to
+spatial orbitals <span class="math notranslate nohighlight">\(\phi_i (\vec{r})\)</span>. In lattice models, these refer to a combined lattice site and band index.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma, \sigma', ...\)</span> are spin indices. We use additional “primes” to introduce distinct spin
+indices.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the walker index for sums over random walkers.</p></li>
+<li><p><span class="math notranslate nohighlight">\(s\)</span> is the AFQMC projection time step index.</p></li>
+</ul>
+</section>
+<section id="hamiltonian">
+<h3>Hamiltonian<a class="headerlink" href="#hamiltonian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span>, the constant energy contributions to the Hamiltonian. For example, in <em>ab initio</em> calculations performed in the Born-Oppenheimer approximation, <span class="math notranslate nohighlight">\(H_0\)</span> includes the nuclear repulsion energy.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{H}_1\)</span>, a generic “one-body” Hamiltonian consisting of all one-body terms in the Hamiltonian with the form <span class="math notranslate nohighlight">\(\hat{H}_1 = \sum_{ij} h_{ij} \hat{c}^\dagger_i \hat{c}_j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{H}_2\)</span>, a generic “two-body” interaction consisting of all two-body terms in the Hamiltonian with the form <span class="math notranslate nohighlight">\(\hat{H}_2 = \sum_{ijkl} v_{ijkl} \hat{c}^\dagger_i \hat{c}^\dagger_j \hat{c}_k \hat{c}_l\)</span></p></li>
+</ul>
+</section>
+<section id="wavefunctions">
+<h3>Wavefunctions<a class="headerlink" href="#wavefunctions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|\Psi\rangle\)</span> , a generic many-body wavefunction, typically (but not necessarily!) consisting of a linear combination of Slater determinants.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\Psi_I\rangle\)</span> , the initial wavefunction</p></li>
+<li><p><span class="math notranslate nohighlight">\(| \Phi \rangle\)</span> , a single Slater determinant. Subscript and/or superscript indices may also apply.</p></li>
+</ul>
+</section>
+<section id="afqmc-parameters">
+<h3>AFQMC parameters<a class="headerlink" href="#afqmc-parameters" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span>, total projection time of the AFQMC imaginary-time projection</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span>, imaginary-time projection step size</p></li>
+</ul>
+</section>
+</section>
+<section id="bibliography">
+<h2>bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id7">
+<div role="list" class="citation-list">
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ADVFerre+09<span class="fn-bracket">]</span></span>
+<p>Francesco Aquilante, Luca De Vico, Nicolas Ferré, Giovanni Ghigo, Per-åke Malmqvist, Pavel Neogrády, Thomas Bondo Pedersen, Michal Pitoňák, Markus Reiher, Björn O. Roos, Luis Serrano-Andrés, Miroslav Urban, Valera Veryazov, and Roland Lindh. MOLCAS 7: The Next Generation. <em>J. Comput. Chem.</em>, 31(1):224, 2009. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.21318">https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.21318</a>.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BL77<span class="fn-bracket">]</span></span>
+<p>Nelson H. F. Beebe and Jan Linderberg. Simplifications in the generation and transformation of two-electron integrals in molecular calculations. <em>Int. J. Quantum Chem.</em>, 12(4):683, 1977. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.560120408">https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.560120408</a>.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>KdMerasP03<span class="fn-bracket">]</span></span>
+<p>Henrik Koch, Alfredo Sánchez de Merás, and Thomas Bondo Pedersen. Reduced scaling in electronic structure calculations using Cholesky decompositions. <em>The Journal of Chemical Physics</em>, 118(21):9481, 2003. URL: <a class="reference external" href="https://doi.org/10.1063/1.1578621">https://doi.org/10.1063/1.1578621</a>.</p>
+</div>
+<div class="citation" id="id23" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">MZM20</a><span class="fn-bracket">]</span></span>
+<p>Fionn D. Malone, Shuai Zhang, and Miguel A. Morales. Accelerating auxiliary-field quantum monte carlo simulations of solids with graphical processing units. <em>Journal of Chemical Theory and Computation</em>, 16(7):4286–4297, 2020. URL: <a class="reference external" href="https://doi.org/10.1021/acs.jctc.0c00262">https://doi.org/10.1021/acs.jctc.0c00262</a>, <a class="reference external" href="https://doi.org/10.1021/acs.jctc.0c00262">doi:10.1021/acs.jctc.0c00262</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MZ18<span class="fn-bracket">]</span></span>
+<p>Mario Motta and Shiwei Zhang. Ab initio computations of molecular systems by the auxiliary-field quantum Monte Carlo method. <em>WIREs Computational Molecular Science</em>, 8(5):e1364, 2018. <a class="reference external" href="https://doi.org/10.1002/wcms.1364">doi:10.1002/wcms.1364</a>.</p>
+</div>
+<div class="citation" id="id22" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>MZC19<span class="fn-bracket">]</span></span>
+<p>Mario Motta, Shiwei Zhang, and Garnet Kin-Lic Chan. Hamiltonian symmetries in auxiliary-field quantum Monte Carlo calculations for electronic structure. <em>Physical Review B</em>, 100:045127, July 2019. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevB.100.045127">https://link.aps.org/doi/10.1103/PhysRevB.100.045127</a>, <a class="reference external" href="https://doi.org/10.1103/PhysRevB.100.045127">doi:10.1103/PhysRevB.100.045127</a>.</p>
+</div>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>PKVZ11<span class="fn-bracket">]</span></span>
+<p>Wirawan Purwanto, Henry Krakauer, Yudistira Virgus, and Shiwei Zhang. Assessing weak hydrogen binding on Ca+ centers: An accurate many-body study with large basis sets. <em>The Journal of Chemical Physics</em>, 135(16):164105, 2011. URL: <a class="reference external" href="https://doi.org/10.1063/1.3654002">https://doi.org/10.1063/1.3654002</a>, <a class="reference external" href="https://doi.org/10.1063/1.3654002">doi:10.1063/1.3654002</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">PZ04</a><span class="fn-bracket">]</span></span>
+<p>Wirawan Purwanto and Shiwei Zhang. Quantum monte carlo method for the ground state of many-boson systems. <em>Phys. Rev. E</em>, 70:056702, November 2004. <a class="reference external" href="https://doi.org/10.1103/PhysRevE.70.056702">doi:10.1103/PhysRevE.70.056702</a>.</p>
+</div>
+<div class="citation" id="id17" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>PZK13<span class="fn-bracket">]</span></span>
+<p>Wirawan Purwanto, Shiwei Zhang, and Henry Krakauer. Frozen-Orbital and Downfolding Calculations with Auxiliary-Field Quantum Monte Carlo. <em>Journal of Chemical Theory and Computation</em>, 9(11):4825–4833, 2013. URL: <a class="reference external" href="https://doi.org/10.1021/ct4006486">https://doi.org/10.1021/ct4006486</a>.</p>
+</div>
+<div class="citation" id="id26" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Suz76</a><span class="fn-bracket">]</span></span>
+<p>M. Suzuki. Generalized trotter's formula and systematic approximants of exponential operators and inner derivations with applications to many-body problems. <em>Communications in Mathematical Physics</em>, 51:183–190, 1976. URL: <a class="reference external" href="https://link.springer.com/article/10.1007/BF01609348">https://link.springer.com/article/10.1007/BF01609348</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1007/BF01609348">doi:https://doi.org/10.1007/BF01609348</a>.</p>
+</div>
+<div class="citation" id="id24" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Tho60</a><span class="fn-bracket">]</span></span>
+<p>D.J. Thouless. Stability conditions and nuclear rotations in the hartree-fock theory. <em>Nuclear Physics</em>, 21:225–232, 1960. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/0029558260900481">https://www.sciencedirect.com/science/article/pii/0029558260900481</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/0029-5582(60)90048-1">doi:https://doi.org/10.1016/0029-5582(60)90048-1</a>.</p>
+</div>
+<div class="citation" id="id25" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Tro59</a><span class="fn-bracket">]</span></span>
+<p>H. F. Trotter. On the product of semi-groups of operators. <em>Proceedings of the American Mathematical Society</em>, 10:545–551, 1959. URL: <a class="reference external" href="https://www.ams.org/journals/proc/1959-010-04/S0002-9939-1959-0108732-6/">https://www.ams.org/journals/proc/1959-010-04/S0002-9939-1959-0108732-6/</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1090/S0002-9939-1959-0108732-6">doi:https://doi.org/10.1090/S0002-9939-1959-0108732-6</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Zha13</a><span class="fn-bracket">]</span></span>
+<p>Shiwei Zhang. Auxiliary-field quantum monte carlo for correlated electron systems. <em>Modeling and Simulation</em>, 3:, 2013. URL: <a class="reference external" href="http://hdl.handle.net/2128/5389">http://hdl.handle.net/2128/5389</a>, <a class="reference external" href="https://doi.org/">doi:</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">ZCG97</a><span class="fn-bracket">]</span></span>
+<p>Shiwei Zhang, J. Carlson, and J. E. Gubernatis. Constrained path Monte Carlo method for fermion ground states. <em>Phys. Rev. B</em>, 55(12):7464–7477, March 1997. <a class="reference external" href="https://doi.org/10.1103/PhysRevB.55.7464">doi:10.1103/PhysRevB.55.7464</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ZK03<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id4">2</a>,<a role="doc-backlink" href="#id5">3</a>)</span>
+<p>Shiwei Zhang and Henry Krakauer. Quantum monte carlo method using phase-free random walks with slater determinants. <em>Phys. Rev. Lett.</em>, 90:136401, April 2003. <a class="reference external" href="https://doi.org/10.1103/PhysRevLett.90.136401">doi:10.1103/PhysRevLett.90.136401</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="changelog.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Changelog</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imaginary-time-projection">Imaginary-time projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">Importance sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sign-phase-problem">The Sign/Phase Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary-of-symbols-and-notation">Glossary of Symbols and Notation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indices">Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian">Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavefunctions">Wavefunctions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmc-parameters">AFQMC parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography">bibliography</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/afqmc.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

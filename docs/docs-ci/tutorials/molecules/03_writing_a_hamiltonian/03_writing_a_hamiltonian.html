@@ -1,0 +1,1233 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Writing a Hamiltonian File &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Writing a Trial Wavefunction" href="../04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html" />
+    <link rel="prev" title="2. Understanding the input file" href="../02_understanding_the_input_file/02_understanding_the_input_file.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../models/overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for Quantum Chemistry</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">3. </span>Writing a Hamiltonian File</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="writing-a-hamiltonian-file">
+<h1><span class="section-number">3. </span>Writing a Hamiltonian File<a class="headerlink" href="#writing-a-hamiltonian-file" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Become acquainted with how to write a Hamiltonian to the SAFIRE HDF5 format.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">3.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How to write a Hamiltonian to the SAFIRE HDF5 format starting from one-body, and two-body integrals</p></li>
+<li><p>How to convert from a FCIDUMP file to the SAFIRE HDF5 format both using the CLI tools and within a Python script</p></li>
+<li><p>(For convenience) How to use PySCF and afqmctools to generate and write the Hamiltonian</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2><span class="section-number">3.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In previous tutorials, we learned how to run SAFIRE, and how
+to post process the results to arrive at the AFQMC energy.
+Now, we will learn how to write a Hamiltonian in SAFIRE’s HDF5 format.</p>
+<!--
+<div>
+<img src="./figs/QChemWorkflow_v2.png" width="1000"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/TopLevelFlowChart_v3.png" width="1000">
+</div>
+<p>In this tutorial,
+we will compute the ground state energy of
+the minimal basis hydrogen dimer with a bond length of 1.4 Bohr radii.</p>
+<!--
+<div>
+<img src="./figs/HyrdogenMolecule.png" width="500"/>
+</div>
+--->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/03_writing_a_Hamiltonian/HyrdogenMolecule.png" width="500">
+</div><p><strong>Run the following code block to setup the tutorial.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-up">
+<h2><span class="section-number">3.3. </span>Setting up<a class="headerlink" href="#setting-up" title="Link to this heading">#</a></h2>
+<p>As we have seen in previous tutorials, the SAFIRE executable is implemented for generic second quantized Hamiltonians, and wavefunctions.
+Before we can run an AFQMC calculation, we must generate:</p>
+<ol class="arabic simple">
+<li><p>A Hamiltonian</p></li>
+<li><p>A trial wavefunction</p></li>
+<li><p>A json input file</p></li>
+</ol>
+<p>Implicit in items 1. and 2. is the need for an orthonormal basis in
+which to compute matrix elements of the Hamiltonian,
+and to represent the trial wavefunction in terms of.</p>
+<p>In this tutorial, we will use the set of canonical Hartree-Fock orbitals
+from RHF as a basis.</p>
+</section>
+<section id="the-hamiltonian">
+<h2><span class="section-number">3.4. </span>The Hamiltonian<a class="headerlink" href="#the-hamiltonian" title="Link to this heading">#</a></h2>
+<p>We are often interested in the electronic ground state of the Born-Oppenheimer Hamiltonian which is given in first quantization
+by
+<div class="math notranslate nohighlight">
+\[
+H_\mathrm{Born-Oppenheimer} = \sum_p^{N_e}\left(  -\frac{1}{2} \nabla^2_p + \sum_A^{N_{A}} \frac{Z_A}{ | \vec{R}_A - \vec{r}_p | }  \right) + \frac{1}{2} \sum^{N_e}_{q \neq p} \left(\frac{1}{r_{pq}}\right) + \frac{1}{2}\sum_{A' \neq A}^{N_A} \frac{Z_{A} Z_{A'}}{| R_A - R_{A'} |},
+\]</div>
+
+where,
+<span class="math notranslate nohighlight">\(N_e\)</span> is the number of electrons,
+<span class="math notranslate nohighlight">\(\vec{r}_p\)</span> is the position of electron <span class="math notranslate nohighlight">\(p\)</span>,
+<span class="math notranslate nohighlight">\(N_{A}\)</span> is the number of atomic nuclei,
+and <span class="math notranslate nohighlight">\(Z_A\)</span> and <span class="math notranslate nohighlight">\(\vec{R}_A\)</span> are the atomic number and position, respectively, of atomic nuclei, <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>AFQMC is formulated in terms of the second quantized Hamiltonian.
+In second quantization, we express the Hamiltonian in terms of electronic creation/annihilation operators
+, <span class="math notranslate nohighlight">\(\hat{c}^{\dagger}_i\)</span> / <span class="math notranslate nohighlight">\(\hat{c}_i\)</span>, which create/annihilate an electron in the chosen basis set orbitals,
+<span class="math notranslate nohighlight">\(\{ \phi_i (\vec{r})\}\)</span>.
+The Hamiltonian takes the form,
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = H^0 + \sum_{ij} H^1_{ij} \hat{c}^{\dagger}_i\hat{c}_j + \frac{1}{2}\sum_{j \neq i} H^2_{ijkl} \hat{c}^{\dagger}_i \hat{c}^{\dagger}_j \hat{c}_k \hat{c}_l
+\]</div>
+
+where
+<div class="math notranslate nohighlight">
+\[
+H^0 = \frac{1}{2}\sum_{A' \neq A}^{N_A} \frac{Z_{A} Z_{A'}}{| R_A - R_{A'} |},
+\]</div>
+
+is the constant nuclear repulsion energy,
+<div class="math notranslate nohighlight">
+\[
+H^1_{ij} = \int d\vec{r}_p  \phi^*_i (\vec{r}_p) \left(  -\frac{1}{2} \nabla^2_p + \sum_A^{N_{atom}} \frac{Z_A}{ | \vec{R}_A - \vec{r}_p | }  \right) \phi_j (\vec{r}_p),
+\]</div>
+
+contains the “one-body” kinetic term and electron-nuclei interactions,
+and
+<div class="math notranslate nohighlight">
+\[
+H^2_{ijkl} = (il|jk) = \frac{1}{2} \int \int d\vec{r}_p d\vec{r}_q  \left( \phi^*_i (\vec{r}_p)  \phi_l (\vec{r}_p)  \frac{1}{|\vec{r}_p - \vec{r}_q|}  \phi^*_j (\vec{r}_q) \phi_k (\vec{r}_q)  \right)
+\]</div>
+
+is the electron-electron Coulomb interaction.</p>
+<p>Typically, an external quantum chemistry code will be used to generate integrals.
+For this tutorial, we will use the minimal basis Hydrogen dimer since it can be easily written down by hand.
+See, for example, section 3.5.2 in ref. 1.</p>
+<p>The code block below contains the Hamiltonian for the <span class="math notranslate nohighlight">\(H_2\)</span> molecule at a
+bond length of <span class="math notranslate nohighlight">\(\delta_{H-H} = 1.4\)</span> Bohr radii in a standard sto-3g basis.
+<strong>Run the code block below to load the Hamiltonian into memory</strong></p>
+<ol class="arabic simple">
+<li><p>Szabo, A., &amp; Ostlund, N. S. (1996). Modern quantum chemistry: Introduction to advanced electronic structure theory. Dover Publications.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+
+<span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># up, down</span>
+<span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># all energy units are E_Hartree</span>
+
+<span class="c1"># nuclear repulsion energy</span>
+<span class="n">H0</span> <span class="o">=</span> <span class="mf">0.714285714285714</span>
+
+<span class="c1"># One-Body Integrals in the basis of canonical RHF orbitals</span>
+<span class="n">H1_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.25279706e+00</span><span class="p">,</span>  <span class="mf">0.0</span>           <span class="p">],</span>
+                  <span class="p">[</span> <span class="mf">0.0</span>           <span class="p">,</span> <span class="o">-</span><span class="mf">4.75602313e-01</span><span class="p">]])</span>
+
+
+<span class="c1"># two-body integrals in the basis of canonical RHF orbitals</span>
+<span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">6.74976525e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.63461552e-01</span><span class="p">]])</span>
+
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">1.81606342e-01</span><span class="p">],</span>
+                             <span class="p">[</span> <span class="mf">1.81606342e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+<span class="c1"># equivalent by symmetry</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">6.63461552e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.96162129e-01</span><span class="p">]])</span>
+
+
+<span class="c1"># For reference, the RHF orbitals in the STO-3G basis are</span>
+<span class="c1"># phi_i(\vec{r}) = \sum_\mu C_{\mu i} g_\mu (\vec{r})</span>
+<span class="n">phi_hf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.54893404</span><span class="p">,</span>  <span class="mf">1.21146407</span><span class="p">],</span>
+                   <span class="p">[</span> <span class="mf">0.54893404</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.21146407</span><span class="p">]])</span>
+
+<span class="c1"># and the STO-3G basis overlap matrix for $\delta_{H-H}=1.4 Bohr$ is</span>
+<span class="c1"># Sij = &lt;g_\mu | g_\nu&gt;</span>
+<span class="n">Sij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span>         <span class="mf">0.65931821</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.65931821</span><span class="p">,</span> <span class="mf">1.</span>        <span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="save-the-hamiltonian">
+<h3><span class="section-number">3.4.1. </span>Save the Hamiltonian<a class="headerlink" href="#save-the-hamiltonian" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides Python functions for writing Hamiltonians in an HDF5 file that can be read by the SAFIRE executable as
+shown in the code block below.
+AFQMC uses a factorized form of the electron-electron interaction tensor,</p>
+<div class="math notranslate nohighlight">
+\[
+ H^2_{ijkl} = \sum_\gamma L^{\gamma}_{il}L^{\gamma}_{jk}.
+\]</div>
+<p>Any decomposition of this form can be used in AFQMC.
+Density fitting integrals, for example can be written in this form.
+A typical strategy in the AFQMC literature is to perform a Cholesky decomposition of the super-matrix <span class="math notranslate nohighlight">\(H^2_{(i,l),(j,k)}\)</span>
+using a Cholesky tolerance of <span class="math notranslate nohighlight">\(\delta_{Chol}\)</span> where a smaller
+value of <span class="math notranslate nohighlight">\(\delta_{Chol}\)</span> produces a more accurate representation.</p>
+<p>The Cholesky decomposition is automatically performed within <code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> if you
+provide it with the electron Coulomb interaction tensor.
+Alternatively, 3-index integrals (from density fitting, for example) can be provided to use
+directly with no further modifications.</p>
+<p><strong>Run the following codeblock to output the Hamiltonian to an HDF5 file</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_hamiltonian_generic</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span>
+    <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
+    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-trial-wavefunction">
+<h2><span class="section-number">3.5. </span>The Trial Wavefunction<a class="headerlink" href="#the-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p>We will explore how to write trial wavefunctions in <a class="reference internal" href="../04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html"><span class="doc">Writing a Trial Wavefunction</span></a>.
+In general, the trial wavefunction is a linear combination of Slater determinants,
+<div class="math notranslate nohighlight">
+\[
+| \Psi_\mathrm{T} \rangle = \sum^{N_\mathrm{det}}_n C_n | \Phi_n \rangle,
+\]</div>
+
+where <span class="math notranslate nohighlight">\(C_n\)</span> is a coefficient,
+and <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> are Slater determinants which are not necessarily
+orthogonal to each other.</p>
+<p><strong>For now, simply run the next code block to save the RHF ground state
+in the same HDF5 file as the Hamiltonian.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="c1"># RHF orbtials represented in the basis of RHF orbitals</span>
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">phi_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">orbitals</span><span class="p">[:,</span> <span class="p">:</span><span class="n">number_of_electrons</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
+
+<span class="n">write_wfn</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
+    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span>
+
+<span class="n">write_json</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span> <span class="n">exec_opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">timestep</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">20000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-compute-the-afqmc-energy">
+<h2><span class="section-number">3.6. </span>Your Turn: Compute the AFQMC energy<a class="headerlink" href="#your-turn-compute-the-afqmc-energy" title="Link to this heading">#</a></h2>
+<p>At this point, you should run an AFQMC calculation using SAFIRE
+as we covered earlier in <a class="reference internal" href="../01_hello_safire/01_hello_safire.html"><span class="doc">Hello SAFIRE</span></a>,
+and use <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> to obtain the AFQMC energy.</p>
+<p>As a reminder, you can run SAFIRE in any of the following ways:</p>
+<ol class="arabic simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">run_afqmc()</span></code> convenience wrapper - we’ve included a template in the next code cell.</p></li>
+<li><p>run from the command line as <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">[number</span> <span class="pre">of</span> <span class="pre">MPI</span> <span class="pre">tasks]</span> <span class="pre">safire</span> <span class="pre">--filenames</span> <span class="pre">[input</span> <span class="pre">file].json</span></code></p></li>
+<li><p>(if you are running on a computing cluster) submit a job via a runscript.</p></li>
+</ol>
+<p>As an additional reminder, the <code class="docutils literal notranslate"><span class="pre">analyze_scalar_data</span></code> tool can be invoked by either</p>
+<ol class="arabic simple">
+<li><p>calling it from the CLI as <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">scalar_stats</span> <span class="pre">[id].s[series].scalar.dat</span></code></p></li>
+<li><p>in a Python script / notebook with <code class="docutils literal notranslate"><span class="pre">analyze_scalar_data()</span></code> - we’ve also included a template in a code block below that you can use for this exercise.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use this to run SAFIRE</span>
+<span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
+    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span><span class="c1">#&quot;your_input_file.json&quot;,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>     <span class="c1"># remember to check the equilibration!</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">E</span><span class="p">,</span> <span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="n">E_exact</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.1372759436170439</span>
+<span class="p">(</span><span class="n">E</span><span class="o">-</span><span class="n">E_exact</span><span class="p">)</span><span class="o">/</span><span class="n">dE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="check-your-result">
+<h3><span class="section-number">3.6.1. </span>Check your result<a class="headerlink" href="#check-your-result" title="Link to this heading">#</a></h3>
+<p>Your AFQMC energy should agree with <span class="math notranslate nohighlight">\(-1.137024 \pm 0.000195\)</span> Ha
+to within 1-2 <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>For comparison, the FCI energy is <span class="math notranslate nohighlight">\(-1.1372759436170439\)</span> Ha.</p>
+<p>Our AFQMC result agrees FCI to within 0.0003(2) Ha which
+is well within chemical accuracy.</p>
+</section>
+</section>
+<section id="starting-from-a-fcidump">
+<h2><span class="section-number">3.7. </span>Starting from a FCIDUMP<a class="headerlink" href="#starting-from-a-fcidump" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides tools to convert from a Hamiltonian in a standard
+FCIDUMP file to the format used by SAFIRE.</p>
+<p>We will continue with the example of a Hydrogen dimer in an STO-3G basis to demonstrate the tooling.</p>
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/03_writing_a_Hamiltonian/HyrdogenMolecule.png" width="500">
+</div>
+<p>Instructions for generating a FCIDUMP are beyond the scope of this tutorial;
+however, quantum chemistry codes that can easily generate FCIDUMP files are ubiquitous.</p>
+<p>For simplicity, we provide a FCIDUMP file which, starting from the GitHub repo root, can be found in,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>tutorial/molecules/03_writing_a_hamiltonian/files/H2_FCIDUMP
+</pre></div>
+</div>
+</section>
+<section id="cli-covert-from-fcidump-to-the-safire-format">
+<h2><span class="section-number">3.8. </span>CLI: Covert from FCIDUMP to the SAFIRE format.<a class="headerlink" href="#cli-covert-from-fcidump-to-the-safire-format" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">fcidump_to_afqmc</span></code> CLI script can be used to directly convert
+from a FCIDUMP file to the HDF5 format used by SAFIRE.
+If you follow the official installation instructions for <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">fcidump_to_afqmc</span></code> should already be installed.</p>
+<p>It can be used as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>fcidump_to_afqmc<span class="w"> </span>-i<span class="w"> </span>files/H2_FCIDUMP<span class="w">  </span>-t<span class="w"> </span><span class="m">1</span>.0e-5<span class="w"> </span>-o<span class="w"> </span>data/H2_Hamiltonian.h5
+</pre></div>
+</div>
+</div>
+</div>
+<p>which reads the “input” (<code class="docutils literal notranslate"><span class="pre">-i</span></code>) Hamiltonian from <code class="docutils literal notranslate"><span class="pre">H2_FCIDUMP</span></code>,
+performs a Cholesky decomposition with a tolerance (<code class="docutils literal notranslate"><span class="pre">-t</span></code>) of <code class="docutils literal notranslate"><span class="pre">1.e-5</span></code>,
+and saves the Hamiltonian to the “output” (<code class="docutils literal notranslate"><span class="pre">-o</span></code>) HDF5 file, <code class="docutils literal notranslate"> <span class="pre">H2_Hamiltonian.h5</span></code>.</p>
+<p>Additionally, you can use the <code class="docutils literal notranslate"><span class="pre">--help</span></code> option to see what other options are available.</p>
+<p><strong>Your Turn: Run the next code block to run see the help message</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>fcidump_to_afqmc<span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+</div>
+<section id="cli-also-write-a-trial-wavefunction">
+<h3><span class="section-number">3.8.1. </span>CLI: Also write a trial wavefunction<a class="headerlink" href="#cli-also-write-a-trial-wavefunction" title="Link to this heading">#</a></h3>
+<p>The next input that we will need for AFQMC is a trial wavefunction.
+The <code class="docutils literal notranslate"><span class="pre">fcidump_to_afqmc</span></code> CLI script can also write either an RHF- or ROHF-like
+trial wavefunction to the SAFIRE HDF5 file.</p>
+<p>The wavefunction is a single Slater determinant in which the first <span class="math notranslate nohighlight">\(N_{\uparrow}\)</span>/<span class="math notranslate nohighlight">\(N_{\downarrow}\)</span> <em>by index</em>
+orbitals are occupied.
+<span class="math notranslate nohighlight">\(N_{\uparrow}\)</span> and <span class="math notranslate nohighlight">\(N_{\downarrow}\)</span> are determined by the information in the header of the FCIDUMP file.
+It is also possible to explicitly specify orbital occupancies with the <code class="docutils literal notranslate"><span class="pre">--occ_up</span></code> and <code class="docutils literal notranslate"><span class="pre">--occ_down</span></code> switches.</p>
+</section>
+<section id="your-turn">
+<h3><span class="section-number">3.8.2. </span>Your Turn<a class="headerlink" href="#your-turn" title="Link to this heading">#</a></h3>
+<p>Run the following codeblock to output the Wavefunction to an HDF5 file via the CLI.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the Command Line Interface (CLI) to convert the Hamiltonian AND write a trial wavefunction</span>
+<span class="o">!</span>fcidump_to_afqmc<span class="w"> </span>-i<span class="w"> </span>files/H2_FCIDUMP<span class="w"> </span>-o<span class="w"> </span><span class="o">{</span>scratch_dir<span class="o">}</span>/H2.h5<span class="w"> </span>--add_wfn<span class="w"> </span>--occ_up<span class="w"> </span><span class="m">0</span><span class="w"> </span>--occ_down<span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="python-covert-from-fcidump-to-the-safire-format">
+<h2><span class="section-number">3.9. </span>Python: Covert from FCIDUMP to the SAFIRE format.<a class="headerlink" href="#python-covert-from-fcidump-to-the-safire-format" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">afmctools</span></code> Python package provides the following functions which allow us to convert form FCIDUMP to
+the SAFIRE format.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code> in the <code class="docutils literal notranslate"><span class="pre">afqmctools.hamiltonian.converter</span></code> module</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> in the <code class="docutils literal notranslate"><span class="pre">afqmctools.hamiltonian.mol</span></code> module</p></li>
+</ul>
+<section id="read-fcidump">
+<h3><span class="section-number">3.9.1. </span>read_fcidump()<a class="headerlink" href="#read-fcidump" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code> function reads the Hamiltonian from the FCIDUMP file
+with name <code class="docutils literal notranslate"><span class="pre">filename</span></code>, and separately returns the 1-body, 2-body, and constant Hamiltonian
+terms as well as the number of electrons.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
+
+    <span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;H2_FCIDUMP&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>see the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/api/afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_fcidump">API documentation for more</a></p>
+</section>
+<section id="write-hamiltonian-generic">
+<h3><span class="section-number">3.9.2. </span>write_hamiltonian_generic()<a class="headerlink" href="#write-hamiltonian-generic" title="Link to this heading">#</a></h3>
+<p>As we saw above, the <code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> function will generate an HDF5 file that can
+be read by the SAFIRE executable containing the Hamiltonian.
+It will automatically generate a Cholesky decomposed form of the interaction if electron-repulsion integrals are provided via the <code class="docutils literal notranslate"><span class="pre">coulomb_repulsion_tensor</span></code> keyword argument.
+Alternatively, any 3-index factorized form of the electron interaction can be provided
+via the <code class="docutils literal notranslate"><span class="pre">cholesky_vectors</span></code> input parameter.
+Exactly one of <code class="docutils literal notranslate"><span class="pre">cholesky_vectors</span></code> or <code class="docutils literal notranslate"><span class="pre">coulomb_repulsion_tensor</span></code> must be provided to
+<code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+
+
+    <span class="c1"># transopose to match conventions for write_hamiltonian_generic</span>
+    <span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">write_hamiltonian_generic</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+        <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
+        <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+        <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
+        <span class="n">cholesky_delta</span><span class="o">=</span><span class="mf">1.0e-5</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>see the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/api/afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.write_hamiltonian_generic">API documentation for more</a>.</p>
+</section>
+<section id="your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format">
+<h3><span class="section-number">3.9.3. </span>Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format<a class="headerlink" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
+
+<span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;files/H2_FCIDUMP&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># transopose to match conventions for write_hamiltonian_generic</span>
+<span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">write_hamiltonian_generic</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+    <span class="n">E0</span><span class="o">=</span><span class="n">E0</span><span class="p">,</span>
+    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
+    <span class="n">cholesky_delta</span><span class="o">=</span><span class="mf">1.0e-5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools">
+<h2><span class="section-number">3.10. </span>Generate and write the Hamiltonian using PySCF and afqmctools<a class="headerlink" href="#generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools" title="Link to this heading">#</a></h2>
+<p>Instead of defining the Hamiltonian and the wavefunction from scratch, one can also utilize <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to obtain the Hamiltonian in a given basis (in this case, the molecular orbital basis) and the trial wavefunction.
+Here, we use <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to run RHF for the hydrogen dimer and export to a chkfile <code class="docutils literal notranslate"><span class="pre">h2_rhf.h5</span></code>, then use <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> to obtain the Hamiltonian and the trial wavefunction from the chkfile.
+After this, you may follow the same steps as above to run AFQMC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+
+<span class="c1"># build the H2 dimer</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="s2">&quot;H 0. 0. 0.; H 0. 0. 1.4&quot;</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">(</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;Bohr&quot;</span><span class="p">,</span>
+            <span class="n">atom</span> <span class="o">=</span> <span class="n">xyz</span><span class="p">,</span>
+            <span class="n">precision</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="s2">&quot;sto-3g&quot;</span><span class="p">)</span>
+
+<span class="n">mol</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="c1"># run RHF</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5&quot;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+
+<span class="c1"># reload the mf data</span>
+<span class="n">mf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5&quot;</span><span class="p">,</span> <span class="s1">&#39;scf&#39;</span><span class="p">)</span>
+
+<span class="c1"># dump the Hamiltonian and the wavefunction to the same h5df</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_from_pyscf.h5&quot;</span>
+<span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">mf_data</span><span class="p">,</span>
+    <span class="n">fout</span><span class="p">,</span>
+    <span class="n">chol_cut</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+    <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+<span class="n">write_wfn_mol</span><span class="p">(</span>
+    <span class="n">mf_data</span><span class="p">,</span>
+    <span class="n">fout</span><span class="p">,</span>
+    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">mf_data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2><span class="section-number">3.11. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, you set up and ran a quantum chemistry AFQMC calculation in which we computed the ground state energy of the Hydrogen dimer at a fixed bond length.</p>
+<p>The AFQMC code needs a Hamiltonian, a trial wavefunction, and a file containing settings as input, and it outputs stochastic samples as specified in the input file.</p>
+<section id="what-you-learned">
+<h3><span class="section-number">3.11.1. </span>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How to write a Hamiltonian to the SAFIRE HDF5 format starting from one-body, and two-body integrals</p></li>
+<li><p>How to convert from a FCIDUMP file to the SAFIRE HDF5 format both using the CLI tools and within a Python script</p></li>
+</ol>
+</section>
+<section id="sample-script-full-workflow">
+<h3><span class="section-number">3.11.2. </span>Sample Script - Full workflow<a class="headerlink" href="#sample-script-full-workflow" title="Link to this heading">#</a></h3>
+<p>Below is a single script based on what you have learned.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># up, down</span>
+<span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># all energy units are E_Hartree</span>
+
+<span class="c1"># nuclear repulsion energy</span>
+<span class="n">H0</span> <span class="o">=</span> <span class="mf">0.714285714285714</span>
+
+<span class="c1"># One-Body Integrals in the basis of canonical RHF orbitals</span>
+<span class="n">H1_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.25279706e+00</span><span class="p">,</span>  <span class="mf">0.0</span>           <span class="p">],</span>
+                  <span class="p">[</span> <span class="mf">0.0</span>           <span class="p">,</span> <span class="o">-</span><span class="mf">4.75602313e-01</span><span class="p">]])</span>
+
+<span class="c1"># two-body integrals in the basis of canonical RHF orbitals</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">6.74976525e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.63461552e-01</span><span class="p">]])</span>
+
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">1.81606342e-01</span><span class="p">],</span>
+                             <span class="p">[</span> <span class="mf">1.81606342e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+<span class="c1"># equivalent by symmetry</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span>
+<span class="n">H2_ijkl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">6.63461552e-01</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.96162129e-01</span><span class="p">]])</span>
+
+
+
+<span class="c1"># For reference, the RHF orbitals in the STO-3G basis are</span>
+<span class="c1"># phi_i(\vec{r}) = \sum_\mu C_{\mu i} g_\mu (\vec{r})</span>
+<span class="n">phi_hf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.54893404</span><span class="p">,</span>  <span class="mf">1.21146407</span><span class="p">],</span>
+                   <span class="p">[</span> <span class="mf">0.54893404</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.21146407</span><span class="p">]])</span>
+
+<span class="c1"># and the STO-3G basis overlap matrix for $\delta_{H-H}=1.4 Bohr$ is</span>
+<span class="c1"># Sij = &lt;g_\mu | g_\nu&gt;</span>
+<span class="n">Sij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span>         <span class="mf">0.65931821</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.65931821</span><span class="p">,</span> <span class="mf">1.</span>        <span class="p">]])</span>
+
+<span class="c1"># Save the Hamiltonian to HDF5</span>
+<span class="n">write_hamiltonian_generic</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+    <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
+    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
+<span class="p">)</span>
+
+<span class="c1"># make and save a trial wavefunction</span>
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">phi_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">orbitals</span><span class="p">[:,</span> <span class="p">:</span><span class="n">number_of_electrons</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
+
+<span class="n">write_wfn</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_rhf_wfn.h5&quot;</span><span class="p">,</span> <span class="c1"># this is the name of the file that will be created</span>
+    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
+    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span>
+
+<span class="c1"># make an input file</span>
+
+<span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of population_control_interval</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+<span class="p">}</span>
+
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;H2_afqmc_input.json&quot;</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;H2_rhf_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
+<span class="p">)</span>
+
+<span class="c1"># run afqmc</span>
+<span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
+    <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;H2_afqmc_input.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>   <span class="c1"># optionally direct output to file instead of here</span>
+<span class="p">)</span>
+
+<span class="c1"># post process</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_understanding_the_input_file/02_understanding_the_input_file.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Understanding the input file</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Writing a Trial Wavefunction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">3.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up">3.3. Setting up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian">3.4. The Hamiltonian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-hamiltonian">3.4.1. Save the Hamiltonian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trial-wavefunction">3.5. The Trial Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-compute-the-afqmc-energy">3.6. Your Turn: Compute the AFQMC energy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-your-result">3.6.1. Check your result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-from-a-fcidump">3.7. Starting from a FCIDUMP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-covert-from-fcidump-to-the-safire-format">3.8. CLI: Covert from FCIDUMP to the SAFIRE format.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-also-write-a-trial-wavefunction">3.8.1. CLI: Also write a trial wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn">3.8.2. Your Turn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-covert-from-fcidump-to-the-safire-format">3.9. Python: Covert from FCIDUMP to the SAFIRE format.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-fcidump">3.9.1. read_fcidump()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-hamiltonian-generic">3.9.2. write_hamiltonian_generic()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format">3.9.3. Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools">3.10. Generate and write the Hamiltonian using PySCF and afqmctools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.11. Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">3.11.1. What you learned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-script-full-workflow">3.11.2. Sample Script - Full workflow</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/tutorials/molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. The square Hubbard Model at half filling &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/models/03_half_filling_hubbard/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Observables: Pair Correlation functions" href="../04_pair_correlators/index.html" />
+    <link rel="prev" title="2. Stripes and the square Hubbard Model" href="../02_stripes/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of solid Na</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. The square Hubbard Model at half filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Lattice models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">3. </span>The square Hubbard Model at half filling</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-square-hubbard-model-at-half-filling">
+<h1><span class="section-number">3. </span>The square Hubbard Model at half filling<a class="headerlink" href="#the-square-hubbard-model-at-half-filling" title="Link to this heading">#</a></h1>
+<p>Author: Ryan Levy</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># This are in case you have a GPU enabled JAX but are running on CPU.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JAX_PLATFORMS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="c1"># If you want to use GPU enabled Jax in multiply notebooks with the same</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;XLA_PYTHON_CLIENT_PREALLOCATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+
+<span class="c1"># use x64 numbers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;jax_enable_x64&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># all the imports used later in the tutorial, but put here for convenience</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ham</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_free_electron_wfn</span><span class="p">,</span> <span class="n">make_free_elec</span><span class="p">,</span><span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.greens</span><span class="w"> </span><span class="kn">import</span> <span class="n">greens_1body</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.observables.spin</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spobs</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="physics-background">
+<h2><span class="section-number">3.1. </span>Physics Background<a class="headerlink" href="#physics-background" title="Link to this heading">#</a></h2>
+<p>The Hubbard model at Half Filling (<span class="math notranslate nohighlight">\(n=1\)</span>) has a special “symmetry” known as particle-hole symmetry, that allows auxiliary field methods to be sign free. However, care must be taken to make sure that phaseless/constrained path AFQMC is used properly to exploit said symmetry.</p>
+<p>[1]: <em>Benchmark study of the two-dimensional Hubbard model with auxiliary-field quantum Monte Carlo method</em><br />
+M Qin, H Shi, S Zhang Phys. Rev. B 94, 085103 4 August, 2016<br />
+DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
+</section>
+<section id="lattice-and-hamiltonian-setup">
+<h2><span class="section-number">3.2. </span>Lattice and Hamiltonian Setup<a class="headerlink" href="#lattice-and-hamiltonian-setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take from 10.1103/PhysRevB.45.10741, U =&gt; E_0</span>
+<span class="n">E0_n1_lookup</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span> <span class="p">:</span> <span class="o">-</span><span class="mf">13.62185</span><span class="p">,</span>
+                <span class="mi">8</span> <span class="p">:</span> <span class="o">-</span><span class="mf">8.46888</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">lattice_dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;L2&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;boundary1&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">lat</span><span class="o">.</span><span class="n">get_lattice</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span><span class="p">)</span>
+
+<span class="n">Ne</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span><span class="n">Ne</span><span class="p">)</span>
+<span class="n">nelec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Hamiltonian will be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+H &amp;= H_t + H_U \\
+H_t &amp;= -t \sum_{\langle i j\rangle \sigma} c^\dagger_{i\sigma} c_{j\sigma} \\
+H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+          <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span> <span class="c1"># we have no spin-flip terms</span>
+              <span class="p">)</span>
+<span class="c1"># add standard Hubbard terms</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builderHF</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+          <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span> <span class="c1"># we have no spin-flip terms</span>
+              <span class="p">)</span>
+<span class="c1"># add standard Hubbard terms</span>
+<span class="n">builderHF</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">builderHF</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># if you want an effective U, you can change this</span>
+<span class="n">builderHF</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the 1 body Hamiltonian</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="version-1-ghf-trial">
+<h2><span class="section-number">3.3. </span>Version 1: GHF trial<a class="headerlink" href="#version-1-ghf-trial" title="Link to this heading">#</a></h2>
+<p>Because of the open shell at half filling, we’ll follow Ref. 1 and use a GHF trial w/ AFM constrained to the X-Y plane (eq 14)</p>
+<div class="math notranslate nohighlight">
+\[
+H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.} + \sum_{i}M_i c^\dagger_{i\uparrow}c_{i\downarrow} + \text{h.c.}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_i= (-1)^i\Delta_i\)</span></p>
+<section id="aside-custom-hartree-fock-solver">
+<h3><span class="section-number">3.3.1. </span>Aside: custom Hartree-Fock solver<a class="headerlink" href="#aside-custom-hartree-fock-solver" title="Link to this heading">#</a></h3>
+<p>We’ll want to optimize <span class="math notranslate nohighlight">\(M\)</span> directly, and to do this we’ll use AutoHF’s custom ansatz power to build a modification of the <code class="docutils literal notranslate"><span class="pre">DIAG</span></code> ansatz</p>
+<p>To do that we’ll need:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">orbitalFunc</span></code> This takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the orbitals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rdmFunc</span></code> this takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the rdm <span class="math notranslate nohighlight">\(\langle c^\dagger_{\sigma i}c_{\sigma^\prime j}\rangle\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state0</span></code> the initial state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state0_ref</span></code> the initial state that should correspond to e.g. <span class="math notranslate nohighlight">\(U=0\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span> <span class="c1"># will be captured by closure</span>
+<span class="n">Ne</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span> <span class="c1"># n_up = n_dn = Ne</span>
+
+<span class="c1"># get the (-1)^i which is really the checkerboard pattern for a 4x4</span>
+<span class="n">signs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lattice</span><span class="o">.</span><span class="n">sites</span><span class="p">])</span>
+
+<span class="c1"># convert T -&gt; GHF format</span>
+<span class="c1"># TODO this should be in afqmctools</span>
+<span class="n">TGHF_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+               <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+<span class="n">TGHF_</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TGHF_</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">orbitalFunc</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="c1"># take the hopping matrix TGHF, and &quot;set&quot; M on the off-diagonal blocks</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF_</span><span class="o">+</span><span class="mf">0.0</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">lams</span><span class="p">,</span><span class="n">vecs</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">TGHF</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">vecs</span><span class="p">[:,:</span><span class="mi">2</span><span class="o">*</span><span class="n">Ne</span><span class="p">]])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rdmFunc</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">orbitalFunc</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">sd_to_rdm_noncollinear</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">checkPH</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;check the spectrum of the &#39;faux&#39; HF state is PH symmetric&#39;&#39;&#39;</span>
+    <span class="c1"># take the hopping matrix TGHF, and &quot;set&quot; M on the off-diagonal blocks</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF_</span><span class="o">+</span><span class="mf">0.0</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">lams</span><span class="p">,</span><span class="n">vecs</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">TGHF</span><span class="p">)</span>
+    <span class="c1"># verify symmetry</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">lams</span><span class="p">,</span><span class="o">-</span><span class="n">lams</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
+    <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">state0_ref</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
+
+
+<span class="n">dataHFC</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">),</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+    <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
+    <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
+    <span class="n">state2rdm</span><span class="o">=</span><span class="n">rdmFunc</span><span class="p">,</span>
+    <span class="n">state0</span><span class="o">=</span><span class="n">state0</span><span class="p">,</span>
+    <span class="n">state0_ref</span><span class="o">=</span><span class="n">state0_ref</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check out what M values we got</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hmm… This looks like we haven’t fully converged into a translationally invariant solution, but’s close. Let’s increase the precision!</p>
+<p><strong>⚠️ Warning</strong> This notebook is setup for the CPU, the following cell takes a while (the GPU is a bit faster if you have one)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wfn_fname</span> <span class="o">=</span> <span class="s2">&quot;autoHF_wfn.h5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># increase</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
+    <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;num_batches&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">state0_ref</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;num_batches&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
+
+
+<span class="n">dataHFC2</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">),</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+    <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
+    <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
+    <span class="n">state2rdm</span><span class="o">=</span><span class="n">rdmFunc</span><span class="p">,</span>
+    <span class="n">state0</span><span class="o">=</span><span class="n">state0</span><span class="p">,</span>
+    <span class="n">state0_ref</span><span class="o">=</span><span class="n">state0_ref</span><span class="p">,</span>
+    <span class="n">jaxoptargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">),</span>  <span class="c1"># secret sauce</span>
+<span class="p">)</span>
+
+<span class="n">autohf_to_afqmc</span><span class="p">(</span>
+    <span class="n">dataHFC2</span><span class="p">,</span>
+    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">wfn_fname</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkPH</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check that this is a better energy than the previous energy</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great!</p>
+<p>Now let’s check if we can guess a better state, by removing translation invariance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]),</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">uni_state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we see we’ve reached a minimum, and that a constant <span class="math notranslate nohighlight">\(M\)</span> is the same as our nearly constant optimized <span class="math notranslate nohighlight">\(M_i\)</span></p>
+</section>
+<section id="constructing-the-input-file">
+<h3><span class="section-number">3.3.2. </span>Constructing the input file<a class="headerlink" href="#constructing-the-input-file" title="Link to this heading">#</a></h3>
+<p>First we’ll manually create a non-interacting state as our RHF initial state for the walkers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ham_fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;hamU</span><span class="si">{</span><span class="n">U</span><span class="si">}</span><span class="s2">_afqmc.h5&quot;</span>
+<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">,</span>
+                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
+        <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;print_components&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">wfn_fname</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
+    <span class="n">series</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="p">,</span>
+    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>energy_stats<span class="w"> </span><span class="o">{</span>scratch_dir<span class="w"> </span>/<span class="w"> </span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="o">}</span><span class="w"> </span>-t<span class="w"> </span>-e<span class="w"> </span><span class="m">20</span>.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">return_data</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mean_real&quot;</span><span class="p">]</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;error_real&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E0_n1_lookup</span><span class="p">[</span><span class="n">U</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="n">E</span><span class="p">],</span><span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">err</span><span class="p">],</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">E0_n1_lookup</span><span class="p">[</span><span class="n">U</span><span class="p">],</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">13.63</span><span class="p">,</span><span class="o">-</span><span class="mf">13.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="for-further-thinking">
+<h3><span class="section-number">3.3.3. </span>For further thinking<a class="headerlink" href="#for-further-thinking" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What if we didn’t use the correct signs (<span class="math notranslate nohighlight">\(M_i = (-1)^i\Delta_i\)</span>) for the HF ansatz? Could we construct an even more constrained wave function?</p></li>
+<li><p>What do the local spin/charge observables of the optimized ansatz look like?</p></li>
+<li><p>What happens for <span class="math notranslate nohighlight">\(U=8\)</span>? Do we need a different wave function?</p></li>
+<li><p>What happens if you start from a free electron state instead of the HF state? (<code class="docutils literal notranslate"><span class="pre">(coeffs,free_wfn),spin_symm</span> <span class="pre">=</span> <span class="pre">make_free_elec(ham_fname,nelec,spin_symm=&quot;nc&quot;)</span></code>)</p></li>
+</ul>
+</section>
+</section>
+<section id="version-2-multi-slater-trial">
+<h2><span class="section-number">3.4. </span>Version 2: multi-Slater trial<a class="headerlink" href="#version-2-multi-slater-trial" title="Link to this heading">#</a></h2>
+<p>To take advantage of particle hole symmetry at half filling with a spin decomposition, besides using a GHF in the X-Y plane, we could use two particle-hole symmetric determinants</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="version-3-charge-decomposition">
+<h2><span class="section-number">3.5. </span>Version 3: Charge decomposition<a class="headerlink" href="#version-3-charge-decomposition" title="Link to this heading">#</a></h2>
+<p>The last alternative is to use a particle hole symmetry trial with the charge decomposition. Because we are focusing on positive <span class="math notranslate nohighlight">\(U\)</span> interactions, the charge decomposition will create a complex phase. At half-filling, due to the particle symmetry the walker weights will end up being all real and positive so we don’t have to worry about this</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_stripes/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Stripes and the square Hubbard Model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_pair_correlators/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Observables: Pair Correlation functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physics-background">3.1. Physics Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-and-hamiltonian-setup">3.2. Lattice and Hamiltonian Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-ghf-trial">3.3. Version 1: GHF trial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-custom-hartree-fock-solver">3.3.1. Aside: custom Hartree-Fock solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-input-file">3.3.2. Constructing the input file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-further-thinking">3.3.3. For further thinking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-2-multi-slater-trial">3.4. Version 2: multi-Slater trial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-3-charge-decomposition">3.5. Version 3: Charge decomposition</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/examples/models/03_half_filling_hubbard/index.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
