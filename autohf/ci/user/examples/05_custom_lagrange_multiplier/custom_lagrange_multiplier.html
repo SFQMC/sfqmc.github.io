@@ -207,7 +207,7 @@
 <span class="linenos">104</span><span class="c1">####### Step 1 ######</span>
 <span class="linenos">105</span><span class="c1"># First get energy function</span>
 <span class="linenos">106</span><span class="n">temp_settings</span> <span class="o">=</span> <span class="n">hf_settings</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
-<span class="linenos">107</span><span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">107</span><span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">108</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">109</span>  <span class="n">settings</span><span class="o">=</span><span class="n">temp_settings</span><span class="p">,</span>
 <span class="linenos">110</span>  <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># quiet mode</span>
@@ -216,7 +216,7 @@
 <span class="linenos">113</span>
 <span class="linenos">114</span><span class="c1">####### Step 2 ######</span>
 <span class="linenos">115</span><span class="c1"># run with default settings, no extra term</span>
-<span class="linenos">116</span><span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">116</span><span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">117</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">118</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos">119</span><span class="p">)</span>
@@ -227,7 +227,7 @@
 <span class="linenos">124</span><span class="c1">####### Step 3 ######</span>
 <span class="linenos">125</span><span class="c1"># run with addition term</span>
 <span class="linenos">126</span><span class="c1"># for illustration, energy is shifted by 100</span>
-<span class="linenos">127</span><span class="n">data_sz</span><span class="p">,</span> <span class="n">data_functions_sz</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">127</span><span class="n">data_sz</span><span class="p">,</span> <span class="n">data_functions_sz</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">128</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">129</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos">130</span>  <span class="n">custom_energy_term</span><span class="o">=</span><span class="n">Esz2</span><span class="p">,</span>

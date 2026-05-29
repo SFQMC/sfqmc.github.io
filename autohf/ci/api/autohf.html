@@ -76,7 +76,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-autohf.tools">tools</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autohf">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autohf">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.lattice_hf"><code class="docutils literal notranslate"><span class="pre">lattice_hf()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -193,15 +196,15 @@ and delta is a real number used to control the amplitude of the random noise.</p
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="autohf.solver.lattice_hf">
-<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">lattice_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_energy_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.lattice_hf" title="Link to this definition"></a></dt>
-<dd><p>Run Hartree-Fock on lattice Model Hamiltonians</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="autohf.solver.makeEnergyCall">
 <span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">makeEnergyCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.makeEnergyCall" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solver.solve_hf">
+<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">solve_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_energy_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.solve_hf" title="Link to this definition"></a></dt>
+<dd><p>Run Hartree-Fock on lattice Model Hamiltonians</p>
+</dd></dl>
 
 </section>
 <section id="module-autohf.converters">
@@ -501,6 +504,11 @@ block diagonal GHF form</p>
 </section>
 <section id="module-autohf">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autohf" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.lattice_hf">
+<span class="sig-prename descclassname"><span class="pre">autohf.</span></span><span class="sig-name descname"><span class="pre">lattice_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.lattice_hf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 </section>
 

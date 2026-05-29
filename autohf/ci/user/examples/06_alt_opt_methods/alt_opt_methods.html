@@ -162,19 +162,19 @@
 <span class="linenos">58</span><span class="n">H</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
 <span class="linenos">59</span>
 <span class="linenos">60</span><span class="c1"># Standard lbfgs</span>
-<span class="linenos">61</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">61</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">62</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">63</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos">64</span><span class="p">)</span>
 <span class="linenos">65</span>
 <span class="linenos">66</span><span class="c1"># Basin Hopping via scipy</span>
-<span class="linenos">67</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">67</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">68</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">69</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">(</span><span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;basin&quot;</span><span class="p">),</span>
 <span class="linenos">70</span><span class="p">)</span>
 <span class="linenos">71</span>
 <span class="linenos">72</span><span class="c1"># Gradient Descent via optax</span>
-<span class="linenos">73</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">73</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">74</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">75</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">(</span><span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;grad&quot;</span><span class="p">),</span>
 <span class="linenos">76</span><span class="p">)</span>
@@ -261,7 +261,7 @@
 <span class="linenos"> 73</span><span class="n">H</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
 <span class="linenos"> 74</span>
 <span class="linenos"> 75</span><span class="c1">## Standard lbfgs to get a sense of things</span>
-<span class="linenos"> 76</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos"> 76</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos"> 77</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos"> 78</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos"> 79</span><span class="p">)</span>
@@ -275,7 +275,7 @@
 <span class="linenos"> 87</span>  <span class="n">optax</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">),</span>
 <span class="linenos"> 88</span><span class="p">)</span>
 <span class="linenos"> 89</span>
-<span class="linenos"> 90</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos"> 90</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos"> 91</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos"> 92</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">(</span><span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;grad&quot;</span><span class="p">),</span>
 <span class="linenos"> 93</span>  <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span>
@@ -329,7 +329,7 @@
 <span class="linenos">141</span>  <span class="k">return</span> <span class="n">optax</span><span class="o">.</span><span class="n">GradientTransformationExtraArgs</span><span class="p">(</span><span class="n">init_fn</span><span class="p">,</span> <span class="n">update_fn</span><span class="p">)</span>
 <span class="linenos">142</span>
 <span class="linenos">143</span>
-<span class="linenos">144</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">144</span><span class="n">data</span><span class="p">,</span> <span class="n">data_f</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">145</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">146</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">(</span><span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;grad&quot;</span><span class="p">,</span> <span class="n">steps</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
 <span class="linenos">147</span><span class="p">)</span>

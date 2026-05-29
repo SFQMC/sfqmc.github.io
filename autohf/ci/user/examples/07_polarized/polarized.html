@@ -159,12 +159,12 @@
 <span class="linenos">56</span>
 <span class="linenos">57</span><span class="n">H</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
 <span class="linenos">58</span>
-<span class="linenos">59</span><span class="n">data</span><span class="p">,</span> <span class="n">data_F</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">59</span><span class="n">data</span><span class="p">,</span> <span class="n">data_F</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">60</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">61</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos">62</span><span class="p">)</span>
 <span class="linenos">63</span>
-<span class="linenos">64</span><span class="n">data</span><span class="p">,</span> <span class="n">data_F</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">64</span><span class="n">data</span><span class="p">,</span> <span class="n">data_F</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">65</span>  <span class="n">H</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;SD&quot;</span><span class="p">,</span> <span class="s2">&quot;riemannian&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="n">restart_from</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_F</span><span class="p">)</span>
 <span class="linenos">66</span><span class="p">)</span>
 <span class="linenos">67</span>

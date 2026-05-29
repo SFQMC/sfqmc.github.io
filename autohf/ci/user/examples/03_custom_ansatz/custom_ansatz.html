@@ -178,7 +178,7 @@
 <span class="linenos">75</span><span class="n">state0_ref</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="linenos">76</span><span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
 <span class="linenos">77</span>
-<span class="linenos">78</span><span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+<span class="linenos">78</span><span class="n">autohf</span><span class="o">.</span><span class="n">solve_hf</span><span class="p">(</span>
 <span class="linenos">79</span>  <span class="n">H</span><span class="p">,</span>
 <span class="linenos">80</span>  <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="linenos">81</span>  <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
