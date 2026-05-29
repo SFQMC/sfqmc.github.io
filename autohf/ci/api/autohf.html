@@ -1,0 +1,538 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoHF Python package &mdash; AutoHF Manual  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=4815c062" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="autohf.terms package" href="autohf.terms.html" />
+    <link rel="prev" title="AutoHF" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AutoHF Manual
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/hams.html">Implemented Hamiltonians</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/manual.html">User’s Guide and Developer’s Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/examples_include.html">User Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">AutoHF</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AutoHF Python package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-detail">More Detail</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.solver">solver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.converters">converters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.hamiltonian">hamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.io">input/output (io)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.options">options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.rotation_tools">rotation tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.tools">tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autohf">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AutoHF Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">AutoHF</a></li>
+      <li class="breadcrumb-item active">AutoHF Python package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/autohf.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autohf-python-package">
+<h1>AutoHF Python package<a class="headerlink" href="#autohf-python-package" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+</section>
+<section id="more-detail">
+<h2>More Detail<a class="headerlink" href="#more-detail" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.ghf">autohf.terms.ghf module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_J"><code class="docutils literal notranslate"><span class="pre">ghf_J()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_Jheis"><code class="docutils literal notranslate"><span class="pre">ghf_Jheis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U"><code class="docutils literal notranslate"><span class="pre">ghf_U()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U1"><code class="docutils literal notranslate"><span class="pre">ghf_U1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U2"><code class="docutils literal notranslate"><span class="pre">ghf_U2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.uhf">autohf.terms.uhf module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.rhf_hop"><code class="docutils literal notranslate"><span class="pre">rhf_hop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_J"><code class="docutils literal notranslate"><span class="pre">uhf_J()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_Jheis"><code class="docutils literal notranslate"><span class="pre">uhf_Jheis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U"><code class="docutils literal notranslate"><span class="pre">uhf_U()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U1"><code class="docutils literal notranslate"><span class="pre">uhf_U1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U2"><code class="docutils literal notranslate"><span class="pre">uhf_U2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces.afqmctools">autohf.interfaces.afqmctools module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm"><code class="docutils literal notranslate"><span class="pre">SpinSymm</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.CLOSED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.CLOSED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.COLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.COLLINEAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.NONCOLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.NONCOLLINEAR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.fail_without_afqmctools"><code class="docutils literal notranslate"><span class="pre">fail_without_afqmctools()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.skip_without_afqmctools"><code class="docutils literal notranslate"><span class="pre">skip_without_afqmctools()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.spin_squared"><code class="docutils literal notranslate"><span class="pre">spin_squared()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.spin_z"><code class="docutils literal notranslate"><span class="pre">spin_z()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+<section id="module-autohf.solver">
+<span id="solver"></span><h3>solver<a class="headerlink" href="#module-autohf.solver" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solver.constructPhi0">
+<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">constructPhi0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">averageSpins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.constructPhi0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solver.construct_random_Phi">
+<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">construct_random_Phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.construct_random_Phi" title="Link to this definition"></a></dt>
+<dd><p>construct a random Slater determinant as</p>
+<p>e^{-i*delta*X} Phi_{ia}</p>
+<p>where Phi_{ia} is a Slater determinant, X is a random symmetric matrix,
+and delta is a real number used to control the amplitude of the random noise.</p>
+<p>Inputs:
+- rng: initialized numpy random number generator
+- N : number of basis set functions (number of sites * number of bands)
+- neelc : number of electrons as an iterable of length 2 (Nup,Ndown)
+- spin_symm : the desired spin symmetry of the Slater determinant</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solver.lattice_hf">
+<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">lattice_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_energy_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.lattice_hf" title="Link to this definition"></a></dt>
+<dd><p>Run Hartree-Fock on lattice Model Hamiltonians</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solver.makeEnergyCall">
+<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">makeEnergyCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.makeEnergyCall" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-autohf.converters">
+<span id="converters"></span><h3>converters<a class="headerlink" href="#module-autohf.converters" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.converters.convertInitialSlaterDet">
+<span class="sig-prename descclassname"><span class="pre">autohf.converters.</span></span><span class="sig-name descname"><span class="pre">convertInitialSlaterDet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.converters.convertInitialSlaterDet" title="Link to this definition"></a></dt>
+<dd><p>map from an initial guess in the afqmctools format to the autoHF format.</p>
+<dl class="simple">
+<dt>Note: generates the initial Slater determint in RepOptions.SLATERDET mode</dt><dd><p>or the reference Slater determinant in RepOptions.SLATERDET_ROT mode</p>
+</dd>
+<dt>For Collinear Slater determinants:</dt><dd><p>afqmctools will provide Phi[nmo,Nes[0]+Nes[1]] which should be converted to
+jnp.stack(Phi[:,:Nes[0]], Phi[nmo][:,Nes[0]:])</p>
+</dd>
+<dt>For Noncollinear Slater determinants:</dt><dd><p>simply converts to a jnp array with appropriate dimensions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-autohf.hamiltonian">
+<span id="hamiltonian"></span><h3>hamiltonian<a class="headerlink" href="#module-autohf.hamiltonian" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">AutoHFHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="simple">
+<dt>Conatiner class to hold Hamiltonian terms for AutoHF</dt><dd><p>in internal format.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.add_terms">
+<span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.add_terms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.get_one_body">
+<span class="sig-name descname"><span class="pre">get_one_body</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.get_one_body" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.set" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.hamiltonian.Hamiltonian">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">Hamiltonian</span></span><a class="headerlink" href="#autohf.hamiltonian.Hamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">SpinSymm</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.CLOSED">
+<span class="sig-name descname"><span class="pre">CLOSED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.CLOSED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.COLLINEAR">
+<span class="sig-name descname"><span class="pre">COLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.COLLINEAR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.NONCOLLINEAR">
+<span class="sig-name descname"><span class="pre">NONCOLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.NONCOLLINEAR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-autohf.io">
+<span id="input-output-io"></span><h3>input/output (io)<a class="headerlink" href="#module-autohf.io" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.io.loadStates">
+<span class="sig-prename descclassname"><span class="pre">autohf.io.</span></span><span class="sig-name descname"><span class="pre">loadStates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.io.loadStates" title="Link to this definition"></a></dt>
+<dd><p>Loads saved pkl from saveStates
+Supports using the same ansatz or any ansatz -&gt; SD/SDC</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.io.read_input_params">
+<span class="sig-prename descclassname"><span class="pre">autohf.io.</span></span><span class="sig-name descname"><span class="pre">read_input_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.io.read_input_params" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Read parameters from a human-readable input file in TOML format.</dt><dd><p>Returns a Dictionary containing the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.io.saveStates">
+<span class="sig-prename descclassname"><span class="pre">autohf.io.</span></span><span class="sig-name descname"><span class="pre">saveStates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbFunc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_batch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.io.saveStates" title="Link to this definition"></a></dt>
+<dd><p>Save all the trial states in an extra file
+Will automatically save based on npy/pkl/pickle file extension
+Does nothing if fname is empty/None</p>
+</dd></dl>
+
+</section>
+<section id="module-autohf.options">
+<span id="options"></span><h3>options<a class="headerlink" href="#module-autohf.options" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.options.RepOptions">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.options.</span></span><span class="sig-name descname"><span class="pre">RepOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.options.RepOptions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.CUSTOM">
+<span class="sig-name descname"><span class="pre">CUSTOM</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></span><a class="headerlink" href="#autohf.options.RepOptions.CUSTOM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.DIAG">
+<span class="sig-name descname"><span class="pre">DIAG</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#autohf.options.RepOptions.DIAG" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#autohf.options.RepOptions.NONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.SLATERDET">
+<span class="sig-name descname"><span class="pre">SLATERDET</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.options.RepOptions.SLATERDET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.SLATERDETC">
+<span class="sig-name descname"><span class="pre">SLATERDETC</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#autohf.options.RepOptions.SLATERDETC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.SLATERDET_ROT">
+<span class="sig-name descname"><span class="pre">SLATERDET_ROT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#autohf.options.RepOptions.SLATERDET_ROT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.RepOptions.SLATERDET_ROTC">
+<span class="sig-name descname"><span class="pre">SLATERDET_ROTC</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#autohf.options.RepOptions.SLATERDET_ROTC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.options.SlaterType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.options.</span></span><span class="sig-name descname"><span class="pre">SlaterType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.options.SlaterType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.CLOSED">
+<span class="sig-name descname"><span class="pre">CLOSED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.options.SlaterType.CLOSED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.COLLINEAR">
+<span class="sig-name descname"><span class="pre">COLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#autohf.options.SlaterType.COLLINEAR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.GHF">
+<span class="sig-name descname"><span class="pre">GHF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#autohf.options.SlaterType.GHF" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.NONCOLLINEAR">
+<span class="sig-name descname"><span class="pre">NONCOLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#autohf.options.SlaterType.NONCOLLINEAR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#autohf.options.SlaterType.NONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.RHF">
+<span class="sig-name descname"><span class="pre">RHF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.options.SlaterType.RHF" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="autohf.options.SlaterType.UHF">
+<span class="sig-name descname"><span class="pre">UHF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#autohf.options.SlaterType.UHF" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.options.get_ansatz">
+<span class="sig-prename descclassname"><span class="pre">autohf.options.</span></span><span class="sig-name descname"><span class="pre">get_ansatz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ansatz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.options.get_ansatz" title="Link to this definition"></a></dt>
+<dd><p>Given a string, return the correct RepOptions,
+or representation options enum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#autohf.options.RepOptions" title="autohf.options.RepOptions"><code class="xref py py-class docutils literal notranslate"><span class="pre">RepOptions</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.options.process_args">
+<span class="sig-prename descclassname"><span class="pre">autohf.options.</span></span><span class="sig-name descname"><span class="pre">process_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.options.process_args" title="Link to this definition"></a></dt>
+<dd><p>Processes autoHF arguments into a single namespace using
+default values if not specified. Accepts arguments from either
+a namespace <cite>args</cite>, a dictionary <cite>args_dict</cite>, or a combination.
+If both are provided and set the same values, the dictionary takes
+priority. If neither are provided, then a namespace containing default
+settings is returned.</p>
+<p>Will ignore any arguments provided which do not correspond to valid keyword arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Namespace</em>) – a Namespace instance containing arguments (i.e. similar to the output of argparse)</p></li>
+<li><p><strong>args_dict</strong> (<em>dict</em>) – <dl class="simple">
+<dt>a doct contiains arguments. If both <cite>args</cite> and <cite>args_dict</cite> set the same arguement,</dt><dd><p>the value in <cite>args_dict</cite> takes precendence.</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleNamespace</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-autohf.rotation_tools">
+<span id="rotation-tools"></span><h3>rotation tools<a class="headerlink" href="#module-autohf.rotation_tools" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.rotation_tools.get_nonz">
+<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">get_nonz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.get_nonz" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.rotation_tools.get_nonz_herm">
+<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">get_nonz_herm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.get_nonz_herm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.rotation_tools.jexpm">
+<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">jexpm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.jexpm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.rotation_tools.makeRot">
+<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">makeRot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.makeRot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.rotation_tools.makeRot_herm">
+<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">makeRot_herm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.makeRot_herm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-autohf.tools">
+<span id="tools"></span><h3>tools<a class="headerlink" href="#module-autohf.tools" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.tools.create_polarized_func">
+<span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">create_polarized_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.create_polarized_func" title="Link to this definition"></a></dt>
+<dd><p>takes collinear phi0 and constructs sliced input to function f</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.tools.sd_to_rdm">
+<span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">sd_to_rdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.sd_to_rdm" title="Link to this definition"></a></dt>
+<dd><p>takes (2,N,Ne) orbitals
+returns &lt;psi|c^dag c | psi&gt;/&lt;psi|psi&gt;</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.tools.sd_to_rdm_noncollinear">
+<span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">sd_to_rdm_noncollinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.sd_to_rdm_noncollinear" title="Link to this definition"></a></dt>
+<dd><p>takes (1,N,Ne_total) orbitals
+returns &lt;psi|c^dag c | psi&gt;/&lt;psi|psi&gt;</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.tools.uhf_to_ghf">
+<span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">uhf_to_ghf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.uhf_to_ghf" title="Link to this definition"></a></dt>
+<dd><p>Converts [o_up, o_dn] UHF like input to a
+[ o_up 0    ]
+[  0   o_dn ]
+block diagonal GHF form</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-autohf">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autohf" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="AutoHF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="autohf.terms.html" class="btn btn-neutral float-right" title="autohf.terms package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
