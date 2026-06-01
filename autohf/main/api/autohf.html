@@ -18,6 +18,7 @@
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -231,14 +232,93 @@ jnp.stack(Phi[:,:Nes[0]], Phi[nmo][:,Nes[0]:])</p>
 <dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">AutoHFHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="simple">
-<dt>Conatiner class to hold Hamiltonian terms for AutoHF</dt><dd><p>in internal format.</p>
+<p>Container class to hold Hamiltonian terms for AutoHF in internal format.</p>
+<p>Hamiltonian terms are stored as <code class="docutils literal notranslate"><span class="pre">(vals,</span> <span class="pre">sites)</span></code> pairs, where <code class="docutils literal notranslate"><span class="pre">vals</span></code>
+is a list of unique non-zero coupling values and <code class="docutils literal notranslate"><span class="pre">sites</span></code> is a list of
+the corresponding site-index arrays at which each value appears.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#autohf.hamiltonian.AutoHFHamiltonian" title="autohf.hamiltonian.AutoHFHamiltonian"><em>AutoHFHamiltonian</em></a><em> or </em><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.Hamiltonian" title="autohf.interfaces.afqmctools.Hamiltonian"><em>afqmctools.Hamiltonian</em></a><em>, </em><em>optional</em>) – If source is an <code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code>, performs a deep-copy (copy constructor).
+If source is an afqmctools <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code>, reads T, U, U1, U2, J, and
+Heisenberg terms from it.  If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), builds from
+keyword arguments.</p></li>
+<li><p><strong>settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – Convenience dict for lattice geometry.  Expected keys:
+* <code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code> — <code class="docutils literal notranslate"><span class="pre">(Nx,</span> <span class="pre">Ny)</span></code> tuple of lattice dimensions (required).
+* <code class="docutils literal notranslate"><span class="pre">&quot;Nbands&quot;</span></code> — number of orbitals per site (default 1).
+Takes precedence over the <code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code>, and <code class="docutils literal notranslate"><span class="pre">Nbands</span></code> kwargs.</p></li>
+<li><p><strong>**kwargs</strong> – Hamiltonian terms and lattice metadata passed directly.  See
+<code class="docutils literal notranslate"><span class="pre">add_terms</span></code> for the accepted term keywords.  Additional keys:
+* <code class="docutils literal notranslate"><span class="pre">N</span></code> — total number of orbitals (sites × Nbands; inferred from T or settings if omitted).
+* <code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code> — lattice dimensions (used for metadata only).
+* <code class="docutils literal notranslate"><span class="pre">Nbands</span></code> — number of orbitals per site (default 1).</p></li>
+<li><p><strong>Terms</strong> (<em>Supported Hamiltonian</em>)</p></li>
+<li><p><strong>---------------------------</strong></p></li>
+<li><p><strong>argument</strong> (<em>Supply each term as a keyword</em>)</p></li>
+<li><p><strong>formats.</strong> (<em>and supply input arrays in the following</em>)</p></li>
+<li><p><strong>T</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>nspin</em><em>, </em><em>N</em><em>, </em><em>N</em><em>)</em>) – <p>One-body hopping matrix. Implements
+<span class="math notranslate nohighlight">\(\\sum_{ij,\\sigma} T_{ij} c_{i\\sigma}^\\dagger c_{j\\sigma}\)</span>.</p>
+<p>Must be a list/tuple/ndarray with one
+NxN matrix per spin sector: <code class="docutils literal notranslate"><span class="pre">(T_up,</span> <span class="pre">T_dn)</span></code> for collinear (UHF)
+or <code class="docutils literal notranslate"><span class="pre">[T_total]</span></code> for non-collinear (GHF).</p>
+</p></li>
+<li><p><strong>U</strong> (<em>scalar</em><em>, </em><em>1-D array</em><em> of </em><em>length N</em><em>, or </em><em>NxN matrix</em>) – <p>On-site Hubbard interaction.  Implements
+<span class="math notranslate nohighlight">\(\\sum_i U_i n_{i\\uparrow} n_{i\\downarrow}\)</span>.</p>
+<blockquote>
+<div><p>Accepted forms:</p>
+<ul>
+<li><p>scalar — expanded to <code class="docutils literal notranslate"><span class="pre">np.ones(N)</span> <span class="pre">*</span> <span class="pre">U</span></code> then diagonalized.</p></li>
+<li><p>1-D array of length N — treated as diagonal of the coupling matrix.</p></li>
+<li><p>NxN matrix — all non-zero entries are used as per-orbital strengths
+(row indices are stored; off-diagonal entries contribute their row
+index, which is the intended behavior for orbital-dependent U).</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>U1</strong> (<em>NxN array</em>) – <p>Inter-orbital mixed-spin density-density coupling.  Implements
+<span class="math notranslate nohighlight">\(\\sum_{i&lt;j,\\sigma} U1_{ij}\, n_{i\\sigma} n_{j\\bar\\sigma}\)</span>.</p>
+<p>Stored as <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U1&quot;]</span> <span class="pre">=</span> <span class="pre">(U1vals,</span> <span class="pre">U1Sites)</span></code>
+where <code class="docutils literal notranslate"><span class="pre">U1Sites[k]</span></code> is a tuple <code class="docutils literal notranslate"><span class="pre">(i_array,</span> <span class="pre">j_array)</span></code> of pairs
+with <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">j</span></code> and coupling value <code class="docutils literal notranslate"><span class="pre">U1vals[k]</span></code>.</p>
+<p>Only the upper-triangular part of the matrix is used.</p>
+</p></li>
+<li><p><strong>U2</strong> (<em>NxN array</em>) – <p>Inter-orbital same-spin density-density coupling (Wick-contracted with
+the exchange correction).  Implements
+<span class="math notranslate nohighlight">\(\\sum_{i&lt;j,\\sigma} U2_{ij}\, n_{i\\sigma} n_{j\\sigma}\)</span>.</p>
+<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U2&quot;]</span></code>.</p>
+<p>Only the upper-triangular part of the matrix is used.</p>
+</p></li>
+<li><p><strong>J</strong> (<em>NxN array</em>) – <p>Hund’s coupling (HK-model form).  Encodes pair-hopping and
+spin-flip processes between orbitals <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>. Implements
+<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij} (c_{i\\uparrow}^\\dagger c_{j\\uparrow} c_{j\\downarrow}^\\dagger c_{i\\downarrow} + h.c.)\)</span></p>
+<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J&quot;]</span></code>.</p>
+<p>Only the upper-triangular part of the matrix is used.</p>
+</p></li>
+<li><p><strong>Jheis</strong> (<em>NxN array</em>) – <p>Heisenberg spin-spin coupling. Implements
+<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij}\, \\vec{S}_i \\cdot \\vec{S}_j\)</span>.</p>
+<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J_heisenberg&quot;]</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Jheis</span></code>.</p>
+</p></li>
+<li><p><strong>Jheisenberg</strong> (<em>NxN array</em>) – <p>Heisenberg spin-spin coupling. Implements
+<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij}\, \\vec{S}_i \\cdot \\vec{S}_j\)</span>.</p>
+<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J_heisenberg&quot;]</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Jheis</span></code>.</p>
+</p></li>
+</ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.add_terms">
 <span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.add_terms" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add one or more Hamiltonian terms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – Hamiltonian terms and lattice metadata passed directly.  See
+<code class="docutils literal notranslate"><span class="pre">Supported</span> <span class="pre">Hamiltonian</span> <span class="pre">Terms</span></code> in the docstring of AutoHFHamiltonian
+for the accepted term keywords and array formats.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.get">
