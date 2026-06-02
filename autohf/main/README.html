@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User’s Guide and API Reference &mdash; AutoHF  documentation</title>
+  <title>Compiling the Documentation &mdash; AutoHF  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -20,8 +20,7 @@
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="user/installation.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +31,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             AutoHF
           </a>
 <div role="search">
@@ -61,17 +60,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">AutoHF</a>
+          <a href="index.html">AutoHF</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">User’s Guide and API Reference</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Compiling the Documentation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -79,24 +78,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="toctree-wrapper compound">
+  <section id="compiling-the-documentation">
+<h1>Compiling the Documentation<a class="headerlink" href="#compiling-the-documentation" title="Link to this heading"></a></h1>
+<p>You can find this documentation <a href="https://safire.flatironinstitute.org/autohf/dev">online</a>. To compile it yourself, install autohf with the <code class="docutils literal notranslate"><span class="pre">DOCS</span></code> feature</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="o">[</span>DOCS<span class="o">]</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>and compile the docs using <code class="docutils literal notranslate"><span class="pre">make</span></code> with,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/autohf/docs
+$<span class="w"> </span>make<span class="w"> </span>html
+</pre></div>
 </div>
-<section id="user-s-guide-and-api-reference">
-<h1>User’s Guide and API Reference<a class="headerlink" href="#user-s-guide-and-api-reference" title="Link to this heading"></a></h1>
-<p>AutoHF is an automatic-differention-based lattice model Hartree-Fock solver.</p>
-<p>In contrast to typical self-consistent-field Hartree-Fock implementations, AutoHF leverages JAX and gradient-descend algorithms to find the Hartree-Fock solution variationally. This approach can be more robust against both saddle-points or local minima and allows flexible user-supplied generalizations beyond the standard Hartree-Fock ansatz.</p>
-<p>See the <a class="reference external" href="user/quickstart.html">Quickstart Guide</a> for more information on how to use AutoHF.</p>
-<p>See the <a class="reference external" href="api/modules.html">API Reference</a> for detailed information on the modules and functions available in AutoHF.</p>
+<p>which will generate the documentation as html in the directory, <code class="docutils literal notranslate"><span class="pre">/path/to/autohf/docs/_build/html</span></code>.</p>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="user/installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
