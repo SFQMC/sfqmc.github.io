@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
-    <title>Placeholder</title>
+    <title>SAFIRE – AFQMC code for molecules, realistic materials and models</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAFIRE is an AFQMC code for molecules, materials and models.">
+
+    <link rel="stylesheet" href="assets/style.css">
   </head>
 
   <body>
-    <h1>Placeholder</h1>
+    <header>
+    <img id="banner" src="assets/safire_banner.svg" alt="SAFIRE logo">
+    </header>
+    <nav>
+    <a href="https://github.com/SFQMC/SAFIRE">GitHub</a>
+    <a href="docs/dev/index.html">Documentation</a>
+    </nav>
+
+    <section>
+    <p><tool-tip>SAFIRE<tool-text><b>S</b>tochastic<br><b>A</b>uxiliary-<br><b>F</b>ields for<br><b>I</b>nte<b>R</b>acting<br><b>E</b>lectrons</tool-text></tool-tip> is an efficient implementation of the auxiliary-field quantum Monte Carlo (AFQMC) method for high-precision simulations of molecules, materials, and simplified models. It is developed at the Center for Computational Quantum Physics at Flatiron Institute. </p>
+    </section>
+    <section>
+    <rng-path-container>
+    <img class="rng-paths" src="assets/random_paths.svg" alt="A set of random walks progressing from left to right.">
+    </rng-path-container>
+    <h2>Auxiliary-field quantum Monte Carlo</h2>
+    <p>The AFQMC method expresses the many-body wave function of a quantum system as the integral over many noninteracting wave functions. This integral is then efficiently evaluated using Monte Carlo sampling.</p>
+
+    <p>
+    For most realistic systems, the Monte Carlo sampling is complicated by a sign or phase problem, leading to intractable statistical errors. To circumvent this problem, the AFQMC sampling is constrained using a trial wave function. This introduces a bias, which can be improved by increasing the accuracy of the trial wave function.</p>
+    </section>
+    
+    <section>
+    <h2>One code – many applications</h2>
+    </section>
+    <sub-sections>
+    <section>
+    <h3>Molecules</h3>
+    <p>SAFIRE interfaces with a multitude of quantum chemistry codes to generate trial wave functions and Hamiltonians to do ab initio calculations of molecules.</p>
+    </section>
+    <section>
+    <h3>Materials</h3>
+    <p>Efficient tensor decompositions implemented in SAFIRE enable realistic material calculations with long-range interactions.</p>
+    </section>
+    <section>
+    <h3>Lattice models</h3>
+    <p>An integrated toolbox allows building and simulating the Hubbard model and a breadth of its extensions on arbitrary lattices.</p>
+    </section>
+    </sub-sections>
+    <section>
+    <h2>Getting started</h2>
+    <p>The code will be released soon. For a sneak-peak, contact the SAFIRE development team.</p>
+    </section>
+    
+    <section>
+    <h2>Companion projects</h2>
+    </section>
+    <sub-sections>
+    <section>
+    <img class="logo" src="assets/coqui.png" alt="Coquí logo">
+    <p><a href="https://github.com/AbInitioQHub/coqui">CoQuí</a> is an efficient implementation of the GW method. SAFIRE interfaces with to generate downfolded Hamiltonians for materials calculations.</p>
+    </section>
+    <section>
+    <img class="logo" src="assets/autohf.svg" alt="AutoHF logo">
+    <p><a href="https://github.com/SFQMC/AutoHF">AutoHF</a> is a GPU-accelerated Hartree-Fock code optimized for challenging energy landscapes. SAFIRE interfaces with it to generate trial wavefunctions for lattice model Hamiltonians.</p>
+    </section>
+    </sub-sections>
   </body>
 </html>
