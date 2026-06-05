@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/03_n2-phmsd/03_nitrogen_dimer_pec';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Vanadium Atom (Fully Polarized)" href="../04_V-fully_polarized/index.html" />
+    <link rel="prev" title="2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of solid Na</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry / Molecules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">3. </span>N₂ molecule: bond stretching and multi-Slater trial wavefunctions</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="n2-molecule-bond-stretching-and-multi-slater-trial-wavefunctions">
+<h1><span class="section-number">3. </span>N₂ molecule: bond stretching and multi-Slater trial wavefunctions<a class="headerlink" href="#n2-molecule-bond-stretching-and-multi-slater-trial-wavefunctions" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+This example demonstrates how to compute the potential energy curve (PEC) of a diatomic molecule
+using an appropriate trial wavefunction.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">3.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How to select the number of Slater determinants to include in the trial wavefunction, balancing computational cost and accuracy</p></li>
+<li><p>How to automate the computation of a potential energy curve using afqmctools within Python</p></li>
+</ol>
+</section>
+<section id="run-the-code-block-below-to-set-up-the-example">
+<h2><span class="section-number">3.2. </span>Run the code block below to set up the example<a class="headerlink" href="#run-the-code-block-below-to-set-up-the-example" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span><span class="p">,</span><span class="n">lib</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">num_mpi_tasks</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># adjust based on your resources</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-nitrogen-dimer">
+<h2><span class="section-number">3.3. </span>The Nitrogen dimer<a class="headerlink" href="#the-nitrogen-dimer" title="Link to this heading">#</a></h2>
+<p>Diatomic molecules display strong static electron correlation effects (i.e. correlation due to many energetically proximate electron configurations)
+in the intermediate bond length regime.
+The <span class="math notranslate nohighlight">\(N_2\)</span> molecule is a notorious example and has historically been used to benchmark the accuracy of quantum chemistry approaches [1].
+Below is a plot of the error in the energy, relative to exact results from DRMG,
+from reference [1].</p>
+<!---
+<div>
+<img src="./figs/NitrogenMolecule.png" width="500"/>
+</div>
+--->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/984d8f6514d4af38baf14fd45a2d29c0b42cf95c8335c9a92c7cefb169a830b7/ReferenceFigure.png">
+</div>
+<p>We have include both the quantum chemistry “gold standard” CCSD(T) results, in orange, as well as CCSDT for reference.
+There are two AFQMC curves, one using a UHF trial wavefunction (in pink), and
+one using a truncated CASSCF(12o,6e) trial wavefunction (in violet).
+For AFQMC, the stochastic uncertainty is smaller than the symbol size.</p>
+<p>For bond lengths close to the equilibrium bond length of 2.118 Bohr,
+AFQMC agrees with exact results to well within chemical accuracy (  <span class="math notranslate nohighlight">\( 1 kcal/mol ≈ 1.6 mE_{Ha}\)</span>) regardless of the trial wavefunction used.
+For intermediate and stretched bond lengths, the trial wavefunction from MCSCF (in this case, from CASSCF(12o,6e)) is necessary to chemical accuracy using AFQMC across the PEC.
+Still, for all nearly all bond lengths, AFQMC with a UHF trial wavefunction produces more accurate results,
+in terms of absolute error, than either the quantum chemistry “gold standard” method CCSD(T) or CCSDT.
+AFQMC with a CASSCF(12o,6e) trial wavefunction outperforms both CCSD(T) and CCSDT in terms of accuracy at all bond lengths.</p>
+<p>Next, we will reproduce the PEC of the Nitrogen dimer using AFQMC / CASSCF(12o,6e) trial wavefunctions.</p>
+<section id="references">
+<h3><span class="section-number">3.3.1. </span>References:<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>[1] W. A. Al-Saidi, S. Zhang, H. Krakauer. “Bond breaking with auxiliary-field quantum Monte Carlo.” <em>J. Chem. Phys.</em> <strong>127</strong>, 144101 (2007).</p>
+</section>
+</section>
+<section id="converging-afqmc-in-the-quality-of-the-trial-wavefunction">
+<h2><span class="section-number">3.4. </span>Converging AFQMC in the quality of the trial wavefunction<a class="headerlink" href="#converging-afqmc-in-the-quality-of-the-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p>As we saw in <a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html"><span class="doc">B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</span></a>, AFQMC trial wavefunctions are typically multi-Slater determinant expansions of the form form</p>
+<div class="math notranslate nohighlight">
+\[
+| \Psi_\mathrm{T} \rangle = \sum_n^{N_\mathrm{det}} C_{n} | \Phi_n \rangle,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( C_{n} \)</span> are CI coefficients,
+and <span class="math notranslate nohighlight">\(| \Phi_n \rangle\)</span> are Slater determinants.
+Typically, CI trial wavefunctions are truncated CASSCF or selected CI (SCI) wavefunctions.</p>
+<p>For quantum chemistry, AFQMC uses the phaseless approximation in order to control the fermionic sign / phase problem at the cost of introducing a removable bias.
+This bias can be systematically removed by using a better trial wavefunction.
+If we start with a decent CASSCF or SCI wavefunction, then we can characterize the “quality” of a trial wavefunction by the number of Slater determinants that are included in the trial wavefunction, <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>.</p>
+<p><b>A critical step in achieving high-accuracy results, therefore, is to converge the AFQMC energy in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span></b></p>
+<p>SAFIRE provides a keyword in the “wavefunction” json input block to limit the number of Slater determinants, “ndets_to_read”, that are actually read from the HDF5 wavefunction file. Here is a sample json input block.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_wfn_file.h5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ndets_to_read&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, a maximum of 500 Slater determinants will be read from “your_wfn_file.h5” regardless of how many Slater determinants were
+written to the file.
+We will save significantly more Slater determinants to the wavefunction HDF5 file than we expect to need.
+This allows us to reuse the same wavefunction file while controlling the trial wavefunction quality via the “ndets_to_read” parameter.</p>
+<section id="getting-an-orthonormal-basis-and-a-trial-wavefunction">
+<h3><span class="section-number">3.4.1. </span>Getting an orthonormal basis and a trial wavefunction<a class="headerlink" href="#getting-an-orthonormal-basis-and-a-trial-wavefunction" title="Link to this heading">#</a></h3>
+<p>We will now setup an AFQMC calculation. As you should now be familiar with from previous tutorials, we will need to choose an orthonormal orbital basis to work within.
+Since we will be using CASSCF trial wavefunctions, it is convenient to use the set of optimized CASSCF orbitals,
+<div class="math notranslate nohighlight">
+\[
+\phi_i (\vec{r}) = \sum_μ C_{\mu i} g_{\mu} (\vec{r}),
+\]</div>
+
+as a basis.</p>
+<p><b>Run the code block below in order to run CASSCF in PySCF</b>
+(alternatively, run your favorite Quantum Chemistry code, and save the CASSCF wavefunction in the wavefunction HDF5 file).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, we&#39;ll generate the mol object</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c1"># Bohr</span>
+
+<span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">N 0. 0. </span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">N 0. 0. -</span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Bohr&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
+<span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+<span class="n">casscf_chkfile</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># delete if already exists</span>
+
+<span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span>
+<span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
+<span class="c1"># save the ci to the chkfile too</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+
+<span class="c1"># write the CAS wavefunction to a file</span>
+<span class="n">write_cas_wfn</span><span class="p">(</span>
+    <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
+    <span class="n">cas_chkfile</span><span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+    <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="c1"># use a small value to save *many* determinants.</span>
+    <span class="n">outname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+    <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checkpoint">
+<h3><span class="section-number">3.4.2. </span>Checkpoint<a class="headerlink" href="#checkpoint" title="Link to this heading">#</a></h3>
+<p>At this point, you should have a CASSCF trial wavefunction saved in an SAFIRE HDF5 file (we used “afqmc.h5” as our filename, but you are free to use whatever name you would like).</p>
+<p>You will also need the CASSCF orbitals in order to represent the Hamiltonian in that basis.
+In PySCF, these are simply saved within the Checkpoint (*.chk) file.</p>
+</section>
+</section>
+<section id="save-the-hamiltonian">
+<h2><span class="section-number">3.5. </span>Save the Hamiltonian<a class="headerlink" href="#save-the-hamiltonian" title="Link to this heading">#</a></h2>
+<p>We have already chosen the set of CASSCF orbitals as a trial wavefunction.
+We will now build the Hamiltonian in the basis of CASSCF orbitals, and save it to an SAFIRE HDF5 Hamiltonian file.</p>
+<p>afqmctools provides a helper function, <code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk_mol()</span></code>,  to read all of the necessary information from a PySCF checkpoint file.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+    By default, load_from_pyscf_chk_mol() will try to read data from an "scf" group in a PySCF checkpoint file. Set the "base" parameter to "mcscf" to read a CASSCF wavefunction.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Hamiltonian</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;mcscf&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># write Hamiltonian</span>
+<span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">basis_scf_data</span><span class="p">,</span>
+    <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+    <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3><span class="section-number">3.5.1. </span>Checkpoint<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>In addition to the trial wavefunction HDF5 file from before, you should also now have a Hamiltonian HDF5 file. We saved both the trial wavefunction and the Hamiltonian into a file called “afqmc.h5”, but you can use whatever file name(s) you would like. Simply update the code blocks based on your filenames.</p>
+</section>
+<section id="run-safire">
+<h3><span class="section-number">3.5.2. </span>Run SAFIRE<a class="headerlink" href="#run-safire" title="Link to this heading">#</a></h3>
+<p>Before we move on to computing the PEC, we need to converge the AFQMC energy in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>.
+To avoid doing this for every point on the PEC, we will simply choose a point on the PEC where we expect the most static correlation, converge the AFQMC energy in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span> at that point, and use that converged <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span> value uniformly across the entire PEC.
+This avoids running many calculations at each point on the PEC to check convergence at the cost of perhaps too many Slater determinants at some points
+on the PEC.</p>
+<p><b>We will automate this using Python and the tutorial helper function, run_afqmc().</b></p>
+<p>Again, we will use the “ndets_to_read” keyword in the “wavefunction” input block to limit the number of Slater determinants.
+In the code block below, you will notice that we are setting,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">execute_options</span><span class="p">[</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>in the “execute_options” dictionary.
+<code class="docutils literal notranslate"><span class="pre">write_json()</span></code> will <em><strong>append</strong></em> settings within an existing input block when they are passed in this way.
+For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">write_json</span><span class="p">(</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span><span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span><span class="n">exec_opts</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="mi">500</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>will generate a “wavefunction” block that points to the wavefunction file, with the following contents:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ndets_to_read&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><b>Run the code block below in order to compute <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> vs <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span></b>
+Note: This might take some time. You might want to run this on a computing cluster instead.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some shared parameters for the AFQMC run</span>
+<span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+<span class="p">}</span>
+
+
+<span class="n">ndets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">750</span><span class="p">]</span> <span class="c1"># list of Ndet values to run</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">stochastic_uncertainties</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># compute E(N_det) for the CAS trial wavefunction</span>
+<span class="k">for</span> <span class="n">ndet</span> <span class="ow">in</span> <span class="n">ndets</span><span class="p">:</span>
+
+    <span class="c1"># make a sub-scratch dir for better book keeping</span>
+    <span class="n">scratch_dir_local</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;Ndet_</span><span class="si">{</span><span class="n">ndet</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">scratch_dir_local</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">execute_options</span><span class="p">[</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
+
+    <span class="n">write_json</span><span class="p">(</span>
+        <span class="n">scratch_dir_local</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
+    <span class="p">)</span>
+    <span class="c1"># run AFQMC</span>
+    <span class="n">run_afqmc</span><span class="p">(</span>
+        <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir_local</span><span class="p">,</span>
+        <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+        <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">=</span><span class="n">num_mpi_tasks</span><span class="p">,</span>         <span class="c1"># number of MPI tasks</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;afqmc.out&quot;</span>   <span class="c1"># optionally direct output to file instead of here</span>
+    <span class="p">)</span>
+
+    <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir_local</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">stochastic_uncertainties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dE</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; [Result] </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-e-mathrm-afqmc-vs-n-mathrm-det">
+<h3><span class="section-number">3.5.3. </span>Plot <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> vs <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span><a class="headerlink" href="#plot-e-mathrm-afqmc-vs-n-mathrm-det" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">ndets</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Slater determinants&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Energy (Ha)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Convergence of AFQMC in the number of Slater determinants&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="result">
+<h3><span class="section-number">3.5.4. </span>Result<a class="headerlink" href="#result" title="Link to this heading">#</a></h3>
+<p>From the plot of energy vs <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>, we have converged the AFQMC energy to within our target stochastic uncertainty of less than 1.6 m<span class="math notranslate nohighlight">\(E_\text{Ha}\)</span> at about <span class="math notranslate nohighlight">\(N_\mathrm{det} = 500\)</span>.
+Since we performed this test at a point on the PEC where there are strong static correlation effects, we expect this
+value to provide converged results across the PEC.
+Now, we can automate the calculation of the PEC using this value for <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>.</p>
+</section>
+</section>
+<section id="automating-the-computation-of-the-pec-using-python-afqmctools">
+<h2><span class="section-number">3.6. </span>Automating the computation of the PEC using Python / afqmctools<a class="headerlink" href="#automating-the-computation-of-the-pec-using-python-afqmctools" title="Link to this heading">#</a></h2>
+<p>Now that we have converged <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>, we are ready to compute the PEC.
+In the code block below, we have included a function that performs all of the steps that we have already performed (excluding converging <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span>) given a value of the <span class="math notranslate nohighlight">\(N_2\)</span> bond length, <span class="math notranslate nohighlight">\(\delta_{N-N}\)</span>.</p>
+<p>Specifically, given <span class="math notranslate nohighlight">\(\delta_{N-N}\)</span> and <code class="docutils literal notranslate"><span class="pre">ndets_to_read</span></code>, the function automates:</p>
+<ol class="arabic simple">
+<li><p>running CASSCF using PySCF (for convenience), and saving a truncated CASSCF wavefunction to the SAFIRE HDF5 format.</p></li>
+<li><p>building and saving the Hamiltonian in the basis of CASSCF orbitals to the SAFIRE HDF5 format.</p></li>
+<li><p>writing the json input file, with our chosen value of <code class="docutils literal notranslate"><span class="pre">ndets_to_read</span></code>, and running SAFIRE.</p></li>
+<li><p>Extracting the AFQMC energy using the stats module.</p></li>
+</ol>
+<b>
+Run the cell block below in order to load the "run_afqmc_on_dimer()" function into memory.
+</b><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_afqmc_on_dimer</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">ndets_to_read</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_mpi_tasks</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+
+    <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;N2_bondlength_</span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running AFQMC on dimer with bond length </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Angstroms&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 1. run CASSCF to get a basis and a trial wavefunction</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    N 0. 0. </span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">    N 0. 0. -</span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+        <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Bohr&#39;</span>
+    <span class="p">)</span>
+
+
+    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+
+    <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span>
+    <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+
+    <span class="c1"># write the CAS wavefunction to a file</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span>
+
+    <span class="n">write_cas_wfn</span><span class="p">(</span>
+        <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
+        <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">tol_trunc</span><span class="o">=</span> <span class="mf">1.0e-4</span><span class="p">,</span>
+        <span class="n">outname</span><span class="o">=</span><span class="n">fout</span><span class="p">,</span>
+        <span class="n">max_det</span><span class="o">=</span><span class="mi">10000</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 2. write the Hamiltonian</span>
+    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span> <span class="s1">&#39;scf&#39;</span><span class="p">)</span>
+
+    <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+    <span class="c1"># write Hamiltonian</span>
+    <span class="n">write_hamil_mol</span><span class="p">(</span>
+        <span class="n">basis_scf_data</span><span class="p">,</span>
+        <span class="n">fout</span><span class="p">,</span>
+        <span class="n">chol_tol</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># write json file</span>
+    <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
+        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">&quot;wavefunction&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndets_to_read</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">write_json</span><span class="p">(</span>
+        <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
+    <span class="p">)</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running AFQMC&quot;</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># run afqmc</span>
+    <span class="n">run_afqmc</span><span class="p">(</span>
+        <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
+        <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+        <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">=</span><span class="n">num_mpi_tasks</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;afqmc.out&quot;</span>   <span class="c1"># optionally direct output to file instead of here</span>
+    <span class="p">)</span>
+
+    <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; [Result] </span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">delta</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="compute-the-pec">
+<h3><span class="section-number">3.6.1. </span>Compute the PEC<a class="headerlink" href="#compute-the-pec" title="Link to this heading">#</a></h3>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">run_afqmc_on_dimer()</span></code> function to compute the PEC of the <span class="math notranslate nohighlight">\(N_2\)</span> molecule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can simply use the automation function above to compute the PEC</span>
+
+<span class="n">num_mpi_tasks</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># set this based on your resources!</span>
+
+<span class="c1"># full dataset from the paper</span>
+<span class="c1"># bondlengths = [2.118,2.4,2.7,3.0,3.6,4.2]</span>
+<span class="c1"># reduced dataset for the example</span>
+<span class="n">bondlengths</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.118</span><span class="p">,</span><span class="mf">2.7</span><span class="p">,</span><span class="mf">3.6</span><span class="p">]</span>
+
+<span class="n">ndets_to_read</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">stochastic_uncertainties</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="n">bondlengths</span><span class="p">:</span>
+  <span class="n">_</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dE</span> <span class="o">=</span> <span class="n">run_afqmc_on_dimer</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">ndets_to_read</span><span class="p">,</span> <span class="n">num_mpi_tasks</span><span class="o">=</span><span class="n">num_mpi_tasks</span><span class="p">)</span>
+  <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+  <span class="n">stochastic_uncertainties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-pec">
+<h3><span class="section-number">3.6.2. </span>Plot the PEC<a class="headerlink" href="#plot-the-pec" title="Link to this heading">#</a></h3>
+<p>Now, we are ready to plot the PEC to see our results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">bondlengths</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AFQMC/CASSCF&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bond length (Bohr)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Energy (Ha)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N_2$ molecule PEC&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare this with the PEC generated using the data from the original paper.</p>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/984d8f6514d4af38baf14fd45a2d29c0b42cf95c8335c9a92c7cefb169a830b7/NitrogenPecAbs.png"></section>
+</section>
+<section id="summary">
+<h2><span class="section-number">3.7. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>You have computed the potential energy curve (PEC) of the <span class="math notranslate nohighlight">\(N_2\)</span> molecule, which is a standard benchmarking system in quantum chemistry.</p>
+<section id="what-you-learned">
+<h3><span class="section-number">3.7.1. </span>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How to select the number of Slater determinants to include in the trial wavefunction, balancing computational cost and accuracy</p></li>
+<li><p>How to automate the computation of a potential energy curve using afqmctools within Python</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_V-fully_polarized/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Vanadium Atom (Fully Polarized)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">3.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-set-up-the-example">3.2. Run the code block below to set up the example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nitrogen-dimer">3.3. The Nitrogen dimer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">3.3.1. References:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converging-afqmc-in-the-quality-of-the-trial-wavefunction">3.4. Converging AFQMC in the quality of the trial wavefunction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-an-orthonormal-basis-and-a-trial-wavefunction">3.4.1. Getting an orthonormal basis and a trial wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">3.4.2. Checkpoint</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-hamiltonian">3.5. Save the Hamiltonian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.5.1. Checkpoint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-safire">3.5.2. Run SAFIRE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-e-mathrm-afqmc-vs-n-mathrm-det">3.5.3. Plot <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> vs <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">3.5.4. Result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automating-the-computation-of-the-pec-using-python-afqmctools">3.6. Automating the computation of the PEC using Python / afqmctools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-pec">3.6.1. Compute the PEC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-pec">3.6.2. Plot the PEC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.7. Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">3.7.1. What you learned</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/examples/molecules/03_n2-phmsd/03_nitrogen_dimer_pec.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

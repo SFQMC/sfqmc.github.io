@@ -1,0 +1,1070 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Writing a Hamiltonian file and a Trial Wavefunction using CoQuí &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/solids/03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Computing general observables" href="../04_computing_observables/04_computing_observables.html" />
+    <link rel="prev" title="2. Understanding the input file" href="../02_understanding_the_input_file/02_understanding_the_input_file.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../models/overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for ab initio solids</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">3. </span>Writing a Hamiltonian file and a Trial Wavefunction using CoQuí</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="writing-a-hamiltonian-file-and-a-trial-wavefunction-using-coqui">
+<h1><span class="section-number">3. </span>Writing a Hamiltonian file and a Trial Wavefunction using CoQuí<a class="headerlink" href="#writing-a-hamiltonian-file-and-a-trial-wavefunction-using-coqui" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Become acquainted with how to write a Hamiltonian to the SAFIRE HDF5 format.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">3.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How to write a Hamiltonian to the SAFIRE HDF5 format, using CoQui, starting from a Quantum Espresso calculation</p></li>
+<li><p>How to write a Trial wavefunction to the SAFIRE HDF5 format, using CoQui, starting from a Quantum Espresso calculation</p></li>
+</ol>
+</section>
+<section id="external-software">
+<h2><span class="section-number">3.2. </span>External Software<a class="headerlink" href="#external-software" title="Link to this heading">#</a></h2>
+<p>In addition to SAFIRE and afqmctools, we will be using the following software packages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.quantum-espresso.org/">Quantum Espresso (QE)</a> for density functional theory (DFT) calculations, and some integrals via its post-processing utilities</p></li>
+<li><p><a class="reference external" href="https://github.com/AbInitioQHub/coqui">CoQuí</a> for generating the SAFIRE Hamiltonian and Trial wavefunction HDF5 files from the output of QE.</p></li>
+<li><p><a class="reference external" href="https://github.com/AbInitioQHub/coqui/tree/main/qe_converter">pw2coqui.x</a> see the instructions there for adding this to your QE build.</p></li>
+</ul>
+<div class="alert alert-block alert-info">
+  <b>Note:</b> This tutorial assumes familiarity with Quantum Espresso (QE); we will point out some
+    specific settings that are necessary for the workflow, but a general tutorial on QE
+    is beyond the scope of this tutorial.
+</div>
+</section>
+<section id="tutorial-files">
+<h2><span class="section-number">3.3. </span>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Link to this heading">#</a></h2>
+<p>We provide sample input files for each step of this tutorial
+within the directory of this tutorial.
+A list is files is as follows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tree<span class="w"> </span>-a
+.
+├──<span class="w"> </span>03_Si_writing_H_and_wfn_coqui.ipynb
+└──<span class="w"> </span>files
+<span class="w">    </span>├──<span class="w"> </span>coqui
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>hamil.toml
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>wfn.toml
+<span class="w">    </span>└──<span class="w"> </span>qe
+<span class="w">        </span>├──<span class="w"> </span>nscf.in
+<span class="w">        </span>├──<span class="w"> </span>pw2coqui.in
+<span class="w">        </span>├──<span class="w"> </span>scf.in
+<span class="w">        </span>└──<span class="w"> </span>Si_ONCV_PBE-1.2.upf
+</pre></div>
+</div>
+</section>
+<section id="introduction">
+<h2><span class="section-number">3.4. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In previous tutorials, we learned how to run SAFIRE, and how
+to post process the results to arrive at the AFQMC energy.
+Now, we will learn how to write a Hamiltonian and a trial wavefunction in SAFIRE’s HDF5 format.
+CoQuí (Correlated Quantum ínterface), is a software project designed for ab initio electronic structure beyond density functional theory (DFT).
+It implements several many-body perturbation theory (MBPT) approaches as well as performing supporting operations for other methods such as dynamical mean-field theory (DMFT) as well as AFQMC.
+For AFQMC, and SAFIRE specifically, CoQuí can be used to directly generate
+a second-quantized Hamiltonian from an electronic structure calculation.</p>
+<!--
+<div>
+<img src="./figs/QChemWorkflow_v2.png" width="1000"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/TopLevelFlowChart_v3.png" width="1000">
+</div>
+<p>In this tutorial,
+we will compute the ground state energy of
+the minimal basis hydrogen dimer with a bondlength of 1.4 Bohr radii.</p>
+<!--
+<div>
+<img src="./figs/HyrdogenMolecule.png" width="500"/>
+</div>
+--->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/solids/Si_primitive.png" width="500">
+</div>
+<p>In this tutorial, we will generate the Hamiltonian and trial wavefunction for
+Si in the primitive cell.</p>
+</section>
+<section id="setup">
+<h2><span class="section-number">3.5. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>First, we need an orthonormal basis to express the second quantized Hamiltonian in.
+We will run Quantum Espresso (QE) to generate a set of Kohn-Sham orbitals to use as a basis.
+We assume knowledge of the basic use of QE in this example, but we’ll point out a few details that are relevant to the workflow here.
+All input files are provided in <code class="docutils literal notranslate"><span class="pre">files/qe</span></code>.</p>
+<div class="alert alert-block alert-warning">
+ <b>⚠️ Imporant: </b> you will need to install the pw2coqui.x converter in your QE build. See the above!
+</div>
+<p>We will perform the following calculations with QE:</p>
+<ol class="arabic simple">
+<li><p>self-consistent DFT with a large k-point grid, but a minimal number of bands</p></li>
+<li><p>a one-shot DFT calculation starting from the converged result in step 1., but at the <span class="math notranslate nohighlight">\(\Gamma\)</span>-point and using a large number of bands.</p></li>
+<li><p>run the pw2coqui.x post-processing utility to generate data that we will need later.</p></li>
+</ol>
+<div class="alert alert-block alert-info">
+  <b>Note:</b> CoQuí expects to find `[prefix].coqui.h5` in the QE output directory. Double check that the output path of the post-processing tools are all set to the same directory.
+</div>
+<section id="step-1-self-consistent-dft">
+<h3><span class="section-number">3.5.1. </span>Step 1 : self-consistent DFT<a class="headerlink" href="#step-1-self-consistent-dft" title="Link to this heading">#</a></h3>
+<p>To generate the Hamiltonian for SAFIRE, we need
+to set <code class="docutils literal notranslate"><span class="pre">force_symmorphic=.true.</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;system</span></code> input card.
+Run self-consistent DFT with the provided input file and pseudopotential.</p>
+<p>From the <code class="docutils literal notranslate"><span class="pre">files/qe</span></code> directory, or a working directory of your choice where you have copied the inputs to,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pw.x<span class="w"> </span>-inp<span class="w"> </span>scf.in<span class="w"> </span>&gt;<span class="w"> </span>scf.out
+</pre></div>
+</div>
+<p>where we have redirected output to scf.out.
+You should see a final energy of,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>highest occupied, lowest unoccupied level (ev):     6.2533    6.8167
+
+!    total energy              =     -15.75925947 Ry
+     estimated scf accuracy    &lt;          3.5E-11 Ry
+
+     The total energy is the sum of the following terms:
+     one-electron contribution =       4.74553084 Ry
+     hartree contribution      =       1.11063812 Ry
+     xc contribution           =      -4.81955233 Ry
+     ewald contribution        =     -16.79587610 Ry
+
+</pre></div>
+</div>
+</section>
+<section id="step-2-one-shot-dft">
+<h3><span class="section-number">3.5.2. </span>Step 2 : One-shot DFT<a class="headerlink" href="#step-2-one-shot-dft" title="Link to this heading">#</a></h3>
+<p>The goal here is generate the orbitals we need to generate the second
+quantized Hamiltonian for AFQMC.
+<strong>In general, AFQMC needs to be converged in the number of bands included in the basis</strong>.
+Coquí will allow us to select a subset of bands.
+One possible strategy at this point is to include a relatively large number of bands here and we use Coquí to write a subset of them.
+This avoids re-running the one-shot DFT calculation at the cost of saving more data.</p>
+<p><strong>Run the one-shot QE calculation.</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pw.x<span class="w"> </span>-inp<span class="w"> </span>nscf.in<span class="w"> </span>&gt;<span class="w"> </span>nscf.out
+</pre></div>
+</div>
+<p>You should see something like the following,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">     </span>Band<span class="w"> </span>Structure<span class="w"> </span>Calculation
+<span class="w">     </span>Davidson<span class="w"> </span>diagonalization<span class="w"> </span>with<span class="w"> </span>overlap
+
+<span class="w">     </span>Computing<span class="w"> </span>kpt<span class="w"> </span><span class="c1">#:     1  of     1</span>
+<span class="w">     </span>total<span class="w"> </span>cpu<span class="w"> </span><span class="nb">time</span><span class="w"> </span>spent<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>now<span class="w"> </span>is<span class="w">        </span><span class="m">0</span>.2<span class="w"> </span>secs
+
+<span class="w">     </span><span class="nv">ethr</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.25E-12,<span class="w">  </span>avg<span class="w"> </span><span class="c1"># of iterations = 40.0</span>
+
+<span class="w">     </span>total<span class="w"> </span>cpu<span class="w"> </span><span class="nb">time</span><span class="w"> </span>spent<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>now<span class="w"> </span>is<span class="w">        </span><span class="m">0</span>.2<span class="w"> </span>secs
+
+<span class="w">     </span>End<span class="w"> </span>of<span class="w"> </span>band<span class="w"> </span>structure<span class="w"> </span>calculation
+
+<span class="w">          </span><span class="nv">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="m">537</span><span class="w"> </span>PWs<span class="o">)</span><span class="w">   </span>bands<span class="w"> </span><span class="o">(</span>ev<span class="o">)</span>:
+
+<span class="w">    </span>-5.7232<span class="w">   </span><span class="m">6</span>.2533<span class="w">   </span><span class="m">6</span>.2533<span class="w">   </span><span class="m">6</span>.2533<span class="w">   </span><span class="m">8</span>.8090<span class="w">   </span><span class="m">8</span>.8090<span class="w">   </span><span class="m">8</span>.8090<span class="w">   </span><span class="m">9</span>.5704
+<span class="w">    </span><span class="m">14</span>.0110<span class="w">  </span><span class="m">14</span>.0110<span class="w">  </span><span class="m">14</span>.1787<span class="w">  </span><span class="m">17</span>.4871<span class="w">  </span><span class="m">17</span>.4871<span class="w">  </span><span class="m">17</span>.4871<span class="w">  </span><span class="m">21</span>.6280<span class="w">  </span><span class="m">29</span>.4183
+<span class="w">    </span><span class="m">29</span>.4183<span class="w">  </span><span class="m">29</span>.4183<span class="w">  </span><span class="m">30</span>.5351<span class="w">  </span><span class="m">30</span>.5351
+
+<span class="w">     </span>occupation<span class="w"> </span>numbers
+<span class="w">     </span><span class="m">1</span>.0000<span class="w">   </span><span class="m">1</span>.0000<span class="w">   </span><span class="m">1</span>.0000<span class="w">   </span><span class="m">1</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000
+<span class="w">     </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000
+<span class="w">     </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span>.0000
+
+<span class="w">     </span>highest<span class="w"> </span>occupied,<span class="w"> </span>lowest<span class="w"> </span>unoccupied<span class="w"> </span>level<span class="w"> </span><span class="o">(</span>ev<span class="o">)</span>:<span class="w">     </span><span class="m">6</span>.2533<span class="w">    </span><span class="m">8</span>.8090
+
+<span class="w">     </span>Writing<span class="w"> </span>all<span class="w"> </span>to<span class="w"> </span>output<span class="w"> </span>data<span class="w"> </span>dir<span class="w"> </span>OUT/pwscf.save/<span class="w"> </span>:
+</pre></div>
+</div>
+<p><strong>Note the location of the output data</strong>; we will use the orbitals saved there when we compute the real-space charge density.</p>
+</section>
+<section id="step-3-qe-post-processing-utilities">
+<h3><span class="section-number">3.5.3. </span>Step 3: QE post-processing utilities<a class="headerlink" href="#step-3-qe-post-processing-utilities" title="Link to this heading">#</a></h3>
+<p>CoQuí reads some of the details of the pseudopotential from QE.
+We need to dump the relevant data to a file using the pw2coqui.x QE post-processing utility.
+As described above, you will need to install this utility into
+your QE build using the instructions found <a class="reference external" href="https://github.com/AbInitioQHub/coqui/tree/main/qe_converter">here</a>.
+See the provided input files for more.</p>
+<p>pw2coqui.inp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">input_pw2coqui</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;pwscf&quot;</span>
+  <span class="n">outdir</span> <span class="o">=</span> <span class="s2">&quot;OUT&quot;</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p>Run the following.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pw2coqui.x<span class="w"> </span>&lt;<span class="w"> </span>pw2coqui.in<span class="w"> </span>&gt;<span class="w"> </span>pw2coqui.out
+</pre></div>
+</div>
+<div class="alert alert-block alert-info">
+  <b>Note:</b> Unlike many of the QE post-processing tools,
+   the pw2coqui.x converter does not support MPI.
+   Be sure to run the convert in serial as shown above!
+</div>
+<p>If everything worked, you should see the following files in the “OUT” directory
+that should have been generated by QE.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>OUT
+pwscf.coqui.h5<span class="w"> </span>pwscf.save
+</pre></div>
+</div>
+<p><strong>We’re ready to move on to CoQuí.</strong></p>
+</section>
+<section id="your-turn">
+<h3><span class="section-number">3.5.4. </span>Your Turn<a class="headerlink" href="#your-turn" title="Link to this heading">#</a></h3>
+<p>If you have not already, run Quantum Espresso with the sample inputs provided in the <code class="docutils literal notranslate"><span class="pre">files/qe</span></code> directory
+within this tutorial’s directory before moving on.</p>
+</section>
+</section>
+<section id="writing-the-second-quantized-hamiltonian-and-trial-wavefunction">
+<h2><span class="section-number">3.6. </span>Writing the second-quantized Hamiltonian and Trial wavefunction<a class="headerlink" href="#writing-the-second-quantized-hamiltonian-and-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p>CoQuí is able to directly generate a Hamiltonian HDF5 file for SAFIRE using the data output by QE.
+Additionally, it can write a trial wavefunction based on the DFT solution from QE.
+These steps can be performed either separately or in a single input file.
+We will use the former approach and generate each separately for pedagogical reasons.
+In general, it is recommended to to use a single CoQuí input file.</p>
+<section id="writing-the-hamiltonian">
+<h3><span class="section-number">3.6.1. </span>Writing the Hamiltonian<a class="headerlink" href="#writing-the-hamiltonian" title="Link to this heading">#</a></h3>
+<p>CoQuí is controlled via a TOML-based input file.
+<strong>A sample CoQuí input file demonstrating how to generate a Hamiltonian is provided</strong>.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[mean_field.qe]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pwscf&quot;</span>
+<span class="n">outdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../qe/OUT&quot;</span>
+<span class="n">nbnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+
+<span class="k">[interaction.cholesky]</span>
+<span class="n">name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eri&quot;</span>
+<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hamil.h5&quot;</span>
+<span class="n">write_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;single&quot;</span>
+<span class="n">tol</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-4</span><span class="w">  </span><span class="c1"># you may need to converge this value!</span>
+<span class="n">ecut</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span>
+
+<span class="k">[hamiltonian]</span>
+<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">interaction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eri&quot;</span>
+<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hamil.h5&quot;</span>
+</pre></div>
+</div>
+<p>Here, we are using the Cholesky form of interaction (see the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/safire/user_manual/hamiltonians.html#k-point-factorized-kp">User manual for details on the K-point factorized Cholesky Hamiltonian</a>.</p>
+<p>The key details to note are:</p>
+<ol class="arabic simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">[mean_field.qe]</span></code>, we need to set the <code class="docutils literal notranslate"><span class="pre">outdir</span></code> to the directory where both the QE <code class="docutils literal notranslate"><span class="pre">pwscf.xml</span></code> file is saved, and where <code class="docutils literal notranslate"><span class="pre">[prefix].coqui.h5</span></code> is.</p></li>
+<li><p>Also in <code class="docutils literal notranslate"><span class="pre">[mean_field.qe]</span></code>, we can set the number of bands to use with <code class="docutils literal notranslate"><span class="pre">nbnd</span></code>. Of course, we can only use as many bands as we output in the one-shot DFT calculation previously.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">interaction</span></code> input block, we are using the “cholesky” decomposed form for the interaction and have set a tolerance of <code class="docutils literal notranslate"><span class="pre">tol</span> <span class="pre">=</span> <span class="pre">1e-4</span></code>. We have set the <code class="docutils literal notranslate"><span class="pre">output</span></code> to a file called “hamil.h5` to tell CoQuí to save the interaction there. <strong>In general, one must converge the AFQMC energy in this parameter!</strong></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> block is used to write the one-body part of the Hamiltonian to HDF5. <strong>We need to set this to the same file as the interaction.</strong></p></li>
+</ol>
+<p>.. warning</p>
+<p>Now, run Coquí.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>/path/to/coqui<span class="w"> </span>--verbosity<span class="o">=</span><span class="m">2</span><span class="w"> </span>--filenames<span class="w"> </span>hamil.toml<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>hamil.out
+</pre></div>
+</div>
+<p>You should see the following output in <code class="docutils literal notranslate"><span class="pre">hamil.out</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">---------------------------------</span>
+     <span class="n">____</span> <span class="n">___</span>   <span class="n">___</span>  <span class="n">_</span>   <span class="n">_</span> <span class="n">___</span>
+    <span class="o">/</span> <span class="n">___</span><span class="o">/</span> <span class="n">_</span> \ <span class="o">/</span> <span class="n">_</span> \<span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span> <span class="n">_</span><span class="o">|</span>
+   <span class="o">|</span> <span class="o">|</span>  <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">||</span> <span class="o">|</span>
+   <span class="o">|</span> <span class="o">|</span><span class="n">__</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">||</span> <span class="o">|</span>
+    \<span class="n">____</span>\<span class="n">___</span><span class="o">/</span> \<span class="n">__</span>\<span class="n">_</span>\\<span class="n">___</span><span class="o">/|</span><span class="n">___</span><span class="o">|</span>
+  <span class="o">--------------------------------</span>
+ <span class="o">|</span>  <span class="n">Correlated</span> <span class="n">Quantum</span> <span class="n">Interface</span>  <span class="o">|</span>
+  <span class="o">--------------------------------</span>
+
+<span class="n">Input</span> <span class="n">Parameters</span>
+<span class="o">----------------</span>
+
+<span class="p">[</span><span class="n">mean_field</span><span class="o">.</span><span class="n">qe</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">nbnd</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;../qe/OUT&#39;</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;pwscf&#39;</span>
+
+<span class="p">[</span><span class="n">interaction</span><span class="o">.</span><span class="n">cholesky</span><span class="p">]</span>
+<span class="n">ecut</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;eri&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;hamil.h5&#39;</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">write_type</span> <span class="o">=</span> <span class="s1">&#39;single&#39;</span>
+
+<span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
+<span class="n">interaction</span> <span class="o">=</span> <span class="s1">&#39;eri&#39;</span>
+<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;hamil.h5&#39;</span>
+
+<span class="o">--</span> <span class="n">End</span> <span class="n">of</span> <span class="n">Input</span> <span class="n">Parameters</span> <span class="o">--</span>
+
+  <span class="n">Brillouin</span> <span class="n">zone</span> <span class="n">symmetry</span> <span class="n">info</span>
+  <span class="o">----------------------------</span>
+  <span class="n">Q</span><span class="o">-</span><span class="n">points</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">irreducible</span> <span class="n">zone</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Symmetries</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">Q</span><span class="o">-</span><span class="n">points</span>   <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Time</span><span class="o">-</span><span class="n">reversal</span> <span class="n">k</span><span class="o">-</span><span class="n">point</span> <span class="n">pairs</span>      <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="n">Quantum</span> <span class="n">ESPRESSO</span> <span class="n">reader</span>
+  <span class="o">-----------------------</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">spins</span>                <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">polarizations</span>        <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">bands</span>                <span class="o">=</span> <span class="mi">20</span>
+  <span class="n">Monkhorst</span><span class="o">-</span><span class="n">Pack</span> <span class="n">mesh</span>            <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">K</span><span class="o">-</span><span class="n">points</span>                       <span class="o">=</span> <span class="mi">1</span> <span class="n">total</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">IBZ</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">electrons</span>            <span class="o">=</span> <span class="mf">8.0</span>
+  <span class="n">Electron</span> <span class="n">density</span> <span class="n">energy</span> <span class="n">cutoff</span> <span class="o">=</span> <span class="mf">100.000</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="o">|</span> <span class="n">FFT</span> <span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+  <span class="n">Wavefunction</span> <span class="n">energy</span> <span class="n">cutoff</span>     <span class="o">=</span> <span class="mf">11.994</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="o">|</span> <span class="n">FFT</span> <span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">PWs</span> <span class="o">=</span> <span class="mi">537</span>
+
+  <span class="n">Electron</span><span class="o">-</span><span class="n">electron</span> <span class="n">interaction</span> <span class="n">kernel</span>
+  <span class="o">------------------------------------</span>
+  <span class="nb">type</span>          <span class="o">=</span> <span class="n">coulomb</span>
+  <span class="n">ndim</span>          <span class="o">=</span> <span class="mi">3</span>
+  <span class="n">cutoff</span>        <span class="o">=</span> <span class="mf">1e-08</span>
+  <span class="n">screen_type</span>   <span class="o">=</span> <span class="n">none</span>
+
+<span class="o">*******************************</span>
+ <span class="n">ERI</span><span class="p">::</span><span class="n">cholesky</span><span class="p">:</span>
+<span class="o">*******************************</span>
+  <span class="o">-</span><span class="n">pw</span> <span class="n">cutoff</span> <span class="p">(</span><span class="n">Ha</span><span class="p">):</span> <span class="mf">50.0</span>
+  <span class="o">-</span><span class="n">size</span> <span class="n">of</span> <span class="n">PW</span> <span class="n">basis</span><span class="p">:</span> <span class="mi">4573</span>
+  <span class="o">-</span><span class="n">cholesky</span> <span class="n">truncation</span><span class="p">:</span> <span class="mf">0.0001</span>
+  <span class="o">-</span><span class="n">number</span> <span class="n">of</span> <span class="n">k</span><span class="o">-</span><span class="n">point</span> <span class="n">pools</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="o">-</span><span class="n">number</span> <span class="n">of</span> <span class="n">processors</span> <span class="n">per</span> <span class="n">pools</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="o">-</span><span class="n">default</span> <span class="n">block</span> <span class="n">size</span><span class="p">:</span> <span class="mi">32</span>
+
+
+  <span class="n">iq</span><span class="p">:</span><span class="mi">0</span>  <span class="n">nchol</span><span class="p">:</span><span class="mi">135</span>
+<span class="n">Writing</span> <span class="n">distributed</span> <span class="n">Vq</span> <span class="n">at</span> <span class="n">iq</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="o">.//</span><span class="n">hamil</span><span class="o">.</span><span class="n">h5</span>
+<span class="o">*******************************</span>
+ <span class="n">Cholesky</span> <span class="n">ERI</span> <span class="n">Reader</span><span class="p">:</span>
+<span class="o">*******************************</span>
+    <span class="o">-</span> <span class="n">Np</span> <span class="nb">max</span>  <span class="o">=</span> <span class="mi">135</span>
+    <span class="o">-</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="mf">0.0001</span>
+    <span class="o">-</span> <span class="n">read</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">each_q</span>
+    <span class="o">-</span> <span class="n">eri</span> <span class="n">storage</span><span class="p">:</span> <span class="n">outcore</span>
+    <span class="o">-</span> <span class="n">ERI</span> <span class="nb">dir</span> <span class="o">=</span> <span class="o">./</span>
+    <span class="o">-</span> <span class="n">ERI</span> <span class="n">output</span> <span class="o">=</span> <span class="n">hamil</span><span class="o">.</span><span class="n">h5</span>
+
+<span class="o">*******************************</span>
+ <span class="n">Second</span><span class="o">-</span><span class="n">quantized</span> <span class="mi">1</span><span class="o">-</span><span class="n">Body</span> <span class="n">Hamiltonian</span>  
+<span class="o">*******************************</span>
+<span class="n">output</span><span class="p">:</span> <span class="n">hamil</span><span class="o">.</span><span class="n">h5</span>
+<span class="nb">format</span><span class="p">:</span> <span class="n">qmc</span>
+<span class="nb">type</span><span class="p">:</span> <span class="n">bare</span>
+<span class="n">add_wfn</span><span class="p">:</span>
+<span class="o">************************************************</span>
+ <span class="n">Initializing</span> <span class="n">External</span> <span class="n">Potential</span><span class="p">:</span>
+<span class="o">************************************************</span>
+  <span class="nb">input</span> <span class="nb">type</span><span class="p">:</span> <span class="n">coqui</span><span class="p">::</span><span class="n">h5</span>
+  <span class="nb">type</span><span class="p">:</span> <span class="n">NCPP</span>
+  <span class="c1"># of species: 1</span>
+  <span class="c1"># of atoms: 2</span>
+  <span class="nb">max</span> <span class="c1"># of projectors per atom: 8</span>
+  <span class="c1"># of projectors: 16</span>
+  <span class="c1"># of polarizations: 1</span>
+  <span class="n">spin</span> <span class="n">orbit</span><span class="p">:</span> <span class="n">false</span>
+
+ <span class="n">Memory</span> <span class="n">usage</span><span class="p">:</span>
+   <span class="n">Overlaps</span><span class="p">:</span>                      <span class="mf">4.76837158203125e-06</span> <span class="n">MB</span>
+   <span class="n">Dion</span><span class="p">:</span>                          <span class="mf">9.5367431640625e-07</span> <span class="n">MB</span>
+<span class="o">************************************************</span>
+
+  <span class="n">Electron</span><span class="o">-</span><span class="n">electron</span> <span class="n">interaction</span> <span class="n">kernel</span>
+  <span class="o">------------------------------------</span>
+  <span class="nb">type</span>          <span class="o">=</span> <span class="n">coulomb</span>
+  <span class="n">ndim</span>          <span class="o">=</span> <span class="mi">3</span>
+  <span class="n">cutoff</span>        <span class="o">=</span> <span class="mf">1e-08</span>
+  <span class="n">screen_type</span>   <span class="o">=</span> <span class="n">none</span>
+</pre></div>
+</div>
+<p>The HDF5 file, “hamil.h5”, that CoQuí just generated can be
+directly read in SAFIRE to get the Hamiltonian.</p>
+</section>
+<section id="more-information">
+<h3><span class="section-number">3.6.2. </span>More Information<a class="headerlink" href="#more-information" title="Link to this heading">#</a></h3>
+<p>For larger supercells, it is highly recommended that you use the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/safire/user_manual/hamiltonians.html#tensor-hyper-contraction-thc">tensor hypercontraction (THC) form of the interaciton</a> instead.
+<strong>CoQuí can also generate these integrals</strong> by using an input block such as the following.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing THC-ERI by specifying the accuracy of the pivoted Cholesky</span>
+<span class="k">[interaction.thc]</span>
+<span class="n">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eri&quot;</span>
+<span class="n">mean_field</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">thresh</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-6</span><span class="w">            </span>
+<span class="n">ecut</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span>
+<span class="n">save</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hamil.h5&quot;</span>
+<span class="n">storage</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;incore&quot;</span>
+</pre></div>
+</div>
+<div class="alert alert-warning">
+    <b>Important</b> SAFIRE currently only supports Gamma-point THC.
+</div></section>
+</section>
+<section id="writing-the-trial-wavefunction">
+<h2><span class="section-number">3.7. </span>Writing the Trial Wavefunction<a class="headerlink" href="#writing-the-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p>Finally, we can save a single Slater determinant wavefunction to HDF5 using a “wavefunction” block.
+The Slater determinant is constructed by occupying the Kohn-Sham orbitals with the largest occupancy.
+The sample input file, <code class="docutils literal notranslate"><span class="pre">wfn.toml</span></code> is as follows:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[mean_field.qe]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pwscf&quot;</span>
+<span class="n">outdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../qe/OUT&quot;</span>
+<span class="n">nbnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+
+<span class="k">[wavefunction.mf]</span>
+<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
+<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;wfn.h5&quot;</span>
+</pre></div>
+</div>
+<p>The key points are that <code class="docutils literal notranslate"><span class="pre">mean_field</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">[wavefunction.mf]</span></code> must point to
+the <code class="docutils literal notranslate"><span class="pre">name</span></code> of the <code class="docutils literal notranslate"><span class="pre">[mean_field.qe]</span></code> block.
+You can use any <code class="docutils literal notranslate"><span class="pre">*.h5</span></code> file name for the output parameter.
+This includes the HDF5 file containing the Hamiltonian if desired.</p>
+<p>Now, run CoQuí on this input file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>coqui<span class="w"> </span>wfn.toml<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>wfn.out
+</pre></div>
+</div>
+<p>You should see the following output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">---------------------------------</span>
+     <span class="n">____</span> <span class="n">___</span>   <span class="n">___</span>  <span class="n">_</span>   <span class="n">_</span> <span class="n">___</span>
+    <span class="o">/</span> <span class="n">___</span><span class="o">/</span> <span class="n">_</span> \ <span class="o">/</span> <span class="n">_</span> \<span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span> <span class="n">_</span><span class="o">|</span>
+   <span class="o">|</span> <span class="o">|</span>  <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">|</span> <span class="o">||</span> <span class="o">|</span>
+   <span class="o">|</span> <span class="o">|</span><span class="n">__</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">||</span> <span class="o">|</span>
+    \<span class="n">____</span>\<span class="n">___</span><span class="o">/</span> \<span class="n">__</span>\<span class="n">_</span>\\<span class="n">___</span><span class="o">/|</span><span class="n">___</span><span class="o">|</span>
+  <span class="o">--------------------------------</span>
+ <span class="o">|</span>  <span class="n">Correlated</span> <span class="n">Quantum</span> <span class="n">Interface</span>  <span class="o">|</span>
+  <span class="o">--------------------------------</span>
+
+<span class="n">Input</span> <span class="n">Parameters</span>
+<span class="o">----------------</span>
+
+<span class="p">[</span><span class="n">mean_field</span><span class="o">.</span><span class="n">qe</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">nbnd</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;../qe/OUT&#39;</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;pwscf&#39;</span>
+
+<span class="p">[</span><span class="n">wavefunction</span><span class="o">.</span><span class="n">mf</span><span class="p">]</span>
+<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;wfn.h5&#39;</span>
+
+<span class="o">--</span> <span class="n">End</span> <span class="n">of</span> <span class="n">Input</span> <span class="n">Parameters</span> <span class="o">--</span>
+
+  <span class="n">Brillouin</span> <span class="n">zone</span> <span class="n">symmetry</span> <span class="n">info</span>
+  <span class="o">----------------------------</span>
+  <span class="n">Q</span><span class="o">-</span><span class="n">points</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">irreducible</span> <span class="n">zone</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Symmetries</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">Q</span><span class="o">-</span><span class="n">points</span>   <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Time</span><span class="o">-</span><span class="n">reversal</span> <span class="n">k</span><span class="o">-</span><span class="n">point</span> <span class="n">pairs</span>      <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="n">Quantum</span> <span class="n">ESPRESSO</span> <span class="n">reader</span>
+  <span class="o">-----------------------</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">spins</span>                <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">polarizations</span>        <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">bands</span>                <span class="o">=</span> <span class="mi">20</span>
+  <span class="n">Monkhorst</span><span class="o">-</span><span class="n">Pack</span> <span class="n">mesh</span>            <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">K</span><span class="o">-</span><span class="n">points</span>                       <span class="o">=</span> <span class="mi">1</span> <span class="n">total</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">IBZ</span>
+  <span class="n">Number</span> <span class="n">of</span> <span class="n">electrons</span>            <span class="o">=</span> <span class="mf">8.0</span>
+  <span class="n">Electron</span> <span class="n">density</span> <span class="n">energy</span> <span class="n">cutoff</span> <span class="o">=</span> <span class="mf">100.000</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="o">|</span> <span class="n">FFT</span> <span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+  <span class="n">Wavefunction</span> <span class="n">energy</span> <span class="n">cutoff</span>     <span class="o">=</span> <span class="mf">11.994</span> <span class="n">a</span><span class="o">.</span><span class="n">u</span><span class="o">.</span> <span class="o">|</span> <span class="n">FFT</span> <span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">PWs</span> <span class="o">=</span> <span class="mi">537</span>
+
+<span class="o">*************************************************</span>
+               <span class="n">Adding</span>  <span class="n">Wavefunction</span>              
+<span class="o">*************************************************</span>
+ <span class="n">Adding</span> <span class="n">default</span> <span class="n">wavefunction</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">MO</span> <span class="n">basis</span><span class="p">)</span>
+ <span class="n">Total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">electrons</span> <span class="ow">in</span> <span class="n">waveunction</span><span class="p">:</span> <span class="n">nup</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="n">ndown</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span>
+ <span class="n">Number</span> <span class="n">of</span> <span class="n">determinants</span> <span class="n">requested</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">found</span><span class="p">:</span><span class="mi">1</span>
+ <span class="n">Number</span> <span class="n">of</span> <span class="n">occupied</span> <span class="n">states</span> <span class="n">per</span> <span class="n">kpoint</span><span class="p">:</span>
+ <span class="n">determinant</span><span class="p">:</span><span class="mi">0</span> <span class="n">spin</span> <span class="n">up</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+ <span class="n">determinant</span><span class="p">:</span><span class="mi">0</span> <span class="n">spin</span> <span class="n">down</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="o">*************************************************</span>
+</pre></div>
+</div>
+</section>
+<section id="your-turn-run-safire">
+<h2><span class="section-number">3.8. </span>Your Turn : Run SAFIRE<a class="headerlink" href="#your-turn-run-safire" title="Link to this heading">#</a></h2>
+<p>You now have all the ingredients for an AFQMC calculation.
+Next, we’ll run SAFIRE using the Hamiltonian and trial wavefunction that we wrote using CoQuí.
+To learn more about the input file, see <a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the input file</span></a>.</p>
+<p>Your steps:</p>
+<ol class="arabic simple">
+<li><p>make an input file for SAFIRE to run using the Hamiltonian in <code class="docutils literal notranslate"><span class="pre">hamil.h5</span></code> and the trial wavefunction in <code class="docutils literal notranslate"><span class="pre">wfn.h5</span></code>. Use CLOSED walkers.</p></li>
+<li><p>Run SAFIRE using that input file</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">scalar_data</span></code> to obtain the AFQMC energy</p></li>
+</ol>
+<details>
+<summary>Hint:</summary>
+  <p>This is the same calculation as in Tutorial 1: Hello Safire. Your energy should match the result there, `-0.729271 +/- 0.000532`, to within stochastic uncertainty.</p>
+</details></section>
+<section id="summary">
+<h2><span class="section-number">3.9. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial we have learned,</p>
+<ol class="arabic simple">
+<li><p>How to write a Hamiltonian to the SAFIRE HDF5 format, using CoQui, starting from a Quantum Espresso calculation</p></li>
+<li><p>How to write a Trial wavefunction to the SAFIRE HDF5 format, using CoQui, starting from a Quantum Espresso calculation</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_understanding_the_input_file/02_understanding_the_input_file.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Understanding the input file</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_computing_observables/04_computing_observables.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Computing general observables</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">3.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-software">3.2. External Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-files">3.3. Tutorial Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.4. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">3.5. Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-self-consistent-dft">3.5.1. Step 1 : self-consistent DFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-one-shot-dft">3.5.2. Step 2 : One-shot DFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-qe-post-processing-utilities">3.5.3. Step 3: QE post-processing utilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn">3.5.4. Your Turn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-second-quantized-hamiltonian-and-trial-wavefunction">3.6. Writing the second-quantized Hamiltonian and Trial wavefunction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-hamiltonian">3.6.1. Writing the Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-information">3.6.2. More Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-trial-wavefunction">3.7. Writing the Trial Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-safire">3.8. Your Turn : Run SAFIRE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.9. Summary</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/tutorials/solids/03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

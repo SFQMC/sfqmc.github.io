@@ -1,0 +1,1633 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Computing general observables &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/molecules/05_computing_observables/05_computing_observables';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SAFIRE for ab initio solids" href="../../solids/overview.html" />
+    <link rel="prev" title="4. Writing a Trial Wavefunction" href="../04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../models/overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for Quantum Chemistry</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">5. </span>Computing general observables</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-general-observables">
+<h1><span class="section-number">5. </span>Computing general observables<a class="headerlink" href="#computing-general-observables" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Become acquainted with how to compute general observables with SAFIRE.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">5.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What an “estimator” is and how to set one up in the json input file</p></li>
+<li><p>What a mixed estimator is and when to use one to compute an observable</p></li>
+<li><p>What a back-propagated estimator is and when to use one to compute an observable</p></li>
+<li><p>How to compute observables in post-processing with afqmctools</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2><span class="section-number">5.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>AuxiliaryFiels uses “estimators” to compute observables.
+Each estimator corresponds to a formal method for computing an observable - i.e. mixed estimators, back-propagated estimators, etc. - We will explain each of the these in the next section.
+As we mentioned in <a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the input file</span></a>,</p>
+<p>you can add estimators to an AFQMC calculation using an “estimator” input block.
+By default, an “energy” estimator is included which is a specialized mixed estimator.
+Other estimators allow you to specify one or more additional observables to compute.</p>
+</section>
+<section id="formal-background">
+<h2><span class="section-number">5.3. </span>Formal Background<a class="headerlink" href="#formal-background" title="Link to this heading">#</a></h2>
+<p>Although we have not seen this explicitly, we have, so far, computed the ground state energy with AFQMC using a so-called
+mixed estimator of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \hat{O} \rangle_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the projection step index,
+<span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are Slater determinant random walkers with weight <span class="math notranslate nohighlight">\(W_{n,k}\)</span> (from importance sampling),
+and <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction.
+The mixed estimator provides an unbiased estimate for any observable which commutes with the Hamiltonian.
+For the AFQMC energy, <span class="math notranslate nohighlight">\(\hat{O} = \hat{H}\)</span>, and trivially <span class="math notranslate nohighlight">\([ \hat{O}, \hat{H} ] = 0\)</span>;
+therefore, the mixed estimator is an unbiased choice for the total ground state energy.</p>
+<p>On the other hand, it is often interesting to compute observables which do not commute with the Hamiltonian.
+For example, the one-body reduced density matrix, from which many properties can be computed, does not commute
+with the Hamiltonian.
+In these cases, a back-propagated estimator is necessary to mitigate the bias that would be incurred
+by using a mixed-estimator.
+The back-propagated estimator has the form,
+<div class="math notranslate nohighlight">
+\[
+\langle \hat{O} \rangle_\mathrm{BP} = \frac{1}{\sum_k W_{n+m,k}} \sum_k W_{n+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{n,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{n,k}\rangle}
+\]</div>
+</p>
+<p>where <span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
+and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,
+<div class="math notranslate nohighlight">
+\[
+| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{n,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{n+m-1,k} ) | \Psi_\mathrm{T} \rangle.
+\]</div>
+
+The index <span class="math notranslate nohighlight">\(n\)</span> corresponds to the current forward projection step,
+and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.
+We note that each random walker has a corresponding back-propagated partner
+which share the same path in auxiliary-field space.
+It is important to note that the two Slater determinants are
+distinct from each other since the propagator <span class="math notranslate nohighlight">\(B(x - \bar{x})\)</span> is applied differently to each.
+i.e. the propagator is applied to different Slater determinants when moving in the forward-, and backward-directions.</p>
+<section id="run-the-cell-below-to-setup-the-tutorial">
+<h3><span class="section-number">5.3.1. </span>▶️ Run the cell below to setup the tutorial<a class="headerlink" href="#run-the-cell-below-to-setup-the-tutorial" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run me (shift+enter or click the play button) to setup the tutorial!</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># simple setup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="setup-the-test-system">
+<h2><span class="section-number">5.4. </span>Setup the Test System<a class="headerlink" href="#setup-the-test-system" title="Link to this heading">#</a></h2>
+<p>In this tutorial, we will use PySCF for convenience; however, you can use the knowledge that you’ve gained in the previous tutorials to use a different quantum chemistry code if desired.</p>
+<p>Instead of the minimal basis Hydrogen dimer, we will use the nitrogen dimer at its equilibrium bond length.
+We will be using the set of canonical RHF orbitals as the orthonormal basis for AFQMC.</p>
+<p>The code block below will:</p>
+<ul class="simple">
+<li><p>setup and run RHF using PySCF</p></li>
+<li><p>generate and save the RHF Slater determinant to the SAFIRE HDF5 format</p></li>
+<li><p>generate and save the Hamiltonian to the SAFIRE HDF5 format</p></li>
+</ul>
+<p>These were all covered in previous tutorials.</p>
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/NitrogenDimer.png" width="300">
+</div>
+<section id="run-the-code-block-below-to-perform-all-of-the-steps-above">
+<h3><span class="section-number">5.4.1. </span>▶️ Run the code block below to perform all of the steps above<a class="headerlink" href="#run-the-code-block-below-to-perform-all-of-the-steps-above" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="c1"># Here, we&#39;ll generate the mol object</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">2.3</span> <span class="c1">#2.118 # 3.0 # Bohr</span>
+
+<span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">N 0. 0. </span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">N 0. 0. -</span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;631g&#39;</span><span class="p">,</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Bohr&#39;</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rhf_chkfile</span> <span class="o">=</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+
+<span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">rhf_chkfile</span>
+<span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+
+<span class="n">number_of_electrons</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelec</span>
+<span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nao_nr</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of orbitals = &quot;</span><span class="p">,</span> <span class="n">number_of_orbitals</span><span class="p">)</span>
+
+<span class="n">orbitals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">number_of_orbitals</span><span class="p">)</span>
+
+<span class="n">phi_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">orbitals</span><span class="p">[:,</span> <span class="p">:</span><span class="n">number_of_electrons</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
+
+<span class="n">write_wfn</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
+    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Save the Hamiltonian</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">rhf_chkfile</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># write Hamiltonian</span>
+<span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">basis_scf_data</span><span class="p">,</span>
+    <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+    <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-energy-estimator">
+<h2><span class="section-number">5.5. </span>The “Energy” Estimator<a class="headerlink" href="#the-energy-estimator" title="Link to this heading">#</a></h2>
+<p>By default, SAFIRE will include an “energy estimator” in the calculation.
+This is formally a mixed estimator where <span class="math notranslate nohighlight">\(\hat{O} = \hat{H}\)</span>.
+The Hamiltonian trivially commutes with itself, so a mixed estimator of the energy is unbiased.</p>
+<p>You can add an energy estimator input block to your json input file in order to customize its setting.
+For example, in the input block,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;print_components&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;overwrite&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the “name” keyword tells us what kind of estimator we want.
+In this case, we want an “energy” estimator.
+We are setting the “print_components” and “overwrite” flags to true.
+“print_components” tells SAFIRE to print the one-body, two-body coulomb, and two-body exchange contributions to the energy separately.
+“overwrite” tells SAFIRE to overwrite the default energy estimator
+with the one that we have defined.</p>
+<section id="most-common-settings">
+<h3><span class="section-number">5.5.1. </span>Most Common Settings<a class="headerlink" href="#most-common-settings" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>setting</b></p></th>
+<th class="head text-center"><p><b>default</b></p></th>
+<th class="head text-left"><p><b>description</b></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>        print_components</b></p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-left"><p>If True, print the one-body, two-body coulomb, and two-body exchange contributions to the energy in the <code class="docutils literal notranslate"><span class="pre">*.scalar.dat</span></code> file</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b> equil_multiplier </b></p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-left"><p>The multiplier that determines the length of the equilibration phase. The equilibration phase length is computed as <span class="math notranslate nohighlight">\((equilibration\_length) = (equil\_multiplier) * (population\_control\_inveral)\)</span> where the population control interval is defined in the execute block. During the equilibration phase, observables are not computed.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>        overwrite</b></p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-left"><p>If True, overwrite the default energy estimator with the explicitly defined energy estimator</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="less-common-settings">
+<h3><span class="section-number">5.5.2. </span>Less Common Settings<a class="headerlink" href="#less-common-settings" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>setting</b></p></th>
+<th class="head text-center"><p><b>default</b></p></th>
+<th class="head text-left"><p><b>description</b></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>        print_sign</b></p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-left"><p>If True, print various quantities related to the sign/phase of random walkers in the <code class="docutils literal notranslate"><span class="pre">*.scalar.dat</span></code> file</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>        remove</b></p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-left"><p>If True, remove the default energy estimator. <strong>Note that the explicitly defined energy estimator will not be used in the calculation!</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>        truncate</b></p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-left"><p>If True, truncate the energy such that data that fall outside of the range <span class="math notranslate nohighlight">\([-3 var, 3 var]\)</span>, with <span class="math notranslate nohighlight">\(var\)</span> being the variance, are set to either <span class="math notranslate nohighlight">\(-3 var\)</span> or <span class="math notranslate nohighlight">\(3 var\)</span>, whichever is closer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="run-the-code-block-below-to-write-an-input-file">
+<h3><span class="section-number">5.5.3. </span>▶️ Run the code block below to write an input file<a class="headerlink" href="#run-the-code-block-below-to-write-an-input-file" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="c1"># some shared parameters for the AFQMC run</span>
+<span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;walker_set&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;walker_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;COLLINEAR&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">&quot;estimator&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_components&quot;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;overwrite&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;COLLINEAR&quot;</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-run-safire-with-an-explicit-energy-estimator-block">
+<h3><span class="section-number">5.5.4. </span>📝 Your Turn : Run SAFIRE with an explicit energy estimator block<a class="headerlink" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block" title="Link to this heading">#</a></h3>
+<p>Now you can run SAFIRE, and you should see the following column headers in the <code class="docutils literal notranslate"><span class="pre">*scalar.dat</span></code> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">block</span>  <span class="n">time</span>  <span class="n">nWalkers</span> <span class="n">weight</span> <span class="n">PseudoEloc</span> <span class="n">LogOvlpFactor</span> <span class="n">EnergyEstim__nume_real</span>  <span class="n">EnergyEstim__nume_imag</span> <span class="n">EnergyEstim__deno_real</span>  <span class="n">EnergyEstim__deno_imag</span> <span class="n">EnergyEstim__timer</span> <span class="n">OneBodyEnergyEstim__nume_real</span> <span class="n">EXXEnergyEstim__nume_real</span> <span class="n">ECoulEnergyEstim__nume_real</span> <span class="n">MixedEstim_timer</span> <span class="n">Eshift</span> <span class="n">freeMemory</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>                <span class="c1"># directory to run SAFIRE in - output files will be there as well</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>                              <span class="c1"># number of MPI tasks</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can check the <code class="docutils literal notranslate"><span class="pre">*.scalar.dat</span></code> file to verify that the extra columns that we requested were printed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="nv">$scratch_dir</span>/qmc.s000.scalar.dat
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="extracting-and-analyzing-the-afqmc-energy">
+<h2><span class="section-number">5.6. </span>Extracting and Analyzing the AFQMC energy.<a class="headerlink" href="#extracting-and-analyzing-the-afqmc-energy" title="Link to this heading">#</a></h2>
+<p>We learned about basic energy analysis using the CLI and the <code class="docutils literal notranslate"><span class="pre">analyze_scalar_data()</span></code> Python function in the Hello SAFIRE tutorial.
+We can use the same tools here to get the average AFQMC energy and the stochastic uncertainty.</p>
+<p>For pedagogical reasons, we will instead read the entire scalar data file so that we can plot several of the data columns as a function of total projection time.
+In the code block below, the total energy (solid blue line) is plotted against as well as the sum of the three individual columns (dotted orange line) corresponding to the one-body energy, the Coulomb energy, and the exchange energy.
+The two curves agree with each other to machine precision.</p>
+<section id="run-the-code-block-below-to-extract-and-plot-energy-samples">
+<h3><span class="section-number">5.6.1. </span>▶️ Run the code block below to extract and plot energy samples<a class="headerlink" href="#run-the-code-block-below-to-extract-and-plot-energy-samples" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span><span class="p">,</span><span class="n">read_scalar_table</span>
+
+<span class="c1"># read scalar table and return as a pandas DataFrame</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">append</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mark_header</span><span class="o">=</span><span class="s2">&quot;#&quot;</span>
+<span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">read_scalar_table</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+
+<span class="c1"># read the energy components</span>
+<span class="n">one_body_energy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;OneBodyEnergyEstim__nume_real&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">direct_coulomb_energy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ECoulEnergyEstim__nume_real&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">exchange_energy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;EXXEnergyEstim__nume_real&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">two_body_energy</span> <span class="o">=</span> <span class="n">direct_coulomb_energy</span> <span class="o">+</span> <span class="n">exchange_energy</span>
+
+<span class="c1"># read the total energy</span>
+<span class="n">total_energy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;EnergyEstim__nume_real&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># plot the energy both ways</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">total_energy</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Total Energy from energy Estimator&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">one_body_energy</span> <span class="o">+</span> <span class="n">direct_coulomb_energy</span> <span class="o">+</span> <span class="n">exchange_energy</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$E_1 + E_</span><span class="si">{Coul}</span><span class="s2"> + E_</span><span class="si">{x}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta E \equiv E_\mathrm</span><span class="si">{MixedEstimator}</span><span class="s2"> - E_</span><span class="si">{EnergyEstimator}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Total energy vs. sample&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="computing-observables-using-a-mixed-estimator">
+<h2><span class="section-number">5.7. </span>Computing Observables using a “Mixed” Estimator<a class="headerlink" href="#computing-observables-using-a-mixed-estimator" title="Link to this heading">#</a></h2>
+<p>SAFIRE also includes a mixed estimator that periodically evaluates,</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \hat{O} ⟩_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{O}\)</span> is an operator.
+The one-body reduced density matrix (1rdm), given by</p>
+<div class="math notranslate nohighlight">
+\[\hat{O} = \hat{\rho}^1 = \sum_{ij}\sum_{\sigma \sigma'} \hat{c}^\dagger_{i \sigma}\hat{c}_{j \sigma'},\]</div>
+<p>and the two-body reduced density matrix (2rdm), given by,</p>
+<div class="math notranslate nohighlight">
+\[\hat{O} = \hat{\rho}^2 = \sum_{ijkl}\sum_{\sigma \sigma'}\hat{c}^\dagger_{i\sigma}\hat{c}^\dagger_{j\sigma'}\hat{c}_{k\sigma'}\hat{c}_{l\sigma}\]</div>
+<p>are common observables.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+    computing the 2rdm is very time and memory intensive; this should only be done for small systems.
+</div>
+<section id="specifying-observables-to-measure">
+<h3><span class="section-number">5.7.1. </span>Specifying Observables to Measure<a class="headerlink" href="#specifying-observables-to-measure" title="Link to this heading">#</a></h3>
+<p>You can specify which observables you want to compute by
+adding a corresponding observable block to an estimator
+block.
+For example, the estimator block below includes both the 1rdm, and the 2rdm.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_onerdm&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;twordm&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_twordm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As we will see later, this is exactly how observables are specified for the BP estimator as well.
+See the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/safire/user_manual/observables.html#observables">User Manual</a> for a complete list of currently implemented observables.</p>
+</section>
+<section id="pedagogical-demonstration">
+<h3><span class="section-number">5.7.2. </span>Pedagogical Demonstration<a class="headerlink" href="#pedagogical-demonstration" title="Link to this heading">#</a></h3>
+<p>Below, we will use a mixed estimator to compute the 1-rdm, and the 2-rdm.
+We can then directly compute each contribution to the AFQMC energy,</p>
+<div class="math notranslate nohighlight">
+\[E_{one-body} = \sum_{ij} H^1_{ij} \rho^1_{ji} \]</div>
+<div class="math notranslate nohighlight">
+\[E_{two-body} = \sum_{ijkl} H^2_{ijkl} \rho^2_{ijkl} \]</div>
+<p>and compare with the results from the energy estimator.
+<strong>We should find exact agreement between the two if we use the same AFQMC run parameters.</strong></p>
+<p>We note that computing the 2rdm is very memory intensive since many samples of the 2rdm will be saved.
+It is not typically computed unless absolutely necessary.</p>
+</section>
+<section id="run-the-code-block-below-to-write-an-input-file-with-mixed-estimator">
+<h3><span class="section-number">5.7.3. </span>▶️ Run the code block below to write an input file with mixed estimator<a class="headerlink" href="#run-the-code-block-below-to-write-an-input-file-with-mixed-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="c1"># some shared parameters for the AFQMC run</span>
+<span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;walker_set&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;walker_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;COLLINEAR&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">&quot;estimator&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_components&quot;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;overwrite&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;estimator&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;mixed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;onerdm&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;my_onerdm&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;twordm&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;my_twordm&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc_1.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span><span class="p">,</span>
+    <span class="n">series</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can run AFQMC with a Mixed Estimator in order to compute the 1-rdm.
+<strong>This will probably take a while!</strong> To finish the tutorial more quickly, remove the “twordm” block from the input and just compute the one-body energy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>                <span class="c1"># directory to run SAFIRE in - output files will be there as well</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc_1.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>                              <span class="c1"># number of MPI tasks</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-extraction-and-analysis">
+<h3><span class="section-number">5.7.4. </span>Data Extraction and Analysis<a class="headerlink" href="#data-extraction-and-analysis" title="Link to this heading">#</a></h3>
+<p>afqmctools provides several tools for extracting data - i.e. retrieving data from the SAFIRE output files - and analyzing data - arriving at a final average with stochastic uncertainty.</p>
+<p>Since some observables require a large amount of memory to store, <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> also provides “transforms” which are applied to the raw observables as they are read from disk.
+For example, in the cell below, a energy evaluation transform is used to compute the one-body energy, a scalar, on the fly as one-rdm samples are read from the *.h5 data file.
+This dramatically reduces the memory needed to analyze the AFQMC results from SAFIRE.</p>
+</section>
+<section id="run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator">
+<h3><span class="section-number">5.7.5. </span>▶️ Run the code below to evaluate the one-body energy from the one-rdm, and compare with the energy estimator<a class="headerlink" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_hamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_observable</span><span class="p">,</span><span class="n">get_metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span><span class="p">,</span><span class="n">eval_one_body_obs_factory</span><span class="p">,</span><span class="n">eval_two_body_obs_factory</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span>
+
+<span class="c1"># read the Hamiltonian</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">read_hamiltonian</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="s2">&quot;nmo&quot;</span><span class="p">]</span>
+<span class="n">Econst</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="s2">&quot;enuc&quot;</span><span class="p">]</span>
+
+<span class="n">walker_type</span> <span class="o">=</span> <span class="n">WALKER_TYPE</span><span class="p">[</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s001.stat.h5&quot;</span><span class="p">)[</span><span class="s2">&quot;WalkerType&quot;</span><span class="p">]]</span>
+
+<span class="c1"># set up a transform to compute the one-body energy from the one-rdm</span>
+<span class="n">eval_one_body_energy</span> <span class="o">=</span> <span class="n">eval_one_body_obs_factory</span><span class="p">(</span>
+    <span class="n">one_body_operator</span><span class="o">=</span><span class="n">H</span><span class="p">[</span><span class="s2">&quot;hcore&quot;</span><span class="p">],</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">walker_type</span>
+<span class="p">)</span>
+<span class="c1"># set up a transform the hermitize the one-rdm</span>
+<span class="n">hermitize</span> <span class="o">=</span> <span class="n">hermitize_factory</span><span class="p">(</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">walker_type</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Extract and Transform data</span>
+<span class="n">Energy_1body</span> <span class="o">=</span> <span class="n">extract_observable</span><span class="p">(</span>
+    <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s001.stat.h5&quot;</span><span class="p">,</span>    <span class="c1"># filename</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>                    <span class="c1"># observable type</span>
+    <span class="n">ix</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                              <span class="c1"># index of the &quot;average&quot; - we&#39;ll return to this below!</span>
+    <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">hermitize</span><span class="p">,</span><span class="n">eval_one_body_energy</span><span class="p">],</span>  <span class="c1"># list of transforms to apply *FROM LEFT TO RIGHT*</span>
+<span class="p">)</span>
+<span class="c1"># add in constant energy for consistency with SAFIRE convention</span>
+<span class="n">Energy_1body</span> <span class="o">+=</span> <span class="n">Econst</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">one_body_energy</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;1-body energy from EnergyEstimator&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Energy_1body</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;1-body energy (Mixed estimator)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Total energy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Total energy vs. sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-the-code-block-below-to-plot-the-difference-between-the-mixed-and-energy-estimator">
+<h3><span class="section-number">5.7.6. </span>▶️ Run the code block below to plot the difference between the mixed, and energy estimator<a class="headerlink" href="#run-the-code-block-below-to-plot-the-difference-between-the-mixed-and-energy-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now, look at the difference!</span>
+<span class="n">delta_E</span> <span class="o">=</span> <span class="n">Energy_1body</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">one_body_energy</span>
+
+<span class="c1"># plot the difference between the two energies</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">delta_E</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;1-body energy difference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta E \equiv E_\mathrm</span><span class="si">{MixedEstimator}</span><span class="s2"> - E_</span><span class="si">{EnergyEstimator}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta E_{1-body}$ vs. sample&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, the energy computed using the one-body reduced density matrix with a mixed estimator yields the exact same one-body energies as the energy estimator to very high precision.
+This is no surprise since the energy estimator is simply a specialized mixed estimator.</p>
+</section>
+<section id="your-turn-extract-the-2rdm-and-compute-the-2-body-energy">
+<h3><span class="section-number">5.7.7. </span>📝 Your Turn : Extract the 2rdm and compute the 2-body energy<a class="headerlink" href="#your-turn-extract-the-2rdm-and-compute-the-2-body-energy" title="Link to this heading">#</a></h3>
+<p>Note: You can skip this section if you chose to not compute the “twordm”
+observable above.</p>
+<p>Repeat the same exercise for the two-body energy.
+As we saw in the energy estimator section, the exchange and direct coulomb energies are printed to file separately by the energy estimator.</p>
+<p>To compute the two-body energy, you will need to measure the “twordm” observable during AFQMC, and extract and transform it.</p>
+<p>We provide code for setting up the appropriate transform functions in the code block below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span><span class="p">,</span><span class="n">eval_one_body_obs_factory</span><span class="p">,</span><span class="n">eval_two_body_obs_factory</span>
+
+<span class="n">ncv</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="s2">&quot;chol&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">cholesky_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="s2">&quot;chol&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">ncv</span><span class="p">)),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">eri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;gil,gjk-&gt;iljk&quot;</span><span class="p">,</span><span class="n">cholesky_vectors</span><span class="p">,</span><span class="n">cholesky_vectors</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">eval_two_body_energy</span> <span class="o">=</span> <span class="n">eval_two_body_obs_factory</span><span class="p">(</span>
+    <span class="n">two_body_operator</span><span class="o">=</span><span class="n">eri</span><span class="p">,</span>  <span class="c1"># 📝 YOUR TURN: Supply the correct two-body operator</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">walker_type</span>
+<span class="p">)</span>
+
+<span class="n">Energy_2body_mixed</span> <span class="o">=</span> <span class="n">extract_observable</span><span class="p">(</span>
+    <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s001.stat.h5&quot;</span><span class="p">,</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;two_rdm&quot;</span><span class="p">,</span>
+    <span class="n">ix</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">eval_two_body_energy</span><span class="p">,</span> <span class="c1"># 📝 YOUR TURN: Supply the transform function to compute the two-body energy,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">two_body_energy</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Two-body energy from energy estimator&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Energy_2body_mixed</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Two-body energy from mixed estimator&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Energy $E_</span><span class="si">{Ha}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Two-body energy vs. sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># plot the difference as well!</span>
+<span class="n">delta_E</span> <span class="o">=</span> <span class="n">Energy_2body_mixed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">two_body_energy</span>
+
+<span class="c1"># plot the difference between the two energies</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">delta_E</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;two-body energy difference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta E \equiv E_\mathrm</span><span class="si">{MixedEstimator}</span><span class="s2"> - E_</span><span class="si">{EnergyEstimator}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta E_{2-body}$ vs. sample&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once again, we see that the two body energy computed from the two-body reduced density matrix samples is the same as the two body energy from the energy estimator (after adding the exchange and direct Coulomb contributions together, of course).</p>
+</section>
+</section>
+<section id="averaging-observables">
+<h2><span class="section-number">5.8. </span>Averaging Observables<a class="headerlink" href="#averaging-observables" title="Link to this heading">#</a></h2>
+<p>Averaging observables computed using AFQMC requires some care.</p>
+<p>First, one must make sure that the data is equilibrated.</p>
+<p>Second, in AFQMC, successive samples are not independent since they depend on the recent history of each walker.
+This is known as “autocorrelation”.
+Care must be take to remove autocorrelation effects or the stochastic uncertainty will be underestimated.</p>
+<p>The former can be achieved by visualizing the observable over imaginary time, and finding the equilibration time by inspection.
+We saw this in <a class="reference internal" href="../01_hello_safire/01_hello_safire.html"><span class="doc">Hello SAFIRE</span></a>.
+afqmctools provides tools for automatically computing the auto-correlation time - i.e. the time interval at which measurements are no longer autocorrelated - and adjusting the number of effective samples accordingly.</p>
+<p>In the code cell below, we demonstrate how to use the provided tools to automatically compute averages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_observable</span>
+
+<span class="n">E1body</span> <span class="o">=</span> <span class="n">average_observable</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s001.stat.h5&quot;</span><span class="p">,</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>
+    <span class="n">eqlb</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="c1"># EXERCISE: Set this to an appropriate value based on the energy vs projection time curve above.</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">,</span>
+    <span class="n">ix</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">blocksize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">hermitize</span><span class="p">,</span><span class="n">eval_one_body_energy</span><span class="p">],</span>
+    <span class="n">remove_auto_correlation</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># you can turn this off if you prefer to remove autocorrelation yourself.</span>
+<span class="p">)</span>
+
+<span class="c1">## compare with the analyze_scalar_stats result:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="n">analyze_scalar_data</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">series_column</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="back-propagation-bp-in-safire">
+<h2><span class="section-number">5.9. </span>Back-Propagation (BP) in SAFIRE<a class="headerlink" href="#back-propagation-bp-in-safire" title="Link to this heading">#</a></h2>
+<p>Mixed estimators are biased for observables <span class="math notranslate nohighlight">\(\hat{O}\)</span> such that <span class="math notranslate nohighlight">\([\hat{O},\hat{H}] \neq 0\)</span>, which requires the use of pure estimators. The Back-Propagation (BP) algorithm is used to compute pure estimators efficiently in SAFIRE.</p>
+<section id="basic-bp-configuration">
+<h3><span class="section-number">5.9.1. </span>Basic BP Configuration<a class="headerlink" href="#basic-bp-configuration" title="Link to this heading">#</a></h3>
+<p>BP is invoked in SAFIRE by including a “back_propagation” estimator in the input file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Observables are added to the BP block in the same way as for mixed estimators.</p>
+</section>
+<section id="measurement-intervals">
+<h3><span class="section-number">5.9.2. </span>Measurement Intervals<a class="headerlink" href="#measurement-intervals" title="Link to this heading">#</a></h3>
+<p>Since BP involves an additional projection, the measurement interval controls the number of back-propagated steps.
+Just as in the execute block or a mixed estimator block, the input file includes a measurement interval “multiplier”, and the actual measurement interval, <span class="math notranslate nohighlight">\(m\)</span>, is determined as:</p>
+<div class="math notranslate nohighlight">
+\[
+m = (\textrm{measure\_interval\_multiplier}) \times (\textrm{population\_control\_interval})
+\]</div>
+</section>
+<section id="multiple-bp-lengths">
+<h3><span class="section-number">5.9.3. </span>Multiple BP Lengths<a class="headerlink" href="#multiple-bp-lengths" title="Link to this heading">#</a></h3>
+<p>SAFIRE implements the capability of running BP with multiple BP measurement lengths.
+We call each measurement with a different BP length an “average”.
+This allows the forward projection to be reused while checking for convergence in the BP length.
+To define multiple BP lengths/averages, simply provide a JSON array for measure_interval_multiplier corresponding to all of the BP lengths that you would like to use:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="equilibration-phase">
+<h3><span class="section-number">5.9.4. </span>Equilibration Phase<a class="headerlink" href="#equilibration-phase" title="Link to this heading">#</a></h3>
+<p>The BP estimator implements an equilibration phase at the beginning of the AFQMC calculation where no BP is performed.
+This is recommended since computing observables is expensive and since AFQMC needs to equilibrate before samples can meaningfully contribute to the average.
+Similarly to the measure_interval_multiplier, the equilibration time is specified as an equilibration multiplier (<code class="docutils literal notranslate"><span class="pre">&quot;equil_multiplier&quot;</span></code>) and the actual equilibration time is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{equil\_time} = (\textrm{equil\_multiplier}) \times (\textrm{population\_control\_interval})
+\]</div>
+</section>
+<section id="all-settings">
+<h3><span class="section-number">5.9.5. </span>All Settings<a class="headerlink" href="#all-settings" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>setting</b></p></th>
+<th class="head text-center"><p><b>default</b></p></th>
+<th class="head text-left"><p><b>description</b></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>        measure_interval_multiplier</b></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-left"><p>controls the number of back propagation steps which are determined as <span class="math notranslate nohighlight">\((\textrm{number of BP steps}) = (\textrm{measure\_interval\_multiplier}) \times (\textrm{population\_control\_interval})\)</span>. Can be either a single value or multiple values. If multiple values are provided, BP will be performed with each corresponding number of BP steps and observables are accumulated and saved for each distinct BP length.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b> equil_multiplier </b></p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-left"><p>The multiplier that determines the length of the equilibration phase. The equilibration phase length is computed as <span class="math notranslate nohighlight">\((\textrm{equilibration\_length}) = (\textrm{equil\_multiplier}) * (\textrm{population\_control\_inveral})\)</span> where the population control interval is defined in the execute block. During the equilibration phase, observables are not computed.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>        bp_walker_ortho_interval</b></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-left"><p>interval for performing walker orthonormalization during back-propagation (i.e. for the left-hand side Walkers)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>        path_restoration</b></p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-left"><p>If true, perform path restoration.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>        extra_path_restoration</b></p></td>
+<td class="text-center"><p>false</p></td>
+<td class="text-left"><p>If true, perform an extra path restoration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="demonstration-of-bp">
+<h3><span class="section-number">5.9.6. </span>Demonstration of BP<a class="headerlink" href="#demonstration-of-bp" title="Link to this heading">#</a></h3>
+<p>For the sake of execution time, we will compute only the one-rdm using the back-propagation estimator.
+We will find that the one-body energy computed using the BP one-rdm will <em>not</em> agree with the one computed using a mixed estimator.
+The BP-estimated one-body energy is unbiased, and represents a better estimate of the one-body energy than that provided by the mixed estimator.</p>
+</section>
+<section id="run-the-code-block-below-to-write-an-input-file-with-a-bp-estimator">
+<h3><span class="section-number">5.9.7. </span>▶️ Run the code block below to write an input file with a BP Estimator<a class="headerlink" href="#run-the-code-block-below-to-write-an-input-file-with-a-bp-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Setting up a BP calculation with multiple BP lengths</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="c1"># Create a scratch directory for BP calculations</span>
+<span class="n">scratch_dir_bp</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;bp&quot;</span>
+<span class="n">scratch_dir_bp</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Copy the Hamiltonian and wavefunction files</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span> <span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set up AFQMC parameters with back-propagation</span>
+<span class="n">execute_options_bp</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;walker_set&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;walker_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COLLINEAR&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">20000</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;path_restoration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>  <span class="c1"># Multiple BP lengths</span>
+        <span class="s2">&quot;equil_multiplier&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># Equilibration phase</span>
+        <span class="s2">&quot;onerdm&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;one_rdm&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;afqmc_bp.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;COLLINEAR&quot;</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options_bp</span><span class="p">,</span>
+    <span class="n">series</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Back-propagation input file created with the following BP parameters:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Multiple BP lengths: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="s1">&#39;measure_interval_multiplier&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Equilibration multiplier: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="s1">&#39;equil_multiplier&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Population control interval: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Actual BP lengths: </span><span class="si">{</span><span class="p">[</span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="s1">&#39;measure_interval_multiplier&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Equilibration time: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="s1">&#39;equil_multiplier&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-safire-with-bp">
+<h3><span class="section-number">5.9.8. </span>▶️ Run SAFIRE with BP<a class="headerlink" href="#run-safire-with-bp" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run AFQMC with back-propagation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running AFQMC with back-propagation estimator...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This will take longer than mixed estimators due to the additional back-propagation steps.&quot;</span><span class="p">)</span>
+
+<span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir_bp</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc_bp.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator">
+<h3><span class="section-number">5.9.9. </span>▶️ Run the code below to evaluate the one-body energy from the one-rdm, and compare with the BP estimator<a class="headerlink" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract and analyze BP results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_observable</span><span class="p">,</span> <span class="n">get_metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span>
+
+<span class="c1"># Check the metadata to understand the walker type</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">)</span>
+<span class="n">bp_metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/Observables/BackPropagated/&quot;</span><span class="p">)</span>
+
+<span class="n">walker_type</span> <span class="o">=</span> <span class="n">WALKER_TYPE</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;WalkerType&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Walker type: </span><span class="si">{</span><span class="n">walker_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># set up a transform the hermitize the one-rdm</span>
+<span class="n">hermitize</span> <span class="o">=</span> <span class="n">hermitize_factory</span><span class="p">(</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">walker_type</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract one-RDM data from all BP averages</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Extracting one-RDM data from back-propagation averages...&quot;</span><span class="p">)</span>
+
+<span class="c1"># We specified 3 BP lengths:</span>
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="n">bp_metadata</span><span class="p">[</span><span class="s2">&quot;BackPropSteps&quot;</span><span class="p">]</span>
+<span class="n">bp_onerdm_data</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">iav</span><span class="p">,</span> <span class="n">bp_length</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracting average </span><span class="si">{</span><span class="n">iav</span><span class="si">}</span><span class="s2"> (BP length = </span><span class="si">{</span><span class="n">bp_length</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">bp_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> steps)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract the one-RDM for this average</span>
+    <span class="n">onerdm_bp</span> <span class="o">=</span> <span class="n">extract_observable</span><span class="p">(</span>
+        <span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;back_propagated&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>
+        <span class="n">ix</span><span class="o">=</span><span class="n">iav</span><span class="p">,</span>  <span class="c1"># Index of the BP average</span>
+        <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">hermitize</span><span class="p">],</span>  <span class="c1"># Apply hermitization</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="n">bp_onerdm_data</span><span class="p">[</span><span class="n">iav</span><span class="p">]</span> <span class="o">=</span> <span class="n">onerdm_bp</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Shape of one-RDM data: </span><span class="si">{</span><span class="n">onerdm_bp</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Successfully extracted one-RDM data from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bp_onerdm_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> BP averages&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract and analyze BP results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_observable</span><span class="p">,</span> <span class="n">get_metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span>
+<span class="c1"># Check the metadata to understand the walker type</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">)</span>
+<span class="n">bp_metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/Observables/BackPropagated/&quot;</span><span class="p">)</span>
+
+<span class="n">walker_type</span> <span class="o">=</span> <span class="n">WALKER_TYPE</span><span class="p">[</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;WalkerType&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Walker type: </span><span class="si">{</span><span class="n">walker_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># set up a transform the hermitize the one-rdm</span>
+<span class="n">hermitize</span> <span class="o">=</span> <span class="n">hermitize_factory</span><span class="p">(</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">walker_type</span>
+<span class="p">)</span>
+
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="n">bp_metadata</span><span class="p">[</span><span class="s2">&quot;BackPropSteps&quot;</span><span class="p">]</span>
+<span class="n">naverages</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">)</span>
+<span class="n">bp_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">naverages</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+<span class="n">bp_energy_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">naverages</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">iav</span><span class="p">,</span> <span class="n">bp_length</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracting average </span><span class="si">{</span><span class="n">iav</span><span class="si">}</span><span class="s2"> (BP length = </span><span class="si">{</span><span class="n">bp_length</span><span class="si">}</span><span class="s2"> steps)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract the one-RDM for this average</span>
+    <span class="n">energy_bp</span><span class="p">,</span> <span class="n">denergy_bp</span> <span class="o">=</span> <span class="n">average_observable</span><span class="p">(</span>
+        <span class="n">scratch_dir_bp</span> <span class="o">/</span> <span class="s2">&quot;qmc.s002.stat.h5&quot;</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;back_propagated&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>
+        <span class="n">eqlb</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># equilibrated for beta = 4.0 during SAFIRE run!!</span>
+        <span class="n">ix</span><span class="o">=</span><span class="n">iav</span><span class="p">,</span>  <span class="c1"># Index of the BP average</span>
+        <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">hermitize</span><span class="p">,</span><span class="n">eval_one_body_energy</span><span class="p">],</span>  <span class="c1"># Apply hermitization</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="n">bp_energy</span><span class="p">[</span><span class="n">iav</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy_bp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Econst</span>
+    <span class="n">bp_energy_err</span><span class="p">[</span><span class="n">iav</span><span class="p">]</span> <span class="o">=</span> <span class="n">denergy_bp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="n">E_mixed</span><span class="p">,</span> <span class="n">dE_mixed</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">series_column</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">column</span> <span class="o">=</span> <span class="s2">&quot;OneBodyEnergyEstim__nume_real&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">))</span>
+
+<span class="n">bp_steps</span> <span class="o">=</span> <span class="n">bp_lengths</span> <span class="o">*</span> <span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">&#39;population_control_interval&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot reference value from mixed</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">bp_steps</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">bp_steps</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+                 <span class="n">E_mixed</span> <span class="o">-</span> <span class="n">dE_mixed</span><span class="p">,</span> <span class="n">E_mixed</span> <span class="o">+</span> <span class="n">dE_mixed</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">E_mixed</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Mixed Estimator&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot convergence</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">bp_steps</span><span class="p">,</span> <span class="n">bp_energy</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">bp_energy_err</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">capthick</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;BP Estimator&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;BP Length (steps)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Mean One-body Energy (Ha)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;BP Convergence with BP Length&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways-from-back-propagation-analysis">
+<h3><span class="section-number">5.9.10. </span>Key Takeaways from Back-Propagation Analysis<a class="headerlink" href="#key-takeaways-from-back-propagation-analysis" title="Link to this heading">#</a></h3>
+<p><strong>When to Use BP vs Mixed Estimators:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Mixed Estimators</strong>: Use for observables that commute with the Hamiltonian (like energy). They are computationally cheaper and provide unbiased estimates.</p></li>
+<li><p><strong>Back-Propagation</strong>: Required for observables that do not commute with the Hamiltonian (like the one-body reduced density matrix). BP provides pure estimators that are unbiased.</p></li>
+</ol>
+<p><strong>Important BP Configuration Points:</strong></p>
+<ul class="simple">
+<li><p><strong>Equilibration</strong>: Always include an equilibration phase (<code class="docutils literal notranslate"><span class="pre">equil_multiplier</span></code>) to allow AFQMC to reach equilibrium before BP measurements begin.</p></li>
+<li><p><strong>Multiple BP Lengths</strong>: Use multiple BP lengths to check convergence. Longer BP lengths generally provide more accurate results but are more expensive. However, BP is unstable for long back propagation times. This is reflected in the large stochastic uncertainty for large BP length.</p></li>
+<li><p><strong>Computational Cost</strong>: BP calculations are significantly more expensive than mixed estimators due to the additional back-propagation steps.</p></li>
+</ul>
+<p><strong>Convergence Analysis:</strong></p>
+<p>The plots above show how the BP estimator converges with increasing BP length. For observables that don’t commute with the Hamiltonian, you should see:</p>
+<ul class="simple">
+<li><p>Different results between mixed and BP estimators (showing the bias in mixed estimators)</p></li>
+<li><p>Dependence of BP estimators on back-propagation length. It is important to note that BP does not necessarily converge and is unstable for large total imaginary time.</p></li>
+</ul>
+<p>This demonstrates why BP is essential for computing unbiased estimates of observables like charge densities, spin densities, and other quantities derived from the one-body reduced density matrix.</p>
+</section>
+</section>
+<section id="summary">
+<h2><span class="section-number">5.10. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, you were acquainted with how to compute general observables with SAFIRE.</p>
+</section>
+<section id="what-you-learned">
+<h2><span class="section-number">5.11. </span>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What a mixed estimator is and when to use one to compute an observable</p></li>
+<li><p>What a back-propagated estimator is and when to use one to compute an observable</p></li>
+<li><p>How to compute observables in post-processing with afqmctools</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Writing a Trial Wavefunction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../solids/overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SAFIRE for ab initio solids</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">5.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formal-background">5.3. Formal Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-cell-below-to-setup-the-tutorial">5.3.1. ▶️ Run the cell below to setup the tutorial</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-the-test-system">5.4. Setup the Test System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-perform-all-of-the-steps-above">5.4.1. ▶️ Run the code block below to perform all of the steps above</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-estimator">5.5. The “Energy” Estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-settings">5.5.1. Most Common Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-common-settings">5.5.2. Less Common Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-write-an-input-file">5.5.3. ▶️ Run the code block below to write an input file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block">5.5.4. 📝 Your Turn : Run SAFIRE with an explicit energy estimator block</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-and-analyzing-the-afqmc-energy">5.6. Extracting and Analyzing the AFQMC energy.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-extract-and-plot-energy-samples">5.6.1. ▶️ Run the code block below to extract and plot energy samples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-observables-using-a-mixed-estimator">5.7. Computing Observables using a “Mixed” Estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-observables-to-measure">5.7.1. Specifying Observables to Measure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pedagogical-demonstration">5.7.2. Pedagogical Demonstration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-write-an-input-file-with-mixed-estimator">5.7.3. ▶️ Run the code block below to write an input file with mixed estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-extraction-and-analysis">5.7.4. Data Extraction and Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator">5.7.5. ▶️ Run the code below to evaluate the one-body energy from the one-rdm, and compare with the energy estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-plot-the-difference-between-the-mixed-and-energy-estimator">5.7.6. ▶️ Run the code block below to plot the difference between the mixed, and energy estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-extract-the-2rdm-and-compute-the-2-body-energy">5.7.7. 📝 Your Turn : Extract the 2rdm and compute the 2-body energy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-observables">5.8. Averaging Observables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-in-safire">5.9. Back-Propagation (BP) in SAFIRE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-bp-configuration">5.9.1. Basic BP Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-intervals">5.9.2. Measurement Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-bp-lengths">5.9.3. Multiple BP Lengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibration-phase">5.9.4. Equilibration Phase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-settings">5.9.5. All Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstration-of-bp">5.9.6. Demonstration of BP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-write-an-input-file-with-a-bp-estimator">5.9.7. ▶️ Run the code block below to write an input file with a BP Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-safire-with-bp">5.9.8. ▶️ Run SAFIRE with BP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator">5.9.9. ▶️ Run the code below to evaluate the one-body energy from the one-rdm, and compare with the BP estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways-from-back-propagation-analysis">5.9.10. Key Takeaways from Back-Propagation Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">5.10. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">5.11. What you learned</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/tutorials/molecules/05_computing_observables/05_computing_observables.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

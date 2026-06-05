@@ -1,0 +1,1293 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Understanding the input file &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/02_understanding_the_input_file/02_understanding_the_input_file';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3. Lattice class tutorial" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html" />
+    <link rel="prev" title="1. Hello SAFIRE" href="../01_hello_safire/01_hello_safire.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for lattice models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>Understanding the input file</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-the-input-file">
+<h1><span class="section-number">2. </span>Understanding the input file<a class="headerlink" href="#understanding-the-input-file" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Understand how to control SAFIRE via the input file.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">2.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The structure of the json input file for SAFIRE</p></li>
+<li><p>The minimal amount of information needed to run an AFQMC calculation using SAFIRE</p></li>
+<li><p>The most common parameters that you will interact with as a user</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2><span class="section-number">2.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>SAFIRE uses a json-based input file with modular input blocks to control AFQMC calculations.
+The input file is organized into several hierarchical input blocks.
+Certain types of block may be defined at different levels of the
+hierarchy.
+Additionally, some types of block may be defined multiple times.
+We will begin with a brief explanation of how the blocks relate to each other, followed by an explanation
+of each individual input block type.
+We will explore the most common settings in each input block as well.</p>
+</section>
+<section id="input-block-hierarchy">
+<h2><span class="section-number">2.3. </span>Input block hierarchy<a class="headerlink" href="#input-block-hierarchy" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_01_all.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_01_all.png" width="800">
+</div>
+<p>The name of the highest level block tells SAFIRE which “driver” to run.
+In this case, we are running with the “afqmc” driver.</p>
+<p>Below the “afqmc” block are the “project” block and
+one or more “execute” block(s).
+We saw the “project” block in the previous tutorial,
+where we used it to set the names of the output files via the “id” and “series” parameters.
+As a reminder, the output files are named:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> for scalar output data (energy, overlap, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> for non-scalar output data (one-body reduced density matrix, etc.)</p></li>
+</ul>
+<p>“execute” block(s) define an actual calculation.
+They consist of both AFQMC runtime parameters and references to the following five low-level blocks:</p>
+<ol class="arabic simple">
+<li><p>wavefunction - <strong>always required!</strong></p></li>
+<li><p>hamiltonian</p></li>
+<li><p>walker_set</p></li>
+<li><p>projector</p></li>
+<li><p>estimator</p></li>
+</ol>
+<p>The wavefunction, hamiltonian, and walker_set blocks can be defined either directly within
+an execute block, by providing a json input block,
+or defined in the “afqmc” block and referenced by “name” within one
+or more “execute” blocks.
+In the later case, these blocks must be named by setting the
+“name” parameter in the corresponding input block.</p>
+<p>We will explain each type of block in more detail below
+including the most common settings that you will use.
+For completeness, we will describe additional settings.
+First, let’s look at a sample input file for a typical calculation.</p>
+</section>
+<section id="sample-input-file-typical-calculation">
+<h2><span class="section-number">2.4. </span>Sample input file - typical calculation<a class="headerlink" href="#sample-input-file-typical-calculation" title="Link to this heading">#</a></h2>
+<p>In a typical calculation. you will only need to set a few parameters.
+In the input file below, we include the default value of each common parameter where possible.
+We use  ellipses ( <code class="docutils literal notranslate"><span class="pre">...</span></code>) for the “estimator” input block for visual simplicity.
+This input block will be explored in more detail in later tutorials.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;walker_set&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;walker_type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLOSED&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;files/input.h5&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;population_control_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;estimator&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="cm">/* ... */</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that we did not define a “hamiltonian” block at all.
+In this case, SAFIRE will look for the Hamiltonian in the same
+file as the trial wavefunction.
+We defined the “walker_set” block within the “execute” block.
+We could have defined it within the “afqmc” block and referenced it by “name”
+within the execute block instead.
+This is only necessary if
+you will use multiple execute blocks and want to use the same walker set in both.
+For example, you may want to continue a
+second AFQMC calculation starting from the final walkers of the
+first AFQMC calculation.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+  Essentially all parameters are able to default to some value except
+  for the "filename" parameter in the "wavefunction" block. This must always be
+  set to the name of the HDF5 file containing the trial wavefunction.
+</div>
+<section id="minimal-information-needed-to-run">
+<h3><span class="section-number">2.4.1. </span>Minimal information needed to run.<a class="headerlink" href="#minimal-information-needed-to-run" title="Link to this heading">#</a></h3>
+<p>The bare minimum input blocks to run is</p>
+<ol class="arabic simple">
+<li><p>at least one execute block</p></li>
+<li><p>at least wavefunction block with filename set to the HDF5 file containing a trial wavefunction (assuming the Hamiltonian is in the same HDF5 file)</p></li>
+</ol>
+<p>Usually, one will also often provide:</p>
+<ol class="arabic simple">
+<li><p>a “walker_set” block</p></li>
+<li><p>an “estimator” block (for any observables beside the energy)</p></li>
+</ol>
+</section>
+</section>
+<section id="the-project-block">
+<h2><span class="section-number">2.5. </span>The “project” block<a class="headerlink" href="#the-project-block" title="Link to this heading">#</a></h2>
+<p>The project block is used to set some project-level information.
+For example, “id” and “series” are used to make the prefix of output
+files as <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;project&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_project_name&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;series&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ncores&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="most-common-settings">
+<h3><span class="section-number">2.5.1. </span>Most Common Settings<a class="headerlink" href="#most-common-settings" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>id</b></p></td>
+<td><p>“afqmc”</p></td>
+<td class="text-left"><p>The base name for the <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> files</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>series</b></p></td>
+<td><p>0</p></td>
+<td class="text-left"><p>The series number for the <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> files. The filename will print as width three, padded with 0s if needed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="less-common-settings">
+<h3><span class="section-number">2.5.2. </span>Less Common Settings<a class="headerlink" href="#less-common-settings" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>ncores</b></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td class="text-left"><p>Set the number of cores to use per MPI task</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="the-execute-block">
+<h2><span class="section-number">2.6. </span>The “execute” block<a class="headerlink" href="#the-execute-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_02_execute.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_02_execute.png" width="800">
+</div>
+<p>The execute block is used to define an AFQMC calculation.
+As described earlier, it needs a wavefunction, walker_set, hamiltonian,
+projector, and estimator.
+Of these, <strong>the wavefunction must always be defined</strong> while the others have default values.
+The blocks can either be defined within the “execute” block, or defined
+outside and referenced by name.</p>
+<p>In addition to these blocks, the “execute” block is used to define several AFQMC methodological parameters.</p>
+<p>Here is a sample execute block with options exposed and default values where appropriate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;execute&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;hamiltonian&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;walker_set&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;estimator&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;projector&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;population_control_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;checkpoint_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hdf_write_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hdf_read_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3><span class="section-number">2.6.1. </span>Most Common Settings<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>timestep</b></p></td>
+<td><p>0.01</p></td>
+<td class="text-left"><p>The trotter step size in units of inverse energy (depending on the Hamiltonian’s units)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>steps</b></p></td>
+<td><p>1</p></td>
+<td class="text-left"><p>The number of imaginary time steps to take</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>n_walkers_per_mpi_task</b></p></td>
+<td><p>10</p></td>
+<td class="text-left"><p>number of Slater determinant random walkers to use per MPI task</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>measure_interval_multiplier</b></p></td>
+<td><p>20</p></td>
+<td class="text-left"><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>population_control_interval</b></p></td>
+<td><p>10</p></td>
+<td class="text-left"><p>Interval to perform population control at in units of steps.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>walker_ortho_interval</b></p></td>
+<td><p>10</p></td>
+<td class="text-left"><p>Interval to stabilize walkers at via a modified Gram-Schmidt procedure in units of steps</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="math notranslate nohighlight">
+\[
+measure\_interval = measure\_interval\_multiplier \times population\_control\_interval
+\]</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">2.6.2. </span>Less Common Settings<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>seed</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>Random seed for auxiliary fields. A seed is generated if not provided.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>checkpoint_interval </b></p></td>
+<td><p>-1</p></td>
+<td class="text-left"><p>Interval at which to write to checkpoint file in units of steps. An interval less than 0 will result in no checkpointing</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>hdf_write_file</b></p></td>
+<td><p>“”</p></td>
+<td class="text-left"><p>Name of checkpoint HDF5 file to write. No checkpoint is written if the name is “”</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>hdf_read_file</b></p></td>
+<td><p>“”</p></td>
+<td class="text-left"><p>Name of checkpoint HDF5 file to restart from. No checkpoint is read if the name is “”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="the-wavefunction-block">
+<h2><span class="section-number">2.7. </span>The “wavefunction” block<a class="headerlink" href="#the-wavefunction-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_03_wavefunction.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_03_wavefunction.png" width="800">
+</div>
+<p>The wavefunction block is the only of the 5 low-level blocks
+that must always be specified.
+The wavefunction block is used to point to the input HDF5 file containing
+the desired trial wavefunction via the “filename” keyword.
+If no hamiltonian block is provided, SAFIRE assumes that this HDF5 file
+also contains the Hamiltonian.</p>
+<p>Here is a sample wavefunction block with options exposed and default values where appropriate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;wavefunction&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_wavefunction&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ndets_to_read&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id3">
+<h3><span class="section-number">2.7.1. </span>Most Common Settings<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>filename</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p><strong>Required</strong> The name of the file (possibly including a path) to the HDF5 file containing the trial wavefunction, and possibly containing the Hamiltonian as well</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>The name to assign to the current wavefunction block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>ndets_to_read</b></p></td>
+<td><p>-1</p></td>
+<td class="text-left"><p>The number of Slater determinants to read and from the HDF5 file and use in the trial wavefunction. If less than 0, all Slater determinants in the HDF5 file will be read and used. Must be less than or equal to the number of Slater determinants in the input HDF5 file</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="the-walker-set-block">
+<h2><span class="section-number">2.8. </span>The “walker_set” block<a class="headerlink" href="#the-walker-set-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_04_walker.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_04_walker.png" width="800">
+</div>
+<p>The walker_set block is used to set general properties of the random walkers.
+The most common setting that you will change is the “walker_type” keyword
+which allows you to specify the type of walker to use.
+The possible walker types are as follows:</p>
+<p><b>Closed (i.e. RHF-like) </b></p>
+<div class="math notranslate nohighlight">
+\[
+| \Phi_k \rangle = | \Phi^\uparrow \rangle \otimes | \Phi^{\downarrow = \uparrow} \rangle,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\downarrow = \uparrow\)</span> indicates that the <span class="math notranslate nohighlight">\(\beta\)</span>-sector is identical to the
+<span class="math notranslate nohighlight">\(\alpha\)</span>-sector.</p>
+<p><b>Collinear (i.e. UHF-like) </b></p>
+<div class="math notranslate nohighlight">
+\[
+| \Phi_k \rangle = | \Phi^\uparrow \rangle \otimes | \Phi^\downarrow \rangle
+\]</div>
+<p><b>Noncollinear (i.e. GHF-like) </b></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+| \Phi_k \rangle = \begin{bmatrix}
+\Phi^{\uparrow \uparrow} &amp; \Phi^{\uparrow \downarrow} \\
+\Phi^{\downarrow \uparrow} &amp; \Phi^{\downarrow \downarrow} \\
+\end{bmatrix}
+\end{split}\]</div>
+<p><b>FullyPolarized (similar to Collinear) </b></p>
+<p>similar to Collinear/UHF, but all electrons are in the <span class="math notranslate nohighlight">\(\alpha\)</span>-sector.</p>
+<div class="math notranslate nohighlight">
+\[
+| \Phi_k \rangle = | \Phi^\uparrow \rangle
+\]</div>
+<p>Here is a sample walker_set block with options exposed and default values where appropriate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;walker_set&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_walker_name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;load_balance_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;async&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pop_control_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pair&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;min_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.05&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+    Setting the "name" parameter allows the current walker_set block to be reference in
+    multiple execute blocks / calculations.
+    This allows one to perform two successive AFQMC calculations which share the same
+    walkers.
+</div>
+<section id="id4">
+<h3><span class="section-number">2.8.1. </span>Most Common Settings<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>walker_type</b></p></td>
+<td><p>Collinear</p></td>
+<td class="text-left"><p>The type of walker to use in AFQMC. Options are Closed, Collinear, Noncollinear, Fullypolarized</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>The name to assign to the current walker_set block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">2.8.2. </span>Less Common Settings<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>load_balance_type</b></p></td>
+<td><p>“async”</p></td>
+<td class="text-left"><p>Choose which load balancing algorithm to use, Choices are “async” for the asynchronous non-block swap load balancing algorithm and “simple” for a blocking (1-1) swap load balancing algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>pop_control_type</b></p></td>
+<td><p>“pair”</p></td>
+<td class="text-left"><p>choose population control algorithm to use. Choices are “pair”, AND “serial_comb”. The “pair” algorithm uses paired walker branching. The “serial_comb” algorithm uses the comb method from Booth, Gubernatis, PRE 2009.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b>min_weight</b></p></td>
+<td><p>0.05</p></td>
+<td class="text-left"><p>Minimum walker weight for population control</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>max_weight</b></p></td>
+<td><p>4</p></td>
+<td class="text-left"><p>Maximum walker weight for population control</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="the-hamiltonian-block">
+<h2><span class="section-number">2.9. </span>The “hamiltonian” block<a class="headerlink" href="#the-hamiltonian-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_05_hamiltonian.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_05_hamiltonian.png" width="800">
+</div>
+<p>The hamiltonian block is used to provide settings related to the Hamiltonian.
+This mostly entails pointing to the input HDF5 file containing
+the desired hamiltonian via the “filename” keyword.</p>
+<p>Here is a sample hamiltonian input block with
+options exposed and default values where appropriate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;hamiltonian&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_hamiltonian&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afqmc.h5&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id6">
+<h3><span class="section-number">2.9.1. </span>Most Common Settings<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>filename</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>The name of the file (possibly including a path) to the HDF5 file containing the Hamiltonian</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>The name to assign to the current hamiltonian block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="the-projector-block">
+<h2><span class="section-number">2.10. </span>The “projector” block<a class="headerlink" href="#the-projector-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_06_propagator.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_06_propagator.png" width="800">
+</div>
+<p>The projector block is used to set properties of the AFQMC projector.
+A typical user will not need to interact with this input block;
+however, we include it here for completeness.</p>
+<p>See the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/input_description_afqmc.html">input file description</a> of the User manual for more information.</p>
+</section>
+<section id="the-estimator-block">
+<h2><span class="section-number">2.11. </span>The “estimator” block<a class="headerlink" href="#the-estimator-block" title="Link to this heading">#</a></h2>
+<!--
+<div>
+<img src="./figs/input_file_07_estimator.png" width="800"/>
+</div>
+-->
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/02_input_file/input_file_07_estimator.png" width="800">
+</div>
+<p>The estimator block is used to specify which
+estimator type(s) to use during a calculation
+as well as which observables to compute.
+This is a complicated topic and we devote
+a later tutorial to Estimators in general,
+and yet another tutorial to the back propagation estimator.</p>
+<p>For now, we will discuss a relatively simple estimator, the Energy estimator,
+in order to give you a sense of how they work.</p>
+<p>Here is a sample input block for the energy estimator with
+options exposed and default values where appropriate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;print_components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;print_sign&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;equil&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;skip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>It it important to note that the “name” parameter works very differently in the “estimator” blocks
+than in “wavefunction”, “walker_set”, and “hamiltonian”.</strong>
+In the later cases, “name” is used as an identifier to refer to blocks within a “execute” block.
+For estimators, “name” is used to define the type of estimator being used.
+Valid names include “energy”, “mixed”, and “back_propagated”.</p>
+<section id="estimator-types">
+<h3><span class="section-number">2.11.1. </span>Estimator types<a class="headerlink" href="#estimator-types" title="Link to this heading">#</a></h3>
+<p>The estimator type is selected using the “name” parameter.
+The available “name” / types are:</p>
+<ul class="simple">
+<li><p><strong>“energy”</strong> : this is a specialized mixed-estimator which specifically evaluates the energy. It also provides some granular control over what details of the energy are printed. For example, you can print the 1-body, exchange, and direct Coulomb interaction energies, in addition to the total energy, by setting <code class="docutils literal notranslate"><span class="pre">&quot;print_components&quot;</span> <span class="pre">:</span> <span class="pre">true</span></code> within an energy estimator input block.</p></li>
+<li><p><strong>“mixed”</strong> : This adds a generic mixed estimator where the user may select which observables to compute. For observable, <span class="math notranslate nohighlight">\(\hat{O}\)</span>. the mixed estimator is given by
+<div class="math notranslate nohighlight">
+\[
+\langle \hat{O} ⟩_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}
+\]</div>
+
+where <span class="math notranslate nohighlight">\(n\)</span> is the projection step index,
+<span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are Slater determinant random walkers with weight <span class="math notranslate nohighlight">\(W_{n,k}\)</span> (from importance sampling),
+and <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction.</p></li>
+<li><p><strong>“back-propagated”</strong> : Similar to the “mixed” estimator, but the back-propagation algorithm is used to evaluate user-specified observables. The back-propagated estimator has the form,
+<div class="math notranslate nohighlight">
+\[
+\langle O_\mathrm{BP} \rangle = \frac{1}{\sum_k W_{n+m,k}} \sum_k W_{n+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{n,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{n,k}\rangle}
+\]</div>
+
+where <span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
+and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,
+<div class="math notranslate nohighlight">
+\[
+| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{n,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{n+m-1,k} ) | \Psi_\mathrm{T} \rangle.
+\]</div>
+
+The index <span class="math notranslate nohighlight">\(n\)</span> corresponds to the current forward projection step,
+and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.</p></li>
+</ul>
+</section>
+<section id="observables">
+<h3><span class="section-number">2.11.2. </span>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h3>
+<p>For the “mixed” and “back-propagated” estimators, specific observables are selected by defining the corresponding input block within the desired estimator block.
+For example, one can define a mixed estimator which computes the one-body reduces density matrix as</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_onerdm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3><span class="section-number">2.11.3. </span>Most Common Settings<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
+<th class="head"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p><b>name</b></p></td>
+<td><p>n/a</p></td>
+<td class="text-left"><p>The type of estimator to use. Choices are  “energy”, “mixed”, and “back_propagated” (see brief descriptions above)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p><b> print_components </b></p></td>
+<td><p>false</p></td>
+<td class="text-left"><p>(energy estimator) If true, print the one-body, direct Coulomb, and exchange energy components to the *.scalar.dat file in addition to the total energy.</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p><b> equil </b></p></td>
+<td><p>0</p></td>
+<td class="text-left"><p>The number of initial steps to skip (i.e. the size of the Equilibration phase)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="some-input-file-recipes">
+<h2><span class="section-number">2.12. </span>Some input file recipes<a class="headerlink" href="#some-input-file-recipes" title="Link to this heading">#</a></h2>
+<p>While there are many possible ways to set up an input file,
+some structures will come up more often than others.
+The <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/examples/02_running_afqmc/04_input_file_recipes/readme.html">User manual</a>
+includes
+several input file “recipes” / templates that you can use as a starting point for your calculations.
+We recommend taking a look at them to complete the information provided here.</p>
+</section>
+<section id="summary">
+<h2><span class="section-number">2.13. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, you learned</p>
+<ol class="arabic simple">
+<li><p>The structure of the json input file for SAFIRE</p></li>
+<li><p>The minimal amount of information needed to run an AFQMC calculation using SAFIRE</p></li>
+<li><p>The most common parameters that you will interact with as a user</p></li>
+</ol>
+<p>See the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/input_description_afqmc.html">input file description</a> of the User manual for more information on the input file.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../01_hello_safire/01_hello_safire.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Hello SAFIRE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Lattice class tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">2.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">2.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-block-hierarchy">2.3. Input block hierarchy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-input-file-typical-calculation">2.4. Sample input file - typical calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-information-needed-to-run">2.4.1. Minimal information needed to run.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-project-block">2.5. The “project” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-settings">2.5.1. Most Common Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-common-settings">2.5.2. Less Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execute-block">2.6. The “execute” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.6.1. Most Common Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.6.2. Less Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wavefunction-block">2.7. The “wavefunction” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.7.1. Most Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-walker-set-block">2.8. The “walker_set” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.8.1. Most Common Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.8.2. Less Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-block">2.9. The “hamiltonian” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.9.1. Most Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-projector-block">2.10. The “projector” block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-estimator-block">2.11. The “estimator” block</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimator-types">2.11.1. Estimator types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">2.11.2. Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.11.3. Most Common Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-input-file-recipes">2.12. Some input file recipes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">2.13. Summary</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/tutorials/models/02_understanding_the_input_file/02_understanding_the_input_file.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

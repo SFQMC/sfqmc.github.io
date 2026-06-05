@@ -1,0 +1,1301 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Building Lattice Model Hamiltonians Tutorial &#8212; SAFIRE 0.1.0-alpha documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="5. The Hamiltonian Builder" href="../05_hamiltonian_builder/05_hamiltonian_builder.html" />
+    <link rel="prev" title="3. Lattice class tutorial" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools Python package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for lattice models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>Building Lattice Model Hamiltonians Tutorial</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="building-lattice-model-hamiltonians-tutorial">
+<h1><span class="section-number">4. </span>Building Lattice Model Hamiltonians Tutorial<a class="headerlink" href="#building-lattice-model-hamiltonians-tutorial" title="Link to this heading">#</a></h1>
+<p>SAFIRE can handle model Hamiltonians of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \hat{H}_t + \hat{H}_U + \hat{H}_J,
+\]</div>
+<p>where
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_t = \sum_{\mu\nu,\sigma \sigma'}t^{\sigma \sigma'}_{\mu\nu}\hat{c}^\dagger_{\mu\sigma}\hat{c}_{\nu\sigma'},
+\]</div>
+</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_U =  \sum_{\mu} U_i \hat{n}_{\mu\uparrow} \hat{n}_{\mu\downarrow}
++ \sum_{\mu&lt;\nu} U_{\mu\nu}^1 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\downarrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\uparrow} )
++ \sum_{\mu&lt;\nu} U_{\mu\nu}^2 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\uparrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\downarrow} ),
+\]</div>
+<p>and,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_J = \sum_{\mu&lt;\nu} J_{\mu\nu} (
+     \hat{c}^\dagger_{\mu\uparrow}\hat{c}^\dagger_{\nu\downarrow}\hat{c}_{\mu\downarrow}\hat{c}_{\nu\uparrow}
+     +\hat{c}^\dagger_{\mu\uparrow}\hat{c}^\dagger_{\mu\downarrow}\hat{c}_{\nu\downarrow}\hat{c}_{\nu\uparrow}
+     +\hat{c}^\dagger_{\nu\uparrow}\hat{c}^\dagger_{\mu\downarrow}\hat{c}_{\nu\downarrow}\hat{c}_{\mu\uparrow}
+     +\hat{c}^\dagger_{\nu\uparrow}\hat{c}^\dagger_{\nu\downarrow}\hat{c}_{\mu\downarrow}\hat{c}_{\mu\uparrow}
+     ).
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mu\)</span> / <span class="math notranslate nohighlight">\(\nu\)</span> are compound indices, <span class="math notranslate nohighlight">\(\mu = (i,p,m)\)</span> / <span class="math notranslate nohighlight">\(\mu = (j,q,n)\)</span>, that include the lattice site index, (<span class="math notranslate nohighlight">\(i\)</span> / <span class="math notranslate nohighlight">\(j\)</span>), sublattice, (<span class="math notranslate nohighlight">\(p\)</span> / <span class="math notranslate nohighlight">\(q\)</span>) and band (<span class="math notranslate nohighlight">\(m\)</span> / <span class="math notranslate nohighlight">\(n\)</span>) indices.
+This is known as the Hubbard-Kanamori Hamiltonian.
+Many standard model Hamiltonians can be written in this language including the standard Hubbard model,
+extended Hubbard with nearest-neighbor <span class="math notranslate nohighlight">\(V\)</span>, etc.
+SAFIRE is agnostic to the details of the compound indices.
+It simply accepts Hamiltonian “components” which are interpreted as above.
+This provides great flexibility in specifying Hamiltonians, however care must be taken outside of SAFIRE to ensure that consistent index conventions are used.</p>
+<p>afqmctools provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
+on a variety of lattices, using consistent conventions for indexing.
+The framework consists of a Lattice class which is responsible for geometry (see <a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Lattice class tutorial</span></a>),
+a Hamiltonian builder which is responsible for generating specific Hamiltonian terms on demand given a specific Lattice instance,
+and a Hamiltonian “Director” which is responsible for choosing which build steps to perform based on
+a set of input Hamiltonian parameters.
+Each component of the framework can be used directly; however
+the Director class represents the highest-level interface of the lattice Hamiltonian framework and
+can manage the underlying Lattice instance and Builder instance.
+Users who want direct control over the Hamiltonian build steps can directly
+use the Hamiltonian “Builder”. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for
+more detail.
+It is recommended to use the Director whenever possible.</p>
+<div>
+<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/models/00_overview/HamilDirectorSystem.png" width="1000">
+</div>
+<p><b>In this tutorial, we focus on building Hamiltonian terms via the Hamiltonian “Director”.</b>
+We will explore the possible input parameters and their respective meanings/conventions.</p>
+<section id="setup-run-me">
+<h2><span class="section-number">4.1. </span>▶️ Setup : Run me<a class="headerlink" href="#setup-run-me" title="Link to this heading">#</a></h2>
+<p>Run the cell below to setup a scratch directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup scratch dir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hamiltonian-director-tutorial">
+<h2><span class="section-number">4.2. </span>Hamiltonian Director Tutorial<a class="headerlink" href="#hamiltonian-director-tutorial" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> Python package provides a framework for generating lattice model Hamiltonians.
+The Hamiltonian Director is the highest-level interface to this framework.
+It may be invoked as a command line tool using an input file, or a directly within a Python script.
+We will briefly demonstrate the command line tool, but we will focus on using the Director within a Python script for most of this tutorial.</p>
+<p>The Hamiltonian Director is meant to handle building Hamiltonians which can be expressed in terms of a few simple parameters on relatively simple lattices.
+While SAFIRE supports any combination of lattice, sublattice, and band degrees-of-freedom in the Hamiltonian, it is not always feasible to map such general models onto a few simple parameters.
+For these cases, we provide lower-level classes to assist as much as possible. See <a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Lattice class tutorial</span></a> for example.
+For example, the Hubbard model only needs a single parameter, <span class="math notranslate nohighlight">\(U/t\)</span>, and a lattice / boundary conditions in order to be fully specified.
+More general Hamiltonians can also be built using the Director; however, it may be useful to some users to work directly with the Lattice and Hamiltonian Builder in a Python script. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for more advance uses.</p>
+<p>In this tutorial, we will cover how to request specific Hamiltonian terms from the Hamiltonian Director.
+We will also cover the details of the input conventions for each of the terms needed to build these Hamiltonians.</p>
+</section>
+<section id="invoking-the-hamiltonian-director-via-the-cli">
+<h2><span class="section-number">4.3. </span>Invoking the Hamiltonian Director via the CLI<a class="headerlink" href="#invoking-the-hamiltonian-director-via-the-cli" title="Link to this heading">#</a></h2>
+<p>In addition to the ability to invoke the Hamiltonian director directly within a Python script, afqmctools provides a command line tool that invokes the Hamiltonian director.
+If you installed <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> using the official instructions, you can run the following to see possible options</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make_model_ham<span class="w"> </span>--help
+
+usage:<span class="w"> </span>make_model_ham<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--input<span class="w"> </span>input<span class="o">]</span><span class="w"> </span><span class="o">[</span>--output<span class="w"> </span>outfile<span class="o">]</span><span class="w"> </span><span class="o">[</span>--free-elec<span class="o">]</span><span class="w"> </span><span class="o">[</span>--slater-type<span class="w"> </span><span class="o">{</span>closed,collinear,noncollinear<span class="o">}]</span><span class="w"> </span><span class="o">[</span>--plotlat<span class="o">]</span><span class="w"> </span><span class="o">[</span>--plot1b<span class="o">]</span><span class="w"> </span><span class="o">[</span>--plot2b<span class="o">]</span><span class="w"> </span><span class="o">[</span>--saveplots<span class="o">]</span><span class="w"> </span><span class="o">[</span>--pair-corr<span class="o">]</span><span class="w"> </span><span class="o">[</span>--hubbardU<span class="w"> </span>HUBBARDU<span class="o">]</span>
+
+options:
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+<span class="w">  </span>--input<span class="w"> </span>input,<span class="w"> </span>-i<span class="w"> </span>input
+<span class="w">                        </span>Input<span class="w"> </span>file<span class="w"> </span>containing<span class="w"> </span>Hamiltonan<span class="w"> </span>params<span class="w"> </span><span class="o">(</span>toml<span class="o">)</span>
+<span class="w">  </span>--output<span class="w"> </span>outfile,<span class="w"> </span>-o<span class="w"> </span>outfile
+<span class="w">                        </span>Name<span class="w"> </span>of<span class="w"> </span>HDF5<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>model<span class="w"> </span>Hamiltonian<span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>--free-elec<span class="w">           </span>Save<span class="w"> </span>free-electron<span class="w"> </span>wavefunction<span class="w"> </span>as<span class="w"> </span>well
+<span class="w">  </span>--slater-type<span class="w"> </span><span class="o">{</span>closed,collinear,noncollinear<span class="o">}</span>
+<span class="w">                        </span><span class="nb">type</span><span class="w"> </span>of<span class="w"> </span>free-electron<span class="w"> </span>Slater<span class="w"> </span>determinant<span class="w"> </span><span class="o">(</span>closed,collinear,noncollinear<span class="o">)</span>
+<span class="w">  </span>--plotlat,<span class="w"> </span>-pl<span class="w">        </span>plot<span class="w"> </span>the<span class="w"> </span>lattice
+<span class="w">  </span>--plot1b<span class="w">              </span>plot<span class="w"> </span>the<span class="w"> </span><span class="m">1</span>-body<span class="w"> </span>Hamiltonian
+<span class="w">  </span>--plot2b<span class="w">              </span>plot<span class="w"> </span>the<span class="w"> </span><span class="m">2</span>-body<span class="w"> </span>Hamiltonian
+<span class="w">  </span>--saveplots,<span class="w"> </span>-sp<span class="w">      </span>save<span class="w"> </span>plots<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span>displaying<span class="w"> </span><span class="o">(</span>useful<span class="w"> </span><span class="k">for</span><span class="w"> </span>remote<span class="w"> </span>connections<span class="o">)</span>
+<span class="w">  </span>--pair-corr,<span class="w"> </span>-pc<span class="w">      </span>Add<span class="w"> </span>pair-correlators<span class="w"> </span>to<span class="w"> </span>AFQMC<span class="w"> </span>input<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>s,+x,-x,+y,-y<span class="o">)</span>
+<span class="w">  </span>--hubbardU<span class="w"> </span>HUBBARDU,<span class="w"> </span>-U<span class="w"> </span>HUBBARDU
+<span class="w">                        </span>Hubbard<span class="w"> </span>U,<span class="w"> </span><span class="k">if</span><span class="w"> </span>given<span class="w"> </span>and<span class="w"> </span><span class="s1">&#39;--free-elec&#39;</span><span class="w"> </span>is<span class="w"> </span>set,<span class="w"> </span>the<span class="w"> </span>hubbard<span class="w"> </span>U<span class="w"> </span>energy<span class="w"> </span>is<span class="w"> </span>evaluated<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>free-electron<span class="w"> </span>wavefunction<span class="w"> </span><span class="o">(</span>Note:<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>only<span class="w"> </span><span class="k">for</span><span class="w"> </span>reference<span class="w"> </span>-<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>effect<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>wavefunction!<span class="o">)</span>
+</pre></div>
+</div>
+<p>The primary option that we are interested in here is <code class="docutils literal notranslate"><span class="pre">-i</span></code> which allows an input file (in .toml format) containing Hamiltonian parameters to be specified.
+The parameter input conventions are the same whether we use the <code class="docutils literal notranslate"><span class="pre">make_model_ham</span></code> CLI tool, or use the Hamiltonian Director within a Python script.</p>
+<p>Here is a sample input file which will generate a Hubbard model with nearest-neighbor hopping, on a 4x4 square lattice with periodic boundary conditions.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[hamiltonian]</span>
+<span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="n">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0</span>
+
+<span class="k">[lattice]</span>
+<span class="n">L1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="n">L2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="n">boundary1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PBC&quot;</span>
+<span class="n">boundary2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PBC&quot;</span>
+</pre></div>
+</div>
+<p>Notice that the Hamiltonian parameters and the lattice parameters are separate.
+We can then build the Hamiltonian with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make_model_ham<span class="w"> </span>-i<span class="w"> </span>input.toml
+</pre></div>
+</div>
+<p>which generates the following output,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make_model_ham<span class="w"> </span>-i<span class="w"> </span>input.toml
+
+No<span class="w"> </span>lattice<span class="w"> </span>instance<span class="w"> </span>supplied:<span class="w"> </span>building<span class="w"> </span>from<span class="w"> </span>parameters
+running<span class="w"> </span>build<span class="w"> </span>step<span class="w"> </span>nth_neighbor_hopping<span class="o">((</span><span class="m">1</span>.0,<span class="o">))</span>
+computing<span class="w"> </span>and<span class="w"> </span>storing<span class="w"> </span>1th-nearest<span class="w"> </span>neighbors
+Computing<span class="w"> </span>distance<span class="w"> </span>matrix<span class="w"> </span>of<span class="w"> </span>lattice
+Reading<span class="w"> </span>lattice<span class="w"> </span>site<span class="w"> </span>positions<span class="w"> </span>from<span class="w"> </span>Lattice
+computing<span class="w"> </span>and<span class="w"> </span>storing<span class="w"> </span>1th-nearest<span class="w"> </span>image<span class="w"> </span>neighbors
+Using<span class="w"> </span>same<span class="w"> </span>twists<span class="w"> </span><span class="k">for</span><span class="w"> </span>up<span class="w"> </span>and<span class="w"> </span>down<span class="w"> </span>spins
+running<span class="w"> </span>build<span class="w"> </span>step<span class="w"> </span>onsite_hubbard<span class="o">((</span><span class="m">4</span>,<span class="o">))</span>
+Building<span class="w"> </span>Hubbard<span class="w"> </span>U<span class="w"> </span>term<span class="w"> </span>with<span class="w"> </span><span class="nv">U</span><span class="o">=</span><span class="m">4</span>
+Building<span class="w"> </span>onsite<span class="w"> </span>hubbard<span class="w"> </span>with<span class="w"> </span>positive<span class="w"> </span>U<span class="w"> </span>values:<span class="w"> </span><span class="m">4</span>
+Combining<span class="w"> </span>terms<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span><span class="nb">type</span>
+Combining<span class="w"> </span>Hubbard<span class="w"> </span>U,<span class="w"> </span>U1,<span class="w"> </span>and<span class="w"> </span>U2<span class="w"> </span>terms<span class="w"> </span>where<span class="w"> </span>possible
+Max<span class="w"> </span>spin<span class="w"> </span>symmetry<span class="w"> </span>is<span class="w">  </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Note that the builder will echo what build steps are invoked using which parameters.
+For example, we can see from the line,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>running<span class="w"> </span>build<span class="w"> </span>step<span class="w"> </span>nth_neighbor_hopping<span class="o">((</span><span class="m">1</span>.0,<span class="o">))</span>
+</pre></div>
+</div>
+<p>that the director called the nth_neighbor_hopping() build step with an argument of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.
+We will see below that this generates nearest-neighbor hopping with t=1.0 (minus sign is implicit).
+We also see that an onsite Hubbard interaction with <span class="math notranslate nohighlight">\(U = 4\)</span> was also generated.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">make_model_ham</span></code> saves the Hamiltonian in a file called <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code>, but you can change this with the <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">[output</span> <span class="pre">name]</span></code> option.
+For example,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make_model_ham<span class="w"> </span>-i<span class="w"> </span>input.toml<span class="w"> </span>-o<span class="w"> </span>example.h5
+</pre></div>
+</div>
+<p>will save the Hamiltonian in <code class="docutils literal notranslate"><span class="pre">example.h5</span></code>.</p>
+<p>We note that the in Python, the Hamiltonian Director can be given either the name of an input file or a Python dictionary containing the Hamiltonian parameters.
+The Director will interpret the parameters using the same conventions regardless of which input method is used.
+We refer you to the <a class="reference external" href="https://toml.io/en/v1.0.0">TOML specification</a> for clarification on the TOML format.
+For the remainder of the tutorial, we will be working directly with Python within this notebook.</p>
+<section id="example-standard-hubbard-model">
+<h3><span class="section-number">4.3.1. </span>✨ Example : Standard Hubbard Model<a class="headerlink" href="#example-standard-hubbard-model" title="Link to this heading">#</a></h3>
+<p>Below, we construct a Hubbard model on a 4x4 square lattice with both nearest, and next-nearest neighbor hopping by providing a list of values for “t”.
+We plot the hopping matrix to demonstrate that the Hamiltonian includes both terms.
+Note that the default hopping matrix shape is <span class="math notranslate nohighlight">\(2N_{sites} \times N_{sites}\)</span> where the first <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-up sector and the last <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-down sector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="c1"># Define the lattice parameters</span>
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+<span class="p">}</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="writing-hamiltonians-to-hdf5">
+<h2><span class="section-number">4.4. </span>Writing Hamiltonians to HDF5<a class="headerlink" href="#writing-hamiltonians-to-hdf5" title="Link to this heading">#</a></h2>
+<p>In the code block below, we demonstrate how to save a lattice model Hamiltonian
+to an HDF5 file that can be read by SAFIRE.
+This works the same way for all Hamiltonians generated by afqmctools.
+We will not repeat this below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+
+<span class="n">write_model_hamiltonian</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;hamiltonian.h5&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s check the contents of the scratch directory to see that the Hamiltonian has been generated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span><span class="o">{</span>scratch_dir<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="adding-more-terms-to-the-hamiltonian">
+<h2><span class="section-number">4.5. </span>Adding more terms to the Hamiltonian<a class="headerlink" href="#adding-more-terms-to-the-hamiltonian" title="Link to this heading">#</a></h2>
+<section id="adding-hopping">
+<h3><span class="section-number">4.5.1. </span>Adding Hopping<a class="headerlink" href="#adding-hopping" title="Link to this heading">#</a></h3>
+<p>The Hamiltonian Director supports nth-order neighbor hopping and band-dependent hopping.
+<span class="math notranslate nohighlight">\(n\)</span> is limited by the condition that sites are not allowed to be their own neighbors via
+periodic boundary conditions.
+In this case, an error will be raised.</p>
+<p>The simplest case,
+nearest-neighbor hopping with <span class="math notranslate nohighlight">\(t\)</span> = 1, is included in the Hamiltonian by default.
+For multiband Hamiltonians, the hopping is uniform across bands and it is assumed that
+there is no intrasite hopping.
+This is handles by a different Hamiltonian term, which we refer to as <span class="math notranslate nohighlight">\(\epsilon\)</span>.
+You can change this value by providing a different value of <span class="math notranslate nohighlight">\(t\)</span> as</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[hamiltonian]</span>
+<span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>or as a Python dictionary</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Hamiltonian&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">0.5</span>
+    <span class="p">}</span>    
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>hopping can be turned off by either setting <span class="math notranslate nohighlight">\(t\)</span> to 0, or (in Python only) setting t to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>nth-order neighbor hopping can be included by setting <span class="math notranslate nohighlight">\(t\)</span> to a list of length <span class="math notranslate nohighlight">\(n\)</span>
+where the nth-entry is interpreted as the hopping strength for nth-order neighbors.
+Formally, if <span class="math notranslate nohighlight">\(t_n\)</span> are the elements of the list, <span class="math notranslate nohighlight">\(t\)</span>,
+the following term will be added,
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_t = \sum_n - t_n \sum_{\langle i,j \rangle^n} \hat{c}^\dagger_i \hat{c}_j
+\]</div>
+
+where <span class="math notranslate nohighlight">\(\langle i,j \rangle^n\)</span> indicates that the sum is constrained to run over nth-order neighbors.</p>
+<blockquote>
+<div><p><strong>NOTE</strong>:
+nth-order neighbors are determined by spatial distance. This is especially important to keep in mind when attempting to use a lattice with a basis.</p>
+</div></blockquote>
+<div class="alert alert-block alert-warning">
+<b>CAUTION:</b>
+    nth-order neighbors are determined by spatial distance. This is especially important to keep in mind when attempting to use a lattice with a basis.
+</div><section id="example-hubbard-model-with-t">
+<h4><span class="section-number">4.5.1.1. </span>✨ Example : Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span><a class="headerlink" href="#example-hubbard-model-with-t" title="Link to this heading">#</a></h4>
+<p>Below, we construct a Hubbard model on a 4x4 square lattice with both nearest, and next-nearest neighbor hopping by providing a list of values for “t”.
+We plot the hopping matrix to demonstrate that the Hamiltonian includes both terms.
+Note that the default hopping matrix shape is <span class="math notranslate nohighlight">\(2N_{sites} \times N_{sites}\)</span> where the first <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-up sector and the last <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-down sector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;lattice&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># implicit minus sign!</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">hopping</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">hopping</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="adding-onsite-hubbard-u">
+<h3><span class="section-number">4.5.2. </span>Adding onsite Hubbard U<a class="headerlink" href="#adding-onsite-hubbard-u" title="Link to this heading">#</a></h3>
+<p>SAFIRE supports arbitrary onsite interactions of the from</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_U =  \sum_{\mu} U_{\mu} \hat{n}_{\mu\uparrow} \hat{n}_{\mu\downarrow},
+\]</div>
+<p>where, again, the combined index <span class="math notranslate nohighlight">\(\mu\)</span> may include both lattice site and band indices.
+We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now we see see how to provide a site-, and/or band-dependent onsite interaction.
+<b>This input parameter, <span class="math notranslate nohighlight">\(U\)</span>, is in general an array. The band/site dependence of the interaction is deduced based on the shape of the <span class="math notranslate nohighlight">\(U\)</span> array</b>.</p>
+<section id="band-and-site-dependence-deduction-rules">
+<h4><span class="section-number">4.5.2.1. </span>Band- and site-dependence deduction rules<a class="headerlink" href="#band-and-site-dependence-deduction-rules" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>if U is a scalar (or an array with a single entry), then the onsite Hubbard interaction term is included with strength U and applied to all sites and bands uniformly.</p></li>
+<li><p>if U is 1-dimensional with length nbands (i.e. [U1,U2,…,Um] where for an m-band model), then the onsite Hubbard interaction term is included with strength U_i applied to band i and uniformly across sites.</p></li>
+<li><p>if U is 1-dimensional with length nsites (i.e. [U1,U2,…,Un] where n is the number of sites), then the onsite Hubbard interaction term is included with strength U_i applied to site i and uniformly across bands.</p></li>
+<li><p>If nbands and nsites are equal, then nbands take priority (i.e. rule 2 applies and not rule 3).</p></li>
+</ol>
+</section>
+<section id="example-site-dependent-u">
+<h4><span class="section-number">4.5.2.2. </span>✨ Example: site-dependent U<a class="headerlink" href="#example-site-dependent-u" title="Link to this heading">#</a></h4>
+<p>In the example below, we build a site-dependent U with a checkerboard pattern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+<span class="p">}</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+<span class="p">}</span>
+
+<span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="c1"># let&#39;s take a look at the U term:</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
+
+<span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-band-dependent-u">
+<h4><span class="section-number">4.5.2.3. </span>✨ Example: band-dependent U<a class="headerlink" href="#example-band-dependent-u" title="Link to this heading">#</a></h4>
+<p>Now we will construct a band-dependent U which is <em>uniform</em> across lattice sites.
+We will use two bands and the first band will have <span class="math notranslate nohighlight">\(U/t = 1\)</span>
+and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)</span>.</p>
+<p>As a bonus, we also demonstrate how to include a band-dependent hopping.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+<span class="p">}</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+<span class="p">}</span>
+
+<span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="c1"># let&#39;s take a look at the U term:</span>
+<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">&#39;nbands&#39;</span><span class="p">])</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 0&#39;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
+<span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 1&#39;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+<span class="p">}</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+<span class="p">}</span>
+
+<span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="c1"># let&#39;s take a look at the U term:</span>
+<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">&#39;nbands&#39;</span><span class="p">])</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 0&#39;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
+<span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 1&#39;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="adding-density-density-interaction">
+<h3><span class="section-number">4.5.3. </span>Adding Density-Density interaction<a class="headerlink" href="#adding-density-density-interaction" title="Link to this heading">#</a></h3>
+<p>SAFIRE supports general interactions of the form,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{U1} =  \sum_{\mu&lt;\nu} U_{\mu\nu}^1 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\downarrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\uparrow} ),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = (i,m)\)</span> / <span class="math notranslate nohighlight">\(\nu = (i,p)\)</span> are a composite lattice, <span class="math notranslate nohighlight">\(i\)</span> / <span class="math notranslate nohighlight">\(j\)</span>, and band <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(p\)</span> indices.</p>
+<p>afqmctools is able to generate a subset of interactions of this type;
+The <span class="math notranslate nohighlight">\(U_{\mu\nu}^1\)</span> matrix is constructed based on what information
+the user provides.
+specifically, it handles the following cases.</p>
+<section id="case-1-uniform-intrasite-interaction">
+<h4><span class="section-number">4.5.3.1. </span>Case 1: Uniform intrasite interaction<a class="headerlink" href="#case-1-uniform-intrasite-interaction" title="Link to this heading">#</a></h4>
+<p>The user provides a single value for <span class="math notranslate nohighlight">\(U^1\)</span> and keeps the default <span class="math notranslate nohighlight">\(n=0\)</span>.</p>
+<p>In this case, the density-density interaction takes the following form.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{U1} = U^1 \sum_{i} \sum_{mp} (\hat{n}_{(i,m)\uparrow} \hat{n}_{(i,p)\downarrow} + \hat{n}_{(i,m)\downarrow} \hat{n}_{(i,p)\uparrow} ),
+\]</div>
+<p>where we have replaced the composite indices with site and band indices for clarity.</p>
+</section>
+<section id="case-2-band-dependent-intrasite-interaction">
+<h4><span class="section-number">4.5.3.2. </span>Case 2: Band-dependent intrasite interaction<a class="headerlink" href="#case-2-band-dependent-intrasite-interaction" title="Link to this heading">#</a></h4>
+<p>The user provides a matrix with shape <span class="math notranslate nohighlight">\(nbands \times nbands\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+U^1 = U^1_{mp},
+\]</div>
+<p>and keeps the default <span class="math notranslate nohighlight">\(n = 0\)</span> for the neighbor order parameter.</p>
+<p>In this case, the density-density interaction takes the following form.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{U1} =  \sum_{i} \sum_{mp} U_{mp}^1 (\hat{n}_{(i,m)\uparrow} \hat{n}_{(i,p)\downarrow} + \hat{n}_{(i,m)\downarrow} \hat{n}_{(i,p)\uparrow} ),
+\]</div>
+<p>where we have replaced the composite indices with site and band indices for clarity.</p>
+</section>
+<section id="case-3-uniform-nth-order-neighbor-interaction">
+<h4><span class="section-number">4.5.3.3. </span>Case 3: Uniform nth-order neighbor interaction<a class="headerlink" href="#case-3-uniform-nth-order-neighbor-interaction" title="Link to this heading">#</a></h4>
+</section>
+<section id="case-4-band-dependent-nth-order-neighbor-interaction">
+<h4><span class="section-number">4.5.3.4. </span>Case 4: Band-dependent nth-order neighbor interaction<a class="headerlink" href="#case-4-band-dependent-nth-order-neighbor-interaction" title="Link to this heading">#</a></h4>
+<p>The user provides the neighbor order, <span class="math notranslate nohighlight">\(n\)</span>, and a
+matrix with shape <span class="math notranslate nohighlight">\(nbands \times nbands\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+U^1 = U^1_{mp}.
+\]</div>
+<p>In this case, the density-density interaction takes the following form.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{U1} =  \sum_{\langle i,j \rangle^n} \sum_{mp} U_{mp}^1 (\hat{n}_{(i,m)\uparrow} \hat{n}_{(i,p)\downarrow} + \hat{n}_{(i,m)\downarrow} \hat{n}_{(i,p)\uparrow} ),
+\]</div>
+<p>where we have replaced the composite indices with site and band indices for clarity.</p>
+</section>
+<section id="case-5-a-list-of-inputs-from-the-cases-above">
+<h4><span class="section-number">4.5.3.5. </span>Case 5: a list of inputs from the cases above<a class="headerlink" href="#case-5-a-list-of-inputs-from-the-cases-above" title="Link to this heading">#</a></h4>
+<p>If a user provides a list of valid inputs, then afqmctools will generate each
+term provided <b>using the list index / position for the neighbor order “<span class="math notranslate nohighlight">\(n\)</span>.”</b>
+For example, if a user provides</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[hamiltonian]</span>
+<span class="n">nbands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">U1</span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span>
+<span class="w">      </span><span class="p">[[</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">],</span>
+<span class="w">       </span><span class="p">[</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">]]</span>
+<span class="w">    </span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Both a uniform intrasite interaction with U1 = 2.0 (n=0 / onsite),
+and a band-dependent nearest-neighbor (n=1) interaction will be added to the
+Hamiltonian.</p>
+</section>
+</section>
+<section id="adding-spin-spin-interaction">
+<h3><span class="section-number">4.5.4. </span>Adding Spin-Spin interaction<a class="headerlink" href="#adding-spin-spin-interaction" title="Link to this heading">#</a></h3>
+<p>SAFIRE supports general interactions of the form,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{U2} = \sum_{\mu&lt;\nu} U_{\mu\nu}^2 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\uparrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\downarrow} ),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = (i,m)\)</span> / <span class="math notranslate nohighlight">\(\nu = (i,p)\)</span> are a composite lattice, <span class="math notranslate nohighlight">\(i\)</span> / <span class="math notranslate nohighlight">\(j\)</span>, and band <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(p\)</span> indices.</p>
+<p>afqmctools is able to generate a subset of interactions of this type;
+The <span class="math notranslate nohighlight">\(U_{\mu\nu}^2\)</span> matrix is constructed based on what information
+the user provides similarly to the density-density (i.e. the <span class="math notranslate nohighlight">\(U^1\)</span>) term.
+See the density-density section above for more details.</p>
+</section>
+<section id="adding-a-hund-s-j-term">
+<h3><span class="section-number">4.5.5. </span>Adding a Hund’s J term<a class="headerlink" href="#adding-a-hund-s-j-term" title="Link to this heading">#</a></h3>
+<p>SAFIRE supports general interactions of the form,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_J = \sum_{\mu&lt;\nu} J_{\mu\nu} (
+     \hat{c}^\dagger_{\mu\uparrow}\hat{c}^\dagger_{\nu\downarrow}\hat{c}_{\mu\downarrow}\hat{c}_{\nu\uparrow}
+     +\hat{c}^\dagger_{\mu\uparrow}\hat{c}^\dagger_{\mu\downarrow}\hat{c}_{\nu\downarrow}\hat{c}_{\nu\uparrow}
+     +\hat{c}^\dagger_{\nu\uparrow}\hat{c}^\dagger_{\mu\downarrow}\hat{c}_{\nu\downarrow}\hat{c}_{\mu\uparrow}
+     +\hat{c}^\dagger_{\nu\uparrow}\hat{c}^\dagger_{\nu\downarrow}\hat{c}_{\mu\downarrow}\hat{c}_{\mu\uparrow}
+     ).
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mu\)</span> / <span class="math notranslate nohighlight">\(\nu\)</span> are compound indices, <span class="math notranslate nohighlight">\(\mu = (i,p,m)\)</span> / <span class="math notranslate nohighlight">\(\mu = (j,q,n)\)</span>, that include the lattice site index, (<span class="math notranslate nohighlight">\(i\)</span> / <span class="math notranslate nohighlight">\(j\)</span>), sublattice, (<span class="math notranslate nohighlight">\(p\)</span> / <span class="math notranslate nohighlight">\(q\)</span>) and band (<span class="math notranslate nohighlight">\(m\)</span> / <span class="math notranslate nohighlight">\(n\)</span>) indices.</p>
+<p>afqmctools is able to generate a subset of interactions of this type;
+The <span class="math notranslate nohighlight">\(J_{\mu\nu}\)</span> matrix is constructed based on what information
+the user provides similarly to the density-density (i.e. the <span class="math notranslate nohighlight">\(U^1\)</span> term).
+See the density-density section above for more details.</p>
+<section id="example-3-band-hubbard-kanamori-hamiltonian">
+<h4><span class="section-number">4.5.5.1. </span>✨ Example: 3-band Hubbard-Kanamori Hamiltonian<a class="headerlink" href="#example-3-band-hubbard-kanamori-hamiltonian" title="Link to this heading">#</a></h4>
+<p>Below we construct a 3-band Hubbard-Kanamori model using uniform values for U,U1,U2, and J as in Table I of <a class="reference external" href="https://doi.org/10.1103/PhysRevB.99.235142">PRB 99, 235142 (2019)</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="c1"># Define the lattice parameters</span>
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;open&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">&#39;U1&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="s1">&#39;U2&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+<span class="p">}</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="adding-an-extended-hubbard-v-interaction">
+<h3><span class="section-number">4.5.6. </span>Adding an extended Hubbard V interaction<a class="headerlink" href="#adding-an-extended-hubbard-v-interaction" title="Link to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(n^{th}\)</span>-order neighbor extended Hubbard interaction,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_V = \sum_{\langle i&lt;j \rangle^n} \sum_{\sigma \sigma'} V_{\mu \nu} \hat{n}_{\mu \sigma } \hat{n}_{\nu \sigma'},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = (i,m)\)</span> / <span class="math notranslate nohighlight">\(\nu = (i,p)\)</span> are a composite lattice, <span class="math notranslate nohighlight">\(i\)</span> / <span class="math notranslate nohighlight">\(j\)</span>, and band <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(p\)</span> indices, can be expressed in terms of <span class="math notranslate nohighlight">\(\hat{H}_{U1}\)</span> and <span class="math notranslate nohighlight">\(\hat{H}_{U2}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_V = \sum_{\langle i&lt;j \rangle^n} V_{\mu \nu} (\hat{n}_{\mu \uparrow} \hat{n}_{\nu \downarrow} + \hat{n}_{\mu \downarrow} \hat{n}_{\nu \uparrow})
++ \sum_{\langle i&lt;j \rangle^n} V_{\mu \nu} (\hat{n}_{\mu \uparrow} \hat{n}_{\nu \uparrow} + \hat{n}_{\mu \downarrow} \hat{n}_{\nu \downarrow}),
+\]</div>
+<p>which we can identify as,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_V = \hat{H}_{U1}[U1 = V] + \hat{H}_{U2}[U2 = V],
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n^{th}\)</span>-order neighbors.e</p>
+<p>afqmctools is able to generate a subset of interactions of this type using the
+same input conventions as for <span class="math notranslate nohighlight">\(\hat{H}_{U1}\)</span>, and <span class="math notranslate nohighlight">\(\hat{H}_{U2}\)</span>.</p>
+<section id="example-extended-hubbard-model">
+<h4><span class="section-number">4.5.6.1. </span>✨ Example: Extended Hubbard Model<a class="headerlink" href="#example-extended-hubbard-model" title="Link to this heading">#</a></h4>
+<p>Below, we build an extended Hubbard model including nearest-neighbor V.</p>
+<p>If you inspect the output, you will see that behind the scenes, we use a U1 and U2 term to represent the extended Hubbard V since those terms are directly implemented in SAFIRE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+
+<span class="c1"># define Hamiltonian parameters</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;lattice&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s1">&#39;V&#39;</span> <span class="p">:</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Lattice class tutorial</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../05_hamiltonian_builder/05_hamiltonian_builder.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>The Hamiltonian Builder</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-run-me">4.1. ▶️ Setup : Run me</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-director-tutorial">4.2. Hamiltonian Director Tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking-the-hamiltonian-director-via-the-cli">4.3. Invoking the Hamiltonian Director via the CLI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-standard-hubbard-model">4.3.1. ✨ Example : Standard Hubbard Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-hamiltonians-to-hdf5">4.4. Writing Hamiltonians to HDF5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-more-terms-to-the-hamiltonian">4.5. Adding more terms to the Hamiltonian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-hopping">4.5.1. Adding Hopping</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-hubbard-model-with-t">4.5.1.1. ✨ Example : Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-onsite-hubbard-u">4.5.2. Adding onsite Hubbard U</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#band-and-site-dependence-deduction-rules">4.5.2.1. Band- and site-dependence deduction rules</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-site-dependent-u">4.5.2.2. ✨ Example: site-dependent U</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-band-dependent-u">4.5.2.3. ✨ Example: band-dependent U</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-density-density-interaction">4.5.3. Adding Density-Density interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-uniform-intrasite-interaction">4.5.3.1. Case 1: Uniform intrasite interaction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-band-dependent-intrasite-interaction">4.5.3.2. Case 2: Band-dependent intrasite interaction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-uniform-nth-order-neighbor-interaction">4.5.3.3. Case 3: Uniform nth-order neighbor interaction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-4-band-dependent-nth-order-neighbor-interaction">4.5.3.4. Case 4: Band-dependent nth-order neighbor interaction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-5-a-list-of-inputs-from-the-cases-above">4.5.3.5. Case 5: a list of inputs from the cases above</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-spin-spin-interaction">4.5.4. Adding Spin-Spin interaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-hund-s-j-term">4.5.5. Adding a Hund’s J term</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-band-hubbard-kanamori-hamiltonian">4.5.5.1. ✨ Example: 3-band Hubbard-Kanamori Hamiltonian</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-an-extended-hubbard-v-interaction">4.5.6. Adding an extended Hubbard V interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-extended-hubbard-model">4.5.6.1. ✨ Example: Extended Hubbard Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../../_sources/tutorials/models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
