@@ -457,13 +457,13 @@
 </div>
 <p>Auxiliary-field quantum Monte Carlo (AFQMC) for general interacting electron systems.</p>
 <p>SAFIRE is a fast, efficient implementation of AFQMC written in C++. It uses a general interacting second-quantized Hamiltonian allowing it to be applied to broad classes of interacting-electron systems.</p>
-<a class="reference internal image-reference" href="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/software_components.png"><img alt="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/software_components.png" class="align-center" src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/software_components.png" style="width: 800px;" />
+<a class="reference internal image-reference" href="_images/software_components.png"><img alt="_images/software_components.png" class="align-center" src="_images/software_components.png" style="width: 800px;" />
 </a>
 <p>SAFIRE comes with the afqmctools command line interface (CLI) / Python package to assist the user in both setting up second quantized Hamiltonians and wavefunctions before running SAFIRE, and in post-processing the results after running SAFIRE.</p>
 <section id="typical-workflow">
 <h2>Typical Workflow<a class="headerlink" href="#typical-workflow" title="Link to this heading">#</a></h2>
 <p>A typical calculation using SAFIRE consists of three steps as shown in the flowchart below.</p>
-<a class="reference internal image-reference" href="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/TopLevelFlowChart_v3.png"><img alt="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/TopLevelFlowChart_v3.png" class="align-center" src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/TopLevelFlowChart_v3.png" style="width: 1000px;" />
+<a class="reference internal image-reference" href="_images/TopLevelFlowChart_v3.png"><img alt="_images/TopLevelFlowChart_v3.png" class="align-center" src="_images/TopLevelFlowChart_v3.png" style="width: 1000px;" />
 </a>
 <p>Running the SAFIRE executable is generic and the details are largely independent of the intended application area. The most variation occurs in the first step, “Setup”, since the set of possible starting points is very large. Post processing beyond simple scalar observables similarly has some dependence on the details of the application area. For example, the real-space charge density depends explicitly on the real-space representation of the underlying orbitals.</p>
 </section>
@@ -474,21 +474,21 @@
 <h3>Quantum Chemistry<a class="headerlink" href="#quantum-chemistry" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="tutorials/molecules/overview.html#molecules-overview"><span class="std std-ref">SAFIRE for Quantum Chemistry</span></a>.</p>
 <p>Molecules using standard quantum chemistry basis sets</p>
-<a class="reference internal image-reference" href="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/molecule.png"><img alt="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/molecule.png" class="align-center" src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/molecule.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="_images/molecule.png"><img alt="_images/molecule.png" class="align-center" src="_images/molecule.png" style="width: 500px;" />
 </a>
 </section>
 <section id="ab-initio-solids">
 <h3>Ab initio solids<a class="headerlink" href="#ab-initio-solids" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="tutorials/solids/overview.html#solids-overview"><span class="std std-ref">SAFIRE for ab initio solids</span></a>.</p>
 <p>Ab initio solids using Kohn-Sham orbital basis sets</p>
-<a class="reference internal image-reference" href="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/solid.png"><img alt="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/solid.png" class="align-center" src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/solid.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="_images/solid.png"><img alt="_images/solid.png" class="align-center" src="_images/solid.png" style="width: 500px;" />
 </a>
 </section>
 <section id="lattice-models">
 <h3>Lattice models<a class="headerlink" href="#lattice-models" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="tutorials/models/overview.html#lattice-model-overview"><span class="std std-ref">SAFIRE for lattice models</span></a></p>
 <p>Model Hamiltonians defined on a lattice such as the Hubbard model</p>
-<a class="reference internal image-reference" href="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/lattice_model.png"><img alt="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/lattice_model.png" class="align-center" src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/00_top_level/lattice_model.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="_images/lattice_model.png"><img alt="_images/lattice_model.png" class="align-center" src="_images/lattice_model.png" style="width: 500px;" />
 </a>
 </section>
 </section>

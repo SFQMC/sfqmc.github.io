@@ -482,7 +482,7 @@ In order to take advantage of this flexibility, SAFIRE accepts a generic second 
 saved in HDF5 files, as input along with AFQMC algorithmic parameters in a json-based input file.
 Below is a schematic of the inputs and outputs of SAFIRE.</p>
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_all.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_all.png" width="800">
 </div>
 <p>We will learn more about the details of all of these files in future tutorials. For this tutorial, pregenerated input files are provided in the “/molecules/files” directory relative to the root directory of the tutorials.</p>
 <p><b>The Inputs
@@ -498,7 +498,7 @@ Below is a schematic of the inputs and outputs of SAFIRE.</p>
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_hamil.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_hamil.png" width="800">
 </div>
 <p>This HDF5 file contains the second-quantized Hamiltonian <span class="math notranslate nohighlight">\(\hat{H}\)</span>.</p>
 <p>For this tutorial, we have supplied an HDF5 file containing the Born-Oppenheimer
@@ -510,7 +510,7 @@ in “hamil.h5”.</p>
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/HyrdogenMolecule_v2.png" width="300">
+<img src="/_static/tutorials/molecules/01_hello_safire/HyrdogenMolecule_v2.png" width="300">
 </div>
 <p>For technical details on the Hamiltonian HDF5 format, see <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/afqmc.html#dense-cholesky">the User Guide</a>.</p>
 <p><b> Wavefunction file : “wfn.h5”
@@ -522,7 +522,7 @@ in “hamil.h5”.</p>
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_wfn.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_wfn.png" width="800">
 </div>
 <p>This HDF5 file contains the trial wavefunction, <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span>.</p>
 <p>For this tutorial, we have supplied an HDF5 file containing the RHF
@@ -541,7 +541,7 @@ ground state as the trial wavefunction.</p>
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_json.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_json.png" width="800">
 </div>
 <p>The JSON input file sets AFQMC run parameters and references the locations of the Hamiltonian and trial wavefunction files. It is organized into a hierarchy of input blocks which each control specific
 details of the calculation. Understanding the details of the input file is the goal of the next tutorial, <a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the input file</span></a>.</p>
@@ -622,7 +622,7 @@ We will explore the output further in later tutorials.</p>
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_scalar.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_scalar.png" width="800">
 </div>
 <p>A text-based file containing stochastic samples of scalar data, such as the energy.</p>
 <p>This file is not meant to be read directly by the user.
@@ -638,7 +638,7 @@ Instead, afqmctools provides tools to extract information from this file.
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/inputs_and_outputs_hdf5.png" width="800">
+<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_hdf5.png" width="800">
 </div>
 <p>An HDF5 file where stochastic samples of non-scalar data, such as the one-body reduced density matrix, are printed by SAFIRE
 when requested.</p>
@@ -822,7 +822,7 @@ adding the <code class="docutils literal notranslate"><span class="pre">-t</span
 </div>
 -->
 <div>
-<img src="https://users.flatironinstitute.org/~beskridge/tutorial_figs/6784ee4ea455921958ac327234b91ab07702736ab22fa2df804e8dccbc36a404/01_hello_auxiliary_fields/HelloAuxyFields_equil.png" width="800">
+<img src="/_static/tutorials/molecules/01_hello_safire/HelloAuxyFields_equil.png" width="800">
 </div>
 <p>One should check the equilibration curve to ensure that the equilibration
 time, <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">time</span> <span class="pre">-e</span> <span class="pre">2.0</span></code>, is large enough to discard the samples where AFQMC is not sampling from the target many-body wavefunction yet.
