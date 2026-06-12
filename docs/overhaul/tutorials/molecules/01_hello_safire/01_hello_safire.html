@@ -2,19 +2,19 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../../" >
+<html lang="en" data-content_root="../../../" data-theme="light">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Hello SAFIRE &#8212; SAFIRE 0.1.0-alpha documentation</title>
+    <title>1. Hello SAFIRE &#8212; SAFIRE 0.1.0 documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -32,8 +32,8 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=7aba581a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
@@ -43,13 +43,14 @@
 
     <script src="../../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../../_static/documentation_options.js?v=f34cbc3c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/molecules/01_hello_safire/01_hello_safire';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/molecules/01_hello_safire/01_hello_safire.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="2. Understanding the input file" href="../02_understanding_the_input_file/02_understanding_the_input_file.html" />
@@ -64,7 +65,7 @@
     <script src="../../../searchindex.js"></script>
   
   </head>
-  <body data-default-mode="">
+  <body data-default-mode="light">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
@@ -109,7 +110,7 @@
   </button>
   
   
-  <div class="col-lg-3 navbar-header-items__start">
+  <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -123,14 +124,18 @@
   
   
   
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
   
-    <p class="title logo__title">SAFIRE 0.1.0-alpha documentation</p>
   
 </a></div>
     
   </div>
   
-  <div class="col-lg-9 navbar-header-items">
+  <div class=" navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -168,7 +173,14 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools Python package
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
   </a>
 </li>
 
@@ -180,13 +192,6 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../features.html">
-    Current Features
-  </a>
-</li>
-
-
 <li class=" ">
   <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
@@ -221,21 +226,6 @@
 </button>
         </div>
       
-      
-        <div class="navbar-item">
-
-<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
-  </button>
-  <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
-  </ul>
-</div></div>
       
     </div>
     
@@ -313,7 +303,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools Python package
+    afqmctools
   </a>
 </li>
 
@@ -345,25 +335,6 @@
       </div>
     
     
-    
-      <div class="sidebar-header-items__end">
-        
-          <div class="navbar-item">
-
-<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
-    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
-  </button>
-  <ul class="dropdown-menu dropdown-menu-end">
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
-    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
-  </ul>
-</div></div>
-        
-      </div>
     
   </div>
   
@@ -459,7 +430,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hello-safire">
+  <p class="notebook-download"><a class="reference external" href="01_hello_safire.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="hello-safire">
 <h1><span class="section-number">1. </span>Hello SAFIRE<a class="headerlink" href="#hello-safire" title="Link to this heading">#</a></h1>
 <p><b>Goal:</b>
 At the end of this tutorial, you will know how to run an AFQMC calculation using SAFIRE and extract the AFQMC energy from the output
@@ -481,9 +453,7 @@ Inputs and outputs of SAFIRE.
 In order to take advantage of this flexibility, SAFIRE accepts a generic second quantized Hamiltonian and wavefunction,
 saved in HDF5 files, as input along with AFQMC algorithmic parameters in a json-based input file.
 Below is a schematic of the inputs and outputs of SAFIRE.</p>
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_all.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_all.png" /></p>
 <p>We will learn more about the details of all of these files in future tutorials. For this tutorial, pregenerated input files are provided in the “/molecules/files” directory relative to the root directory of the tutorials.</p>
 <p><b>The Inputs
 </b></p>
@@ -497,9 +467,7 @@ Below is a schematic of the inputs and outputs of SAFIRE.</p>
 <img src="./figs/inputs_and_outputs_hamil.png" width="800"/>
 </div>
 -->
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_hamil.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_hamil.png" /></p>
 <p>This HDF5 file contains the second-quantized Hamiltonian <span class="math notranslate nohighlight">\(\hat{H}\)</span>.</p>
 <p>For this tutorial, we have supplied an HDF5 file containing the Born-Oppenheimer
 Hamiltonian for the STO-3G basis hydrogen dimer at a bondlength of <span class="math notranslate nohighlight">\(\delta_{H-H} = 1.4\)</span> <span class="math notranslate nohighlight">\(a_0\)</span>
@@ -509,9 +477,7 @@ in “hamil.h5”.</p>
 <img src="./figs/HyrdogenMolecule_v2.png" width="300"/>
 </div>
 -->
-<div>
-<img src="/_static/tutorials/molecules/01_hello_safire/HyrdogenMolecule_v2.png" width="300">
-</div>
+<p><img alt="" src="../../../_images/HyrdogenMolecule_v2.png" /></p>
 <p>For technical details on the Hamiltonian HDF5 format, see <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/afqmc.html#dense-cholesky">the User Guide</a>.</p>
 <p><b> Wavefunction file : “wfn.h5”
 </b></p>
@@ -521,9 +487,7 @@ in “hamil.h5”.</p>
 <img src="./figs/inputs_and_outputs_wfn.png" width="800"/>
 </div>
 -->
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_wfn.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_wfn.png" /></p>
 <p>This HDF5 file contains the trial wavefunction, <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span>.</p>
 <p>For this tutorial, we have supplied an HDF5 file containing the RHF
 ground state as the trial wavefunction.</p>
@@ -540,9 +504,7 @@ ground state as the trial wavefunction.</p>
 <img src="./figs/inputs_and_outputs_json.png" width="800"/>
 </div>
 -->
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_json.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_json.png" /></p>
 <p>The JSON input file sets AFQMC run parameters and references the locations of the Hamiltonian and trial wavefunction files. It is organized into a hierarchy of input blocks which each control specific
 details of the calculation. Understanding the details of the input file is the goal of the next tutorial, <a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the input file</span></a>.</p>
 <p><strong>For now, we focus on the <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> blocks.</strong></p>
@@ -621,9 +583,7 @@ We will explore the output further in later tutorials.</p>
 <img src="./figs/inputs_and_outputs_scalar.png" width="800"/>
 </div>
 -->
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_scalar.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_scalar.png" /></p>
 <p>A text-based file containing stochastic samples of scalar data, such as the energy.</p>
 <p>This file is not meant to be read directly by the user.
 Instead, afqmctools provides tools to extract information from this file.
@@ -637,9 +597,7 @@ Instead, afqmctools provides tools to extract information from this file.
 <img src="./figs/inputs_and_outputs_hdf5.png" width="800"/>
 </div>
 -->
-<div>
-<img src="/_static/shared/01_hello_auxiliary_fields/inputs_and_outputs_hdf5.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/inputs_and_outputs_hdf5.png" /></p>
 <p>An HDF5 file where stochastic samples of non-scalar data, such as the one-body reduced density matrix, are printed by SAFIRE
 when requested.</p>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> file, this file is not meant to be read directly by a user.
@@ -821,9 +779,7 @@ adding the <code class="docutils literal notranslate"><span class="pre">-t</span
 <img src="./figs/HelloAuxyFields_equil.png" width="600"/>
 </div>
 -->
-<div>
-<img src="/_static/tutorials/molecules/01_hello_safire/HelloAuxyFields_equil.png" width="800">
-</div>
+<p><img alt="" src="../../../_images/HelloAuxyFields_equil.png" /></p>
 <p>One should check the equilibration curve to ensure that the equilibration
 time, <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">time</span> <span class="pre">-e</span> <span class="pre">2.0</span></code>, is large enough to discard the samples where AFQMC is not sampling from the target many-body wavefunction yet.
 On the other hand, the equilibration length should not be so large that it discards equilibrated samples.</p>
@@ -1027,15 +983,6 @@ if you did not change any settings.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">1.7. Summary</a></li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../../_sources/tutorials/molecules/01_hello_safire/01_hello_safire.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
 
 </div></div>
               
