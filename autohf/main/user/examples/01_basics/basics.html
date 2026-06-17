@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basics &mdash; AutoHF  documentation</title>
+  <title>1. Basics &mdash; AutoHF  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -21,7 +21,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Input File" href="../02_inputfile/inputfile.html" />
+    <link rel="next" title="2. Input File" href="../02_inputfile/inputfile.html" />
     <link rel="prev" title="User Examples" href="../../examples_include.html" /> 
 </head>
 
@@ -48,27 +48,25 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../examples_include.html">User Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Basics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pinned-cylinder-example">Pinned Cylinder Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#square-hubbard-example">Square Hubbard Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#triangular-hubbard-ghf-example">Triangular Hubbard GHF Example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pinned-cylinder-example">1.1. Pinned Cylinder Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#square-hubbard-example">1.2. Square Hubbard Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#triangular-hubbard-ghf-example">1.3. Triangular Hubbard GHF Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../02_inputfile/inputfile.html">Input File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03_custom_ansatz/custom_ansatz.html">Custom Ansatz</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_saveload/saveload.html">Save and Load</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html">Custom Lagrange Multiplier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06_alt_opt_methods/alt_opt_methods.html">Alternative Optimization Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../07_polarized/polarized.html">Polarized Calculations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../08_spin_orbit/spin_orbit.html">Spin Orbit Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_inputfile/inputfile.html">2. Input File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_custom_ansatz/custom_ansatz.html">3. Custom Ansatz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_saveload/saveload.html">4. Save and Load</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html">5. Custom Lagrange Multiplier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_alt_opt_methods/alt_opt_methods.html">6. Alternative Optimization Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_polarized/polarized.html">7. Polarized Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_spin_orbit/spin_orbit.html">8. Spin Orbit Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09_molecule/molecules.html">9. Molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_kanamori/kanamori.html">10. Kanamori model</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">AutoHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/autohf.html">AutoHF API Reference</a></li>
 </ul>
 
         </div>
@@ -86,7 +84,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../examples_include.html">User Examples</a></li>
-      <li class="breadcrumb-item active">Basics</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Basics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/user/examples/01_basics/basics.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,11 +95,11 @@
            <div itemprop="articleBody">
              
   <section id="basics">
-<span id="example-basics"></span><h1>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h1>
+<span id="example-basics"></span><h1><span class="section-number">1. </span>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h1>
 <section id="pinned-cylinder-example">
-<h2>Pinned Cylinder Example<a class="headerlink" href="#pinned-cylinder-example" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.1. </span>Pinned Cylinder Example<a class="headerlink" href="#pinned-cylinder-example" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">pinned_cyl.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 1.1 </span><span class="caption-text">pinned_cyl.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
@@ -166,9 +164,9 @@
 </div>
 </section>
 <section id="square-hubbard-example">
-<h2>Square Hubbard Example<a class="headerlink" href="#square-hubbard-example" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.2. </span>Square Hubbard Example<a class="headerlink" href="#square-hubbard-example" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">square_hubbard.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 1.2 </span><span class="caption-text">square_hubbard.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
@@ -236,9 +234,9 @@
 </div>
 </section>
 <section id="triangular-hubbard-ghf-example">
-<h2>Triangular Hubbard GHF Example<a class="headerlink" href="#triangular-hubbard-ghf-example" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.3. </span>Triangular Hubbard GHF Example<a class="headerlink" href="#triangular-hubbard-ghf-example" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">triangular_hubbard_ghf.py</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 1.3 </span><span class="caption-text">triangular_hubbard_ghf.py</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
@@ -325,7 +323,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../examples_include.html" class="btn btn-neutral float-left" title="User Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../02_inputfile/inputfile.html" class="btn btn-neutral float-right" title="Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../02_inputfile/inputfile.html" class="btn btn-neutral float-right" title="2. Input File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

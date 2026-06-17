@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10. Kanamori model &mdash; AutoHF  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7541e65" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="AutoHF API Reference" href="../../../api/autohf.html" />
+    <link rel="prev" title="9. Molecules" href="../09_molecule/molecules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AutoHF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples_include.html">User Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_basics/basics.html">1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_inputfile/inputfile.html">2. Input File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_custom_ansatz/custom_ansatz.html">3. Custom Ansatz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_saveload/saveload.html">4. Save and Load</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html">5. Custom Lagrange Multiplier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_alt_opt_methods/alt_opt_methods.html">6. Alternative Optimization Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_polarized/polarized.html">7. Polarized Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_spin_orbit/spin_orbit.html">8. Spin Orbit Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09_molecule/molecules.html">9. Molecules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. Kanamori model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/autohf.html">AutoHF API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AutoHF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../examples_include.html">User Examples</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">10. </span>Kanamori model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/examples/10_kanamori/kanamori.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kanamori-model">
+<span id="example-kanamori"></span><h1><span class="section-number">10. </span>Kanamori model<a class="headerlink" href="#kanamori-model" title="Link to this heading"></a></h1>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 10.1 </span><span class="caption-text">kanamori.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">  2</span><span class="sd">Hubbard-Kanamori model on a 1-D chain with 2-bands per site.</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span><span class="sd">If site indices are :math:`i`, :math:`j` and band indices is :math:`m`, :math:`n`,</span>
+<span class="linenos">  5</span><span class="sd">The Hamiltonian is given by:</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="sd">.. math::</span>
+<span class="linenos">  8</span><span class="sd">  H = -t \sum_m \sum_{\langle i, j \rangle, \sigma} (c_{i\sigma}^\dagger c_{j\sigma} + h.c.)</span>
+<span class="linenos">  9</span><span class="sd">      + \sum_m U_m \sum_i n_{i\uparrow} n_{i\downarrow}</span>
+<span class="linenos"> 10</span><span class="sd">      + \sum_{m &lt; n} U^1_{mn} \sum_i (n_{im\uparrow} n_{in\downarrow} + n_{im\downarrow} n_{in\uparrow}) )</span>
+<span class="linenos"> 11</span><span class="sd">      + \sum_{m &lt; n} U^2_{mn} \sum_i (n_{im\uparrow} n_{in\uparrow} + n_{im\downarrow} n_{in\downarrow})</span>
+<span class="linenos"> 12</span><span class="sd">      + \sum_{m &lt; n} J_{mn} \sum_i (c_{im\uparrow}^\dagger c_{in\uparrow} c_{in\downarrow}^\dagger c_{im\downarrow} + h.c.) </span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="sd">In this example, we have 2 bands, and make the following choices for the interaction parameters. Note that</span>
+<span class="linenos"> 15</span><span class="sd">only the upper-triangular part of the interaction matrices are specified, and the lower-triangular part is inferred from symmetry.</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="sd">U_m = [ 2.0, 4.0]</span>
+<span class="linenos"> 18</span><span class="sd">U1_mn = [[ 0.0, 1.5</span>
+<span class="linenos"> 19</span><span class="sd">          0.0, 0.0]]</span>
+<span class="linenos"> 20</span><span class="sd">U2_mn = [[ 0.0, 1.0</span>
+<span class="linenos"> 21</span><span class="sd">          0.0, 0.0]]</span>
+<span class="linenos"> 22</span><span class="sd">J_mn = [[ 0.0, 0.5</span>
+<span class="linenos"> 23</span><span class="sd">          0.0, 0.0]]</span>
+<span class="linenos"> 24</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 25</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
+<span class="linenos"> 28</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;XLA_PYTHON_CLIENT_PREALLOCATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+<span class="linenos"> 29</span><span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;jax_enable_x64&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="k">def</span><span class="w"> </span><span class="nf">make_T_multiband</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">xperiodic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">yperiodic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="linenos"> 38</span>  <span class="n">Nsites</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span>  <span class="c1"># Build single-band hopping on (Nsites, Nsites)</span>
+<span class="linenos"> 41</span>  <span class="n">T_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nsites</span><span class="p">,</span> <span class="n">Nsites</span><span class="p">))</span>
+<span class="linenos"> 42</span>  <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">):</span>
+<span class="linenos"> 43</span>    <span class="k">for</span> <span class="n">iy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ny</span><span class="p">):</span>
+<span class="linenos"> 44</span>      <span class="n">s</span> <span class="o">=</span> <span class="n">ix</span> <span class="o">*</span> <span class="n">Ny</span> <span class="o">+</span> <span class="n">iy</span>
+<span class="linenos"> 45</span>      <span class="k">if</span> <span class="n">ix</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">Nx</span> <span class="ow">or</span> <span class="n">xperiodic</span><span class="p">:</span>
+<span class="linenos"> 46</span>        <span class="n">s_nb</span> <span class="o">=</span> <span class="p">((</span><span class="n">ix</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">Nx</span><span class="p">)</span> <span class="o">*</span> <span class="n">Ny</span> <span class="o">+</span> <span class="n">iy</span>
+<span class="linenos"> 47</span>        <span class="n">T_band</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s_nb</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">t</span>
+<span class="linenos"> 48</span>        <span class="n">T_band</span><span class="p">[</span><span class="n">s_nb</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">t</span>
+<span class="linenos"> 49</span>      <span class="k">if</span> <span class="n">iy</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">Ny</span> <span class="ow">or</span> <span class="n">yperiodic</span><span class="p">:</span>
+<span class="linenos"> 50</span>        <span class="n">s_nb</span> <span class="o">=</span> <span class="n">ix</span> <span class="o">*</span> <span class="n">Ny</span> <span class="o">+</span> <span class="p">(</span><span class="n">iy</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">Ny</span>
+<span class="linenos"> 51</span>        <span class="n">T_band</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s_nb</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">t</span>
+<span class="linenos"> 52</span>        <span class="n">T_band</span><span class="p">[</span><span class="n">s_nb</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">t</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span>  <span class="c1"># Uniform across bands: shape (Nbands, Nsites, Nsites)</span>
+<span class="linenos"> 55</span>  <span class="n">T_intraband</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">T_band</span><span class="p">]</span> <span class="o">*</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span>  <span class="n">N</span> <span class="o">=</span> <span class="n">Nbands</span> <span class="o">*</span> <span class="n">Nsites</span>
+<span class="linenos"> 58</span>  <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="linenos"> 59</span>  <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nbands</span><span class="p">):</span>
+<span class="linenos"> 60</span>    <span class="n">T</span><span class="p">[</span><span class="n">b</span><span class="p">::</span><span class="n">Nbands</span><span class="p">,</span> <span class="n">b</span><span class="p">::</span><span class="n">Nbands</span><span class="p">]</span> <span class="o">=</span> <span class="n">T_intraband</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+<span class="linenos"> 61</span>  <span class="k">return</span> <span class="n">T</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="k">def</span><span class="w"> </span><span class="nf">make_interband_matrix</span><span class="p">(</span><span class="n">Nsites</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="sd">&quot;&quot;&quot;NxN upper-triangular matrix with `val` at every same-site inter-band pair.&quot;&quot;&quot;</span>
+<span class="linenos"> 66</span>  <span class="n">M_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nbands</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">))</span>
+<span class="linenos"> 67</span>  <span class="n">M_band</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">Nbands</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">val</span>
+<span class="linenos"> 68</span>  <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Nsites</span><span class="p">),</span> <span class="n">M_band</span><span class="p">)</span>
+<span class="linenos"> 69</span>  <span class="k">return</span> <span class="n">M</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="c1">#### Define Parameters</span>
+<span class="linenos"> 73</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span>
+<span class="linenos"> 74</span><span class="n">Nbands</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos"> 75</span><span class="n">Nsites</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">*</span> <span class="n">Ny</span>
+<span class="linenos"> 76</span><span class="n">N</span> <span class="o">=</span> <span class="n">Nsites</span> <span class="o">*</span> <span class="n">Nbands</span>
+<span class="linenos"> 77</span><span class="n">xperiodic</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 78</span><span class="n">yperiodic</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 81</span><span class="n">U_val</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="linenos"> 82</span><span class="n">U1_val</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="linenos"> 83</span><span class="n">U2_val</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 84</span><span class="n">J_val</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="n">Ne</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="linenos"> 87</span><span class="n">steps</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="linenos"> 88</span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 91</span>  <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos"> 92</span>  <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="n">steps</span><span class="p">,</span>
+<span class="linenos"> 93</span>  <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
+<span class="linenos"> 94</span>  <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;SD_ROT&quot;</span><span class="p">,</span>
+<span class="linenos"> 95</span>  <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="n">batch_size</span><span class="p">,</span>
+<span class="linenos"> 96</span>  <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos"> 97</span>  <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">),</span>
+<span class="linenos"> 98</span>  <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos"> 99</span><span class="p">}</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span><span class="n">T</span> <span class="o">=</span> <span class="n">make_T_multiband</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">xperiodic</span><span class="o">=</span><span class="n">xperiodic</span><span class="p">,</span> <span class="n">yperiodic</span><span class="o">=</span><span class="n">yperiodic</span><span class="p">)</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="n">U1_mat</span> <span class="o">=</span> <span class="n">make_interband_matrix</span><span class="p">(</span><span class="n">Nsites</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">U1_val</span><span class="p">)</span>
+<span class="linenos">105</span><span class="n">U2_mat</span> <span class="o">=</span> <span class="n">make_interband_matrix</span><span class="p">(</span><span class="n">Nsites</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">U2_val</span><span class="p">)</span>
+<span class="linenos">106</span><span class="n">J_mat</span> <span class="o">=</span> <span class="n">make_interband_matrix</span><span class="p">(</span><span class="n">Nsites</span><span class="p">,</span> <span class="n">Nbands</span><span class="p">,</span> <span class="n">J_val</span><span class="p">)</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span><span class="n">H</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span>
+<span class="linenos">109</span>  <span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span>         
+<span class="linenos">110</span>  <span class="n">U</span><span class="o">=</span><span class="n">U_val</span><span class="p">,</span>          <span class="c1"># scalar → uniform on-orbital Hubbard</span>
+<span class="linenos">111</span>  <span class="n">U1</span><span class="o">=</span><span class="n">U1_mat</span><span class="p">,</span>        <span class="c1"># inter-orbital, opposite-spin density-density</span>
+<span class="linenos">112</span>  <span class="n">U2</span><span class="o">=</span><span class="n">U2_mat</span><span class="p">,</span>        <span class="c1"># inter-orbital, same-spin density-density</span>
+<span class="linenos">113</span>  <span class="n">J</span><span class="o">=</span><span class="n">J_mat</span><span class="p">,</span>          <span class="c1"># Hund&#39;s coupling</span>
+<span class="linenos">114</span>  <span class="n">Nx</span><span class="o">=</span><span class="n">Nx</span><span class="p">,</span>
+<span class="linenos">115</span>  <span class="n">Ny</span><span class="o">=</span><span class="n">Ny</span><span class="p">,</span>
+<span class="linenos">116</span>  <span class="n">Nbands</span><span class="o">=</span><span class="n">Nbands</span><span class="p">,</span>
+<span class="linenos">117</span><span class="p">)</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../09_molecule/molecules.html" class="btn btn-neutral float-left" title="9. Molecules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../api/autohf.html" class="btn btn-neutral float-right" title="AutoHF API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

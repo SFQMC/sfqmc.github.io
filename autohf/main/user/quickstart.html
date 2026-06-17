@@ -18,11 +18,10 @@
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Implemented Hamiltonians" href="hams.html" />
+    <link rel="next" title="User Examples" href="examples_include.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -49,12 +48,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples_include.html">User Examples</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">AutoHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/autohf.html">AutoHF API Reference</a></li>
 </ul>
 
         </div>
@@ -83,17 +78,13 @@
              
   <section id="quick-start-guide">
 <span id="quickstart"></span><h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h1>
-<p>After installation, the minimum requirements to running a AutoHF calculation are:
-* A Hamiltonian</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>A one body term <span class="math notranslate nohighlight">\(T_\sigma = t_{ij} c^\dagger_{i\sigma} c_{j\sigma}\)</span></p></li>
-<li><p>An interaction term</p></li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li><p>AutoHF settings</p></li>
-</ul>
+<p>An AutoHF calculation typically consists of two steps.</p>
+<ol class="arabic simple">
+<li><p>Construct an <a class="reference internal" href="../api/autohf.html#autohf.AutoHFHamiltonian" title="autohf.AutoHFHamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">autohf.AutoHFHamiltonian</span></code></a> from a set of onebody and interaction terms.</p></li>
+<li><p>Find a Hartree-Fock solution by running <a class="reference internal" href="../api/autohf.html#autohf.solve_hf" title="autohf.solve_hf"><code class="xref py py-func docutils literal notranslate"><span class="pre">autohf.solve_hf()</span></code></a>.</p></li>
+</ol>
+<p>The <a class="reference internal" href="examples_include.html#user-examples"><span class="std std-ref">User Examples</span></a> contain specific examples for how to do this for a variety of models.</p>
+<p>The <a class="reference internal" href="../api/autohf.html#api-reference"><span class="std std-ref">AutoHF API Reference</span></a> of the above functions documents all supported Hamiltonian terms and configuration settings, respectively.</p>
 </section>
 
 
@@ -101,7 +92,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hams.html" class="btn btn-neutral float-right" title="Implemented Hamiltonians" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="examples_include.html" class="btn btn-neutral float-right" title="User Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoHF Python package &mdash; AutoHF  documentation</title>
+  <title>AutoHF API Reference &mdash; AutoHF  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="autohf.terms package" href="autohf.terms.html" />
-    <link rel="prev" title="AutoHF" href="modules.html" /> 
+    <link rel="prev" title="10. Kanamori model" href="../user/examples/10_kanamori/kanamori.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,38 +46,46 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/quickstart.html">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/examples_include.html">User Examples</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">AutoHF</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">AutoHF Python package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#more-detail">More Detail</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AutoHF API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#top-level-api">Top-level API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#autohf.AutoHFHamiltonian"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.AutoHFHamiltonian.add_terms"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.add_terms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.AutoHFHamiltonian.get"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.AutoHFHamiltonian.get_one_body"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.get_one_body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.AutoHFHamiltonian.keys"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.AutoHFHamiltonian.set"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.set()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.solver">solver</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.converters">converters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.hamiltonian">hamiltonian</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.io">input/output (io)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.options">options</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.rotation_tools">rotation tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autohf.tools">tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autohf.solve_hf"><code class="docutils literal notranslate"><span class="pre">solve_hf()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autohf">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autohf.lattice_hf"><code class="docutils literal notranslate"><span class="pre">lattice_hf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-autohf.io">input/output (io)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.io.loadStates"><code class="docutils literal notranslate"><span class="pre">loadStates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.io.read_input_params"><code class="docutils literal notranslate"><span class="pre">read_input_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.io.saveStates"><code class="docutils literal notranslate"><span class="pre">saveStates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autohf.options">options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.options.RepOptions"><code class="docutils literal notranslate"><span class="pre">RepOptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.options.SlaterType"><code class="docutils literal notranslate"><span class="pre">SlaterType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.options.get_ansatz"><code class="docutils literal notranslate"><span class="pre">get_ansatz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.options.process_args"><code class="docutils literal notranslate"><span class="pre">process_args()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-autohf.tools">tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.tools.create_polarized_func"><code class="docutils literal notranslate"><span class="pre">create_polarized_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.tools.sd_to_rdm"><code class="docutils literal notranslate"><span class="pre">sd_to_rdm()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.tools.sd_to_rdm_noncollinear"><code class="docutils literal notranslate"><span class="pre">sd_to_rdm_noncollinear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autohf.tools.uhf_to_ghf"><code class="docutils literal notranslate"><span class="pre">uhf_to_ghf()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -100,8 +108,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">AutoHF</a></li>
-      <li class="breadcrumb-item active">AutoHF Python package</li>
+      <li class="breadcrumb-item active">AutoHF API Reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/autohf.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,125 +118,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="autohf-python-package">
-<h1>AutoHF Python package<a class="headerlink" href="#autohf-python-package" title="Link to this heading"></a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-</section>
-<section id="more-detail">
-<h2>More Detail<a class="headerlink" href="#more-detail" title="Link to this heading"></a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.ghf">autohf.terms.ghf module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_J"><code class="docutils literal notranslate"><span class="pre">ghf_J()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_Jheis"><code class="docutils literal notranslate"><span class="pre">ghf_Jheis()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U"><code class="docutils literal notranslate"><span class="pre">ghf_U()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U1"><code class="docutils literal notranslate"><span class="pre">ghf_U1()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.ghf.ghf_U2"><code class="docutils literal notranslate"><span class="pre">ghf_U2()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.uhf">autohf.terms.uhf module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.rhf_hop"><code class="docutils literal notranslate"><span class="pre">rhf_hop()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_J"><code class="docutils literal notranslate"><span class="pre">uhf_J()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_Jheis"><code class="docutils literal notranslate"><span class="pre">uhf_Jheis()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U"><code class="docutils literal notranslate"><span class="pre">uhf_U()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U1"><code class="docutils literal notranslate"><span class="pre">uhf_U1()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.terms.html#autohf.terms.uhf.uhf_U2"><code class="docutils literal notranslate"><span class="pre">uhf_U2()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.terms.html#module-autohf.terms">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces.afqmctools">autohf.interfaces.afqmctools module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm"><code class="docutils literal notranslate"><span class="pre">SpinSymm</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.CLOSED"><code class="docutils literal notranslate"><span class="pre">SpinSymm.CLOSED</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.COLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.COLLINEAR</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.SpinSymm.NONCOLLINEAR"><code class="docutils literal notranslate"><span class="pre">SpinSymm.NONCOLLINEAR</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.fail_without_afqmctools"><code class="docutils literal notranslate"><span class="pre">fail_without_afqmctools()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.skip_without_afqmctools"><code class="docutils literal notranslate"><span class="pre">skip_without_afqmctools()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.spin_squared"><code class="docutils literal notranslate"><span class="pre">spin_squared()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.spin_z"><code class="docutils literal notranslate"><span class="pre">spin_z()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
-<section id="module-autohf.solver">
-<span id="solver"></span><h3>solver<a class="headerlink" href="#module-autohf.solver" title="Link to this heading"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.solver.constructPhi0">
-<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">constructPhi0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">averageSpins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.constructPhi0" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.solver.construct_random_Phi">
-<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">construct_random_Phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.construct_random_Phi" title="Link to this definition"></a></dt>
-<dd><p>construct a random Slater determinant as</p>
-<p>e^{-i*delta*X} Phi_{ia}</p>
-<p>where Phi_{ia} is a Slater determinant, X is a random symmetric matrix,
-and delta is a real number used to control the amplitude of the random noise.</p>
-<p>Inputs:
-- rng: initialized numpy random number generator
-- N : number of basis set functions (number of sites * number of bands)
-- neelc : number of electrons as an iterable of length 2 (Nup,Ndown)
-- spin_symm : the desired spin symmetry of the Slater determinant</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.solver.makeEnergyCall">
-<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">makeEnergyCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.makeEnergyCall" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.solver.solve_hf">
-<span class="sig-prename descclassname"><span class="pre">autohf.solver.</span></span><span class="sig-name descname"><span class="pre">solve_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_energy_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solver.solve_hf" title="Link to this definition"></a></dt>
-<dd><p>Run Hartree-Fock on lattice Model Hamiltonians</p>
-</dd></dl>
-
-</section>
-<section id="module-autohf.converters">
-<span id="converters"></span><h3>converters<a class="headerlink" href="#module-autohf.converters" title="Link to this heading"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.converters.convertInitialSlaterDet">
-<span class="sig-prename descclassname"><span class="pre">autohf.converters.</span></span><span class="sig-name descname"><span class="pre">convertInitialSlaterDet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SlaterType.UHF</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.converters.convertInitialSlaterDet" title="Link to this definition"></a></dt>
-<dd><p>map from an initial guess in the afqmctools format to the autoHF format.</p>
-<dl class="simple">
-<dt>Note: generates the initial Slater determint in RepOptions.SLATERDET mode</dt><dd><p>or the reference Slater determinant in RepOptions.SLATERDET_ROT mode</p>
-</dd>
-<dt>For Collinear Slater determinants:</dt><dd><p>afqmctools will provide Phi[nmo,Nes[0]+Nes[1]] which should be converted to
-jnp.stack(Phi[:,:Nes[0]], Phi[nmo][:,Nes[0]:])</p>
-</dd>
-<dt>For Noncollinear Slater determinants:</dt><dd><p>simply converts to a jnp array with appropriate dimensions.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="module-autohf.hamiltonian">
-<span id="hamiltonian"></span><h3>hamiltonian<a class="headerlink" href="#module-autohf.hamiltonian" title="Link to this heading"></a></h3>
+  <section id="autohf-api-reference">
+<span id="api-reference"></span><h1>AutoHF API Reference<a class="headerlink" href="#autohf-api-reference" title="Link to this heading"></a></h1>
+<section id="top-level-api">
+<h2>Top-level API<a class="headerlink" href="#top-level-api" title="Link to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">AutoHFHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.</span></span><span class="sig-name descname"><span class="pre">AutoHFHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Container class to hold Hamiltonian terms for AutoHF in internal format.</p>
 <p>Hamiltonian terms are stored as <code class="docutils literal notranslate"><span class="pre">(vals,</span> <span class="pre">sites)</span></code> pairs, where <code class="docutils literal notranslate"><span class="pre">vals</span></code>
@@ -238,77 +133,85 @@ the corresponding site-index arrays at which each value appears.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference internal" href="#autohf.hamiltonian.AutoHFHamiltonian" title="autohf.hamiltonian.AutoHFHamiltonian"><em>AutoHFHamiltonian</em></a><em> or </em><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.Hamiltonian" title="autohf.interfaces.afqmctools.Hamiltonian"><em>afqmctools.Hamiltonian</em></a><em>, </em><em>optional</em>) – If source is an <code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code>, performs a deep-copy (copy constructor).
-If source is an afqmctools <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code>, reads T, U, U1, U2, J, and
-Heisenberg terms from it.  If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), builds from
-keyword arguments.</p></li>
-<li><p><strong>settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – Convenience dict for lattice geometry.  Expected keys:
-* <code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code> — <code class="docutils literal notranslate"><span class="pre">(Nx,</span> <span class="pre">Ny)</span></code> tuple of lattice dimensions (required).
-* <code class="docutils literal notranslate"><span class="pre">&quot;Nbands&quot;</span></code> — number of orbitals per site (default 1).
-Takes precedence over the <code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code>, and <code class="docutils literal notranslate"><span class="pre">Nbands</span></code> kwargs.</p></li>
-<li><p><strong>**kwargs</strong> – Hamiltonian terms and lattice metadata passed directly.  See
-<code class="docutils literal notranslate"><span class="pre">add_terms</span></code> for the accepted term keywords.  Additional keys:
-* <code class="docutils literal notranslate"><span class="pre">N</span></code> — total number of orbitals (sites × Nbands; inferred from T or settings if omitted).
-* <code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code> — lattice dimensions (used for metadata only).
-* <code class="docutils literal notranslate"><span class="pre">Nbands</span></code> — number of orbitals per site (default 1).</p></li>
-<li><p><strong>Terms</strong> (<em>Supported Hamiltonian</em>)</p></li>
-<li><p><strong>---------------------------</strong></p></li>
-<li><p><strong>argument</strong> (<em>Supply each term as a keyword</em>)</p></li>
-<li><p><strong>formats.</strong> (<em>and supply input arrays in the following</em>)</p></li>
-<li><p><strong>T</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>nspin</em><em>, </em><em>N</em><em>, </em><em>N</em><em>)</em>) – <p>One-body hopping matrix. Implements
-<span class="math notranslate nohighlight">\(\\sum_{ij,\\sigma} T_{ij} c_{i\\sigma}^\\dagger c_{j\\sigma}\)</span>.</p>
-<p>Must be a list/tuple/ndarray with one
-NxN matrix per spin sector: <code class="docutils literal notranslate"><span class="pre">(T_up,</span> <span class="pre">T_dn)</span></code> for collinear (UHF)
-or <code class="docutils literal notranslate"><span class="pre">[T_total]</span></code> for non-collinear (GHF).</p>
-</p></li>
-<li><p><strong>U</strong> (<em>scalar</em><em>, </em><em>1-D array</em><em> of </em><em>length N</em><em>, or </em><em>NxN matrix</em>) – <p>On-site Hubbard interaction.  Implements
-<span class="math notranslate nohighlight">\(\\sum_i U_i n_{i\\uparrow} n_{i\\downarrow}\)</span>.</p>
-<blockquote>
-<div><p>Accepted forms:</p>
+<li><p><strong>source</strong> (<a class="reference internal" href="#autohf.AutoHFHamiltonian" title="autohf.AutoHFHamiltonian"><em>AutoHFHamiltonian</em></a><em> or </em><a class="reference internal" href="autohf.interfaces.html#autohf.interfaces.afqmctools.Hamiltonian" title="autohf.interfaces.afqmctools.Hamiltonian"><em>afqmctools.Hamiltonian</em></a><em>, </em><em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">source</span></code> is an <code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code>, performs a deep-copy (copy
+constructor). If <code class="docutils literal notranslate"><span class="pre">source</span></code> is an afqmctools <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code>, reads
+<code class="docutils literal notranslate"><span class="pre">T</span></code>, <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">U1</span></code>, <code class="docutils literal notranslate"><span class="pre">U2</span></code>, <code class="docutils literal notranslate"><span class="pre">J</span></code>, and Heisenberg terms from it. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code> (default), builds from keyword arguments.</p></li>
+<li><p><strong>settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – <p>Convenience dict for lattice geometry. Takes precedence over the
+<code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code>, and <code class="docutils literal notranslate"><span class="pre">Nbands</span></code> keyword arguments. Expected keys:</p>
 <ul>
-<li><p>scalar — expanded to <code class="docutils literal notranslate"><span class="pre">np.ones(N)</span> <span class="pre">*</span> <span class="pre">U</span></code> then diagonalized.</p></li>
-<li><p>1-D array of length N — treated as diagonal of the coupling matrix.</p></li>
-<li><p>NxN matrix — all non-zero entries are used as per-orbital strengths
-(row indices are stored; off-diagonal entries contribute their row
-index, which is the intended behavior for orbital-dependent U).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code> – <code class="docutils literal notranslate"><span class="pre">(Nx,</span> <span class="pre">Ny)</span></code> tuple of lattice dimensions (required).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Nbands&quot;</span></code> – number of orbitals per site (default 1).</p></li>
 </ul>
-</div></blockquote>
 </p></li>
-<li><p><strong>U1</strong> (<em>NxN array</em>) – <p>Inter-orbital mixed-spin density-density coupling.  Implements
-<span class="math notranslate nohighlight">\(\\sum_{i&lt;j,\\sigma} U1_{ij}\, n_{i\\sigma} n_{j\\bar\\sigma}\)</span>.</p>
-<p>Stored as <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U1&quot;]</span> <span class="pre">=</span> <span class="pre">(U1vals,</span> <span class="pre">U1Sites)</span></code>
-where <code class="docutils literal notranslate"><span class="pre">U1Sites[k]</span></code> is a tuple <code class="docutils literal notranslate"><span class="pre">(i_array,</span> <span class="pre">j_array)</span></code> of pairs
-with <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">j</span></code> and coupling value <code class="docutils literal notranslate"><span class="pre">U1vals[k]</span></code>.</p>
-<p>Only the upper-triangular part of the matrix is used.</p>
-</p></li>
-<li><p><strong>U2</strong> (<em>NxN array</em>) – <p>Inter-orbital same-spin density-density coupling (Wick-contracted with
-the exchange correction).  Implements
-<span class="math notranslate nohighlight">\(\\sum_{i&lt;j,\\sigma} U2_{ij}\, n_{i\\sigma} n_{j\\sigma}\)</span>.</p>
-<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U2&quot;]</span></code>.</p>
-<p>Only the upper-triangular part of the matrix is used.</p>
-</p></li>
-<li><p><strong>J</strong> (<em>NxN array</em>) – <p>Hund’s coupling (HK-model form).  Encodes pair-hopping and
-spin-flip processes between orbitals <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>. Implements
-<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij} (c_{i\\uparrow}^\\dagger c_{j\\uparrow} c_{j\\downarrow}^\\dagger c_{i\\downarrow} + h.c.)\)</span></p>
-<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J&quot;]</span></code>.</p>
-<p>Only the upper-triangular part of the matrix is used.</p>
-</p></li>
-<li><p><strong>Jheis</strong> (<em>NxN array</em>) – <p>Heisenberg spin-spin coupling. Implements
-<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij}\, \\vec{S}_i \\cdot \\vec{S}_j\)</span>.</p>
-<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J_heisenberg&quot;]</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Jheis</span></code>.</p>
-</p></li>
-<li><p><strong>Jheisenberg</strong> (<em>NxN array</em>) – <p>Heisenberg spin-spin coupling. Implements
-<span class="math notranslate nohighlight">\(\\sum_{i&lt;j} J_{ij}\, \\vec{S}_i \\cdot \\vec{S}_j\)</span>.</p>
-<p>Uses same format as U1, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J_heisenberg&quot;]</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Jheis</span></code>.</p>
+<li><p><strong>**kwargs</strong> – <p>Hamiltonian terms and lattice metadata passed directly. See the
+<em>Notes</em> section below for the accepted
+term keywords and array formats. Additional keys:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> – total number of orbitals (sites times <code class="docutils literal notranslate"><span class="pre">Nbands</span></code>; inferred
+from <code class="docutils literal notranslate"><span class="pre">T</span></code> or <code class="docutils literal notranslate"><span class="pre">settings</span></code> if omitted).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nx</span></code>, <code class="docutils literal notranslate"><span class="pre">Ny</span></code> – lattice dimensions (used for metadata only).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nbands</span></code> – number of orbitals per site (default 1).</p></li>
+</ul>
 </p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p><strong>Supported Hamiltonian terms.</strong> Supply each term as a keyword argument,
+with input arrays in the formats below.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">T</span></code><span class="classifier">array-like, shape <code class="docutils literal notranslate"><span class="pre">(nspin,</span> <span class="pre">N,</span> <span class="pre">N)</span></code></span></dt><dd><p>One-body hopping matrix. Implements
+<span class="math notranslate nohighlight">\(\sum_{ij,\sigma} T_{ij} c_{i\sigma}^\dagger c_{j\sigma}\)</span>.</p>
+<p>Must be a list/tuple/ndarray with one <code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> matrix per spin
+sector: <code class="docutils literal notranslate"><span class="pre">(T_up,</span> <span class="pre">T_dn)</span></code> for collinear (UHF) or <code class="docutils literal notranslate"><span class="pre">[T_total]</span></code> for
+non-collinear (GHF).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">U</span></code><span class="classifier">scalar, 1-D array of length <code class="docutils literal notranslate"><span class="pre">N</span></code>, or <code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> matrix</span></dt><dd><p>On-site Hubbard interaction. Implements
+<span class="math notranslate nohighlight">\(\sum_i U_i n_{i\uparrow} n_{i\downarrow}\)</span>.</p>
+<p>Accepted forms:</p>
+<ul class="simple">
+<li><p>scalar – expanded to <code class="docutils literal notranslate"><span class="pre">np.ones(N)</span> <span class="pre">*</span> <span class="pre">U</span></code> then diagonalized.</p></li>
+<li><p>1-D array of length <code class="docutils literal notranslate"><span class="pre">N</span></code> – treated as diagonal of the coupling
+matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> matrix – all non-zero entries are used as per-orbital
+strengths (row indices are stored; off-diagonal entries contribute
+their row index, which is the intended behavior for orbital-dependent
+<code class="docutils literal notranslate"><span class="pre">U</span></code>).</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">U1</span></code><span class="classifier"><code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> array</span></dt><dd><p>Inter-orbital mixed-spin density-density coupling. Implements
+<span class="math notranslate nohighlight">\(\sum_{i&lt;j,\sigma} U1_{ij}\, n_{i\sigma} n_{j\bar\sigma}\)</span>.</p>
+<p>Stored as <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U1&quot;]</span> <span class="pre">=</span> <span class="pre">(U1vals,</span> <span class="pre">U1Sites)</span></code>, where <code class="docutils literal notranslate"><span class="pre">U1Sites[k]</span></code> is
+a tuple <code class="docutils literal notranslate"><span class="pre">(i_array,</span> <span class="pre">j_array)</span></code> of pairs with <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">j</span></code> and coupling
+value <code class="docutils literal notranslate"><span class="pre">U1vals[k]</span></code>. Only the upper-triangular part of the matrix is
+used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">U2</span></code><span class="classifier"><code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> array</span></dt><dd><p>Inter-orbital same-spin density-density coupling (Wick-contracted with
+the exchange correction). Implements
+<span class="math notranslate nohighlight">\(\sum_{i&lt;j,\sigma} U2_{ij}\, n_{i\sigma} n_{j\sigma}\)</span>.</p>
+<p>Uses the same format as <code class="docutils literal notranslate"><span class="pre">U1</span></code>, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;U2&quot;]</span></code>. Only the
+upper-triangular part of the matrix is used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">J</span></code><span class="classifier"><code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> array</span></dt><dd><p>Hund’s coupling (HK-model form). Encodes pair-hopping and spin-flip
+processes between orbitals <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>. Implements
+<span class="math notranslate nohighlight">\(\sum_{i&lt;j} J_{ij} (c_{i\uparrow}^\dagger c_{j\uparrow} c_{j\downarrow}^\dagger c_{i\downarrow} + \mathrm{h.c.})\)</span>.</p>
+<p>Uses the same format as <code class="docutils literal notranslate"><span class="pre">U1</span></code>, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J&quot;]</span></code>. Only the
+upper-triangular part of the matrix is used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Jheis</span></code>, <code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code><span class="classifier"><code class="docutils literal notranslate"><span class="pre">N</span></code> x <code class="docutils literal notranslate"><span class="pre">N</span></code> array</span></dt><dd><p>Heisenberg spin-spin coupling. Implements
+<span class="math notranslate nohighlight">\(\sum_{i&lt;j} J_{ij}\, \vec{S}_i \cdot \vec{S}_j\)</span>.</p>
+<p>Uses the same format as <code class="docutils literal notranslate"><span class="pre">U1</span></code>, stored under <code class="docutils literal notranslate"><span class="pre">_terms[&quot;J_heisenberg&quot;]</span></code>.
+<code class="docutils literal notranslate"><span class="pre">Jheisenberg</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">Jheis</span></code>.</p>
+</dd>
+</dl>
+<p>A general second quantized interaction of shape</p>
+<div class="math notranslate nohighlight">
+\[\hat{H}^\text{Int}_V = \sum_{ijkl} V_{ijkl} \hat{c}^\dagger_{i} \hat{c}^\dagger_{j} \hat{c}_{k} \hat{c}_l =  \frac 12 \sum_{ijkl} \left( \sum_{n=1}^{N_\text{chol}} v^n_{il} v^n_{kj} \right) \hat{c}^\dagger_{i} \hat{c}^\dagger_{j} \hat{c}_{k} \hat{c}_l\]</div>
+<p>is supported via the functions <a class="reference internal" href="autohf.terms.html#autohf.terms.cholesky.hf_onebody" title="autohf.terms.cholesky.hf_onebody"><code class="xref py py-func docutils literal notranslate"><span class="pre">autohf.terms.cholesky.hf_onebody()</span></code></a> and <a class="reference internal" href="autohf.terms.html#autohf.terms.cholesky.hf_cholesky" title="autohf.terms.cholesky.hf_cholesky"><code class="xref py py-func docutils literal notranslate"><span class="pre">autohf.terms.cholesky.hf_cholesky()</span></code></a> and a custom energy term. See the <a class="reference internal" href="../user/examples/09_molecule/molecules.html#example-molecules"><span class="std std-ref">Molecules</span></a> example for more details.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.add_terms">
-<span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.add_terms" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian.add_terms">
+<span class="sig-name descname"><span class="pre">add_terms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian.add_terms" title="Link to this definition"></a></dt>
 <dd><p>Add one or more Hamiltonian terms.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -320,55 +223,125 @@ for the accepted term keywords and array formats.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.get" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian.get" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.get_one_body">
-<span class="sig-name descname"><span class="pre">get_one_body</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.get_one_body" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian.get_one_body">
+<span class="sig-name descname"><span class="pre">get_one_body</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian.get_one_body" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.keys">
-<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.keys" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian.keys" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="autohf.hamiltonian.AutoHFHamiltonian.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.hamiltonian.AutoHFHamiltonian.set" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autohf.AutoHFHamiltonian.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.AutoHFHamiltonian.set" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="autohf.hamiltonian.Hamiltonian">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">Hamiltonian</span></span><a class="headerlink" href="#autohf.hamiltonian.Hamiltonian" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">SpinSymm</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.CLOSED">
-<span class="sig-name descname"><span class="pre">CLOSED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.CLOSED" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.COLLINEAR">
-<span class="sig-name descname"><span class="pre">COLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.COLLINEAR" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.hamiltonian.SpinSymm.NONCOLLINEAR">
-<span class="sig-name descname"><span class="pre">NONCOLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#autohf.hamiltonian.SpinSymm.NONCOLLINEAR" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.solve_hf">
+<span class="sig-prename descclassname"><span class="pre">autohf.</span></span><span class="sig-name descname"><span class="pre">solve_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_energy_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.solve_hf" title="Link to this definition"></a></dt>
+<dd><p>Run Hartree-Fock on lattice model Hamiltonians.</p>
+<p>Minimizes the Hartree-Fock energy of <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> over the chosen
+variational ansatz, optionally starting from a supplied initial guess or a
+previously saved state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hamiltonian</strong> (<a class="reference internal" href="#autohf.AutoHFHamiltonian" title="autohf.AutoHFHamiltonian"><em>AutoHFHamiltonian</em></a>) – The Hamiltonian to solve. Required.</p></li>
+<li><p><strong>settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of solver options. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the settings are read from
+<code class="docutils literal notranslate"><span class="pre">inputfile</span></code>. The dictionary must also provide <code class="docutils literal notranslate"><span class="pre">nelec</span></code> (the number of
+electrons). See the <em>Settings</em> table below for the recognized keys.</p></li>
+<li><p><strong>initial_guess</strong> (<em>array-like</em><em>, </em><em>optional</em>) – Initial Slater-determinant orbitals to start the optimization from. If
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, a free-electron (or random) guess is constructed.</p></li>
+<li><p><strong>start_from</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to a previously saved state to restart the optimization from. Takes
+precedence over <code class="docutils literal notranslate"><span class="pre">initial_guess</span></code>.</p></li>
+<li><p><strong>inputfile</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to an input file from which to read <code class="docutils literal notranslate"><span class="pre">settings</span></code> when <code class="docutils literal notranslate"><span class="pre">settings</span></code>
+is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>custom_energy_term</strong> (<em>callable</em><em>, </em><em>optional</em>) – Additional energy term added to the Hartree-Fock energy during
+optimization.</p></li>
+<li><p><strong>verbosity</strong> (<em>int</em><em>, </em><em>default 1</em>) – Console output level: <code class="docutils literal notranslate"><span class="pre">0</span></code> minimal (no banner), <code class="docutils literal notranslate"><span class="pre">1</span></code> usual, <code class="docutils literal notranslate"><span class="pre">2</span></code>
+extra detail.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments forwarded to the energy construction and
+optimizer (e.g. <code class="docutils literal notranslate"><span class="pre">optimizer</span></code>, <code class="docutils literal notranslate"><span class="pre">averageSpins</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>output_data</strong> (<em>dict</em>) – Results of the run (orbitals, energies, settings, …), as produced by
+the saving routines.</p></li>
+<li><p><strong>data_functions</strong> (<em>dict</em>) – Helper callables that cannot be pickled, with keys <code class="docutils literal notranslate"><span class="pre">&quot;makeRDMs&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;state2Orbitals&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;energy_func&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;loss&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;loss_v&quot;</span></code>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><strong>Settings.</strong> The <code class="docutils literal notranslate"><span class="pre">settings</span></code> dictionary (or input file) accepts the
+following keys:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">approx_expm</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">False</span></code></span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use a fast, but approximate, matrix exponentiation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dump_batch</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">False</span></code></span></dt><dd><p>Only applies when <code class="docutils literal notranslate"><span class="pre">output</span></code> is set. Dump the orbitals from all trials
+to the output file, as opposed to only those of the best HF solution.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">eta</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">0.1</span></code></span></dt><dd><p>The step size for gradient descent. Has no effect for the <code class="docutils literal notranslate"><span class="pre">&quot;lbfgs&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;basin&quot;</span></code> optimization methods.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">force_complex</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">False</span></code></span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, forces the HF orbitals to be complex-valued.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">None</span></code></span></dt><dd><p>Name of the file to save results to. The format and the data saved are
+determined from the file name. <code class="docutils literal notranslate"><span class="pre">&quot;*.npy&quot;</span></code> saves the orbitals to the
+NumPy binary format. <code class="docutils literal notranslate"><span class="pre">&quot;*.h5&quot;</span></code> saves, in an HDF5 file, <span class="math notranslate nohighlight">\(\alpha\)</span>
+for the best HF solution and for all trials, the energies for the best HF
+solution and for all trials, the orbitals of the best variational state,
+the AutoHF settings, the reference Slater determinant, and the number of
+electrons used. <code class="docutils literal notranslate"><span class="pre">&quot;*.pkl&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;*.pickle&quot;</span></code> saves the same information
+as the HDF5 format, but as a Python pickle file. HDF5 is recommended over
+pickle files for security reasons <a class="reference internal" href="#r3bce3819be7b-1" id="id1">[1]</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">riemannian</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">False</span></code></span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the constraint-dissolving approach to impose
+optimization on a Stiefel manifold. Only applicable to the <code class="docutils literal notranslate"><span class="pre">SD</span></code> or
+<code class="docutils literal notranslate"><span class="pre">SDC</span></code> ansätze.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">state0_scale</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">0.01</span></code></span></dt><dd><p>Controls the amount of random noise introduced to the initial
+<span class="math notranslate nohighlight">\(\alpha\)</span>. The details of how the noise is applied depend on the
+specific ansatz used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">False</span></code></span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, turns on verbose debug printing. This will significantly
+slow down calculations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jaxoptargs</span></code><span class="classifier">default <code class="docutils literal notranslate"><span class="pre">None</span></code></span></dt><dd><p>A dictionary of keyword settings to pass along to the jaxopt LBFGS
+optimizer. See the <a class="reference external" href="https://jaxopt.github.io/stable/_autosummary/jaxopt.LBFGS.html">jaxopt documentation</a> for
+more.</p>
+</dd>
+</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="r3bce3819be7b-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Only use Python pickle files that you trust. Arbitrary code can be
+encoded and then executed when loading a pickle file.</p>
+</div>
+</div>
 </dd></dl>
 
 </section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autohf.terms.html">autohf.terms package</a></li>
+</ul>
+</div>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
 <section id="module-autohf.io">
 <span id="input-output-io"></span><h3>input/output (io)<a class="headerlink" href="#module-autohf.io" title="Link to this heading"></a></h3>
 <dl class="py function">
@@ -381,10 +354,8 @@ Supports using the same ansatz or any ansatz -&gt; SD/SDC</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="autohf.io.read_input_params">
 <span class="sig-prename descclassname"><span class="pre">autohf.io.</span></span><span class="sig-name descname"><span class="pre">read_input_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.io.read_input_params" title="Link to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Read parameters from a human-readable input file in TOML format.</dt><dd><p>Returns a Dictionary containing the parameters.</p>
-</dd>
-</dl>
+<dd><p>Read parameters from a human-readable input file in TOML format.
+Returns a Dictionary containing the parameters.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -506,11 +477,7 @@ settings is returned.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>args</strong> (<em>Namespace</em>) – a Namespace instance containing arguments (i.e. similar to the output of argparse)</p></li>
-<li><p><strong>args_dict</strong> (<em>dict</em>) – <dl class="simple">
-<dt>a doct contiains arguments. If both <cite>args</cite> and <cite>args_dict</cite> set the same arguement,</dt><dd><p>the value in <cite>args_dict</cite> takes precendence.</p>
-</dd>
-</dl>
-</p></li>
+<li><p><strong>args_dict</strong> (<em>dict</em>) – a dict containing arguments. If both <cite>args</cite> and <cite>args_dict</cite> set the same argument, the value in <cite>args_dict</cite> takes precendence.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -520,74 +487,107 @@ settings is returned.</p>
 </dd></dl>
 
 </section>
-<section id="module-autohf.rotation_tools">
-<span id="rotation-tools"></span><h3>rotation tools<a class="headerlink" href="#module-autohf.rotation_tools" title="Link to this heading"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.rotation_tools.get_nonz">
-<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">get_nonz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.get_nonz" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.rotation_tools.get_nonz_herm">
-<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">get_nonz_herm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.get_nonz_herm" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.rotation_tools.jexpm">
-<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">jexpm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.jexpm" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.rotation_tools.makeRot">
-<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">makeRot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.makeRot" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.rotation_tools.makeRot_herm">
-<span class="sig-prename descclassname"><span class="pre">autohf.rotation_tools.</span></span><span class="sig-name descname"><span class="pre">makeRot_herm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.rotation_tools.makeRot_herm" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
 <section id="module-autohf.tools">
 <span id="tools"></span><h3>tools<a class="headerlink" href="#module-autohf.tools" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="autohf.tools.create_polarized_func">
 <span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">create_polarized_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.create_polarized_func" title="Link to this definition"></a></dt>
-<dd><p>takes collinear phi0 and constructs sliced input to function f</p>
+<dd><p>Wrap a function so it receives spin-polarized, occupation-sliced orbitals.</p>
+<p>Builds a closure that slices an input state down to the occupied orbitals
+implied by the collinear reference <code class="docutils literal notranslate"><span class="pre">phi0</span></code> before passing it to <code class="docutils literal notranslate"><span class="pre">f</span></code>. This
+is used to apply a function defined on the occupied subspace to a larger
+state array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phi0</strong> (<em>sequence</em><em> of </em><em>array-like</em>) – Collinear reference orbitals <code class="docutils literal notranslate"><span class="pre">(phi_up,</span> <span class="pre">phi_dn)</span></code>. The shapes
+<code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">Nup)</span></code> and <code class="docutils literal notranslate"><span class="pre">(_,</span> <span class="pre">Ndn)</span></code> determine the slice applied to each input
+state.</p></li>
+<li><p><strong>f</strong> (<em>callable</em>) – Function to call with the sliced <code class="docutils literal notranslate"><span class="pre">(up,</span> <span class="pre">dn)</span></code> orbital tuple.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>rdm_func</strong> – Function that takes a state <code class="docutils literal notranslate"><span class="pre">(state_up,</span> <span class="pre">state_dn)</span></code>, slices it to the
+occupied blocks <code class="docutils literal notranslate"><span class="pre">state[0][:N,</span> <span class="pre">:Nup]</span></code> and <code class="docutils literal notranslate"><span class="pre">state[1][:N,</span> <span class="pre">:Ndn]</span></code>, and
+returns <code class="docutils literal notranslate"><span class="pre">f</span></code> evaluated on the result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="autohf.tools.sd_to_rdm">
 <span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">sd_to_rdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.sd_to_rdm" title="Link to this definition"></a></dt>
-<dd><p>takes (2,N,Ne) orbitals
-returns &lt;psi|c^dag c | psi&gt;/&lt;psi|psi&gt;</p>
+<dd><p>Build the one-body reduced density matrix from collinear orbitals.</p>
+<p>Computes the spin-resolved one-body reduced density matrix
+<span class="math notranslate nohighlight">\(\langle\psi| c_i^\dagger c_j |\psi\rangle / \langle\psi|\psi\rangle\)</span>
+for a collinear (UHF) Slater determinant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sds</strong> (array-like, shape <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">N,</span> <span class="pre">Ne)</span></code>) – The occupied orbitals of the up and down spin sectors. <code class="docutils literal notranslate"><span class="pre">N</span></code> is the
+number of orbitals and <code class="docutils literal notranslate"><span class="pre">Ne</span></code> the number of electrons in each sector
+(the two sectors may have different occupations).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rdm_up</strong> (jax.numpy.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">N)</span></code>) – One-body reduced density matrix of the up-spin sector.</p></li>
+<li><p><strong>rdm_dn</strong> (jax.numpy.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">N)</span></code>) – One-body reduced density matrix of the down-spin sector.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="autohf.tools.sd_to_rdm_noncollinear">
 <span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">sd_to_rdm_noncollinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.sd_to_rdm_noncollinear" title="Link to this definition"></a></dt>
-<dd><p>takes (1,N,Ne_total) orbitals
-returns &lt;psi|c^dag c | psi&gt;/&lt;psi|psi&gt;</p>
+<dd><p>Build the one-body reduced density matrix from noncollinear orbitals.</p>
+<p>Computes the one-body reduced density matrix
+<span class="math notranslate nohighlight">\(\langle\psi| c_i^\dagger c_j |\psi\rangle / \langle\psi|\psi\rangle\)</span>
+for a noncollinear (GHF) Slater determinant, where the two spin sectors are
+combined into a single spinor block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sds</strong> (array-like, shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">N,</span> <span class="pre">Ne_total)</span></code>) – The occupied spinor orbitals. <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of orbitals and
+<code class="docutils literal notranslate"><span class="pre">Ne_total</span></code> the total number of electrons.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>rdm</strong> – The one-body reduced density matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>jax.numpy.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">N)</span></code></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Unlike <a class="reference internal" href="#autohf.tools.sd_to_rdm" title="autohf.tools.sd_to_rdm"><code class="xref py py-func docutils literal notranslate"><span class="pre">sd_to_rdm()</span></code></a>, this returns a single array rather than a tuple,
+since the collinear spin decomposition does not apply.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="autohf.tools.uhf_to_ghf">
 <span class="sig-prename descclassname"><span class="pre">autohf.tools.</span></span><span class="sig-name descname"><span class="pre">uhf_to_ghf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.tools.uhf_to_ghf" title="Link to this definition"></a></dt>
-<dd><p>Converts [o_up, o_dn] UHF like input to a
-[ o_up 0    ]
-[  0   o_dn ]
-block diagonal GHF form</p>
+<dd><p>Convert collinear (UHF) orbitals to block-diagonal noncollinear (GHF) form.</p>
+<p>Embeds the up- and down-spin blocks of a UHF input
+<span class="math notranslate nohighlight">\([o_\uparrow, o_\downarrow]\)</span> into a single block-diagonal GHF matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} o_\uparrow &amp; 0 \\ 0 &amp; o_\downarrow \end{bmatrix}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>numpy.ndarray</em><em> or </em><em>jax.numpy.ndarray</em>) – A length-2 sequence <code class="docutils literal notranslate"><span class="pre">[o_up,</span> <span class="pre">o_dn]</span></code> of the up- and down-spin blocks.
+A NumPy input produces a NumPy result; otherwise a JAX array is returned.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The block-diagonal GHF matrix, of the same array type as the input.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray or jax.numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
-</section>
-<section id="module-autohf">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autohf" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.lattice_hf">
-<span class="sig-prename descclassname"><span class="pre">autohf.</span></span><span class="sig-name descname"><span class="pre">lattice_hf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.lattice_hf" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
 </section>
 </section>
 
@@ -595,7 +595,7 @@ block diagonal GHF form</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="AutoHF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../user/examples/10_kanamori/kanamori.html" class="btn btn-neutral float-left" title="10. Kanamori model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="autohf.terms.html" class="btn btn-neutral float-right" title="autohf.terms package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

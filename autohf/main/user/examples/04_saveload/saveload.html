@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Save and Load &mdash; AutoHF  documentation</title>
+  <title>4. Save and Load &mdash; AutoHF  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -21,8 +21,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Custom Lagrange Multiplier" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html" />
-    <link rel="prev" title="Custom Ansatz" href="../03_custom_ansatz/custom_ansatz.html" /> 
+    <link rel="next" title="5. Custom Lagrange Multiplier" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html" />
+    <link rel="prev" title="3. Custom Ansatz" href="../03_custom_ansatz/custom_ansatz.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,26 +48,24 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../examples_include.html">User Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../01_basics/basics.html">Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../02_inputfile/inputfile.html">Input File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03_custom_ansatz/custom_ansatz.html">Custom Ansatz</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Save and Load</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#save-square-hubbard-example">Save Square Hubbard Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#square-hubbard-with-restart-example">Square Hubbard with Restart Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01_basics/basics.html">1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_inputfile/inputfile.html">2. Input File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_custom_ansatz/custom_ansatz.html">3. Custom Ansatz</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Save and Load</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#save-square-hubbard-example">4.1. Save Square Hubbard Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#square-hubbard-with-restart-example">4.2. Square Hubbard with Restart Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html">Custom Lagrange Multiplier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06_alt_opt_methods/alt_opt_methods.html">Alternative Optimization Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../07_polarized/polarized.html">Polarized Calculations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../08_spin_orbit/spin_orbit.html">Spin Orbit Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html">5. Custom Lagrange Multiplier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_alt_opt_methods/alt_opt_methods.html">6. Alternative Optimization Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_polarized/polarized.html">7. Polarized Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_spin_orbit/spin_orbit.html">8. Spin Orbit Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09_molecule/molecules.html">9. Molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_kanamori/kanamori.html">10. Kanamori model</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">AutoHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/autohf.html">AutoHF API Reference</a></li>
 </ul>
 
         </div>
@@ -85,7 +83,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../examples_include.html">User Examples</a></li>
-      <li class="breadcrumb-item active">Save and Load</li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Save and Load</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/user/examples/04_saveload/saveload.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,11 +94,11 @@
            <div itemprop="articleBody">
              
   <section id="save-and-load">
-<span id="example-saveload"></span><h1>Save and Load<a class="headerlink" href="#save-and-load" title="Link to this heading"></a></h1>
+<span id="example-saveload"></span><h1><span class="section-number">4. </span>Save and Load<a class="headerlink" href="#save-and-load" title="Link to this heading"></a></h1>
 <section id="save-square-hubbard-example">
-<h2>Save Square Hubbard Example<a class="headerlink" href="#save-square-hubbard-example" title="Link to this heading"></a></h2>
+<h2><span class="section-number">4.1. </span>Save Square Hubbard Example<a class="headerlink" href="#save-square-hubbard-example" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">square_hubbard_save.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4.1 </span><span class="caption-text">square_hubbard_save.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
@@ -184,9 +182,9 @@
 </div>
 </section>
 <section id="square-hubbard-with-restart-example">
-<h2>Square Hubbard with Restart Example<a class="headerlink" href="#square-hubbard-with-restart-example" title="Link to this heading"></a></h2>
+<h2><span class="section-number">4.2. </span>Square Hubbard with Restart Example<a class="headerlink" href="#square-hubbard-with-restart-example" title="Link to this heading"></a></h2>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">square_hubbard_with_restart.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4.2 </span><span class="caption-text">square_hubbard_with_restart.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAX_PLATFORMS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
@@ -283,8 +281,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../03_custom_ansatz/custom_ansatz.html" class="btn btn-neutral float-left" title="Custom Ansatz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html" class="btn btn-neutral float-right" title="Custom Lagrange Multiplier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../03_custom_ansatz/custom_ansatz.html" class="btn btn-neutral float-left" title="3. Custom Ansatz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../05_custom_lagrange_multiplier/custom_lagrange_multiplier.html" class="btn btn-neutral float-right" title="5. Custom Lagrange Multiplier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

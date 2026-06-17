@@ -18,11 +18,11 @@
       <script src="../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="autohf.interfaces package" href="autohf.interfaces.html" />
-    <link rel="prev" title="AutoHF Python package" href="autohf.html" /> 
+    <link rel="prev" title="AutoHF API Reference" href="autohf.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,28 +45,24 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/quickstart.html">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/examples_include.html">User Examples</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">AutoHF</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="autohf.html">AutoHF Python package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#installation">Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#more-detail">More Detail</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="autohf.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">autohf.terms package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="autohf.html">AutoHF API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autohf.html#top-level-api">Top-level API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="autohf.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">autohf.terms package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.terms.ghf">autohf.terms.ghf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.terms.uhf">autohf.terms.uhf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.terms.cholesky">autohf.terms.cholesky module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autohf.terms">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#modules">Modules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="autohf.html#modules">Modules</a></li>
 </ul>
 </li>
 </ul>
@@ -85,8 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">AutoHF</a></li>
-          <li class="breadcrumb-item"><a href="autohf.html">AutoHF Python package</a></li>
+          <li class="breadcrumb-item"><a href="autohf.html">AutoHF API Reference</a></li>
       <li class="breadcrumb-item active">autohf.terms package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/api/autohf.terms.rst.txt" rel="nofollow"> View page source</a>
@@ -166,6 +161,38 @@ are in the form [G_up, G_dn]</p>
 <dd></dd></dl>
 
 </section>
+<section id="module-autohf.terms.cholesky">
+<span id="autohf-terms-cholesky-module"></span><h2>autohf.terms.cholesky module<a class="headerlink" href="#module-autohf.terms.cholesky" title="Link to this heading"></a></h2>
+<p>Library of Wick contractions for UHF and GHF wave functions for general second quantized
+Hamiltonians with interactions expressed by a sum of cholesky operators.</p>
+<p>Per convention, if rdms have only a single spin component, they are considered GHF.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.terms.cholesky.hf_cholesky">
+<span class="sig-prename descclassname"><span class="pre">autohf.terms.cholesky.</span></span><span class="sig-name descname"><span class="pre">hf_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesky_operators</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.terms.cholesky.hf_cholesky" title="Link to this definition"></a></dt>
+<dd><p>Calculate the Hartree-Fock energy of a two-body term expressed by a sum of squares</p>
+<div class="math notranslate nohighlight">
+\[H = - \frac 12 \sum_{n=1}^M v_n^2\]</div>
+<p>of <cite>cholesky_operators</cite>, which are specified as a M × spin × basis × basis array.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.terms.cholesky.hf_fock">
+<span class="sig-prename descclassname"><span class="pre">autohf.terms.cholesky.</span></span><span class="sig-name descname"><span class="pre">hf_fock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesky_operators</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.terms.cholesky.hf_fock" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.terms.cholesky.hf_hartree">
+<span class="sig-prename descclassname"><span class="pre">autohf.terms.cholesky.</span></span><span class="sig-name descname"><span class="pre">hf_hartree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesky_operators</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.terms.cholesky.hf_hartree" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="autohf.terms.cholesky.hf_onebody">
+<span class="sig-prename descclassname"><span class="pre">autohf.terms.cholesky.</span></span><span class="sig-name descname"><span class="pre">hf_onebody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onebody_operator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.terms.cholesky.hf_onebody" title="Link to this definition"></a></dt>
+<dd><p>Calculate the UHF expectation value of a onebody operator.
+The operator can be either spin × basis × basis or basis × basis shaped.</p>
+</dd></dl>
+
+</section>
 <section id="module-autohf.terms">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autohf.terms" title="Link to this heading"></a></h2>
 </section>
@@ -175,8 +202,7 @@ are in the form [G_up, G_dn]</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="autohf.html" class="btn btn-neutral float-left" title="AutoHF Python package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="autohf.interfaces.html" class="btn btn-neutral float-right" title="autohf.interfaces package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="autohf.html" class="btn btn-neutral float-left" title="AutoHF API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

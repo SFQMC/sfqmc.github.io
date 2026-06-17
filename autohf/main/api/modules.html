@@ -20,9 +20,7 @@
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="AutoHF Python package" href="autohf.html" />
-    <link rel="prev" title="Spin Orbit Coupling" href="../user/examples/08_spin_orbit/spin_orbit.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,15 +46,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/quickstart.html">Quick Start Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user/hams.html">Implemented Hamiltonians</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/examples_include.html">User Examples</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">AutoHF</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="autohf.html">AutoHF Python package</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="autohf.html">AutoHF API Reference</a></li>
 </ul>
 
         </div>
@@ -87,10 +78,17 @@
 <h1>AutoHF<a class="headerlink" href="#autohf" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="autohf.html">AutoHF Python package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="autohf.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.html#more-detail">More Detail</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="autohf.html">AutoHF API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autohf.html#top-level-api">Top-level API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian.add_terms"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.add_terms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian.get"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian.get_one_body"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.get_one_body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian.keys"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.AutoHFHamiltonian.set"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian.set()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autohf.html#autohf.solve_hf"><code class="docutils literal notranslate"><span class="pre">solve_hf()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="autohf.html#subpackages">Subpackages</a><ul>
@@ -98,35 +96,13 @@
 <li class="toctree-l4"><a class="reference internal" href="autohf.terms.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.ghf">autohf.terms.ghf module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.uhf">autohf.terms.uhf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autohf.terms.html#module-autohf.terms.cholesky">autohf.terms.cholesky module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autohf.terms.html#module-autohf.terms">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.interfaces.html">autohf.interfaces package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces.afqmctools">autohf.interfaces.afqmctools module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.interfaces.html#module-autohf.interfaces">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="autohf.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.solver">solver</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.solver.constructPhi0"><code class="docutils literal notranslate"><span class="pre">constructPhi0()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.solver.construct_random_Phi"><code class="docutils literal notranslate"><span class="pre">construct_random_Phi()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.solver.makeEnergyCall"><code class="docutils literal notranslate"><span class="pre">makeEnergyCall()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.solver.solve_hf"><code class="docutils literal notranslate"><span class="pre">solve_hf()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.converters">converters</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.converters.convertInitialSlaterDet"><code class="docutils literal notranslate"><span class="pre">convertInitialSlaterDet()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.hamiltonian">hamiltonian</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.hamiltonian.AutoHFHamiltonian"><code class="docutils literal notranslate"><span class="pre">AutoHFHamiltonian</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.hamiltonian.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.hamiltonian.SpinSymm"><code class="docutils literal notranslate"><span class="pre">SpinSymm</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.io">input/output (io)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.io.loadStates"><code class="docutils literal notranslate"><span class="pre">loadStates()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.io.read_input_params"><code class="docutils literal notranslate"><span class="pre">read_input_params()</span></code></a></li>
@@ -140,14 +116,6 @@
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.options.process_args"><code class="docutils literal notranslate"><span class="pre">process_args()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.rotation_tools">rotation tools</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.rotation_tools.get_nonz"><code class="docutils literal notranslate"><span class="pre">get_nonz()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.rotation_tools.get_nonz_herm"><code class="docutils literal notranslate"><span class="pre">get_nonz_herm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.rotation_tools.jexpm"><code class="docutils literal notranslate"><span class="pre">jexpm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.rotation_tools.makeRot"><code class="docutils literal notranslate"><span class="pre">makeRot()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.rotation_tools.makeRot_herm"><code class="docutils literal notranslate"><span class="pre">makeRot_herm()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="autohf.html#module-autohf.tools">tools</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.tools.create_polarized_func"><code class="docutils literal notranslate"><span class="pre">create_polarized_func()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.tools.sd_to_rdm"><code class="docutils literal notranslate"><span class="pre">sd_to_rdm()</span></code></a></li>
@@ -155,10 +123,6 @@
 <li class="toctree-l4"><a class="reference internal" href="autohf.html#autohf.tools.uhf_to_ghf"><code class="docutils literal notranslate"><span class="pre">uhf_to_ghf()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autohf.html#module-autohf">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autohf.html#autohf.lattice_hf"><code class="docutils literal notranslate"><span class="pre">lattice_hf()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -170,10 +134,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../user/examples/08_spin_orbit/spin_orbit.html" class="btn btn-neutral float-left" title="Spin Orbit Coupling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="autohf.html" class="btn btn-neutral float-right" title="AutoHF Python package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
