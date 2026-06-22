@@ -462,8 +462,7 @@ Below, we provide a comprehensive list of supported combinations and features.</
 <dt><strong>K-Point Factorized Hamiltonian</strong></dt><dd><p>For periodic solid systems exploiting k-point symmetry.
 Can directly read Hamiltonian files from CoQuí in this format.</p>
 </dd>
-<dt><strong>Lattice Model Hamiltonian</strong></dt><dd><p>For lattice models (Hubbard, t-J, extended Hubbard, etc.).
-Currently <strong>CPU only</strong></p>
+<dt><strong>Lattice Model Hamiltonian</strong></dt><dd><p>For lattice models (Hubbard, t-J, extended Hubbard, etc.).</p>
 </dd>
 <dt><strong>Tensor Hypercontraction (THC) Hamiltonian</strong></dt><dd><p>For systems using THC factorization of the electron repulsion integrals.
 Provides memory-efficient representation for large systems.
@@ -566,32 +565,20 @@ We indicate in parentheses whether the combination supports CPU, GPU, or is in t
 <li><p>NONCOLLINEAR walkers (CPU, GPU)</p></li>
 </ul>
 </dd>
-<dt><strong>PHMSD Wavefunction</strong></dt><dd><ul class="simple">
-<li><p>COLLINEAR walkers (GPU only) 🪳 BUG: Error constructing propagator for more than 1 SD 🪳</p></li>
-</ul>
-</dd>
 </dl>
 </dd>
-<dt><strong>Lattice Model Hamiltonian</strong> with Continuous Hubbard-Stratonovich Transformation</dt><dd><dl class="simple">
+<dt><strong>Lattice Model Hamiltonian</strong></dt><dd><dl class="simple">
 <dt><strong>NOMSD Wavefunction</strong></dt><dd><ul class="simple">
-<li><p>COLLINEAR walkers (CPU, GPU) ‼️ DEV TODO: add test ‼️</p></li>
-<li><p>NONCOLLINEAR walkers (CPU, GPU) ‼️ DEV TODO: add test ‼️</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt><strong>Lattice Model Hamiltonian</strong> with Discrete Hubbard-Stratonovich Transformation</dt><dd><dl class="simple">
-<dt><strong>NOMSD Wavefunction</strong></dt><dd><ul class="simple">
-<li><p>COLLINEAR walkers (CPU)</p></li>
-<li><p>NONCOLLINEAR walkers (CPU)</p></li>
+<li><p>COLLINEAR walkers (CPU, GPU for Continuous Hubbard-Stratonovich Transformations)</p></li>
+<li><p>NONCOLLINEAR walkers (CPU, GPU for Continuous Hubbard-Stratonovich Transformations)</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 <dt><strong>THC Hamiltonian</strong></dt><dd><dl class="simple">
 <dt><strong>NOMSD Wavefunction</strong></dt><dd><ul class="simple">
-<li><p>CLOSED walkers (CPU, GPU) ‼️ DEV TODO : turn on test for GPU ‼️</p></li>
-<li><p>COLLINEAR walkers (CPU, GPU) ‼️ DEV TODO : turn on test GPU ‼️</p></li>
+<li><p>CLOSED walkers (CPU, GPU)</p></li>
+<li><p>COLLINEAR walkers (CPU, GPU)</p></li>
 </ul>
 </dd>
 </dl>
