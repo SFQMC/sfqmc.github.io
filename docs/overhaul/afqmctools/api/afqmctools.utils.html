@@ -1351,11 +1351,256 @@ slice of a to be searched.</p>
 <dd></dd></dl>
 
 </section>
-<section id="afqmctools-utils-pyscf-utils-module">
-<h2>afqmctools.utils.pyscf_utils module<a class="headerlink" href="#afqmctools-utils-pyscf-utils-module" title="Link to this heading">#</a></h2>
+<section id="module-afqmctools.utils.pyscf_utils">
+<span id="afqmctools-utils-pyscf-utils-module"></span><h2>afqmctools.utils.pyscf_utils module<a class="headerlink" href="#module-afqmctools.utils.pyscf_utils" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.chk_is_pbc">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">chk_is_pbc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.chk_is_pbc" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Determine if the pyscf chkfile corresponds to a PBC calculation.</dt><dd><p>This is determined by the presence or absence of lattice vectors
+in the <cite>mol</cite> object. This lattice vectors are called ‘a’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.ci2chk">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">ci2chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.ci2chk" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.ci_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">ci_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by_ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.ci_wavefunction" title="Link to this definition">#</a></dt>
+<dd><p>Extract CI wavefunction from CI wavefunction in PySCF format.</p>
+<p>For wavefunctions with format:</p>
+<div class="math notranslate nohighlight">
+\[| \Psi \rangle = \sum_{ij} c_{ij} | \Phi^{\uparrow}_i \Phi^{\downarrow}_j \rangle\]</div>
+<p>return the CI coefficients and the corresponding alpha and beta determinants which satisfy
+the truncation criteria,</p>
+<div class="math notranslate nohighlight">
+\[|c_{ij}| &gt; \text{tol}\]</div>
+<p>If a maximum number of determinants is specified, the determinants with the largest
+Ci coefficients are kept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ciab</strong> (<em>tuple</em>) – CI coefficient matrix with shape (number of alpha determinants, number of beta determinants)</p></li>
+<li><p><strong>norb</strong> (<em>int</em>) – Number of orbitals.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>ncore</strong> (<em>int</em>) – Number of core orbitals. These are always assumed to be the lowest ncore orbitals.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerance for truncating CI expansion. All determinants with ciab &gt; tol are kept. Default is 1.0e-6.</p></li>
+<li><p><strong>max_det</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of determinants to keep. If None, keep all determinants with.</p></li>
+<li><p><strong>sort_by_ci</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the CI coefficients are sorted by magnitude. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>ci</strong> (<em>tuple</em>) – CI coefficients.</p></li>
+<li><p><strong>occa</strong> (<em>tuple</em>) – orbital occupancies of Alpha determinants.</p></li>
+<li><p><strong>occb</strong> (<em>tuple</em>) – orbital occupancies of Beta determinants.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If max_det is None, the Ci coefficients are NOT sorted by magnitude.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.get_ecp_soc">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">get_ecp_soc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.get_ecp_soc" title="Link to this definition">#</a></dt>
+<dd><p>Compute the ECP-SOC term for <cite>mol</cite>. See pyscf example gto/20-soc_ecp.py.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.load_from_pyscf_chk">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">load_from_pyscf_chk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hcore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthoAO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.load_from_pyscf_chk" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.load_from_pyscf_chk_mol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">load_from_pyscf_chk_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soc_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.load_from_pyscf_chk_mol" title="Link to this definition">#</a></dt>
+<dd><p>Loads data from a PysCF checkfile and returns a Python dict containing that data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chkfile</strong> (<em>str</em>) – name of PySCF checkpoint file to read data from</p></li>
+<li><p><strong>base</strong> (<em>str</em>) – name of HDF5 base group to read data from (default=’scf’)</p></li>
+<li><p><strong>soc_type</strong> (<em>{None</em><em>, </em><em>'sfx2c'</em><em>, </em><em>'x2c'</em><em>, </em><em>'ecp'}</em><em>, </em><em>optional</em>) – Include spin orbit coupling in either the spin-free exact 2-component (<cite>‘sfx2c’</cite>), the full exact 2-component (<cite>‘x2c’</cite>) flavor, or through the ECP (<cite>‘ecp’</cite>).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.mf_from_chkfile">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">mf_from_chkfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.mf_from_chkfile" title="Link to this definition">#</a></dt>
+<dd><p>Load mf object from chkfile, useful for restart and post processing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chkfile</strong> (<em>str</em>) – path to PySCF chkfile</p></li>
+<li><p><strong>scf_class</strong> (<em>pyscf.scf.SCF</em>) – PySCF SCF class to construct e.g. scf.RHF, pbc.scf.RHF</p></li>
+<li><p><strong>scf</strong> (<em>module</em>) – Module containing the scf_class (e.g. pyscf.scf, pyscf.pbc.scf)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class: mf object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">scf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">&#39;rhf.chk&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">scf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">&#39;krhf.chk&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">KRHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.pyscf_utils.read_cas_meta">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.pyscf_utils.</span></span><span class="sig-name descname"><span class="pre">read_cas_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mcscf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.pyscf_utils.read_cas_meta" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="afqmctools-utils-qe-tools-module">
-<h2>afqmctools.utils.qe_tools module<a class="headerlink" href="#afqmctools-utils-qe-tools-module" title="Link to this heading">#</a></h2>
+<section id="module-afqmctools.utils.qe_tools">
+<span id="afqmctools-utils-qe-tools-module"></span><h2>afqmctools.utils.qe_tools module<a class="headerlink" href="#module-afqmctools.utils.qe_tools" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_tools.gen_qe_gto">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_tools.</span></span><span class="sig-name descname"><span class="pre">gen_qe_gto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qe_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pyscf.orbitals.h5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_tools.gen_qe_gto" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Write periodic AO basis set in real space to hdf5 file.</dt><dd><p>This routine constructs a new gaussian basis set from a OptimizableBasisSet
+object and an array of optimizable parameters.
+With the resulting basis set, a new gto.Cell object is constructed consistent
+with the QE calculation and used to generate the periodic AO basis set.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qe_info</strong> (<em>Python Dictionary.</em>) – Dictionary with information from QE calculation, generated by qe_driver_init.</p></li>
+<li><p><strong>bset</strong> (<em>Object</em><em> of </em><em>type OptimizableBasisSet.</em>) – Contains information about a (possibly dynamic) basis set.</p></li>
+<li><p><strong>x</strong> (<em>fp array. Default:</em><em> [</em><em>] </em><em>(</em><em>no variable parameters in bset</em><em>)</em>) – Array with variational parameters in the bset object.</p></li>
+<li><p><strong>fname</strong> (<em>string. Default: 'pyscf.orbitals.h5'</em>) – Name of hdf5 file.</p></li>
+<li><p><strong>prec</strong> (<em>floating point number. Default: 1e-12</em>) – Precision used to generate AO orbitals in real space. Controls sum over periodic images.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>nao</strong> – Number of atomic orbitals generates.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_tools.get_qe_information">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_tools.</span></span><span class="sig-name descname"><span class="pre">get_qe_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qe_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qe_outdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./qedrv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_tools.get_qe_information" title="Link to this definition">#</a></dt>
+<dd><p>Retreats basic information from a QE calculation. Assumes QE was compiled with HDF5 support.
+Requires a pre-existing, successful QE run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qe_prefix</strong> (<em>string</em>) – prefix parameter from QE run.</p></li>
+<li><p><strong>qe_outdir</strong> (<em>string</em>) – outdir parameter from QE run. (location of QE files).</p></li>
+<li><p><strong>outdir</strong> (<em>string. Default: ./qedrv</em>) – Output directory of the driver. Does not need to be the same as the QE parameter.</p></li>
+<li><p><strong>verbose</strong> (<em>bool. Default: False</em>) – Print information.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>qe_info</strong> – Dictionary containing all stored information about the QE driver.
+Contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;species&#39;</span> <span class="p">:</span> <span class="n">string</span> <span class="n">array</span>    <span class="c1"># array with species labels.</span>
+<span class="s1">&#39;nsp&#39;</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of species</span>
+<span class="s1">&#39;nat&#39;</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of atoms</span>
+<span class="s1">&#39;at_id&#39;</span> <span class="p">:</span>  <span class="n">integer</span> <span class="n">array</span>    <span class="c1"># array with the ids of atoms in the unit cell.</span>
+<span class="s1">&#39;at_pos&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="n">nat</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># array with atom positions</span>
+<span class="s1">&#39;nkpts&#39;</span> <span class="p">:</span> <span class="n">integer</span>           <span class="c1"># number of kpoints</span>
+<span class="s1">&#39;kpts&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="n">nkpts</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># k-points</span>
+<span class="s1">&#39;latt&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span>     <span class="c1"># lattice vectors</span>
+<span class="s1">&#39;npwx&#39;</span> <span class="p">:</span> <span class="n">integer</span>            <span class="c1"># npwx parameter from QE.</span>
+<span class="s1">&#39;mesh&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">integer</span> <span class="n">array</span>   <span class="c1"># FFT mesh</span>
+<span class="s1">&#39;ngm&#39;</span> <span class="p">:</span> <span class="n">integer</span>             <span class="c1"># ngm parameter from QE.</span>
+<span class="s1">&#39;outdir&#39;</span> <span class="p">:</span> <span class="n">string</span>           <span class="c1"># location of output files</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Python Dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_tools.make_cell">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_tools.</span></span><span class="sig-name descname"><span class="pre">make_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sp_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atpos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gthdzvp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gthpbe'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_tools.make_cell" title="Link to this definition">#</a></dt>
+<dd><p>Generates a PySCF gto.Cell object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>latt</strong> (<em>(</em><em>3</em><em>,</em><em>3</em><em>) </em><em>floating point array.</em>) – Lattice vectors in Bohr. Used to define cell.a</p></li>
+<li><p><strong>sp_label</strong> (<em>array</em><em> of </em><em>strings.</em>) – Array containing species labels/symbols.</p></li>
+<li><p><strong>atid</strong> (<em>integer array.</em>) – Array that contains the mapping between the atoms in the unit cell and their
+species label (as defined by sp_label).</p></li>
+<li><p><strong>basis_</strong> – Basis set string. Used to define cell.basis.</p></li>
+<li><p><strong>pseudo_</strong> – Pseudopotential string. Used to define cell.pseudo.</p></li>
+<li><p><strong>mesh</strong> (<em>3-d array. Default: None</em>) – Used to define cell.mesh.</p></li>
+<li><p><strong>prec</strong> (<em>floating point. Default: 1e-8</em>) – Used to define cell.precision</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>cell</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PySCF get.Cell object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_tools.make_image_comm">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_tools.</span></span><span class="sig-name descname"><span class="pre">make_image_comm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nimage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;mpi4py.MPI.Intracomm</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_tools.make_image_comm" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Splits a communicator into image communicators, consistent with QE partitioning.</dt><dd><p>nimage consecutive ranks in comm belong to the same image communicator.
+The number of distinct image communicators is comm.size/nimage.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nimage</strong> (<em>integer</em>) – Number of image communicators, must divide comm.size.</p></li>
+<li><p><strong>comm</strong> (<em>mpi4py MPI comunicator. Default: MPI.COMM_WORLD</em>) – A valid mpi4py communicator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>intra_image</strong> (<em>mpi4py MPI comunicator.</em>) – Communicator between mpi tasks within an image.</p></li>
+<li><p><strong>inter_image</strong> (<em>mpi4py MPI comunicator.</em>) – Communicator between mpi tasks on different images, but having the same rank in the image.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.qe_tools.write_esh5_orbitals">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.qe_tools.</span></span><span class="sig-name descname"><span class="pre">write_esh5_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.]])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.qe_tools.write_esh5_orbitals" title="Link to this definition">#</a></dt>
+<dd><p>Write periodic AO basis to hdf5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cell</strong> (<em>PySCF get.Cell object</em>) – PySCF cell object which contains information of the system, including
+AO basis set, FFT mesh, unit cell information, etc.</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name of hdf5 file.</p></li>
+<li><p><strong>kpts</strong> (<em>array. Default: numpy.zeros</em><em>(</em><em>(</em><em>1</em><em>,</em><em>3</em><em>)</em>) – K-point array of dimension (nkpts, 3)</p></li>
+<li><p><strong>dtype</strong> (<em>datatype. Default: numpy.float64</em>) – Datatype of orbitals in file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-afqmctools.utils.qe_utils">
 <span id="afqmctools-utils-qe-utils-module"></span><h2>afqmctools.utils.qe_utils module<a class="headerlink" href="#module-afqmctools.utils.qe_utils" title="Link to this heading">#</a></h2>
@@ -1701,8 +1946,25 @@ internal conventions in the C++</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.parallel.fair_share"><code class="docutils literal notranslate"><span class="pre">fair_share()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-utils-pyscf-utils-module">afqmctools.utils.pyscf_utils module</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-utils-qe-tools-module">afqmctools.utils.qe_tools module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.pyscf_utils">afqmctools.utils.pyscf_utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.chk_is_pbc"><code class="docutils literal notranslate"><span class="pre">chk_is_pbc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.ci2chk"><code class="docutils literal notranslate"><span class="pre">ci2chk()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.ci_wavefunction"><code class="docutils literal notranslate"><span class="pre">ci_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.get_ecp_soc"><code class="docutils literal notranslate"><span class="pre">get_ecp_soc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.load_from_pyscf_chk"><code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.load_from_pyscf_chk_mol"><code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk_mol()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.mf_from_chkfile"><code class="docutils literal notranslate"><span class="pre">mf_from_chkfile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.pyscf_utils.read_cas_meta"><code class="docutils literal notranslate"><span class="pre">read_cas_meta()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.qe_tools">afqmctools.utils.qe_tools module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_tools.gen_qe_gto"><code class="docutils literal notranslate"><span class="pre">gen_qe_gto()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_tools.get_qe_information"><code class="docutils literal notranslate"><span class="pre">get_qe_information()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_tools.make_cell"><code class="docutils literal notranslate"><span class="pre">make_cell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_tools.make_image_comm"><code class="docutils literal notranslate"><span class="pre">make_image_comm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_tools.write_esh5_orbitals"><code class="docutils literal notranslate"><span class="pre">write_esh5_orbitals()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.utils.qe_utils">afqmctools.utils.qe_utils module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.cubic_pos"><code class="docutils literal notranslate"><span class="pre">cubic_pos()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.qe_utils.get_qe_realspace_grid"><code class="docutils literal notranslate"><span class="pre">get_qe_realspace_grid()</span></code></a></li>

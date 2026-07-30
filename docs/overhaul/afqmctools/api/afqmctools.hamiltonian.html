@@ -1017,8 +1017,131 @@ Optional. Default 1, i.e. print everything.</p></li>
 <dd></dd></dl>
 
 </section>
-<section id="afqmctools-hamiltonian-kpoint-module">
-<h2>afqmctools.hamiltonian.kpoint module<a class="headerlink" href="#afqmctools-hamiltonian-kpoint-module" title="Link to this heading">#</a></h2>
+<section id="module-afqmctools.hamiltonian.kpoint">
+<span id="afqmctools-hamiltonian-kpoint-module"></span><h2>afqmctools.hamiltonian.kpoint module<a class="headerlink" href="#module-afqmctools.hamiltonian.kpoint" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.FileHandler">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hamiltonian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'KPFactorized'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.FileHandler" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A file handler for parallel hdf5 files.</p>
+<p class="rubric">Notes</p>
+<p>Use the context manager for parallel i/o safety:</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do this</span>
+<span class="k">with</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># The following is deprecated</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.FileHandler.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.FileHandler.close" title="Link to this definition">#</a></dt>
+<dd><p>Close the file.</p>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>Kept for backwards compatibility,should be considered deprecated.</dt><dd><p>Use context manager instead.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">KPCholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QKToK2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kminus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object to perform Cholesky factorization of the 2-body integrals for kpoint
+Hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comm</strong> (<em>mpi comm</em>) – MPI communicator.</p></li>
+<li><p><strong>cell</strong> (<em>PySCF pbc.gto.Cell instance</em>) – PySCF cell object.</p></li>
+<li><p><strong>kpts</strong> (<em>list</em><em> of </em><em>kpoints</em>) – List of kpoints.</p></li>
+<li><p><strong>maxvecs</strong> (<em>int</em>) – <em>Multiplier</em> for maximum number of Cholesky vectors. Maximum number of
+Cholesky vectors = maxvecs*nmo_max.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>list</em><em> of </em><em>int</em>) – Number of MOs per kpoint.</p></li>
+<li><p><strong>QKToK2</strong> (<em>numpy.ndarray</em>) – Mapping from QK to k2.</p></li>
+<li><p><strong>kminus</strong> (<em>numpy.ndarray</em>) – Mapping from k to -k.</p></li>
+<li><p><strong>gtol_chol</strong> (<em>float</em>) – Cholesky tolerance.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Verbose output.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4">
+<span class="sig-name descname"><span class="pre">find_k3k4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nproc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal">
+<span class="sig-name descname"><span class="pre">generate_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products">
+<span class="sig-name descname"><span class="pre">generate_orbital_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.run" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.alloc_helper">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">alloc_helper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'array'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.alloc_helper" title="Link to this definition">#</a></dt>
+<dd><p>Numpy array allocator helper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>tuple</em>) – Array shape.</p></li>
+<li><p><strong>dtype</strong> (<em>numpy data type</em>) – Array dtype. Default: numpy.float64</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Array name. Default: array.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Print array information. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>array</strong> – Array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.construct_qk_maps">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">construct_qk_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.construct_qk_maps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_basic">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qk_to_k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kminus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_basic" title="Link to this definition">#</a></dt>
+<dd><p>Write basic system information including one-body Hamiltonian to file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_hamil_kpoints">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_hamil_kpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_hamil_kpoints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_kp_h1">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_kp_h1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ki</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_kp_h1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_rhoG_kpoints">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_rhoG_kpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Gcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_rhoG_kpoints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="module-afqmctools.hamiltonian.mol">
 <span id="afqmctools-hamiltonian-mol-module"></span><h2>afqmctools.hamiltonian.mol module<a class="headerlink" href="#module-afqmctools.hamiltonian.mol" title="Link to this heading">#</a></h2>
@@ -1192,8 +1315,91 @@ Must provide either this or coulomb_repulsion_tensor.</p></li>
 </dd></dl>
 
 </section>
-<section id="afqmctools-hamiltonian-supercell-module">
-<h2>afqmctools.hamiltonian.supercell module<a class="headerlink" href="#afqmctools-hamiltonian-supercell-module" title="Link to this heading">#</a></h2>
+<section id="module-afqmctools.hamiltonian.supercell">
+<span id="afqmctools-hamiltonian-supercell-module"></span><h2>afqmctools.hamiltonian.supercell module<a class="headerlink" href="#module-afqmctools.hamiltonian.supercell" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">Cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kconserv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.find_k3k4">
+<span class="sig-name descname"><span class="pre">find_k3k4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nproc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.find_k3k4" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal">
+<span class="sig-name descname"><span class="pre">generate_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Qi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gmap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.run" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Partition">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">Partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kp_sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Partition" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.PartitionOld">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">PartitionOld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.PartitionOld" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.gen_orbital_products">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">gen_orbital_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mydf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.gen_orbital_products" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.generate_grid_shifts">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">generate_grid_shifts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.generate_grid_shifts" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.setup_basis_map">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">setup_basis_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xocc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.setup_basis_map" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_cholMat_singleWriter">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_cholMat_singleWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5nblk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nopk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n2k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n2k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ij0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MaxIntgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_cholMat_singleWriter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ints</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_cholesky" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_h1">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_h1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intgs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_h1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_hamil_supercell">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_hamil_supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_hamil_supercell" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_info">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2cnts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xocc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_one_body">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_one_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_one_body" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_rhoG_supercell">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_rhoG_supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Gcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_rhoG_supercell" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="module-afqmctools.hamiltonian">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools.hamiltonian" title="Link to this heading">#</a></h2>
@@ -1276,7 +1482,26 @@ Must provide either this or coulomb_repulsion_tensor.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.io.write_to_hdf5"><code class="docutils literal notranslate"><span class="pre">write_to_hdf5()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-hamiltonian-kpoint-module">afqmctools.hamiltonian.kpoint module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.kpoint">afqmctools.hamiltonian.kpoint module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.FileHandler.close"><code class="docutils literal notranslate"><span class="pre">FileHandler.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky"><code class="docutils literal notranslate"><span class="pre">KPCholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4"><code class="docutils literal notranslate"><span class="pre">KPCholesky.find_k3k4()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal"><code class="docutils literal notranslate"><span class="pre">KPCholesky.generate_diagonal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products"><code class="docutils literal notranslate"><span class="pre">KPCholesky.generate_orbital_products()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.run"><code class="docutils literal notranslate"><span class="pre">KPCholesky.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.alloc_helper"><code class="docutils literal notranslate"><span class="pre">alloc_helper()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.construct_qk_maps"><code class="docutils literal notranslate"><span class="pre">construct_qk_maps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_basic"><code class="docutils literal notranslate"><span class="pre">write_basic()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_hamil_kpoints"><code class="docutils literal notranslate"><span class="pre">write_hamil_kpoints()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_kp_h1"><code class="docutils literal notranslate"><span class="pre">write_kp_h1()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_rhoG_kpoints"><code class="docutils literal notranslate"><span class="pre">write_rhoG_kpoints()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.mol">afqmctools.hamiltonian.mol module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.chunked_cholesky"><code class="docutils literal notranslate"><span class="pre">chunked_cholesky()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.core_contribution_cholesky"><code class="docutils literal notranslate"><span class="pre">core_contribution_cholesky()</span></code></a></li>
@@ -1290,7 +1515,27 @@ Must provide either this or coulomb_repulsion_tensor.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.write_hamiltonian_generic"><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-hamiltonian-supercell-module">afqmctools.hamiltonian.supercell module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.supercell">afqmctools.hamiltonian.supercell module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky"><code class="docutils literal notranslate"><span class="pre">Cholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.find_k3k4"><code class="docutils literal notranslate"><span class="pre">Cholesky.find_k3k4()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal"><code class="docutils literal notranslate"><span class="pre">Cholesky.generate_diagonal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.run"><code class="docutils literal notranslate"><span class="pre">Cholesky.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Partition"><code class="docutils literal notranslate"><span class="pre">Partition</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.PartitionOld"><code class="docutils literal notranslate"><span class="pre">PartitionOld</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.gen_orbital_products"><code class="docutils literal notranslate"><span class="pre">gen_orbital_products()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.generate_grid_shifts"><code class="docutils literal notranslate"><span class="pre">generate_grid_shifts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.setup_basis_map"><code class="docutils literal notranslate"><span class="pre">setup_basis_map()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_cholMat_singleWriter"><code class="docutils literal notranslate"><span class="pre">write_cholMat_singleWriter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_cholesky"><code class="docutils literal notranslate"><span class="pre">write_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_h1"><code class="docutils literal notranslate"><span class="pre">write_h1()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_hamil_supercell"><code class="docutils literal notranslate"><span class="pre">write_hamil_supercell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_info"><code class="docutils literal notranslate"><span class="pre">write_info()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_one_body"><code class="docutils literal notranslate"><span class="pre">write_one_body()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_rhoG_supercell"><code class="docutils literal notranslate"><span class="pre">write_rhoG_supercell()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian">Module contents</a></li>
 </ul>
   </nav></div>
