@@ -428,7 +428,6 @@ The following list includes all walker types.</p>
 <li><p><a class="reference internal" href="#closed-walker"><span class="std std-ref">RHF/Closed Walkers</span></a></p></li>
 <li><p><a class="reference internal" href="#collinear-walker"><span class="std std-ref">UHF/Collinear Walkers</span></a></p></li>
 <li><p><a class="reference internal" href="#noncollinear-walker"><span class="std std-ref">GHF/Noncollinear Walkers</span></a></p></li>
-<li><p><a class="reference internal" href="#fullypolarized-walker"><span class="std std-ref">Fully Spin-polarized Walkers</span></a></p></li>
 </ol>
 <p>The walker type can be set in the AFQMC input file using the <code class="docutils literal notranslate"><span class="pre">walker_type</span></code> keyword
 within a “walker_set” input block.
@@ -485,20 +484,6 @@ with no partitioning between spin channels.</p>
 <p>Noncollinear walkers can be used with Hamiltonians that have any spin symmetry representation (“Closed”, “Collinear”, “Noncollinear”).</p>
 </div>
 </section>
-<section id="fully-spin-polarized-walkers">
-<span id="fullypolarized-walker"></span><h2>Fully Spin-polarized Walkers<a class="headerlink" href="#fully-spin-polarized-walkers" title="Link to this heading">#</a></h2>
-<p>Fully Spin-polarized walkers are treated as having a single spin channel.
-This can be thought of as a special case of the UHF/Collinear walker in
-which there are no walkers in the spin-down channel.</p>
-<p>Formally,</p>
-<div class="math notranslate nohighlight">
-\[|\Phi_k\rangle = |\Phi_{k \uparrow}\rangle,\]</div>
-<p>where <span class="math notranslate nohighlight">\(|\Phi_{k \uparrow}\rangle\)</span> is the spin-up channel walker with walker index <span class="math notranslate nohighlight">\(k\)</span>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Fully spin-polarized walkers can only be used with Hamiltonians that have a “Collinear” or “Closed” representation.</p>
-</div>
-</section>
 </section>
 
 
@@ -551,7 +536,6 @@ which there are no walkers in the spin-down channel.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rhf-closed-walkers">RHF/Closed Walkers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uhf-collinear-walkers">UHF/Collinear Walkers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ghf-noncollinear-walkers">GHF/Noncollinear Walkers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fully-spin-polarized-walkers">Fully Spin-polarized Walkers</a></li>
 </ul>
   </nav></div>
 
