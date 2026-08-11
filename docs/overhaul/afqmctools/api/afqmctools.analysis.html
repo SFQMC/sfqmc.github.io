@@ -478,72 +478,6 @@
 <span id="afqmctools-analysis-average-module"></span><h2>afqmctools.analysis.average module<a class="headerlink" href="#module-afqmctools.analysis.average" title="Link to this heading">#</a></h2>
 <p>Simple extraction of afqmc rdms.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.analyse_ekt">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">analyse_ekt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.analyse_ekt" title="Link to this definition">#</a></dt>
-<dd><p>Perform extended Koopman’s Theorem (EKT) analysis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>string</em>) – output file containing density matrix (*.h5 file).</p></li>
-<li><p><strong>estimator</strong> (<em>string</em>) – Estimator type to analyse. Options: back_propagated or mixed.
-Default: back_propagated.</p></li>
-<li><p><strong>eqlb</strong> (<em>int</em>) – Number of blocks for equilibration. Default 1.</p></li>
-<li><p><strong>blocksize</strong> (<em>int</em>) – the number of blocks to average over while reblocking.
-Default 1 (i.e. don’t reblock).</p></li>
-<li><p><strong>ix</strong> (<em>int</em>) – Back propagation path length to average. Optional.
-Default: None (chooses longest path).</p></li>
-<li><p><strong>nsamp</strong> (<em>int</em>) – Number of perturbed RDMs to construct to estimate of error bar. Optional.
-Default: 20.</p></li>
-<li><p><strong>screen_factor</strong> (<em>int</em>) – Zero RDM elements with abs(P[i,j]) &lt; screen_factor*Perr[i,j]. Optional
-Default: 1.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>[eip, eip_err]</strong> (<em>list</em>) – Ionisation potentials and estimates of their errors.</p></li>
-<li><p><strong>[eea, eea_err]</strong> (<em>list</em>) – Electron affinities and estimates of their errors.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.average_atom_correlations">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_atom_correlations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_atom_correlations" title="Link to this definition">#</a></dt>
-<dd><p>Average atom centered correlations.</p>
-<p>Returns &lt;C(I)&gt;, &lt;S(I)&gt;, &lt;C(I)C(J)&gt; and &lt;S(I)S(J)&gt; for a given set of atomic sites.
-C = (nup + ndown), S = (nup - ndown)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>string</em>) – output file containing density matrix (*.h5 file).</p></li>
-<li><p><strong>estimator</strong> (<em>string</em>) – Estimator type to analyse. Options: back_propagated or mixed.
-Default: back_propagated.</p></li>
-<li><p><strong>eqlb</strong> (<em>int</em>) – Number of blocks for equilibration. Default 1.</p></li>
-<li><p><strong>blocksize</strong> (<em>int</em>) – the number of blocks to average over while reblocking.
-Default 1 (i.e. don’t reblock).</p></li>
-<li><p><strong>ix</strong> (<em>int</em>) – Back propagation path length to average. Optional.
-Default: None (chooses longest path).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>c_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged charge.</p></li>
-<li><p><strong>c_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for charge.</p></li>
-<li><p><strong>s_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged spin.</p></li>
-<li><p><strong>s_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for spin.</p></li>
-<li><p><strong>cc_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged charge-charge correlation function.</p></li>
-<li><p><strong>cc_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for charge-charge correlation function.</p></li>
-<li><p><strong>ss_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged spin-spin correlation function.</p></li>
-<li><p><strong>ss_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for spin-spin correlation function.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.analysis.average.average_diag_two_rdm">
 <span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_diag_two_rdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_diag_two_rdm" title="Link to this definition">#</a></dt>
 <dd><p>Average diagonal part of 2RDM.</p>
@@ -565,35 +499,6 @@ Default: None (chooses longest path).</p></li>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>two_rdm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged diagonal 2RDM.</p></li>
 <li><p><strong>two_rdm_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for diagonal 2RDM elements.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.average_gen_fock">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_gen_fock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fock_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_gen_fock" title="Link to this definition">#</a></dt>
-<dd><p>Average AFQMC generalised Fock matrix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>string</em>) – output file containing density matrix (*.h5 file).</p></li>
-<li><p><strong>fock_type</strong> (<em>string</em>) – Which generalised Fock matrix to extract. Optional (plus/minus).
-Default: plus.</p></li>
-<li><p><strong>estimator</strong> (<em>string</em>) – Estimator type to analyse. Options: back_propagated or mixed.
-Default: back_propagated.</p></li>
-<li><p><strong>eqlb</strong> (<em>int</em>) – Number of blocks for equilibration. Default 1.</p></li>
-<li><p><strong>blocksize</strong> (<em>int</em>) – the number of blocks to average over while reblocking.
-Default 1 (i.e. don’t reblock).</p></li>
-<li><p><strong>ix</strong> (<em>int</em>) – Back propagation path length to average. Optional.
-Default: None (chooses longest path).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>gfock</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged 1RDM.</p></li>
-<li><p><strong>gfock_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for 1RDM elements.</p></li>
 </ul>
 </p>
 </dd>
@@ -662,34 +567,6 @@ invalid.</p></td>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.average_on_top_pdm">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_on_top_pdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_on_top_pdm" title="Link to this definition">#</a></dt>
-<dd><p>Average on-top pair density matrix.</p>
-<p>Returns n2(r,r) for a given real space grid.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>string</em>) – output file containing density matrix (*.h5 file).</p></li>
-<li><p><strong>estimator</strong> (<em>string</em>) – Estimator type to analyse. Options: back_propagated or mixed.
-Default: back_propagated.</p></li>
-<li><p><strong>eqlb</strong> (<em>int</em>) – Number of blocks for equilibration. Default 1.</p></li>
-<li><p><strong>blocksize</strong> (<em>int</em>) – the number of blocks to average over while reblocking.
-Default 1 (i.e. don’t reblock).</p></li>
-<li><p><strong>ix</strong> (<em>int</em>) – Back propagation path length to average. Optional.
-Default: None (chooses longest path).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>opdm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged diagonal on-top pair density matrix.</p></li>
-<li><p><strong>opdm_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for diagonal on-top pair density matrix elements.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.analysis.average.average_one_rdm">
 <span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_one_rdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_one_rdm" title="Link to this definition">#</a></dt>
 <dd><p>Get average AFQMC 1RDM.</p>
@@ -744,37 +621,6 @@ Default: None (chooses longest path).</p></li>
 <li><p><strong>P_ab_ij</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged pair correlation function.</p></li>
 <li><p><strong>dP_ab_ij</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Stochastic uncertainty for the pair correlation function.</p></li>
 <li><p><strong>correlator_names</strong> (<em>list</em>) – List of correlator names corresponding to the indices of the pair correlation function.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.average_realspace_correlations">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">average_realspace_correlations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'back_propagated'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eqlb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.average_realspace_correlations" title="Link to this definition">#</a></dt>
-<dd><p>Average on-top pair density matrix.</p>
-<p>Returns &lt;C(r1)C(r2)&gt; and &lt;S(r1)S(r2)&gt; for a given set of points in real space.
-C = (nup + ndown), S = (nup - ndown)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>string</em>) – output file containing density matrix (*.h5 file).</p></li>
-<li><p><strong>estimator</strong> (<em>string</em>) – Estimator type to analyse. Options: back_propagated or mixed.
-Default: back_propagated.</p></li>
-<li><p><strong>eqlb</strong> (<em>int</em>) – Number of blocks for equilibration. Default 1.</p></li>
-<li><p><strong>blocksize</strong> (<em>int</em>) – the number of blocks to average over while reblocking.
-Default 1 (i.e. don’t reblock).</p></li>
-<li><p><strong>ix</strong> (<em>int</em>) – Back propagation path length to average. Optional.
-Default: None (chooses longest path).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>cc_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged charge-charge correlation function.</p></li>
-<li><p><strong>cc_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for charge-charge correlation function.</p></li>
-<li><p><strong>ss_mean</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Averaged spin-spin correlation function.</p></li>
-<li><p><strong>ss_err</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>) – Error bars for spin-spin correlation function.</p></li>
 </ul>
 </p>
 </dd>
@@ -912,11 +758,6 @@ Default: 1.</p></li>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.analysis.average.spectral_function">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.average.</span></span><span class="sig-name descname"><span class="pre">spectral_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eig_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigv_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigv_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rdm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.average.spectral_function" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
 
 </section>
 <section id="module-afqmctools.analysis.common">
@@ -1571,15 +1412,10 @@ second dimension is the square of a the matrix dimension.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.analysis.average">afqmctools.analysis.average module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.analyse_ekt"><code class="docutils literal notranslate"><span class="pre">analyse_ekt()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_atom_correlations"><code class="docutils literal notranslate"><span class="pre">average_atom_correlations()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_diag_two_rdm"><code class="docutils literal notranslate"><span class="pre">average_diag_two_rdm()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_gen_fock"><code class="docutils literal notranslate"><span class="pre">average_gen_fock()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_observable"><code class="docutils literal notranslate"><span class="pre">average_observable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_on_top_pdm"><code class="docutils literal notranslate"><span class="pre">average_on_top_pdm()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_one_rdm"><code class="docutils literal notranslate"><span class="pre">average_one_rdm()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_pair_correlation"><code class="docutils literal notranslate"><span class="pre">average_pair_correlation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_realspace_correlations"><code class="docutils literal notranslate"><span class="pre">average_realspace_correlations()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_spinspin"><code class="docutils literal notranslate"><span class="pre">average_spinspin()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.average_two_rdm"><code class="docutils literal notranslate"><span class="pre">average_two_rdm()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.estimate_error_eig"><code class="docutils literal notranslate"><span class="pre">estimate_error_eig()</span></code></a></li>
@@ -1587,7 +1423,6 @@ second dimension is the square of a the matrix dimension.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.get_noons"><code class="docutils literal notranslate"><span class="pre">get_noons()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.regularised_ortho"><code class="docutils literal notranslate"><span class="pre">regularised_ortho()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.solve_gen_eig"><code class="docutils literal notranslate"><span class="pre">solve_gen_eig()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.average.spectral_function"><code class="docutils literal notranslate"><span class="pre">spectral_function()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.analysis.common">afqmctools.analysis.common module</a><ul class="nav section-nav flex-column">
