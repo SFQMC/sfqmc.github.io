@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>afqmctools.wavefunction package &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'afqmctools/api/afqmctools.wavefunction';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/afqmctools/api/afqmctools.wavefunction.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Current Features" href="../../features.html" />
+    <link rel="prev" title="afqmctools.utils package" href="afqmctools.utils.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afqmctools_cli.html">Command line tools</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lattice_models.html">Lattice Model Tools for AFQMC</a></li>
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="afqmctools.html">afqmctools package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html">afqmctools.analysis package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="afqmctools.hamiltonian.html">afqmctools.hamiltonian package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html">afqmctools.inputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html">afqmctools.observables package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html">afqmctools.systems package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html">afqmctools.utils package</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">afqmctools.wavefunction package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../afqmctools.html" class="nav-link">afqmctools</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="afqmctools.html" class="nav-link">afqmctools package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">afqmctools.wavefunction package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="afqmctools-wavefunction-package">
+<h1>afqmctools.wavefunction package<a class="headerlink" href="#afqmctools-wavefunction-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-afqmctools.wavefunction.common">
+<span id="afqmctools-wavefunction-common-module"></span><h2>afqmctools.wavefunction.common module<a class="headerlink" href="#module-afqmctools.wavefunction.common" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.check_orthonormality">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">check_orthonormality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wfn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'collinear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.check_orthonormality" title="Link to this definition">#</a></dt>
+<dd><p>Check orthonormality of wavefunction columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wfn</strong> (<em>ndarray</em><em> (</em><em>1</em><em>, </em><em>n</em><em>, </em><em>m</em><em>)</em>) – Wavefunction array with shape (1, n_orbitals, n_electrons).</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em><em> or </em><em>int</em>) – Number of electrons. For collinear: (n_up, n_down), for noncollinear/closed: int.</p></li>
+<li><p><strong>wfn_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Type of wavefunction: ‘noncollinear’, ‘collinear’, or ‘closed’. Default is ‘collinear’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>norm</strong> – Dictionary containing normalization determinants and messages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.check_slater_matrix_orthonormality">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">check_slater_matrix_orthonormality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slater_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'collinear'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.check_slater_matrix_orthonormality" title="Link to this definition">#</a></dt>
+<dd><p>Check orthonormality of a Slater matrix (n_orbitals, n_electrons).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slater_matrix</strong> (<em>ndarray</em><em> (</em><em>n</em><em>, </em><em>m</em><em>)</em>) – Slater matrix with shape (n_orbitals, n_electrons).</p></li>
+<li><p><strong>nelec</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of electrons in this spin block. If None, uses shape[1].</p></li>
+<li><p><strong>matrix_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Type of matrix: ‘spin_block’ (default) or ‘full’. Only affects messaging.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print warnings if not orthonormal. Default: True.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerance for checking orthonormality. Default: 1.0e-10.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>norm</strong> (<em>complex</em>) – Determinant of the overlap matrix (product for all columns).</p></li>
+<li><p><strong>is_orthonormal</strong> (<em>bool</em>) – True if the overlap matrix is close to identity (within tolerance).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.modified_gram_schmidt">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">modified_gram_schmidt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.modified_gram_schmidt" title="Link to this definition">#</a></dt>
+<dd><p>Orthonormalize the columns of <code class="docutils literal notranslate"><span class="pre">mat</span></code> using modified Gram-Schmidt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>ndarray</em><em> (</em><em>n</em><em>, </em><em>m</em><em>)</em>) – Matrix whose columns will be orthonormalized in place order.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum norm allowed before considering vectors linearly dependent.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matrix with orthonormal columns spanning the same column space.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If a column is (near) linearly dependent on the previous ones.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.write_nomsd">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">write_nomsd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthonormalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.write_nomsd" title="Link to this definition">#</a></dt>
+<dd><p>Write NOMSD to HDF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<em>h5py group</em>) – Wavefunction group to write to file.</p></li>
+<li><p><strong>wfn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – NOMSD trial wavefunctions.</p></li>
+<li><p><strong>uhf</strong> (<em>bool</em>) – UHF style wavefunction.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Threshold for writing wavefunction elements.</p></li>
+<li><p><strong>init</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Initial Slater determinants [alpha_block, beta_block]. Will be orthonormality-checked.</p></li>
+<li><p><strong>orthonormalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True (default), orthonormalize Slater matrices if not properly normalized.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.write_nomsd_ghf">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">write_nomsd_ghf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthonormalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.write_nomsd_ghf" title="Link to this definition">#</a></dt>
+<dd><p>Write ‘GHF’/’G. S. DET’ NOMSD to HDF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<em>h5py group</em>) – Wavefunction group to write to file.</p></li>
+<li><p><strong>wfn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – NOMSD trial wavefunctions.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>thresh</strong> (<em>float</em>) – Threshold for writing wavefunction elements.</p></li>
+<li><p><strong>init</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Initial Slater determinant. Will be orthonormality-checked.</p></li>
+<li><p><strong>orthonormalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True (default), orthonormalize Slater matrices if not properly normalized.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.write_nomsd_single">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">write_nomsd_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.write_nomsd_single" title="Link to this definition">#</a></dt>
+<dd><p>Write single component of NOMSD to hdf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<em>h5py group</em>) – Wavefunction group to write to file.</p></li>
+<li><p><strong>psi</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.csr_array</span></code>) – Sparse representation of trial wavefunction.</p></li>
+<li><p><strong>idet</strong> (<em>int</em>) – Determinant number.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.write_phmsd">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">write_phmsd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthonormalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.write_phmsd" title="Link to this definition">#</a></dt>
+<dd><p>Write PHMSD to HDF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fh5</strong> (<em>h5py group</em>) – Wavefunction group to write to file.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>init</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Initial Slater determinant [alpha_block, beta_block]. Will be orthonormality-checked.</p></li>
+<li><p><strong>orbmat</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Orbital transformation matrices.</p></li>
+<li><p><strong>orthonormalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True (default), orthonormalize Slater matrices if not properly normalized.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.common.write_wfn">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.common.</span></span><span class="sig-name descname"><span class="pre">write_wfn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walker_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbmat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthonormalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.common.write_wfn" title="Link to this definition">#</a></dt>
+<dd><p>Write wavefunction to HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – HDF5 file to write wavefunction to.</p></li>
+<li><p><strong>wfn</strong> (<em>tuple</em>) – Wavefunction description. Either a list containing an array of coefficients and occupation numbers (PHMSD)
+or a tuple containing an array of coefficients and an array of determinants (NOMSD).</p></li>
+<li><p><strong>walker_type</strong> (<em>str</em>) – Type of walker to write. Options are ‘closed’, ‘collinear’, ‘noncollinear’.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>norb</strong> (<em>int</em>) – Number of orbitals.</p></li>
+<li><p><strong>init</strong> (<em>tuple</em>) – Initial Slater determinants for AFQMC.</p></li>
+<li><p><strong>orbmat</strong> (<em>tuple</em>) – Orbital matrices for PHMSD wavefunctions.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Print additional information.</p></li>
+<li><p><strong>orthonormalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True (default), orthonormalize Slater matrices if not properly normalized.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unknown wavefunction type is passed.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>The function supports two types of wavefunctions: PHMSD and NOMSD.</dt><dd><p>It writes the wavefunction data to the specified HDF5 file and handles
+different walker types, including corrections for user input.</p>
+</dd>
+<dt>For user-defined wavefunctions:</dt><dd><p># PHMSD is a list of tuple of (ci, occa, occb).
+# NOMSD is a tuple of (list, np.ndarray).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction.converter">
+<span id="afqmctools-wavefunction-converter-module"></span><h2>afqmctools.wavefunction.converter module<a class="headerlink" href="#module-afqmctools.wavefunction.converter" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.convert_string">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">convert_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.convert_string" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.orbs_from_dset">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">orbs_from_dset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.orbs_from_dset" title="Link to this definition">#</a></dt>
+<dd><p>Will read actually A^{H} but return A.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_dice_ascii_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_dice_ascii_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_dice_ascii_wavefunction" title="Link to this definition">#</a></dt>
+<dd><p>Reads SHCI wavefunction from the text-based output of Dice</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – the name of a file containing Dice’s text-based output</p></li>
+<li><p><strong>ndets</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – the number of Slater determinants to read</p></li>
+<li><p><strong>state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – the index of the state to read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>has length 5 and contains (wfn, nmo:int, nup:int, ndn:int,
+walker_type:int) where <cite>nmo</cite> is the number of orbitals,
+<cite>nup</cite> is the number of up electrons, <cite>ndn</cite> is the number of
+down electrons, and <cite>walker_type</cite> is an int encoding the
+type of walker (0 : CLOSED, 1: COLLINEAR, 2: NONCOLLINEAR
+4: FULLYSPINPOLARIZED). <cite>wfn</cite> is a tuple containing:
+(coeffs:numpy.array, occa:numpy.array, occb:numpy.array)
+where ‘coeffs’ are the CI coefficients of the wavefunction,
+occa are the spin-up occupancies, and occb are the
+spin-down occupancies. All three arrays are the same length.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If ndets is not specified</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_dice_h5_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_dice_h5_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_dice_h5_wavefunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_nomsd_hdf5">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_nomsd_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wgroup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_nomsd_hdf5" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_phmsd_hdf5">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_phmsd_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wgroup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_phmsd_hdf5" title="Link to this definition">#</a></dt>
+<dd><p>Read particle-hole multi-Slater determinant wavefunction from HDF5</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wgroup</strong> (<em>h5py.Group</em>) – the group containing wavefunction data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>wfn</strong> (<em>tuple(coeffs:numpy.ndarray, occa:numpy.ndarray, occb:numpy.ndarray)</em>) – where ‘coeffs’ are the CI coefficients of the wavefunction, occa are
+the spin-up occupancies, and occb are the spin-down occupancies.</p></li>
+<li><p><strong>psi0</strong> (<em>numpy.ndarray</em>) – a numpy array containing the initial Slater determinant. The first na
+columns are spin-up orbitals, and the last nb columns are spin-down
+orbitals.</p></li>
+<li><p><strong>(na</strong> (<em>int,nb:int)</em>) – a tuple containing the number of up (na) and down (nb) electrons.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_wavefunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.converter.read_with_check">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.converter.</span></span><span class="sig-name descname"><span class="pre">read_with_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.converter.read_with_check" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction.free_electron">
+<span id="afqmctools-wavefunction-free-electron-module"></span><h2>afqmctools.wavefunction.free_electron module<a class="headerlink" href="#module-afqmctools.wavefunction.free_electron" title="Link to this heading">#</a></h2>
+<p>Free-Electron Trial Wavefunction builder</p>
+<p>Author: Kyle Eskridge
+GitHub: bkesk</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.free_electron.free_electron">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.free_electron.</span></span><span class="sig-name descname"><span class="pre">free_electron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_dense</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_autohf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure_spin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filling_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'aufbau'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shell_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure_evar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.free_electron.free_electron" title="Link to this definition">#</a></dt>
+<dd><p>Builds a free-electron trial wavefunction based on the ‘source’ lattice hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em><em> | </em><em>dict</em><em> | </em><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian" title="afqmctools.hamiltonian.model.ham_class.Hamiltonian"><em>Hamiltonian</em></a>) – str - the name of an input file with lattice and hamiltonian blocks defined
+dict - a dict containing lattice and hamiltonian blocks</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em>) – number of spin-up and spin-down electrons</p></li>
+<li><p><strong>twist</strong> (<em>array-like</em><em>, </em><em>optional</em>) – twist angle for the lattice (default: small irrational twist)</p></li>
+<li><p><strong>spin_symm</strong> (<a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em>, </em><em>optional</em>) – spin symmetry to use</p></li>
+<li><p><strong>use_dense</strong> (<em>bool</em>) – whether to use dense matrix operations (default: True)</p></li>
+<li><p><strong>lattice</strong> (<a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><em>Lattice</em></a><em>, </em><em>optional</em>) – pre-constructed lattice object</p></li>
+<li><p><strong>return_autohf</strong> (<em>bool</em>) – whether to return AutoHF results (default: False)</p></li>
+<li><p><strong>measure_spin</strong> (<em>bool</em>) – whether to measure spin in AutoHF (default: True)</p></li>
+<li><p><strong>filling_strategy</strong> (<em>str</em>) – <p>strategy for filling orbitals within shells. Options:</p>
+<ul>
+<li><p>’aufbau’: fill shells from lowest to highest energy (default)</p></li>
+<li><dl class="simple">
+<dt>’balanced’: for partially filled shells, select orbitals evenly</dt><dd><p>to balance properties like momentum</p>
+</dd>
+</dl>
+</li>
+<li><p>’hund’: apply Hund’s rule (maximize spin)</p></li>
+<li><dl class="simple">
+<dt>’alternating’: fill from edges inward (0, -1, 1, -2, …)</dt><dd><p>for momentum cancellation</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+<li><p><strong>shell_tol</strong> (<em>float</em>) – tolerance for grouping eigenvalues into shells (default: 1e-6)
+Orbitals with eigenvalues within this tolerance are considered
+to belong to the same shell.</p></li>
+<li><p><strong>measure_evar</strong> (<em>bool</em>) – whether to measure the variational energy with respect to the interacting Hamiltonian
+using AutoHF (default: True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>wfn</strong> (<em>list</em>) – wavefunction as [coefficients, orbital_matrix]</p></li>
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em>) – spin symmetry of the wavefunction</p></li>
+<li><p><strong>results</strong> (<em>dict (optional)</em>) – AutoHF results if return_autohf=True</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction.model">
+<span id="afqmctools-wavefunction-model-module"></span><h2>afqmctools.wavefunction.model module<a class="headerlink" href="#module-afqmctools.wavefunction.model" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.model.make_free_elec">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.model.</span></span><span class="sig-name descname"><span class="pre">make_free_elec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian_fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.model.make_free_elec" title="Link to this definition">#</a></dt>
+<dd><p>Make a free-electron wavefunction with <cite>nelec</cite> = (Nup,Ndown) electrons based on the one-body Hamiltonian in <cite>hamiltonian_fame</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hamiltonian_fname</strong> (<em>str</em>) – Path to the Hamiltonian file.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of electrons. (Nup,Ndown)</p></li>
+<li><p><strong>spin_symm</strong> (<em>str</em><em> | </em><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a>) – Spin symmetry of the wavefunction. If None, the spin symmetry is inferred from the Hamiltonian file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>wfn</strong> (<em>Wavefunction</em>) – Free-electron wavefunction.</p></li>
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em>) – Spin symmetry of the wavefunction.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.model.write_free_electron_wfn">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.model.</span></span><span class="sig-name descname"><span class="pre">write_free_electron_wfn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian_fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.model.write_free_electron_wfn" title="Link to this definition">#</a></dt>
+<dd><p>Write a free-electron wavefunction with <cite>nelec</cite> = (Nup,Ndown) electrons based on the one-body Hamiltonian in <cite>hamiltonian_fame</cite>.
+Optionally save the wavefunction to a different file (<cite>output_fname</cite>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hamiltonian_fname</strong> (<em>str</em>) – Path to the Hamiltonian file.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of electrons. (Nup,Ndown)</p></li>
+<li><p><strong>output_fname</strong> (<em>str</em>) – Path to the output wavefunction file.</p></li>
+<li><p><strong>spin_symm</strong> (<em>str</em><em> | </em><a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a>) – Spin symmetry of the wavefunction. If None, the spin symmetry is inferred from the Hamiltonian file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction.mol">
+<span id="afqmctools-wavefunction-mol-module"></span><h2>afqmctools.wavefunction.mol module<a class="headerlink" href="#module-afqmctools.wavefunction.mol" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.mol.generate_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.mol.</span></span><span class="sig-name descname"><span class="pre">generate_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_scf_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.mol.generate_wavefunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.mol.write_cas_wfn">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.mol.</span></span><span class="sig-name descname"><span class="pre">write_cas_wfn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas_chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'afqmc_wfn.h5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_trunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.mol.write_cas_wfn" title="Link to this definition">#</a></dt>
+<dd><p>Write a CAS wavefunction to an HDF5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<em>pyscf.gto.Mole</em>) – Molecule object from PySCF.</p></li>
+<li><p><strong>cas_chkfile</strong> (<em>str</em>) – Path to the PySCF CAS checkpoint file.</p></li>
+<li><p><strong>outname</strong> (<em>str</em>) – Output HDF5 file name.</p></li>
+<li><p><strong>tol_trunc</strong> (<em>float</em>) – Truncation threshold for CI coefficients.</p></li>
+<li><p><strong>max_det</strong> (<em>int</em>) – Maximum number of determinants to keep. If None, all determinants within tol_trunc are kept.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.mol.write_wfn_mol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.mol.</span></span><span class="sig-name descname"><span class="pre">write_wfn_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_scf_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.mol.write_wfn_mol" title="Link to this definition">#</a></dt>
+<dd><p>Generate SAFIRE format trial wavefunction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scf_data</strong> (<em>dict</em>) – Dictionary containing scf data extracted from pyscf checkpoint file.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – HDF5 file path to store wavefunction to.</p></li>
+<li><p><strong>wfn</strong> (<em>tuple</em>) – User defined wavefunction. Not fully supported. Default None.</p></li>
+<li><p><strong>init</strong> (<em>optional</em>) – Initial wavefunction to use in AFQMC. Default is None.</p></li>
+<li><p><strong>basis_scf_data</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary containing scf data for the basis set in which to express
+the wavefunction. If None, the wavefunction will be expressed in the
+basis defined by <cite>scf_data</cite>.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, print additional information. Default is False.</p></li>
+<li><p><strong>ortho_ao</strong> (<em>bool</em><em>, </em><em>optional</em>) – Work in Löwdin orthogonalized atomic orbitals instead of molecular orbitals.
+Make sure this is consistent with the Hamiltonian.</p></li>
+<li><p><strong>cas</strong> (<em>tuple</em><em>, </em><em>optional</em>) – If provided, indicates that the wavefunction is to be expressed
+in a CAS active space as (# active electrons, # active orbitals).
+Cannot be combined with <cite>ortho_ao</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>wfn</strong> – Wavefunction as numpy array. Format depends on wavefunction.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction.pbc">
+<span id="afqmctools-wavefunction-pbc-module"></span><h2>afqmctools.wavefunction.pbc module<a class="headerlink" href="#module-afqmctools.wavefunction.pbc" title="Link to this heading">#</a></h2>
+<p>Write mean-field trial wavefunctions to file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.create_wavefunction">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">create_wavefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orbs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.create_wavefunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.determine_occupancies">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">determine_occupancies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refdet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.determine_occupancies" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.generate_orbitals">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">generate_orbitals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rediag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.generate_orbitals" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.print_eigenvalues">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">print_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">srt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.print_eigenvalues" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.rediag_fock">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">rediag_fock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.rediag_fock" title="Link to this definition">#</a></dt>
+<dd><p>Rediagonalise Fock matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fock</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Fock matrix for given kpoint.</p></li>
+<li><p><strong>X</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Transformation matrix.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>eigs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – MO eigenvalues.</p></li>
+<li><p><strong>eigv</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Eigenvectors.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.reoccupy">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">reoccupy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mo_occ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mo_energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uhf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndet_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.reoccupy" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.slater_gto2mo">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">slater_gto2mo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slater_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.slater_gto2mo" title="Link to this definition">#</a></dt>
+<dd><p>convert Slater determinant from gto basis to molecular orbital basis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>np.ndarray</strong><strong>)</strong> (<em>*optional* 'transform_mat'</em>) – in the underlying gto basis</p></li>
+<li><p><strong>2</strong><strong>)</strong> (<em>*optional* nelec</em><em> (</em><em>iterable</em><em> of </em><em>length</em>) – number of up(alpha) and down(beta) electrons expressed as ints. If provided,
+nelec is used to help distinguish between a Closed (i.e. RHF-like) determinant
+and a Noncollinear (i.e. GHF-like) determinant</p></li>
+<li><p><strong>)</strong> (<em>*optional* slater_type</em><em> ( </em><em>a _SlaterType instance</em><em> or </em><em>an int</em>) – provided. If provided, this will override the automatic detection of
+the Slater determinant type</p></li>
+<li><p><strong>(</strong><strong>np.ndarray</strong><strong>)</strong></p></li>
+<li><p><strong>**kwargs</strong> ((<em>all optional</em>) key-word arguments are ignored except for:) – <ul>
+<li><dl class="simple">
+<dt>‘orthAO’<span class="classifier">presence of keyword will force the use of an orthogonalized AO basis,</span></dt><dd><p>as opposed to a molecule orbital basis.</p>
+</dd>
+</dl>
+</li>
+<li><p>’basis’ (np.ndarray) : specifies an orbital basis to use - is ignored if orthAO is set (to anything!)</p></li>
+<li><p>’overlap’ (np.ndarray) : specifies the GTO-basis overlap matrix.</p></li>
+<li><dl class="simple">
+<dt>’mol’ (pyscf.gto.Mole)<span class="classifier">a Mole object that describes the system (used to compute the overlap matrix</span></dt><dd><p>if it was not provided)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.write_wfn_pbc">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">write_wfn_pbc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rediag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndet_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.write_wfn_pbc" title="Link to this definition">#</a></dt>
+<dd><p>Generate trial wavefunction for PBC simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scf_data</strong> (<em>dict</em>) – Dictionary containing scf data extracted from pyscf checkpoint file.</p></li>
+<li><p><strong>ortho_ao</strong> (<em>bool</em>) – Whether we are working in orthogonalised AO basis or not.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – HDF5 file path to store wavefunction to.</p></li>
+<li><p><strong>rediag</strong> (<em>bool</em>) – Whether to rediagonalise Fock matrix to compute MO coeffs in
+orthogonalised AO basis. Default: True.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Print additional information. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>wfn</strong> – Wavefunction as numpy array. Format depends on wavefunction.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.wavefunction.pbc.write_wfn_pbc_old">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.wavefunction.pbc.</span></span><span class="sig-name descname"><span class="pre">write_wfn_pbc_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rediag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndet_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.wavefunction.pbc.write_wfn_pbc_old" title="Link to this definition">#</a></dt>
+<dd><p>Generate trial wavefunction for PBC simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scf_data</strong> (<em>dict</em>) – Dictionary containing scf data extracted from pyscf checkpoint file.</p></li>
+<li><p><strong>ortho_ao</strong> (<em>bool</em>) – Whether we are working in orthogonalised AO basis or not.</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – HDF5 file path to store wavefunction to.</p></li>
+<li><p><strong>rediag</strong> (<em>bool</em>) – Whether to rediagonalise Fock matrix to compute MO coeffs in
+orthogonalised AO basis. Default: True.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Print additional information. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>wfn</strong> – Wavefunction as numpy array. Format depends on wavefunction.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.wavefunction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools.wavefunction" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="afqmctools.utils.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">afqmctools.utils package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../features.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Current Features</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.common">afqmctools.wavefunction.common module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.check_orthonormality"><code class="docutils literal notranslate"><span class="pre">check_orthonormality()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.check_slater_matrix_orthonormality"><code class="docutils literal notranslate"><span class="pre">check_slater_matrix_orthonormality()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.modified_gram_schmidt"><code class="docutils literal notranslate"><span class="pre">modified_gram_schmidt()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.write_nomsd"><code class="docutils literal notranslate"><span class="pre">write_nomsd()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.write_nomsd_ghf"><code class="docutils literal notranslate"><span class="pre">write_nomsd_ghf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.write_nomsd_single"><code class="docutils literal notranslate"><span class="pre">write_nomsd_single()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.write_phmsd"><code class="docutils literal notranslate"><span class="pre">write_phmsd()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.common.write_wfn"><code class="docutils literal notranslate"><span class="pre">write_wfn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.converter">afqmctools.wavefunction.converter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.convert_string"><code class="docutils literal notranslate"><span class="pre">convert_string()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.orbs_from_dset"><code class="docutils literal notranslate"><span class="pre">orbs_from_dset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_dice_ascii_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_dice_ascii_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_dice_h5_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_dice_h5_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_nomsd_hdf5"><code class="docutils literal notranslate"><span class="pre">read_nomsd_hdf5()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_phmsd_hdf5"><code class="docutils literal notranslate"><span class="pre">read_phmsd_hdf5()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_wavefunction"><code class="docutils literal notranslate"><span class="pre">read_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.converter.read_with_check"><code class="docutils literal notranslate"><span class="pre">read_with_check()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.free_electron">afqmctools.wavefunction.free_electron module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.free_electron.free_electron"><code class="docutils literal notranslate"><span class="pre">free_electron()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.model">afqmctools.wavefunction.model module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.model.make_free_elec"><code class="docutils literal notranslate"><span class="pre">make_free_elec()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.model.write_free_electron_wfn"><code class="docutils literal notranslate"><span class="pre">write_free_electron_wfn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.mol">afqmctools.wavefunction.mol module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.mol.generate_wavefunction"><code class="docutils literal notranslate"><span class="pre">generate_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.mol.write_cas_wfn"><code class="docutils literal notranslate"><span class="pre">write_cas_wfn()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.mol.write_wfn_mol"><code class="docutils literal notranslate"><span class="pre">write_wfn_mol()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction.pbc">afqmctools.wavefunction.pbc module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.create_wavefunction"><code class="docutils literal notranslate"><span class="pre">create_wavefunction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.determine_occupancies"><code class="docutils literal notranslate"><span class="pre">determine_occupancies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.generate_orbitals"><code class="docutils literal notranslate"><span class="pre">generate_orbitals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.print_eigenvalues"><code class="docutils literal notranslate"><span class="pre">print_eigenvalues()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.rediag_fock"><code class="docutils literal notranslate"><span class="pre">rediag_fock()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.reoccupy"><code class="docutils literal notranslate"><span class="pre">reoccupy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.slater_gto2mo"><code class="docutils literal notranslate"><span class="pre">slater_gto2mo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.write_wfn_pbc"><code class="docutils literal notranslate"><span class="pre">write_wfn_pbc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.wavefunction.pbc.write_wfn_pbc_old"><code class="docutils literal notranslate"><span class="pre">write_wfn_pbc_old()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.wavefunction">Module contents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

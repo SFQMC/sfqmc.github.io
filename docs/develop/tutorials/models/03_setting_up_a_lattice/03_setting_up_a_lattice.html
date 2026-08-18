@@ -1,0 +1,1084 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Lattice class tutorial &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/03_setting_up_a_lattice/03_setting_up_a_lattice';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/models/03_setting_up_a_lattice/03_setting_up_a_lattice.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Building Lattice Model Hamiltonians Tutorial" href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html" />
+    <link rel="prev" title="2. Understanding the input file" href="../02_understanding_the_input_file/02_understanding_the_input_file.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for lattice models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">3. </span>Lattice class tutorial</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="03_setting_up_a_lattice.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="lattice-class-tutorial">
+<h1><span class="section-number">3. </span>Lattice class tutorial<a class="headerlink" href="#lattice-class-tutorial" title="Link to this heading">#</a></h1>
+<p>In this tutorial, we will learn how to set up a lattice to define a Model Hamiltonian (See <strong>LATTICE_HAMIL_TUTORIAL</strong> for details on building a Hamiltonian).
+The <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> Python package implements a Lattice class which is responsible for answering geometric questions about a specific lattice such as:</p>
+<ul class="simple">
+<li><p>what are the boundary conditions</p></li>
+<li><p>what are the <span class="math notranslate nohighlight">\(n^{th}\)</span>-nearest neighbors</p></li>
+<li><p>which of those neighbors are “direct” neighbors, and which are image neighbors</p></li>
+</ul>
+<p>and more.
+<code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a convenience function, <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code> to build a Lattice instance given a set of geometric parameters.
+In this tutorial, we will explore how the Lattice class works, and the available options for building a Lattice via <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code>.</p>
+<section id="lattice-formalism">
+<h2><span class="section-number">3.1. </span>Lattice formalism<a class="headerlink" href="#lattice-formalism" title="Link to this heading">#</a></h2>
+<p>We consider lattices with primitive lattice vectors <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>, and <span class="math notranslate nohighlight">\(\vec{a}_2\)</span> (as determined by the lattice “type”) which may have a basis, <span class="math notranslate nohighlight">\(\{ \delta_p \}\)</span> where <span class="math notranslate nohighlight">\(p\)</span> runs over sub-lattice degrees of freedom, and the full cell has dimension <span class="math notranslate nohighlight">\(L_1\)</span> x <span class="math notranslate nohighlight">\(L_2\)</span>.
+The positions of lattice sites on sublattice <span class="math notranslate nohighlight">\(p\)</span> are given by<br />
+<div class="math notranslate nohighlight">
+\[
+\vec{r}_p = n_1 \vec{a}_1 + n_2 \vec{a}_2  + \vec{\delta}_p,
+\]</div>
+
+where <span class="math notranslate nohighlight">\(n_1\)</span>, and <span class="math notranslate nohighlight">\(n_2\)</span> are integers.
+Additionally, boundaries are defined normal to the primitive vectors and are labelled according to the primitive vector which they are normal to.
+For example, “boundary 1” is normal to <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>.
+Finally, when boundaries are crossed, a “twist” angle <span class="math notranslate nohighlight">\(\vec{\theta} = (\theta_1,\theta_2)\)</span>
+is used to apply a phase where <span class="math notranslate nohighlight">\(\theta_1\)</span>/<span class="math notranslate nohighlight">\(\theta_2\)</span> is applied when boundary 1 / boundary 2 are crossed, respectively.</p>
+<div class="alert alert-block alert-info">
+<b>Important:</b>
+    Only 2-dimensional lattices are currently implemented / supported.
+    Contact the developers if 3-dimensional lattices would be useful to you.
+</div>
+<p>TODO add a figure illustrating this.</p>
+</section>
+<section id="summary-of-get-lattice">
+<h2><span class="section-number">3.2. </span>Summary of get_lattice()<a class="headerlink" href="#summary-of-get-lattice" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code> function takes a Python dictionary containing “lattice parameters” as an argument and returns a Lattice instance based on the provided “lattice parameters”.</p>
+<p>We’ll explore the available options individually, but possible lattice parameters are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> : specifying the lattice type; <code class="docutils literal notranslate"><span class="pre">square</span></code> by default</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L1</span></code> : the lattice dimension along the lattice vector <span class="math notranslate nohighlight">\(\vec{a}_1\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L2</span></code> : the lattice dimension along the lattice vector <span class="math notranslate nohighlight">\(\vec{a}_2\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boundary1</span></code> : the boundary <em>type</em> of the boundary normal to <span class="math notranslate nohighlight">\(\vec{a}_1\)</span> (at <span class="math notranslate nohighlight">\(0 * \vec{a}_1\)</span> and <span class="math notranslate nohighlight">\(L_1 * \vec{a}_1\)</span> ). Defaults to an open boundary if not specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boundary2</span></code> : the boundary <em>type</em> of the boundary normal to <span class="math notranslate nohighlight">\(\vec{a}_2\)</span> (at <span class="math notranslate nohighlight">\(0 * \vec{a}_2\)</span> and <span class="math notranslate nohighlight">\(L_2 * \vec{a}_2\)</span> ). Defaults to an open boundary if not specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">twist</span></code> : the twist angle to apply, given as <span class="math notranslate nohighlight">\(\vec{\theta} = (\theta_1,\theta_2)\)</span> in units of radians. Defaults to (0.0,0.0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basis</span></code> : the set of lattice basis vectors, <span class="math notranslate nohighlight">\(\delta_{n}\)</span>. Defaults to {(0.0,0.0)}</p></li>
+</ul>
+<p>Below is a minimal example of building a lattice allowing most parameters to take on default values.
+We also use <code class="docutils literal notranslate"><span class="pre">afqmctool</span></code>’s <code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code> function so that we can visualize what we have made.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, we have constructed a 4x4 square lattice.
+Nearest-neighbors in the direct cell are indicated with a solid black line by default.
+The lattice vectors, <span class="math notranslate nohighlight">\(\vec{a}_1\)</span> and <span class="math notranslate nohighlight">\(\vec{a}_2\)</span>,
+the lattice coordinate <span class="math notranslate nohighlight">\(n_1,n_2\)</span>,
+and the lattice site index, <span class="math notranslate nohighlight">\(i\)</span>,
+are shown for convenience as well.</p>
+<section id="exercise-1-play-with-dimensions">
+<h3><span class="section-number">3.2.1. </span>Exercise 1: Play with dimensions<a class="headerlink" href="#exercise-1-play-with-dimensions" title="Link to this heading">#</a></h3>
+<p>Rerun the cell above with different lattice dimensions.
+Try:</p>
+<ul class="simple">
+<li><p>12 x 4</p></li>
+<li><p>2 x 4</p></li>
+<li><p>4 x 7</p></li>
+<li><p>1 x 10</p></li>
+<li><p>anything else you would like to try</p></li>
+</ul>
+</section>
+</section>
+<section id="boundary-conditions">
+<h2><span class="section-number">3.3. </span>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h2>
+<p>In this section, we will explore the available options for boundary conditions.
+To select a boundary type, set <code class="docutils literal notranslate"><span class="pre">boundary1</span></code> and/or <code class="docutils literal notranslate"><span class="pre">boundary2</span></code> in the <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code>
+dictionary to a string describing the boundary type.
+This is a case insensitive parameter.</p>
+<p>As we saw previously, the default boundaries are open.
+This can be made explicit by setting</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span><span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span><span class="o">=</span> <span class="s2">&quot;open&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>alternatively, periodic boundary conditions (PBC) can be used by setting</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span><span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span><span class="o">=</span> <span class="s2">&quot;pbc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>or mixed boundary conditions can be used by setting, for example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span><span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span><span class="o">=</span> <span class="s2">&quot;pbc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="alert alert-block alert-warning">
+<b>Important:</b>
+    When using periodic boundary conditions,
+    lattice sites are not allowed to be their own
+    image neighbors. So, for example, a 1-dimensional
+    lattice can only have PBCs in the "long" direction.
+    A ValueError will be raised if any sites are found to be
+    image neighbors of themselves.
+</div>
+<section id="exercise-2-play-with-boundary-conditions">
+<h3><span class="section-number">3.3.1. </span>Exercise 2: Play with boundary conditions<a class="headerlink" href="#exercise-2-play-with-boundary-conditions" title="Link to this heading">#</a></h3>
+<p>Try setting different combinations of boundary conditions
+in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> in the code block below.
+The <code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code> function will indicate the position of nearest image
+neighbors with a black dotted line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="twists">
+<h3><span class="section-number">3.3.2. </span>Twists<a class="headerlink" href="#twists" title="Link to this heading">#</a></h3>
+<p>When using periodic boundary conditions (PBCs), a “twist” angle, <span class="math notranslate nohighlight">\(\theta = (\theta_1,\theta_2)\)</span> can be set such that, for image neighbors <span class="math notranslate nohighlight">\(i,j\)</span>,
+<div class="math notranslate nohighlight">
+\[
+c^{\dagger}_i c_j = e^{i \theta_1} c^{\dagger}_i c_j
+\]</div>
+
+when crossing boundary 1 in the <span class="math notranslate nohighlight">\(+\vec{a}_1\)</span> direction
+and
+<div class="math notranslate nohighlight">
+\[
+c^{\dagger}_i c_j = e^{-i \theta_1} c^{\dagger}_i c_j
+\]</div>
+
+when crossing boundary 1 in the <span class="math notranslate nohighlight">\(-\vec{a}_1\)</span> direction.
+Similar relations apply for boundary 2 and <span class="math notranslate nohighlight">\(\theta_2\)</span>.
+The Lattice class does not directly use the Twist angle, but
+stores the relative phase between pairs of lattice site neighbors
+if they are set.</p>
+<p>All of the following are valid twist inputs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]</span>
+<span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.14</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]</span>
+<span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1/2 Pi&quot;</span><span class="p">,</span> <span class="s2">&quot;3/2 Pi&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If a twist is provide in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code>, then
+it will be saved as the relative phase between image neighbors
+consistent with the boundaries.</p>
+<p>For example, in the code block</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1/2 Pi&quot;</span><span class="p">,</span> <span class="s2">&quot;1/2 Pi&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>although we have provided a twist for both boundary 1 and boundary 2,
+only the twist for boundary 2 will be applied since
+boundary 1 is not periodic.</p>
+</section>
+</section>
+<section id="lattice-types">
+<h2><span class="section-number">3.4. </span>Lattice Types<a class="headerlink" href="#lattice-types" title="Link to this heading">#</a></h2>
+<p>We provide a few lattice types which can be selected by setting <code class="docutils literal notranslate"><span class="pre">&quot;type&quot;</span></code> to one of <code class="docutils literal notranslate"><span class="pre">&quot;square&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;triangular&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;honeycomb&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;kagome&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code></p>
+<p>Try building a few of these in the code block below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;honeycomb&quot;</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Honeycomb lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lattice-basis">
+<h2><span class="section-number">3.5. </span>Lattice basis<a class="headerlink" href="#lattice-basis" title="Link to this heading">#</a></h2>
+<p>For the <code class="docutils literal notranslate"><span class="pre">square</span></code> lattice type, a lattice basis can be optionally supplied
+by setting <code class="docutils literal notranslate"><span class="pre">basis</span></code> in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> to a list of vectors which
+represent the basis vectors <strong>in spatial coordinates</strong>.
+Currently only 2-dimensional lattices are supported, and all basis vectors
+must be 2-dimensional.</p>
+<p>Note that the honeycomb lattice and the kagome lattice are both special cases
+of the triangular lattice with a basis that has been predefined.
+If a basis is provided in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> for either of these lattices, it will
+be ignored.</p>
+<section id="exercise">
+<h3><span class="section-number">3.5.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p>Play around with setting a basis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;square&quot;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Square lattice with a basis&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="custom-lattices">
+<h2><span class="section-number">3.6. </span>Custom lattices<a class="headerlink" href="#custom-lattices" title="Link to this heading">#</a></h2>
+<p>If the lattice that you want is not specifically implemented, you can use the
+“custom” lattice.
+You will need to specify the lattice vectors, <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>, and <span class="math notranslate nohighlight">\(\vec{a}_2\)</span>,
+and the lattice basis, <span class="math notranslate nohighlight">\(\{ \delta_p \}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">basis</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">]</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="n">basis</span><span class="p">,</span>
+    <span class="n">a1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)),</span>
+    <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">lattice_params</span>
+<span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lieb lattice with tilted cell&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-nth-order-neighbors">
+<h2><span class="section-number">3.7. </span>Visualizing nth-order neighbors<a class="headerlink" href="#visualizing-nth-order-neighbors" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">vis.plot_lattice()</span></code> function can be used to visualize which pairs of sites
+are <span class="math notranslate nohighlight">\(n^{th}\)</span>-order neighbors.
+As you will see in the <a class="reference internal" href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html"><span class="doc">Building Lattice Model Hamiltonians Tutorial</span></a>,
+<span class="math notranslate nohighlight">\(n_{th}\)</span>-order neighbor hopping and interactions are available in the lattice model Hamiltonian builder tools.
+Visualizing the neighbors can be helpful or ensuring that the desired hopping / interactions are being included,
+especially when dealing with complicated lattices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basis</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">]</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="n">basis</span><span class="p">,</span>
+    <span class="n">a1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)),</span>
+    <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">lattice_params</span>
+<span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lieb lattice with tilted cell&quot;</span><span class="p">,</span>
+    <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">nth_neighbor</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="archive-of-possible-examples">
+<h2><span class="section-number">3.8. </span>Archive of Possible Examples<a class="headerlink" href="#archive-of-possible-examples" title="Link to this heading">#</a></h2>
+<section id="a-water-molecule">
+<h3><span class="section-number">3.8.1. </span>a water molecule:<a class="headerlink" href="#a-water-molecule" title="Link to this heading">#</a></h3>
+<p>TODO: write an intro. The goal here is to shift everyone’s brains to thinking
+about mapping atoms in a solid onto a lattice model without the complication of multiple sites.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;square&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Water Molecule&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lieb-lattice">
+<h3><span class="section-number">3.8.2. </span>Lieb Lattice<a class="headerlink" href="#lieb-lattice" title="Link to this heading">#</a></h3>
+<p>The Cuprates are a class of high-temperature superconductors which consists of 2-dimensional layers of CuO<span class="math notranslate nohighlight">\(_2\)</span> and other materials.
+The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;square&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lieb Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kagome-lattice">
+<h3><span class="section-number">3.8.3. </span>Kagome Lattice<a class="headerlink" href="#kagome-lattice" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;kagome&#39;</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Kagome Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;triangular&#39;</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Triangular Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;honeycomb&#39;</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Honeycomb Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+
+<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;square&#39;</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
+<span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Square Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02_understanding_the_input_file/02_understanding_the_input_file.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Understanding the input file</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Building Lattice Model Hamiltonians Tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-formalism">3.1. Lattice formalism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-get-lattice">3.2. Summary of get_lattice()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-play-with-dimensions">3.2.1. Exercise 1: Play with dimensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">3.3. Boundary Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-play-with-boundary-conditions">3.3.1. Exercise 2: Play with boundary conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twists">3.3.2. Twists</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-types">3.4. Lattice Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-basis">3.5. Lattice basis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">3.5.1. Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-lattices">3.6. Custom lattices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-nth-order-neighbors">3.7. Visualizing nth-order neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#archive-of-possible-examples">3.8. Archive of Possible Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-water-molecule">3.8.1. a water molecule:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lieb-lattice">3.8.2. Lieb Lattice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kagome-lattice">3.8.3. Kagome Lattice</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

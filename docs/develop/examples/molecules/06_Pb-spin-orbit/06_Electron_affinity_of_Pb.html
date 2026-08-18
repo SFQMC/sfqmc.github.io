@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7. 3d Transition Metal Oxide Benchmark" href="../07_3d_TMO_benchmark/index.html" />
+    <link rel="prev" title="5. Li₂ Molecule with Frozen Core" href="../05_Li2_frozen_core/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of solid Na</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry / Molecules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">6. </span>Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="06_Electron_affinity_of_Pb.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="electron-affinity-of-pb-spin-orbit-coupling-soc-in-ab-initio-afqmc">
+<h1><span class="section-number">6. </span>Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC<a class="headerlink" href="#electron-affinity-of-pb-spin-orbit-coupling-soc-in-ab-initio-afqmc" title="Link to this heading">#</a></h1>
+<p>At the end of this example, you will know how to include SOC in ab initio AFQMC calculations.</p>
+<p>The electron affinity (EA) of heavy elements is strongly affected by SOC.
+For <span class="math notranslate nohighlight">\(Pb\)</span>, the inclusion of SOC changes the EA by about 1 eV [1];
+The neutral <span class="math notranslate nohighlight">\(Pb\)</span> atom has a <span class="math notranslate nohighlight">\(6s^26p^2\)</span> electron configuration with <span class="math notranslate nohighlight">\(^3P_0\)</span> experimentally observed ground state
+leading to rather large SOC effects.
+The <span class="math notranslate nohighlight">\(Pb^-\)</span> ion has a spin-quartet <span class="math notranslate nohighlight">\(6s^26p^3\)</span> electron configuration with zero orbital angular momentum leading to
+much SOC effects than the neutral atom.
+Accounting for SOC is, of course, critical to achieve quantitative accuracy.</p>
+<p>In contrast to real space methods in which non-local terms in the Hamiltonian, such as SOC, must be sampled,
+AFQMC is able to exactly include SOC because it is formulated in second quantization for a general orbital
+basis. This makes it an ideal tool for the study of systems and observables, where SOC effects are important.
+must be sampled - making it an ideal tool for the study of systems and observables
+where SOC effects are important.</p>
+<section id="references">
+<h2><span class="section-number">6.1. </span>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p>[1] B. Eskridge, H. Krakauer, H. Shi, S. Zhang; Ab initio calculations in atoms, molecules, and solids, treating spin–orbit coupling and electron interaction on an equal footing. J. Chem. Phys. 7 January 2022; 156 (1): 014107. https://doi.org/10.1063/5.0075900<br />
+[2] K. A. Peterson, D. Figgen, E. Goll, H. Stoll, and M. Dolg, J. Chem. Phys. 119, 11113 (2003). https://doi.org/10.1063/1.1622924<br />
+[3] K. A. Peterson, B. C. Shepler, D. Figgen, and H. Stoll, J. Phys. Chem. A 110, 13877 (2006). https://doi.org/10.1021/jp065887l<br />
+[4] B. Metz, H. Stoll, and M. Dolg, J. Chem. Phys. 113, 2563 (2000). https://doi.org/10.1063/1.1305880<br />
+[5] K. A. Peterson, J. Chem. Phys. 119, 11099 (2003). https://doi.org/10.1063/1.1622923</p>
+</section>
+<section id="set-up-input-for-safire">
+<h2><span class="section-number">6.2. </span>Set Up Input for SAFIRE<a class="headerlink" href="#set-up-input-for-safire" title="Link to this heading">#</a></h2>
+<p>We we will use the relativistic Stuttgart effective core potentials (ECPs), in order to
+capture both spin-orbit coupling (SOC) and scalar relativistic effects, as
+well as the corresponding augmented cGTO basis sets [2-5].</p>
+<section id="run-the-code-block-below-to-load-the-ecp-and-basis-definitions">
+<h3><span class="section-number">6.2.1. </span>▶️ Run the code block below to load the ECP and basis definitions<a class="headerlink" href="#run-the-code-block-below-to-load-the-ecp-and-basis-definitions" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup the tutorials by runnig this block</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ecp_soc</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Pb&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Pb nelec 60</span>
+<span class="s1">    Pb ul</span>
+<span class="s1">    2       1.0000000              0.0000000</span>
+<span class="s1">    Pb S</span>
+<span class="s1">    2      12.2963030            281.2854990</span>
+<span class="s1">    2       8.6326340             62.5202170</span>
+<span class="s1">    Pb P</span>
+<span class="s1">    2      10.2417900             72.2768970      -144.553795</span>
+<span class="s1">    2       8.9241760            144.5910830       144.591083</span>
+<span class="s1">    2       6.5813420              4.7586930        -9.517385</span>
+<span class="s1">    2       6.2554030              9.9406210         9.940621</span>
+<span class="s1">    Pb D</span>
+<span class="s1">    2       7.7543360             35.8485070       -35.848507</span>
+<span class="s1">    2       7.7202810             53.7243420        35.816228</span>
+<span class="s1">    2       4.9702640             10.1152560       -10.115256</span>
+<span class="s1">    2       4.5637890             14.8337310         9.889154</span>
+<span class="s1">    Pb F</span>
+<span class="s1">    2       3.8875120             12.2098920        -8.139928</span>
+<span class="s1">    2       3.8119630             16.1902910         8.095145</span>
+<span class="s1">    Pb G</span>
+<span class="s1">    2       5.6915770             -9.0966650         4.548332</span>
+<span class="s1">    2       5.7155670            -11.5319960        -4.612798</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+<span class="p">}</span>
+
+<span class="n">aug_cc_pvdz_pp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">BASIS &quot;ao basis&quot; SPHERICAL PRINT</span>
+<span class="s2">#BASIS SET: (9s,7p,7d) -&gt; [5s,4p,3d]</span>
+<span class="s2">Pb    S</span>
+<span class="s2">     37.4583000              0.0248240              0.0000000              0.0067850              0.0000000</span>
+<span class="s2">     23.3170000             -0.1810620              0.0000000             -0.0601870              0.0000000</span>
+<span class="s2">     14.5759000              0.5007060              0.0000000              0.1889710              0.0000000</span>
+<span class="s2">      6.4337600             -0.9797370              0.0000000             -0.4248380              0.0000000</span>
+<span class="s2">      1.6671900              0.9666300              0.0000000              0.6220350              0.0000000</span>
+<span class="s2">      0.8077320              0.4364870              0.0000000              0.3160880              0.0000000</span>
+<span class="s2">      0.2270840              0.0136860              1.0000000             -0.7594740              0.0000000</span>
+<span class="s2">      0.0842520             -0.0020210              0.0000000             -0.5151310              1.0000000</span>
+<span class="s2">Pb    S</span>
+<span class="s2">      0.0278000              1.0000000</span>
+<span class="s2">Pb    P</span>
+<span class="s2">     10.6186000              0.1701740             -0.0479540              0.0000000</span>
+<span class="s2">      7.1878100             -0.4241790              0.1245560              0.0000000</span>
+<span class="s2">      1.8943900              0.6934430             -0.2597760              0.0000000</span>
+<span class="s2">      0.8167090              0.4737730             -0.1414800              0.0000000</span>
+<span class="s2">      0.2036880              0.0290470              0.5317690              0.0000000</span>
+<span class="s2">      0.0649730             -0.0043860              0.6087590              1.0000000</span>
+<span class="s2">Pb    P</span>
+<span class="s2">      0.0197000              1.0000000</span>
+<span class="s2">Pb    D</span>
+<span class="s2">     13.7266000              0.0107870              0.0000000</span>
+<span class="s2">      6.9898300             -0.0666500              0.0000000</span>
+<span class="s2">      2.1735200              0.3342590              0.0000000</span>
+<span class="s2">      1.0281200              0.4826840              0.0000000</span>
+<span class="s2">      0.4558570              0.3004140              0.0000000</span>
+<span class="s2">      0.1822000              0.0632580              1.0000000</span>
+<span class="s2">Pb    D</span>
+<span class="s2">      0.0609000              1.0000000</span>
+<span class="s2">END</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="generate-inputs-for-the-neutral-atom">
+<h2><span class="section-number">6.3. </span>Generate inputs for the Neutral atom<a class="headerlink" href="#generate-inputs-for-the-neutral-atom" title="Link to this heading">#</a></h2>
+<p>We will begin by generating the Hamiltonian and trial wavefunction for the neutral Pb atom.</p>
+<section id="run-pyscf-for-the-neutral-atom-to-generate-a-basis-and-soc-ghf-trial-wavefunction">
+<h3><span class="section-number">6.3.1. </span>▶️ Run PySCF for the neutral atom to generate a basis and SOC-GHF trial wavefunction<a class="headerlink" href="#run-pyscf-for-the-neutral-atom-to-generate-a-basis-and-soc-ghf-trial-wavefunction" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+
+<span class="n">neutral_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;neutral_atom&quot;</span>
+<span class="n">neutral_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">## Run SOC-GHF using PySCF</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;Pb 0. 0. 0.&quot;</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="n">aug_cc_pvdz_pp</span><span class="p">,</span>
+    <span class="n">ecp</span><span class="o">=</span><span class="n">ecp_soc</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+
+<span class="c1"># 1. Compute ROHF orbitals to use as a basis. NOTE: SOC will be ignored!</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># perform stability analysis - see PySCF example:</span>
+<span class="c1"># https://github.com/pyscf/pyscf.github.io/blob/master/examples/scf/17-stability.py</span>
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2.a. compute a &quot;No SOC&quot; trial wavefunction</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2.b. compute a &quot;SOC&quot; trial wavefunction</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-and-write-hamiltonian-and-trial-wavefunction-for-neutral-atom">
+<h3><span class="section-number">6.3.2. </span>▶️ Generate and Write Hamiltonian and Trial wavefunction for Neutral Atom<a class="headerlink" href="#generate-and-write-hamiltonian-and-trial-wavefunction-for-neutral-atom" title="Link to this heading">#</a></h3>
+<p>We generate the Hamiltonian and trial wavefunction in the usual way
+with the exception that <code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk_mol()</span></code> must be explicitly
+told to load ECP type spin-orbit coupling integrals via the <code class="docutils literal notranslate"><span class="pre">soc_type=&quot;ecp&quot;</span></code>
+keyword argument.</p>
+<p>For the initial wavefunction, we use the ground state of the non-interacting Hamiltonian
+as this was found in [1] to lead to significantly faster equilibration than using
+the SOC-GHF or ROHF solution for the initial wavefunction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+
+<span class="c1"># inputs</span>
+<span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span>
+<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># output</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_sf.h5&#39;</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+
+<span class="c1">#####################################</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#  Write Hamiltonian in ROHF basis  #</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#####################################</span>
+
+<span class="c1"># Save the Hamiltonian</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
+    <span class="n">soc_type</span><span class="o">=</span><span class="s1">&#39;ecp&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
+<span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">basis_scf_data</span><span class="p">,</span>
+    <span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">chol_tol</span><span class="p">,</span>
+    <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+    <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ortho_ao</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#####################################</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#    Write GHF Wavefunction         #</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#####################################</span>
+
+<span class="n">wfn_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">write_wfn_mol</span><span class="p">(</span>
+    <span class="n">wfn_scf_data</span><span class="p">,</span>
+    <span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">basis_scf_data</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-safire">
+<h3><span class="section-number">6.3.3. </span>▶️ Run SAFIRE<a class="headerlink" href="#run-safire" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="c1"># Write json input file</span>
+<span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+<span class="p">}</span>
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
+<span class="p">)</span>
+
+<span class="c1"># run AFQMC</span>
+<span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">local_scratch_dir</span><span class="p">,</span>
+    <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+    <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="repeat-for-charged-pb-ion">
+<h2><span class="section-number">6.4. </span>Repeat for Charged <span class="math notranslate nohighlight">\(Pb^-\)</span> ion<a class="headerlink" href="#repeat-for-charged-pb-ion" title="Link to this heading">#</a></h2>
+<section id="run-pyscf">
+<h3><span class="section-number">6.4.1. </span>▶️ Run PySCF<a class="headerlink" href="#run-pyscf" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+
+<span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;charged_atoms&quot;</span>
+<span class="n">charged_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">## Run SOC-GHF using PySCF</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;Pb 0. 0. 0.&quot;</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="n">aug_cc_pvdz_pp</span><span class="p">,</span>
+    <span class="n">ecp</span><span class="o">=</span><span class="n">ecp_soc</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+
+<span class="c1"># 1. Compute ROHF orbitals to use as a basis.</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># perform stability analysis - see PySCF example:</span>
+<span class="c1"># https://github.com/pyscf/pyscf.github.io/blob/master/examples/scf/17-stability.py</span>
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2.a. compute a &quot;No SOC&quot; trial wavefunction</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2.b. compute a &quot;SOC&quot; trial wavefunction</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">dm1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dm1</span><span class="p">)</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-and-write-hamiltonian-and-trial-wavefunction">
+<h3><span class="section-number">6.4.2. </span>▶️ Generate and Write Hamiltonian and trial wavefunction<a class="headerlink" href="#generate-and-write-hamiltonian-and-trial-wavefunction" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+
+
+<span class="c1"># inputs</span>
+<span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span>
+<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># output</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_sf.h5&#39;</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+
+<span class="c1">#####################################</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#  Write Hamiltonian in ROHF basis  #</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#####################################</span>
+
+<span class="c1"># Save the Hamiltonian</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
+    <span class="n">soc_type</span> <span class="o">=</span> <span class="s2">&quot;ecp&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
+<span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">basis_scf_data</span><span class="p">,</span>
+    <span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">chol_tol</span><span class="p">,</span>
+    <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+    <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1">#####################################</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#    Write GHF Wavefunction         #</span>
+<span class="c1">#                                   #</span>
+<span class="c1">#####################################</span>
+
+<span class="n">wfn_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">write_wfn_mol</span><span class="p">(</span>
+    <span class="n">wfn_scf_data</span><span class="p">,</span>
+    <span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">basis_scf_data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;charged_atoms&quot;</span>
+<span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3><span class="section-number">6.4.3. </span>▶️ Run SAFIRE<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### from afqmctools.inputs.from_hdf import write_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+
+<span class="c1"># Write json input file</span>
+<span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+<span class="p">}</span>
+<span class="n">write_json</span><span class="p">(</span>
+    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fout_soc</span><span class="p">,</span>
+    <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
+<span class="p">)</span>
+
+<span class="c1"># run AFQMC</span>
+<span class="n">run_afqmc</span><span class="p">(</span>
+    <span class="n">run_dir</span><span class="o">=</span><span class="n">local_scratch_dir</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">nequil</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">E_charged</span><span class="p">,</span><span class="n">dE_charged</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="compute-the-final-result">
+<h2><span class="section-number">6.5. </span>Compute the Final Result<a class="headerlink" href="#compute-the-final-result" title="Link to this heading">#</a></h2>
+<p>Run the codeblock below to get the final result.
+It should be 0.48(3) eV for the aug-cc-pVDZ basis set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">eV</span> <span class="o">=</span> <span class="mf">27.211407953</span>
+
+<span class="n">EA</span> <span class="o">=</span> <span class="n">E</span> <span class="o">-</span> <span class="n">E_charged</span>
+<span class="n">dEA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">dE</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">dE_charged</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The electron affinity is </span><span class="si">{</span><span class="n">EA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dEA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should reproduce the result above if you ran with the same parameters and settings as we did.
+Specifically ensure that the seed and number of MPI processes is the same.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../05_Li2_frozen_core/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Li₂ Molecule with Frozen Core</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../07_3d_TMO_benchmark/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>3d Transition Metal Oxide Benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">6.1. References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-input-for-safire">6.2. Set Up Input for SAFIRE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-load-the-ecp-and-basis-definitions">6.2.1. ▶️ Run the code block below to load the ECP and basis definitions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-inputs-for-the-neutral-atom">6.3. Generate inputs for the Neutral atom</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-pyscf-for-the-neutral-atom-to-generate-a-basis-and-soc-ghf-trial-wavefunction">6.3.1. ▶️ Run PySCF for the neutral atom to generate a basis and SOC-GHF trial wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-write-hamiltonian-and-trial-wavefunction-for-neutral-atom">6.3.2. ▶️ Generate and Write Hamiltonian and Trial wavefunction for Neutral Atom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-safire">6.3.3. ▶️ Run SAFIRE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repeat-for-charged-pb-ion">6.4. Repeat for Charged <span class="math notranslate nohighlight">\(Pb^-\)</span> ion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-pyscf">6.4.1. ▶️ Run PySCF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-write-hamiltonian-and-trial-wavefunction">6.4.2. ▶️ Generate and Write Hamiltonian and trial wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.4.3. ▶️ Run SAFIRE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-final-result">6.5. Compute the Final Result</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
