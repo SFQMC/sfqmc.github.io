@@ -1,0 +1,1624 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>afqmctools.hamiltonian package &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'afqmctools/api/afqmctools.hamiltonian';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/afqmctools/api/afqmctools.hamiltonian.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="afqmctools.hamiltonian.model package" href="afqmctools.hamiltonian.model.html" />
+    <link rel="prev" title="afqmctools.analysis package" href="afqmctools.analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afqmctools_cli.html">Command line tools</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lattice_models.html">Lattice Model Tools for AFQMC</a></li>
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="afqmctools.html">afqmctools package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.analysis.html">afqmctools.analysis package</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">afqmctools.hamiltonian package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.inputs.html">afqmctools.inputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.observables.html">afqmctools.observables package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.systems.html">afqmctools.systems package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.utils.html">afqmctools.utils package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.wavefunction.html">afqmctools.wavefunction package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../afqmctools.html" class="nav-link">afqmctools</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="afqmctools.html" class="nav-link">afqmctools package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">afqmctools.hamiltonian package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="afqmctools-hamiltonian-package">
+<h1>afqmctools.hamiltonian package<a class="headerlink" href="#afqmctools-hamiltonian-package" title="Link to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="afqmctools.hamiltonian.model.html">afqmctools.hamiltonian.model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.model.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.builder">afqmctools.hamiltonian.model.builder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.lattice"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.lattice</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hamiltonian"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hamiltonian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.afm_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.afm_pinning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.charge_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.charge_pinning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.custom_one_body"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.custom_one_body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.edge_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.edge_pinning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.finalize"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.finalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.fm_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.fm_pinning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.heisenberg_J"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.heisenberg_J()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hubbard_Jij"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hubbard_Jij()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hubbard_U1_density_density"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hubbard_U1_density_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hubbard_U2_spin_spin"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hubbard_U2_spin_spin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.nth_neighbor_hopping()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.nth_order_hubbard_Vij"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.nth_order_hubbard_Vij()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.onebody_onsite()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.onsite_hubbard"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.onsite_hubbard()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.print_components"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.print_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.rashba_soc"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.rashba_soc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.iterate_nth_order"><code class="docutils literal notranslate"><span class="pre">iterate_nth_order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.builder.skip_empty_params"><code class="docutils literal notranslate"><span class="pre">skip_empty_params()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.director">afqmctools.hamiltonian.model.director module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.director.HamiltonianDirector"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.director.HamiltonianDirector.build"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.director.HamiltonianDirector.release_builder"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.release_builder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.director.HamiltonianDirector.bind_builder"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.bind_builder()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.director.InputFileDirector"><code class="docutils literal notranslate"><span class="pre">InputFileDirector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model.ham_class">afqmctools.hamiltonian.model.ham_class module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.get"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.get_J"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.get_J()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.get_U"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.get_U()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.get_heisenberg"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.get_heisenberg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.get_one_body"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.get_one_body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.keys"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.nbands"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.nbands</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.recount_components"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.recount_components()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian.spin_symm"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.spin_symm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.HamiltonianComponent"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.HamiltonianComponent.shape"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.HamiltonianComponent.toarray"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent.toarray()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="afqmctools.hamiltonian.model.html#module-afqmctools.hamiltonian.model">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-afqmctools.hamiltonian.converter">
+<span id="afqmctools-hamiltonian-converter-module"></span><h2>afqmctools.hamiltonian.converter module<a class="headerlink" href="#module-afqmctools.hamiltonian.converter" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.check_sym">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">check_sym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ikjl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.check_sym" title="Link to this definition">#</a></dt>
+<dd><p>Check permutational symmetry of integral</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ikjl</strong> (<em>tuple</em><em> of </em><em>ints</em>) – Orbital indices of ERI.</p></li>
+<li><p><strong>nmo</strong> (<em>int</em>) – Number of orbitals</p></li>
+<li><p><strong>sym</strong> (<em>int</em>) – Desired permutational symmetry to check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sym_allowed</strong> – True if integral is unique from set of equivalent.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.fcidump_header">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">fcidump_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.fcidump_header" title="Link to this definition">#</a></dt>
+<dd><p>Writes a header for a FCIDUMP file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nel</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Total number of electrons.</p></li>
+<li><p><strong>norb</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of orbitals.</p></li>
+<li><p><strong>spin</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Spin of the system.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>header</strong> – Header for FCIDUMP file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.fmt_integral">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">fmt_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cplx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paren</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.fmt_integral" title="Link to this definition">#</a></dt>
+<dd><p>Format integral for FCIDUMP.</p>
+<p>FCIDUMP files contain integrals with one matrix element per line.
+Integral lines are formatted as:s</p>
+<ul class="simple">
+<li><p>real 2-body integrals `  (ij|kl)  i  k  j  l`</p></li>
+<li><p>complex 2-body integrals `  Re[(ij|kl)] Im[(ij|kl)] i k j l`  -OR- `  (Re[(ij|kl)], Im[(ij|kl)]) i k j l`</p></li>
+<li><p>real 1-body integrals `  h_{ik} i k 0 0`</p></li>
+<li><p>complex 1-body integrals `  Re[h_{ik}] Im[h_{ik}] i k 0 0` -OR- `  (Re[h_{ik}], Im[h_{ik}]) i k 0 0`</p></li>
+<li><p>real constant integrals  `  C 0 0 0 0`</p></li>
+<li><p>complex constant integrals `  Re[C] Im[C] 0 0 0 0` -OR- `  (Re[C], Im[C]) 0 0 0 0`</p></li>
+</ul>
+<p>where the variation in complex-valued integral format depends on which code will be used to read
+the FCIDUMP file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intg</strong> (<em>float</em><em>|</em><em>complex</em>) – Integral value.</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – Orbital indices.</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – Orbital indices.</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – Orbital indices.</p></li>
+<li><p><strong>l</strong> (<em>int</em>) – Orbital indices.</p></li>
+<li><p><strong>cplx</strong> (<em>bool</em>) – If True, then integrals are printed as complex-valued</p></li>
+<li><p><strong>paren</strong> (<em>bool</em>) – If True, complex-valued integrals are printed in parenthesis</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.get_kpoint_chol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">get_kpoint_chol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchol_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minus_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qk_k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.get_kpoint_chol" title="Link to this definition">#</a></dt>
+<dd><p>Read standard-format Cholesky vectors for Q = i with time-reversal handling.</p>
+<p>Loads <cite>Hamiltonian/KPFactorized/L{min(i, -i)}</cite> and returns per-k-point
+Cholesky factors in a flattened <cite>(nkp, nmo_i*nmo_i*nchol)</cite> layout. If <cite>-i &lt; i</cite>
+(time-reversal pairing), applies the <cite>(Q, -Q)</cite> trick: remap <cite>K’ = qk_k2[i, K]</cite>
+and conjugate-transpose from the stored partner to obtain the <cite>Q</cite> data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Path to the internal-format HDF5 file.</p></li>
+<li><p><strong>nchol_pk</strong> (<em>np.ndarray</em>) – Number of Cholesky vectors per Q; shape <cite>(nkp,)</cite>.</p></li>
+<li><p><strong>minus_k</strong> (<em>np.ndarray</em>) – Time-reversal partner map; shape <cite>(nkp,)</cite>.</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – Q-vector index to read.</p></li>
+<li><p><strong>qk_k2</strong> (<em>np.ndarray</em>) – Momentum mapping <cite>(Q, K) -&gt; K’</cite>; shape <cite>(nkp, nkp)</cite>.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>np.ndarray</em>) – Orbitals per k-point; shape <cite>(nkp,)</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Lk</strong> – Cholesky vectors for Q <cite>i</cite>, shape <cite>(nkp, nmo_i*nmo_i*nchol)</cite>, complex128.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.get_kpoint_chol_coqui">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">get_kpoint_chol_coqui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchol_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minus_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qk_k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.get_kpoint_chol_coqui" title="Link to this definition">#</a></dt>
+<dd><p>Read CoQuí-format Cholesky vectors for a given Q-vector.</p>
+<p>This function loads <cite>/Interaction/Vq{Q}</cite> for <cite>Q = min(i, -i)</cite> and returns
+the per-k-point Cholesky factors in a flattened <cite>(nkp, nbnd*nbnd*nchol)</cite>
+layout. For <cite>Q</cite> with <cite>-Q &lt; Q</cite> (time-reversal pairing), the data are remapped
+using <cite>qk_k2[i, k]</cite> to select <cite>K’</cite> and conjugate-transposed to obtain the
+<cite>Q</cite> partner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Path to the CoQuí HDF5 Hamiltonian file.</p></li>
+<li><p><strong>nchol_pk</strong> (<em>np.ndarray</em>) – Number of Cholesky vectors per Q; shape <cite>(nkp,)</cite>.</p></li>
+<li><p><strong>minus_k</strong> (<em>np.ndarray</em>) – Time-reversal partner map; shape <cite>(nkp,)</cite>.</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – Q-vector index to read.</p></li>
+<li><p><strong>qk_k2</strong> (<em>np.ndarray</em>) – Momentum mapping <cite>(Q, K) -&gt; K’</cite>; shape <cite>(nkp, nkp)</cite>.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>np.ndarray</em>) – Orbitals per k-point; shape <cite>(nkp,)</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Lk</strong> – Cholesky vectors for Q-vector <cite>i</cite>, shape <cite>(nkp, nbnd*nbnd*nchol)</cite>, dtype <cite>complex128</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.h1_spat2spin">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">h1_spat2spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h1e_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1e_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mspatial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.h1_spat2spin" title="Link to this definition">#</a></dt>
+<dd><p>Convert 1-body Hamiltonian from spatial to spinor basis.</p>
+<dl class="simple">
+<dt>Convert K_{ij} = 1-body Hamiltonian represented in a spatial orbital basis {phi_i(r)}</dt><dd><p>to a spinor basis { <span class="math notranslate nohighlight">\(\phi_i(r) \times |sigma \rangle\)</span>  } for use in a FCIDUMP file.
+The spinor basis should be ordered with alternating up / down components.</p>
+</dd>
+</dl>
+<p>i.e. <span class="math notranslate nohighlight">\({ \phi_0(r) \times |\uparrow&gt;,  \phi_0(r) \times |\downarrow \rangle, \phi_1(r) x |\uparrow \rangle,  \phi_1(r) x |\downarrow \rangle, ... }\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>h1e_new</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – New 1-body Hamiltonian in spinor basis.</p></li>
+<li><p><strong>h1e_old</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Old 1-body Hamiltonian in spatial basis.</p></li>
+<li><p><strong>Mspatial</strong> (<em>int</em>) – Number of spatial orbitals.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>h1e_new</strong> – New 1-body Hamiltonian.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.h2_spat2spin">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">h2_spat2spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h2e_new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2e_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mspatial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.h2_spat2spin" title="Link to this definition">#</a></dt>
+<dd><p>Convert 2-body Hamiltonian from spatial to spinor basis.</p>
+<dl class="simple">
+<dt>Convert <span class="math notranslate nohighlight">\(V_{ijkl} = \int dr dr' \phi_i^*(r)\phi_k(r) \frac{1}{|r - r'|} phi_j^*(r') phi_l(r')\)</span></dt><dd><p>in a spatial orbital basis <span class="math notranslate nohighlight">\(\{\phi_i(r)\}\)</span> to a spinor basis <span class="math notranslate nohighlight">\({ \phi_i(r) x |\sigma\rangle  }\)</span> for
+use in a FCIDUMP file. The spinor basis should be ordered with alternating up / down
+components.</p>
+</dd>
+</dl>
+<p>i.e. <span class="math notranslate nohighlight">\({ \phi_0(r) \times |\uparrow&gt;,  \phi_0(r) \times |\downarrow \rangle, \phi_1(r) x |\uparrow \rangle,  \phi_1(r) x |\downarrow \rangle, ... }\)</span></p>
+<dl class="simple">
+<dt>For <span class="math notranslate nohighlight">\((ik|jl)\)</span> Chemist’s notation</dt><dd><p>i.e. <span class="math notranslate nohighlight">\(\langle ij|lk\rangle\)</span> in physicists notation.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There should be no matrix elements between opposite spins in <span class="math notranslate nohighlight">\((ik|\)</span> or in <span class="math notranslate nohighlight">\(|jl)\)</span> !</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>h2e_new</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – New 2-body Hamiltonian in spinor basis.</p></li>
+<li><p><strong>h2e_old</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Old 2-body Hamiltonian in spatial basis.</p></li>
+<li><p><strong>Mspatial</strong> (<em>int</em>) – Number of spatial orbitals.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_cholesky_kpoint">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_cholesky_kpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_cholesky_kpoint" title="Link to this definition">#</a></dt>
+<dd><p>Read SAFIRE internal k-point factorized Hamiltonian (standard format).</p>
+<p>Reads datasets from the <cite>Hamiltonian</cite> group in the internal format and
+returns the one-body matrices and (optionally) per-Q Cholesky vectors.</p>
+<p>The following format is expected:</p>
+<ul class="simple">
+<li><p><cite>Hamiltonian/dims</cite> (array, len=8): overall dimensions. Used entries:
+- <cite>dims[2] = nkp</cite>: number of k-points.
+- <cite>dims[3] = nmo_tot</cite>: total orbitals across all k-points.
+- <cite>dims[4] = nalpha</cite>, <cite>dims[5] = nbeta</cite>: electron counts.</p></li>
+<li><p><cite>Hamiltonian/NMOPerKP</cite> (dataset, shape = <cite>[nkp]</cite>): orbitals per k-point.</p></li>
+<li><p><cite>Hamiltonian/NCholPerKP</cite> (dataset, shape = <cite>[nkp]</cite>): Cholesky count per Q.</p></li>
+<li><p><cite>Hamiltonian/QKTok2</cite> (dataset, shape = <cite>[nkp, nkp]</cite>): map <cite>(Q, K) -&gt; K’</cite>.</p></li>
+<li><p><cite>Hamiltonian/MinusK</cite> (dataset, shape = <cite>[nkp]</cite>): time-reversal partner map.</p></li>
+<li><p><cite>Hamiltonian/H1_kp{i}</cite> (dataset per k, complex128 memory): one-body H for k.</p></li>
+<li><p><cite>Hamiltonian/KPFactorized/L{Q}</cite> (dataset per Q, complex128 memory): Cholesky
+factors for Q; remapped/conjugated for <cite>-Q</cite> via the time-reversal trick.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Path to the internal-format HDF5 file.</p></li>
+<li><p><strong>get_chol</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, read and return per-Q Cholesky vectors (default True).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>hcore</strong> (<em>list[np.ndarray]</em>) – List of one-body Hamiltonians per k-point; each <cite>(nmo_k, nmo_k)</cite> complex.</p></li>
+<li><p><strong>chol_vecs</strong> (<em>list[np.ndarray] or None</em>) – If <cite>get_chol</cite> is True, list over Q of arrays with shape
+<cite>(nkp, nmo_k*nmo_k*nchol_Q)</cite> containing flattened <cite>L[K][i,k,n]</cite> per K.
+Otherwise <cite>None</cite>.</p></li>
+<li><p><strong>enuc</strong> (<em>float</em>) – Core (nuclear) energy contribution read from <cite>Hamiltonian/Energies</cite>.</p></li>
+<li><p><strong>nmo_tot</strong> (<em>int</em>) – Total number of orbitals across all k-points.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple[int, int]</em>) – <cite>(nalpha, nbeta)</cite> electron counts.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>np.ndarray</em>) – Orbitals per k-point; shape <cite>(nkp,)</cite>.</p></li>
+<li><p><strong>qk_k2</strong> (<em>np.ndarray</em>) – Momentum mapping <cite>(Q, K) -&gt; K’</cite>; shape <cite>(nkp, nkp)</cite>.</p></li>
+<li><p><strong>nchol_pk</strong> (<em>np.ndarray</em>) – Number of Cholesky vectors per Q; shape <cite>(nkp,)</cite>, after time-reversal tie-in.</p></li>
+<li><p><strong>minus_k</strong> (<em>np.ndarray</em>) – Time-reversal partner map <cite>Q -&gt; -Q</cite>; shape <cite>(nkp,)</cite>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_cholesky_kpoint_coqui">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_cholesky_kpoint_coqui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_cholesky_kpoint_coqui" title="Link to this definition">#</a></dt>
+<dd><p>Read the CoQuí-format k-point factorized Hamiltonian from an HDF5 file.</p>
+<p>This reader follows the layout used by SAFIRE’s CoQuí HDF5 files, using
+groups <cite>/System</cite> for one-body terms and metadata and <cite>/Interaction</cite> for
+two-body Cholesky factors. Complex data are stored as real-imag pairs on
+the last axis and are converted via <cite>from_complex</cite>.</p>
+<p>Data sources and meanings:
+- <cite>/System</cite> (attributes):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>number_of_bands</cite> (int): number of bands per k-point (nmo per k).</p></li>
+<li><p><cite>number_of_elec</cite> (float|int): total electron count; split evenly into
+<cite>(nalpha, nbeta)</cite> assuming a closed shell.</p></li>
+<li><p><cite>nuclear_energy</cite> (float): nuclear-nuclear repulsion.</p></li>
+<li><p><cite>frozen_core_energy</cite> (float, optional): frozen-core energy; added to <cite>enuc</cite>.</p></li>
+<li><p><cite>madelung_constant</cite> (float, optional): electron self-interaction factor;
+subtracted as <cite>madelung_constant * (nalpha + nbeta)</cite>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><cite>/System/BZ</cite> (group):
+- <cite>number_of_kpoints</cite> (attr, int): number of k-points <cite>nkp</cite>.
+- <cite>qk_to_k2</cite> (dataset, shape = <cite>[nkp, nkp]</cite>): map <cite>(Q, K) -&gt; K’</cite>.
+- <cite>qminus</cite> (dataset, shape = <cite>[nkp]</cite>): map <cite>Q -&gt; -Q</cite> for time-reversal symmetry.
+- <cite>kp_to_ibz</cite> (dataset, shape = <cite>[nkp]</cite>, optional): map full BZ k to IBZ index.
+- <cite>kp_trev_pair</cite> (dataset, shape = <cite>[nkp]</cite>, optional): time-reversal flags (&gt;0 means conj).</p></li>
+<li><p><cite>/System/H0</cite> (dataset, shape = <cite>[nspins, nkpts_or_ibz, nbnd, nbnd, 2]</cite>):
+one-body Hamiltonian per spin and k-point (complex in last dim). If stored
+over IBZ, it is unfolded using <cite>kp_to_ibz</cite> and <cite>kp_trev_pair</cite>.</p></li>
+<li><p><cite>/Interaction/Vq{Q}</cite> (dataset per Q, shape = <cite>[nchol, 1, nkp, nbnd, nbnd, 2]</cite>):
+Cholesky factors of the two-body term. Normalized by <cite>1/sqrt(nkp)</cite>.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Path to the CoQuí HDF5 Hamiltonian file.</p></li>
+<li><p><strong>get_chol</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, read and return the Cholesky vectors (default True).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>hcore</strong> (<em>list[np.ndarray]</em>) – List of one-body Hamiltonians for each k-point. Each element has shape
+<cite>(nbnd, nbnd)</cite> and dtype <cite>complex128</cite> (first spin component used).</p></li>
+<li><p><strong>chol_vecs</strong> (<em>list[np.ndarray] or None</em>) – If <cite>get_chol</cite> is True, a list over Q of arrays of shape
+<cite>(nkp, nbnd*nbnd*nchol)</cite> with dtype <cite>complex128</cite>, storing flattened
+<cite>L[K][i,k,n]</cite> per k-point. Otherwise <cite>None</cite>.</p></li>
+<li><p><strong>enuc</strong> (<em>float</em>) – Effective nuclear energy (nuclear + frozen-core, minus Madelung term).</p></li>
+<li><p><strong>nmo_tot</strong> (<em>int</em>) – Total number of orbitals over all k-points, <cite>nbnd * nkp</cite>.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple[int, int]</em>) – <cite>(nalpha, nbeta)</cite> electron counts, closed-shell split if only total given.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>np.ndarray</em>) – Orbitals per k-point; shape <cite>(nkp,)</cite>, all entries equal to <cite>nbnd</cite>.</p></li>
+<li><p><strong>qk_k2</strong> (<em>np.ndarray</em>) – Momentum mapping <cite>(Q, K) -&gt; K’</cite>; shape <cite>(nkp, nkp)</cite>.</p></li>
+<li><p><strong>nchol_pk</strong> (<em>np.ndarray</em>) – Number of Cholesky vectors per Q; shape <cite>(nkp,)</cite>, with time-reversal applied.</p></li>
+<li><p><strong>minus_k</strong> (<em>np.ndarray</em>) – Time-reversal partner map <cite>Q -&gt; -Q</cite>; shape <cite>(nkp,)</cite>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_common_input">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_common_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_hcore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_common_input" title="Link to this definition">#</a></dt>
+<dd><p>Read common input from internal format (*.h5).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – File containing integrals in internal format (*.h5).</p></li>
+<li><p><strong>get_hcore</strong> (<em>bool</em>) – If True, read one-body Hamiltonian. Optional. Default: True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>enuc</strong> (<em>float</em>) – Nuclear repulsion energy.</p></li>
+<li><p><strong>dims</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Dimensions of the Hamiltonian.</p></li>
+<li><p><strong>hcore</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body part of the Hamiltonian.</p></li>
+<li><p><strong>real_ints</strong> (<em>bool</em>) – True if integrals are real, False if complex</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_dense">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_dense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_dense" title="Link to this definition">#</a></dt>
+<dd><p>Read in integrals from internal hdf5 format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – File containing integrals (*.h5)</p></li>
+<li><p><strong>walker_type</strong> (<em>int</em>) – <dl class="simple">
+<dt>integer describing the walker type:</dt><dd><ol class="arabic simple">
+<li><p>: ‘CLOSED’ - i.e. closed-shell and RHF-like</p></li>
+<li><p>: ‘COLLINEAR’ - i.e. open-shell and/or UHF-like</p></li>
+<li><p>: ‘NONCOLLINEAR’ - i.e. GHF-like</p></li>
+</ol>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>hcore</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body part of the Hamiltonian.</p></li>
+<li><p><strong>chol_vecs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Two-electron integrals. Shape: [nmo*nmo, nchol]</p></li>
+<li><p><strong>ecore</strong> (<em>float</em>) – Core contribution to the total energy.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p>:raises RuntimeError : if Cholesky vectors are not present in: the file called ‘filename’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_fcidump">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_fcidump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_fcidump" title="Link to this definition">#</a></dt>
+<dd><p>Read in integrals from file.</p>
+<p>For FCIDUMP files with complex-valued integrals,
+read_fcidump assumes that the real and imaginary parts
+are listed as <cite>(real,imag)</cite> as opposed to <cite>real imag</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – File containing integrals in FCIDUMP format.</p></li>
+<li><p><strong>symmetry</strong> (<em>int</em><em>, </em><em>optional</em>) – Permutational symmetry of two electron integrals. If not specified,
+the symmetry is read from the header of the FCIDUMP file.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Controls printing verbosity. Optional. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>h1e</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body part of the Hamiltonian.</p></li>
+<li><p><strong>h2e</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Two-electron integrals.</p></li>
+<li><p><strong>ecore</strong> (<em>float</em>) – Core contribution to the total energy.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of electrons.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_fcidump_header">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_fcidump_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_fcidump_header" title="Link to this definition">#</a></dt>
+<dd><p>Read the header of a FCIDUMP file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – File containing integrals in FCIDUMP format.</p></li>
+<li><p><strong>mline</strong> (<em>int</em>) – Maximum number of lines to read in header.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>meta</strong> – Dictionary containing the metadata from the header.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_hamil_type">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_hamil_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_hamil_type" title="Link to this definition">#</a></dt>
+<dd><p>Read Hamiltonian type from internal format (HDF5, *.h5).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Hamiltonian file (HDF5, *.h5)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ham_type</strong> – Type of Hamiltonian.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Read Hamiltonian from internal format (*.h5).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Hamiltonian file (*.h5)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hamil</strong> – Data read from file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.read_model">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">read_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.read_model" title="Link to this definition">#</a></dt>
+<dd><p>Read model Hamiltonian from hdf5 file <cite>fname</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.write_fcidump">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">write_fcidump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enuc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cplx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paren</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_is_eri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_spinor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.write_fcidump" title="Link to this definition">#</a></dt>
+<dd><p>Write FCIDUMP based from Cholesky factorised integrals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Filename to write FCIDUMP to.</p></li>
+<li><p><strong>hcore</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body hamiltonian.</p></li>
+<li><p><strong>chol</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Cholesky matrix L[ik,n] or chemist’s ERI (ik|jl) if chol_is_eri</p></li>
+<li><p><strong>enuc</strong> (<em>float</em>) – Nuclear repulsion energy.</p></li>
+<li><p><strong>nmo</strong> (<em>int</em>) – Total number of MOs.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Only print eris above tol. Optional. Default 1e-8.</p></li>
+<li><p><strong>sym</strong> (<em>int</em>) – Controls whether to only print symmetry inequivalent ERIS.
+Optional. Default 1, i.e. print everything.</p></li>
+<li><p><strong>cplx</strong> (<em>bool</em>) – Write in complex format. Optional. Default : True.</p></li>
+<li><p><strong>paren</strong> (<em>bool</em>) – Write complex numbers in parenthesis.</p></li>
+<li><p><strong>chol_is_eri</strong> (<em>bool</em>) – Write chemist’s ERI directly instead of using its Cholesky factorization</p></li>
+<li><p><strong>use_spinor</strong> (<em>bool</em>) – Convert to a spinor basis before writing FCIDUMP</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.converter.write_fcidump_kpoint">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.converter.</span></span><span class="sig-name descname"><span class="pre">write_fcidump_kpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enuc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchol_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qk_k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paren</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cplx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_spinor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.converter.write_fcidump_kpoint" title="Link to this definition">#</a></dt>
+<dd><p>Write FCIDUMP based from Cholesky factorised integrals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Filename to write FCIDUMP to.</p></li>
+<li><p><strong>hcore</strong> (<em>list</em>) – One-body hamiltonian.</p></li>
+<li><p><strong>chol</strong> (<em>list</em>) – Cholesky matrices L[Q][k_i][i,k]</p></li>
+<li><p><strong>enuc</strong> (<em>float</em>) – Nuclear repulsion energy.</p></li>
+<li><p><strong>nmo_tot</strong> (<em>int</em>) – Total number of MOs.</p></li>
+<li><p><strong>nelec</strong> (<em>tuple</em>) – Number of alpha and beta electrons.</p></li>
+<li><p><strong>nmo_pk</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Number of MOs per kpoint.</p></li>
+<li><p><strong>nchol_pk</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Number of Cholesky vectors per kpoint.</p></li>
+<li><p><strong>qk_k2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Array mapping (q,k) pair to kpoint: Q = k_i - k_k + G.
+qk_k2[iQ,ik_i] = i_kk.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Only print eris above tol. Optional. Default 1e-8.</p></li>
+<li><p><strong>sym</strong> (<em>int</em>) – Controls whether to only print symmetry inequivalent ERIS.
+Optional. Default 1, i.e. print everything.</p></li>
+<li><p><strong>paren</strong> (<em>bool</em>) – Write complex numbers in parenthesis.</p></li>
+<li><p><strong>use_spinor</strong> (<em>bool</em>) – Convert to a spinor basis before writing FCIDUMP</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.hamiltonian.io">
+<span id="afqmctools-hamiltonian-io-module"></span><h2>afqmctools.hamiltonian.io module<a class="headerlink" href="#module-afqmctools.hamiltonian.io" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.io.to_sparse">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.io.</span></span><span class="sig-name descname"><span class="pre">to_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.io.to_sparse" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.io.write_dense">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.io.</span></span><span class="sig-name descname"><span class="pre">write_dense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enuc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hamiltonian.h5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">real_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.io.write_dense" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.io.write_to_hdf5">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.io.</span></span><span class="sig-name descname"><span class="pre">write_to_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.io.write_to_hdf5" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.hamiltonian.kpoint">
+<span id="afqmctools-hamiltonian-kpoint-module"></span><h2>afqmctools.hamiltonian.kpoint module<a class="headerlink" href="#module-afqmctools.hamiltonian.kpoint" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.FileHandler">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Hamiltonian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'KPFactorized'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.FileHandler" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A file handler for parallel hdf5 files.</p>
+<p class="rubric">Notes</p>
+<p>Use the context manager for parallel i/o safety:</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do this</span>
+<span class="k">with</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># The following is deprecated</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.FileHandler.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.FileHandler.close" title="Link to this definition">#</a></dt>
+<dd><p>Close the file.</p>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>Kept for backwards compatibility,should be considered deprecated.</dt><dd><p>Use context manager instead.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">KPCholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QKToK2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kminus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object to perform Cholesky factorization of the 2-body integrals for kpoint
+Hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comm</strong> (<em>mpi comm</em>) – MPI communicator.</p></li>
+<li><p><strong>cell</strong> (<em>PySCF pbc.gto.Cell instance</em>) – PySCF cell object.</p></li>
+<li><p><strong>kpts</strong> (<em>list</em><em> of </em><em>kpoints</em>) – List of kpoints.</p></li>
+<li><p><strong>maxvecs</strong> (<em>int</em>) – <em>Multiplier</em> for maximum number of Cholesky vectors. Maximum number of
+Cholesky vectors = maxvecs*nmo_max.</p></li>
+<li><p><strong>nmo_pk</strong> (<em>list</em><em> of </em><em>int</em>) – Number of MOs per kpoint.</p></li>
+<li><p><strong>QKToK2</strong> (<em>numpy.ndarray</em>) – Mapping from QK to k2.</p></li>
+<li><p><strong>kminus</strong> (<em>numpy.ndarray</em>) – Mapping from k to -k.</p></li>
+<li><p><strong>gtol_chol</strong> (<em>float</em>) – Cholesky tolerance.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Verbose output.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4">
+<span class="sig-name descname"><span class="pre">find_k3k4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nproc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal">
+<span class="sig-name descname"><span class="pre">generate_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products">
+<span class="sig-name descname"><span class="pre">generate_orbital_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.KPCholesky.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.KPCholesky.run" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.alloc_helper">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">alloc_helper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'array'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.alloc_helper" title="Link to this definition">#</a></dt>
+<dd><p>Numpy array allocator helper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>tuple</em>) – Array shape.</p></li>
+<li><p><strong>dtype</strong> (<em>numpy data type</em>) – Array dtype. Default: numpy.float64</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Array name. Default: array.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Print array information. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>array</strong> – Array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.construct_qk_maps">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">construct_qk_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.construct_qk_maps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_basic">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qk_to_k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kminus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_basic" title="Link to this definition">#</a></dt>
+<dd><p>Write basic system information including one-body Hamiltonian to file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_hamil_kpoints">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_hamil_kpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_hamil_kpoints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_kp_h1">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_kp_h1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ki</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_kp_h1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.kpoint.write_rhoG_kpoints">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.kpoint.</span></span><span class="sig-name descname"><span class="pre">write_rhoG_kpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Gcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.kpoint.write_rhoG_kpoints" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.hamiltonian.mol">
+<span id="afqmctools-hamiltonian-mol-module"></span><h2>afqmctools.hamiltonian.mol module<a class="headerlink" href="#module-afqmctools.hamiltonian.mol" title="Link to this heading">#</a></h2>
+<p>Generate AFQMC data from PYSCF (molecular) simulation.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.chunked_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">chunked_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.chunked_cholesky" title="Link to this definition">#</a></dt>
+<dd><p>Modified cholesky decomposition from pyscf eris.</p>
+<p>See, e.g. <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../../afqmc.html#id8" title="Mario Motta and Shiwei Zhang. Ab initio computations of molecular systems by the auxiliary-field quantum Monte Carlo method. WIREs Computational Molecular Science, 8(5):e1364, 2018. doi:10.1002/wcms.1364.">MZ18</a>]</span></p>
+<p>Only works for molecular systems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pyscf.mol</span></code>) – pyscf mol object.</p></li>
+<li><p><strong>max_error</strong> (<em>float</em>) – Accuracy desired.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If true print out convergence progress.</p></li>
+<li><p><strong>cmax</strong> (<em>int</em>) – nchol = cmax * M, where M is the number of basis functions.
+Controls buffer size for cholesky vectors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>chol_vecs</strong> – Matrix of cholesky vectors in AO basis.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.core_contribution_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">core_contribution_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chol_vecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.core_contribution_cholesky" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.freeze_core">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">freeze_core</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h1e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.freeze_core" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.gab">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">gab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.gab" title="Link to this definition">#</a></dt>
+<dd><p>One-particle Green’s function.</p>
+<p>This actually returns 1-G since it’s more useful, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[\langle \phi_A|c_i^{\dagger}c_j|\phi_B\rangle =
+[B(A^{\dagger}B)^{-1}A^{\dagger}]_{ji}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A,B\)</span> are the matrices representing the Slater determinants
+<span class="math notranslate nohighlight">\(|\psi_{A,B}\rangle\)</span>.</p>
+<p>For example, usually A would represent (an element of) the trial wavefunction.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Assumes A and B are not orthogonal.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Matrix representation of the bra used to construct G.</p></li>
+<li><p><strong>B</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Matrix representation of the ket used to construct G.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GAB</strong> – (One minus) the green’s function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.generate_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">generate_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.generate_hamiltonian" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.local_energy_generic_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">local_energy_generic_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h1e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_vecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.local_energy_generic_cholesky" title="Link to this definition">#</a></dt>
+<dd><p>Calculate local for generic two-body hamiltonian.</p>
+<p>This uses the cholesky decomposed two-electron integrals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">hubbard</span></code>) – System information for the hubbard model.</p></li>
+<li><p><strong>G</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Walker’s “green’s function”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>(E, T, V)</strong> – Local, kinetic and potential energies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.process_generic_hamiltonian">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">process_generic_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H_one_body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesky_vectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coulomb_repulsion_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesky_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_orbital_integrals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.process_generic_hamiltonian" title="Link to this definition">#</a></dt>
+<dd><p>Process generic hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>H_one_body</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></span>) – One-body Hamiltonian.</p></li>
+<li><p><strong>cholesky_vectors</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></span>) – Cholesky vectors with shape (number of Cholesky vectors,number_of_orbitals**2).
+Must provide either this or coulomb_repulsion_tensor.</p></li>
+<li><p><strong>coulomb_repulsion_tensor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></span>) – Coulomb repulsion tensor using Chemist’s conventions, (ij|kl). Must provide exactly one of this or cholesky_vectors.</p></li>
+<li><p><strong>E0</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Nuclear repulsion energy.</p></li>
+<li><p><strong>cholesky_delta</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Tolerance for Cholesky decomposition. Default is 1e-6.</p></li>
+<li><p><strong>spin_orbital_integrals</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></span>) – Spin orbital integrals. If provided, will be added to the Hamiltonian. See notes for conventions.</p></li>
+<li><p><strong>verbose</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If true print out verbose details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Kij</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body Hamiltonian.</p></li>
+<li><p><strong>L_ij_gamma</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Cholesky vectors.</p></li>
+<li><p><strong>E0</strong> (<em>float</em>) – Constant energy contribution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The interaction must be provided as either the Coulomb repulsion tensor or the Cholesky vectors.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.transform_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">transform_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.transform_cholesky" title="Link to this definition">#</a></dt>
+<dd><p>Apply the basis rotation <cite>C</cite> to the cholesky vectors <cite>chol</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.write_hamil_mol">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">write_hamil_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">real_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.write_hamil_mol" title="Link to this definition">#</a></dt>
+<dd><p>Write hamiltonian from pyscf scf calculation on mol object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.mol.write_hamiltonian_generic">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.mol.</span></span><span class="sig-name descname"><span class="pre">write_hamiltonian_generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'afqmc.h'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.mol.write_hamiltonian_generic" title="Link to this definition">#</a></dt>
+<dd><p>Write generic hamiltonian to HDF5 file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name of HDF5 Filename to write to. Default is ‘afqmc.h’.</p></li>
+<li><p><strong>H_one_body</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body Hamiltonian.</p></li>
+<li><p><strong>cholesky_vectors</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>, optional) – Cholesky vectors with shape (number of Cholesky vectors,number_of_orbitals**2).
+Must provide either this or coulomb_repulsion_tensor.</p></li>
+<li><p><strong>coulomb_repulsion_tensor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Coulomb repulsion tensor using Chemist’s conventions, (ij|kl). Must provide exactly one of this or cholesky_vectors.</p></li>
+<li><p><strong>E0</strong> (<em>float</em>) – Nuclear repulsion energy.</p></li>
+<li><p><strong>spin_orbital_integrals</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>, not implemented) – Spin orbital integrals. If provided, will be added to the Hamiltonian. See notes for conventions.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If true print out verbose details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Kij</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – One-body Hamiltonian.</p></li>
+<li><p><strong>L_ij_gamma</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Cholesky vectors.</p></li>
+<li><p><strong>E0</strong> (<em>float</em>) – Constant energy contribution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The interaction must be provided as either the Coulomb repulsion tensor or the Cholesky vectors.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-afqmctools.hamiltonian.supercell">
+<span id="afqmctools-hamiltonian-supercell-module"></span><h2>afqmctools.hamiltonian.supercell module<a class="headerlink" href="#module-afqmctools.hamiltonian.supercell" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">Cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kconserv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.find_k3k4">
+<span class="sig-name descname"><span class="pre">find_k3k4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nproc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.find_k3k4" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal">
+<span class="sig-name descname"><span class="pre">generate_diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Cholesky.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaoik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xaolj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Qi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gmap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Cholesky.run" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.Partition">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">Partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kp_sym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.Partition" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.PartitionOld">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">PartitionOld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.PartitionOld" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.gen_orbital_products">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">gen_orbital_products</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mydf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.gen_orbital_products" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.generate_grid_shifts">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">generate_grid_shifts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.generate_grid_shifts" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.setup_basis_map">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">setup_basis_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Xocc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.setup_basis_map" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_cholMat_singleWriter">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_cholMat_singleWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5nblk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nopk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n2k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n2k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ij0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MaxIntgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_cholMat_singleWriter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_cholesky">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholvecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ints</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_cholesky" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_h1">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_h1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intgs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_h1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_hamil_supercell">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_hamil_supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxvecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ewald'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_hamil_supercell" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_info">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2cnts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h1size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xocc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exxdiv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_one_body">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_one_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nkpts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nmo_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik2n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5grp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_one_body" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.supercell.write_rhoG_supercell">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.supercell.</span></span><span class="sig-name descname"><span class="pre">write_rhoG_supercell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scf_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdf_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Gcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.supercell.write_rhoG_supercell" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-afqmctools.hamiltonian">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools.hamiltonian" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="afqmctools.analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">afqmctools.analysis package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="afqmctools.hamiltonian.model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">afqmctools.hamiltonian.model package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.converter">afqmctools.hamiltonian.converter module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.check_sym"><code class="docutils literal notranslate"><span class="pre">check_sym()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.fcidump_header"><code class="docutils literal notranslate"><span class="pre">fcidump_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.fmt_integral"><code class="docutils literal notranslate"><span class="pre">fmt_integral()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.get_kpoint_chol"><code class="docutils literal notranslate"><span class="pre">get_kpoint_chol()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.get_kpoint_chol_coqui"><code class="docutils literal notranslate"><span class="pre">get_kpoint_chol_coqui()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.h1_spat2spin"><code class="docutils literal notranslate"><span class="pre">h1_spat2spin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.h2_spat2spin"><code class="docutils literal notranslate"><span class="pre">h2_spat2spin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_cholesky_kpoint"><code class="docutils literal notranslate"><span class="pre">read_cholesky_kpoint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_cholesky_kpoint_coqui"><code class="docutils literal notranslate"><span class="pre">read_cholesky_kpoint_coqui()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_common_input"><code class="docutils literal notranslate"><span class="pre">read_common_input()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_dense"><code class="docutils literal notranslate"><span class="pre">read_dense()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_fcidump"><code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_fcidump_header"><code class="docutils literal notranslate"><span class="pre">read_fcidump_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_hamil_type"><code class="docutils literal notranslate"><span class="pre">read_hamil_type()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_hamiltonian"><code class="docutils literal notranslate"><span class="pre">read_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.read_model"><code class="docutils literal notranslate"><span class="pre">read_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.write_fcidump"><code class="docutils literal notranslate"><span class="pre">write_fcidump()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.converter.write_fcidump_kpoint"><code class="docutils literal notranslate"><span class="pre">write_fcidump_kpoint()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.io">afqmctools.hamiltonian.io module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.io.to_sparse"><code class="docutils literal notranslate"><span class="pre">to_sparse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.io.write_dense"><code class="docutils literal notranslate"><span class="pre">write_dense()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.io.write_to_hdf5"><code class="docutils literal notranslate"><span class="pre">write_to_hdf5()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.kpoint">afqmctools.hamiltonian.kpoint module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.FileHandler.close"><code class="docutils literal notranslate"><span class="pre">FileHandler.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky"><code class="docutils literal notranslate"><span class="pre">KPCholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.find_k3k4"><code class="docutils literal notranslate"><span class="pre">KPCholesky.find_k3k4()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_diagonal"><code class="docutils literal notranslate"><span class="pre">KPCholesky.generate_diagonal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.generate_orbital_products"><code class="docutils literal notranslate"><span class="pre">KPCholesky.generate_orbital_products()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.KPCholesky.run"><code class="docutils literal notranslate"><span class="pre">KPCholesky.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.alloc_helper"><code class="docutils literal notranslate"><span class="pre">alloc_helper()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.construct_qk_maps"><code class="docutils literal notranslate"><span class="pre">construct_qk_maps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_basic"><code class="docutils literal notranslate"><span class="pre">write_basic()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_hamil_kpoints"><code class="docutils literal notranslate"><span class="pre">write_hamil_kpoints()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_kp_h1"><code class="docutils literal notranslate"><span class="pre">write_kp_h1()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.kpoint.write_rhoG_kpoints"><code class="docutils literal notranslate"><span class="pre">write_rhoG_kpoints()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.mol">afqmctools.hamiltonian.mol module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.chunked_cholesky"><code class="docutils literal notranslate"><span class="pre">chunked_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.core_contribution_cholesky"><code class="docutils literal notranslate"><span class="pre">core_contribution_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.freeze_core"><code class="docutils literal notranslate"><span class="pre">freeze_core()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.gab"><code class="docutils literal notranslate"><span class="pre">gab()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.generate_hamiltonian"><code class="docutils literal notranslate"><span class="pre">generate_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.local_energy_generic_cholesky"><code class="docutils literal notranslate"><span class="pre">local_energy_generic_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.process_generic_hamiltonian"><code class="docutils literal notranslate"><span class="pre">process_generic_hamiltonian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.transform_cholesky"><code class="docutils literal notranslate"><span class="pre">transform_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.write_hamil_mol"><code class="docutils literal notranslate"><span class="pre">write_hamil_mol()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.mol.write_hamiltonian_generic"><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.supercell">afqmctools.hamiltonian.supercell module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky"><code class="docutils literal notranslate"><span class="pre">Cholesky</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.find_k3k4"><code class="docutils literal notranslate"><span class="pre">Cholesky.find_k3k4()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.generate_diagonal"><code class="docutils literal notranslate"><span class="pre">Cholesky.generate_diagonal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Cholesky.run"><code class="docutils literal notranslate"><span class="pre">Cholesky.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.Partition"><code class="docutils literal notranslate"><span class="pre">Partition</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.PartitionOld"><code class="docutils literal notranslate"><span class="pre">PartitionOld</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.gen_orbital_products"><code class="docutils literal notranslate"><span class="pre">gen_orbital_products()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.generate_grid_shifts"><code class="docutils literal notranslate"><span class="pre">generate_grid_shifts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.setup_basis_map"><code class="docutils literal notranslate"><span class="pre">setup_basis_map()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_cholMat_singleWriter"><code class="docutils literal notranslate"><span class="pre">write_cholMat_singleWriter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_cholesky"><code class="docutils literal notranslate"><span class="pre">write_cholesky()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_h1"><code class="docutils literal notranslate"><span class="pre">write_h1()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_hamil_supercell"><code class="docutils literal notranslate"><span class="pre">write_hamil_supercell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_info"><code class="docutils literal notranslate"><span class="pre">write_info()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_one_body"><code class="docutils literal notranslate"><span class="pre">write_one_body()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.supercell.write_rhoG_supercell"><code class="docutils literal notranslate"><span class="pre">write_rhoG_supercell()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian">Module contents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

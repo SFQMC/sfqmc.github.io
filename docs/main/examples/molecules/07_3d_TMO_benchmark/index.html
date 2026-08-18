@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. 3d Transition Metal Oxide Benchmark &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/07_3d_TMO_benchmark/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/molecules/07_3d_TMO_benchmark/index.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="8. Local Embedding" href="../08_local_embedding/08_local_embedding.html" />
+    <link rel="prev" title="6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of solid Na</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry / Molecules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">7. </span>3d Transition Metal Oxide Benchmark</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="d-transition-metal-oxide-benchmark">
+<span id="example-molecule-3d-tmo-benchmark"></span><h1><span class="section-number">7. </span>3d Transition Metal Oxide Benchmark<a class="headerlink" href="#d-transition-metal-oxide-benchmark" title="Link to this heading">#</a></h1>
+<p>Here we reproduce previous AFQMC benchmark data from a previous Simons Collaboration on the Many-Electron Problem benchmark for 3d transition metal monoxides (TMO) diatomics.
+(Phys. Rev. X 10, 011041).</p>
+<section id="running-the-example">
+<h2><span class="section-number">7.1. </span>Running the Example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
+<p>Perform the following steps to run the example. You can see each file below for details.</p>
+<ol class="arabic">
+<li><p><strong>Generate inputs for all systems</strong>: Execute the benchmark script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>06_TMO_benchmark.py
+</pre></div>
+</div>
+<p>The script creates a scratch directory for calculation files along with a subdirectory for each TMO system.
+The script creates a separate HDF5 file (<code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code>) for each transition metal oxide system containing both the Hamiltonian and trial wavefunction.
+Additionally, the script will generate an AFQMC JSON input file (<code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>) in each system’s scratch directory for running SAFIRE.</p>
+</li>
+<li><p><strong>Run SAFIRE</strong>: Execute AFQMC calculations for each system using the HDF5 files:</p>
+<p>Run each example separately. From within the scratch directory <em>corresponding to each molecule</em>
+created by the benchmark script, execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example for VO system</span>
+mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span>safire<span class="w"> </span>afqmc.json
+</pre></div>
+</div>
+</li>
+<li><p><strong>Analyze results</strong>: Use <code class="docutils literal notranslate"><span class="pre">get_results.py</span></code> to compare computed energies against reference values from the literature.</p></li>
+</ol>
+<p>You can modify the script to run calculations for specific TMOs by commenting out systems in the loop.
+Reference data from the publication supporting materials are in the <code class="docutils literal notranslate"><span class="pre">files/</span></code> directory.
+If you used all of the same settings as us, running the analysis script should generate the following table:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>======== Benchmark Results ========
+| Molecule | E AFQMC | Ref. A AFQMC | abs diff | match? |
+|---|---|---|---|---|
+| VO  | -87.0825 +/- 0.0010 | -87.0818 +/- 0.0010 | 0.0007 +/- 0.0014 | 1 sigma |
+| TiO | -73.9005 +/- 0.0008 | -73.9019 +/- 0.0009 | 0.0014 +/- 0.0012 | 2 sigma |
+| CrO | -102.5534 +/- 0.0010 | -102.5533 +/- 0.0010 | 0.0001 +/- 0.0014 | 1 sigma |
+| MnO | -119.8512 +/- 0.0013 | -119.8515 +/- 0.0014 | 0.0003 +/- 0.0019 | 1 sigma |
+| FeO | -139.4317 +/- 0.0009 | -139.4296 +/- 0.0010 | 0.0021 +/- 0.0013 | 2 sigma |
+| CuO | -213.1260 +/- 0.0015 | -213.1271 +/- 0.0011 | 0.0011 +/- 0.0019 | 1 sigma |
+| ScO | -62.4175 +/- 0.0005 | -62.4192 +/- 0.0013 | 0.0017 +/- 0.0014 | 2 sigma |
+</pre></div>
+</div>
+</section>
+<section id="files">
+<h2><span class="section-number">7.2. </span>Files<a class="headerlink" href="#files" title="Link to this heading">#</a></h2>
+<p><strong>Benchmark Calculation</strong> (<code class="docutils literal notranslate"><span class="pre">06_TMO_benchmark.py</span></code>):</p>
+<p>This comprehensive script performs setup of all calculations. SAFIRE must be run separately for each generated set up inputs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reference data from Phys. Rev. X 10, 011041 (see &quot;total_energy.csv&quot; from the supporting materials )</span>
+<span class="n">TestSet</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">VO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">86.400211965699242</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">87.0818</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">TiO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">73.26973605789902</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">73.9019</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0009</span>
+    <span class="p">),</span>
+    <span class="n">CrO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">101.8381354486648</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">102.5533</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> 	<span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">MnO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">119.1332394993054</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">119.8515</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0014</span>
+    <span class="p">),</span>
+    <span class="n">FeO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">138.66009692442393</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">139.4296</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">CuO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">212.238829673217</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">213.1271</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0011</span> 
+    <span class="p">),</span>
+    <span class="n">ScO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">61.829342751826275</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">62.4192</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0013</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span><span class="p">,</span><span class="n">lib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
+
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./files&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+<span class="c1"># load the ECP and basis</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">((</span><span class="n">ecp_dir</span> <span class="o">/</span> <span class="s2">&quot;trail.json&quot;</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ecp_basis_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_benchmark</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">case</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Note: each calculation will take some time; we recommend running</span>
+<span class="sd">    each AFQMC calculation manually offline; however, you can </span>
+<span class="sd">    set run_afqmc=True to run them here. In that case, each AFQMC calculation</span>
+<span class="sd">    will run one after another, taking significantly more wall time to finish</span>
+<span class="sd">    than submitting each as a separate job.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">key</span>
+    <span class="n">local_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">atom</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;atom&quot;</span><span class="p">]</span>
+    <span class="n">spin</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;spin&quot;</span><span class="p">]</span>
+    <span class="n">ncas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;ncas&quot;</span><span class="p">]</span>
+    <span class="n">nelec_cas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;nelec_cas&quot;</span><span class="p">]</span>
+
+    <span class="n">TM</span> <span class="o">=</span> <span class="n">key</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+        <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">&quot;vdz&quot;</span><span class="p">],</span> <span class="s1">&#39;O&#39;</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">][</span><span class="s2">&quot;vdz&quot;</span><span class="p">]},</span>
+        <span class="n">ecp</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">&quot;ecp&quot;</span><span class="p">],</span> <span class="s1">&#39;O&#39;</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">][</span><span class="s2">&quot;ecp&quot;</span><span class="p">]},</span>
+        <span class="n">spin</span> <span class="o">=</span> <span class="n">spin</span><span class="p">,</span>
+        <span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># set up Hamiltonian for AutoHF</span>
+    <span class="n">onebody</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_kin&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_nuc&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;ECPscalar&quot;</span><span class="p">)</span>
+    <span class="n">overlap</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_ovlp&quot;</span><span class="p">)</span>
+    <span class="n">eri</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int2e&quot;</span><span class="p">)</span>
+    <span class="n">nuclear_repulsion</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">energy_nuc</span><span class="p">()</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">afqmctools</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">get_ortho_ao_mol</span><span class="p">(</span><span class="n">overlap</span><span class="p">,</span><span class="n">LINDEP_CUTOFF</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+    
+    <span class="n">norb</span> <span class="o">=</span> <span class="n">onebody</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">norb</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
+    <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="n">afqmctools</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">modified_cholesky_direct</span><span class="p">(</span>
+        <span class="n">eri</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">norb</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">norb</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">tol</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">norb</span><span class="p">)</span>
+
+    <span class="n">onebody</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">onebody</span> <span class="o">@</span> <span class="n">X</span>
+    <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,njk,kl-&gt;nil&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+    <span class="n">onebody</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;nij,njk&quot;</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="c1"># double along spin dimension</span>
+    <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">onebody</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">onebody</span><span class="p">,</span> <span class="n">onebody</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">norb</span><span class="p">,</span> <span class="n">norb</span><span class="p">))</span>
+
+    <span class="n">H</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">nelec</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelec</span>
+    <span class="n">Nup</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Ndown</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Custom ROHF ansatz</span>
+    <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">orbitalFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        produces |\Phi_\sigma (alpha) \rangle from \Phi_{\mu p} \equiv \alpha_{\mu p}</span>
+<span class="sd">        using the first Nup / Ndown electrons for the spin-up / spin-down sectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">phi_up</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[:,:</span><span class="n">Nup</span><span class="p">]</span>
+        <span class="n">phi_down</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[:,:</span><span class="n">Ndown</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">phi_up</span><span class="p">,</span> <span class="n">phi_down</span><span class="p">)</span>
+
+    <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rdmFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;takes (M,max(Nup,Ndown)) orbitals</span>
+<span class="sd">        returns &lt;\psi|c^dag c | \psi&gt;/&lt;\psi|\psi&gt;</span>
+<span class="sd">        with shape (2,M,M) where first axis is spin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">phi_up</span><span class="p">,</span><span class="n">phi_down</span> <span class="o">=</span> <span class="n">orbitalFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">rdm_up</span> <span class="o">=</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">phi_up</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">rdm_down</span> <span class="o">=</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">phi_down</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">rdm_up</span><span class="p">,</span> <span class="n">rdm_down</span><span class="p">)</span>                                                             
+
+
+    <span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
+        <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="n">nelec</span><span class="p">,</span>
+        <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;state0_scale&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+        <span class="s2">&quot;measure_spin&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+
+    <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">molecular_energy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">rdms</span><span class="p">):</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">autohf</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">cholesky</span><span class="o">.</span><span class="n">hf_onebody</span><span class="p">(</span><span class="n">rdms</span><span class="p">,</span> <span class="n">onebody</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">autohf</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">cholesky</span><span class="o">.</span><span class="n">hf_cholesky</span><span class="p">(</span><span class="n">rdms</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">nuclear_repulsion</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">E</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">onebody</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Ne</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Nup</span><span class="p">,</span><span class="n">Ndown</span><span class="p">)</span>
+    
+    <span class="n">state0_ref</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ne</span><span class="p">))</span>
+    <span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ne</span><span class="p">))</span>
+
+    <span class="n">ts_autohf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
+        <span class="n">H</span><span class="p">,</span> 
+        <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span> 
+        <span class="n">custom_energy_term</span><span class="o">=</span><span class="n">molecular_energy</span><span class="p">,</span>
+        <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
+        <span class="n">state2rdm</span><span class="o">=</span><span class="n">rdmFunc</span><span class="p">,</span>
+        <span class="n">state0</span><span class="o">=</span><span class="n">state0</span><span class="p">,</span>
+        <span class="n">state0_ref</span><span class="o">=</span><span class="n">state0_ref</span><span class="p">,</span>
+        <span class="n">jaxoptargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">),</span> <span class="c1">#keyword settings passed to jaxopt</span>
+    <span class="p">)</span>
+    <span class="n">tf_autohf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AutoHF took </span><span class="si">{</span><span class="n">tf_autohf</span><span class="o">-</span><span class="n">ts_autohf</span><span class="si">}</span><span class="s2"> seconds for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">rounding_level</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">chol_tol</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1"># now gran the SD, and orthonormalize the orbitals</span>
+    <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">data_functions</span><span class="p">[</span><span class="s2">&quot;makeRDMs&quot;</span><span class="p">]</span>
+
+    <span class="c1"># get the best state&#39;s Slater determinant</span>
+    <span class="n">auto_hf_result</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+
+    <span class="n">guess_ao_uhf</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">X</span> <span class="o">@</span> <span class="n">auto_hf_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">X</span> <span class="o">@</span> <span class="n">auto_hf_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    <span class="p">)</span>
+
+    <span class="c1"># run HF to generate a starting point</span>
+    <span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
+    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+
+    <span class="c1"># quick run</span>
+    <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+    <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span>
+    <span class="n">rhf</span><span class="o">.</span><span class="n">max_cycle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">rhf</span><span class="o">.</span><span class="n">init_guess</span> <span class="o">=</span> <span class="n">guess_ao_uhf</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==== some sanity checks ====</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySCF ROHF energy:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rounding_level</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AutoHF ROHF energy:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">],</span> <span class="n">rounding_level</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trace of guess_ao (AO basis) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===========================</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]),</span> <span class="s2">&quot;PySCF energy does not match AutoHF energy&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;E_ref_hf&quot;</span><span class="p">],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">),</span> <span class="s2">&quot;PySCF energy does not match reference HF energy&quot;</span>
+
+    <span class="c1"># run CASSCF to get a basis / trial wavefunction</span>
+    <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="n">ncas</span><span class="p">,</span> <span class="n">nelec_cas</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+    
+    <span class="c1"># write the CAS wavefunction to a file</span>
+    <span class="n">write_cas_wfn</span><span class="p">(</span>
+        <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
+        <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="c1"># from the PRX</span>
+        <span class="n">outname</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
+    <span class="p">)</span>
+    
+    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+        <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;mcscf&#39;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># write Hamiltonian</span>
+    <span class="n">write_hamil_mol</span><span class="p">(</span>
+        <span class="n">basis_scf_data</span><span class="p">,</span>
+        <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="c1"># from the PRX</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="p">}</span>    
+    <span class="n">write_json</span><span class="p">(</span>
+        <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
+    <span class="p">)</span>
+
+<span class="c1"># run the setup</span>
+<span class="k">for</span> <span class="n">molecule</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="n">TestSet</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">setup_benchmark</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Key features:</p>
+<ul class="simple">
+<li><p>Defines reference systems (VO, TiO, CrO, MnO, FeO, CuO, ScO) with equilibrium geometries from Phys. Rev. X 10, 011041</p></li>
+<li><p>Specifies spin multiplicities and active space parameters for each system</p></li>
+<li><p>Provides reference HF and AFQMC energies for validation. <strong>Importnat:</strong> The HF energies must match the reference values before performing CASSCF to ensure correct trial wavefunctions.</p></li>
+<li><p>Performs CASSCF calculations to generate multi-determinant trial wavefunctions</p></li>
+<li><p>Writes Hamiltonians and trial wavefunctions for each system</p></li>
+</ul>
+<p><strong>Analysis</strong> (<code class="docutils literal notranslate"><span class="pre">get_results.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./files&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+
+<span class="c1"># reference data from Phys. Rev. X 10, 011041 (see &quot;total_energy.csv&quot; from the supporting materials )</span>
+<span class="n">TestSet</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">VO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">86.400211965699242</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">87.0818</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">TiO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">73.26973605789902</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">73.9019</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0009</span>
+    <span class="p">),</span>
+    <span class="n">CrO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">101.8381354486648</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">102.5533</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> 	<span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">MnO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">119.1332394993054</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">119.8515</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0014</span>
+    <span class="p">),</span>
+    <span class="n">FeO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">138.66009692442393</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">139.4296</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="p">),</span>
+    <span class="n">CuO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">212.238829673217</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">213.1271</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0011</span> 
+    <span class="p">),</span>
+    <span class="n">ScO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="n">E_ref_hf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">61.829342751826275</span><span class="p">,</span>
+        <span class="n">E_ref_afqmc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">62.4192</span><span class="p">,</span>
+        <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0013</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_afqmc_results</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">case</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="n">nequil</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">compare_to_ref</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Process and save the AFQMC result for the benchmark case</span>
+<span class="sd">    corresponding to &#39;key&#39; into the &#39;case&#39; dictionary </span>
+<span class="sd">    under keywords &quot;E_afqmc&quot; and &quot;dE_afqmc&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">key</span>
+    <span class="n">result_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span>
+
+    <span class="c1"># skip if local scratch dir does not exist - save None for E, dE</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">case</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">case</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No AFQMC result found for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">. Skipping analysis.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analyzing AFQMC results for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">result_file</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">nequil</span> <span class="o">=</span> <span class="n">nequil</span><span class="p">,</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="k">case</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span>
+    <span class="k">case</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dE</span>
+    
+    <span class="k">if</span> <span class="n">compare_to_ref</span><span class="p">:</span>
+        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;E_ref_afqmc&quot;</span><span class="p">]</span>
+        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;dE_ref_afqmc&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          E_afqmc = </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;reference E_afqmc = </span><span class="si">{</span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; (difference) = </span><span class="si">{</span><span class="n">E</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- (joint stoch. uncertatinty) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dE_ref</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dE</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">molecule</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="n">TestSet</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">get_afqmc_results</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">nequil</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="c1"># loop through the cases and generate a results table</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======== Benchmark Results ========&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| Molecule | E AFQMC | Ref. A AFQMC | abs diff | match? |</span><span class="se">\n</span><span class="s2">|---|---|---|---|---|&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">molecule</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="n">TestSet</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span>
+        <span class="n">dE</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span>
+        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E_ref_afqmc&quot;</span><span class="p">]</span>
+        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dE_ref_afqmc&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">E</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dE</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | - | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | - | N/A&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">abs_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">E_ref</span><span class="p">)</span>
+            <span class="n">joint_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dE</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dE_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        
+            <span class="k">if</span> <span class="n">abs_diff</span> <span class="o">&lt;</span> <span class="n">joint_err</span><span class="p">:</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;1 sigma&quot;</span>
+            <span class="k">elif</span> <span class="n">abs_diff</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">joint_err</span><span class="p">:</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;2 sigma&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;No&quot;</span>
+    
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">abs_diff</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">joint_err</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">matches</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Utility script for extracting and comparing AFQMC results against benchmark reference values, and generating a summary table.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../08_local_embedding/08_local_embedding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Local Embedding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-example">7.1. Running the Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files">7.2. Files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

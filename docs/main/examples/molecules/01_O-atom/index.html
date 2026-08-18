@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Oxygen Atom (UHF Trial Wavefunction) &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/01_O-atom/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/molecules/01_O-atom/index.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html" />
+    <link rel="prev" title="Quantum Chemistry / Molecules" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of solid Na</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry / Molecules</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">1. </span>Oxygen Atom (UHF Trial Wavefunction)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="oxygen-atom-uhf-trial-wavefunction">
+<span id="example-molecule-o-atom"></span><h1><span class="section-number">1. </span>Oxygen Atom (UHF Trial Wavefunction)<a class="headerlink" href="#oxygen-atom-uhf-trial-wavefunction" title="Link to this heading">#</a></h1>
+<p>This example demonstrates an AFQMC calculation of an isolated oxygen atom using an unrestricted Hartree-Fock (UHF) trial wavefunction.
+The Oxygen atom has a ground state with <span class="math notranslate nohighlight">\(S=2\)</span> (quartet state)</p>
+<section id="running-the-example">
+<h2><span class="section-number">1.1. </span>Running the Example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
+<p>The workflow includes the following steps:</p>
+<ol class="arabic">
+<li><p><strong>Generate the trial wavefunction and orbital basis</strong>: Execute <code class="docutils literal notranslate"><span class="pre">scf/scf.py</span></code> to run PySCF calculations generating both ROHF and UHF checkpoint files.</p></li>
+<li><p><strong>Create AFQMC input files</strong>: Execute <code class="docutils literal notranslate"><span class="pre">ham/ham.py</span></code> to generate the Hamiltonian in Cholesky-decomposed form and format the trial wavefunction. Note that we used the ROHF orbitals as a basis, since they are spin-independent. The UHF wavefunction will be used as the trial wavefunction for AFQMC. The <cite>write_wfn_mol ()</cite> function directly handles the change of basis as demonstrated in this example. This produces <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code> containing the Hamiltonian and trial wavefunction.</p></li>
+<li><p><strong>Run SAFIRE</strong>: Run SAFIRE using the provided json input file (see below):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>safire<span class="w"> </span>afqmc.json
+</pre></div>
+</div>
+<p>The AFQMC calculation will perform sampling and output energy estimates and other observables.</p>
+</li>
+<li><p><strong>analyze the results</strong>: Use the <cite>scalar_stats</cite> command-line tool from afqmctools to analyze the energy output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scalar_stats<span class="w"> </span>qmc.s000.scalar.dat<span class="w"> </span>-s<span class="w"> </span><span class="nb">time</span><span class="w"> </span>-e<span class="w"> </span><span class="m">5</span>.0<span class="w"> </span>-t
+</pre></div>
+</div>
+<p>This will compute the average AFQMC energy and stochastic uncertainty, using an equilibration time of 5.0 <span class="math notranslate nohighlight">\(Ha^{-1}\)</span>.
+The <cite>-t</cite> flag will generate a plot of the energy as a function of imaginary time if running locally.
+If running remotely, you can save the plot of the energy vs imaginary time to a file using the <cite>–savefig [name].png</cite> option.
+In either case, you should see the following output if you used the same settings as in the provided <cite>afqmc.json</cite> file and
+above.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>====== [analyze_scalar_data Settings] ======
+
+[+] fname            = qmc.s000.scalar.dat
+[+] mark_header      = #
+[+] series_column    = time
+[+] nequil           = 5.0
+[+] estimate_equil   = False
+[+] column           = LocalEnergy
+[+] reblock          = 1
+[+] ndiscard         = None
+[+] list             = False
+[+] trace            = False
+[+] append           = None
+[+] dump             = False
+[+] dump_fname       = trace.dat
+[+] verbose          = True
+[+] autocorr         = None
+[+] savefig          = None
+[+] dump_avail_columns = False
+
+AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="files">
+<h2><span class="section-number">1.2. </span>Files<a class="headerlink" href="#files" title="Link to this heading">#</a></h2>
+<p><strong>SCF Calculation</strong> (<code class="docutils literal notranslate"><span class="pre">scf/scf.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="c1"># This file is distributed under the Apache License, Version 2.0 License.</span>
+<span class="c1"># See LICENSE file in top directory for details.</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021-2025 The Simons Foundation, Inc.</span>
+<span class="c1">#</span>
+<span class="c1"># You may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computing the energy of ferro-magnetically coupled</span>
+<span class="sd">       Vandium atoms.       </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+        <span class="n">atom</span><span class="o">=</span><span class="s1">&#39;O 0. 0. 0.&#39;</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span>
+    <span class="p">)</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;rohf.chk&#39;</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;uhf.chk&#39;</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Hamiltonian and Wavefunction Generation</strong> (<code class="docutils literal notranslate"><span class="pre">ham/ham.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This file is distributed under the Apache License, Version 2.0 License.</span>
+<span class="c1"># See LICENSE file in top directory for details.</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021-2025 The Simons Foundation, Inc.</span>
+<span class="c1">#</span>
+<span class="c1"># You may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># inputs</span>
+    <span class="n">orbital_basis_chk</span> <span class="o">=</span> <span class="s1">&#39;../scf/rohf.chk&#39;</span>
+    <span class="n">wavefunction_chk</span> <span class="o">=</span> <span class="s1">&#39;../scf/uhf.chk&#39;</span>
+
+    <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+    <span class="c1"># output</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="s1">&#39;afqmc.h5&#39;</span>
+
+    <span class="c1">#####################################</span>
+    <span class="c1">#                                   #</span>
+    <span class="c1">#  Write Hamiltonian in ROHF basis  #</span>
+    <span class="c1">#                                   #</span>
+    <span class="c1">#####################################</span>
+
+    <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+        <span class="n">orbital_basis_chk</span><span class="p">,</span>
+        <span class="s1">&#39;scf&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">write_hamil_mol</span><span class="p">(</span>
+        <span class="n">scf_data</span><span class="o">=</span><span class="n">scf_data</span><span class="p">,</span>
+        <span class="n">hamil_file</span><span class="o">=</span><span class="n">fout</span><span class="p">,</span> 
+        <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span> 
+        <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    
+    <span class="c1">#####################################</span>
+    <span class="c1">#                                   #</span>
+    <span class="c1">#      Write Trial Wavefunction     #</span>
+    <span class="c1">#                                   #</span>
+    <span class="c1">#####################################</span>
+
+    <span class="n">write_wfn_mol</span><span class="p">(</span>
+        <span class="n">scf_data</span><span class="o">=</span><span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+            <span class="n">wavefunction_chk</span><span class="p">,</span>
+            <span class="s1">&#39;scf&#39;</span>
+        <span class="p">),</span>
+        <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">scf_data</span><span class="p">,</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">fout</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p><strong>AFQMC Input File</strong> (<code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;afqmc&quot;</span><span class="w"> </span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span>
+<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">       </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../ham/afqmc.h5&quot;</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="w">       </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6000&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">&quot;population_control_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quantum Chemistry / Molecules</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-example">1.1. Running the Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#files">1.2. Files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

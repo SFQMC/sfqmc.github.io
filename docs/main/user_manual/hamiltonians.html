@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hamiltonian File formats &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual/hamiltonians';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual/hamiltonians.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wavefunction File formats" href="wavefunctions.html" />
+    <link rel="prev" title="Observables" href="observables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">Input file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walker Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estimators.html">Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hamiltonian File formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction File formats</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_manual.html" class="nav-link">User Manual</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Hamiltonian File formats</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hamiltonian-file-formats">
+<span id="hamiltonian-classes"></span><h1>Hamiltonian File formats<a class="headerlink" href="#hamiltonian-file-formats" title="Link to this heading">#</a></h1>
+<p>The Hamiltonian is, of course, one of the key inputs to SAFIRE.
+SAFIRE is aware only of the generic class of Hamiltonian, so that it can take advantage of
+class-specific algorithms while remaining general.
+Python-based tools to generate Hamiltonians, among other inputs, are provided in the <cite>afqmctools</cite> module.
+See the afqmctools documentation <a class="reference internal" href="../afqmctools/afqmctools.html#afqmctools"><span class="std std-ref">afqmctools</span></a> and the tutorials <a class="reference internal" href="../tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for more details.</p>
+<p>Several generic classes of Hamiltonians are implemented and described in detail below.</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#dense-cholesky"><span class="std std-ref">Dense Cholesky</span></a></p></li>
+<li><p><a class="reference internal" href="#k-point-factorized"><span class="std std-ref">K-Point Factorized (KP)</span></a></p></li>
+<li><p><a class="reference internal" href="#lattice-model-hamiltonian"><span class="std std-ref">Lattice Model Hamiltonian</span></a></p></li>
+<li><p><a class="reference internal" href="#thc-hamiltonian"><span class="std std-ref">THC Hamiltonian</span></a></p></li>
+</ol>
+<section id="dense-cholesky">
+<span id="id1"></span><h2>Dense Cholesky<a class="headerlink" href="#dense-cholesky" title="Link to this heading">#</a></h2>
+<p>A common Hamiltonian type that is implemented in SAFIRE is based on the modified-Cholesky
+factorization <span class="bibtex-citation" id="id2">[<a class="reference internal" href="../afqmc.html#id15" title="Francesco Aquilante, Luca De Vico, Nicolas Ferré, Giovanni Ghigo, Per-åke Malmqvist, Pavel Neogrády, Thomas Bondo Pedersen, Michal Pitoňák, Markus Reiher, Björn O. Roos, Luis Serrano-Andrés, Miroslav Urban, Valera Veryazov, and Roland Lindh. MOLCAS 7: The Next Generation. J. Comput. Chem., 31(1):224, 2009. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.21318.">ADVFerre+09</a>, <a class="reference internal" href="../afqmc.html#id13" title="Nelson H. F. Beebe and Jan Linderberg. Simplifications in the generation and transformation of two-electron integrals in molecular calculations. Int. J. Quantum Chem., 12(4):683, 1977. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/qua.560120408.">BL77</a>, <a class="reference internal" href="../afqmc.html#id14" title="Henrik Koch, Alfredo Sánchez de Merás, and Thomas Bondo Pedersen. Reduced scaling in electronic structure calculations using Cholesky decompositions. The Journal of Chemical Physics, 118(21):9481, 2003. URL: https://doi.org/10.1063/1.1578621.">KdMerasP03</a>, <a class="reference internal" href="../afqmc.html#id16" title="Wirawan Purwanto, Henry Krakauer, Yudistira Virgus, and Shiwei Zhang. Assessing weak hydrogen binding on Ca+ centers: An accurate many-body study with large basis sets. The Journal of Chemical Physics, 135(16):164105, 2011. URL: https://doi.org/10.1063/1.3654002, doi:10.1063/1.3654002.">PKVZ11</a>, <a class="reference internal" href="../afqmc.html#id17" title="Wirawan Purwanto, Shiwei Zhang, and Henry Krakauer. Frozen-Orbital and Downfolding Calculations with Auxiliary-Field Quantum Monte Carlo. Journal of Chemical Theory and Computation, 9(11):4825–4833, 2013. URL: https://doi.org/10.1021/ct4006486.">PZK13</a>]</span> of the ERI
+tensor:</p>
+<div class="math notranslate nohighlight" id="equation-eq-dense-chol">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-dense-chol" title="Link to this equation">#</a></span>\[v_{pqrs} = V_{(pr),(sq)} \approx \sum_n^{N_{\mathrm{chol}}} L_{pr,n} L^{*}_{sq,n},\]</div>
+<p>where the sum is truncated at <span class="math notranslate nohighlight">\(N_{\mathrm{chol}} = x_c M\)</span>,
+<span class="math notranslate nohighlight">\(x_c\)</span> is typically between <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(10\)</span>, <span class="math notranslate nohighlight">\(M\)</span> is
+the number of basis functions and we have assumed that the
+single-particle orbitals are in general complex. The storage requirement
+is thus naively <span class="math notranslate nohighlight">\(\mathcal{O}(M^3)\)</span>. Note we follow the usual
+definition of <span class="math notranslate nohighlight">\(v_{pqrs} = \langle pq | rs \rangle = (pr|qs)\)</span>. With
+this form of factorization, SAFIRE allows for the integrals to be stored
+in either dense or sparse format.</p>
+<p>The dense case is the simplest and is only implemented for Hamiltonians
+with <em>real</em> integrals (and basis functions, i.e. not the homogeneous
+electron gas which has complex orbitals but real integrals). The file
+format is given as follows:</p>
+<div class="literal-block-wrapper docutils container" id="listing-dense-cholesky">
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">Sample Dense Cholesky AFQMC Hamiltonian.</span><a class="headerlink" href="#listing-dense-cholesky" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ h5dump -n afqmc.h5
+HDF5 &quot;afqmc.h5&quot; {
+    FILE_CONTENTS {
+        group      /
+        group      /Hamiltonian
+        dataset    /Hamiltonian/dims
+        dataset    /Hamiltonian/Energies
+        dataset    /Hamiltonian/hcore
+        group      /Hamiltonian/DenseFactorized
+        dataset    /Hamiltonian/DenseFactorized/L
+    }
+}
+</pre></div>
+</div>
+</div>
+<p><strong>Required datasets:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/dims</span></code> Descriptor array of length 8 containing <span class="math notranslate nohighlight">\([0,0,0,M,N_\alpha,N_\beta,0,N_\mathrm{chol}]\)</span>. <span class="math notranslate nohighlight">\(M\)</span> is the number of basis functions, <span class="math notranslate nohighlight">\(N_\alpha\)</span> and <span class="math notranslate nohighlight">\(N_\beta\)</span> are the numbers of spin-up and spin-down electrons, and <span class="math notranslate nohighlight">\(N_\mathrm{chol}\)</span> is the number of Cholesky vectors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/Energies</span></code> Array containing <span class="math notranslate nohighlight">\([E_{II}, E_{\mathrm{core}}]\)</span>. <span class="math notranslate nohighlight">\(E_{II}\)</span> should contain ion-ion repulsion energy and any additional constant terms which have to be added to the total energy. <span class="math notranslate nohighlight">\(E_{\mathrm{core}}\)</span> is deprecated and not used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/hcore</span></code> One-body Hamiltonian matrix elements. For <strong>real integrals</strong>, dimensions are <span class="math notranslate nohighlight">\([M_{spin}, M]\)</span> where <span class="math notranslate nohighlight">\(M_{spin}\)</span> depends on the spin symmetry: <span class="math notranslate nohighlight">\(M\)</span> for closed-shell, <span class="math notranslate nohighlight">\(2M\)</span> for collinear, or <span class="math notranslate nohighlight">\(2M\)</span> for noncollinear systems. For <strong>complex integrals</strong>, an additional dimension of size 2 is added to store real and imaginary parts separately.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/DenseFactorized/L</span></code> The Cholesky decomposition tensor <span class="math notranslate nohighlight">\(L_{pr,n}\)</span>. Dimensions are <span class="math notranslate nohighlight">\([M \times M, N_\mathrm{chol}]\)</span> where the first dimension represents the flattened orbital pair indices <span class="math notranslate nohighlight">\((p,r)\)</span> and the second dimension represents the Cholesky vector index <span class="math notranslate nohighlight">\(n\)</span>. Only real-valued Cholesky vectors are supported for the Dense Cholesky format.</p></li>
+</ul>
+<p><strong>Storage conventions:</strong></p>
+<ul class="simple">
+<li><p>The Dense Cholesky format only supports real-valued Cholesky vectors.</p></li>
+<li><p>Complex one-body Hamiltonians should be stored with an additional dimension of size 2, where <code class="docutils literal notranslate"><span class="pre">array[...,</span> <span class="pre">0]</span></code> contains real parts and <code class="docutils literal notranslate"><span class="pre">array[...,</span> <span class="pre">1]</span></code> contains imaginary parts.</p></li>
+<li><p>The Cholesky tensor <span class="math notranslate nohighlight">\(L\)</span> is stored in column-major order with orbital pairs <span class="math notranslate nohighlight">\((p,r)\)</span> flattened into a single index.</p></li>
+<li><p>For collinear systems, the one-body Hamiltonian should have the spin-up block in the upper half and spin-down block in the lower half.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the <a class="reference external" href="../tutorials/molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.html">Writing a Hamiltonian tutorial</a>  from the <a class="reference internal" href="../tutorials/molecules/overview.html#molecules-overview"><span class="std std-ref">SAFIRE for Quantum Chemistry</span></a> tutorials.</p>
+</div>
+</section>
+<section id="k-point-factorized-kp">
+<span id="k-point-factorized"></span><h2>K-Point Factorized (KP)<a class="headerlink" href="#k-point-factorized-kp" title="Link to this heading">#</a></h2>
+<p>We have implemented an explicitly <span class="math notranslate nohighlight">\(k\)</span>-point dependent factorization for periodic systems <span class="bibtex-citation" id="id3">[<a class="reference internal" href="../afqmc.html#id23" title="Fionn D. Malone, Shuai Zhang, and Miguel A. Morales. Accelerating auxiliary-field quantum monte carlo simulations of solids with graphical processing units. Journal of Chemical Theory and Computation, 16(7):4286-4297, 2020. URL: https://doi.org/10.1021/acs.jctc.0c00262, doi:10.1021/acs.jctc.0c00262.">MZM20</a>, <a class="reference internal" href="../afqmc.html#id22" title="Mario Motta, Shiwei Zhang, and Garnet Kin-Lic Chan. Hamiltonian symmetries in auxiliary-field quantum Monte Carlo calculations for electronic structure. Physical Review B, 100:045127, July 2019. URL: https://link.aps.org/doi/10.1103/PhysRevB.100.045127, doi:10.1103/PhysRevB.100.045127.">MZC19</a>]</span></p>
+<div class="math notranslate nohighlight" id="equation-eq62">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq62" title="Link to this equation">#</a></span>\[(\textbf{k}_p p \textbf{k}_r r| \textbf{k}_q q \textbf{k}_s s) = \sum_n L^{\textbf{Q},\textbf{k}}_{pr,n} {L^{\textbf{Q},\textbf{k}'}_{sq,n}}^{*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\textbf{k}\)</span>, <span class="math notranslate nohighlight">\(\textbf{k}'\)</span> and <span class="math notranslate nohighlight">\(\textbf{Q}\)</span> are
+vectors in the first Brillouin zone. The one-body Hamiltonian is block
+diagonal in <span class="math notranslate nohighlight">\(\textbf{k}\)</span> and in <a class="reference internal" href="#equation-eq62">(3)</a> we have used
+momentum conservation
+<span class="math notranslate nohighlight">\((\textbf{k}_p - \textbf{k}_r + \textbf{k}_q - \textbf{k}_s) = \textbf{G}\)</span>
+with <span class="math notranslate nohighlight">\(\textbf{G}\)</span> being some vector in the reciprocal lattice of
+the simulation cell. The convention for the Cholesky matrix
+<span class="math notranslate nohighlight">\(L^{\textbf{Q},\textbf{k}}_{pr,\gamma}\)</span> is as follows:
+<span class="math notranslate nohighlight">\(\textbf{k}_r = \textbf{k}_p - \textbf{Q}\)</span>, so the vector
+<span class="math notranslate nohighlight">\(\textbf{k}\)</span> labels the <em>k</em>-point of the first band index,
+<span class="math notranslate nohighlight">\(\textit{p}\)</span>, while the <em>k</em>-point vector of the second band index,
+<span class="math notranslate nohighlight">\(\textit{r}\)</span>, is given by <span class="math notranslate nohighlight">\(\textbf{k} - \textbf{Q}\)</span>.
+Electron repulsion integrals at different <span class="math notranslate nohighlight">\(\textbf{Q}\)</span> vectors are
+zero by symmetry, resulting in a reduction in the number of required
+<span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> vectors. For certain <span class="math notranslate nohighlight">\(\textbf{Q}\)</span> vectors that
+satisfy <span class="math notranslate nohighlight">\(\textbf{Q} \ne -\textbf{Q}\)</span> (this is not satisfied at the
+origin and at high symmetry points on the edge of the 1BZ), we have
+<span class="math notranslate nohighlight">\({L^{\textbf{Q},\textbf{k}}_{sq,\gamma}}^{*} = {L^{-\textbf{Q},\textbf{k}-\textbf{Q}}_{qs,\gamma}}\)</span>,
+which requires us to store Cholesky vectors for either one of the
+<span class="math notranslate nohighlight">\((\textbf{Q},-\textbf{Q})\)</span> pair, but not both.</p>
+<p>In what follows let <span class="math notranslate nohighlight">\(m_{\mathbf{k}}\)</span> denote the number of basis
+functions for basis functions of a given <span class="math notranslate nohighlight">\(k\)</span>-point (these can in
+principle differ for different <span class="math notranslate nohighlight">\(k\)</span>-points due to linear
+dependencies), <span class="math notranslate nohighlight">\(n^{\alpha}_{\mathbf{k}}\)</span> the number of
+<span class="math notranslate nohighlight">\(\alpha\)</span> electrons in a given <span class="math notranslate nohighlight">\(k\)</span>-point and
+<span class="math notranslate nohighlight">\(n_{\mathrm{chol}}^{\mathbf{Q}_n}\)</span> the number of Cholesky vectors
+for momentum transfer <span class="math notranslate nohighlight">\(\mathbf{Q}_n\)</span>. The file format for this
+factorization is as follows (for a <span class="math notranslate nohighlight">\(2\times2\times2\)</span>
+<span class="math notranslate nohighlight">\(k\)</span>-point mesh, for denser meshes generally there will be far
+fewer symmetry inequivalent momentum transfer vectors than there are
+<span class="math notranslate nohighlight">\(k\)</span>-points):</p>
+<div class="literal-block-wrapper docutils container" id="listing-55">
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Sample Dense <span class="math notranslate nohighlight">\(k\)</span>-point dependent Cholesky SAFIRE Hamiltonian.</span><a class="headerlink" href="#listing-55" title="Link to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h5dump -n afqmc.h5
+HDF5 &quot;afqmc.h5&quot; {
+    FILE_CONTENTS {
+        group      /
+        group      /Hamiltonian
+        group      /Hamiltonian/KPFactorized
+        dataset    /Hamiltonian/KPFactorized/L0
+        dataset    /Hamiltonian/KPFactorized/L1
+        dataset    /Hamiltonian/KPFactorized/L2
+        dataset    /Hamiltonian/KPFactorized/L3
+        dataset    /Hamiltonian/KPFactorized/L4
+        dataset    /Hamiltonian/KPFactorized/L5
+        dataset    /Hamiltonian/KPFactorized/L6
+        dataset    /Hamiltonian/KPFactorized/L7
+        dataset    /Hamiltonian/NCholPerKP
+        dataset    /Hamiltonian/MinusK
+        dataset    /Hamiltonian/NMOPerKP
+        dataset    /Hamiltonian/QKTok2
+        dataset    /Hamiltonian/H1_kp0
+        dataset    /Hamiltonian/H1_kp1
+        dataset    /Hamiltonian/H1_kp2
+        dataset    /Hamiltonian/H1_kp3
+        dataset    /Hamiltonian/H1_kp4
+        dataset    /Hamiltonian/H1_kp5
+        dataset    /Hamiltonian/H1_kp6
+        dataset    /Hamiltonian/H1_kp7
+        dataset    /Hamiltonian/ComplexIntegrals
+        dataset    /Hamiltonian/KPoints
+        dataset    /Hamiltonian/dims
+        dataset    /Hamiltonian/Energies
+    }
+}
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/KPFactorized/L[n]</span></code> This series of datasets store elements of the Cholesky tensors
+<span class="math notranslate nohighlight">\(L[\mathbf{Q}_n,\mathbf{k},pr,n]\)</span>. Each data set is of
+dimension
+<span class="math notranslate nohighlight">\([N_k,m_{\mathbf{k}}\times m_{\mathbf{k}'},n^{\mathbf{Q}_n}_\mathrm{chol}]\)</span>,
+where, again, <span class="math notranslate nohighlight">\(k\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-point associated with basis
+function <span class="math notranslate nohighlight">\(p\)</span>, the <span class="math notranslate nohighlight">\(k\)</span>-point of basis function <span class="math notranslate nohighlight">\(r\)</span>
+is defined via the mapping <code class="docutils literal notranslate"><span class="pre">QKtok2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/NCholPerKP</span></code> <span class="math notranslate nohighlight">\(N_k\)</span> length array giving number of Cholesky vectors per
+<span class="math notranslate nohighlight">\(k\)</span>-point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/MinusK</span></code>: <span class="math notranslate nohighlight">\(N_k\)</span> length array mapping a
+<span class="math notranslate nohighlight">\(k\)</span>-point to its inverse: <span class="math notranslate nohighlight">\(\mathbf{k}_i+\)</span><code class="docutils literal notranslate"><span class="pre">MinusK[i]</span></code>
+<span class="math notranslate nohighlight">\(= \mathbf{0} \mod \mathbf{G}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/NMOPerKP</span></code>: <span class="math notranslate nohighlight">\(N_k\)</span> length array listing number of
+basis functions per <span class="math notranslate nohighlight">\(k\)</span>-point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/QKTok2</span></code>: <span class="math notranslate nohighlight">\([N_k,N_k]\)</span> dimensional array.
+<code class="docutils literal notranslate"><span class="pre">QKtok2[i,j]</span></code> yields the <span class="math notranslate nohighlight">\(k\)</span> point index satisfying
+<span class="math notranslate nohighlight">\(\mathbf{k}=\mathbf{Q}_i-\mathbf{k}_j+\mathbf{G}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/dims</span></code>: Descriptor array of length 8 containing
+<span class="math notranslate nohighlight">\([0,0,0,M,N_\alpha,N_\beta,0,0]\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/H1_kp[n]</span></code> Contains the <span class="math notranslate nohighlight">\([m_{\mathbf{k}_n},m_{\mathbf{k}_n}]\)</span>
+dimensional one-body Hamiltonian matrix elements
+<span class="math notranslate nohighlight">\(h_{(\mathbf{k}_{n}p)(\mathbf{k}_{n}q)}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/ComplexIntegrals</span></code> Length 1 array that specifies if integrals are complex valued. 1
+for complex integrals, 0 for real integrals.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/KPoints</span></code> <span class="math notranslate nohighlight">\([N_k,3]\)</span> Dimensional array containing <span class="math notranslate nohighlight">\(k\)</span>-points used to
+sample Brillouin zone.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/dims</span></code> Descriptor array of length 8 containing
+<span class="math notranslate nohighlight">\([0,0,N_k,M,N_\alpha,N_\beta,0,N_\mathrm{nchol}]\)</span>. Note that
+<span class="math notranslate nohighlight">\(M\)</span> is the total number of basis functions, i.e.
+<span class="math notranslate nohighlight">\(M=\sum_\mathbf{k} m_\mathbf{k}\)</span>, and likewise for the number
+of electrons.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/Energies</span></code> Array containing <span class="math notranslate nohighlight">\([E_{II}, E_{\mathrm{core}}]\)</span>.
+<span class="math notranslate nohighlight">\(E_{II}\)</span> should contain ion-ion repulsion energy and any
+additional constant terms which have to be added to the total energy
+(such as the electron-electron interaction Madelung contribution of
+<span class="math notranslate nohighlight">\(\frac{1}{2} N \xi )\)</span>. <span class="math notranslate nohighlight">\(E_{\mathrm{core}}\)</span> is deprecated
+and not used.</p></li>
+</ul>
+<p>Complex integrals should be written as an array with an additional dimension, e.g., a 1D array should be written as a 2D array with <code class="docutils literal notranslate"><span class="pre">array_hdf5[:,0]=real(1d_array)</span></code> and <code class="docutils literal notranslate"><span class="pre">array_hdf5[:,1]=imag(1d_array)</span></code>. The functions <code class="docutils literal notranslate"><span class="pre">afqmctools.utils.misc.from_complex</span></code> and <code class="docutils literal notranslate"><span class="pre">afqmctools.utils.misc.to_complex</span></code> can be used to transform from the internal complex format to complex valued numpy arrays of the appropriate shape and vice versa.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the following from the <a class="reference internal" href="../tutorials/solids/overview.html#solids-overview"><span class="std std-ref">SAFIRE for ab initio solids</span></a> tutorials.</p>
+<ul class="simple">
+<li><p>(under construction) <a class="reference external" href="#">Writing a Hamiltonian with CoQuí</a></p></li>
+</ul>
+</div>
+</section>
+<section id="lattice-model-hamiltonian">
+<span id="id4"></span><h2>Lattice Model Hamiltonian<a class="headerlink" href="#lattice-model-hamiltonian" title="Link to this heading">#</a></h2>
+<p>General multi-band, Hubbard-Kanamori (HK) lattice model Hamiltonians are implemented.
+The HK Hamiltonian has the general form,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{H} = \sum_{ij,\sigma \sigma'}t^{\sigma \sigma'}_{ij}\hat{c}^\dagger_{i\sigma}\hat{c}_{j\sigma'}
++ \sum_{i} U_i \hat{n}_{i\uparrow} \hat{n}_{i\downarrow} \\
++ \sum_{i&lt;j} U_{ij}^1 (\hat{n}_{i\uparrow} \hat{n}_{j\downarrow} + \hat{n}_{i\downarrow} \hat{n}_{j\uparrow} )
++ \sum_{i&lt;j} U_{ij}^2 (\hat{n}_{i\uparrow} \hat{n}_{j\uparrow} + \hat{n}_{i\downarrow} \hat{n}_{j\downarrow} ) \\
++ \sum_{i&lt;j} J_{ij} (
+  \hat{c}^\dagger_{i\uparrow}\hat{c}^\dagger_{j\downarrow}\hat{c}_{i\downarrow}\hat{c}_{j\uparrow}
+  +\hat{c}^\dagger_{i\uparrow}\hat{c}^\dagger_{i\downarrow}\hat{c}_{j\downarrow}\hat{c}_{j\uparrow}
+  +\hat{c}^\dagger_{j\uparrow}\hat{c}^\dagger_{i\downarrow}\hat{c}_{j\downarrow}\hat{c}_{i\uparrow}
+  +\hat{c}^\dagger_{j\uparrow}\hat{c}^\dagger_{j\downarrow}\hat{c}_{i\downarrow}\hat{c}_{i\uparrow}
+  ),\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(i\)</span>,<span class="math notranslate nohighlight">\(j\)</span> are combined lattice and band indices,
+<span class="math notranslate nohighlight">\(\hat{c}^\dagger_{i\sigma}\)</span>, <span class="math notranslate nohighlight">\(\hat{c}_{j\sigma'}\)</span>
+create/annihilate and electron on the site (and band) corresponding to
+<span class="math notranslate nohighlight">\(i\)</span>/<span class="math notranslate nohighlight">\(j\)</span> with spin <span class="math notranslate nohighlight">\(\sigma\)</span>/<span class="math notranslate nohighlight">\(\sigma'\)</span>,
+<span class="math notranslate nohighlight">\(\hat{n}_{i\sigma}\)</span> is the number operator,
+<span class="math notranslate nohighlight">\(t^{\sigma \sigma'}_{ij}\)</span> includes all one-body terms
+(<span class="math notranslate nohighlight">\(n^{th}\)</span>-order neighbor hopping, spin-orbit coupling, etc.),
+<span class="math notranslate nohighlight">\(U\)</span> is the traditional on-site hubbard interaction, <span class="math notranslate nohighlight">\(U^1\)</span> is
+a density-density interaction, <span class="math notranslate nohighlight">\(U^2\)</span> is
+a spin-spin interaction, and <span class="math notranslate nohighlight">\(J\)</span> is a Hund’s coupling term.
+<span class="math notranslate nohighlight">\(U^1\)</span>, <span class="math notranslate nohighlight">\(U^2\)</span>, and <span class="math notranslate nohighlight">\(J\)</span> are typically only non-zero between
+bands on the same lattice site, but are by no means limited in this way.</p>
+<p>Each individual term is optional (including the hopping term);
+however, including at least one interaction term is required.
+Model Hamiltonians are saved in HDF5 using the following format.</p>
+<div class="literal-block-wrapper docutils container" id="listing-57">
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Sample Hubbard-Kanamori SAFIRE Hamiltonian.</span><a class="headerlink" href="#listing-57" title="Link to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h5dump -n afqmc.h5
+  HDF5 &quot;afqmc.h5&quot; {
+    FILE_CONTENTS {
+        group      /
+        group      /Hamiltonian
+        dataset    /Hamiltonian/Energies
+        group      /Hamiltonian/ModelHamiltonian
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_0
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/model_type
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/spin_type
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/data_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/dims
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/jdata_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/pointers_begin_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/pointers_end_
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_1
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/data_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/dims
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/jdata_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/pointers_begin_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/pointers_end_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/hst_type
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/model_type
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/spin_type
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_2
+        group      /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/data_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/dims
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/jdata_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/pointers_begin_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/pointers_end_
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/hst_type
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/model_type
+        dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/spin_type
+        dataset    /Hamiltonian/ModelHamiltonian/maximum_connectivity
+        dataset    /Hamiltonian/ModelHamiltonian/number_of_components
+        dataset    /Hamiltonian/dims
+        dataset    /Hamiltonian/spin_type
+  }
+}
+</pre></div>
+</div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/Energies</span></code>: Array containing <span class="math notranslate nohighlight">\([E_{II}, E_{\mathrm{core}}]\)</span>.
+<span class="math notranslate nohighlight">\(E_{II}\)</span> should contain ion-ion repulsion energy and any
+additional constant terms which have to be added to the total energy
+(such as the electron-electron interaction Madelung contribution of
+<span class="math notranslate nohighlight">\(\frac{1}{2} N \xi )\)</span>. <span class="math notranslate nohighlight">\(E_{\mathrm{core}}\)</span> is deprecated
+and not used. In the context of lattice models, both <span class="math notranslate nohighlight">\(E_{II}\)</span> and
+<span class="math notranslate nohighlight">\(E_{\mathrm{core}}\)</span> while generally be set to 0.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/dims</span></code>: Descriptor array of length 8 containing
+<span class="math notranslate nohighlight">\([0,0,0,M,M,0,0,0]\)</span>. Note that
+<span class="math notranslate nohighlight">\(M\)</span> is the total number of basis functions, i.e. number of sites * number of bands</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/spin_type</span></code>: Is a string containing the spin symmetry type of the Hamiltonian.
+possible values are “collinear”, or “noncollinear”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/ModelHamiltonian/maximum_connectivity</span></code>: A scalar integer containing the maximum
+number of possible connections in the Hamiltonian. If in doubt, the number of non-zero elements
+can be safely used here.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/ModelHamiltonian/number_of_components</span></code>: A scalar integer containing the number
+of “components” (i.e. terms) in the Hamiltonian. This should be consistent with the number of
+:math:` /Hamiltonian/ModelHamiltonian/ModelComponent_n/` groups, where <span class="math notranslate nohighlight">\(n\)</span> is replaced with an
+integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Hamiltonian/ModelHamiltonian/ModelComponent_n</span></code>: (where <span class="math notranslate nohighlight">\(n\)</span> are replaced by a specific integer index)
+are HDF5 groups which contain a Hamiltonian component (i.e. a term). Each component consists of some metadata
+and a compressed sparse row (CSR) matrix representation of that Hamiltonian component. Each group has the
+following datasets and groups.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/spin_type</span></code>: a string containing the spin symmetry type of the component.
+Possible values are “collinear”, or “noncollinear”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/model_type</span></code>: a string describing the type of model term.
+Possible values are: “one_body”, “hubbard_u”, and “hubbard_j”.</p></li>
+<li><p>a matrix group. The name of the group depends on the <code class="docutils literal notranslate"><span class="pre">/model_type</span></code>.
+Possible values are: <code class="docutils literal notranslate"><span class="pre">/tij/</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;one_body&quot;</span></code>), <code class="docutils literal notranslate"><span class="pre">/Uij/</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;hubbard_u&quot;</span></code>),
+and <code class="docutils literal notranslate"><span class="pre">/Jij/</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;hubbard_j&quot;</span></code>). Conventions for the shape of each matrix are
+described below. The matrix group will always have the following datasets:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dims</span></code>:  Descriptor array of length 3 containing <span class="math notranslate nohighlight">\([M_1,M_2,N_{nz}]\)</span>.
+where <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span> are the dimensions of the CSR matrix, and
+<span class="math notranslate nohighlight">\(N_{nz}\)</span> is the number of non-zero entries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_</span></code>: an array containing the non-zero matrix elements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jdata_</span></code>: an array containing the column indices of each non-zero matrix element.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pointers_begin_</span></code>: an array containing “pointers” to the beginning of each row
+within <code class="docutils literal notranslate"><span class="pre">data_</span></code> / <code class="docutils literal notranslate"><span class="pre">jdata_</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pointers_end_</span></code>: an array containing “pointers” to the end of each row
+within <code class="docutils literal notranslate"><span class="pre">data_</span></code> / <code class="docutils literal notranslate"><span class="pre">jdata_</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+<section id="model-component-conventions">
+<h3>Model Component Conventions<a class="headerlink" href="#model-component-conventions" title="Link to this heading">#</a></h3>
+<p>The following Conventions apply to the CSR matrix representations of each model component.</p>
+<ul>
+<li><p>both real- and complex-valued matrices are supported; however, all components must have
+the same type. i.e. if the hopping matrix is complex-valued, due to a twist, all interaction
+terms must also be complex-valued even of the imaginary part is identically zero.</p></li>
+<li><p>for all interaction terms except for on-site, on-band Hubbard U, we take the convention
+that <span class="math notranslate nohighlight">\(i &lt; j\)</span> as shown in the general Hubbard-Kanamori Hamiltonian above. If entries
+with <span class="math notranslate nohighlight">\(i &gt;= j\)</span> are supplied, they will be ignored with a warning.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">/tij/</span></code>, if <span class="math notranslate nohighlight">\(M\)</span> is the total basis set size, including bands and sites,
+the CSR matrix may have dimension <span class="math notranslate nohighlight">\(M x M\)</span>, <span class="math notranslate nohighlight">\(2M x M\)</span>, or <span class="math notranslate nohighlight">\(2M x 2M\)</span>
+corresponding to <code class="docutils literal notranslate"><span class="pre">&quot;closed&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;noncollinear&quot;</span></code> spin symmetry,
+respectively. For a <code class="docutils literal notranslate"><span class="pre">&quot;closed&quot;</span></code> hopping matrix, the same hopping will be applied to
+both spin channels. For a <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code> hopping matrix, the upper half of <code class="docutils literal notranslate"><span class="pre">/tij/</span></code>
+will applied to the spin up channel, and the lower half to the spin-down channel.
+For a <code class="docutils literal notranslate"><span class="pre">&quot;noncollinear&quot;</span></code> hopping matrix, <code class="docutils literal notranslate"><span class="pre">/tij/</span></code> is explicitly represented in a
+spin-orbital basis and is applied as is. We note that <code class="docutils literal notranslate"><span class="pre">/tij/</span></code> may contain arbitrary
+one-body terms if desired; for example, a pinning field.</p>
+<p>the CSR matrix may have dimension <span class="math notranslate nohighlight">\(M x M\)</span>, or <span class="math notranslate nohighlight">\(2M x M\)</span>. If the dimension
+is <span class="math notranslate nohighlight">\(2M x M\)</span>, then the upper half of the array is interpreted as <span class="math notranslate nohighlight">\(U_{ii}+U1_{ij}\)</span>
+with <span class="math notranslate nohighlight">\(i,j\)</span> running over all basis set functions, and the lower half
+is interpreted as <span class="math notranslate nohighlight">\(U2_{ij}`with :math:`i,j\)</span> running over all basis set functions.
+If <span class="math notranslate nohighlight">\(U2_{ij}\)</span> is desired without <span class="math notranslate nohighlight">\(U_{ii}\)</span> or <span class="math notranslate nohighlight">\(U1_{ij}\)</span>, the matrix must
+still have dimension <span class="math notranslate nohighlight">\(2M x M\)</span>, but the upper half should have no non-zero elements.
+If dimension is <span class="math notranslate nohighlight">\(M x M\)</span>, then the CSR matrix is interpreted as <span class="math notranslate nohighlight">\(U_{ii}+U1_{ij}\)</span>.</p>
+</li>
+<li><p>for <code class="docutils literal notranslate"><span class="pre">/Jij</span></code>, the CSR matrix must have dimension <span class="math notranslate nohighlight">\(M x M\)</span> and is interpreted as the
+the <span class="math notranslate nohighlight">\(J_{ij}\)</span> from the Hubbard-Kanamori term.</p></li>
+</ul>
+<p>The other groups and datasets represent the Hamiltonian “components” (i.e. the terms which
+are included in the specific Hamiltonian given to AFQMC).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the following from the <a class="reference internal" href="../tutorials/models/overview.html#lattice-model-overview"><span class="std std-ref">SAFIRE for lattice models</span></a> tutorials.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../tutorials/models/03_setting_up_a_lattice/03_setting_up_a_lattice.html">Setting up a Lattice</a></p></li>
+<li><p><a class="reference external" href="../tutorials/models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">Building and writing a Hamiltonian</a></p></li>
+<li><p><a class="reference external" href="../tutorials/models/05_hamiltonian_builder/05_hamiltonian_builder.html">Finer control of the Hamiltonian</a></p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="tensor-hyper-contraction-thc">
+<span id="thc-hamiltonian"></span><h2>Tensor Hyper Contraction (THC)<a class="headerlink" href="#tensor-hyper-contraction-thc" title="Link to this heading">#</a></h2>
+<p>The Tensor Hyper-Contraction (THC) approach is an efficient method for representing two-electron integrals that exploits the low-rank structure of the electron repulsion integral (ERI) tensor. THC factorizes the four-center electron repulsion integrals into products involving lower-dimensional tensors, providing significant computational savings for AFQMC calculations.</p>
+<p>THC represents the ERI tensor as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-thc">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-thc" title="Link to this equation">#</a></span>\[v_{pqrs} \approx \sum_{u}^{N_u} \sum_{v}^{N_v} X_{pu} L_{uv} X_{rv}^*\]</div>
+<p>where <span class="math notranslate nohighlight">\(X_{pu}\)</span> are collocation matrices that map orbitals to interpolation points, <span class="math notranslate nohighlight">\(L_{uv}\)</span> is the factorized Coulomb matrix at interpolation points, <span class="math notranslate nohighlight">\(N_u\)</span> and <span class="math notranslate nohighlight">\(N_v\)</span> are the numbers of interpolation points, and the approximation quality depends on the choice of interpolation points and the rank of the factorization.</p>
+<p>The THC format supports two main variants:</p>
+<dl class="simple">
+<dt><strong>Option 1: Direct THC factorization</strong></dt><dd><p>Uses the factorized Coulomb matrix <span class="math notranslate nohighlight">\(L_{uv}\)</span> directly and reuses the same collocation matrix for both electron coordinates.</p>
+</dd>
+<dt><strong>Option 2: Half-rotated THC factorization</strong></dt><dd><p>Uses a half-rotated Coulomb matrix and separate collocation matrices that have been pre-rotated to a specific orbital space.</p>
+</dd>
+</dl>
+<p>THC Hamiltonians are stored in HDF5 using the following format:</p>
+<div class="literal-block-wrapper docutils container" id="listing-thc">
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Sample THC AFQMC Hamiltonian.</span><a class="headerlink" href="#listing-thc" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ h5dump -n afqmc.h5
+HDF5 &quot;afqmc.h5&quot; {
+    FILE_CONTENTS {
+        group      /
+        group      /System
+        dataset    /System/H0
+        dataset    /System/atomic_positions
+        dataset    /System/lattice_vectors
+        [additional system datasets...]
+        group      /Interaction
+        dataset    /Interaction/factorized_coulomb_matrix
+        dataset    /Interaction/collocation_matrix
+        dataset    /Interaction/coulomb_matrix [Option 1 only]
+        dataset    /Interaction/half_rotated_coulomb_matrix [Option 2 only]
+        dataset    /Interaction/collocation_matrix_half_rotated [Option 2 only]
+    }
+}
+</pre></div>
+</div>
+</div>
+<p><strong>Required datasets:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/System/H0</span></code> One-body Hamiltonian matrix elements. Dimensions are <code class="docutils literal notranslate"><span class="pre">[nspin,</span> <span class="pre">nkpts,</span> <span class="pre">norb,</span> <span class="pre">norb,</span> <span class="pre">complex_dim]</span></code> where <code class="docutils literal notranslate"><span class="pre">complex_dim=2</span></code> for complex integrals and is omitted for real integrals. For molecular calculations, <code class="docutils literal notranslate"><span class="pre">nkpts=1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Interaction/factorized_coulomb_matrix</span></code> The factorized Coulomb tensor <span class="math notranslate nohighlight">\(L_{uv}\)</span>. Dimensions are <code class="docutils literal notranslate"><span class="pre">[nq,</span> <span class="pre">nu,</span> <span class="pre">nv,</span> <span class="pre">complex_dim]</span></code> where <code class="docutils literal notranslate"><span class="pre">nq</span></code> should be 1 for current implementation. For complex integrals, the last dimension has size 2 storing real and imaginary parts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Interaction/collocation_matrix</span></code> The collocation matrix <span class="math notranslate nohighlight">\(X_{pu}\)</span> mapping orbitals to interpolation points. Dimensions are <code class="docutils literal notranslate"><span class="pre">[nspin,</span> <span class="pre">nkpts,</span> <span class="pre">norb,</span> <span class="pre">nu,</span> <span class="pre">complex_dim]</span></code>.</p></li>
+</ul>
+<p><strong>Option 1 additional dataset:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Interaction/coulomb_matrix</span></code> The full Coulomb matrix <span class="math notranslate nohighlight">\(M_{uv} = L_{uv} \cdot L_{uv}^{\dagger}\)</span>. This allows reuse of the same collocation matrix. Dimensions are <code class="docutils literal notranslate"><span class="pre">[nq,</span> <span class="pre">nu,</span> <span class="pre">nu,</span> <span class="pre">complex_dim]</span></code>.</p></li>
+</ul>
+<p><strong>Option 2 additional datasets:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/Interaction/half_rotated_coulomb_matrix</span></code> A half-rotated version of the Coulomb matrix for specialized THC factorizations. Dimensions are <code class="docutils literal notranslate"><span class="pre">[nq,</span> <span class="pre">nu_rot,</span> <span class="pre">nv_rot,</span> <span class="pre">complex_dim]</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Interaction/collocation_matrix_half_rotated</span></code> The corresponding half-rotated collocation matrix. Dimensions match the half-rotated coulomb matrix structure.</p></li>
+</ul>
+<p><strong>Storage conventions:</strong></p>
+<ul class="simple">
+<li><p>Complex integrals should be stored with an additional dimension of size 2, where <code class="docutils literal notranslate"><span class="pre">array[...,</span> <span class="pre">0]</span></code> contains real parts and <code class="docutils literal notranslate"><span class="pre">array[...,</span> <span class="pre">1]</span></code> contains imaginary parts.</p></li>
+<li><p>For spin-collinear calculations with <code class="docutils literal notranslate"><span class="pre">nspin=2</span></code>, if only one spin component is provided in the file (<code class="docutils literal notranslate"><span class="pre">nspin_in_file=1</span></code>), it will be automatically duplicated for the second spin channel.</p></li>
+<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">cutoff_cholesky</span></code> can be specified to control the accuracy of Cholesky-related operations (default: <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>).</p></li>
+</ul>
+<p>The THC representation provides substantial memory and computational savings compared to storing the full four-index ERI tensor, especially for large systems where the number of interpolation points <span class="math notranslate nohighlight">\(N_u \ll M^2\)</span> (where <span class="math notranslate nohighlight">\(M\)</span> is the number of orbitals).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See the following from the <a class="reference internal" href="../tutorials/solids/overview.html#solids-overview"><span class="std std-ref">SAFIRE for ab initio solids</span></a> tutorials.</p>
+<ul class="simple">
+<li><p>(under construction) <a class="reference external" href="#">Writing a Hamiltonian with CoQuí</a></p></li>
+</ul>
+</div>
+</section>
+<section id="final-notes-on-hamiltonians">
+<h2>Final Notes on Hamiltonians<a class="headerlink" href="#final-notes-on-hamiltonians" title="Link to this heading">#</a></h2>
+<p>The code CoQuí is able to generate and output both the K-Point Factorized, and THC Hamiltonian format directly.</p>
+<p>Lattice model Hamiltonians can be generated using the afqmctools Python package which is included with SAFIRE.
+See the lattice model tutorials
+for more information on how to generate these Hamiltonians.</p>
+<p>Finally, if using external tools to generate this file format,
+we provide a sanity checker script in <code class="docutils literal notranslate"><span class="pre">utils/bin/test_afqmc_input.py</span></code>
+which will raise errors if the format does not conform to what is being used internally.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="observables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Observables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="wavefunctions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Wavefunction File formats</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-cholesky">Dense Cholesky</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-point-factorized-kp">K-Point Factorized (KP)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-model-hamiltonian">Lattice Model Hamiltonian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-component-conventions">Model Component Conventions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-hyper-contraction-thc">Tensor Hyper Contraction (THC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-notes-on-hamiltonians">Final Notes on Hamiltonians</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,802 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estimators &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual/estimators';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual/estimators.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Observables" href="observables.html" />
+    <link rel="prev" title="Walker Classes" href="walkers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">Input file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walker Classes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian File formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction File formats</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_manual.html" class="nav-link">User Manual</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Estimators</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="estimators">
+<span id="id1"></span><h1>Estimators<a class="headerlink" href="#estimators" title="Link to this heading">#</a></h1>
+<p>This page is organized as follows.
+We begin by explaining the different types of estimators available in SAFIRE.
+Estimators are used to compute observables.
+An estimator requires at least one observable to compute.
+Below, we explain each <a class="reference internal" href="observables.html#observables"><span class="std std-ref">type of observable</span></a> that can be computed using these estimators.
+All observables can be used with any of the estimators.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Unlike all other types of input blocks, the “name” parameter is used to determine the type of estimator - i.e.
+NOT to define an identifier that can be used elsewhere in the input file.</p>
+</div>
+<section id="mixed-estimators">
+<h2>Mixed Estimators<a class="headerlink" href="#mixed-estimators" title="Link to this heading">#</a></h2>
+<p>SAFIRE implements mixed estimators, which are used to compute observables <span class="math notranslate nohighlight">\(\hat{O}\)</span> such that <span class="math notranslate nohighlight">\([\hat{O},\hat{H}] = 0\)</span>.
+In this case, a mixed estimator is an unbiased estimator.
+Formally, mixed estimators evaluate an observable <span class="math notranslate nohighlight">\(\hat{O}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\langle \hat{O} \rangle_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}\]</div>
+<section id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">#</a></h3>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Sample input block for Mixed Estimator.</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Default</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>equil_multiplier</strong></p></td>
+<td><p>0</p></td>
+<td><p>Used to determine the number of projection steps in the equilibration phase using the formula below. Measurement is the most expensive operation in AFQMC.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>measure_interval_multiplier</strong></p></td>
+<td><p>Inherited from execute block (default: 1)</p></td>
+<td><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The measurement interval and equilibration lengths are specified indirectly using the <code class="docutils literal notranslate"><span class="pre">measure_interval_multiplier</span></code> and <code class="docutils literal notranslate"><span class="pre">equil_multiplier</span></code> parameters, respectively.
+They are computed using the <code class="docutils literal notranslate"><span class="pre">population_control_interval</span></code> according to the formula</p>
+<div class="math notranslate nohighlight">
+\[\text{measure\_interval} = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}\]</div>
+<p>and similarly for the equilibration time.</p>
+</div>
+</section>
+</section>
+<section id="energy-estimator">
+<h2>Energy Estimator<a class="headerlink" href="#energy-estimator" title="Link to this heading">#</a></h2>
+<p>SAFIRE implements a specialized mixed estimator for the energy, which is always added
+to an execute block by default.
+The only reason to explicitly define it is to customize its settings.
+Formally, it evaluates</p>
+<div class="math notranslate nohighlight" id="energyestimator">
+<span id="equation-energyestimator"></span><span class="eqno">(1)<a class="headerlink" href="#energyestimator" title="Link to this equation">#</a></span>\[E = \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Psi^s \rangle}{\langle \Psi_\mathrm{T} | \Psi^s \rangle} \approx
+\frac{1}{\sum_n W^s_n} \sum_n W^s_n \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Phi^s_n \rangle}{\langle \Psi_\mathrm{T} | \Phi^s_n \rangle},\]</div>
+<section id="id2">
+<h3>Settings<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Sample input block for Energy Estimator.</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;print_components&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Default</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>measure_interval_multiplier</strong></p></td>
+<td><p>Inherited from execute block (default: 1)</p></td>
+<td><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>print_components</strong></p></td>
+<td><p>false</p></td>
+<td><p>if true, print the one-body and two-body direct, and two-body exchange components of the energy separately (in addition to the total energy). Note: the one-body energy also includes any constant energy contributions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="back-propagation-bp-estimators">
+<h2>Back-Propagation (BP) Estimators<a class="headerlink" href="#back-propagation-bp-estimators" title="Link to this heading">#</a></h2>
+<p>Mixed estimators are biased for observables <span class="math notranslate nohighlight">\(\hat{O}\)</span> such that <span class="math notranslate nohighlight">\([\hat{O},\hat{H}] \neq 0\)</span>,
+which requires the use of pure estimators. The Back-Propagation (BP) algorithm is used to compute pure estimators in SAFIRE.
+The back-propagated estimator has the form,</p>
+<div class="math notranslate nohighlight">
+\[\langle \hat{O} \rangle_\mathrm{BP} = \frac{1}{\sum_k W_{s+m,k}} \sum_k W_{s+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{s,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{s,k}\rangle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(| \Phi_{s,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
+and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,</p>
+<div class="math notranslate nohighlight">
+\[| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{s,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{s+m-1,k} ) | \Psi_\mathrm{T} \rangle.\]</div>
+<p>The index <span class="math notranslate nohighlight">\(s\)</span> corresponds to the current forward projection step,
+and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.
+We note that each random walker has a corresponding back-propagated partner
+which share the same path in auxiliary-field space.</p>
+<section id="sample-input-file">
+<h3>Sample Input File<a class="headerlink" href="#sample-input-file" title="Link to this heading">#</a></h3>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Sample input block for Back-Propagation (BP) Estimator.</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
+<p>BP is invoked in SAFIRE by including a “back_propagation” estimator in the input file.
+Observables are added to the BP block in the same way as for mixed estimators.</p>
+</section>
+<section id="measurement-intervals">
+<h3>Measurement Intervals<a class="headerlink" href="#measurement-intervals" title="Link to this heading">#</a></h3>
+<p>Since BP involves an additional projection, the measurement interval controls the number of back-propagated steps.
+Just as in the execute block or a mixed estimator block, the input file includes a measurement interval “multiplier”,
+and the actual measurement interval, <span class="math notranslate nohighlight">\(m\)</span>, is determined as:</p>
+<div class="math notranslate nohighlight">
+\[m = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}\]</div>
+</section>
+<section id="multiple-bp-lengths">
+<h3>Multiple BP Lengths<a class="headerlink" href="#multiple-bp-lengths" title="Link to this heading">#</a></h3>
+<p>SAFIRE implements the capability of running BP with multiple BP measurement lengths within the same calculation.
+We call each measurement with a different BP length an “average”.
+This allows the forward projection to be reused while checking for convergence in the BP length.
+To define multiple BP lengths/averages, simply provide a JSON array for measure_interval_multiplier corresponding to all of the BP lengths
+that you would like to use:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Sample input block for Back-Propagation (BP) Estimator with multiple BP lengths.</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="equilibration">
+<h3>Equilibration<a class="headerlink" href="#equilibration" title="Link to this heading">#</a></h3>
+<p>The BP estimator implements an equilibration phase at the beginning of the AFQMC calculation where no BP is performed.
+This is recommended since computing observables is typically expensive and since AFQMC needs to equilibrate before
+samples can meaningfully contribute to the average.
+Similarly to the measure_interval_multiplier, the equilibration time is specified as an equilibration multiplier
+(<code class="docutils literal notranslate"><span class="pre">&quot;equil_multiplier&quot;</span></code>) and the actual equilibration time is given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{equil\_time} = \text{equil\_multiplier} \times \text{population\_control\_interval}\]</div>
+</section>
+<section id="id3">
+<h3>Settings<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Default</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>path_restoration</strong></p></td>
+<td><p>false</p></td>
+<td><p>if true, use path restoration in the back-propagation algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>bp_walker_ortho_interval</strong></p></td>
+<td><p>10</p></td>
+<td><p>Interval for walker orthogonalization during back-propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>measure_interval_multiplier</strong></p></td>
+<td><p>Inherited from execute block (default: 1)</p></td>
+<td><p>Either a single integer or an array of integers. Used to determine the number of back-propagation steps between measurements using the formula below. A larger value will use longer back-propagation lengths. If an array is provided, multiple back-propagation lengths will be used within the same calculation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>equil_multiplier</strong></p></td>
+<td><p>0</p></td>
+<td><p>Used to determine the number of projection steps in the equilibration phase before back-propagation measurements begin.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="walkers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Walker Classes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="observables.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Observables</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-estimators">Mixed Estimators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-estimator">Energy Estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-estimators">Back-Propagation (BP) Estimators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-input-file">Sample Input File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-intervals">Measurement Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-bp-lengths">Multiple BP Lengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibration">Equilibration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Settings</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

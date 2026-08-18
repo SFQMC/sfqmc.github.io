@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Generating and Writing a Trial Wavefunction &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/06_writing_a_trial_wavefunction/06_writing_a_trial_wavefunction';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/models/06_writing_a_trial_wavefunction/06_writing_a_trial_wavefunction.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7. AutoHF Crash Course" href="../07_autohf_crash_course/07_autohf_crash_course.html" />
+    <link rel="prev" title="5. The Hamiltonian Builder" href="../05_hamiltonian_builder/05_hamiltonian_builder.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
+    afqmctools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../features.html">
+    Current Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../solids/overview.html">SAFIRE for ab initio solids</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for lattice models</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for lattice models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">6. </span>Generating and Writing a Trial Wavefunction</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="06_writing_a_trial_wavefunction.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="generating-and-writing-a-trial-wavefunction">
+<h1><span class="section-number">6. </span>Generating and Writing a Trial Wavefunction<a class="headerlink" href="#generating-and-writing-a-trial-wavefunction" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 format.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">6.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How to write a single Slater determinant trial wavefunction given the Slater Matrix</p></li>
+<li><p>How to write a single Slater determinant given orbital occupancies</p></li>
+<li><p>How to write a non-orthogonal multi-Slater determinant trial wavefunction given the expansion coefficients and Slater matrices</p></li>
+<li><p>How to write a configuration-interaction (CI) type trial wavefunction given CI coefficients and a corresponding occupancy strings</p></li>
+</ol>
+</section>
+<section id="interacting-with-the-trial-wavefunction-hdf5-format">
+<h2><span class="section-number">6.2. </span>Interacting with the trial wavefunction HDF5 format<a class="headerlink" href="#interacting-with-the-trial-wavefunction-hdf5-format" title="Link to this heading">#</a></h2>
+<p>In this section, we begin by demonstrating how to manually generate wavefunction inputs and examine the structure of the resulting HDF5 files. This helps build an understanding of what is actually done behind the scenes when preparing a trial wavefunction.</p>
+<p>While this manual approach provides clarity and flexibility—especially useful for customizing your own trial wavefunction or performing self-consistent calculations—it is <strong>not</strong> the only method and <strong>not</strong> the recommended way for most practical purposes. In fact, there are several much simpler and more elegant ways to generate trial wavefunctions for certain lattice systems. For example, one can automatically construct free-electron trial states or mean-field trial wavefunctions using the <code class="docutils literal notranslate"><span class="pre">autoHF</span></code> utility, <strong>which will be introduced later.</strong></p>
+<p>To start, we will take a closer look at the <code class="docutils literal notranslate"><span class="pre">write_wfn</span></code> function, which writes the wavefunction data to disk. We will introduce the basic types of wavefunctions—RHF, UHF, and GHF—and explain the corresponding input structures required for each. Understanding this foundation will make it easier to interpret or modify wavefunctions generated by higher-level tools later on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="rhf-wavefunction">
+<h3><span class="section-number">6.2.1. </span>RHF wavefunction<a class="headerlink" href="#rhf-wavefunction" title="Link to this heading">#</a></h3>
+<p>Generate a wavefunction of the form <span class="math notranslate nohighlight">\(\Psi = \Psi^\uparrow \otimes \Psi^\downarrow\)</span> with <span class="math notranslate nohighlight">\(\Psi^\downarrow_{ij} = \Psi^\uparrow_{ij}\)</span>. This means the two spin sectors are identical. Such a wavefunction is commonly referred to as an “RHF” (Restricted Hartree-Fock) wavefunction, and the corresponding walker is called an “RHF walker.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">nelec</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_rhf_test.h5&quot;</span>
+<span class="n">sd_rhf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span><span class="n">sd_rhf</span><span class="p">],</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;closed&#39;</span><span class="p">,</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+          <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">!h5dump</span> <span class="pre">wfn_rhf_test.h5</span></code> to inspect the output file, you’ll see the following structure. The <code class="docutils literal notranslate"><span class="pre">Psi0_alpha</span></code> dataset contains the RHF Slater determinant matrix, which is used for both spin-up and spin-down electrons.</p>
+<p>In summary, to generate an RHF wavefunction, you need to provide an array <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">i,</span> <span class="pre">j]</span></code> = <span class="math notranslate nohighlight">\(\Psi_{ij}^↑\)</span> with shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">norb,</span> <span class="pre">nelec</span> <span class="pre">//</span> <span class="pre">2)</span></code> as input. Setting walker_type=’rhf’ ensures the wavefunction is constructed in a spin-identical manner, meaning the same orbitals are used for both spin components.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>h5dump<span class="w"> </span>wfn_rhf_test.h5<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uhf-wavefunction">
+<h3><span class="section-number">6.2.2. </span>UHF wavefunction<a class="headerlink" href="#uhf-wavefunction" title="Link to this heading">#</a></h3>
+<p>Generate a wavefunction of the form <span class="math notranslate nohighlight">\(\Psi = \Psi^\uparrow \otimes \Psi^\downarrow\)</span>, where <span class="math notranslate nohighlight">\(\Psi^\downarrow_{ij}\)</span> can differ from <span class="math notranslate nohighlight">\(\Psi^\uparrow_{ij}\)</span>. This means the two spin sectors are separate and may have distinct wavefunctions. Such a wavefunction is commonly referred to as a “UHF” (Unrestricted Hartree-Fock) wavefunction, and the corresponding walker is called a “UHF walker.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_uhf_test.h5&quot;</span>
+<span class="n">sd_uhf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
+
+<span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;collinear&#39;</span><span class="p">,</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+          <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">!h5dump</span> <span class="pre">wfn_uhf_test.h5</span></code> to inspect the output file, you’ll see the following structure. The <code class="docutils literal notranslate"><span class="pre">Psi0_alpha</span></code> dataset contains the Slater determinant matrix for spin-up electrons, while <code class="docutils literal notranslate"><span class="pre">Psi0_beta</span></code> contains the matrix for spin-down electrons.</p>
+<p>In summary, to generate a UHF wavefunction, you need to provide an array <code class="docutils literal notranslate"><span class="pre">A</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">norb,</span> <span class="pre">nelec[0]</span> <span class="pre">+</span> <span class="pre">nelec[1])</span></code>, where <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">i,</span> <span class="pre">j]</span></code> = <span class="math notranslate nohighlight">\(\Psi_{ij}^↑\)</span> for j &lt; nelec[0], and <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">i,</span> <span class="pre">nelec[0]</span> <span class="pre">+</span> <span class="pre">j]</span></code> = <span class="math notranslate nohighlight">\(\Psi_{ij}^↓\)</span> for j &lt; nelec[1]. Setting walker_type=’uhf’ ensures the wavefunction is constructed with separate spin-up and spin-down components.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>h5dump<span class="w"> </span>wfn_uhf_test.h5<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ghf-wavefunction">
+<h3><span class="section-number">6.2.3. </span>GHF wavefunction<a class="headerlink" href="#ghf-wavefunction" title="Link to this heading">#</a></h3>
+<p>Generate a wavefunction of the general form <span class="math notranslate nohighlight">\(\Psi = \Psi^{\uparrow,\downarrow}\)</span>, where the spin sectors are mixed. This form typically arises in systems with spin-orbit coupling or magnetic order in the <span class="math notranslate nohighlight">\(xy\)</span> plane. Such wavefunctions are commonly referred to as “GHF” (Generalized Hartree-Fock) wavefunctions, and the associated walkers are called “GHF walkers.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># (3, 1) or (2, 2) or (1, 3) or (0,4) are equivalent are all equivalent,</span>
+<span class="c1"># as long as the total number of electrons is the same</span>
+<span class="c1"># This is because the GHF wavefunction does not distinguish between spin-up and spin-down components.</span>
+<span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_ghf_test.h5&quot;</span>
+<span class="n">sd_ghf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
+
+<span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+          <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you inspect the output file using !h5dump wfn_ghf_test.h5, you’ll see the following structure. Notably, there is only a <code class="docutils literal notranslate"><span class="pre">Psi0_alpha</span></code> dataset, but its shape is <code class="docutils literal notranslate"><span class="pre">[2</span> <span class="pre">*</span> <span class="pre">norb,</span> <span class="pre">sum(nelec)]</span></code>, representing the full GHF Slater determinant matrix with both spin sectors mixed.
+In summary, to generate a GHF wavefunction, you need to provide an array <code class="docutils literal notranslate"><span class="pre">A[0,</span> <span class="pre">i,</span> <span class="pre">j]</span></code> = <span class="math notranslate nohighlight">\(\Psi_{ij}\)</span> with shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">norb,</span> <span class="pre">nelec[0]</span> <span class="pre">+</span> <span class="pre">nelec[1])</span></code> as input. Setting walker_type=’ghf’ ensures the wavefunction is treated in a mixed spin manner. Note that the <code class="docutils literal notranslate"><span class="pre">norb</span></code> parameter here still refers to the number of spatial orbitals per spin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>h5dump<span class="w"> </span>wfn_ghf_test.h5<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-slater-wavefunction">
+<h3><span class="section-number">6.2.4. </span>Multi-Slater wavefunction<a class="headerlink" href="#multi-slater-wavefunction" title="Link to this heading">#</a></h3>
+<p>Multi-Slater trial wavefunctions are also supported in lattice models. To enable this, the input variable <code class="docutils literal notranslate"><span class="pre">ci</span></code> is provided, which is a 1D array representing the coefficients of the Slater determinants. Correspondingly, the Slater determinant inputs include an extra dimension to stack multiple Slater matrices. To generate a multi-Slater trial wavefunction, simply supply the <code class="docutils literal notranslate"><span class="pre">ci</span></code> array as the list of coefficients and stack the individual Slater matrices along the first dimension—everything else will be handled automatically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># (3, 1) or (2, 2) or (1, 3) or (0,4) are equivalent as long as sum(nelec) is the same</span>
+<span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_multi_ghf_test.h5&quot;</span>
+<span class="n">sd_uhf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+          <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">!h5ls</span> <span class="pre">-r</span> <span class="pre">-d</span> <span class="pre">wfn_multi_ghf_test.h5/Wavefunction/NOMSD</span> </code> you will see an output similar to the following, indicating that there are three datasets named <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, <code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code>, and <code class="docutils literal notranslate"><span class="pre">PsiT_2</span></code> in the file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>h5ls<span class="w"> </span>-r<span class="w"> </span>-d<span class="w"> </span>wfn_multi_ghf_test.h5/Wavefunction/NOMSD
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>(Optional) Change the wavefunction used to initialize the walker.
+In the <code class="docutils literal notranslate"><span class="pre">write_wfn</span></code> function, there is an <code class="docutils literal notranslate"><span class="pre">init</span></code> parameter that accepts the initial wavefunction in a format similar to the corresponding <code class="docutils literal notranslate"><span class="pre">wfn[1]</span></code> (where <code class="docutils literal notranslate"><span class="pre">wfn</span> <span class="pre">=</span> <span class="pre">[ci,</span> <span class="pre">sd_mats]</span></code>). The init input should include an additional leading dimension, regardless of whether it is a multi-Slater trial or not. For example:
+<code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">norb,</span> <span class="pre">nelec//2]</span></code> for RHF, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">norb,</span> <span class="pre">sum(nelec)]</span></code> for UHF, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">norb,</span> <span class="pre">sum(nelec)]</span></code> for GHF. <strong>By default</strong>, the initial walker is set to be identical to the trial wavefunction—specifically, the first trial wavefunction if using a multi-Slater trial.</p></li>
+</ol>
+</section>
+</section>
+<section id="example-free-electron-trial-wavefunction">
+<h2><span class="section-number">6.3. </span>Example: free electron trial wavefunction<a class="headerlink" href="#example-free-electron-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p>We can generate a free-electron trial wavefunction using the <code class="docutils literal notranslate"><span class="pre">free_electron</span></code> function within <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code>. First, we set up the lattice using the <code class="docutils literal notranslate"><span class="pre">get_lattice</span></code> function (in this case a square 4 x 4 lattice with periodic boundary conditions in both directions) and then define other relevant parameters (<code class="docutils literal notranslate"><span class="pre">nelec</span></code>, <code class="docutils literal notranslate"><span class="pre">Uhubb</span></code>, <code class="docutils literal notranslate"><span class="pre">hopping</span></code>). We then build the Hamiltonian that we will simulate with AFQMC. Finally, the trial wavefunction is computed from the one-body part of the Hamiltonian and written in HDF5 format to the file “wfn.h5”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.ham_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianComponent</span><span class="p">,</span> <span class="n">SpinSymm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
+
+<span class="c1"># define lattice</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">Uhubb</span> <span class="o">=</span> <span class="mf">4.0</span>
+
+<span class="c1"># list of hopping parameters is interpreted as follows:</span>
+<span class="c1">#    hopping[0] is &#39;t&#39;</span>
+<span class="c1">#    hopping[1] is &#39;t^{prime}&#39;</span>
+<span class="c1">#    ....</span>
+<span class="c1">#    hopping[n-1] is &#39;t^{n}&#39;</span>
+<span class="n">hopping</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">t</span><span class="o">=</span><span class="n">hopping</span><span class="p">,</span>
+        <span class="n">U</span><span class="o">=</span><span class="n">Uhubb</span><span class="p">,</span>
+    <span class="p">)),</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
+<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+<span class="n">nbasis</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
+
+<span class="n">write_model_hamiltonian</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
+<span class="p">)</span>
+
+<span class="c1"># compute a free-electron trial wfn</span>
+<span class="n">wfn</span><span class="p">,</span><span class="n">spin_symm</span> <span class="o">=</span> <span class="n">free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
+<span class="p">)</span>
+
+<span class="c1"># and write the wavefunction for use in SAFIRE</span>
+<span class="n">write_wfn</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="n">spin_symm</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+    <span class="n">norb</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2><span class="section-number">6.4. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, you became acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 format.</p>
+<section id="what-you-learned">
+<h3><span class="section-number">6.4.1. </span>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How to write a single Slater determinant trial wavefunction given the Slater Matrix</p></li>
+<li><p>How to write a single Slater determinant given orbital occupancies</p></li>
+<li><p>How to write a non-orthogonal multi-Slater determinant trial wavefunction given the expansion coefficients and Slater matrices</p></li>
+<li><p>How to write a configuration-interaction (CI) type trial wavefunction given CI coefficients and a corresponding occupancy strings</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../05_hamiltonian_builder/05_hamiltonian_builder.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>The Hamiltonian Builder</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../07_autohf_crash_course/07_autohf_crash_course.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>AutoHF Crash Course</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">6.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interacting-with-the-trial-wavefunction-hdf5-format">6.2. Interacting with the trial wavefunction HDF5 format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rhf-wavefunction">6.2.1. RHF wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uhf-wavefunction">6.2.2. UHF wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghf-wavefunction">6.2.3. GHF wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-slater-wavefunction">6.2.4. Multi-Slater wavefunction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-free-electron-trial-wavefunction">6.3. Example: free electron trial wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">6.4. Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">6.4.1. What you learned</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
