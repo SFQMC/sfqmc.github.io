@@ -543,7 +543,7 @@ there is no sign problem.</p>
 <span class="c1"># simple setup</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -577,8 +577,8 @@ so we will use this approach.</p>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>              <span class="c1"># lattice dimension along a1</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>              <span class="c1"># lattice dimension along a2</span>
-    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>   <span class="c1"># boundary condition for the boundary *normal to* a1</span>
-    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>    <span class="c1"># similarly for a2</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>   <span class="c1"># boundary condition for the boundary *normal to* a1</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>    <span class="c1"># similarly for a2</span>
 <span class="p">)</span>
 
 <span class="c1"># Step 3.a. build the lattice</span>
@@ -598,14 +598,14 @@ so we will use this approach.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">scratch_dir</span><span class="p">)</span>
 
-<span class="n">fe_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;fe&quot;</span>
+<span class="n">fe_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"fe"</span>
 <span class="n">fe_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Step 2. define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;t&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
-        <span class="s2">&quot;U&quot;</span> <span class="p">:</span> <span class="mf">4.0</span>
+    <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"t"</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
+        <span class="s2">"U"</span> <span class="p">:</span> <span class="mf">4.0</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -615,13 +615,13 @@ so we will use this approach.</p>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span>
 <span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<span class="c1"># set the number of electrons - we&#39;ll use this again</span>
+<span class="c1"># set the number of electrons - we'll use this again</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 
 <span class="c1"># AND save it!</span>
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 </pre></div>
@@ -672,13 +672,13 @@ as shown below.</p>
 <p>… do we want to have a diagram here of k-space, and the expected one-body</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, let&#39;s compute the Free-Electron trial wavefunction</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, let's compute the Free-Electron trial wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
 
 <span class="n">input_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">lattice</span> <span class="o">=</span> <span class="n">lattice_params</span><span class="p">,</span>                           <span class="c1"># from step 1. above</span>
-    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">&quot;hamiltonian&quot;</span><span class="p">]</span>     <span class="c1"># from step 2. above</span>
+    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">"hamiltonian"</span><span class="p">]</span>     <span class="c1"># from step 2. above</span>
 <span class="p">)</span>
 
 
@@ -687,12 +687,12 @@ as shown below.</p>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
     <span class="n">twist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                          <span class="c1"># (optional) using the default small twist</span>
     <span class="n">return_autohf</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">filling_strategy</span><span class="o">=</span><span class="s2">&quot;balanced&quot;</span>
+    <span class="n">filling_strategy</span><span class="o">=</span><span class="s2">"balanced"</span>
 <span class="p">)</span>
 
 <span class="c1"># and write the wavefunction for use in SAFIRE</span>
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;free_electron.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"free_electron.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
     <span class="n">walker_type</span><span class="o">=</span><span class="n">spin_symm</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
@@ -714,8 +714,8 @@ and a Hubbard U contribution of EU=17.50504376677219.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">autohf_results</span>
 
 <span class="c1"># get the density from autohf</span>
-<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">&#39;makeRDMs&#39;</span><span class="p">]</span>
-<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span>
 <span class="n">rdm</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
 <span class="c1"># get lattice dimensions from the Lattice instance</span>
@@ -729,8 +729,8 @@ and a Hubbard U contribution of EU=17.50504376677219.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
     <span class="n">vmin</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="p">)</span>
@@ -747,8 +747,8 @@ and a Hubbard U contribution of EU=17.50504376677219.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
     <span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">vmax</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="p">)</span>
@@ -775,23 +775,23 @@ We have included reasonable AFQMC run parameters for this calculation below.</p>
 
 <span class="c1"># make an input file</span>
 <span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
-    <span class="s2">&quot;propagator&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;use_cp_constraint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-      <span class="s2">&quot;use_real_vbias&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
+    <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="s2">"use_real_vbias"</span> <span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;free_electron.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"free_electron.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span>
 <span class="p">)</span>
 </pre></div>
@@ -817,8 +817,8 @@ We have included reasonable AFQMC run parameters for this calculation below.</p>
 <span class="n">nequil</span> <span class="o">=</span> <span class="mf">5.0</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="n">nequil</span><span class="p">,</span>    <span class="c1"># length of equilibration phase (in units of imaginary time)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># plots a trace of the scalar data</span>
 <span class="p">)</span>
@@ -850,7 +850,7 @@ We will use autoHF to accomplish this.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
 <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD&#39;</span><span class="p">,</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
@@ -868,7 +868,7 @@ We will use autoHF to accomplish this.</p>
 
 <span class="n">autohf_to_afqmc</span><span class="p">(</span>
     <span class="n">results</span><span class="p">,</span>
-    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;uhf_wfn.h5&quot;</span>
+    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -879,8 +879,8 @@ We will use autoHF to accomplish this.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the density from autohf</span>
 <span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">results</span>
 
-<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">&#39;makeRDMs&#39;</span><span class="p">]</span>
-<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span>
 
 <span class="n">rdm</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
@@ -902,7 +902,7 @@ We will use autoHF to accomplish this.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">2.0</span>
 <span class="p">)</span>
@@ -917,8 +917,8 @@ We will use autoHF to accomplish this.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">"bwr"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
@@ -932,23 +932,23 @@ We will use autoHF to accomplish this.</p>
 
 <span class="c1"># make an input file</span>
 <span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
-    <span class="s2">&quot;propagator&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;use_cp_constraint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-      <span class="s2">&quot;use_real_vbias&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
+    <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="s2">"use_real_vbias"</span> <span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;uhf_wfn.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span>
 <span class="p">)</span>
 </pre></div>
@@ -974,15 +974,15 @@ We will use autoHF to accomplish this.</p>
 <span class="n">nequil</span> <span class="o">=</span> <span class="mf">20.0</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="n">nequil</span><span class="p">,</span>    <span class="c1"># length of equilibration phase (in units of imaginary time)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># plots a trace of the scalar data</span>
 <span class="p">)</span>
 
 <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">analysis_settings</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The AFQMC energy is </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The AFQMC energy is </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1012,23 +1012,23 @@ amount of statistics.</p>
 
 <span class="c1"># make an input file</span>
 <span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
-    <span class="s2">&quot;propagator&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;use_cp_constraint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-      <span class="s2">&quot;use_real_vbias&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
+    <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="s2">"use_real_vbias"</span> <span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;uhf_wfn.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span>
 <span class="p">)</span>
 </pre></div>
@@ -1052,15 +1052,15 @@ amount of statistics.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="n">nequil</span><span class="p">,</span>    <span class="c1"># length of equilibration phase (in units of imaginary time)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># plots a trace of the scalar data</span>
 <span class="p">)</span>
 
 <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">analysis_settings</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The AFQMC energy is </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The AFQMC energy is </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1079,27 +1079,27 @@ To “turn on” back-propagation, add an <code class="docutils literal notransl
 block in the input file.
 Here is a sample input file where an ellipsis has been used to hide the rest of the input.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="cm">/* ... */</span>
 <span class="w">      </span>
-<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">      </span><span class="cm">/* ... */</span>
 
-<span class="w">      </span><span class="nt">&quot;population_control_interval&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"population_control_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/* ... */</span>
 
-<span class="w">      </span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;extra_path_restoration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;onerdm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one_rdm&quot;</span>
+<span class="w">      </span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"extra_path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1122,26 +1122,26 @@ This simplifies checking for convergence in the BP length by allowing us to re-u
 
 <span class="c1"># make an input file</span>
 <span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
-    <span class="s2">&quot;propagator&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;use_cp_constraint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-      <span class="s2">&quot;use_real_vbias&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
+    <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="s2">"use_real_vbias"</span> <span class="p">:</span> <span class="kc">True</span>
     <span class="p">},</span>
-    <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;path_restoration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-          <span class="s2">&quot;extra_path_restoration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-          <span class="s2">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-          <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span> <span class="c1"># 🚧 Under construction 🚧 : Kyle is working on a good set of values here.</span>
-          <span class="s2">&quot;equil_multiplier&quot;</span><span class="p">:</span> <span class="mi">420</span><span class="p">,</span>
-          <span class="s2">&quot;onerdm&quot;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;one_rdm&quot;</span>
+    <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"back_propagation"</span><span class="p">,</span>
+          <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+          <span class="s2">"extra_path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+          <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span> <span class="c1"># 🚧 Under construction 🚧 : Kyle is working on a good set of values here.</span>
+          <span class="s2">"equil_multiplier"</span><span class="p">:</span> <span class="mi">420</span><span class="p">,</span>
+          <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"one_rdm"</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1149,9 +1149,9 @@ This simplifies checking for convergence in the BP length by allowing us to re-u
 <span class="nb">print</span><span class="p">(</span><span class="n">afqmc_params</span><span class="p">)</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc_3.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;uhf_wfn.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc_3.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
     <span class="n">series</span><span class="o">=</span><span class="mi">3</span>
 <span class="p">)</span>
@@ -1162,7 +1162,7 @@ This simplifies checking for convergence in the BP length by allowing us to re-u
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_afqmc</span><span class="p">(</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc_3.json&quot;</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc_3.json"</span><span class="p">,</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="p">,</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span> <span class="c1"># this will put output here!</span>
@@ -1202,11 +1202,11 @@ We will use the <code class="docutils literal notranslate"><span class="pre">her
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span><span class="p">,</span><span class="n">get_metadata</span><span class="p">,</span><span class="n">average_observable</span>
 
-<span class="n">SAFIRE_hdf5_output</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s003.stat.h5&quot;</span>
+<span class="n">SAFIRE_hdf5_output</span> <span class="o">=</span> <span class="n">fe_scratch_dir</span> <span class="o">/</span> <span class="s2">"qmc.s003.stat.h5"</span>
 <span class="n">nspins</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># this is a noncollinear calculation, so one (combined) spin sector!</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span> <span class="c1"># get the number of sites to help with plotting</span>
 
-<span class="n">walker_type</span> <span class="o">=</span> <span class="n">WALKER_TYPE</span><span class="p">[</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">SAFIRE_hdf5_output</span><span class="p">)[</span><span class="s2">&quot;WalkerType&quot;</span><span class="p">]]</span>
+<span class="n">walker_type</span> <span class="o">=</span> <span class="n">WALKER_TYPE</span><span class="p">[</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">SAFIRE_hdf5_output</span><span class="p">)[</span><span class="s2">"WalkerType"</span><span class="p">]]</span>
 
 <span class="c1"># set up a transform the hermitize the one-rdm</span>
 <span class="n">hermitize</span> <span class="o">=</span> <span class="n">hermitize_factory</span><span class="p">(</span>
@@ -1214,13 +1214,13 @@ We will use the <code class="docutils literal notranslate"><span class="pre">her
 <span class="p">)</span>
 
 <span class="c1"># get the metadata for plotting</span>
-<span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">SAFIRE_hdf5_output</span><span class="p">,</span><span class="s2">&quot;/Observables/BackPropagated/&quot;</span><span class="p">)</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">SAFIRE_hdf5_output</span><span class="p">,</span><span class="s2">"/Observables/BackPropagated/"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
 
-<span class="n">bp_steps</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;BackPropSteps&quot;</span><span class="p">]</span>
-<span class="n">naverages</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;NumAverages&quot;</span><span class="p">]</span>
+<span class="n">bp_steps</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"BackPropSteps"</span><span class="p">]</span>
+<span class="n">naverages</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"NumAverages"</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BP steps&quot;</span><span class="p">,</span> <span class="n">bp_steps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"BP steps"</span><span class="p">,</span> <span class="n">bp_steps</span><span class="p">)</span>
 
 <span class="c1"># array to save one-rdm for each average</span>
 <span class="n">one_rdms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">naverages</span><span class="p">,</span><span class="n">nspins</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">M</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
@@ -1234,8 +1234,8 @@ We will use the <code class="docutils literal notranslate"><span class="pre">her
     <span class="n">one_rdms</span><span class="p">[</span><span class="n">avg</span><span class="p">],</span><span class="n">one_rdms_err</span><span class="p">[</span><span class="n">avg</span><span class="p">]</span> <span class="o">=</span> <span class="n">average_observable</span><span class="p">(</span>
         <span class="n">SAFIRE_hdf5_output</span><span class="p">,</span>
         <span class="n">eqlb</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-        <span class="n">estimator</span><span class="o">=</span><span class="s1">&#39;back_propagated&#39;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;one_rdm&quot;</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="s1">'back_propagated'</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"one_rdm"</span><span class="p">,</span>
         <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">hermitize</span><span class="p">],</span>
         <span class="n">ix</span><span class="o">=</span><span class="n">avg</span>
     <span class="p">)</span>
@@ -1255,8 +1255,8 @@ We will use the <code class="docutils literal notranslate"><span class="pre">her
     <span class="n">sites</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 
     <span class="c1"># add in constant energy for consistency with SAFIRE convention</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sites</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">rho_up</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">rho_up_err</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;diagonal of $\rho_\uparrow$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sites</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">rho_down</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">rho_down_err</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;diagonal of $\rho_\downarrow$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sites</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">rho_up</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">rho_up_err</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'-o'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">"C</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"diagonal of $\rho_\uparrow$"</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sites</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">rho_down</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">rho_down_err</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">"C</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"diagonal of $\rho_\downarrow$"</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">avg</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># save density for visualizations below!</span>
     <span class="n">rho_ups</span><span class="p">[</span><span class="n">avg</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho_up</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice_dims</span><span class="p">)</span>
@@ -1289,7 +1289,7 @@ Below, we plot the charge density, then the spin density on the lattice.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">2.0</span>
 <span class="p">)</span>
@@ -1311,7 +1311,7 @@ Below, we plot the charge density, then the spin density on the lattice.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>

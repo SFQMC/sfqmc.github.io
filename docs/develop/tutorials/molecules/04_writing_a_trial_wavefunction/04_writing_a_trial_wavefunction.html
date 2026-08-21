@@ -488,7 +488,7 @@ Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 form
 <span class="c1"># simple setup</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -578,9 +578,9 @@ To accomplish this, we wrote down a set of orbitals in the chosen orthonormal or
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;rhf_wavefunction.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wavefunction.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
@@ -610,9 +610,9 @@ To accomplish this, we wrote down a set of orbitals in the chosen orthonormal or
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;rhf_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
@@ -677,9 +677,9 @@ details on the expected data.</p>
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span> <span class="n">phi_nomsd</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;NOMSD_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
@@ -706,9 +706,9 @@ details on the expected data.</p>
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span> <span class="n">phi_nomsd</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;NOMSD_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
@@ -796,9 +796,9 @@ Combining these ingredients (array of normalized coefficients, array of occupied
 
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;PHMSD_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"PHMSD_wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;uhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"uhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>

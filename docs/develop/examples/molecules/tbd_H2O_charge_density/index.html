@@ -456,7 +456,7 @@ the water molecule at its equilibrium geometry.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -467,13 +467,13 @@ the water molecule at its equilibrium geometry.</p>
 <h2>The Water Molecule<a class="headerlink" href="#the-water-molecule" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">minimal example for understanding how PySCF computes the charge density and dipole moment.</span>
 
 <span class="sd">The sum of rho does not equal</span>
 <span class="sd">the total number of electrons...</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
@@ -484,30 +484,30 @@ the water molecule at its equilibrium geometry.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cubegen</span>
 
 <span class="n">scratch</span> <span class="o">=</span> <span class="n">scratch_dir</span>
-<span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch</span> <span class="o">/</span> <span class="s2">&quot;uhf.chk&quot;</span>
+<span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch</span> <span class="o">/</span> <span class="s2">"uhf.chk"</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Equilibrium geometry of $H_2O$:</span>
 
 <span class="sd">a0 = 0.9572</span>
 <span class="sd">theta = 104.52 degrees</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="n">a0</span> <span class="o">=</span> <span class="mf">0.9572</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mf">104.52</span>
 <span class="n">ay</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">O 0.000 0.000 0.000</span>
 <span class="s2">H </span><span class="si">{</span><span class="n">ax</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="o">-</span><span class="n">ay</span><span class="si">}</span><span class="s2"> 0.0</span>
 <span class="s2">H </span><span class="si">{</span><span class="o">-</span><span class="n">ax</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="o">-</span><span class="n">ay</span><span class="si">}</span><span class="s2"> 0.0</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
     <span class="n">atom</span> <span class="o">=</span> <span class="n">atoms</span><span class="p">,</span>
     <span class="n">spin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;cc-pvdz&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">'cc-pvdz'</span><span class="p">,</span>
     <span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="p">)</span>
 
@@ -519,23 +519,23 @@ the water molecule at its equilibrium geometry.</p>
 
 <span class="n">nx</span> <span class="o">=</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">nz</span> <span class="o">=</span> <span class="mi">3</span>
 
-<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="s1">&#39;h2o_den.cube&#39;</span><span class="p">,</span> <span class="n">rdm</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="n">nz</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="s1">'h2o_den.cube'</span><span class="p">,</span> <span class="n">rdm</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="n">nz</span><span class="p">)</span>
 
 
 <span class="n">mycube</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">Cube</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="n">nz</span><span class="p">)</span>
-<span class="n">mycube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;h2o_den.cube&#39;</span><span class="p">)</span>
+<span class="n">mycube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'h2o_den.cube'</span><span class="p">)</span>
 <span class="n">volume_element</span> <span class="o">=</span> <span class="n">mycube</span><span class="o">.</span><span class="n">get_volume_element</span><span class="p">()</span> <span class="c1"># NOTE: this is the volume in fractional coords!!! Need actual volume element!!</span>
 
 <span class="n">ngrids</span> <span class="o">=</span> <span class="n">rho</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">rho</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">*</span><span class="n">volume_element</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;grid size = </span><span class="si">{</span><span class="n">nx</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">ny</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">nz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;volume element = </span><span class="si">{</span><span class="n">volume_element</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">*</span><span class="n">volume_element</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"grid size = </span><span class="si">{</span><span class="n">nx</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">ny</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">nz</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"volume element = </span><span class="si">{</span><span class="n">volume_element</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
-<span class="c1">#print(f&quot;Integrated charge = {np.sum(rho)}&quot;)</span>
-<span class="c1">#print(f&quot;Number of grid points = {ngrids}&quot;)</span>
+<span class="c1">#print(f"Integrated charge = {np.sum(rho)}")</span>
+<span class="c1">#print(f"Number of grid points = {ngrids}")</span>
 
-<span class="c1">#print(f&quot;Charge per volume element = {np.sum(rho)*volume_element}&quot;)</span>
+<span class="c1">#print(f"Charge per volume element = {np.sum(rho)*volume_element}")</span>
 </pre></div>
 </div>
 </div>
@@ -567,34 +567,34 @@ the water molecule at its equilibrium geometry.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
 
-<span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./scratch&quot;</span><span class="p">)</span>
+<span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./scratch"</span><span class="p">)</span>
 <span class="n">scratch</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">reference</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./ref_results&quot;</span><span class="p">)</span>
+<span class="n">reference</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./ref_results"</span><span class="p">)</span>
 <span class="n">reference</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">afqmc_run_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./run_afqmc&quot;</span><span class="p">)</span>
+<span class="n">afqmc_run_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./run_afqmc"</span><span class="p">)</span>
 <span class="n">afqmc_run_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<span class="n">uhf_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">&quot;uhf_rdm.h5&quot;</span>
-<span class="n">dft_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">&quot;dft_pbe.h5&quot;</span>
-<span class="n">cc_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">&quot;cc.h5&quot;</span>
+<span class="n">uhf_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"uhf_rdm.h5"</span>
+<span class="n">dft_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"dft_pbe.h5"</span>
+<span class="n">cc_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"cc.h5"</span>
 
-<span class="n">scf_data_basis</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">&quot;rhf.chk&quot;</span><span class="p">)</span>
+<span class="n">scf_data_basis</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">"rhf.chk"</span><span class="p">)</span>
 
-<span class="n">mo_coeff</span> <span class="o">=</span> <span class="n">scf_data_basis</span><span class="p">[</span><span class="s2">&quot;mo_coeff&quot;</span><span class="p">]</span>
+<span class="n">mo_coeff</span> <span class="o">=</span> <span class="n">scf_data_basis</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span>
 
 <span class="n">a0</span> <span class="o">=</span> <span class="mf">0.9572</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mf">104.52</span>
 <span class="n">ay</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
 
-<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">O 0.000 0.000 0.000</span>
 <span class="s2">H </span><span class="si">{</span><span class="n">ax</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ay</span><span class="si">}</span><span class="s2"> 0.0</span>
 <span class="s2">H </span><span class="si">{</span><span class="o">-</span><span class="n">ax</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ay</span><span class="si">}</span><span class="s2"> 0.0</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">x_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span>
 <span class="n">x_max</span> <span class="o">=</span> <span class="mf">1.2</span>
@@ -605,21 +605,21 @@ the water molecule at its equilibrium geometry.</p>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">rdm_mo2ao</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_mo</span><span class="p">,</span><span class="n">C</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">    Convert RDM from MO basis to AO basis.</span>
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">        \gamma_{\mu\nu} = S_{\mu\mu&#39;} C_{\mu&#39; i}  \gamma_{ij} C^*_{j \nu&#39;} S_{\nu&#39; \nu}</span>
+<span class="sd">        \gamma_{\mu\nu} = S_{\mu\mu'} C_{\mu' i}  \gamma_{ij} C^*_{j \nu'} S_{\nu' \nu}</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s1">&#39;int1e_ovlp&#39;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s1">'int1e_ovlp'</span><span class="p">)</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">S</span> <span class="o">@</span> <span class="n">C</span>
     <span class="n">rdm_ao</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">rdm_mo</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
     <span class="k">return</span> <span class="n">rdm_ao</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_xy_density</span><span class="p">(</span><span class="n">spin_summed_rho</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_xy_density</span><span class="p">(</span><span class="n">spin_summed_rho</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
     <span class="c1"># make 2d density plot in the x-y plane at z=0</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">x_points</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">y_points</span><span class="p">)</span>
@@ -633,16 +633,16 @@ the water molecule at its equilibrium geometry.</p>
     <span class="c1">#import pdb; pdb.set_trace()</span>
 
     <span class="c1"># Example function to evaluate on the grid (e.g., Gaussian function)</span>
-    <span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;density</span><span class="si">{</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">label</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s2">.cube&quot;</span><span class="p">,</span> <span class="n">spin_summed_rho</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"density</span><span class="si">{</span><span class="s2">"_"</span><span class="o">+</span><span class="n">label</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">""</span><span class="si">}</span><span class="s2">.cube"</span><span class="p">,</span> <span class="n">spin_summed_rho</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Plot the 2D density plot</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span>
         <span class="mi">100</span><span class="o">*</span><span class="n">rho</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;hot&quot;</span><span class="p">,</span><span class="c1">#&quot;bone&quot;,#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"hot"</span><span class="p">,</span><span class="c1">#"bone",#"Purples" #"viridis",</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">"bicubic"</span>
     <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"Density"</span><span class="p">)</span>
 
     <span class="c1"># Set tick positions and labels</span>
     <span class="n">tick_positions_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -655,96 +655,96 @@ the water molecule at its equilibrium geometry.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">tick_positions_y</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">tick_labels_y</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Charge Density of $H_2O$ in X-Y plane&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"X"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Y"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Charge Density of $H_2O$ in X-Y plane"</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input Molecule&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Input Molecule"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 
 <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
     <span class="n">atom</span> <span class="o">=</span> <span class="n">atoms</span><span class="p">,</span>
     <span class="n">spin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;cc-pvdz&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">'cc-pvdz'</span><span class="p">,</span>
     <span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="p">)</span>
 
-<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">uhf_results</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">rdm_uhf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;rdm_uhf&quot;</span><span class="p">][:]</span>
+<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">uhf_results</span><span class="p">,</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rdm_uhf</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"rdm_uhf"</span><span class="p">][:]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UHF Density&quot;</span><span class="p">)</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;UHF_density.cube&quot;</span><span class="p">,</span> <span class="n">rdm_uhf</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"UHF Density"</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">"UHF_density.cube"</span><span class="p">,</span> <span class="n">rdm_uhf</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">plot_xy_density</span><span class="p">(</span><span class="n">rdm_uhf</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;UHF&quot;</span><span class="p">)</span>
+<span class="n">plot_xy_density</span><span class="p">(</span><span class="n">rdm_uhf</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"UHF"</span><span class="p">)</span>
 
 <span class="n">xcut_idx</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1">#np.argmax(np.sum(rho_uhf, axis=(1,2)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span>
         <span class="mi">100</span><span class="o">*</span><span class="n">rho</span><span class="p">[</span><span class="n">xcut_idx</span><span class="p">],</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bone&quot;</span><span class="p">,</span><span class="c1">#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"bone"</span><span class="p">,</span><span class="c1">#"Purples" #"viridis",</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">"bicubic"</span>
     <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_uhf</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Ha&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_uhf</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">"Ha"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
-<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">dft_results</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">rdm_dft</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;rdm&quot;</span><span class="p">][:]</span>
+<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">dft_results</span><span class="p">,</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rdm_dft</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"rdm"</span><span class="p">][:]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DFT-PBE Density&quot;</span><span class="p">)</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;DFT_density.cube&quot;</span><span class="p">,</span> <span class="n">rdm_dft</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"DFT-PBE Density"</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">"DFT_density.cube"</span><span class="p">,</span> <span class="n">rdm_dft</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="n">plot_xy_density</span><span class="p">(</span><span class="n">rdm_dft</span><span class="p">,</span><span class="s2">&quot;DFT&quot;</span><span class="p">)</span>
+<span class="n">plot_xy_density</span><span class="p">(</span><span class="n">rdm_dft</span><span class="p">,</span><span class="s2">"DFT"</span><span class="p">)</span>
 
 <span class="n">xcut_idx</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1">#np.argmax(np.sum(rho_uhf, axis=(1,2)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span>
         <span class="mi">100</span><span class="o">*</span><span class="n">rho</span><span class="p">[</span><span class="n">xcut_idx</span><span class="p">],</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bone&quot;</span><span class="p">,</span><span class="c1">#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"bone"</span><span class="p">,</span><span class="c1">#"Purples" #"viridis",</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">"bicubic"</span>
     <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_dft</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Ha&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_dft</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">"Ha"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">cc_results</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">rdm_cc</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;rdm_cc&quot;</span><span class="p">][:]</span>
+<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">cc_results</span><span class="p">,</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rdm_cc</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"rdm_cc"</span><span class="p">][:]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CCSD Density&quot;</span><span class="p">)</span>
-<span class="c1">#rho = cubegen.density(mol, &quot;CC_density.cube&quot;, rdm_cc, nx=200, ny=200, nz=1)</span>
-<span class="c1">#plot_xy_density(rho,&quot;CCSD&quot;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"CCSD Density"</span><span class="p">)</span>
+<span class="c1">#rho = cubegen.density(mol, "CC_density.cube", rdm_cc, nx=200, ny=200, nz=1)</span>
+<span class="c1">#plot_xy_density(rho,"CCSD")</span>
 
 <span class="n">xcut_idx</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1">#np.argmax(np.sum(rho_uhf, axis=(1,2)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span>
         <span class="mi">100</span><span class="o">*</span><span class="n">rho</span><span class="p">[</span><span class="n">xcut_idx</span><span class="p">],</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bone&quot;</span><span class="p">,</span><span class="c1">#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"bone"</span><span class="p">,</span><span class="c1">#"Purples" #"viridis",</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">"bicubic"</span>
     <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_cc</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Ha&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_cc</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">"Ha"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
 
 <span class="n">rho_avg</span><span class="p">,</span> <span class="n">delta_rho</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span>
-    <span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_run_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.stat.h5&quot;</span>
+    <span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_run_dir</span><span class="o">/</span><span class="s2">"qmc.s000.stat.h5"</span>
 <span class="p">)</span>
 
 <span class="n">naverages</span> <span class="o">=</span> <span class="n">rho_avg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -752,7 +752,7 @@ the water molecule at its equilibrium geometry.</p>
 <span class="n">nmo</span> <span class="o">=</span> <span class="n">rho_avg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AFQMC Density&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"AFQMC Density"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">average</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">naverages</span><span class="p">):</span>
 
     <span class="n">spin_summed_rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="n">average</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -760,22 +760,22 @@ the water molecule at its equilibrium geometry.</p>
     <span class="c1"># TODO: convert to ao basis!!!</span>
     <span class="n">rdm_ao</span> <span class="o">=</span> <span class="n">rdm_mo2ao</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">spin_summed_rho</span><span class="p">,</span><span class="n">mo_coeff</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average </span><span class="si">{</span><span class="n">average</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;AFQMC_density_avg</span><span class="si">{</span><span class="n">average</span><span class="si">}</span><span class="s2">.cube&quot;</span><span class="p">,</span> <span class="n">rdm_ao</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Average </span><span class="si">{</span><span class="n">average</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"AFQMC_density_avg</span><span class="si">{</span><span class="n">average</span><span class="si">}</span><span class="s2">.cube"</span><span class="p">,</span> <span class="n">rdm_ao</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">xcut_idx</span> <span class="o">=</span> <span class="mi">12</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="n">average</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="n">average</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span>
             <span class="mi">100</span><span class="o">*</span><span class="n">rho</span><span class="p">[</span><span class="n">xcut_idx</span><span class="p">],</span>
-            <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bone&quot;</span><span class="p">,</span><span class="c1">#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-            <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="s2">"bone"</span><span class="p">,</span><span class="c1">#"Purples" #"viridis",</span>
+            <span class="n">interpolation</span><span class="o">=</span><span class="s2">"bicubic"</span>
         <span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    <span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_ao</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Ha&quot;</span><span class="p">)</span>
+    <span class="n">mu_vec</span> <span class="o">=</span>  <span class="n">dip_moment</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">rdm_ao</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s2">"Ha"</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mu vector = </span><span class="si">{</span><span class="n">mu_vec</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dipole moment = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">mu_vec</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># make 2d density plot in the x-y plane at z=0</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">x_points</span><span class="p">)</span>
@@ -785,22 +785,22 @@ the water molecule at its equilibrium geometry.</p>
     <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
     <span class="c1"># Example function to evaluate on the grid (e.g., Gaussian function)</span>
-    <span class="c1">#rho = cubegen.density(mol, &quot;AFQMC_density.cube&quot;, rdm_ao, nx=200, ny=200, nz=1)</span>
+    <span class="c1">#rho = cubegen.density(mol, "AFQMC_density.cube", rdm_ao, nx=200, ny=200, nz=1)</span>
 
     <span class="c1"># Plot the 2D density plot</span>
     <span class="c1">#plt.figure(figsize=(8, 6))</span>
     <span class="c1">#plt.matshow(</span>
     <span class="c1">#    100*rho[xcut_idx],</span>
-    <span class="c1">#    cmap=&quot;bone&quot;,#&quot;Purples&quot; #&quot;viridis&quot;,</span>
-    <span class="c1">#    interpolation=&quot;bicubic&quot;</span>
+    <span class="c1">#    cmap="bone",#"Purples" #"viridis",</span>
+    <span class="c1">#    interpolation="bicubic"</span>
     <span class="c1">#)</span>
-    <span class="c1">#plt.colorbar(label=&quot;Density&quot;)</span>
-    <span class="c1">#plt.xlabel(&quot;X&quot;)</span>
-    <span class="c1">#plt.ylabel(&quot;Y&quot;)</span>
-    <span class="c1">#plt.title(&quot;Charge Density of $H_2O$ in X-Y plane&quot;)</span>
+    <span class="c1">#plt.colorbar(label="Density")</span>
+    <span class="c1">#plt.xlabel("X")</span>
+    <span class="c1">#plt.ylabel("Y")</span>
+    <span class="c1">#plt.title("Charge Density of $H_2O$ in X-Y plane")</span>
     <span class="c1">#plt.show()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Done"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

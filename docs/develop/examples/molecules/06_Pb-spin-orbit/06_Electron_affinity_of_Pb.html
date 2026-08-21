@@ -546,11 +546,11 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">ecp_soc</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Pb&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+    <span class="s1">'Pb'</span> <span class="p">:</span> <span class="s1">'''</span>
 <span class="s1">    Pb nelec 60</span>
 <span class="s1">    Pb ul</span>
 <span class="s1">    2       1.0000000              0.0000000</span>
@@ -573,11 +573,11 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="s1">    Pb G</span>
 <span class="s1">    2       5.6915770             -9.0966650         4.548332</span>
 <span class="s1">    2       5.7155670            -11.5319960        -4.612798</span>
-<span class="s1">    &#39;&#39;&#39;</span>
+<span class="s1">    '''</span>
 <span class="p">}</span>
 
-<span class="n">aug_cc_pvdz_pp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">BASIS &quot;ao basis&quot; SPHERICAL PRINT</span>
+<span class="n">aug_cc_pvdz_pp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"""</span>
+<span class="s2">BASIS "ao basis" SPHERICAL PRINT</span>
 <span class="s2">#BASIS SET: (9s,7p,7d) -&gt; [5s,4p,3d]</span>
 <span class="s2">Pb    S</span>
 <span class="s2">     37.4583000              0.0248240              0.0000000              0.0067850              0.0000000</span>
@@ -609,7 +609,7 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="s2">Pb    D</span>
 <span class="s2">      0.0609000              1.0000000</span>
 <span class="s2">END</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
@@ -625,12 +625,12 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
 
-<span class="n">neutral_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;neutral_atom&quot;</span>
+<span class="n">neutral_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"neutral_atom"</span>
 <span class="n">neutral_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1">## Run SOC-GHF using PySCF</span>
 <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
-    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;Pb 0. 0. 0.&quot;</span><span class="p">,</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">"Pb 0. 0. 0."</span><span class="p">,</span>
     <span class="n">basis</span><span class="o">=</span><span class="n">aug_cc_pvdz_pp</span><span class="p">,</span>
     <span class="n">ecp</span><span class="o">=</span><span class="n">ecp_soc</span><span class="p">,</span>
     <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -640,7 +640,7 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 
 <span class="c1"># 1. Compute ROHF orbitals to use as a basis. NOTE: SOC will be ignored!</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">'rohf.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="c1"># perform stability analysis - see PySCF example:</span>
@@ -651,11 +651,11 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># 2.a. compute a &quot;No SOC&quot; trial wavefunction</span>
+<span class="c1"># 2.a. compute a "No SOC" trial wavefunction</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">'ghf.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
@@ -664,11 +664,11 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># 2.b. compute a &quot;SOC&quot; trial wavefunction</span>
+<span class="c1"># 2.b. compute a "SOC" trial wavefunction</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span><span class="o">/</span><span class="s1">'ghf_soc.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
@@ -678,7 +678,7 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -704,14 +704,14 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 
 <span class="c1"># inputs</span>
 <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span>
-<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rohf.chk&#39;</span>
-<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf.chk&#39;</span>
-<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'rohf.chk'</span>
+<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'ghf.chk'</span>
+<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'ghf_soc.chk'</span>
 <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
 <span class="c1"># output</span>
-<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_sf.h5&#39;</span>
-<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc_sf.h5'</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc_soc.h5'</span>
 
 <span class="c1">#####################################</span>
 <span class="c1">#                                   #</span>
@@ -722,7 +722,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1"># Save the Hamiltonian</span>
 <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
-    <span class="n">soc_type</span><span class="o">=</span><span class="s1">&#39;ecp&#39;</span><span class="p">,</span>
+    <span class="n">soc_type</span><span class="o">=</span><span class="s1">'ecp'</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
@@ -731,7 +731,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
     <span class="n">fout_soc</span><span class="p">,</span>
     <span class="n">chol_tol</span><span class="p">,</span>
     <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
     <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">ortho_ao</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
@@ -765,16 +765,16 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 
 <span class="c1"># Write json input file</span>
 <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
 <span class="p">}</span>
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">fwfn0</span><span class="o">=</span><span class="n">fout_soc</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
 <span class="p">)</span>
@@ -782,16 +782,16 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1"># run AFQMC</span>
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">local_scratch_dir</span><span class="p">,</span>
-    <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+    <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
     <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span>
@@ -811,12 +811,12 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
 
-<span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;charged_atoms&quot;</span>
+<span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"charged_atoms"</span>
 <span class="n">charged_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1">## Run SOC-GHF using PySCF</span>
 <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
-    <span class="n">atom</span><span class="o">=</span><span class="s2">&quot;Pb 0. 0. 0.&quot;</span><span class="p">,</span>
+    <span class="n">atom</span><span class="o">=</span><span class="s2">"Pb 0. 0. 0."</span><span class="p">,</span>
     <span class="n">basis</span><span class="o">=</span><span class="n">aug_cc_pvdz_pp</span><span class="p">,</span>
     <span class="n">ecp</span><span class="o">=</span><span class="n">ecp_soc</span><span class="p">,</span>
     <span class="n">charge</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
@@ -826,7 +826,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 
 <span class="c1"># 1. Compute ROHF orbitals to use as a basis.</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;rohf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">'rohf.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="c1"># perform stability analysis - see PySCF example:</span>
@@ -837,11 +837,11 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ROHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># 2.a. compute a &quot;No SOC&quot; trial wavefunction</span>
+<span class="c1"># 2.a. compute a "No SOC" trial wavefunction</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">'ghf.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="n">mo1</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
@@ -850,11 +850,11 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># 2.b. compute a &quot;SOC&quot; trial wavefunction</span>
+<span class="c1"># 2.b. compute a "SOC" trial wavefunction</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">GHF</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span><span class="o">/</span><span class="s1">'ghf_soc.chk'</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">with_soc</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
@@ -864,7 +864,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SOC-GHF electronic energy: </span><span class="si">{</span><span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -883,14 +883,14 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 
 <span class="c1"># inputs</span>
 <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span>
-<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rohf.chk&#39;</span>
-<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf.chk&#39;</span>
-<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;ghf_soc.chk&#39;</span>
+<span class="n">basis_chk</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'rohf.chk'</span>
+<span class="n">ghf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'ghf.chk'</span>
+<span class="n">ghf_soc_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'ghf_soc.chk'</span>
 <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
 <span class="c1"># output</span>
-<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_sf.h5&#39;</span>
-<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc_sf.h5'</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc_soc.h5'</span>
 
 <span class="c1">#####################################</span>
 <span class="c1">#                                   #</span>
@@ -901,7 +901,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1"># Save the Hamiltonian</span>
 <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
-    <span class="n">soc_type</span> <span class="o">=</span> <span class="s2">&quot;ecp&quot;</span><span class="p">,</span>
+    <span class="n">soc_type</span> <span class="o">=</span> <span class="s2">"ecp"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
@@ -910,7 +910,7 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
     <span class="n">fout_soc</span><span class="p">,</span>
     <span class="n">chol_tol</span><span class="p">,</span>
     <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
     <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
@@ -935,9 +935,9 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;charged_atoms&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">charged_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"charged_atoms"</span>
 <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">charged_scratch_dir</span>
-<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc_soc.h5&#39;</span>
+<span class="n">fout_soc</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc_soc.h5'</span>
 </pre></div>
 </div>
 </div>
@@ -952,16 +952,16 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 
 <span class="c1"># Write json input file</span>
 <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
 <span class="p">}</span>
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">fwfn0</span><span class="o">=</span><span class="n">fout_soc</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
 <span class="p">)</span>
@@ -969,14 +969,14 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1"># run AFQMC</span>
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">local_scratch_dir</span><span class="p">,</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span>
@@ -1001,7 +1001,7 @@ It should be 0.48(3) eV for the aug-cc-pVDZ basis set.</p>
 <span class="n">EA</span> <span class="o">=</span> <span class="n">E</span> <span class="o">-</span> <span class="n">E_charged</span>
 <span class="n">dEA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">dE</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">dE_charged</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The electron affinity is </span><span class="si">{</span><span class="n">EA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dEA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The electron affinity is </span><span class="si">{</span><span class="n">EA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dEA</span><span class="o">*</span><span class="n">eV</span><span class="si">}</span><span class="s2"> eV"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

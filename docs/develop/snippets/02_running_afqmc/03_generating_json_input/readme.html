@@ -523,34 +523,34 @@ of the “estimator” block(s).
 Each type of “estimator” block has it’s own set of possible arguments.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
-<span class="c1"># these will be written to the &quot;execute&quot; block</span>
+<span class="c1"># these will be written to the "execute" block</span>
 <span class="c1">#    in the .json input file using the same keywards</span>
 <span class="c1">#     as in the .json format</span>
-<span class="c1"># Here are all of the possible inputs for the &quot;execute&quot; block </span>
-<span class="c1">#  *except* for the &quot;estimator&quot; key which has additional internal options.</span>
+<span class="c1"># Here are all of the possible inputs for the "execute" block </span>
+<span class="c1">#  *except* for the "estimator" key which has additional internal options.</span>
 <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># measurement interval = measure_interval_multiplier * population_control_interval</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>       <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-    <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s2">&quot;print_components&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># in units of steps</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># measurement interval = measure_interval_multiplier * population_control_interval</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>       <span class="c1"># in units of steps</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"energy"</span><span class="p">,</span>
+        <span class="s2">"overwrite"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"print_components"</span><span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span> 
-    <span class="n">fwfn0</span><span class="o">=</span><span class="s2">&quot;afqmc_wfn.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="s2">&quot;afqmc_ham.h5&quot;</span><span class="p">,</span>
+    <span class="s2">"afqmc.json"</span><span class="p">,</span> 
+    <span class="n">fwfn0</span><span class="o">=</span><span class="s2">"afqmc_wfn.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="s2">"afqmc_ham.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Done"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that all intervals are expressed in units of “steps”.

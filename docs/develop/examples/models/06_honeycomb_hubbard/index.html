@@ -518,7 +518,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -538,9 +538,9 @@
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
-        <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;honeycomb&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
+        <span class="nb">type</span> <span class="o">=</span> <span class="s2">"honeycomb"</span>
     <span class="p">)</span>
 <span class="p">)</span>
 
@@ -549,11 +549,11 @@
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">6.0</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="mf">6.0</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
@@ -563,7 +563,7 @@
 <span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
 <span class="c1"># save for AFQMC</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -576,16 +576,16 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
 <span class="c1"># Typically, we want to use a Ueff to generate a trial wavefunction</span>
-<span class="c1">#    since HF&#39;s critical U is lower than the correct critical U</span>
+<span class="c1">#    since HF's critical U is lower than the correct critical U</span>
 <span class="n">Ueff</span> <span class="o">=</span> <span class="mf">3.0</span>
 
 <span class="c1"># define effective Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="n">Ueff</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="n">Ueff</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
@@ -601,7 +601,7 @@
 <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD_ROT&#39;</span><span class="p">,</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD_ROT'</span><span class="p">,</span>
     <span class="n">numSteps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
     <span class="n">numTrials</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
@@ -610,7 +610,7 @@
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">lattice_hf</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf_hamiltonian</span><span class="p">,</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
 
-<span class="n">autohf_to_afqmc</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">output_fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">)</span>
+<span class="n">autohf_to_afqmc</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="n">output_fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -625,18 +625,18 @@
 
 <span class="c1"># write input file</span>
 <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of the population control interval</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of the population control interval</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
 <span class="p">)</span>
 </pre></div>
@@ -651,8 +651,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run SAFIRE</span>
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
-    <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>   <span class="c1"># optionally direct output to file instead of here</span>
 <span class="p">)</span>
@@ -669,8 +669,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">))</span>

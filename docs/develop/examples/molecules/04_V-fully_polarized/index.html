@@ -596,22 +596,22 @@ which is the exact energy within the active space, to well within chemical accur
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Computing the energy of ferro-magnetically coupled</span>
 <span class="sd">       Vandium atoms.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># 0. use an isolated vanadium atom to build a guess for the ferro-magnetic case</span>
     <span class="n">single_mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="s1">&#39;V 0. 0. 0.&#39;</span><span class="p">,</span>
-        <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="s1">'V 0. 0. 0.'</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="s1">'ccpvdz'</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">5</span>
     <span class="p">)</span>
 
     <span class="c1"># this will be a basis</span>
     <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">single_mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;rohf.chk&#39;</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'rohf.chk'</span>
     <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
     <span class="c1"># Report ROHF energy decomposition and total energy.</span>
@@ -620,21 +620,21 @@ which is the exact energy within the active space, to well within chemical accur
     <span class="n">e_one</span> <span class="o">=</span> <span class="n">e_elec</span> <span class="o">-</span> <span class="n">e_coul</span>
     <span class="n">e_tot</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">e_tot</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROHF one-electron energy: &quot;</span><span class="p">,</span> <span class="n">e_one</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROHF Coulomb/exchange energy: &quot;</span><span class="p">,</span> <span class="n">e_coul</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROHF electronic energy: &quot;</span><span class="p">,</span> <span class="n">e_elec</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROHF nuclear repulsion energy: &quot;</span><span class="p">,</span> <span class="n">e_nuc</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROHF total energy: &quot;</span><span class="p">,</span> <span class="n">e_tot</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF one-electron energy: "</span><span class="p">,</span> <span class="n">e_one</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF Coulomb/exchange energy: "</span><span class="p">,</span> <span class="n">e_coul</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF electronic energy: "</span><span class="p">,</span> <span class="n">e_elec</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF nuclear repulsion energy: "</span><span class="p">,</span> <span class="n">e_nuc</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF total energy: "</span><span class="p">,</span> <span class="n">e_tot</span><span class="p">)</span>
 
     
     
     <span class="c1"># Getting a reference energy:</span>
     <span class="n">mycas</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASCI</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">E_casci</span> <span class="o">=</span>  <span class="n">mycas</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CASCI(32,3) energy: &quot;</span><span class="p">,</span> <span class="n">E_casci</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"CASCI(32,3) energy: "</span><span class="p">,</span> <span class="n">E_casci</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -657,24 +657,24 @@ which is the exact energy within the active space, to well within chemical accur
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 
     <span class="c1"># inputs</span>
-    <span class="n">basis_chk</span> <span class="o">=</span> <span class="s1">&#39;../scf/rohf.chk&#39;</span>
+    <span class="n">basis_chk</span> <span class="o">=</span> <span class="s1">'../scf/rohf.chk'</span>
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
     <span class="n">cas_afqmc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
     
     <span class="c1"># output</span>
-    <span class="n">fout</span> <span class="o">=</span> <span class="s1">&#39;afqmc.h5&#39;</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="s1">'afqmc.h5'</span>
 
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">basis_chk</span><span class="p">,</span> <span class="s1">&#39;scf&#39;</span><span class="p">)</span>
+    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">basis_chk</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
 
-    <span class="n">mol</span> <span class="o">=</span> <span class="n">basis_scf_data</span><span class="p">[</span><span class="s1">&#39;mol&#39;</span><span class="p">]</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">basis_scf_data</span><span class="p">[</span><span class="s1">'mol'</span><span class="p">]</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelec</span>
 
     <span class="n">ncore</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">cas_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">ncore</span> <span class="o">&gt;=</span> <span class="mi">0</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">20</span> <span class="o">+</span> <span class="s2">&quot; scf_info &quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span><span class="o">*</span><span class="mi">20</span> <span class="o">+</span> <span class="s2">" scf_info "</span> <span class="o">+</span> <span class="s2">"="</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">basis_scf_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">  :  </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">  :  </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">write_hamil_mol</span><span class="p">(</span>
         <span class="n">basis_scf_data</span><span class="p">,</span>
@@ -692,7 +692,7 @@ which is the exact energy within the active space, to well within chemical accur
     <span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>

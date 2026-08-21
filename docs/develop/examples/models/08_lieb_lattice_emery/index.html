@@ -520,7 +520,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -536,7 +536,7 @@
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;square&#39;</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'square'</span><span class="p">,</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>    <span class="c1"># Cu 3d_{x^2 - y^2}</span>
         <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># O 2p_x</span>
@@ -548,7 +548,7 @@
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
-<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lieb Lattice&quot;</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">"Lieb Lattice"</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -572,11 +572,11 @@
 <span class="c1">#   overlap of the +/- lobes of the Co 3d_{x^2 - y^2} orbital and the O 2p_x / 2p_y orbitals</span>
 <span class="c1">#</span>
 <span class="c1">#   For tpd:</span>
-<span class="c1">#       we&#39;ll use a &#39;+&#39; sign for the -x, +y direction</span>
-<span class="c1">#       we&#39;ll use a &#39;-&#39; sign for the +x, -y direction</span>
+<span class="c1">#       we'll use a '+' sign for the -x, +y direction</span>
+<span class="c1">#       we'll use a '-' sign for the +x, -y direction</span>
 <span class="c1">#   For tpp:</span>
-<span class="c1">#       we&#39;ll use a &#39;+&#39; sign for the 1/sqrt(2) (-x, +y), and 1/sqrt(2) (+x,-y) direction</span>
-<span class="c1">#       we&#39;ll use a &#39;-&#39; sign for the 1/sqrt(2) (-x, -y), and 1/sqrt(2) (+x,+y) direction</span>
+<span class="c1">#       we'll use a '+' sign for the 1/sqrt(2) (-x, +y), and 1/sqrt(2) (+x,-y) direction</span>
+<span class="c1">#       we'll use a '-' sign for the 1/sqrt(2) (-x, -y), and 1/sqrt(2) (+x,+y) direction</span>
 
 <span class="c1"># define unit vectors</span>
 <span class="n">x_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">])</span>
@@ -602,7 +602,7 @@
     <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="o">-</span><span class="n">x_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="n">y_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tdp</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected relative distance for nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unexpected relative distance for nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_nth_neighbors</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">pair</span><span class="o">.</span><span class="n">i</span><span class="p">,</span><span class="n">pair</span><span class="o">.</span><span class="n">j</span>
@@ -614,7 +614,7 @@
     <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="n">r_xy_hat</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
         <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">tpp</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected relative distance for next-nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unexpected relative distance for next-nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># add in the j&lt;=i part of the hopping matrix</span>
 <span class="n">hopping</span> <span class="o">=</span> <span class="n">hopping</span> <span class="o">+</span> <span class="n">hopping</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
@@ -639,7 +639,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
 
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">U</span> <span class="o">=</span> <span class="n">U_emery</span><span class="p">,</span>
         <span class="n">custom_one_body</span> <span class="o">=</span> <span class="n">hopping</span><span class="p">,</span>
@@ -653,7 +653,7 @@
 
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;afqmc.h5&quot;</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -666,7 +666,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
-<span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;jax_platform_name&#39;</span><span class="p">,</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">'jax_platform_name'</span><span class="p">,</span> <span class="s1">'cpu'</span><span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
 
@@ -675,7 +675,7 @@
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 
 <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD&#39;</span><span class="p">,</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span>
     <span class="n">numSteps</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
     <span class="n">numTrials</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
@@ -691,7 +691,7 @@
 
 <span class="n">autohf_to_afqmc</span><span class="p">(</span>
     <span class="n">results</span><span class="p">,</span>
-    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;ghf_wfn.h5&quot;</span>
+    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"ghf_wfn.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -712,8 +712,8 @@ on the lattice.</p>
 <span class="c1"># now look at the density</span>
 <span class="n">autohf_results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">autohf_funcs</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">autohf_funcs</span><span class="p">[</span><span class="s1">&#39;makeRDMs&#39;</span><span class="p">]</span>
-<span class="n">state</span> <span class="o">=</span> <span class="n">autohf_results</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">autohf_funcs</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">autohf_results</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span>
 <span class="n">rdm</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
 <span class="n">L</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">L</span>
@@ -726,9 +726,9 @@ on the lattice.</p>
 <span class="n">rho_charge</span> <span class="o">=</span> <span class="n">rho_up</span> <span class="o">+</span> <span class="n">rho_down</span>
 <span class="n">rho_spin</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">rho_up</span> <span class="o">-</span> <span class="n">rho_down</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; mean charge density: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; mean spin density: </span><span class="si">{</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" mean charge density: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" mean spin density: </span><span class="si">{</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">Cu_inds</span> <span class="o">=</span>  <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">//</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="p">)])</span>
 <span class="n">Opx_inds</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">//</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="p">)])</span>
@@ -746,24 +746,24 @@ on the lattice.</p>
 <span class="n">Opx_density</span> <span class="o">=</span> <span class="n">Opx_density_up</span> <span class="o">+</span> <span class="n">Opx_density_down</span>
 <span class="n">Opy_density</span> <span class="o">=</span> <span class="n">Opy_density_up</span> <span class="o">+</span> <span class="n">Opy_density_down</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For Cu sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For O px sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For O py sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For Cu sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For O px sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For O py sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
     <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
     <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </pre></div>
@@ -795,8 +795,8 @@ on the lattice.</p>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">'PBC'</span>
 <span class="p">)</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
@@ -844,7 +844,7 @@ on the lattice.</p>
     <span class="k">elif</span> <span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="ow">or</span> <span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">):</span>
         <span class="n">hopping</span><span class="p">[</span><span class="n">i_slice</span><span class="p">,</span><span class="n">j_slice</span><span class="p">]</span> <span class="o">=</span> <span class="n">hopping_neatest_y</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid relative position </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2"> for a square lattice&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid relative position </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2"> for a square lattice"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -862,7 +862,7 @@ on the lattice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">nbands</span> <span class="o">=</span> <span class="n">nbands</span><span class="p">,</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">hopping</span><span class="p">,</span>
         <span class="n">U</span> <span class="o">=</span> <span class="mf">8.0</span>
@@ -876,7 +876,7 @@ on the lattice.</p>
 
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;lieb.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"lieb.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 </pre></div>
@@ -887,9 +887,9 @@ on the lattice.</p>
 <h3><span class="section-number">8.5.1. </span>Tilted Lieb Lattice : Annealing<a class="headerlink" href="#tilted-lieb-lattice-annealing" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This is a benchmarking script, so we&#39;ll keep things basic</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">This is a benchmarking script, so we'll keep things basic</span>
+<span class="sd">"""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 
@@ -912,9 +912,9 @@ on the lattice.</p>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 <span class="c1"># Set the default device to CPU</span>
-<span class="c1">#jax.config.update(&#39;jax_platform_name&#39;, &#39;cpu&#39;)</span>
+<span class="c1">#jax.config.update('jax_platform_name', 'cpu')</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;JAX devices : &quot;</span><span class="p">,</span><span class="n">jax</span><span class="o">.</span><span class="n">devices</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"JAX devices : "</span><span class="p">,</span><span class="n">jax</span><span class="o">.</span><span class="n">devices</span><span class="p">())</span>
 
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -940,18 +940,18 @@ on the lattice.</p>
 <span class="c1"># BUT, be careful. the tilted lattice has two primitive cells per unit cell!</span>
 <span class="n">nelec_total</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Cu_per_cell</span>
 
-<span class="k">assert</span> <span class="n">nelec_total</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;must have even number of electrons&quot;</span>
+<span class="k">assert</span> <span class="n">nelec_total</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"must have even number of electrons"</span>
 
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nelec_total</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">nelec_total</span><span class="o">//</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; ==== Emery model run parameters ==== &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - hole doping, h = </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - nelectrons = </span><span class="si">{</span><span class="n">nelec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" ==== Emery model run parameters ==== "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   - hole doping, h = </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   - nelectrons = </span><span class="si">{</span><span class="n">nelec</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">make_emery</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">show_mats</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    """</span>
 
     <span class="c1"># 2. define / build the model</span>
     <span class="n">tdp</span> <span class="o">=</span> <span class="mf">1.2</span>
@@ -993,7 +993,7 @@ on the lattice.</p>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="o">-</span><span class="n">x_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="n">y_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tdp_pq</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected relative distance for nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unexpected relative distance for nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">lattice</span><span class="o">.</span><span class="n">get_nth_neighbors</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">pair</span><span class="o">.</span><span class="n">i</span><span class="p">,</span><span class="n">pair</span><span class="o">.</span><span class="n">j</span>
@@ -1005,7 +1005,7 @@ on the lattice.</p>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="p">,</span><span class="n">r_xy_hat</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">tpp</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected relative distance for next-nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unexpected relative distance for next-nearest neighbors. </span><span class="si">{</span><span class="n">pair</span><span class="o">.</span><span class="n">r_relative</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
     <span class="c1"># add in the j&lt;=i part of the hopping matrix</span>
@@ -1024,14 +1024,14 @@ on the lattice.</p>
 
     <span class="k">if</span> <span class="n">show_mats</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">hopping</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Hopping matrix&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Hopping matrix"</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">show_mats</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;U matrix&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"U matrix"</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1046,25 +1046,25 @@ on the lattice.</p>
     <span class="n">hopping</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">hopping</span><span class="p">)</span>
     <span class="n">custom_one_body</span> <span class="o">=</span> <span class="n">HamiltonianComponent</span><span class="p">(</span>
         <span class="n">csr_array</span><span class="o">=</span><span class="n">hopping</span><span class="p">,</span>
-        <span class="n">model_type</span><span class="o">=</span><span class="s1">&#39;one_body&#39;</span><span class="p">,</span>
+        <span class="n">model_type</span><span class="o">=</span><span class="s1">'one_body'</span><span class="p">,</span>
         <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span>
     <span class="p">)</span>
 
     <span class="c1"># manually add the custom term</span>
-    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">&quot;tij&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_one_body</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">"tij"</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_one_body</span>
     <span class="n">custom_hubbard</span> <span class="o">=</span> <span class="n">HamiltonianComponent</span><span class="p">(</span>
         <span class="n">csr_array</span><span class="o">=</span><span class="n">U</span><span class="p">,</span>
-        <span class="n">model_type</span><span class="o">=</span><span class="s1">&#39;hubbard_u&#39;</span><span class="p">,</span>
-        <span class="n">hst_type</span><span class="o">=</span><span class="s1">&#39;discrete_spin&#39;</span>
+        <span class="n">model_type</span><span class="o">=</span><span class="s1">'hubbard_u'</span><span class="p">,</span>
+        <span class="n">hst_type</span><span class="o">=</span><span class="s1">'discrete_spin'</span>
     <span class="p">)</span>
-    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">&quot;Uij&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_hubbard</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">"Uij"</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_hubbard</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
     <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span>
 
     <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
         <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-        <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
         <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
     <span class="p">)</span>
 
@@ -1087,7 +1087,7 @@ on the lattice.</p>
         <span class="n">lattice</span><span class="p">,</span>
         <span class="n">show_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">show_lattice_vecs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lieb lattice&quot;</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">"Lieb lattice"</span>
     <span class="p">)</span>
 
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">make_emery</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">show_mats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1122,14 +1122,14 @@ on the lattice.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
 <span class="n">best_E_final</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">annealing_steps</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annealing step </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Annealing step </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">slater_det</span> <span class="o">=</span> <span class="n">wfn</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD&#39;</span><span class="p">,</span><span class="c1">#&#39;SD_Rot&#39;,</span>
+        <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span><span class="c1">#'SD_Rot',</span>
         <span class="n">steps</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="c1">#numSteps = 500,</span>
-        <span class="c1">#output = f&quot;ghf_wfn_step_{a}.h5&quot;,</span>
+        <span class="c1">#output = f"ghf_wfn_step_{a}.h5",</span>
         <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
         <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="c1">#numTrials = 20,</span>
         <span class="c1">#seed = 42,</span>
@@ -1150,15 +1150,15 @@ on the lattice.</p>
 
 
     <span class="c1"># now look at the density</span>
-    <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">&#39;makeRDMs&#39;</span><span class="p">]</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+    <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span>
     <span class="n">rdm</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;dev_checkpoint.h5&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rdm_</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">rdm</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"dev_checkpoint.h5"</span><span class="p">,</span><span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">"rdm_</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">rdm</span><span class="p">)</span>
 
     <span class="c1"># get a wavefunction for the next annealing step</span>
-    <span class="n">orbitals</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;orbitals&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">orbitals</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">'orbitals'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">slater_det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">orbitals</span><span class="p">[:,:</span><span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
     <span class="c1"># orthonormalize!</span>
@@ -1181,36 +1181,36 @@ on the lattice.</p>
 
 
     <span class="k">if</span> <span class="n">best_E_final</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">best_E_final</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+        <span class="n">best_E_final</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">'E'</span><span class="p">]</span>
         <span class="n">best_rho_charge</span> <span class="o">=</span> <span class="n">rho_charge</span>
         <span class="n">best_rho_spin</span> <span class="o">=</span> <span class="n">rho_spin</span>
         <span class="n">best_rdm</span> <span class="o">=</span> <span class="n">rdm</span>
 
-    <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">best_E_final</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found a better energy: &quot;</span><span class="p">,</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">])</span>
-        <span class="n">best_E_final</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">'E'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">best_E_final</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Found a better energy: "</span><span class="p">,</span><span class="n">results</span><span class="p">[</span><span class="s1">'E'</span><span class="p">])</span>
+        <span class="n">best_E_final</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">'E'</span><span class="p">]</span>
         <span class="n">best_rho_charge</span> <span class="o">=</span> <span class="n">rho_charge</span>
         <span class="n">best_rho_spin</span> <span class="o">=</span> <span class="n">rho_spin</span>
         <span class="n">best_rdm</span> <span class="o">=</span> <span class="n">rdm</span>
 
     <span class="k">if</span> <span class="n">recompute</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;dev_checkpoint.h5&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_E_final</span><span class="p">)</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;best_rho_charge&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_rho_charge</span><span class="p">)</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;best_rho_spin&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_rho_spin</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"dev_checkpoint.h5"</span><span class="p">,</span><span class="s2">"a"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"E"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_E_final</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">"best_rho_charge"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_rho_charge</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="sa">f</span><span class="s2">"best_rho_spin"</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">best_rho_spin</span><span class="p">)</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Best Energy = </span><span class="si">{</span><span class="n">best_E_final</span><span class="si">}</span><span class="s2"> t&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;            = </span><span class="si">{</span><span class="n">best_E_final</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cu_per_cell</span><span class="p">)</span><span class="si">}</span><span class="s2"> t / Cu site</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Best Energy = </span><span class="si">{</span><span class="n">best_E_final</span><span class="si">}</span><span class="s2"> t"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"            = </span><span class="si">{</span><span class="n">best_E_final</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Cu_per_cell</span><span class="p">)</span><span class="si">}</span><span class="s2"> t / Cu site</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">rdm</span> <span class="o">=</span> <span class="n">best_rdm</span>
 <span class="n">rho_charge</span> <span class="o">=</span> <span class="n">best_rho_charge</span>
 <span class="n">rho_spin</span> <span class="o">=</span> <span class="n">best_rho_spin</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; mean charge density: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; mean spin density: </span><span class="si">{</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" mean charge density: </span><span class="si">{</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" mean spin density: </span><span class="si">{</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">Cu_inds</span> <span class="o">=</span>  <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">//</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="p">)])</span>
 <span class="n">Opx_inds</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">//</span><span class="n">lattice</span><span class="o">.</span><span class="n">nb</span><span class="p">)])</span>
@@ -1228,28 +1228,28 @@ on the lattice.</p>
 <span class="n">Opx_density</span> <span class="o">=</span> <span class="n">Opx_density_up</span> <span class="o">+</span> <span class="n">Opx_density_down</span>
 <span class="n">Opy_density</span> <span class="o">=</span> <span class="n">Opy_density_up</span> <span class="o">+</span> <span class="n">Opy_density_down</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For Cu sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For O px sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For O py sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For Cu sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Cu_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For O px sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opx_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"For O py sublattice: mean charge density: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">Opy_density</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
         <span class="n">lattice</span><span class="p">,</span>
         <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-        <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
-        <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+        <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
         <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">save</span><span class="o">=</span><span class="s2">&quot;charge.png&quot;</span>
+        <span class="n">save</span><span class="o">=</span><span class="s2">"charge.png"</span>
     <span class="p">)</span>
 
     <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
         <span class="n">lattice</span><span class="p">,</span>
         <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-        <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
-        <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;bwr&#39;</span><span class="p">,</span>
+        <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
         <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">save</span><span class="o">=</span><span class="s2">&quot;spin.png&quot;</span>
+        <span class="n">save</span><span class="o">=</span><span class="s2">"spin.png"</span>
     <span class="p">)</span>
 </pre></div>
 </div>

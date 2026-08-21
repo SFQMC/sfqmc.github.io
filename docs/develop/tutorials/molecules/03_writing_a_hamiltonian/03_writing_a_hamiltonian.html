@@ -510,7 +510,7 @@ the minimal basis hydrogen dimer with a bond length of 1.4 Bohr radii.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -652,7 +652,7 @@ directly with no further modifications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamil.h5"</span><span class="p">,</span>
     <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
     <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
     <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
@@ -698,14 +698,14 @@ in the same HDF5 file as the Hamiltonian.</strong></p>
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
 
-<span class="n">write_json</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span> <span class="n">exec_opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">timestep</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">20000</span><span class="p">))</span>
+<span class="n">write_json</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"hamil.h5"</span><span class="p">,</span> <span class="n">exec_opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">timestep</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">20000</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -732,7 +732,7 @@ and use <code class="docutils literal notranslate"><span class="pre">afqmctools<
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use this to run SAFIRE</span>
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
-    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span><span class="c1">#&quot;your_input_file.json&quot;,</span>
+    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">"afqmc.json"</span><span class="p">,</span><span class="c1">#"your_input_file.json",</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
@@ -745,8 +745,8 @@ and use <code class="docutils literal notranslate"><span class="pre">afqmctools<
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>     <span class="c1"># remember to check the equilibration!</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span>
@@ -845,7 +845,7 @@ terms as well as the number of electrons.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
 
     <span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;H2_FCIDUMP&quot;</span>
+        <span class="n">filename</span><span class="o">=</span><span class="s2">"H2_FCIDUMP"</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -869,7 +869,7 @@ Exactly one of <code class="docutils literal notranslate"><span class="pre">chol
     <span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
     <span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
         <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
         <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
         <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
@@ -888,14 +888,14 @@ Exactly one of <code class="docutils literal notranslate"><span class="pre">chol
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
 
 <span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;files/H2_FCIDUMP&quot;</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">"files/H2_FCIDUMP"</span>
 <span class="p">)</span>
 
 <span class="c1"># transopose to match conventions for write_hamiltonian_generic</span>
 <span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
     <span class="n">E0</span><span class="o">=</span><span class="n">E0</span><span class="p">,</span>
     <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
     <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
@@ -917,17 +917,17 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
 
 <span class="c1"># build the H2 dimer</span>
-<span class="n">xyz</span> <span class="o">=</span> <span class="s2">&quot;H 0. 0. 0.; H 0. 0. 1.4&quot;</span>
-<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">(</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;Bohr&quot;</span><span class="p">,</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="s2">"H 0. 0. 0.; H 0. 0. 1.4"</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">(</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">"Bohr"</span><span class="p">,</span>
             <span class="n">atom</span> <span class="o">=</span> <span class="n">xyz</span><span class="p">,</span>
             <span class="n">precision</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
-            <span class="n">basis</span> <span class="o">=</span> <span class="s2">&quot;sto-3g&quot;</span><span class="p">)</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="s2">"sto-3g"</span><span class="p">)</span>
 
 <span class="n">mol</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
 <span class="c1"># run RHF</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5&quot;</span>
+<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
@@ -935,10 +935,10 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
 
 <span class="c1"># reload the mf data</span>
-<span class="n">mf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5&quot;</span><span class="p">,</span> <span class="s1">&#39;scf&#39;</span><span class="p">)</span>
+<span class="n">mf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
 
 <span class="c1"># dump the Hamiltonian and the wavefunction to the same h5df</span>
-<span class="n">fout</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_from_pyscf.h5&quot;</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_from_pyscf.h5"</span>
 <span class="n">write_hamil_mol</span><span class="p">(</span>
     <span class="n">mf_data</span><span class="p">,</span>
     <span class="n">fout</span><span class="p">,</span>
@@ -984,7 +984,7 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># up, down</span>
@@ -1024,7 +1024,7 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 
 <span class="c1"># Save the Hamiltonian to HDF5</span>
 <span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
     <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
     <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
     <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
@@ -1043,9 +1043,9 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
 
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;H2_rhf_wfn.h5&quot;</span><span class="p">,</span> <span class="c1"># this is the name of the file that will be created</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_rhf_wfn.h5"</span><span class="p">,</span> <span class="c1"># this is the name of the file that will be created</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">&quot;rhf&quot;</span><span class="p">,</span>
+    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
     <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
 <span class="p">)</span>
@@ -1053,27 +1053,27 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <span class="c1"># make an input file</span>
 
 <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of population_control_interval</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of population_control_interval</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
 <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;H2_afqmc_input.json&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;H2_hamiltonian.h5&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;H2_rhf_wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"H2_afqmc_input.json"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"H2_rhf_wfn.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
 <span class="p">)</span>
 
 <span class="c1"># run afqmc</span>
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
-    <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;H2_afqmc_input.json&quot;</span><span class="p">,</span>
+    <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"H2_afqmc_input.json"</span><span class="p">,</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>   <span class="c1"># optionally direct output to file instead of here</span>
 <span class="p">)</span>
@@ -1081,8 +1081,8 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <span class="c1"># post process</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span>

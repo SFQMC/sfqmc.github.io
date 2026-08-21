@@ -537,9 +537,9 @@ of C diamond in the primitive cell cell.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Example of setting up a solids calculation starting</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Example of setting up a solids calculation starting</span>
 <span class="sd">from PySCF.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span> <span class="k">as</span> <span class="n">pgto</span>
@@ -553,9 +553,9 @@ of C diamond in the primitive cell cell.</p>
 <span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span>  <span class="c1"># defines ecut</span>
 <span class="n">alat</span> <span class="o">=</span> <span class="mf">3.6</span>  <span class="c1"># angstrom</span>
 <span class="n">nkx</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># kmesh</span>
-<span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;gth-szv&#39;</span>
-<span class="n">pseudo</span> <span class="o">=</span> <span class="s1">&#39;gth-pade&#39;</span>
-<span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;diamond_2x2x2_rhf.h5&#39;</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="s1">'gth-szv'</span>
+<span class="n">pseudo</span> <span class="o">=</span> <span class="s1">'gth-pade'</span>
+<span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'diamond_2x2x2_rhf.h5'</span>
 <span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="n">rerun</span> <span class="o">=</span> <span class="kc">True</span>
@@ -568,10 +568,10 @@ of C diamond in the primitive cell cell.</p>
                         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
-<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
 <span class="s1">C 0. 0. 0.0</span>
 <span class="s1">C </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span>
-<span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">'''</span>
 
 <span class="n">cell</span> <span class="o">=</span> <span class="n">pgto</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">axes</span><span class="p">,</span>
@@ -594,11 +594,11 @@ of C diamond in the primitive cell cell.</p>
     <span class="n">hcore</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">get_hcore</span><span class="p">()</span>
     <span class="n">fock</span> <span class="o">=</span> <span class="n">hcore</span><span class="o">+</span><span class="n">rhf</span><span class="o">.</span><span class="n">get_veff</span><span class="p">()</span>
     <span class="c1"># make conversion</span>
-    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">&#39;scf/orthoAORot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">&#39;scf/nmo_per_kpt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nmo_per_kpt</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">&#39;scf/hcore&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hcore</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">&#39;scf/fock&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fock</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/orthoAORot'</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/nmo_per_kpt'</span><span class="p">]</span> <span class="o">=</span> <span class="n">nmo_per_kpt</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/hcore'</span><span class="p">]</span> <span class="o">=</span> <span class="n">hcore</span>
+        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/fock'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fock</span>
 
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cubegen</span>
@@ -609,7 +609,7 @@ of C diamond in the primitive cell cell.</p>
 <span class="n">nx</span><span class="o">=</span><span class="n">ny</span><span class="o">=</span><span class="n">nz</span><span class="o">=</span><span class="mi">50</span>
 
 <span class="c1"># the normalization is missing a factor of V / ( nx * ny * nz )</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="s1">&#39;diamond_den.cube&#39;</span><span class="p">,</span> <span class="n">rdm</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="s1">'diamond_den.cube'</span><span class="p">,</span> <span class="n">rdm</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">V</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">vol</span>
 <span class="n">nkpts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)</span>
@@ -617,21 +617,21 @@ of C diamond in the primitive cell cell.</p>
 <span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">nkpts</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="n">V</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># normalized s.t. $\sum_{\vec{n}} rho_{\vec{n}} = N_{elec} $</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="s2">&quot;axes&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
-     <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="c1"># Volumetric data!</span>
-     <span class="s2">&quot;elem&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-     <span class="s2">&quot;pos&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
-     <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-     <span class="s2">&quot;two_line_comment&quot;</span><span class="p">:</span> <span class="s2">&quot;This is a test cube file</span><span class="se">\n</span><span class="s2">Generated by write_gaussian_cube</span><span class="se">\n</span><span class="s2">&quot;</span>
+     <span class="s2">"axes"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+     <span class="s2">"data"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="c1"># Volumetric data!</span>
+     <span class="s2">"elem"</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+     <span class="s2">"pos"</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+     <span class="s2">"origin"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+     <span class="s2">"two_line_comment"</span><span class="p">:</span> <span class="s2">"This is a test cube file</span><span class="se">\n</span><span class="s2">Generated by write_gaussian_cube</span><span class="se">\n</span><span class="s2">"</span>
 <span class="p">}</span>
 
-<span class="n">write_gaussian_cube</span><span class="p">(</span><span class="s2">&quot;diamond_den_afqmctools.cube&quot;</span><span class="p">,</span><span class="n">rho</span><span class="p">)</span>
+<span class="n">write_gaussian_cube</span><span class="p">(</span><span class="s2">"diamond_den_afqmctools.cube"</span><span class="p">,</span><span class="n">rho</span><span class="p">)</span>
 
 <span class="n">ngrids</span> <span class="o">=</span> <span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of grid points = </span><span class="si">{</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Charge per grid point = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of grid points = </span><span class="si">{</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Charge per grid point = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -647,16 +647,16 @@ If you ran it elsewhere, you will need to update the path to the HDF5 file
 in <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> accordingly</p>
 <p>A key part of the input file is the “estimator” block for the
 back-propagation algorithm.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;extra_path_restoration&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;ortho&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;nsteps&quot;</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;naverages&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;equil&quot;</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;onerdm&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"back_propagation"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"extra_path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"ortho"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"nsteps"</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"naverages"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equil"</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"onerdm"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"onerdm"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">},</span>
 </pre></div>
@@ -831,10 +831,10 @@ software packages.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.rhonk</span><span class="w"> </span><span class="kn">import</span> <span class="n">charge_density</span>
 
-<span class="n">qe_output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./1_dft_quantum_espresso/OUT&quot;</span><span class="p">)</span>
-<span class="n">afqmc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./3_afqmc&quot;</span><span class="p">)</span>
+<span class="n">qe_output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./1_dft_quantum_espresso/OUT"</span><span class="p">)</span>
+<span class="n">afqmc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./3_afqmc"</span><span class="p">)</span>
 
-<span class="n">mean_rdms</span><span class="p">,</span><span class="n">err_rdms</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_path</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.stat.h5&quot;</span><span class="p">)</span>
+<span class="n">mean_rdms</span><span class="p">,</span><span class="n">err_rdms</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_path</span> <span class="o">/</span> <span class="s2">"qmc.s000.stat.h5"</span><span class="p">)</span>
 
 <span class="n">num_avgs</span> <span class="o">=</span> <span class="n">mean_rdms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avgs</span><span class="p">):</span>
@@ -842,7 +842,7 @@ software packages.</p>
         <span class="n">mean_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
         <span class="n">err_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
         <span class="n">orbital_source</span><span class="o">=</span><span class="n">qe_output</span><span class="p">,</span>
-        <span class="n">rho_outfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rho_avg</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_qe_orbs.cube&quot;</span>
+        <span class="n">rho_outfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">"rho_avg</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_qe_orbs.cube"</span>
     <span class="p">)</span>
 </pre></div>
 </div>

@@ -579,26 +579,26 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Computing the energy of ferro-magnetically coupled</span>
 <span class="sd">       Vandium atoms.       </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="s1">&#39;O 0. 0. 0.&#39;</span><span class="p">,</span>
-        <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="s1">'O 0. 0. 0.'</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="s1">'ccpvdz'</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span>
     <span class="p">)</span>
 
     <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;rohf.chk&#39;</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'rohf.chk'</span>
     <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
     <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">&#39;uhf.chk&#39;</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'uhf.chk'</span>
     <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -621,13 +621,13 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 
     <span class="c1"># inputs</span>
-    <span class="n">orbital_basis_chk</span> <span class="o">=</span> <span class="s1">&#39;../scf/rohf.chk&#39;</span>
-    <span class="n">wavefunction_chk</span> <span class="o">=</span> <span class="s1">&#39;../scf/uhf.chk&#39;</span>
+    <span class="n">orbital_basis_chk</span> <span class="o">=</span> <span class="s1">'../scf/rohf.chk'</span>
+    <span class="n">wavefunction_chk</span> <span class="o">=</span> <span class="s1">'../scf/uhf.chk'</span>
 
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
     <span class="c1"># output</span>
-    <span class="n">fout</span> <span class="o">=</span> <span class="s1">&#39;afqmc.h5&#39;</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="s1">'afqmc.h5'</span>
 
     <span class="c1">#####################################</span>
     <span class="c1">#                                   #</span>
@@ -637,7 +637,7 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
 
     <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
         <span class="n">orbital_basis_chk</span><span class="p">,</span>
-        <span class="s1">&#39;scf&#39;</span>
+        <span class="s1">'scf'</span>
     <span class="p">)</span>
 
     <span class="n">write_hamil_mol</span><span class="p">(</span>
@@ -657,38 +657,38 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
     <span class="n">write_wfn_mol</span><span class="p">(</span>
         <span class="n">scf_data</span><span class="o">=</span><span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
             <span class="n">wavefunction_chk</span><span class="p">,</span>
-            <span class="s1">&#39;scf&#39;</span>
+            <span class="s1">'scf'</span>
         <span class="p">),</span>
         <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">scf_data</span><span class="p">,</span>
         <span class="n">filename</span><span class="o">=</span><span class="n">fout</span>
     <span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 
 </pre></div>
 </div>
 <p><strong>AFQMC Input File</strong> (<code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;afqmc&quot;</span><span class="w"> </span><span class="p">:{</span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"afqmc"</span><span class="w"> </span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span>
-<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span>
+<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COLLINEAR"</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">       </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../ham/afqmc.h5&quot;</span>
+<span class="w">       </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../ham/afqmc.h5"</span>
 <span class="w">       </span><span class="p">},</span>
-<span class="w">       </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6000&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">&quot;population_control_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42&quot;</span>
+<span class="w">       </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span>
+<span class="w">       </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>

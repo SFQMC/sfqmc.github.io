@@ -513,9 +513,9 @@ While the AFQMC executable runs, it prints scalar data samples to a text-based f
 The name of the file depends on the parameters set in the “project” block of
 the AFQMC input file and follows the pattern, “[id].s[###].scalar.dat” where “[id]” is replaced by the “id” string and “[###]” is replaced by the value of “series” but at a fixed width of 3.</p>
 <p>For example, using the sample “project” block here,</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -537,8 +537,8 @@ uncertainty.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>      <span class="c1"># length of equilibration phase in units of imaginary time (not steps!)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1">#   plots a trace of the scalar data</span>
 <span class="p">)</span>
@@ -566,11 +566,11 @@ within “analysis_settings” as show below:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>       <span class="c1"># length of equilibration phase in units of imaginary time (not steps!)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1">#   plots a trace of the scalar data</span>
-    <span class="n">column</span> <span class="o">=</span> <span class="s2">&quot;weight&quot;</span>   <span class="c1"># set the desired column to analze. default is &quot;EnergyEstim__nume_real&quot;</span>
+    <span class="n">column</span> <span class="o">=</span> <span class="s2">"weight"</span>   <span class="c1"># set the desired column to analze. default is "EnergyEstim__nume_real"</span>
 <span class="p">)</span>
 
 <span class="n">weight</span><span class="p">,</span><span class="n">delta_weight</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">analysis_settings</span><span class="p">)</span>

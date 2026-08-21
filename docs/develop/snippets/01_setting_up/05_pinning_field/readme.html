@@ -544,16 +544,16 @@ a toml-based input file.
 Below is a sample input file, which we name <cite>input_afm.toml</cite>, for a Hubbard model
 on a 8x4 square lattice with periodic boundary conditions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># a &#39;t&#39; array of length n give nth-order neighbor hoping</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># a 't' array of length n give nth-order neighbor hoping</span>
 <span class="n">U</span> <span class="o">=</span> <span class="mf">2.0</span> 
 <span class="n">h_afm_pin</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># NOTE: syntax likely to change in the near future</span>
-<span class="n">afm_pin_type</span> <span class="o">=</span> <span class="s2">&quot;staggered&quot;</span> <span class="c1"># &quot;afm&quot;; alternative is &quot;fm&quot;</span>
+<span class="n">afm_pin_type</span> <span class="o">=</span> <span class="s2">"staggered"</span> <span class="c1"># "afm"; alternative is "fm"</span>
 
 <span class="p">[</span><span class="n">lattice</span><span class="p">]</span>
 <span class="n">L1</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span> <span class="c1"># or &quot;open&quot; for open boundaries</span>
-<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span> <span class="c1"># or &quot;open&quot; for open boundaries</span>
+<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
+<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
 
 <span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
@@ -564,14 +564,14 @@ on a 8x4 square lattice with periodic boundary conditions.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
 
-<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;input_afm.toml&quot;</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">"input_afm.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">&quot;misc_params&quot;</span><span class="p">][</span><span class="s2">&quot;nelec&quot;</span><span class="p">]</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 
@@ -579,7 +579,7 @@ on a 8x4 square lattice with periodic boundary conditions.</p>
 <span class="n">free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -602,15 +602,15 @@ This allows the initial energy to be checked within the AFQMC code.</p>
 <p>Charge pinning is applying a constant charge field <span class="math notranslate nohighlight">\(h \hat{n}_i\)</span> applied along the edge. More flexible pinning is planned for the future.
 The charge pinning case can be set up similarly using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># a &#39;t&#39; array of length n give nth-order neighbor hoping</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># a 't' array of length n give nth-order neighbor hoping</span>
 <span class="n">U</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">h_charge_pin</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># NOTE: syntax likely to change in the near future</span>
 
 <span class="p">[</span><span class="n">lattice</span><span class="p">]</span>
 <span class="n">L1</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span> <span class="c1"># or &quot;open&quot; for open boundaries</span>
-<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span> <span class="c1"># or &quot;open&quot; for open boundaries</span>
+<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
+<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
 
 <span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
@@ -620,14 +620,14 @@ The charge pinning case can be set up similarly using</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
 
-<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;input_charge.toml&quot;</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">"input_charge.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">&quot;misc_params&quot;</span><span class="p">][</span><span class="s2">&quot;nelec&quot;</span><span class="p">]</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 
@@ -635,7 +635,7 @@ The charge pinning case can be set up similarly using</p>
 <span class="n">free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
