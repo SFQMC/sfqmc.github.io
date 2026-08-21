@@ -517,13 +517,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># This are in case you have a GPU enabled JAX but are running on CPU.</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JAX_PLATFORMS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'JAX_PLATFORMS'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cpu'</span>
 <span class="c1"># If you want to use GPU enabled Jax in multiply notebooks with the same</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;XLA_PYTHON_CLIENT_PREALLOCATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"XLA_PYTHON_CLIENT_PREALLOCATE"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"false"</span>
 
 <span class="c1"># use x64 numbers</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
-<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;jax_enable_x64&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">"jax_enable_x64"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
 
@@ -553,7 +553,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -583,10 +583,10 @@ DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
 <span class="n">lattice_dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="s1">&#39;L2&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-    <span class="s1">&#39;boundary1&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'L2'</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">'boundary1'</span> <span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span> <span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -624,7 +624,7 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -638,7 +638,7 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builderHF</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builderHF</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -691,7 +691,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">orbitalFunc</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="c1"># take the hopping matrix TGHF, and &quot;set&quot; M on the off-diagonal blocks</span>
+    <span class="c1"># take the hopping matrix TGHF, and "set" M on the off-diagonal blocks</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF_</span><span class="o">+</span><span class="mf">0.0</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
@@ -708,8 +708,8 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">checkPH</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;check the spectrum of the &#39;faux&#39; HF state is PH symmetric&#39;&#39;&#39;</span>
-    <span class="c1"># take the hopping matrix TGHF, and &quot;set&quot; M on the off-diagonal blocks</span>
+<span class="w">    </span><span class="sd">'''check the spectrum of the 'faux' HF state is PH symmetric'''</span>
+    <span class="c1"># take the hopping matrix TGHF, and "set" M on the off-diagonal blocks</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF_</span><span class="o">+</span><span class="mf">0.0</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
@@ -723,21 +723,21 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
-    <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-    <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
+    <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"plot"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
+    <span class="s2">"noncollinear"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"gpu"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"ansatz"</span><span class="p">:</span> <span class="s2">"CUSTOM"</span><span class="p">,</span>
+    <span class="s2">"opt_method"</span><span class="p">:</span> <span class="s2">"lbfgs"</span><span class="p">,</span>
+    <span class="s2">"batch_size"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="s2">"nelec"</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
 <span class="p">}</span>
 
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">state0_ref</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">"batch_size"</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
 
 
 <span class="n">dataHFC</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
@@ -756,14 +756,14 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <p>Let’s check out what M values we got</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -772,7 +772,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <p><strong>⚠️ Warning</strong> This notebook is setup for the CPU, the following cell takes a while (the GPU is a bit faster if you have one)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wfn_fname</span> <span class="o">=</span> <span class="s2">&quot;autoHF_wfn.h5&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wfn_fname</span> <span class="o">=</span> <span class="s2">"autoHF_wfn.h5"</span>
 </pre></div>
 </div>
 </div>
@@ -780,21 +780,21 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;plot&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># increase</span>
-    <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
-    <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;num_batches&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-    <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
+    <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"plot"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># increase</span>
+    <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
+    <span class="s2">"noncollinear"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"gpu"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"ansatz"</span><span class="p">:</span> <span class="s2">"CUSTOM"</span><span class="p">,</span>
+    <span class="s2">"opt_method"</span><span class="p">:</span> <span class="s2">"lbfgs"</span><span class="p">,</span>
+    <span class="s2">"num_batches"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="s2">"nelec"</span><span class="p">:</span> <span class="p">[</span><span class="n">Ne</span><span class="p">,</span> <span class="n">Ne</span><span class="p">],</span>
 <span class="p">}</span>
 
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">state0_ref</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;num_batches&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">"num_batches"</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
 
 
 <span class="n">dataHFC2</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
@@ -818,21 +818,21 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkPH</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkPH</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -840,7 +840,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <p>Let’s check that this is a better energy than the previous energy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -849,15 +849,15 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <p>Now let’s check if we can guess a better state, by removing translation invariance</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"energy_func"</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"energy_func"</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]))</span>
-<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;state&quot;</span><span class="p">]),</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;energy_func&quot;</span><span class="p">](</span><span class="n">uni_state</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"energy_func"</span><span class="p">](</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]),</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"energy_func"</span><span class="p">](</span><span class="n">uni_state</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -869,9 +869,9 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <p>First we’ll manually create a non-interacting state as our RHF initial state for the walkers</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ham_fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;hamU</span><span class="si">{</span><span class="n">U</span><span class="si">}</span><span class="s2">_afqmc.h5&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ham_fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"hamU</span><span class="si">{</span><span class="n">U</span><span class="si">}</span><span class="s2">_afqmc.h5"</span>
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">,</span>
-                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span>
+                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -879,21 +879,21 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-        <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
-        <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">&quot;print_components&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
+        <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"energy"</span><span class="p">,</span>
+            <span class="s2">"overwrite"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"print_components"</span><span class="p">:</span> <span class="kc">True</span>
         <span class="p">},</span>
     <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">wfn_fname</span><span class="p">,</span>
     <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
@@ -907,7 +907,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="p">,</span>
-    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
     <span class="n">np</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
     <span class="n">output_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
@@ -917,7 +917,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>energy_stats<span class="w"> </span><span class="o">{</span>scratch_dir<span class="w"> </span>/<span class="w"> </span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="o">}</span><span class="w"> </span>-t<span class="w"> </span>-e<span class="w"> </span><span class="m">20</span>.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>energy_stats<span class="w"> </span><span class="o">{</span>scratch_dir<span class="w"> </span>/<span class="w"> </span><span class="s2">"qmc.s000.scalar.dat"</span><span class="o">}</span><span class="w"> </span>-t<span class="w"> </span>-e<span class="w"> </span><span class="m">20</span>.0
 </pre></div>
 </div>
 </div>
@@ -925,7 +925,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">return_data</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -933,8 +933,8 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-<span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mean_real&quot;</span><span class="p">]</span>
-<span class="n">err</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;error_real&quot;</span><span class="p">]</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"mean_real"</span><span class="p">]</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"error_real"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -948,8 +948,8 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="n">E</span><span class="p">],</span><span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">err</span><span class="p">],</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">E0_n1_lookup</span><span class="p">[</span><span class="n">U</span><span class="p">],</span><span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="n">E</span><span class="p">],</span><span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">err</span><span class="p">],</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">E0_n1_lookup</span><span class="p">[</span><span class="n">U</span><span class="p">],</span><span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">13.63</span><span class="p">,</span><span class="o">-</span><span class="mf">13.6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

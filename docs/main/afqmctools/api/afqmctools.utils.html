@@ -1484,9 +1484,9 @@ Ci coefficients are kept.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">scf</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">&#39;rhf.chk&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">'rhf.chk'</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">scf</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">&#39;krhf.chk&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">KRHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rhf</span> <span class="o">=</span> <span class="n">mf_from_chkfile</span><span class="p">(</span><span class="s1">'krhf.chk'</span><span class="p">,</span> <span class="n">scf</span><span class="o">.</span><span class="n">KRHF</span><span class="p">,</span> <span class="n">scf</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1545,18 +1545,18 @@ Requires a pre-existing, successful QE run.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p><strong>qe_info</strong> – Dictionary containing all stored information about the QE driver.
 Contents:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;species&#39;</span> <span class="p">:</span> <span class="n">string</span> <span class="n">array</span>    <span class="c1"># array with species labels.</span>
-<span class="s1">&#39;nsp&#39;</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of species</span>
-<span class="s1">&#39;nat&#39;</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of atoms</span>
-<span class="s1">&#39;at_id&#39;</span> <span class="p">:</span>  <span class="n">integer</span> <span class="n">array</span>    <span class="c1"># array with the ids of atoms in the unit cell.</span>
-<span class="s1">&#39;at_pos&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="n">nat</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># array with atom positions</span>
-<span class="s1">&#39;nkpts&#39;</span> <span class="p">:</span> <span class="n">integer</span>           <span class="c1"># number of kpoints</span>
-<span class="s1">&#39;kpts&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="n">nkpts</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># k-points</span>
-<span class="s1">&#39;latt&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span>     <span class="c1"># lattice vectors</span>
-<span class="s1">&#39;npwx&#39;</span> <span class="p">:</span> <span class="n">integer</span>            <span class="c1"># npwx parameter from QE.</span>
-<span class="s1">&#39;mesh&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">integer</span> <span class="n">array</span>   <span class="c1"># FFT mesh</span>
-<span class="s1">&#39;ngm&#39;</span> <span class="p">:</span> <span class="n">integer</span>             <span class="c1"># ngm parameter from QE.</span>
-<span class="s1">&#39;outdir&#39;</span> <span class="p">:</span> <span class="n">string</span>           <span class="c1"># location of output files</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">'species'</span> <span class="p">:</span> <span class="n">string</span> <span class="n">array</span>    <span class="c1"># array with species labels.</span>
+<span class="s1">'nsp'</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of species</span>
+<span class="s1">'nat'</span> <span class="p">:</span> <span class="n">integer</span><span class="p">,</span>            <span class="c1"># number of atoms</span>
+<span class="s1">'at_id'</span> <span class="p">:</span>  <span class="n">integer</span> <span class="n">array</span>    <span class="c1"># array with the ids of atoms in the unit cell.</span>
+<span class="s1">'at_pos'</span> <span class="p">:</span> <span class="p">(</span><span class="n">nat</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># array with atom positions</span>
+<span class="s1">'nkpts'</span> <span class="p">:</span> <span class="n">integer</span>           <span class="c1"># number of kpoints</span>
+<span class="s1">'kpts'</span> <span class="p">:</span> <span class="p">(</span><span class="n">nkpts</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span> <span class="c1"># k-points</span>
+<span class="s1">'latt'</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="n">fp</span> <span class="n">array</span>     <span class="c1"># lattice vectors</span>
+<span class="s1">'npwx'</span> <span class="p">:</span> <span class="n">integer</span>            <span class="c1"># npwx parameter from QE.</span>
+<span class="s1">'mesh'</span> <span class="p">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">integer</span> <span class="n">array</span>   <span class="c1"># FFT mesh</span>
+<span class="s1">'ngm'</span> <span class="p">:</span> <span class="n">integer</span>             <span class="c1"># ngm parameter from QE.</span>
+<span class="s1">'outdir'</span> <span class="p">:</span> <span class="n">string</span>           <span class="c1"># location of output files</span>
 </pre></div>
 </div>
 </p>

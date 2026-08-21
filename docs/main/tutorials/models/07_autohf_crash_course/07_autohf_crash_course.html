@@ -504,7 +504,7 @@ then use the SAFIRE to AutoHF converter to provide AutoHF with the desired Hamil
 <span class="c1"># simple setup</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -534,8 +534,8 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
+    <span class="n">boundary1</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
@@ -546,9 +546,9 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
 
 <span class="c1"># Step 2. define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;t&quot;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
-        <span class="s2">&quot;U&quot;</span> <span class="p">:</span> <span class="mf">4.0</span>
+    <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"t"</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
+        <span class="s2">"U"</span> <span class="p">:</span> <span class="mf">4.0</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -587,7 +587,7 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
 Think of this as an input file.
 Below is a sample settings dictionary with most common settings exposed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD&#39;</span><span class="p">,</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
@@ -646,12 +646,12 @@ we will focus on a few key settings which are as follows.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span><span class="n">AutoHFHamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
-<span class="c1"># &quot;hamiltonian&quot; contains the afqmctools format Hamiltonian</span>
+<span class="c1"># "hamiltonian" contains the afqmctools format Hamiltonian</span>
 <span class="n">hamiltonian_autohf</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span> <span class="c1"># Your Turn: convert to the autoHF format</span>
 
 <span class="c1"># define settings</span>
 <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">&#39;SD&#39;</span><span class="p">,</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
@@ -674,7 +674,7 @@ we will focus on a few key settings which are as follows.</p>
 <section id="solution">
 <h2><span class="section-number">7.6. </span>✅ Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h2>
 <p>You should have completed the line of code as,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;hamiltonian&quot; contains the afqmctools format Hamiltonian</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># "hamiltonian" contains the afqmctools format Hamiltonian</span>
 <span class="n">hamiltonian_autohf</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -683,7 +683,7 @@ we will focus on a few key settings which are as follows.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">autohf_to_afqmc</span><span class="p">(</span>
     <span class="n">results</span><span class="p">,</span>
-    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;uhf_wfn.h5&quot;</span>
+    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -700,8 +700,8 @@ desired properties.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the density from autohf</span>
 <span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">results</span>
 
-<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">&#39;makeRDMs&#39;</span><span class="p">]</span>
-<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+<span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">state_results</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span>
 
 <span class="n">rdm</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
 
@@ -723,7 +723,7 @@ desired properties.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">2.0</span>
 <span class="p">)</span>
@@ -738,8 +738,8 @@ desired properties.</p>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="p">,</span>
-    <span class="n">density_label</span><span class="o">=</span><span class="s2">&quot;spin density&quot;</span><span class="p">,</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span>
+    <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">"bwr"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>

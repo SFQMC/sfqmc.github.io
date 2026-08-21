@@ -553,10 +553,10 @@ If you used all of the same settings as us, running the analysis script should g
 <h2><span class="section-number">7.2. </span>Files<a class="headerlink" href="#files" title="Link to this heading">#</a></h2>
 <p><strong>Benchmark Calculation</strong> (<code class="docutils literal notranslate"><span class="pre">06_TMO_benchmark.py</span></code>):</p>
 <p>This comprehensive script performs setup of all calculations. SAFIRE must be run separately for each generated set up inputs.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reference data from Phys. Rev. X 10, 011041 (see &quot;total_energy.csv&quot; from the supporting materials )</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reference data from Phys. Rev. X 10, 011041 (see "total_energy.csv" from the supporting materials )</span>
 <span class="n">TestSet</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">VO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
@@ -565,7 +565,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">TiO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
@@ -574,7 +574,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0009</span>
     <span class="p">),</span>
     <span class="n">CrO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> 
         <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -583,7 +583,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> 	<span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">MnO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span>
@@ -592,7 +592,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0014</span>
     <span class="p">),</span>
     <span class="n">FeO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> 
         <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
@@ -601,7 +601,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">CuO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
@@ -610,7 +610,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0011</span> 
     <span class="p">),</span>
     <span class="n">ScO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
@@ -638,51 +638,51 @@ If you used all of the same settings as us, running the analysis script should g
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./files&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./files"</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
 <span class="c1"># load the ECP and basis</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">((</span><span class="n">ecp_dir</span> <span class="o">/</span> <span class="s2">&quot;trail.json&quot;</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">((</span><span class="n">ecp_dir</span> <span class="o">/</span> <span class="s2">"trail.json"</span><span class="p">),</span><span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">ecp_basis_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">setup_benchmark</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">case</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Note: each calculation will take some time; we recommend running</span>
 <span class="sd">    each AFQMC calculation manually offline; however, you can </span>
 <span class="sd">    set run_afqmc=True to run them here. In that case, each AFQMC calculation</span>
 <span class="sd">    will run one after another, taking significantly more wall time to finish</span>
 <span class="sd">    than submitting each as a separate job.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     
     <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">key</span>
     <span class="n">local_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="n">atom</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;atom&quot;</span><span class="p">]</span>
-    <span class="n">spin</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;spin&quot;</span><span class="p">]</span>
-    <span class="n">ncas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;ncas&quot;</span><span class="p">]</span>
-    <span class="n">nelec_cas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;nelec_cas&quot;</span><span class="p">]</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"atom"</span><span class="p">]</span>
+    <span class="n">spin</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"spin"</span><span class="p">]</span>
+    <span class="n">ncas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"ncas"</span><span class="p">]</span>
+    <span class="n">nelec_cas</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"nelec_cas"</span><span class="p">]</span>
 
     <span class="n">TM</span> <span class="o">=</span> <span class="n">key</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     
     <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
         <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
-        <span class="n">basis</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">&quot;vdz&quot;</span><span class="p">],</span> <span class="s1">&#39;O&#39;</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">][</span><span class="s2">&quot;vdz&quot;</span><span class="p">]},</span>
-        <span class="n">ecp</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">&quot;ecp&quot;</span><span class="p">],</span> <span class="s1">&#39;O&#39;</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">][</span><span class="s2">&quot;ecp&quot;</span><span class="p">]},</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">"vdz"</span><span class="p">],</span> <span class="s1">'O'</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">'O'</span><span class="p">][</span><span class="s2">"vdz"</span><span class="p">]},</span>
+        <span class="n">ecp</span> <span class="o">=</span> <span class="p">{</span><span class="n">TM</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="n">TM</span><span class="p">][</span><span class="s2">"ecp"</span><span class="p">],</span> <span class="s1">'O'</span> <span class="p">:</span> <span class="n">ecp_basis_data</span><span class="p">[</span><span class="s1">'O'</span><span class="p">][</span><span class="s2">"ecp"</span><span class="p">]},</span>
         <span class="n">spin</span> <span class="o">=</span> <span class="n">spin</span><span class="p">,</span>
         <span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="p">)</span>
     
     <span class="c1"># set up Hamiltonian for AutoHF</span>
-    <span class="n">onebody</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_kin&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_nuc&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;ECPscalar&quot;</span><span class="p">)</span>
-    <span class="n">overlap</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int1e_ovlp&quot;</span><span class="p">)</span>
-    <span class="n">eri</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">&quot;int2e&quot;</span><span class="p">)</span>
+    <span class="n">onebody</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">"int1e_kin"</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">"int1e_nuc"</span><span class="p">)</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">"ECPscalar"</span><span class="p">)</span>
+    <span class="n">overlap</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">"int1e_ovlp"</span><span class="p">)</span>
+    <span class="n">eri</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">intor</span><span class="p">(</span><span class="s2">"int2e"</span><span class="p">)</span>
     <span class="n">nuclear_repulsion</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">energy_nuc</span><span class="p">()</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">afqmctools</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">get_ortho_ao_mol</span><span class="p">(</span><span class="n">overlap</span><span class="p">,</span><span class="n">LINDEP_CUTOFF</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
     
     <span class="n">norb</span> <span class="o">=</span> <span class="n">onebody</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">norb</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">norb</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
     <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="n">afqmctools</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">modified_cholesky_direct</span><span class="p">(</span>
@@ -690,9 +690,9 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="n">norb</span><span class="p">)</span>
 
     <span class="n">onebody</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">onebody</span> <span class="o">@</span> <span class="n">X</span>
-    <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,njk,kl-&gt;nil&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,njk,kl-&gt;nil"</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
 
-    <span class="n">onebody</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;nij,njk&quot;</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">onebody</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"nij,njk"</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
     <span class="c1"># double along spin dimension</span>
     <span class="n">cholesky_operators</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cholesky_operators</span><span class="p">,</span> <span class="n">cholesky_operators</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -710,20 +710,20 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="c1"># Custom ROHF ansatz</span>
     <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">orbitalFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        produces |\Phi_\sigma (alpha) \rangle from \Phi_{\mu p} \equiv \alpha_{\mu p}</span>
 <span class="sd">        using the first Nup / Ndown electrons for the spin-up / spin-down sectors.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">phi_up</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[:,:</span><span class="n">Nup</span><span class="p">]</span>
         <span class="n">phi_down</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">[:,:</span><span class="n">Ndown</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">phi_up</span><span class="p">,</span> <span class="n">phi_down</span><span class="p">)</span>
 
     <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">rdmFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;takes (M,max(Nup,Ndown)) orbitals</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""takes (M,max(Nup,Ndown)) orbitals</span>
 <span class="sd">        returns &lt;\psi|c^dag c | \psi&gt;/&lt;\psi|\psi&gt;</span>
 <span class="sd">        with shape (2,M,M) where first axis is spin</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">phi_up</span><span class="p">,</span><span class="n">phi_down</span> <span class="o">=</span> <span class="n">orbitalFunc</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
         <span class="n">rdm_up</span> <span class="o">=</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">phi_up</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">phi_up</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="n">rdm_down</span> <span class="o">=</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">jnp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">phi_down</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">phi_down</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -731,17 +731,17 @@ If you used all of the same settings as us, running the analysis script should g
 
 
     <span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
-        <span class="s2">&quot;opt_method&quot;</span><span class="p">:</span> <span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ansatz&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTOM&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-        <span class="s2">&quot;gpu&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s2">&quot;nelec&quot;</span><span class="p">:</span> <span class="n">nelec</span><span class="p">,</span>
-        <span class="s2">&quot;noncollinear&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s2">&quot;state0_scale&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
-        <span class="s2">&quot;measure_spin&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span>
+        <span class="s2">"opt_method"</span><span class="p">:</span> <span class="s2">"lbfgs"</span><span class="p">,</span>
+        <span class="s2">"ansatz"</span><span class="p">:</span> <span class="s2">"CUSTOM"</span><span class="p">,</span>
+        <span class="s2">"batch_size"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">"gpu"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"nelec"</span><span class="p">:</span> <span class="n">nelec</span><span class="p">,</span>
+        <span class="s2">"noncollinear"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"state0_scale"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+        <span class="s2">"measure_spin"</span><span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
 
     <span class="nd">@jax</span><span class="o">.</span><span class="n">jit</span>
@@ -759,7 +759,7 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="n">Ne</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Nup</span><span class="p">,</span><span class="n">Ndown</span><span class="p">)</span>
     
     <span class="n">state0_ref</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Ne</span><span class="p">))</span>
-    <span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ne</span><span class="p">))</span>
+    <span class="n">state0</span> <span class="o">=</span> <span class="n">state0_ref</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">hf_settings</span><span class="p">[</span><span class="s2">"batch_size"</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">Ne</span><span class="p">))</span>
 
     <span class="n">ts_autohf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">data</span><span class="p">,</span> <span class="n">data_functions</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
@@ -773,15 +773,15 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">jaxoptargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">),</span> <span class="c1">#keyword settings passed to jaxopt</span>
     <span class="p">)</span>
     <span class="n">tf_autohf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AutoHF took </span><span class="si">{</span><span class="n">tf_autohf</span><span class="o">-</span><span class="n">ts_autohf</span><span class="si">}</span><span class="s2"> seconds for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AutoHF took </span><span class="si">{</span><span class="n">tf_autohf</span><span class="o">-</span><span class="n">ts_autohf</span><span class="si">}</span><span class="s2"> seconds for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">rounding_level</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">chol_tol</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
     <span class="c1"># now gran the SD, and orthonormalize the orbitals</span>
-    <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">data_functions</span><span class="p">[</span><span class="s2">&quot;makeRDMs&quot;</span><span class="p">]</span>
+    <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">data_functions</span><span class="p">[</span><span class="s2">"makeRDMs"</span><span class="p">]</span>
 
-    <span class="c1"># get the best state&#39;s Slater determinant</span>
-    <span class="n">auto_hf_result</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+    <span class="c1"># get the best state's Slater determinant</span>
+    <span class="n">auto_hf_result</span> <span class="o">=</span> <span class="n">makeRDMs</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"state"</span><span class="p">])</span>
 
     <span class="n">guess_ao_uhf</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">X</span> <span class="o">@</span> <span class="n">auto_hf_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
@@ -790,7 +790,7 @@ If you used all of the same settings as us, running the analysis script should g
 
     <span class="c1"># run HF to generate a starting point</span>
     <span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
-    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'rhf_chkfile.h5'</span>
 
     <span class="c1"># quick run</span>
     <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
@@ -799,53 +799,53 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="n">rhf</span><span class="o">.</span><span class="n">init_guess</span> <span class="o">=</span> <span class="n">guess_ao_uhf</span>
     <span class="n">E</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;==== some sanity checks ====</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySCF ROHF energy:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rounding_level</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AutoHF ROHF energy:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">],</span> <span class="n">rounding_level</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trace of guess_ao (AO basis) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===========================</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"==== some sanity checks ====</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"PySCF ROHF energy:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rounding_level</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"AutoHF ROHF energy:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"E"</span><span class="p">],</span> <span class="n">rounding_level</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"trace of guess_ao (AO basis) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">overlap</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">===========================</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]),</span> <span class="s2">&quot;PySCF energy does not match AutoHF energy&quot;</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;E_ref_hf&quot;</span><span class="p">],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">),</span> <span class="s2">&quot;PySCF energy does not match reference HF energy&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">"E"</span><span class="p">]),</span> <span class="s2">"PySCF energy does not match AutoHF energy"</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">case</span><span class="p">[</span><span class="s2">"E_ref_hf"</span><span class="p">],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">),</span> <span class="s2">"PySCF energy does not match reference HF energy"</span>
 
     <span class="c1"># run CASSCF to get a basis / trial wavefunction</span>
     <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="n">ncas</span><span class="p">,</span> <span class="n">nelec_cas</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
     
     <span class="c1"># write the CAS wavefunction to a file</span>
     <span class="n">write_cas_wfn</span><span class="p">(</span>
         <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
         <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">casscf_chkfile</span><span class="p">,</span>
         <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="c1"># from the PRX</span>
-        <span class="n">outname</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">outname</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
         <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
     <span class="p">)</span>
     
     <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
         <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-        <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;mcscf&#39;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
     <span class="p">)</span>
 
     <span class="c1"># write Hamiltonian</span>
     <span class="n">write_hamil_mol</span><span class="p">(</span>
         <span class="n">basis_scf_data</span><span class="p">,</span>
-        <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
         <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="c1"># from the PRX</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
-        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
+        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+        <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
     <span class="p">}</span>    
     <span class="n">write_json</span><span class="p">(</span>
-        <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-        <span class="n">fwfn0</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+        <span class="n">local_scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
         <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
     <span class="p">)</span>
 
@@ -869,14 +869,14 @@ If you used all of the same settings as us, running the analysis script should g
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
-<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./files&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
+<span class="n">ecp_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./files"</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
 
-<span class="c1"># reference data from Phys. Rev. X 10, 011041 (see &quot;total_energy.csv&quot; from the supporting materials )</span>
+<span class="c1"># reference data from Phys. Rev. X 10, 011041 (see "total_energy.csv" from the supporting materials )</span>
 <span class="n">TestSet</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">VO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"V 0. 0. </span><span class="si">{</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.591</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
@@ -885,7 +885,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">TiO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Ti 0. 0. </span><span class="si">{</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.623</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
@@ -894,7 +894,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0009</span>
     <span class="p">),</span>
     <span class="n">CrO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Cr 0. 0. </span><span class="si">{</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.621</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> 
         <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -903,7 +903,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> 	<span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">MnO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Mn 0. 0. </span><span class="si">{</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.648</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span>
@@ -912,7 +912,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0014</span>
     <span class="p">),</span>
     <span class="n">FeO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Fe 0. 0. </span><span class="si">{</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.616</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> 
         <span class="n">spin</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> 
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
@@ -921,7 +921,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.001</span>
     <span class="p">),</span>
     <span class="n">CuO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Cu 0. 0. </span><span class="si">{</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.725</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
@@ -930,7 +930,7 @@ If you used all of the same settings as us, running the analysis script should g
         <span class="n">dE_ref_afqmc</span> <span class="o">=</span> <span class="mf">0.0011</span> 
     <span class="p">),</span>
     <span class="n">ScO</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Sc 0. 0. </span><span class="si">{</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">O 0. 0. </span><span class="si">{</span><span class="o">-</span><span class="mf">1.668</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">ncas</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
         <span class="n">nelec_cas</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
@@ -942,70 +942,70 @@ If you used all of the same settings as us, running the analysis script should g
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_afqmc_results</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">case</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="n">nequil</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">compare_to_ref</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Process and save the AFQMC result for the benchmark case</span>
-<span class="sd">    corresponding to &#39;key&#39; into the &#39;case&#39; dictionary </span>
-<span class="sd">    under keywords &quot;E_afqmc&quot; and &quot;dE_afqmc&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    corresponding to 'key' into the 'case' dictionary </span>
+<span class="sd">    under keywords "E_afqmc" and "dE_afqmc"</span>
+<span class="sd">    """</span>
     <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">key</span>
-    <span class="n">result_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span>
+    <span class="n">result_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span>
 
     <span class="c1"># skip if local scratch dir does not exist - save None for E, dE</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">result_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-        <span class="k">case</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">case</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No AFQMC result found for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">. Skipping analysis.&quot;</span><span class="p">)</span>
+        <span class="k">case</span><span class="p">[</span><span class="s2">"E_afqmc"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">case</span><span class="p">[</span><span class="s2">"dE_afqmc"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No AFQMC result found for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">. Skipping analysis."</span><span class="p">)</span>
         <span class="k">return</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analyzing AFQMC results for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Analyzing AFQMC results for </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">fname</span> <span class="o">=</span> <span class="n">result_file</span><span class="p">,</span>
-        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
         <span class="n">nequil</span> <span class="o">=</span> <span class="n">nequil</span><span class="p">,</span>
         <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
 
-    <span class="k">case</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span>
-    <span class="k">case</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dE</span>
+    <span class="k">case</span><span class="p">[</span><span class="s2">"E_afqmc"</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span>
+    <span class="k">case</span><span class="p">[</span><span class="s2">"dE_afqmc"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dE</span>
     
     <span class="k">if</span> <span class="n">compare_to_ref</span><span class="p">:</span>
-        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;E_ref_afqmc&quot;</span><span class="p">]</span>
-        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">&quot;dE_ref_afqmc&quot;</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          E_afqmc = </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;reference E_afqmc = </span><span class="si">{</span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; (difference) = </span><span class="si">{</span><span class="n">E</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- (joint stoch. uncertatinty) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dE_ref</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dE</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"E_ref_afqmc"</span><span class="p">]</span>
+        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">case</span><span class="p">[</span><span class="s2">"dE_ref_afqmc"</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"          E_afqmc = </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"reference E_afqmc = </span><span class="si">{</span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" (difference) = </span><span class="si">{</span><span class="n">E</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E_ref</span><span class="si">}</span><span class="s2"> +/- (joint stoch. uncertatinty) </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dE_ref</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dE</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">molecule</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="n">TestSet</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">get_afqmc_results</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">nequil</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
     <span class="c1"># loop through the cases and generate a results table</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======== Benchmark Results ========&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| Molecule | E AFQMC | Ref. A AFQMC | abs diff | match? |</span><span class="se">\n</span><span class="s2">|---|---|---|---|---|&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"======== Benchmark Results ========"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"| Molecule | E AFQMC | Ref. A AFQMC | abs diff | match? |</span><span class="se">\n</span><span class="s2">|---|---|---|---|---|"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">molecule</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="n">TestSet</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E_afqmc&quot;</span><span class="p">]</span>
-        <span class="n">dE</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dE_afqmc&quot;</span><span class="p">]</span>
-        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;E_ref_afqmc&quot;</span><span class="p">]</span>
-        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;dE_ref_afqmc&quot;</span><span class="p">]</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"E_afqmc"</span><span class="p">]</span>
+        <span class="n">dE</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"dE_afqmc"</span><span class="p">]</span>
+        <span class="n">E_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"E_ref_afqmc"</span><span class="p">]</span>
+        <span class="n">dE_ref</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"dE_ref_afqmc"</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">E</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dE</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | - | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | - | N/A&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | - | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | - | N/A"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">abs_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">E_ref</span><span class="p">)</span>
             <span class="n">joint_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dE</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dE_ref</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         
             <span class="k">if</span> <span class="n">abs_diff</span> <span class="o">&lt;</span> <span class="n">joint_err</span><span class="p">:</span>
-                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;1 sigma&quot;</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">"1 sigma"</span>
             <span class="k">elif</span> <span class="n">abs_diff</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">joint_err</span><span class="p">:</span>
-                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;2 sigma&quot;</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">"2 sigma"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">matches</span> <span class="o">=</span> <span class="s2">&quot;No&quot;</span>
+                <span class="n">matches</span> <span class="o">=</span> <span class="s2">"No"</span>
     
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">abs_diff</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">joint_err</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">matches</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"| </span><span class="si">{</span><span class="n">molecule</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">E_ref</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">dE_ref</span><span class="si">:</span><span class="s2">4.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">abs_diff</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">joint_err</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">matches</span><span class="si">}</span><span class="s2"> |"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Utility script for extracting and comparing AFQMC results against benchmark reference values, and generating a summary table.</p>

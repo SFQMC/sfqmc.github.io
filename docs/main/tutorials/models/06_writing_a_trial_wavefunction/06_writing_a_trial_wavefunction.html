@@ -498,7 +498,7 @@ Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 form
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">nx</span> <span class="o">=</span> <span class="mi">2</span>
@@ -506,11 +506,11 @@ Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 form
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">assert</span> <span class="p">(</span><span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">nelec</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
-<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_rhf_test.h5&quot;</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn_rhf_test.h5"</span>
 <span class="n">sd_rhf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span><span class="n">sd_rhf</span><span class="p">],</span>
-          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;closed&#39;</span><span class="p">,</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">'closed'</span><span class="p">,</span>
           <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
           <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
 </pre></div>
@@ -536,12 +536,12 @@ Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 form
 <span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
-<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_uhf_test.h5&quot;</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn_uhf_test.h5"</span>
 <span class="n">sd_uhf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
 
 <span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
-          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;collinear&#39;</span><span class="p">,</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">'collinear'</span><span class="p">,</span>
           <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
           <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
 </pre></div>
@@ -570,12 +570,12 @@ Become acquainted with how to write a Trial wavefunction to the SAFIRE HDF5 form
 <span class="c1"># as long as the total number of electrons is the same</span>
 <span class="c1"># This is because the GHF wavefunction does not distinguish between spin-up and spin-down components.</span>
 <span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
-<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_ghf_test.h5&quot;</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn_ghf_test.h5"</span>
 <span class="n">sd_ghf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
 
 <span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
-          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
           <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
           <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
 </pre></div>
@@ -601,11 +601,11 @@ In summary, to generate a GHF wavefunction, you need to provide an array <code c
 <span class="n">ny</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># (3, 1) or (2, 2) or (1, 3) or (0,4) are equivalent as long as sum(nelec) is the same</span>
 <span class="n">norb</span> <span class="o">=</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span>
-<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn_multi_ghf_test.h5&quot;</span>
+<span class="n">wfn_input_filename</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn_multi_ghf_test.h5"</span>
 <span class="n">sd_uhf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">1.4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norb</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
 <span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">wfn_input_filename</span><span class="p">,</span> <span class="n">wfn</span><span class="o">=</span><span class="p">[</span><span class="n">ci</span><span class="p">,</span> <span class="n">sd_uhf</span><span class="p">],</span>
-          <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;noncollinear&#39;</span><span class="p">,</span>
+          <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
           <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
           <span class="n">norb</span><span class="o">=</span><span class="n">norb</span><span class="p">)</span>
 </pre></div>
@@ -643,8 +643,8 @@ In the <code class="docutils literal notranslate"><span class="pre">write_wfn</s
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
     <span class="p">)</span>
 <span class="p">)</span>
 
@@ -652,10 +652,10 @@ In the <code class="docutils literal notranslate"><span class="pre">write_wfn</s
 <span class="n">Uhubb</span> <span class="o">=</span> <span class="mf">4.0</span>
 
 <span class="c1"># list of hopping parameters is interpreted as follows:</span>
-<span class="c1">#    hopping[0] is &#39;t&#39;</span>
-<span class="c1">#    hopping[1] is &#39;t^{prime}&#39;</span>
+<span class="c1">#    hopping[0] is 't'</span>
+<span class="c1">#    hopping[1] is 't^{prime}'</span>
 <span class="c1">#    ....</span>
-<span class="c1">#    hopping[n-1] is &#39;t^{n}&#39;</span>
+<span class="c1">#    hopping[n-1] is 't^{n}'</span>
 <span class="n">hopping</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]</span>
 
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
@@ -670,7 +670,7 @@ In the <code class="docutils literal notranslate"><span class="pre">write_wfn</s
 
 <span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;hamil.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"hamil.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 
@@ -683,7 +683,7 @@ In the <code class="docutils literal notranslate"><span class="pre">write_wfn</s
 
 <span class="c1"># and write the wavefunction for use in SAFIRE</span>
 <span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">,</span>
     <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
     <span class="n">walker_type</span><span class="o">=</span><span class="n">spin_symm</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>

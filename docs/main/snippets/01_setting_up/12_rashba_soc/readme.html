@@ -518,17 +518,17 @@ in Python without using an inputfile.</p>
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
     <span class="p">)</span>
 <span class="p">)</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># list of hopping parameters is interpreted as follows:</span>
-<span class="c1">#    hopping[0] is &#39;t&#39;</span>
-<span class="c1">#    hopping[1] is &#39;t^{prime}&#39;</span>
+<span class="c1">#    hopping[0] is 't'</span>
+<span class="c1">#    hopping[1] is 't^{prime}'</span>
 <span class="c1">#    ....</span>
-<span class="c1">#    hopping[n-1] is &#39;t^{n}&#39;</span>
+<span class="c1">#    hopping[n-1] is 't^{n}'</span>
 <span class="n">hopping</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
 
 <span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
@@ -547,13 +547,13 @@ in Python without using an inputfile.</p>
 
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 <span class="n">free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
 <span class="p">)</span>
 </pre></div>

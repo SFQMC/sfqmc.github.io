@@ -520,8 +520,8 @@ lattice model Hamiltonian by directly invoking the HamiltonianBuilder.</p>
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
     <span class="p">)</span>
 <span class="p">)</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -543,12 +543,12 @@ lattice model Hamiltonian by directly invoking the HamiltonianBuilder.</p>
 
 <span class="n">custom_one_body</span> <span class="o">=</span> <span class="n">HamiltonianComponent</span><span class="p">(</span>
     <span class="n">csr_matrix</span><span class="o">=</span><span class="n">one_body_matrix</span><span class="p">,</span>
-    <span class="n">model_type</span><span class="o">=</span><span class="s1">&#39;one_body&#39;</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="s1">'one_body'</span><span class="p">,</span>
     <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">COLLINEAR</span>
 <span class="p">)</span>
 
 <span class="c1"># manually add the custom term</span>
-<span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">&quot;tij&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_one_body</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">"tij"</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_one_body</span>
 
 <span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
@@ -556,13 +556,13 @@ lattice model Hamiltonian by directly invoking the HamiltonianBuilder.</p>
 
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 <span class="n">free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
 <span class="p">)</span>
 </pre></div>

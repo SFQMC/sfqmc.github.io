@@ -517,13 +517,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># This are in case you have a GPU enabled JAX but are running on CPU.</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JAX_PLATFORMS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'JAX_PLATFORMS'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cpu'</span>
 <span class="c1"># If you want to use GPU enabled Jax in multiply notebooks with the same</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;XLA_PYTHON_CLIENT_PREALLOCATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"XLA_PYTHON_CLIENT_PREALLOCATE"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"false"</span>
 
 <span class="c1"># use x64 numbers</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jax</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
-<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;jax_enable_x64&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">"jax_enable_x64"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -551,7 +551,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -575,10 +575,10 @@
 <span class="n">lattice_dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="s1">&#39;L2&#39;</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-    <span class="s1">&#39;boundary1&#39;</span> <span class="p">:</span> <span class="s1">&#39;Open&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'L2'</span> <span class="p">:</span> <span class="n">lattice_dims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">'boundary1'</span> <span class="p">:</span> <span class="s1">'Open'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span> <span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
@@ -614,7 +614,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
 <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -627,18 +627,18 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
-                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
+                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a trial wavefunction: First, let&#39;s try a free-electron (i.e. non-interacting) wavefunction</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a trial wavefunction: First, let's try a free-electron (i.e. non-interacting) wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_free_electron_wfn</span>
 <span class="n">write_free_electron_wfn</span><span class="p">(</span>
-    <span class="n">hamiltonian_fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">hamiltonian_fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 </pre></div>
@@ -652,39 +652,39 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
 <span class="c1"># make an input file</span>
 <span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-        <span class="s2">&quot;population_control_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&quot;walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
-        <span class="s2">&quot;estimator1&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;energy&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">&quot;print_components&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
+        <span class="s2">"estimator1"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"energy"</span><span class="p">,</span>
+            <span class="s2">"overwrite"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"print_components"</span><span class="p">:</span> <span class="kc">True</span>
         <span class="p">},</span>
-        <span class="s2">&quot;estimator2&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;path_restoration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">&quot;extra_path_restoration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span>
-            <span class="s2">&quot;equil_multiplier&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-            <span class="s2">&quot;onerdm&quot;</span> <span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;onerdm&quot;</span>
+        <span class="s2">"estimator2"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"name"</span><span class="p">:</span><span class="s2">"back_propagation"</span><span class="p">,</span>
+            <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"extra_path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span>
+            <span class="s2">"equil_multiplier"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s2">"onerdm"</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"name"</span><span class="p">:</span><span class="s2">"onerdm"</span>
     	    <span class="p">}</span>
         <span class="p">},</span>
-        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
-        <span class="s2">&quot;propagator&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;use_cp_constraint&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">&quot;use_real_vbias&quot;</span> <span class="p">:</span> <span class="kc">True</span>
+        <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
+        <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"use_real_vbias"</span> <span class="p">:</span> <span class="kc">True</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
 <span class="n">write_json</span><span class="p">(</span>
-    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
+    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
     <span class="n">series</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
@@ -707,8 +707,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="n">nequil</span> <span class="o">=</span> <span class="mf">20.0</span>
 
 <span class="n">analysis_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>     <span class="c1"># use units of imaginary time for equilibration</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>    <span class="c1"># length of equilibration phase (in units of imaginary time)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># plots a trace of the scalar data</span>
 <span class="p">)</span>
@@ -735,17 +735,17 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho_avg</span><span class="p">,</span> <span class="n">delta_rho</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.stat.h5&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho_avg</span><span class="p">,</span> <span class="n">delta_rho</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"qmc.s000.stat.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
 <span class="n">delta_Sz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">delta_rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">delta_rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
-<span class="c1"># We&#39;re collinear</span>
+<span class="c1"># We're collinear</span>
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">Ys</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -768,23 +768,23 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DMRG data of the form: site Sz Nup Ndn</span>
-<span class="n">SzDmrg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;data_10x4_Ne16U6.0_15360.dat&quot;</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+<span class="n">SzDmrg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">"data_10x4_Ne16U6.0_15360.dat"</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we&#39;ll average over the columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we'll average over the columns</span>
 
 <span class="n">avg_delta_Sz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">delta_Sz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">averageOverCols</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="n">yerr</span><span class="o">=</span><span class="n">avg_delta_Sz</span><span class="p">,</span>
-             <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;AFQMC Free Electron&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">averageOverCols</span><span class="p">(</span><span class="n">SzDmrg</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;DMRG&quot;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+             <span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC Free Electron"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">averageOverCols</span><span class="p">(</span><span class="n">SzDmrg</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">"DMRG"</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Col&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Staggered Sz&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Col"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered Sz"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># plt.ylim(-0.3,0.2)</span>
@@ -808,7 +808,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
     <span class="n">builder_eff</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
               <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-              <span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span>
+              <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span>
                   <span class="p">)</span>
     <span class="c1"># add standard Hubbard terms</span>
     <span class="n">builder_eff</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -819,13 +819,13 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="c1"># NOTICE: we must be careful here! We can either keep around afqmc.h5</span>
     <span class="c1"># which has the original Hamiltonian (U=6) and keep the wf and its Hamiltonian together</span>
     <span class="c1"># or we have one file with afqmc_Ueff which has both the wf and builder.hamiltonian</span>
-    <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder_eff</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5&quot;</span><span class="p">,</span>
-                            <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder_eff</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span><span class="p">,</span>
+                            <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
 
     <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">steps</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
-        <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span>
-        <span class="n">ansatz</span><span class="o">=</span><span class="s2">&quot;SD_ROT&quot;</span><span class="p">,</span>
+        <span class="n">opt_method</span><span class="o">=</span><span class="s2">"lbfgs"</span><span class="p">,</span>
+        <span class="n">ansatz</span><span class="o">=</span><span class="s2">"SD_ROT"</span><span class="p">,</span>
         <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
         <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
         <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -838,17 +838,17 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="p">)</span>
     <span class="n">autohf_to_afqmc</span><span class="p">(</span>
         <span class="n">results</span><span class="p">,</span>
-        <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5&quot;</span>
+        <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span>
     <span class="p">)</span>
 
     <span class="n">write_json</span><span class="p">(</span>
-        <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>
-        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5&quot;</span><span class="p">,</span>
-        <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json"</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span><span class="p">,</span>
+        <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
         <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
-        <span class="nb">id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Written </span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Written </span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -858,7 +858,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">Ueff</span> <span class="ow">in</span> <span class="n">Ueffs</span><span class="p">:</span>
     <span class="n">run_afqmc</span><span class="p">(</span>
         <span class="n">run_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="p">,</span>
-        <span class="n">input_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>
+        <span class="n">input_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json"</span><span class="p">,</span>
         <span class="n">np</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span>        
@@ -872,9 +872,9 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
 <span class="k">for</span> <span class="n">Ueff</span> <span class="ow">in</span> <span class="n">Ueffs</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;qmc.s000.stat.h5&quot;</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="s2">"qmc.s000.stat.h5"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.s000.stat.h5&quot;</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.s000.stat.h5"</span>
     <span class="n">rho_avg</span><span class="p">,</span> <span class="n">delta_rho</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">fname</span><span class="p">)</span>
     <span class="n">rhos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">)</span>
     <span class="n">deltas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_rho</span><span class="p">)</span>
@@ -885,24 +885,24 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">Ueff</span><span class="p">,</span><span class="n">rho_avg</span><span class="p">,</span><span class="n">delta_rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">,</span><span class="n">rhos</span><span class="p">,</span><span class="n">deltas</span><span class="p">):</span>
-    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
     <span class="n">delta_Sz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">delta_rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">delta_rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
-    <span class="c1"># We&#39;re collinear</span>
+    <span class="c1"># We're collinear</span>
     <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">Ys</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">Zs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;$S^z$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">"$S^z$"</span><span class="p">)</span>
 
 
     <span class="n">p</span> <span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">delta_Sz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$ΔSz$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$ΔSz$"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Free Electron&quot;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Free Electron"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Ueff</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">Ueff</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -917,12 +917,12 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_rhos</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">Ueff</span> <span class="ow">in</span> <span class="n">Ueffs</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;afqmc.h5&quot;</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="s2">"afqmc.h5"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5&quot;</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span>
     <span class="p">(</span><span class="n">coeffs</span><span class="p">,</span><span class="n">wfn</span><span class="p">),</span> <span class="n">psi0</span><span class="p">,</span> <span class="p">(</span><span class="n">na</span><span class="p">,</span> <span class="n">nb</span><span class="p">),</span><span class="n">spintype</span> <span class="o">=</span> <span class="n">read_wavefunction</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">fname</span><span class="p">)</span>
     <span class="c1"># We assume spin balance below</span>
-    <span class="n">o</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">na</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">na</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">'F'</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
     <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">o</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span><span class="n">o</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]])</span>
 
     <span class="n">rdm</span> <span class="o">=</span> <span class="n">greens_1body</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
@@ -933,23 +933,23 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we&#39;ll average over the columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we'll average over the columns</span>
 <span class="k">for</span> <span class="n">Ueff</span><span class="p">,</span><span class="n">rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">,</span><span class="n">rhos</span><span class="p">):</span>
-    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
     
     <span class="n">avg_delta_Sz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">delta_Sz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Free Electron&quot;</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">"Free Electron"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;HF W/ HF Ueff=</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"HF W/ HF Ueff=</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                  <span class="n">averageOverCols</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="n">yerr</span><span class="o">=</span><span class="n">avg_delta_Sz</span><span class="p">,</span>
-                 <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">averageOverCols</span><span class="p">(</span><span class="n">SzDmrg</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="s1">&#39;x-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;DMRG&quot;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+                 <span class="n">fmt</span><span class="o">=</span><span class="s1">'o--'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">averageOverCols</span><span class="p">(</span><span class="n">SzDmrg</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">),</span><span class="s1">'x-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"DMRG"</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Col&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Staggered Sz&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Col"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered Sz"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># plt.ylim(-0.3,0.2)</span>
@@ -966,8 +966,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
 <span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerrs</span> <span class="o">=</span> <span class="p">[],[],[]</span>
 <span class="k">for</span> <span class="n">Ueff</span><span class="p">,</span><span class="n">rho_avg</span><span class="p">,</span><span class="n">delta_rho</span><span class="p">,</span><span class="n">trial_rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">,</span><span class="n">rhos</span><span class="p">,</span><span class="n">deltas</span><span class="p">,</span><span class="n">trial_rhos</span><span class="p">):</span>
-    <span class="n">XsT</span><span class="p">,</span><span class="n">YsT</span><span class="p">,</span><span class="n">ZsT</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">trial_rho</span><span class="p">),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
-    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">XsT</span><span class="p">,</span><span class="n">YsT</span><span class="p">,</span><span class="n">ZsT</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">trial_rho</span><span class="p">),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
     <span class="n">afqmc_sz</span> <span class="o">=</span> <span class="n">averageOverCols</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
     <span class="n">trial_sz</span> <span class="o">=</span> <span class="n">averageOverCols</span><span class="p">(</span><span class="n">ZsT</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
@@ -980,10 +980,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">afqmc_sz</span><span class="o">-</span><span class="n">dmrg_sz</span><span class="p">)))</span>
     <span class="n">yerrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">avg_delta_Sz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;AFQMC&quot;</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC"</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Ueff&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\langle |$DMRG $S_z - $AFQMC $S_z|\rangle$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Ueff"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$DMRG $S_z - $AFQMC $S_z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
@@ -993,8 +993,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
 <span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerrs</span> <span class="o">=</span> <span class="p">[],[],[]</span>
 <span class="k">for</span> <span class="n">Ueff</span><span class="p">,</span><span class="n">rho_avg</span><span class="p">,</span><span class="n">delta_rho</span><span class="p">,</span><span class="n">trial_rho</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">,</span><span class="n">rhos</span><span class="p">,</span><span class="n">deltas</span><span class="p">,</span><span class="n">trial_rhos</span><span class="p">):</span>
-    <span class="n">XsT</span><span class="p">,</span><span class="n">YsT</span><span class="p">,</span><span class="n">ZsT</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">trial_rho</span><span class="p">),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
-    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">&quot;collinear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">XsT</span><span class="p">,</span><span class="n">YsT</span><span class="p">,</span><span class="n">ZsT</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">trial_rho</span><span class="p">),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">Xs</span><span class="p">,</span><span class="n">Ys</span><span class="p">,</span><span class="n">Zs</span> <span class="o">=</span> <span class="n">spobs</span><span class="o">.</span><span class="n">local_spin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">rho_avg</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="s2">"collinear"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
 
     <span class="n">afqmc_sz</span> <span class="o">=</span> <span class="n">averageOverCols</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
     <span class="n">trial_sz</span> <span class="o">=</span> <span class="n">averageOverCols</span><span class="p">(</span><span class="n">ZsT</span><span class="p">,</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
@@ -1007,10 +1007,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">afqmc_sz</span><span class="o">-</span><span class="n">trial_sz</span><span class="p">)))</span>
     <span class="n">yerrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">avg_delta_Sz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;AFQMC&quot;</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC"</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">Ueffs</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Ueff&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\langle |$Trial $S_z - $AFQMC $S_z|\rangle$&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Ueff"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$Trial $S_z - $AFQMC $S_z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 

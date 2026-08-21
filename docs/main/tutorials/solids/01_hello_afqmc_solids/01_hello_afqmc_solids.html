@@ -550,25 +550,25 @@ details of the calculation. Understanding the details of the input file is the g
 Similarly, the <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> input block is used to tell SAFIRE where to find the HDF5 file containing the Hamiltonian.</p>
 <p>The sample json file that we have provided is reproduced here.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CLOSED&quot;</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;files/wfn.h5&quot;</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files/wfn.h5"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;hamiltonian&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;files/hamil.h5&quot;</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files/hamil.h5"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 <span class="p">}</span>
@@ -875,11 +875,11 @@ from within an interactive Python notebook.</p>
 <p>Here is a typical example of using <code class="docutils literal notranslate"><span class="pre">run_afqmc()</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-    <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
     
     <span class="n">run_afqmc</span><span class="p">(</span>
         <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>                <span class="c1"># directory to run SAFIRE in - output files will be there</span>
-        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;/path/to/inputfile/input.json&quot;</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">"/path/to/inputfile/input.json"</span><span class="p">,</span>
         <span class="n">np</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>                              <span class="c1"># number of MPI tasks</span>
         <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>                    <span class="c1"># optionally direct output to file; if None,</span>
     <span class="p">)</span>                                       <span class="c1"># then output will be captured in the jupyter notebook.</span>
@@ -910,27 +910,27 @@ if you did not change any settings.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># copy the provided files</span>
-<span class="n">files_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;files&quot;</span>
+<span class="n">files_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"files"</span>
 <span class="n">files_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;files/input.json&quot;</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;files/wfn.h5&quot;</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;files/hamil.h5&quot;</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">"files/input.json"</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">"files/wfn.h5"</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">"files/hamil.h5"</span><span class="p">,</span> <span class="n">files_dir</span><span class="p">)</span>
 
 <span class="n">run_afqmc</span><span class="p">(</span>
     <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
-    <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;files/input.json&quot;</span><span class="p">,</span>   <span class="c1"># the location of the sample input file.</span>
+    <span class="n">input_file</span><span class="o">=</span><span class="s2">"files/input.json"</span><span class="p">,</span>   <span class="c1"># the location of the sample input file.</span>
     <span class="n">np</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>                                         <span class="c1"># to run in serial just as before!</span>
     <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 
 <span class="c1"># post process!</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
-    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-    <span class="n">series_column</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+    <span class="n">series_column</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
     <span class="n">nequil</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">))</span>

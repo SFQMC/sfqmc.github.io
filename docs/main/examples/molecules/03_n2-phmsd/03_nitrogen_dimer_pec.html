@@ -541,7 +541,7 @@ using an appropriate trial wavefunction.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">num_mpi_tasks</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># adjust based on your resources</span>
@@ -595,23 +595,23 @@ If we start with a decent CASSCF or SCI wavefunction, then we can characterize t
 <p><b>A critical step in achieving high-accuracy results, therefore, is to converge the AFQMC energy in <span class="math notranslate nohighlight">\(N_\mathrm{det}\)</span></b></p>
 <p>SAFIRE provides a keyword in the “wavefunction” json input block to limit the number of Slater determinants, “ndets_to_read”, that are actually read from the HDF5 wavefunction file. Here is a sample json input block.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COLLINEAR"</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_wfn_file.h5&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ndets_to_read&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_wfn_file.h5"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ndets_to_read"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -635,22 +635,22 @@ as a basis.</p>
 (alternatively, run your favorite Quantum Chemistry code, and save the CASSCF wavefunction in the wavefunction HDF5 file).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, we&#39;ll generate the mol object</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, we'll generate the mol object</span>
 
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c1"># Bohr</span>
 
-<span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
 <span class="s1">N 0. 0. </span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
 <span class="s1">N 0. 0. -</span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
-<span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">'''</span>
 <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
     <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
-    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
-    <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Bohr&#39;</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">'ccpvdz'</span><span class="p">,</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="s1">'Bohr'</span>
 <span class="p">)</span>
 
 <span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
-<span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+<span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'rhf_chkfile.h5'</span>
 <span class="n">casscf_chkfile</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># delete if already exists</span>
 
 <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
@@ -658,14 +658,14 @@ as a basis.</p>
 <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
 <span class="c1"># save the ci to the chkfile too</span>
-<span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
 
 <span class="c1"># write the CAS wavefunction to a file</span>
 <span class="n">write_cas_wfn</span><span class="p">(</span>
     <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
     <span class="n">cas_chkfile</span><span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
     <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="c1"># use a small value to save *many* determinants.</span>
-    <span class="n">outname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+    <span class="n">outname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
     <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
 <span class="p">)</span>
 </pre></div>
@@ -693,13 +693,13 @@ We will now build the Hamiltonian in the basis of CASSCF orbitals, and save it t
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Hamiltonian</span>
 <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s1">&#39;mcscf&#39;</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
 <span class="p">)</span>
 
 <span class="c1"># write Hamiltonian</span>
 <span class="n">write_hamil_mol</span><span class="p">(</span>
     <span class="n">basis_scf_data</span><span class="p">,</span>
-    <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span><span class="p">,</span>
+    <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
     <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
@@ -720,33 +720,33 @@ on the PEC.</p>
 <p><b>We will automate this using Python and the tutorial helper function, run_afqmc().</b></p>
 <p>Again, we will use the “ndets_to_read” keyword in the “wavefunction” input block to limit the number of Slater determinants.
 In the code block below, you will notice that we are setting,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">execute_options</span><span class="p">[</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">execute_options</span><span class="p">[</span><span class="s2">"wavefunction"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"ndets_to_read"</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
 </pre></div>
 </div>
 <p>in the “execute_options” dictionary.
 <code class="docutils literal notranslate"><span class="pre">write_json()</span></code> will <em><strong>append</strong></em> settings within an existing input block when they are passed in this way.
 For example,</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">write_json</span><span class="p">(</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span><span class="s2">&quot;wfn.h5&quot;</span><span class="p">,</span><span class="n">exec_opts</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="mi">500</span> <span class="p">})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">write_json</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span><span class="s2">"wfn.h5"</span><span class="p">,</span><span class="n">exec_opts</span><span class="o">=</span><span class="p">{</span> <span class="s2">"ndets_to_read"</span> <span class="p">:</span> <span class="mi">500</span> <span class="p">})</span>
 </pre></div>
 </div>
 <p>will generate a “wavefunction” block that points to the wavefunction file, with the following contents:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;afqmc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;series&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;execute&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;walker_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;walker_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;COLLINEAR&quot;</span>
+<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COLLINEAR"</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;wavefunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ndets_to_read&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ndets_to_read"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;timestep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -758,13 +758,13 @@ Note: This might take some time. You might want to run this on a computing clust
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some shared parameters for the AFQMC run</span>
 <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-    <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span>
+    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+    <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>
 <span class="p">}</span>
 
 
@@ -775,29 +775,29 @@ Note: This might take some time. You might want to run this on a computing clust
 <span class="k">for</span> <span class="n">ndet</span> <span class="ow">in</span> <span class="n">ndets</span><span class="p">:</span>
 
     <span class="c1"># make a sub-scratch dir for better book keeping</span>
-    <span class="n">scratch_dir_local</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;Ndet_</span><span class="si">{</span><span class="n">ndet</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">scratch_dir_local</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"Ndet_</span><span class="si">{</span><span class="n">ndet</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">scratch_dir_local</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">execute_options</span><span class="p">[</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
+    <span class="n">execute_options</span><span class="p">[</span><span class="s2">"wavefunction"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"ndets_to_read"</span> <span class="p">:</span> <span class="n">ndet</span> <span class="p">}</span>
 
     <span class="n">write_json</span><span class="p">(</span>
-        <span class="n">scratch_dir_local</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">scratch_dir_local</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
         <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
     <span class="p">)</span>
     <span class="c1"># run AFQMC</span>
     <span class="n">run_afqmc</span><span class="p">(</span>
         <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir_local</span><span class="p">,</span>
-        <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+        <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
         <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
         <span class="n">np</span><span class="o">=</span><span class="n">num_mpi_tasks</span><span class="p">,</span>         <span class="c1"># number of MPI tasks</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;afqmc.out&quot;</span>   <span class="c1"># optionally direct output to file instead of here</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="s2">"afqmc.out"</span>   <span class="c1"># optionally direct output to file instead of here</span>
     <span class="p">)</span>
 
     <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir_local</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir_local</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
         <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span>
@@ -807,7 +807,7 @@ Note: This might take some time. You might want to run this on a computing clust
     <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">stochastic_uncertainties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dE</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; [Result] </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" [Result] </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -820,10 +820,10 @@ Note: This might take some time. You might want to run this on a computing clust
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">ndets</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Number of Slater determinants&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Energy (Ha)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Convergence of AFQMC in the number of Slater determinants&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">ndets</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'o:'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Number of Slater determinants"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Energy (Ha)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Convergence of AFQMC in the number of Slater determinants"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -855,34 +855,34 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_afqmc_on_dimer</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="n">ndets_to_read</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_mpi_tasks</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
 
-    <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;N2_bondlength_</span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"N2_bondlength_</span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running AFQMC on dimer with bond length </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Angstroms&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Running AFQMC on dimer with bond length </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Angstroms"</span><span class="p">)</span>
 
     <span class="c1"># 1. run CASSCF to get a basis and a trial wavefunction</span>
-    <span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
 <span class="s1">    N 0. 0. </span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
 <span class="s1">    N 0. 0. -</span><span class="si">{</span><span class="n">delta</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
-<span class="s1">    &#39;&#39;&#39;</span>
+<span class="s1">    '''</span>
     <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
         <span class="n">atom</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
-        <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
-        <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Bohr&#39;</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="s1">'ccpvdz'</span><span class="p">,</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="s1">'Bohr'</span>
     <span class="p">)</span>
 
 
-    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="s1">&#39;rhf_chkfile.h5&#39;</span>
+    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="s1">'rhf_chkfile.h5'</span>
 
     <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
     <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span>
     <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
     <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">&#39;mcscf/ci&#39;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
 
     <span class="c1"># write the CAS wavefunction to a file</span>
-    <span class="n">fout</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;afqmc.h5&#39;</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span>
 
     <span class="n">write_cas_wfn</span><span class="p">(</span>
         <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
@@ -893,7 +893,7 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
     <span class="p">)</span>
 
     <span class="c1"># 2. write the Hamiltonian</span>
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span> <span class="s1">&#39;scf&#39;</span><span class="p">)</span>
+    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
 
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
@@ -907,45 +907,45 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
 
     <span class="c1"># write json file</span>
     <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
-        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-        <span class="s2">&quot;wavefunction&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;ndets_to_read&quot;</span> <span class="p">:</span> <span class="n">ndets_to_read</span> <span class="p">}</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
+        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
+        <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">"wavefunction"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"ndets_to_read"</span> <span class="p">:</span> <span class="n">ndets_to_read</span> <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="n">write_json</span><span class="p">(</span>
-        <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
-        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+        <span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
+        <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
         <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_execution_options</span>
     <span class="p">)</span>
 
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running AFQMC&quot;</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Running AFQMC"</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># run afqmc</span>
     <span class="n">run_afqmc</span><span class="p">(</span>
         <span class="n">run_dir</span><span class="o">=</span><span class="n">scratch_dir</span><span class="p">,</span>
-        <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+        <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
         <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
         <span class="n">np</span><span class="o">=</span><span class="n">num_mpi_tasks</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;afqmc.out&quot;</span>   <span class="c1"># optionally direct output to file instead of here</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="s2">"afqmc.out"</span>   <span class="c1"># optionally direct output to file instead of here</span>
     <span class="p">)</span>
 
     <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
         <span class="n">nequil</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="n">E</span><span class="p">,</span><span class="n">dE</span> <span class="o">=</span> <span class="n">analyze_scalar_data</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; [Result] </span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" [Result] </span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">delta</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dE</span>
 </pre></div>
@@ -986,10 +986,10 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">bondlengths</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AFQMC/CASSCF&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bond length (Bohr)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Energy (Ha)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N_2$ molecule PEC&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">bondlengths</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stochastic_uncertainties</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'o:'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC/CASSCF"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Bond length (Bohr)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Energy (Ha)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$N_2$ molecule PEC"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>

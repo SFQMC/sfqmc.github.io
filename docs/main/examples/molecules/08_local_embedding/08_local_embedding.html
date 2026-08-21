@@ -530,7 +530,7 @@ which, among other things, provides tools to analyze the locality of a set of or
 <span class="c1"># from embeddingAFQMC</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">embedding.orbital.assign</span><span class="w"> </span><span class="kn">import</span> <span class="n">euclid_nd</span><span class="p">,</span> <span class="n">gen_orbital_stats</span><span class="p">,</span> <span class="n">print_stats</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">Hartree</span> <span class="o">=</span> <span class="mf">27.211407953</span> <span class="c1"># eV</span>
@@ -580,25 +580,25 @@ which, among other things, provides tools to analyze the locality of a set of or
 
 <span class="c1"># custom metric to take the projection of the orbital position onto the xy plane</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">euclid_2d</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return the 2D Euclidean distance between two points r1 and r2, ignoring coordinates beyond the first two dimensions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">euclid_nd</span><span class="p">(</span><span class="n">r1</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">r2</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_afqmc_energy</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">Ro</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">Rv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">N_energetic_core</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rhf_guess_rdm</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># 1. generate underlying CMO basis</span>
     <span class="c1"># run initial HF calculation to generate basis</span>
 
-    <span class="n">local_scratch</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">local_scratch</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">local_scratch</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">atom_chkfile</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;rhf_h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">.chk&quot;</span>
+    <span class="n">atom_chkfile</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"rhf_h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">.chk"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_atomic_positions</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        h is input in Bohr, but needs to be converted to angstrom</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;O 0.000000 0.0 </span><span class="si">{</span><span class="n">h</span><span class="o">*</span><span class="n">Bohr</span><span class="si">}</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"""O 0.000000 0.0 </span><span class="si">{</span><span class="n">h</span><span class="o">*</span><span class="n">Bohr</span><span class="si">}</span>
 <span class="s2">                H -0.4704240745 0.0 0.0</span>
 <span class="s2">                H 0.4704240745 0.0 0.0</span>
 <span class="s2">                H 1.4112722235 0.0 0.0</span>
@@ -618,10 +618,10 @@ which, among other things, provides tools to analyze the locality of a set of or
 <span class="s2">                H 14.5831463095 0.0 0.0</span>
 <span class="s2">                H 15.5239944585 0.0 0.0</span>
 <span class="s2">                H 16.4648426075 0.0 0.0</span>
-<span class="s2">                H 17.4056907565 0.0 0.0&quot;&quot;&quot;</span>
+<span class="s2">                H 17.4056907565 0.0 0.0"""</span>
 
     <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
-        <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;ccpvdz&#39;</span><span class="p">,</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="s1">'ccpvdz'</span><span class="p">,</span>
         <span class="n">atom</span><span class="o">=</span><span class="n">get_atomic_positions</span><span class="p">(</span><span class="n">h</span><span class="p">),</span>
         <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span>
@@ -689,22 +689,22 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="n">ncas</span> <span class="o">=</span> <span class="n">N_active_occ</span> <span class="o">+</span> <span class="n">N_active_virt</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ncore = </span><span class="si">{</span><span class="n">Ncore</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N_active_occ = </span><span class="si">{</span><span class="n">N_active_occ</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N_active_virt = </span><span class="si">{</span><span class="n">N_active_virt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ncas = </span><span class="si">{</span><span class="n">ncas</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ncore = </span><span class="si">{</span><span class="n">Ncore</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"N_active_occ = </span><span class="si">{</span><span class="n">N_active_occ</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"N_active_virt = </span><span class="si">{</span><span class="n">N_active_virt</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ncas = </span><span class="si">{</span><span class="n">ncas</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="c1"># 4. build and save the Hamiltonian</span>
     <span class="c1"># generate the Frozen Core Hamiltonian + save for AFQMC</span>
 
-    <span class="n">afqmc_hamil_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">&quot;local_embedding_H.h5&quot;</span>
+    <span class="n">afqmc_hamil_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"local_embedding_H.h5"</span>
 
     <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
         <span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
     <span class="p">)</span>
 
     <span class="c1"># edit the orbitals!</span>
-    <span class="n">scf_data</span><span class="p">[</span><span class="s2">&quot;mo_coeff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_basis</span>
+    <span class="n">scf_data</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_basis</span>
 
     <span class="n">write_hamil_mol</span><span class="p">(</span>
         <span class="n">scf_data</span><span class="p">,</span>
@@ -717,7 +717,7 @@ which, among other things, provides tools to analyze the locality of a set of or
     <span class="c1"># 5. Write the trial wavefunction</span>
 
     <span class="c1"># write the trial wavefunction</span>
-    <span class="n">afqmc_wfn_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">&quot;active_space_rhf_wfn.h5&quot;</span>
+    <span class="n">afqmc_wfn_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"active_space_rhf_wfn.h5"</span>
 
     <span class="n">active_det_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ncas</span><span class="p">,</span><span class="n">N_active_occ</span><span class="p">)</span>
     <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">active_det_up</span><span class="p">]))</span>
@@ -726,7 +726,7 @@ which, among other things, provides tools to analyze the locality of a set of or
     <span class="n">write_wfn</span><span class="p">(</span>
         <span class="n">afqmc_wfn_file</span><span class="p">,</span>
         <span class="n">wfn</span><span class="p">,</span>
-        <span class="n">walker_type</span><span class="o">=</span><span class="s1">&#39;closed&#39;</span><span class="p">,</span>
+        <span class="n">walker_type</span><span class="o">=</span><span class="s1">'closed'</span><span class="p">,</span>
         <span class="n">nelec</span><span class="o">=</span><span class="n">nelec_active</span><span class="p">,</span>
         <span class="n">norb</span><span class="o">=</span><span class="n">ncas</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
@@ -734,19 +734,19 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="c1"># 6. write json input file</span>
     <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;timestep&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
-        <span class="s2">&quot;population_control_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">&quot;measure_interval_multiplier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;walker_ortho_interval&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">&quot;n_walkers_per_mpi_task&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-        <span class="s2">&quot;seed&quot;</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-        <span class="s2">&quot;walker_set&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;walker_type&quot;</span><span class="p">:</span> <span class="s2">&quot;COLLINEAR&quot;</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">"walker_set"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"walker_type"</span><span class="p">:</span> <span class="s2">"COLLINEAR"</span>
         <span class="p">},</span>
     <span class="p">}</span>
     <span class="n">write_json</span><span class="p">(</span>
-        <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
         <span class="n">fwfn0</span><span class="o">=</span><span class="n">afqmc_wfn_file</span><span class="p">,</span>
         <span class="n">fham0</span><span class="o">=</span><span class="n">afqmc_hamil_file</span><span class="p">,</span>
         <span class="n">exec_opts</span><span class="o">=</span><span class="n">execute_options</span>
@@ -756,17 +756,17 @@ which, among other things, provides tools to analyze the locality of a set of or
     <span class="c1"># run the AFQMC calculation...</span>
     <span class="n">run_afqmc</span><span class="p">(</span>
         <span class="n">run_dir</span><span class="o">=</span><span class="n">local_scratch</span><span class="p">,</span>
-        <span class="n">run_mode</span><span class="o">=</span><span class="s2">&quot;local_cpu&quot;</span><span class="p">,</span>
+        <span class="n">run_mode</span><span class="o">=</span><span class="s2">"local_cpu"</span><span class="p">,</span>
         <span class="n">timeout_mins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">input_file</span><span class="o">=</span><span class="s2">&quot;afqmc.json&quot;</span><span class="p">,</span>
+        <span class="n">input_file</span><span class="o">=</span><span class="s2">"afqmc.json"</span><span class="p">,</span>
         <span class="n">np</span><span class="o">=</span><span class="n">MPI_TASKS</span><span class="p">,</span>             <span class="c1"># number of MPI tasks</span>
-        <span class="n">output_file</span><span class="o">=</span><span class="s2">&quot;afqmc.out&quot;</span>   <span class="c1"># optionally include output here by setting to None</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="s2">"afqmc.out"</span>   <span class="c1"># optionally include output here by setting to None</span>
     <span class="p">)</span>
 
     <span class="c1"># 8. analyze results</span>
     <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch</span><span class="o">/</span><span class="s2">&quot;qmc.s000.scalar.dat&quot;</span><span class="p">,</span>
-        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">local_scratch</span><span class="o">/</span><span class="s2">"qmc.s000.scalar.dat"</span><span class="p">,</span>
+        <span class="n">xaxis</span> <span class="o">=</span> <span class="s2">"time"</span><span class="p">,</span>
         <span class="n">nequil</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="n">trace</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span>
@@ -805,18 +805,18 @@ which, among other things, provides tools to analyze the locality of a set of or
     <span class="n">dE_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dE</span><span class="p">)</span>
     <span class="n">E_rhf_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Erhf</span><span class="p">)</span>
     <span class="n">rhf_rdm_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rhf_rdm</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;h = </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E = </span><span class="si">{</span><span class="n">E</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dE = </span><span class="si">{</span><span class="n">dE</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E_rhf = </span><span class="si">{</span><span class="n">Erhf</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;correlation E = </span><span class="si">{</span><span class="p">(</span><span class="n">E</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Erhf</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"h = </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"E = </span><span class="si">{</span><span class="n">E</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dE = </span><span class="si">{</span><span class="n">dE</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"E_rhf = </span><span class="si">{</span><span class="n">Erhf</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2"> eV"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"correlation E = </span><span class="si">{</span><span class="p">(</span><span class="n">E</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Erhf</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc_results.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">o_atom_heights</span><span class="p">)</span>
-        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">E_list</span><span class="p">)</span>
-        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;dE&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dE_list</span><span class="p">)</span>
-        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;E_rhf&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">E_rhf_list</span><span class="p">)</span>
-        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;rhf_rdms&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">rhf_rdm_list</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc_results.h5"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"h"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">o_atom_heights</span><span class="p">)</span>
+        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">E_list</span><span class="p">)</span>
+        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"dE"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dE_list</span><span class="p">)</span>
+        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"E_rhf"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">E_rhf_list</span><span class="p">)</span>
+        <span class="n">save_results</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">"rhf_rdms"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">rhf_rdm_list</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -825,21 +825,21 @@ which, among other things, provides tools to analyze the locality of a set of or
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read results from file to allow saving / re-analysis.</span>
-<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc_results.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">o_atom_heights</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">][:]</span>
-    <span class="n">E_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">][:]</span>
-    <span class="n">dE_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;dE&quot;</span><span class="p">][:]</span>
-    <span class="n">E_rhf_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;E_rhf&quot;</span><span class="p">][:]</span>
-    <span class="n">rhf_rdm_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;rhf_rdms&quot;</span><span class="p">][:]</span>
+<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc_results.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">o_atom_heights</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"h"</span><span class="p">][:]</span>
+    <span class="n">E_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"E"</span><span class="p">][:]</span>
+    <span class="n">dE_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"dE"</span><span class="p">][:]</span>
+    <span class="n">E_rhf_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"E_rhf"</span><span class="p">][:]</span>
+    <span class="n">rhf_rdm_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"rhf_rdms"</span><span class="p">][:]</span>
 
 <span class="c1"># simple plot with no fit</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">E_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dE_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AFQMC(SAFIRE)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">E_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dE_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'AFQMC(SAFIRE)'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;h (Bohr)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;E (eV)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy vs O atom height&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;energy_vs_height.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'h (Bohr)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'E (eV)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Energy vs O atom height'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"energy_vs_height.png"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -853,7 +853,7 @@ uncertainty of the Morse fit parameters.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">morse_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">D0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Morse potential function.</span>
 
 <span class="sd">    .. math::</span>
@@ -884,13 +884,13 @@ uncertainty of the Morse fit parameters.</p>
 <span class="sd">    -------</span>
 <span class="sd">    array_like</span>
 <span class="sd">        The Morse potential evaluated at distance `r`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">D</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">r0</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">D0</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">boostrap_curve_fit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">nboostrap_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    This function uses bootstrap resampling to estimate the uncertainty in the fit parameters.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">opt_params_list</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -915,12 +915,12 @@ uncertainty of the Morse fit parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read results from file to allow saving / re-analysis.</span>
-<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;afqmc_results.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">o_atom_heights</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">][:]</span>
-    <span class="n">E_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">][:]</span>
-    <span class="n">dE_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;dE&quot;</span><span class="p">][:]</span>
-    <span class="n">E_rhf_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;E_rhf&quot;</span><span class="p">][:]</span>
-    <span class="n">rhf_rdm_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;rhf_rdms&quot;</span><span class="p">][:]</span>
+<span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc_results.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">o_atom_heights</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"h"</span><span class="p">][:]</span>
+    <span class="n">E_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"E"</span><span class="p">][:]</span>
+    <span class="n">dE_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"dE"</span><span class="p">][:]</span>
+    <span class="n">E_rhf_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"E_rhf"</span><span class="p">][:]</span>
+    <span class="n">rhf_rdm_list</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"rhf_rdms"</span><span class="p">][:]</span>
 
 <span class="n">o_atom_heights_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.247</span><span class="p">,</span><span class="mf">1.436</span><span class="p">,</span><span class="mf">1.814</span><span class="p">,</span><span class="mf">2.381</span><span class="p">,</span><span class="mf">3.326</span><span class="p">,</span><span class="mf">3.893</span><span class="p">])</span> <span class="c1"># Bohr</span>
 <span class="n">E_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2333.238</span><span class="p">,</span><span class="o">-</span><span class="mf">2334.615</span><span class="p">,</span><span class="o">-</span><span class="mf">2334.563</span><span class="p">,</span><span class="o">-</span><span class="mf">2332.685</span><span class="p">,</span><span class="o">-</span><span class="mf">2330.862</span><span class="p">,</span><span class="o">-</span><span class="mf">2330.586</span><span class="p">])</span> <span class="c1"># eV</span>
@@ -935,27 +935,27 @@ uncertainty of the Morse fit parameters.</p>
     <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">E_ref</span><span class="p">)]</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AFQMC (literature) Fitted parameters: </span><span class="se">\n</span><span class="s2">D=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/-  </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AFQMC (literature) Fitted parameters: </span><span class="se">\n</span><span class="s2">D=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/-  </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;a=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;, r0=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;, D0=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">"a=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">", r0=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">", D0=</span><span class="si">{</span><span class="n">popt_mean</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">popt_stderr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
 <span class="p">)</span>
 
 <span class="c1"># plot the reference data and the fitted curve</span>
 <span class="n">x_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y_fit</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="n">popt_mean</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights_ref</span><span class="p">,</span> <span class="n">E_ref</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dE_ref</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AFQMC(Literature)&#39;</span><span class="p">)</span>
-<span class="c1">#plt.plot(x_fit, y_fit, label=&#39;Fitted Morse Potential&#39;, color=&#39;red&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Morse Potential Fit to O Atom Height Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights_ref</span><span class="p">,</span> <span class="n">E_ref</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dE_ref</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'AFQMC(Literature)'</span><span class="p">)</span>
+<span class="c1">#plt.plot(x_fit, y_fit, label='Fitted Morse Potential', color='red')</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Morse Potential Fit to O Atom Height Data'</span><span class="p">)</span>
 
 
 <span class="c1"># plot the 1-sigma uncertainty band</span>
 <span class="n">y_fit_upper</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">popt_mean</span> <span class="o">+</span> <span class="n">popt_stderr</span><span class="p">))</span>
 <span class="n">y_fit_lower</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">popt_mean</span> <span class="o">-</span> <span class="n">popt_stderr</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">E_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dE_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AFQMC(SAFIRE)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">o_atom_heights</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">E_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dE_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'AFQMC(SAFIRE)'</span><span class="p">)</span>
 
 <span class="c1"># fit and plot the AFQMC data</span>
 <span class="n">popt_afqmc</span><span class="p">,</span> <span class="n">pcov_afqmc</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span>
@@ -965,27 +965,27 @@ uncertainty of the Morse fit parameters.</p>
     <span class="n">sigma</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dE_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">,</span>
     <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">E_list</span><span class="p">)</span><span class="o">*</span><span class="n">Hartree</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AFQMC fitted parameters: </span><span class="se">\n</span><span class="s2">D=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AFQMC fitted parameters: </span><span class="se">\n</span><span class="s2">D=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;a=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;, r0=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;, D0=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">"a=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">", r0=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">", D0=</span><span class="si">{</span><span class="n">popt_afqmc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span>
 <span class="p">)</span>
 <span class="n">y_fit_afqmc</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="n">popt_afqmc</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AFQMC Fit&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'AFQMC Fit'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 <span class="c1"># plot the 1-sigma uncertainty band for AFQMC</span>
 <span class="n">y_fit_afqmc_upper</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">popt_afqmc</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">))))</span>
 <span class="n">y_fit_afqmc_lower</span> <span class="o">=</span> <span class="n">morse_potential</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">popt_afqmc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov_afqmc</span><span class="p">))))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_lower</span><span class="p">,</span> <span class="n">y_fit_afqmc_upper</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AFQMC 1-sigma Uncertainty Band&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_lower</span><span class="p">,</span> <span class="n">y_fit_afqmc_upper</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'AFQMC 1-sigma Uncertainty Band'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_lower</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_upper</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_lower</span><span class="p">,</span> <span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit_afqmc_upper</span><span class="p">,</span> <span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;h (Bohr)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;E (eV)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Energy vs O atom height&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">&quot;energy_vs_height.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'h (Bohr)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'E (eV)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Energy vs O atom height'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"energy_vs_height.png"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

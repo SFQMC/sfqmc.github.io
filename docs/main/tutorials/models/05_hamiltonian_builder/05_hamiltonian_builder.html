@@ -568,16 +568,16 @@ are included.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;L1&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;L2&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;boundary1&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;boundary2&#39;</span> <span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;type&#39;</span> <span class="p">:</span> <span class="s1">&#39;square&#39;</span>
+        <span class="s1">'L1'</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'L2'</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'boundary1'</span> <span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+        <span class="s1">'boundary2'</span> <span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+        <span class="s1">'type'</span> <span class="p">:</span> <span class="s1">'square'</span>
     <span class="p">}</span>
 <span class="p">)</span>
 
@@ -592,7 +592,7 @@ are included.</p>
 <span class="c1"># save for latter use</span>
 <span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">&#39;hamiltonian.h5&#39;</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'hamiltonian.h5'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -640,13 +640,13 @@ A minimal list of sections that should be covered are,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
 
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;lattice&quot;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s2">"lattice"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span>
     <span class="p">),</span>
-    <span class="s2">&quot;hamiltonian&quot;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s2">"hamiltonian"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
         <span class="n">U</span> <span class="o">=</span> <span class="mf">4.0</span>
     <span class="p">)</span>
@@ -699,13 +699,13 @@ A minimal list of sections that should be covered are,</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
 
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;lattice&quot;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s2">"lattice"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;pbc&quot;</span>
+        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
+        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span>
     <span class="p">),</span>
-    <span class="s2">&quot;hamiltonian&quot;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="s2">"hamiltonian"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">U</span> <span class="o">=</span> <span class="mf">4.0</span>
     <span class="p">)</span>
@@ -725,7 +725,7 @@ A minimal list of sections that should be covered are,</p>
 <span class="c1"># adding disorder to a random site, uniform across bands</span>
 <span class="n">random_site</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nsites</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;adding disorder to site&quot;</span><span class="p">,</span> <span class="n">random_site</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"adding disorder to site"</span><span class="p">,</span> <span class="n">random_site</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span><span class="o">*</span><span class="n">nbands</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbands</span><span class="p">)</span> <span class="o">+</span> <span class="n">random_site</span>
@@ -735,7 +735,7 @@ A minimal list of sections that should be covered are,</p>
 
 <span class="n">random_site</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nsites</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;adding disorder to site&quot;</span><span class="p">,</span> <span class="n">random_site</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"adding disorder to site"</span><span class="p">,</span> <span class="n">random_site</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span><span class="o">*</span><span class="n">nbands</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbands</span><span class="p">)</span> <span class="o">+</span> <span class="n">random_site</span>
@@ -749,7 +749,7 @@ A minimal list of sections that should be covered are,</p>
 <span class="c1"># IMPORTANT: return the builder to the director</span>
 <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">bind_builder</span><span class="p">(</span><span class="n">hamiltonian_builder</span><span class="p">)</span>
 
-<span class="c1"># now build the Hamiltonian as defined in &#39;hamiltonian_params&#39;</span>
+<span class="c1"># now build the Hamiltonian as defined in 'hamiltonian_params'</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -760,7 +760,7 @@ A minimal list of sections that should be covered are,</p>
 <ol class="arabic simple">
 <li><p>Taking control of the HamiltonianBuilder can be done either before or after calling .build(). For example, both</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;input.toml&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">"input.toml"</span><span class="p">)</span>
 
 <span class="c1"># build before invoking build steps directly</span>
 <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
@@ -775,7 +775,7 @@ A minimal list of sections that should be covered are,</p>
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;input.toml&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">"input.toml"</span><span class="p">)</span>
 <span class="n">hamiltonian_builder</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">release_builder</span><span class="p">()</span>
 
 <span class="c1"># ... invoke build steps</span>

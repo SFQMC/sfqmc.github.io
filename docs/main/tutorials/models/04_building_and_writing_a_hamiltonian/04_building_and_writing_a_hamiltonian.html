@@ -527,7 +527,7 @@ We will explore the possible input parameters and their respective meanings/conv
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -571,7 +571,7 @@ options:
 <span class="w">  </span>--saveplots,<span class="w"> </span>-sp<span class="w">      </span>save<span class="w"> </span>plots<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span>displaying<span class="w"> </span><span class="o">(</span>useful<span class="w"> </span><span class="k">for</span><span class="w"> </span>remote<span class="w"> </span>connections<span class="o">)</span>
 <span class="w">  </span>--pair-corr,<span class="w"> </span>-pc<span class="w">      </span>Add<span class="w"> </span>pair-correlators<span class="w"> </span>to<span class="w"> </span>AFQMC<span class="w"> </span>input<span class="w"> </span>file<span class="w"> </span><span class="o">(</span>s,+x,-x,+y,-y<span class="o">)</span>
 <span class="w">  </span>--hubbardU<span class="w"> </span>HUBBARDU,<span class="w"> </span>-U<span class="w"> </span>HUBBARDU
-<span class="w">                        </span>Hubbard<span class="w"> </span>U,<span class="w"> </span><span class="k">if</span><span class="w"> </span>given<span class="w"> </span>and<span class="w"> </span><span class="s1">&#39;--free-elec&#39;</span><span class="w"> </span>is<span class="w"> </span>set,<span class="w"> </span>the<span class="w"> </span>hubbard<span class="w"> </span>U<span class="w"> </span>energy<span class="w"> </span>is<span class="w"> </span>evaluated<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>free-electron<span class="w"> </span>wavefunction<span class="w"> </span><span class="o">(</span>Note:<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>only<span class="w"> </span><span class="k">for</span><span class="w"> </span>reference<span class="w"> </span>-<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>effect<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>wavefunction!<span class="o">)</span>
+<span class="w">                        </span>Hubbard<span class="w"> </span>U,<span class="w"> </span><span class="k">if</span><span class="w"> </span>given<span class="w"> </span>and<span class="w"> </span><span class="s1">'--free-elec'</span><span class="w"> </span>is<span class="w"> </span>set,<span class="w"> </span>the<span class="w"> </span>hubbard<span class="w"> </span>U<span class="w"> </span>energy<span class="w"> </span>is<span class="w"> </span>evaluated<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>free-electron<span class="w"> </span>wavefunction<span class="w"> </span><span class="o">(</span>Note:<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>only<span class="w"> </span><span class="k">for</span><span class="w"> </span>reference<span class="w"> </span>-<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>effect<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>wavefunction!<span class="o">)</span>
 </pre></div>
 </div>
 <p>The primary option that we are interested in here is <code class="docutils literal notranslate"><span class="pre">-i</span></code> which allows an input file (in .toml format) containing Hamiltonian parameters to be specified.
@@ -584,8 +584,8 @@ The parameter input conventions are the same whether we use the <code class="doc
 <span class="k">[lattice]</span>
 <span class="n">L1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
 <span class="n">L2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
-<span class="n">boundary1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PBC&quot;</span>
-<span class="n">boundary2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PBC&quot;</span>
+<span class="n">boundary1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"PBC"</span>
+<span class="n">boundary2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"PBC"</span>
 </pre></div>
 </div>
 <p>Notice that the Hamiltonian parameters and the lattice parameters are separate.
@@ -642,20 +642,20 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 
 <span class="c1"># Define the lattice parameters</span>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span>
+    <span class="s1">'t'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="mf">4.0</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
@@ -680,7 +680,7 @@ We will not repeat this below.</p>
 
 <span class="n">write_model_hamiltonian</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">&quot;hamiltonian.h5&quot;</span>
+    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamiltonian.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -715,8 +715,8 @@ You can change this value by providing a different value of <span class="math no
 </div>
 <p>or as a Python dictionary</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Hamiltonian&#39;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">0.5</span>
+    <span class="s1">'Hamiltonian'</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'t'</span> <span class="p">:</span> <span class="mf">0.5</span>
     <span class="p">}</span>    
 <span class="p">}</span>
 </pre></div>
@@ -754,15 +754,15 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;lattice&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'lattice'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+        <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
     <span class="p">},</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
-        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># implicit minus sign!</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'U'</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s1">'t'</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span> <span class="c1"># implicit minus sign!</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -810,10 +810,10 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
@@ -821,18 +821,18 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+    <span class="s1">'nbands'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<span class="c1"># let&#39;s take a look at the U term:</span>
+<span class="c1"># let's take a look at the U term:</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
 
 <span class="n">plot_lattice</span><span class="p">(</span>
@@ -861,42 +861,42 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
+    <span class="s1">'nbands'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'t'</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<span class="c1"># let&#39;s take a look at the U term:</span>
-<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">&#39;nbands&#39;</span><span class="p">])</span>
+<span class="c1"># let's take a look at the U term:</span>
+<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 0&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 0'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 1&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 1'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
@@ -913,42 +913,42 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
+    <span class="s1">'nbands'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">'t'</span> <span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])],</span> <span class="c1"># bonus: band-dependent hopping</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<span class="c1"># let&#39;s take a look at the U term:</span>
-<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">&#39;nbands&#39;</span><span class="p">])</span>
+<span class="c1"># let's take a look at the U term:</span>
+<span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 0&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 0'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;U for band 1&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 1'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
@@ -1072,24 +1072,24 @@ See the density-density section above for more details.</p>
 
 <span class="c1"># Define the lattice parameters</span>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
-    <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;open&#39;</span>
+    <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+    <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'open'</span>
 <span class="p">}</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;nbands&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
-    <span class="s1">&#39;U1&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
-    <span class="s1">&#39;U2&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+    <span class="s1">'nbands'</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">'t'</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">'U'</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">'U1'</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="s1">'U2'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">'J'</span><span class="p">:</span> <span class="mf">0.5</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
@@ -1137,16 +1137,16 @@ same input conventions as for <span class="math notranslate nohighlight">\(\hat{
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;lattice&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;L1&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;L2&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;boundary1&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;boundary2&#39;</span><span class="p">:</span> <span class="s1">&#39;PBC&#39;</span>
+    <span class="s1">'lattice'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'L1'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'L2'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
+        <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
     <span class="p">},</span>
-    <span class="s1">&#39;hamiltonian&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;t&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-        <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
-        <span class="s1">&#39;V&#39;</span> <span class="p">:</span> <span class="mf">1.0</span>
+    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'t'</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s1">'U'</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s1">'V'</span> <span class="p">:</span> <span class="mf">1.0</span>
     <span class="p">}</span>
 <span class="p">}</span>
 

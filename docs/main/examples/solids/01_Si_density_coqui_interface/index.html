@@ -618,8 +618,8 @@ your QE build using the instructions found <a class="reference external" href="h
 See the provided input files for more.</p>
 <p>pw2coqui.inp</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">input_pw2coqui</span>
-  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;pwscf&quot;</span>
-  <span class="n">outdir</span> <span class="o">=</span> <span class="s2">&quot;OUT&quot;</span>
+  <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"pwscf"</span>
+  <span class="n">outdir</span> <span class="o">=</span> <span class="s2">"OUT"</span>
 <span class="o">/</span>
 </pre></div>
 </div>
@@ -647,22 +647,22 @@ pwscf.coqui.h5<span class="w"> </span>pwscf.save
 Additionally, it can write a trial wavefunction based on the DFT solution from QE.
 <strong>A sample CoQuí input file is provided</strong>.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[mean_field.qe]</span>
-<span class="n">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
-<span class="n">prefix</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pwscf&quot;</span>
-<span class="n">outdir</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../1_dft_quantum_espresso/OUT&quot;</span>
+<span class="n">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"mf"</span>
+<span class="n">prefix</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"pwscf"</span>
+<span class="n">outdir</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"../1_dft_quantum_espresso/OUT"</span>
 <span class="n">nbnd</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
 
 <span class="k">[interaction.cholesky]</span>
-<span class="n">name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eri&quot;</span>
-<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
-<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hamiltonian.h5&quot;</span>
-<span class="n">write_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;single&quot;</span>
+<span class="n">name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"eri"</span>
+<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"mf"</span>
+<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="n">write_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"single"</span>
 <span class="n">tol</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-5</span>
 
 <span class="k">[hamiltonian]</span>
-<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mf&quot;</span>
-<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hamiltonian.h5&quot;</span>
-<span class="n">add_wavefunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;default&quot;</span>
+<span class="n">mean_field</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"mf"</span>
+<span class="n">output</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="n">add_wavefunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"default"</span>
 </pre></div>
 </div>
 <p>The key details to note are:</p>
@@ -692,22 +692,22 @@ Additionally, it can write a trial wavefunction based on the DFT solution from Q
 <span class="o">----------------</span>
 
 <span class="p">[</span><span class="n">mean_field</span><span class="o">.</span><span class="n">qe</span><span class="p">]</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">'mf'</span>
 <span class="n">nbnd</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;../1_dft_quantum_espresso/OUT&#39;</span>
-<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;pwscf&#39;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">'../1_dft_quantum_espresso/OUT'</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">'pwscf'</span>
 
 <span class="p">[</span><span class="n">interaction</span><span class="o">.</span><span class="n">cholesky</span><span class="p">]</span>
-<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;eri&#39;</span>
-<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;hamiltonian.h5&#39;</span>
+<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">'mf'</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">'eri'</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">'hamiltonian.h5'</span>
 <span class="n">tol</span> <span class="o">=</span> <span class="mf">1.0000000000000001e-05</span>
-<span class="n">write_type</span> <span class="o">=</span> <span class="s1">&#39;single&#39;</span>
+<span class="n">write_type</span> <span class="o">=</span> <span class="s1">'single'</span>
 
 <span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
-<span class="n">add_wavefunction</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
-<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">&#39;mf&#39;</span>
-<span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;hamiltonian.h5&#39;</span>
+<span class="n">add_wavefunction</span> <span class="o">=</span> <span class="s1">'default'</span>
+<span class="n">mean_field</span> <span class="o">=</span> <span class="s1">'mf'</span>
+<span class="n">output</span> <span class="o">=</span> <span class="s1">'hamiltonian.h5'</span>
 
 <span class="o">--</span> <span class="n">End</span> <span class="n">of</span> <span class="n">Input</span> <span class="n">Parameters</span> <span class="o">--</span>
 
@@ -822,15 +822,15 @@ If you ran it elsewhere, you will need to update the path to the HDF5 file
 in <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> accordingly</p>
 <p>A key part of the input file is the “estimator” block for the
 back-propagation algorithm.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;estimator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;back_propagation&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;path_restoration&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;extra_path_restoration&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;bp_walker_ortho_interval&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;measure_interval_multiplier&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;equil_multiplier&quot;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;onerdm&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;onerdm&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"back_propagation"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"extra_path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"measure_interval_multiplier"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"onerdm"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"onerdm"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">},</span>
 </pre></div>
@@ -1006,10 +1006,10 @@ software packages.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.rhonk</span><span class="w"> </span><span class="kn">import</span> <span class="n">charge_density</span>
 
-<span class="n">qe_output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./1_dft_quantum_espresso/OUT&quot;</span><span class="p">)</span>
-<span class="n">afqmc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./3_afqmc&quot;</span><span class="p">)</span>
+<span class="n">qe_output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./1_dft_quantum_espresso/OUT"</span><span class="p">)</span>
+<span class="n">afqmc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./3_afqmc"</span><span class="p">)</span>
 
-<span class="n">mean_rdms</span><span class="p">,</span><span class="n">err_rdms</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_path</span> <span class="o">/</span> <span class="s2">&quot;qmc.s000.stat.h5&quot;</span><span class="p">)</span>
+<span class="n">mean_rdms</span><span class="p">,</span><span class="n">err_rdms</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_path</span> <span class="o">/</span> <span class="s2">"qmc.s000.stat.h5"</span><span class="p">)</span>
 
 <span class="n">num_avgs</span> <span class="o">=</span> <span class="n">mean_rdms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avgs</span><span class="p">):</span>
@@ -1017,7 +1017,7 @@ software packages.</p>
         <span class="n">mean_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
         <span class="n">err_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
         <span class="n">orbital_source</span><span class="o">=</span><span class="n">qe_output</span><span class="p">,</span>
-        <span class="n">rho_outfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rho_avg</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_qe_orbs.cube&quot;</span>
+        <span class="n">rho_outfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">"rho_avg</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_qe_orbs.cube"</span>
     <span class="p">)</span>
 </pre></div>
 </div>

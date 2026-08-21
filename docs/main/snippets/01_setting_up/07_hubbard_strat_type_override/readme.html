@@ -515,21 +515,21 @@ The builder supports forcing a specific HST type; however, it will be applied to
 interaction term regardless of the sign of the interaction strength.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
 <span class="n">nbands</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">U</span> <span class="o">=</span> <span class="mi">4</span>      <span class="c1"># defaults to &quot;discrete_charge&quot; for U &gt; 0</span>
-<span class="n">U1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>  <span class="c1"># normally, defaults to &quot;discrete_spin&quot; for U1 &lt; 0</span>
+<span class="n">U</span> <span class="o">=</span> <span class="mi">4</span>      <span class="c1"># defaults to "discrete_charge" for U &gt; 0</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>  <span class="c1"># normally, defaults to "discrete_spin" for U1 &lt; 0</span>
 <span class="n">U2</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">J</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <span class="p">[</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">hst_types</span><span class="p">]</span>
-<span class="n">U1</span> <span class="o">=</span> <span class="s2">&quot;discrete_spin&quot;</span>  <span class="c1"># choices: &quot;discrete_spin&quot;, &quot;discrete_charge&quot;, </span>
-                      <span class="c1">#          &quot;continuous_spin&quot;, &quot;continuous_charge&quot;</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="s2">"discrete_spin"</span>  <span class="c1"># choices: "discrete_spin", "discrete_charge", </span>
+                      <span class="c1">#          "continuous_spin", "continuous_charge"</span>
 <span class="c1"># ... only overrides HST type for the terms which are explicitly set</span>
 
 <span class="p">[</span><span class="n">lattice</span><span class="p">]</span>
 <span class="n">L1</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
-<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">&quot;PBC&quot;</span>
+<span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span>
+<span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
 
 <span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -538,15 +538,15 @@ interaction term regardless of the sign of the interaction strength.</p>
 <p>afqmctools can be invoked within a Python script as</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
 
-<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;input.toml&quot;</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">"input.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 <span class="n">input_params</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">input_params</span><span class="p">[</span><span class="s2">&quot;misc_params&quot;</span><span class="p">][</span><span class="s2">&quot;nelec&quot;</span><span class="p">]</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="n">input_params</span><span class="p">[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
 <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span><span class="p">,</span>
+    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 
@@ -554,7 +554,7 @@ interaction term regardless of the sign of the interaction strength.</p>
 <span class="n">free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">&quot;afqmc.h5&quot;</span>
+    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
