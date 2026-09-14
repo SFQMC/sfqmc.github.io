@@ -975,6 +975,59 @@ invalid.</p></td>
 </dd></dl>
 
 </section>
+<section id="module-afqmctools.analysis.measurements">
+<span id="afqmctools-analysis-measurements-module"></span><h2>afqmctools.analysis.measurements module<a class="headerlink" href="#module-afqmctools.analysis.measurements" title="Link to this heading">#</a></h2>
+<p>Reading and averaging the observables in a SAFIRE results.h5.</p>
+<p>PLACEHOLDER. This does the least that the functional tests need: pull every bin series out
+of the file and average it the way the old stats module averaged a block series. It is meant
+to be replaced by a more carefully considered analysis interface.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.analysis.measurements.average_measurements">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.measurements.</span></span><span class="sig-name descname"><span class="pre">average_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nequil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.measurements.average_measurements" title="Link to this definition">#</a></dt>
+<dd><p>Average every observable in a results.h5 over its bins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> | </em><em>pathlib.Path</em>) – path to the results.h5 written at the end of an AFQMC run</p></li>
+<li><p><strong>nequil</strong> (<em>int</em><em>, </em><em>optional</em>) – number of leading bins to discard from every observable, default 0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>{name: (mean, stochastic error)}, keyed as in <cite>read_measurements</cite>. The error is the
+one the old stats module computed, std / sqrt(N / kappa), with kappa the
+autocorrelation length of the real part.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.analysis.measurements.read_measurements">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.analysis.measurements.</span></span><span class="sig-name descname"><span class="pre">read_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.analysis.measurements.read_measurements" title="Link to this definition">#</a></dt>
+<dd><p>Read every observable in a results.h5.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em><em> | </em><em>pathlib.Path</em>) – path to the results.h5 written at the end of an AFQMC run</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>{name: bins}, where name is the observable’s path below <cite>Measurements</cite> without the
+trailing <cite>bins</cite> component, e.g. <cite>Stage0/Energy</cite> or
+<cite>Stage0/BackPropEstimator/Steps=40/OneRDM</cite>. One <cite>execute</cite> block of the input is one
+stage, so an ordinary run has only <cite>Stage0</cite> names.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The leading axis of each array is the bin index. Every bin is already divided by the
+walker weight denominator when it is measured, and the denominator itself is not stored,
+so the average over bins is an unweighted mean.</p>
+</dd></dl>
+
+</section>
 <section id="module-afqmctools.analysis.new_rdm">
 <span id="afqmctools-analysis-new-rdm-module"></span><h2>afqmctools.analysis.new_rdm module<a class="headerlink" href="#module-afqmctools.analysis.new_rdm" title="Link to this heading">#</a></h2>
 <p>Simple extraction of afqmc rdms.</p>
@@ -1437,6 +1490,11 @@ second dimension is the square of a the matrix dimension.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.extraction.extract_data"><code class="docutils literal notranslate"><span class="pre">extract_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.extraction.extract_observable"><code class="docutils literal notranslate"><span class="pre">extract_observable()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.extraction.get_estimator_len"><code class="docutils literal notranslate"><span class="pre">get_estimator_len()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.analysis.measurements">afqmctools.analysis.measurements module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.measurements.average_measurements"><code class="docutils literal notranslate"><span class="pre">average_measurements()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.analysis.measurements.read_measurements"><code class="docutils literal notranslate"><span class="pre">read_measurements()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.analysis.new_rdm">afqmctools.analysis.new_rdm module</a><ul class="nav section-nav flex-column">

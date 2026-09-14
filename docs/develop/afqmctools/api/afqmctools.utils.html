@@ -890,6 +890,14 @@ atomic_symbol_to_num : Convert atomic symbol to atomic number.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.utils.io.read_dataset">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">read_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.read_dataset" title="Link to this definition">#</a></dt>
+<dd><p>Read a dataset, converting it from the internal complex format if it is marked as
+complex. Datasets written by SAFIRE carry the “__complex__” attribute and a trailing
+size-2 axis; the returned array keeps the leading axes and drops that one.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.utils.io.read_input_params">
 <span class="sig-prename descclassname"><span class="pre">afqmctools.utils.io.</span></span><span class="sig-name descname"><span class="pre">read_input_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.utils.io.read_input_params" title="Link to this definition">#</a></dt>
 <dd><p>Read parameters from a human-readable TOML input file and return them in a dictionary.</p>
@@ -2113,6 +2121,7 @@ title, xlabel, ylabel : str</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.from_complex"><code class="docutils literal notranslate"><span class="pre">from_complex()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.get_hamiltonian_spin_symm"><code class="docutils literal notranslate"><span class="pre">get_hamiltonian_spin_symm()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.h5_as_dict"><code class="docutils literal notranslate"><span class="pre">h5_as_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_dataset"><code class="docutils literal notranslate"><span class="pre">read_dataset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_input_params"><code class="docutils literal notranslate"><span class="pre">read_input_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_nmo"><code class="docutils literal notranslate"><span class="pre">read_nmo()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.utils.io.read_one_body"><code class="docutils literal notranslate"><span class="pre">read_one_body()</span></code></a></li>

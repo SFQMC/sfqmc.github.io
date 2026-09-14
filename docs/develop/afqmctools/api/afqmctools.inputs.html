@@ -493,14 +493,26 @@
 <section id="module-afqmctools.inputs.from_hdf">
 <span id="afqmctools-inputs-from-hdf-module"></span><h2>afqmctools.inputs.from_hdf module<a class="headerlink" href="#module-afqmctools.inputs.from_hdf" title="Link to this heading">#</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.bp_measure_interval_multipliers">
+<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">bp_measure_interval_multipliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tbp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_control_interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.bp_measure_interval_multipliers" title="Link to this definition">#</a></dt>
+<dd><p>The back propagation lengths that reach <cite>tbp</cite>, in units of the population control
+interval: <cite>num_bp</cite> evenly spaced averages, the longest of them the requested time.</p>
+<p>The spacing is what gets rounded, so that every average is a whole multiple of the
+shortest one, as it was when the input took a step count and a number of averages.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.default_inputs">
 <span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">default_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwfn0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fham0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.default_inputs" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.get_estimator_settings">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">get_estimator_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exec_opts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.get_estimator_settings" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">get_estimator_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_control_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.get_estimator_settings" title="Link to this definition">#</a></dt>
+<dd><p>The “estimators” block the given arguments ask for, empty if they ask for none.</p>
+<p>The energy estimator is not in it: it is measured unless the input removes it with
+“energy”: null.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.read_info">
@@ -624,6 +636,7 @@ file will contain the following:</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-inputs-from-autohf-module">afqmctools.inputs.from_autohf module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.inputs.from_hdf">afqmctools.inputs.from_hdf module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.bp_measure_interval_multipliers"><code class="docutils literal notranslate"><span class="pre">bp_measure_interval_multipliers()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.default_inputs"><code class="docutils literal notranslate"><span class="pre">default_inputs()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.get_estimator_settings"><code class="docutils literal notranslate"><span class="pre">get_estimator_settings()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.read_info"><code class="docutils literal notranslate"><span class="pre">read_info()</span></code></a></li>
