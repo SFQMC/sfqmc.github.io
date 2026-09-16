@@ -531,7 +531,9 @@ shortest one, as it was when the input took a step count and a number of average
 <li><p><strong>fham0</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of HDF5 file containing the Hamiltonian.</p></li>
 <li><p><strong>relpath</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, use relative path for the wavefunction and Hamiltonian files.</p></li>
 <li><p><strong>exec_opts</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary containing execution options using the same keys as in the
-JSON file. This will be written into an “execute” node in the JSON file.</p></li>
+JSON file. This will be written into an “execute” node in the JSON file,
+except for the parameters of the run as a whole listed in
+JSON_TOP_LEVEL_KEYS, which are written next to it.</p></li>
 <li><p><strong>args_namespace</strong> (<em>argparse.Namespace</em><em>, </em><em>optional</em>) – Command line arguments parsed by argparse.</p></li>
 </ul>
 </dd>
