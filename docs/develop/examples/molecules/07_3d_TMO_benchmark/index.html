@@ -633,9 +633,9 @@ If you used all of the same settings as us, running the analysis script should g
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
@@ -813,26 +813,26 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
     
     <span class="c1"># write the CAS wavefunction to a file</span>
-    <span class="n">write_cas_wfn</span><span class="p">(</span>
+    <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
         <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
         <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">casscf_chkfile</span><span class="p">,</span>
-        <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="c1"># from the PRX</span>
-        <span class="n">outname</span><span class="o">=</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="c1"># from the PRX</span>
         <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
     
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="c1"># the CASSCF orbital basis, so the checkpoint is loaded explicitly;</span>
+    <span class="c1">#   handed a path, from_pyscf() would read the "scf" group</span>
+    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
         <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
         <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
     <span class="p">)</span>
 
     <span class="c1"># write Hamiltonian</span>
-    <span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
         <span class="n">basis_scf_data</span><span class="p">,</span>
-        <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
         <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="c1"># from the PRX</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
 
     <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>

@@ -747,13 +747,15 @@ GitHub: bkesk</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<em>str</em><em> | </em><em>dict</em><em> | </em><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian" title="afqmctools.hamiltonian.model.ham_class.Hamiltonian"><em>Hamiltonian</em></a>) – str - the name of an input file with lattice and hamiltonian blocks defined
-dict - a dict containing lattice and hamiltonian blocks</p></li>
+<li><p><strong>source</strong> (<em>str</em><em> | </em><em>dict</em><em> | </em><a class="reference internal" href="afqmctools.hamiltonian.model.html#afqmctools.hamiltonian.model.ham_class.Hamiltonian" title="afqmctools.hamiltonian.model.ham_class.Hamiltonian"><em>afqmctools.hamiltonian.model.ham_class.Hamiltonian</em></a><em> | </em><a class="reference internal" href="../lattice_models.html#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian" title="safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian"><em>LatticeHamiltonian</em></a>) – str - the name of an input file with lattice and hamiltonian blocks defined
+dict - a dict containing lattice and hamiltonian blocks
+Hamiltonian - an already-built lattice model Hamiltonian, either
+afqmctools’ or safiretools’ <cite>LatticeHamiltonian</cite></p></li>
 <li><p><strong>nelec</strong> (<em>tuple</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em>) – number of spin-up and spin-down electrons</p></li>
 <li><p><strong>twist</strong> (<em>array-like</em><em>, </em><em>optional</em>) – twist angle for the lattice (default: small irrational twist)</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em>, </em><em>optional</em>) – spin symmetry to use</p></li>
 <li><p><strong>use_dense</strong> (<em>bool</em>) – whether to use dense matrix operations (default: True)</p></li>
-<li><p><strong>lattice</strong> (<a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><em>Lattice</em></a><em>, </em><em>optional</em>) – pre-constructed lattice object</p></li>
+<li><p><strong>lattice</strong> (<a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><em>afqmctools.systems.lattice.Lattice</em></a><em>, </em><em>optional</em>) – pre-constructed lattice object</p></li>
 <li><p><strong>return_autohf</strong> (<em>bool</em>) – whether to return AutoHF results (default: False)</p></li>
 <li><p><strong>measure_spin</strong> (<em>bool</em>) – whether to measure spin in AutoHF (default: True)</p></li>
 <li><p><strong>filling_strategy</strong> (<em>str</em>) – <p>strategy for filling orbitals within shells. Options:</p>

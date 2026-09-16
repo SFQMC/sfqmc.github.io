@@ -471,13 +471,13 @@
 <p>The Hamiltonian builder requires a Lattice instance to build the Hamiltonian on
 (see <a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Lattice class tutorial</span></a> for details on the lattice parameters).
 We assume familiarity with the Lattice class in this tutorial.</p>
-<p>The Hamiltonian builder (<code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code> class in afqmctools) is
+<p>The Hamiltonian builder (<code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code> class in safiretools) is
 responsible for performing “build steps”.
 A “build step” consists of constructing a Hamiltonian component (i.e. term),
 and adding it to the <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code> that it has.
-As we saw in the Hamiltonian director tutorial (<a class="reference internal" href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html"><span class="doc">Building Lattice Model Hamiltonians Tutorial</span></a>),
-the Hamiltonian director can be used to build a lattice model Hamiltonian by
-“directing” the Hamiltonian builder to perform build steps.
+As we saw in the previous tutorial (<a class="reference internal" href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html"><span class="doc">Building Lattice Model Hamiltonians Tutorial</span></a>),
+<code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> can be used to build a lattice model Hamiltonian by
+automatically running the build steps implied by a set of input Hamiltonian parameters.
 This is the recommended way of building lattice model Hamiltonians;
 however, the Hamiltonian builder may be used directly
 to gain more control over the build steps.</p>
@@ -550,8 +550,8 @@ be added to the Hamiltonian along with a next-nearest neighbor V’ = 1.0 term u
 <section id="part-ii-using-the-hamiltonian-builder">
 <h2><span class="section-number">5.2. </span>Part II: Using the Hamiltonian builder<a class="headerlink" href="#part-ii-using-the-hamiltonian-builder" title="Link to this heading">#</a></h2>
 <p>The Hamiltonian builder must be used in conjunction with a Lattice instance.
-In addition, afqmctools provides a function that can directly write the Hamiltonian
-that is built by the Hamiltonian builder into an HDF5 file that can be used by SAFIRE.
+In addition, the Hamiltonian that the builder produces can write itself directly into
+an HDF5 file that can be used by SAFIRE, via its <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> method.
 Therefore, a typical use of the <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code> class in a Python script will look like the
 code block below.</p>
 <p>Here, we construct the Hubbard model on a 4x4 square lattice with <span class="math notranslate nohighlight">\(t=1.0\)</span>, <span class="math notranslate nohighlight">\(t'=0.5\)</span>, and <span class="math notranslate nohighlight">\(U=4.0\)</span>.</p>
@@ -563,15 +563,13 @@ code block below.</p>
 are included.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">'L1'</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
         <span class="s1">'L2'</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
@@ -590,10 +588,7 @@ are included.</p>
 <span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
 <span class="c1"># save for latter use</span>
-<span class="n">write_model_hamiltonian</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'hamiltonian.h5'</span>
-<span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'hamiltonian.h5'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -607,7 +602,7 @@ into a single term.</p>
 <p>Now that we understand the role of the Hamiltonian builder, and how it will typically be used in a Python script,
 we will cover the specific terms that can be built.
 We will also cover any term specific details that have not been covered so far.</p>
-<p><strong>We note that the same input conventions for parameters are used by the HamiltonianDirector since it simply forwards parameters to the HamiltonianBuilder.</strong></p>
+<p><strong>We note that the same input conventions for parameters are used by <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> since it simply forwards parameters to these build steps.</strong></p>
 <p>Each term is explored in it’s own respective subsection.
 A minimal list of sections that should be covered are,</p>
 <ul class="simple">
@@ -634,10 +629,10 @@ A minimal list of sections that should be covered are,</p>
 <li><p>hopping with non-trivial sublattice and band degrees of freedom.</p></li>
 <li><p>using no hopping</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> can generate nth-order neighbor hopping.</p>
+<p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> can generate nth-order neighbor hopping.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
 
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"lattice"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
@@ -652,7 +647,7 @@ A minimal list of sections that should be covered are,</p>
     <span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -689,37 +684,33 @@ A minimal list of sections that should be covered are,</p>
 <h2><span class="section-number">5.7. </span>How to handle more general Hamiltonians<a class="headerlink" href="#how-to-handle-more-general-hamiltonians" title="Link to this heading">#</a></h2>
 <p>to cover:</p>
 <ul class="simple">
-<li><p>taking control of the Builder and returning it to the Director</p></li>
+<li><p>combining <code class="docutils literal notranslate"><span class="pre">from_input()</span></code>-style build steps with fully custom build steps</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sps</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">SpinSymm</span>
 
-<span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"lattice"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
         <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span>
-    <span class="p">),</span>
-    <span class="s2">"hamiltonian"</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">U</span> <span class="o">=</span> <span class="mf">4.0</span>
     <span class="p">)</span>
-<span class="p">}</span>
+<span class="p">)</span>
 
-<span class="c1"># alternatively, break into two steps</span>
-<span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span><span class="p">)</span>
-
-<span class="c1"># take control of the builder</span>
-<span class="n">hamiltonian_builder</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">release_builder</span><span class="p">()</span>
+<span class="c1"># equivalent to HamiltonianBuilder.from_input() with hamiltonian=dict(t=1.0, U=4.0),</span>
+<span class="c1"># but invoked step-by-step so that we can add a custom term below</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">COLLINEAR</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
 
 <span class="c1"># make a custom disorder term</span>
-<span class="n">nsites</span> <span class="o">=</span> <span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">nsites</span>
-<span class="n">nbands</span> <span class="o">=</span> <span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">nbands</span>
+<span class="n">nsites</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">nsites</span>
+<span class="n">nbands</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">nbands</span>
 <span class="n">nbasis</span> <span class="o">=</span> <span class="n">nsites</span><span class="o">*</span><span class="n">nbands</span>
 
 <span class="c1"># adding disorder to a random site, uniform across bands</span>
@@ -744,60 +735,22 @@ A minimal list of sections that should be covered are,</p>
 <span class="n">disorder_down</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">csr_array</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nbasis</span><span class="p">,</span> <span class="n">nbasis</span><span class="p">))</span>
 
 <span class="c1"># add the disorder term to the Hamiltonian</span>
-<span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">custom_one_body</span><span class="p">(</span><span class="n">sps</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">disorder_up</span><span class="p">,</span> <span class="n">disorder_down</span><span class="p">]))</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">custom_one_body</span><span class="p">(</span><span class="n">sps</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">disorder_up</span><span class="p">,</span> <span class="n">disorder_down</span><span class="p">]))</span>
 
-<span class="c1"># IMPORTANT: return the builder to the director</span>
-<span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">bind_builder</span><span class="p">(</span><span class="n">hamiltonian_builder</span><span class="p">)</span>
+<span class="c1"># finalize once, after all build steps (both from_input()-style and custom) have been invoked</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
-<span class="c1"># now build the Hamiltonian as defined in 'hamiltonian_params'</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="some-notes">
 <h3><span class="section-number">5.7.1. </span>Some Notes<a class="headerlink" href="#some-notes" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Taking control of the HamiltonianBuilder can be done either before or after calling .build(). For example, both</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">"input.toml"</span><span class="p">)</span>
-
-<span class="c1"># build before invoking build steps directly</span>
-<span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="n">hamiltonian_builder</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">release_builder</span><span class="p">()</span>
-
-<span class="c1"># ... invoke build steps</span>
-<span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">afm_pinning</span><span class="p">(</span><span class="n">h_afm_pin</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">bind_builder</span><span class="p">(</span><span class="n">hamiltonian_builder</span><span class="p">)</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">hamiltonian</span>
-</pre></div>
-</div>
-<p>and</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">"input.toml"</span><span class="p">)</span>
-<span class="n">hamiltonian_builder</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">release_builder</span><span class="p">()</span>
-
-<span class="c1"># ... invoke build steps</span>
-<span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">afm_pinning</span><span class="p">(</span><span class="n">h_afm_pin</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">bind_builder</span><span class="p">(</span><span class="n">hamiltonian_builder</span><span class="p">)</span>
-<span class="c1"># build AFTER directly invoking build steps</span>
-<span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">hamiltonian</span>
-</pre></div>
-</div>
-<p>will generate the same Hamiltonian.
-The only difference in this case is that the</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: calling .build() again will return the Hamiltonian object that was already built AFTER</span>
-<span class="c1">#        trying to combine terms where possible</span>
-<span class="n">hamiltonian2</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Since custom build steps are just method calls on the same <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code> instance as
+<code class="docutils literal notranslate"><span class="pre">from_input()</span></code>-style ones, they can be freely interleaved in any order you like.
+The only rule is to call <code class="docutils literal notranslate"><span class="pre">.finalize()</span></code>
+once, after every build step has been invoked.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>

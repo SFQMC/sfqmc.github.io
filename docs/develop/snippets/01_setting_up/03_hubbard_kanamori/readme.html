@@ -511,7 +511,7 @@
 and generating a free-electron trial wavefunction.
 The lattice is 1-d with periodic boundary conditions only
 in the long direction.</p>
-<p>A lattice model Hamiltonian can be generated using afqmctools and
+<p>A lattice model Hamiltonian can be generated using safiretools and
 a toml-based input file.
 Below is a sample input file, which we name <cite>input.toml</cite>, for a Hubbard model
 on a 6x1 square lattice with periodic boundary conditions in the long direction
@@ -523,56 +523,55 @@ such that the system is effectively 1-dimensional.</p>
 <span class="n">U1</span> <span class="o">=</span> <span class="mf">1.5</span>
 <span class="n">U2</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">J</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
 
 <span class="p">[</span><span class="n">lattice</span><span class="p">]</span>
 <span class="n">L1</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span>
 <span class="c1"># boundary condidtions default to "open"</span>
-
-<span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>afqmctools can be invoked within a Python script as</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
+<p>safiretools can be invoked within a Python script as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_TWIST</span>
 
 <span class="n">infile</span> <span class="o">=</span> <span class="s2">"input.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 
-<span class="c1"># compute and save a free-electron trial wfn</span>
-<span class="n">free_electron</span><span class="p">(</span>
-    <span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span>
+<span class="c1"># The trial wavefunction needs its *own* Hamiltonian, built on a lattice</span>
+<span class="c1">#   carrying a small irrational twist.</span>
+<span class="c1">#   The AFQMC run itself uses the untwisted Hamiltonian above.</span>
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">DEFAULT_TWIST</span><span class="p">))</span>
 <span class="p">)</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
+    <span class="n">infile</span><span class="p">,</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">fe_lattice</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+
+<span class="c1"># compute and save a free-electron trial wfn, into the same file</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">nelec</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <cite>free_electron()</cite> function accepts a <cite>twist</cite> keyword argument for the sake of
-reproducibility for open-shell systems.
-<cite>twist</cite> should be a 2-d iterable containing <span class="math notranslate nohighlight">\(\vec{\theta}=(\theta_1,\theta_2)\)</span>
-in radians even if one component is set to 0.0.
-By default, a small incommensurate twist angle is used.</p>
-<p>If the sample Python script is run above with the sample input file, the following
-should be present at the end of the output.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Running in Slater Detemrinant Mode
-energyCall: Etotal=(-15.473198890686035+0j) with EK=(-16+0j) EU=(0.5268006920814514+0j) EU1=0 EU2=0 EJ=0
-Reference HF Energy = -15.473198890686035
-</pre></div>
-</div>
-<p>Internally, the AutoHF Hartree-Fock code is used to evaluate the energy of the free-electron
-trial wavefunction with respect to the interacting Hamiltonian.
-This allows the initial energy to be checked within the AFQMC code.</p>
+<p><cite>Wavefunction.from_free_electron()</cite> uses the Hamiltonian exactly as given and
+applies no twist of its own, so the twist belongs on the lattice you build that
+Hamiltonian from. <cite>twist</cite> should be a 2-d iterable containing
+<span class="math notranslate nohighlight">\(\vec{\theta}=(\theta_1,\theta_2)\)</span> in radians even if one component is
+set to 0.0.
+For an open-shell filling, an untwisted lattice leads to an abitrary choice
+of which degenerate orbitals are occupied.
+<cite>from_free_electron()</cite> warns when that happens.</p>
+<p>Building the trial wavefunction does not measure its energy.
+To evaluate the variational energy of a trial wavefunction with respect to the
+interacting Hamiltonian, run the AutoHF Hartree-Fock solver explicitly, as shown
+in <a class="reference internal" href="../09_autoHF_trial_wfn/readme.html#setup-ex-9"><span class="std std-ref">Hartree-Fock trial wavefunctions with autoHF</span></a>.</p>
 <p>See the examples in <a class="reference internal" href="../../02_running_afqmc/afqmc_examples.html#run-afqmc-exs"><span class="std std-ref">Running SAFIRE</span></a> for how to run AFQMC.</p>
 </section>
 

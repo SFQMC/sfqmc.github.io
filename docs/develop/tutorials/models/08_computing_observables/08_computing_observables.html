@@ -561,9 +561,7 @@ The code block below will:</p>
 <h2><span class="section-number">8.6. </span>▶️ Run the code block below to perform all of the steps above<a class="headerlink" href="#run-the-code-block-below-to-perform-all-of-the-steps-above" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span><span class="n">AutoHFHamiltonian</span>
@@ -587,21 +585,19 @@ The code block below will:</p>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'t'</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="s1">'U'</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
-    <span class="s1">'spin_symm'</span> <span class="p">:</span> <span class="s2">"closed"</span>
+    <span class="s1">'spin_symm'</span> <span class="p">:</span> <span class="s2">"closed"</span><span class="p">,</span>
+    <span class="s1">'nelec'</span> <span class="p">:</span> <span class="n">nelec</span>
 <span class="p">}</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
-<span class="n">write_model_hamiltonian</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamiltonian.h5"</span>
-<span class="p">)</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamiltonian.h5"</span><span class="p">)</span>
 
 
 <span class="c1"># autoHF does not support closed integrals to collinear integrals</span>
@@ -616,7 +612,7 @@ The code block below will:</p>
     <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
-<span class="n">hamiltonian_for_autohf</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian_for_autohf</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 
 <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -650,24 +646,16 @@ The code block below will:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### experiment : add a little noise to the UHF wfn ###</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 
 <span class="c1"># 1. read the uhf wfn from file</span>
-<span class="n">wfn</span> <span class="o">=</span> <span class="n">read_wavefunction</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">Ci</span><span class="p">,</span> <span class="n">Phi</span> <span class="o">=</span> <span class="n">wfn</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn.h5"</span><span class="p">)</span>
 
 <span class="c1"># 2. add noise</span>
-<span class="n">Phi</span> <span class="o">=</span> <span class="n">Phi</span> <span class="o">+</span> <span class="mf">1.0e-4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">Phi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">wfn</span><span class="o">.</span><span class="n">dets</span> <span class="o">+=</span> <span class="mf">1.0e-4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="c1"># 3. save the uhf wfn with noise</span>
-<span class="n">write_wfn</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn_noise.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="p">(</span><span class="n">Ci</span><span class="p">,</span><span class="n">Phi</span><span class="p">),</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s1">'uhf'</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">hamiltonian_for_autohf</span><span class="o">.</span><span class="n">nsites</span>
-<span class="p">)</span>
+<span class="n">wfn</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"uhf_wfn_noise.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -993,7 +981,6 @@ This dramatically reduces the memory needed to analyze the AFQMC results from SA
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_common_input</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_observable</span><span class="p">,</span><span class="n">get_metadata</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span><span class="p">,</span><span class="n">eval_one_body_obs_factory</span><span class="p">,</span><span class="n">eval_two_body_obs_factory</span>
 

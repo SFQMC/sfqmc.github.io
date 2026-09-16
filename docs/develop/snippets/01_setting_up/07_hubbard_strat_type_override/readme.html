@@ -519,6 +519,7 @@ interaction term regardless of the sign of the interaction strength.</p>
 <span class="n">U1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>  <span class="c1"># normally, defaults to "discrete_spin" for U1 &lt; 0</span>
 <span class="n">U2</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">J</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 
 <span class="p">[</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">hst_types</span><span class="p">]</span>
 <span class="n">U1</span> <span class="o">=</span> <span class="s2">"discrete_spin"</span>  <span class="c1"># choices: "discrete_spin", "discrete_charge", </span>
@@ -530,44 +531,28 @@ interaction term regardless of the sign of the interaction strength.</p>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span>
 <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
-
-<span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>afqmctools can be invoked within a Python script as</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
+<p>safiretools can be invoked within a Python script as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Wavefunction</span>
 
 <span class="n">infile</span> <span class="o">=</span> <span class="s2">"input.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">input_params</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">input_params</span><span class="p">[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 
-<span class="c1"># compute and save a free-electron trial wfn</span>
-<span class="n">free_electron</span><span class="p">(</span>
+<span class="c1"># compute and save a free-electron trial wfn, into the same file</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s2">"afqmc.h5"</span>
-<span class="p">)</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">nelec</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If the sample Python script is run above with the sample input file, the following
-should be present at the end of the output.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Running in Slater Detemrinant Mode
-energyCall: Etotal=(-15.444445610046387+0j) with EK=(-18+0j) EU=(2.7777771949768066+0j) EU1=(-0.6666667461395264+0j) EU2=(0.444444477558136+0j) EJ=(5.796812270493889e-33+0j)
-Reference HF Energy = -15.444445610046387
-</pre></div>
-</div>
-<p>Internally, the AutoHF Hartree-Fock code is used to evaluate the energy of the free-electron
-trial wavefunction with respect to the interacting Hamiltonian.
-This allows the initial energy to be checked within the AFQMC code.</p>
+<p>Building the trial wavefunction does not measure its energy.
+To evaluate the variational energy of a trial wavefunction with respect to the
+interacting Hamiltonian, run the AutoHF Hartree-Fock solver explicitly, as shown
+in <a class="reference internal" href="../09_autoHF_trial_wfn/readme.html#setup-ex-9"><span class="std std-ref">Hartree-Fock trial wavefunctions with autoHF</span></a>.</p>
 </section>
 
 

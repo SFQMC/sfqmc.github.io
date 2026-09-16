@@ -548,12 +548,10 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup the Hamiltonian</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
@@ -575,13 +573,13 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># save for AFQMC</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -603,10 +601,10 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
-<span class="n">effective_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">effective_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># convert afqmctools Hamitlonian to AutoHFHamiltonian</span>
 <span class="n">autohf_hamiltonian</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">effective_hamiltonian</span><span class="p">)</span>
@@ -635,7 +633,7 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 </div>
 <section id="construct-and-save-the-trial-wavefunction">
 <h2><span class="section-number">5.1. </span>Construct and Save the trial wavefunction<a class="headerlink" href="#construct-and-save-the-trial-wavefunction" title="Link to this heading">#</a></h2>
-<p>A trial wavefunction can be written to AuxiliaryField’s HDF5 format using the <code class="docutils literal notranslate"><span class="pre">write_wfn()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">afqmctools.wavefunction.common</span></code> submodule of afqmctools.
+<p>A trial wavefunction can be written to AuxiliaryField’s HDF5 format by building a <code class="docutils literal notranslate"><span class="pre">NOMSDWavefunction</span></code> from <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> and calling its <code class="docutils literal notranslate"><span class="pre">to_hdf5()</span></code> method.
 In general, the trial wavefunction in AFQMC is a linear combination of Slater determinants,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -667,7 +665,7 @@ For collinear Slater determinants, the first <span class="math notranslate nohig
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct the multi-Slater trial AND save</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 
 <span class="c1"># get the orbitals from the AutoHF results.</span>
 <span class="n">orbitals_up</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'orbitals'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -693,15 +691,15 @@ For collinear Slater determinants, the first <span class="math notranslate nohig
 
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">phi_0</span><span class="p">,</span><span class="n">phi_1</span><span class="p">]))</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"uhf"</span><span class="p">,</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">phi_0</span><span class="p">,</span><span class="n">phi_1</span><span class="p">]),</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"uhf"</span><span class="p">,</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
 <span class="p">)</span>
+
+<span class="n">wfn</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

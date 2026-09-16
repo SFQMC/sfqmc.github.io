@@ -572,27 +572,25 @@ To accomplish this, we wrote down a set of orbitals in the chosen orthonormal or
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
 </pre></div>
 </div>
-<p>Finally, we write this to an HDF5 file in the SAFIRE format using the <code class="docutils literal notranslate"><span class="pre">write_wfn()</span></code> function as,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<p>Finally, we build a <code class="docutils literal notranslate"><span class="pre">NOMSDWavefunction</span></code> and write it to an HDF5 file in the SAFIRE format with <code class="docutils literal notranslate"><span class="pre">to_hdf5()</span></code> as,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wavefunction.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_0</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wavefunction.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that we write the “wavefunction” as a tuple of length two where the first entry is a 1-dimensional array with the CI coefficient, and the second entry is a 3 dimensional array where the first index corresponds to the Slater determinant index, the second index corresponds to the basis set index, and the third index corresponds to the electron index.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">coeffs</span></code> is a 1-dimensional array with the CI coefficient, and <code class="docutils literal notranslate"><span class="pre">dets</span></code> is a 3 dimensional array where the first index corresponds to the Slater determinant index, the second index corresponds to the basis set index, and the third index corresponds to the electron index.</p>
 <p>We put all of this together in the following code block.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 
 <span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="mi">2</span>
@@ -607,15 +605,13 @@ To accomplish this, we wrote down a set of orbitals in the chosen orthonormal or
 <span class="p">])</span>
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wfn.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_0</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"rhf_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -671,18 +667,16 @@ details on the expected data.</p>
 </pre></div>
 </div>
 <p>The dimensions of <code class="docutils literal notranslate"><span class="pre">phi_nomsd</span></code> should be (N<span class="math notranslate nohighlight">\(_\mathrm{dets}\)</span>,N<span class="math notranslate nohighlight">\(_\mathrm{basis}\)</span>,N<span class="math notranslate nohighlight">\(_\mathrm{elec}\)</span>), as previously indicated in the single determinant case.</p>
-<p>Finally, we write this to an HDF5 file in the SAFIRE format using the <code class="docutils literal notranslate"><span class="pre">write_wfn()</span></code> function as,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<p>Finally, we build a <code class="docutils literal notranslate"><span class="pre">NOMSDWavefunction</span></code> and write it to an HDF5 file in the SAFIRE format with <code class="docutils literal notranslate"><span class="pre">to_hdf5()</span></code> as,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span> <span class="n">phi_nomsd</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_nomsd</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We put all of this together in the code block below.</p>
@@ -703,15 +697,13 @@ details on the expected data.</p>
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">C_1</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span> <span class="n">phi_nomsd</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_1</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_nomsd</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"NOMSD_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -764,11 +756,13 @@ and
 
 where we explicitly create holes (through the <span class="math notranslate nohighlight">\(a_{g,\downarrow} a_{g,\uparrow}\)</span> operators) and particles (through the <span class="math notranslate nohighlight">\(a_{u,\downarrow}^\dagger a_{u,\uparrow}^\dagger\)</span>) operators on top of a reference state.</p>
 <p>For the tooling side of the AFQMC, to write a ph-mSD trial wavefunction we need to specify an array with the occupied orbitals in each Slater determinant. <span class="math notranslate nohighlight">\(α\)</span> and <span class="math notranslate nohighlight">\(β\)</span> electrons should be specified separately. Finally, we need to provide an array containing the normalized weights/coefficients associated with each determinant in our trial wavefunction.
-Combining these ingredients (array of normalized coefficients, array of occupied <span class="math notranslate nohighlight">\(α\)</span> orbitals and array of occupied <span class="math notranslate nohighlight">\(β\)</span> orbitals) as a tuple objects allows us to write the ph-mSD wavefunction as an hdf5 file for the AFQMC code</p>
+Combining these ingredients (array of normalized coefficients, array of occupied <span class="math notranslate nohighlight">\(α\)</span> orbitals and array of occupied <span class="math notranslate nohighlight">\(β\)</span> orbitals) into a <code class="docutils literal notranslate"><span class="pre">PHMSDWavefunction</span></code> allows us to write the ph-mSD wavefunction as an hdf5 file for the AFQMC code</p>
 <p>In our example, if we enumerate the orbitals in set starting with 0, we have:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">PHMSDWavefunction</span>
 
 <span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="mi">2</span>
@@ -790,18 +784,15 @@ Combining these ingredients (array of normalized coefficients, array of occupied
 <span class="n">occa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">occa_0</span><span class="p">,</span> <span class="n">occa_1</span><span class="p">))</span>
 <span class="n">occb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">occb_0</span><span class="p">,</span> <span class="n">occb_1</span><span class="p">))</span>
 
-<span class="c1"># Create a tuple object with the coefficients, α and β occupied arrays</span>
-<span class="c1"># to write our ph-mSD trial wavefunction in the appropriate hdf5 format.</span>
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">Cn</span><span class="p">,</span> <span class="n">occa</span><span class="p">,</span> <span class="n">occb</span> <span class="p">)</span>
-
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"PHMSD_wfn.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"uhf"</span><span class="p">,</span>
+<span class="c1"># Build a PHMSDWavefunction from the coefficients and the α and β occupied</span>
+<span class="c1"># arrays, and write it in the appropriate hdf5 format.</span>
+<span class="n">PHMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">Cn</span><span class="p">,</span>
+    <span class="n">occa</span><span class="o">=</span><span class="n">occa</span><span class="p">,</span>
+    <span class="n">occb</span><span class="o">=</span><span class="n">occb</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"PHMSD_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -569,9 +569,8 @@ which, among other things, provides tools to analyze the locality of a set of or
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">lo</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
@@ -699,20 +698,21 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="n">afqmc_hamil_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"local_embedding_H.h5"</span>
 
-    <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+    <span class="c1"># loaded explicitly so the orbitals can be replaced below; with no such</span>
+    <span class="c1">#   edit, from_pyscf() takes the checkpoint path directly</span>
+    <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
         <span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
     <span class="p">)</span>
 
     <span class="c1"># edit the orbitals!</span>
     <span class="n">scf_data</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_basis</span>
 
-    <span class="n">write_hamil_mol</span><span class="p">(</span>
+    <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
         <span class="n">scf_data</span><span class="p">,</span>
         <span class="n">cas</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">N_active_occ</span><span class="p">),</span><span class="n">ncas</span><span class="p">),</span>
-        <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">afqmc_hamil_file</span><span class="p">,</span>
         <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">afqmc_hamil_file</span><span class="p">)</span>
 
     <span class="c1"># 5. Write the trial wavefunction</span>
 
@@ -720,17 +720,15 @@ which, among other things, provides tools to analyze the locality of a set of or
     <span class="n">afqmc_wfn_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"active_space_rhf_wfn.h5"</span>
 
     <span class="n">active_det_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ncas</span><span class="p">,</span><span class="n">N_active_occ</span><span class="p">)</span>
-    <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">active_det_up</span><span class="p">]))</span>
     <span class="n">nelec_active</span> <span class="o">=</span> <span class="p">(</span><span class="n">N_active_occ</span><span class="p">,</span><span class="n">N_active_occ</span><span class="p">)</span>
 
-    <span class="n">write_wfn</span><span class="p">(</span>
-        <span class="n">afqmc_wfn_file</span><span class="p">,</span>
-        <span class="n">wfn</span><span class="p">,</span>
-        <span class="n">walker_type</span><span class="o">=</span><span class="s1">'closed'</span><span class="p">,</span>
+    <span class="n">NOMSDWavefunction</span><span class="p">(</span>
+        <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span>
+        <span class="n">dets</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">active_det_up</span><span class="p">]),</span>
+        <span class="n">spin_symm</span><span class="o">=</span><span class="s1">'closed'</span><span class="p">,</span>
         <span class="n">nelec</span><span class="o">=</span><span class="n">nelec_active</span><span class="p">,</span>
-        <span class="n">norb</span><span class="o">=</span><span class="n">ncas</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span>
+        <span class="n">nmo</span><span class="o">=</span><span class="n">ncas</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">afqmc_wfn_file</span><span class="p">)</span>
 
     <span class="c1"># 6. write json input file</span>
     <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>

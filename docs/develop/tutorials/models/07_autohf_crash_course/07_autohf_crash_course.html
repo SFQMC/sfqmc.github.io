@@ -491,7 +491,7 @@ purpose of generating trial wavefunctions for SAFIRE.</p>
 <h2><span class="section-number">7.1. </span>Software Preliminaries<a class="headerlink" href="#software-preliminaries" title="Link to this heading">#</a></h2>
 <p>While AutoHF is a stand alone tool with it’s own input format for Hamiltonians.
 However, it is able to convert SAFIRE format hamiltonians to it’s own internal format very easily.
-In this tutorial, we will exclusively use afqmctools to build Hamiltonians,
+In this tutorial, we will exclusively use safiretools to build Hamiltonians,
 then use the SAFIRE to AutoHF converter to provide AutoHF with the desired Hamiltonian.</p>
 </section>
 <section id="run-the-cell-below-to-setup-the-tutorial">
@@ -526,9 +526,7 @@ where <span class="math notranslate nohighlight">\(i,j\)</span> are lattice site
 and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are spin-resolved number operators corresponding to site <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -538,7 +536,7 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
     <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">'PBC'</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -553,10 +551,10 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
 <span class="p">}</span>
 
 <span class="c1"># Step 3.b. build the lattice model Ha</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -572,13 +570,13 @@ and <span class="math notranslate nohighlight">\(\hat{n}^{\sigma}_i\)</span> are
 </ol>
 <section id="getting-a-hamiltonian-in-autohf">
 <h3><span class="section-number">7.4.1. </span>1. Getting a Hamiltonian in AutoHF<a class="headerlink" href="#getting-a-hamiltonian-in-autohf" title="Link to this heading">#</a></h3>
-<p>We can easily convert afqmctools Hamiltonians to the AutoHF format using,</p>
+<p>We can easily convert safiretools Hamiltonians to the AutoHF format using,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span>
 
 <span class="n">hamiltonian_autohf</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_safire</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">hamiltonian_safire</span></code> is a Hamiltonian generated by afqmctools, and
+<p>where <code class="docutils literal notranslate"><span class="pre">hamiltonian_safire</span></code> is a Hamiltonian generated by safiretools, and
 <code class="docutils literal notranslate"><span class="pre">hamiltonian_autohf</span></code> is the same Hamiltonian in the AutoHF format.</p>
 </section>
 <section id="autohf-settings-dictionary">
@@ -646,7 +644,7 @@ we will focus on a few key settings which are as follows.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span><span class="n">AutoHFHamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
 
-<span class="c1"># "hamiltonian" contains the afqmctools format Hamiltonian</span>
+<span class="c1"># "hamiltonian" contains the safiretools format Hamiltonian</span>
 <span class="n">hamiltonian_autohf</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span> <span class="c1"># Your Turn: convert to the autoHF format</span>
 
 <span class="c1"># define settings</span>
@@ -674,7 +672,7 @@ we will focus on a few key settings which are as follows.</p>
 <section id="solution">
 <h2><span class="section-number">7.6. </span>✅ Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h2>
 <p>You should have completed the line of code as,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># "hamiltonian" contains the afqmctools format Hamiltonian</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># "hamiltonian" contains the safiretools format Hamiltonian</span>
 <span class="n">hamiltonian_autohf</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
 </pre></div>
 </div>

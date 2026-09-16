@@ -512,7 +512,7 @@
 <h1><span class="section-number">2. </span>B atom – Semistochastic heatbath CI (SHCI) trial wavefunction<a class="headerlink" href="#b-atom-semistochastic-heatbath-ci-shci-trial-wavefunction" title="Link to this heading">#</a></h1>
 <p>In this example, we will compute the ground state energy of the Boron (B) atom.
 This is an open-shell atom with a single p-electron.
-We used PySCF and <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> to generate a Hamiltonian and save it the SAFIRE HDF5 format (sample script at the end of this example); however, a FCIDUMP can be used instead.
+We used PySCF and <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to generate a Hamiltonian and save it the SAFIRE HDF5 format (sample script at the end of this example); however, a FCIDUMP can be used instead.
 If you already have a FCIDUMP, you can skip using the <code class="docutils literal notranslate"><span class="pre">afqmc_to_fcidump</span></code> tool,
 and instead, after running SHCI, you can use the <code class="docutils literal notranslate"><span class="pre">fcidump_to_afqmc</span></code> tool to generate a Hamiltonian for SAFIRE.</p>
 <p>References:</p>
@@ -682,11 +682,10 @@ AFQMC<span class="w"> </span>Energy<span class="w">   </span>-24.602724<span cla
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sample script to generate a SAFIRE HDF5 Hamiltonian</span>
-<span class="c1">#  using afqmctools and PySCF.</span>
+<span class="c1">#  using safiretools and PySCF.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
 
 <span class="c1">### Step 1. Run PySCF to generate a basis</span>
@@ -711,19 +710,13 @@ AFQMC<span class="w"> </span>Energy<span class="w">   </span>-24.602724<span cla
 <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">()</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="c1">### Step 2. use afqmctools to generate and save the Hamiltonian.</span>
-<span class="c1"># load data from PySCF checkpoint file</span>
-<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
-    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
-<span class="p">)</span>
-
-<span class="c1"># write Hamiltonian</span>
-<span class="n">write_hamil_mol</span><span class="p">(</span>
-    <span class="n">basis_scf_data</span><span class="p">,</span>
-    <span class="n">hamil_file</span> <span class="o">=</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
+<span class="c1">### Step 2. use safiretools to generate and save the Hamiltonian</span>
+<span class="c1"># directly from the PySCF checkpoint file.</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+    <span class="n">atom_chkfile</span><span class="p">,</span>
     <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

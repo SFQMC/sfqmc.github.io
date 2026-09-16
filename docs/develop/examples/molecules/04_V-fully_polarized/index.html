@@ -520,23 +520,33 @@ We will use CASCI to compute the exact energy within the active space as a refer
 <h2><span class="section-number">4.1. </span>Running the Example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
 <p>The workflow follows three steps:</p>
 <ol class="arabic">
-<li><p><strong>Generate an orbital basis</strong>: Execute <code class="docutils literal notranslate"><span class="pre">scf/scf.py</span></code> to perform ROHF on the vanadium atom which we will use as a basis,
-and to generate a trial wavefunction for AFQMC.
+<li><p><strong>Generate an orbital basis</strong>: Execute <code class="docutils literal notranslate"><span class="pre">scf/scf.py</span></code> to perform ROHF on the vanadium atom, whose
+orbitals we will use as a basis, saving them to <code class="docutils literal notranslate"><span class="pre">rohf.chk</span></code>.
+The trial wavefunction is built from those orbitals in step 2.
 We also run a CASCI(32o,3e) calculation to provide a reference energy.</p>
-<p>The ROHF energy should be around -942.873080272797 Ha, and the CASCI(32o,3e) energy should be
-around -942.901099297148 Ha where the contribution in the active space is -3.53263111527235 Ha.</p>
+<p>The ROHF energy should be around -942.884910 Ha, and the CASCI(32o,3e) energy should be
+around -942.902127 Ha, where the contribution from the active space is -3.535253 Ha.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An isolated vanadium atom has other ROHF solutions, and the CASCI and
+AFQMC energies quoted in this example all assume the lowest one. <code class="docutils literal notranslate"><span class="pre">scf.py</span></code> therefore runs an
+internal stability analysis, re-solving from any instability it finds, and then checks the
+total energy against the value above.</p>
+</div>
 </li>
-<li><p><strong>Create AFQMC inputs</strong>: Execute <code class="docutils literal notranslate"><span class="pre">input/setup.py</span></code> to generate the SAFIRE inputs.
+<li><p><strong>Create AFQMC inputs</strong>: Execute <code class="docutils literal notranslate"><span class="pre">inputs/setup.py</span></code> to generate the SAFIRE inputs.
 Note that script uses an active space for AFQMC of <cite>cas_afqmc = (3,32)</cite>.
 This treats the system as having all electrons in the spin-up channel.
-The script writes both the Hamiltonian and a fully polarized trial wavefunction to <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code>.</p></li>
+The script writes both the Hamiltonian and a fully polarized trial wavefunction to <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code>.
+A trial with no beta electrons is collinear with <code class="docutils literal notranslate"><span class="pre">ndown</span> <span class="pre">==</span> <span class="pre">0</span></code>, so <code class="docutils literal notranslate"><span class="pre">walker_type</span></code> in
+<code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code> and the wavefunction’s beta blocks are written with zero width.</p></li>
 <li><p><strong>Run SAFIRE</strong>: Execute SAFIRE using the provided <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code> input file:</p>
 <p>First, go to the <cite>inputs</cite> directory, then run SAFIRE with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span>safire<span class="w"> </span>afqmc.json
 </pre></div>
 </div>
 </li>
-<li><p><strong>analyze the results</strong>: Use the <cite>scalar_stats</cite> command-line tool from afqmctools to analyze the energy output:</p>
+<li><p><strong>analyze the results</strong>: Use the <cite>scalar_stats</cite> command-line tool to analyze the energy output:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scalar_stats<span class="w"> </span>qmc.s000.scalar.dat<span class="w"> </span>-s<span class="w"> </span><span class="nb">time</span><span class="w"> </span>-e<span class="w"> </span><span class="m">5</span>.0<span class="w"> </span>-t<span class="w"> </span>--savefig<span class="w"> </span>energy_vs_beta.png
 
 <span class="o">======</span><span class="w"> </span><span class="o">[</span>analyze_scalar_data<span class="w"> </span>Settings<span class="o">]</span><span class="w"> </span><span class="o">======</span>
@@ -572,10 +582,12 @@ above.</p>
 </a>
 </div></blockquote>
 </li>
-<li><p>compare with the reference CASCI energy: The AFQMC energy, -942.9017(2) Ha, agrees with the CASCI energy, -942.902141 Ha,
+<li><p>compare with the reference CASCI energy: The AFQMC energy, -942.9017(2) Ha, agrees with the CASCI energy, -942.902127 Ha,
 which is the exact energy within the active space, to well within chemical accuracy.</p></li>
 </ol>
-<p>See <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> for execution details. The <code class="docutils literal notranslate"><span class="pre">dice/</span></code> directory contains an alternative trial wavefunction generation approach using selected CI.</p>
+<p><code class="docutils literal notranslate"><span class="pre">inputs/run_safire_cpu.sh</span></code> is a sample Slurm batch script for step 3.
+For an alternative way to build the trial wavefunction, using selected CI instead of a single
+determinant, see <a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html"><span class="doc">B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</span></a>.</p>
 </section>
 <section id="files">
 <h2><span class="section-number">4.2. </span>Files<a class="headerlink" href="#files" title="Link to this heading">#</a></h2>
@@ -594,6 +606,42 @@ which is the exact energy within the active space, to well within chemical accur
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">mcscf</span>
 
+<span class="c1"># The internally stable ROHF solution for the S=3/2 vanadium atom in cc-pVDZ.</span>
+<span class="c1">#   An isolated V atom has other ROHF solutions, and the</span>
+<span class="c1">#   CASCI and AFQMC reference energies quoted in this example all assume this one.</span>
+<span class="n">ROHF_ENERGY</span> <span class="o">=</span> <span class="o">-</span><span class="mf">942.884909528</span>
+<span class="n">ROHF_ENERGY_TOL</span> <span class="o">=</span> <span class="mf">1e-4</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_stable_rohf</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">chkfile</span><span class="p">,</span> <span class="n">max_rotations</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Solve ROHF, re-solving from the lowest instability direction until the</span>
+<span class="sd">    solution is internally stable.</span>
+
+<span class="sd">    Internal stability asks whether the solution is a genuine ROHF minimum</span>
+<span class="sd">    rather than a saddle point; it does not consider the symmetry-breaking</span>
+<span class="sd">    (ROHF -&gt; UHF) rotations that external stability would.</span>
+<span class="sd">    """</span>
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">chkfile</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_rotations</span><span class="p">):</span>
+        <span class="n">mo</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">stable</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">stability</span><span class="p">(</span><span class="n">return_status</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stable</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="c1"># rotate the orbitals along the instability and re-solve from there</span>
+        <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">mo</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"ROHF is still internally unstable after </span><span class="si">{</span><span class="n">max_rotations</span><span class="si">}</span><span class="s2"> rotations"</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mf</span><span class="o">.</span><span class="n">converged</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"ROHF reached a stable solution but did not converge"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mf</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -610,9 +658,7 @@ which is the exact energy within the active space, to well within chemical accur
     <span class="p">)</span>
 
     <span class="c1"># this will be a basis</span>
-    <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">single_mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'rohf.chk'</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+    <span class="n">mf</span> <span class="o">=</span> <span class="n">solve_stable_rohf</span><span class="p">(</span><span class="n">single_mol</span><span class="p">,</span> <span class="s1">'rohf.chk'</span><span class="p">)</span>
 
     <span class="c1"># Report ROHF energy decomposition and total energy.</span>
     <span class="n">e_elec</span><span class="p">,</span> <span class="n">e_coul</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">energy_elec</span><span class="p">()</span>
@@ -626,8 +672,14 @@ which is the exact energy within the active space, to well within chemical accur
     <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF nuclear repulsion energy: "</span><span class="p">,</span> <span class="n">e_nuc</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"ROHF total energy: "</span><span class="p">,</span> <span class="n">e_tot</span><span class="p">)</span>
 
-    
-    
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e_tot</span> <span class="o">-</span> <span class="n">ROHF_ENERGY</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">ROHF_ENERGY_TOL</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"ROHF total energy </span><span class="si">{</span><span class="n">e_tot</span><span class="si">:</span><span class="s2">.9f</span><span class="si">}</span><span class="s2"> Ha differs from the expected stable "</span>
+            <span class="sa">f</span><span class="s2">"solution </span><span class="si">{</span><span class="n">ROHF_ENERGY</span><span class="si">:</span><span class="s2">.9f</span><span class="si">}</span><span class="s2"> Ha by more than </span><span class="si">{</span><span class="n">ROHF_ENERGY_TOL</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2"> Ha. "</span>
+            <span class="s2">"The CASCI and AFQMC reference energies in this example assume that "</span>
+            <span class="s2">"solution, so they will not be reproduced."</span>
+        <span class="p">)</span>
+
     <span class="c1"># Getting a reference energy:</span>
     <span class="n">mycas</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASCI</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">E_casci</span> <span class="o">=</span>  <span class="n">mycas</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
@@ -649,9 +701,7 @@ which is the exact energy within the active space, to well within chemical accur
 <span class="c1">#</span>
 <span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span><span class="p">,</span> <span class="n">Wavefunction</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
@@ -664,32 +714,20 @@ which is the exact energy within the active space, to well within chemical accur
     <span class="c1"># output</span>
     <span class="n">fout</span> <span class="o">=</span> <span class="s1">'afqmc.h5'</span>
 
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">basis_chk</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
-
-    <span class="n">mol</span> <span class="o">=</span> <span class="n">basis_scf_data</span><span class="p">[</span><span class="s1">'mol'</span><span class="p">]</span>
-    <span class="n">nelec</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">nelec</span>
-
-    <span class="n">ncore</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">cas_afqmc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">ncore</span> <span class="o">&gt;=</span> <span class="mi">0</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span><span class="o">*</span><span class="mi">20</span> <span class="o">+</span> <span class="s2">" scf_info "</span> <span class="o">+</span> <span class="s2">"="</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">basis_scf_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">  :  </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-    <span class="n">write_hamil_mol</span><span class="p">(</span>
-        <span class="n">basis_scf_data</span><span class="p">,</span>
-        <span class="n">fout</span><span class="p">,</span> 
-        <span class="n">chol_tol</span><span class="p">,</span> 
-        <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+        <span class="n">basis_chk</span><span class="p">,</span>
+        <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span>
+        <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">cas</span><span class="o">=</span><span class="n">cas_afqmc</span>  <span class="c1"># provide the CAS info here</span>
-    <span class="p">)</span>
-    
-    <span class="n">write_wfn_mol</span><span class="p">(</span>
-        <span class="n">scf_data</span> <span class="o">=</span> <span class="n">basis_scf_data</span><span class="p">,</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">fout</span><span class="p">,</span>
-        <span class="n">cas</span> <span class="o">=</span> <span class="n">cas_afqmc</span>  <span class="c1"># must match the CAS info used in write_hamil_mol!</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
+
+    <span class="c1"># Freezing the 10 doubly occupied core orbitals leaves 3 alpha and 0 beta</span>
+    <span class="c1">#   electrons in the active space, so the trial is collinear with ndown == 0</span>
+    <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+        <span class="n">basis_chk</span><span class="p">,</span>
+        <span class="n">cas</span> <span class="o">=</span> <span class="n">cas_afqmc</span>  <span class="c1"># must match the CAS info used for the Hamiltonian!</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>

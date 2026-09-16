@@ -533,13 +533,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ham</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_free_electron_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.greens</span><span class="w"> </span><span class="kn">import</span> <span class="n">greens_1body</span>
@@ -581,9 +578,9 @@
     <span class="s1">'boundary2'</span> <span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">lat</span><span class="o">.</span><span class="n">get_lattice</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span><span class="p">)</span>
 
 <span class="n">Ne</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.2</span><span class="p">))</span><span class="o">//</span><span class="mi">2</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span><span class="n">Ne</span><span class="p">)</span>
@@ -612,9 +609,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <p>and we have a convenience function to add the edge pinning as well. We’ll assume <span class="math notranslate nohighlight">\(t=1\)</span>, <span class="math notranslate nohighlight">\(h_i=0.5\)</span> just like in the paper</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -627,20 +625,24 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a trial wavefunction: First, let's try a free-electron (i.e. non-interacting) wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_free_electron_wfn</span>
-<span class="n">write_free_electron_wfn</span><span class="p">(</span>
-    <span class="n">hamiltonian_fname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a trial wavefunction: First, let's try a free-electron (i.e. non-interacting) wavefunction.</span>
+<span class="c1"># from_free_electron() takes the Hamiltonian itself; to_hdf5() then appends the</span>
+<span class="c1"># wavefunction to the same file we wrote the Hamiltonian into.</span>
+<span class="c1">#</span>
+<span class="c1"># No twist is needed here: the open boundary along axis 1 and the pinning field</span>
+<span class="c1"># already split the shells, so the determinant is well defined. On a fully</span>
+<span class="c1"># periodic, unpinned lattice it would not be. See the 4x4 Hubbard example.</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">(),</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -806,9 +808,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ueffs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">Ueff</span> <span class="ow">in</span> <span class="n">Ueffs</span><span class="p">:</span>
 
-    <span class="n">builder_eff</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+    <span class="n">builder_eff</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
               <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-              <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span>
+              <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span>
+              <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
                   <span class="p">)</span>
     <span class="c1"># add standard Hubbard terms</span>
     <span class="n">builder_eff</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -818,9 +821,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
     <span class="c1"># NOTICE: we must be careful here! We can either keep around afqmc.h5</span>
     <span class="c1"># which has the original Hamiltonian (U=6) and keep the wf and its Hamiltonian together</span>
-    <span class="c1"># or we have one file with afqmc_Ueff which has both the wf and builder.hamiltonian</span>
-    <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder_eff</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span><span class="p">,</span>
-                            <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
+    <span class="c1"># or we have one file with afqmc_Ueff which has both the wf and builder.get_hamiltonian()</span>
+    <span class="n">builder_eff</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span><span class="p">)</span>
 
     <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">steps</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
@@ -832,7 +834,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
         <span class="n">noncollinear</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
-        <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builder_eff</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">),</span>
+        <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builder_eff</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()),</span>
         <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
         <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="p">)</span>
@@ -920,10 +922,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
         <span class="n">fname</span> <span class="o">=</span> <span class="s2">"afqmc.h5"</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.h5"</span>
-    <span class="p">(</span><span class="n">coeffs</span><span class="p">,</span><span class="n">wfn</span><span class="p">),</span> <span class="n">psi0</span><span class="p">,</span> <span class="p">(</span><span class="n">na</span><span class="p">,</span> <span class="n">nb</span><span class="p">),</span><span class="n">spintype</span> <span class="o">=</span> <span class="n">read_wavefunction</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="c1"># We assume spin balance below</span>
-    <span class="n">o</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">na</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">'F'</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
-    <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">o</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span><span class="n">o</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">fname</span><span class="p">)</span>
+    <span class="c1"># spin_blocks() splits the leading determinant into its alpha and beta columns</span>
+    <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">spin_blocks</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">alpha</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">beta</span><span class="o">.</span><span class="n">real</span><span class="p">])</span>
 
     <span class="n">rdm</span> <span class="o">=</span> <span class="n">greens_1body</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
     <span class="n">trial_rhos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rdm</span><span class="p">)</span>

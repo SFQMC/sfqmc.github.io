@@ -690,6 +690,92 @@ with lattice coordinate 0 or L-1, on the given axis.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.builder.HamiltonianBuilder.from_input">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.from_input" title="Link to this definition">#</a></dt>
+<dd><p>Construct and fully build a HamiltonianBuilder from a declarative input.</p>
+<p>Parses a ‘hamiltonian’ (and optionally ‘lattice’) description, runs the
+corresponding build steps, and finalizes. The returned builder exposes the
+completed Hamiltonian on <code class="docutils literal notranslate"><span class="pre">builder.hamiltonian</span></code> and the lattice on
+<code class="docutils literal notranslate"><span class="pre">builder.lattice</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span>) – a description of the Hamiltonian (and possibly lattice) parameters.
+If a str/Path is given, it is interpreted as a .toml input file and
+parameters are read from that file. If a dict is given, parameters are
+read directly from the dict.</p></li>
+<li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – the Lattice instance describing the lattice geometry. If not specified,
+the lattice is built from <code class="docutils literal notranslate"><span class="pre">source['lattice']</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder" title="afqmctools.hamiltonian.model.builder.HamiltonianBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The Hamiltonian is built by a sequence of build steps specified as
+key-value pairs in the ‘hamiltonian’ section of the input. By default,
+nearest-neighbor hopping is included; all interaction terms must be
+explicitly included in the input. See the <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code> build-step
+methods for finer control and full input conventions.</p>
+<p>The following build steps are supported, listed as <cite>key : description</cite>:</p>
+<ul class="simple">
+<li><p>t : nth-order neighbor hopping term; input convention are as follows:</p>
+<ul>
+<li><p>if t is a scalar, then nearest-neighbor hopping is included with strength t</p></li>
+<li><p>if t is a 1-dimensional list (i.e. [t1,t2,…,tn]), then up to nth-order hopping is included</p></li>
+<li><p>if t is a 2-dimensional with shape (nbands, nbands), then
+the t is interpreted as an on-site inter-band hopping matrix</p></li>
+<li><p>if t is a list of 2-dimensional arrays, then each element is interpreted as an on-site
+inter-band hopping matrix. This is functionally the same as <span class="math notranslate nohighlight">\(t_{mn} = \sum t^{(i)}_{mn}\)</span>
+where <span class="math notranslate nohighlight">\(t^{(i)}\)</span> is the ith element of the list and <span class="math notranslate nohighlight">\(m,n\)</span> are band indices.</p></li>
+</ul>
+</li>
+<li><p>U : onsite Hubbard interaction term; input convention are as follows:</p>
+<ul>
+<li><p>if U is a scalar, then the onsite Hubbard interaction term is included with strength U
+and applied to all sites and bands.</p></li>
+<li><p>if U is 1-dimensional with length nbands (i.e. [U1,U2,…,Um] where for an m-band model),
+then the onsite Hubbard interaction term is included with strength U_i applied to band i
+and uniformly across sites.</p></li>
+<li><p>if U is 1-dimensional with length nsites (i.e. [U1,U2,…,Un] where n is the number of sites),
+then the onsite Hubbard interaction term is included with strength U_i applied to site i
+and uniformly across bands.</p></li>
+</ul>
+</li>
+<li><p>U1 : Hubbard density-density interaction term. Input convention are as follows:</p>
+<ul>
+<li><p>if U1 is a scalar, then the Hubbard density-density interaction term is included with strength U1
+and is applied to all sites, and is uniform across bands.</p></li>
+<li><p>if U1 is a 2-dimensional with shape (nbands, nbands), then U1 is used as an intrasite density-density
+interaction, and is applied uniformly across sites.</p></li>
+</ul>
+</li>
+<li><p>U2 : Hubbard spin-spin interaction term. Input convention are as follows:</p>
+<ul>
+<li><p>if U2 is a scalar, then the Hubbard spin-spin interaction term is included with strength U2
+and is applied to all sites, and is uniform across bands.</p></li>
+<li><p>if U2 is a 2-dimensional with shape (nbands, nbands), then U2 is used as an intrasite spin-spin
+interaction, and is applied uniformly across sites.</p></li>
+</ul>
+</li>
+<li><p>J : Hund’s coupling interaction term. Input convention are as follows:</p>
+<ul>
+<li><p>if J is a scalar, then the Hund’s coupling interaction term is included with strength J
+and is applied to all sites, and is uniform across bands.</p></li>
+<li><p>if J is a 2-dimensional with shape (nbands, nbands), then J is used as an intrasite
+Hund’s coupling interaction, and is applied uniformly across sites.</p></li>
+</ul>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="s2">"input.toml"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="afqmctools.hamiltonian.model.builder.HamiltonianBuilder.heisenberg_J">
 <span class="sig-name descname"><span class="pre">heisenberg_J</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hst_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.heisenberg_J" title="Link to this definition">#</a></dt>
 <dd><p>Adds an isotropic Heisenberg spin-term.</p>
@@ -775,7 +861,7 @@ assumed to be on-site.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="afqmctools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping">
-<span class="sig-name descname"><span class="pre">nth_neighbor_hopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opposite_twists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">nth_neighbor_hopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opposite_twists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_herm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping" title="Link to this definition">#</a></dt>
 <dd><p>adds an nth-order neighbor hopping term to the Hamiltonian</p>
 <div class="math notranslate nohighlight">
 \[\sum_{\langle ij\rangle^n} (-t) \hat{c}^\dagger_i \hat{c}_j\]</div>
@@ -828,7 +914,7 @@ spins (i.e. twist_down = -twist_up )  If False, the hopping matrix is constructe
 
 <dl class="py method">
 <dt class="sig sig-object py" id="afqmctools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite">
-<span class="sig-name descname"><span class="pre">onebody_onsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">onebody_onsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_herm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite" title="Link to this definition">#</a></dt>
 <dd><dl class="simple">
 <dt>Adds an onsite one-body term to the Hamiltonian (for example, a chemical potential,</dt><dd><p>band energies, interband hopping, etc.)</p>
 </dd>
@@ -946,122 +1032,6 @@ This decorator preserves the original docstring of the decorated function.</p>
 </dd></dl>
 
 </section>
-<section id="module-afqmctools.hamiltonian.model.director">
-<span id="afqmctools-hamiltonian-model-director-module"></span><h2>afqmctools.hamiltonian.model.director module<a class="headerlink" href="#module-afqmctools.hamiltonian.model.director" title="Link to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.director.HamiltonianDirector">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.model.director.</span></span><span class="sig-name descname"><span class="pre">HamiltonianDirector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_HamiltonianDirector</span></code></p>
-<p>Directs building a model Hamiltonian based on a source input file or dict.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span>) – a description of the Hamiltonian (and possibly lattice) parameters.
-See Notes for details on Hamiltonian parameter syntax and conventions.
-If a str is given, it is interpreted as the name of an input file in .toml
-format and parameters are read from that file.
-If a dict is given, then parameters are read directly from the dict.</p></li>
-<li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="afqmctools.systems.html#afqmctools.systems.lattice.Lattice" title="afqmctools.systems.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – the Lattice instance which describes the geometry of the lattice.
-If not specified, the lattice will be built from the source input.</p></li>
-<li><p><strong>builder</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder" title="afqmctools.hamiltonian.model.builder.HamiltonianBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code></a></span>) – the builder that will be directed by HamiltonianDirector. If not
-specified, a default HamiltonianBuilder will be used (this is what
-almost all users will want).</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.director.HamiltonianDirector.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.build" title="Link to this definition">#</a></dt>
-<dd><p>builds and returns a Hamilton instance based on the build steps
-defined in the source input.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.director.HamiltonianDirector.release_builder">
-<span class="sig-name descname"><span class="pre">release_builder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.release_builder" title="Link to this definition">#</a></dt>
-<dd><p>releases the HamiltonianBuilder instance to the caller. This disables
-the build() method until a HamiltonianBuilder is bound to the director.
-A HamiltonianBuilder can be bound to the director using the bind_builder()
-method.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.director.HamiltonianDirector.bind_builder">
-<span class="sig-name descname"><span class="pre">bind_builder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder" title="afqmctools.hamiltonian.model.builder.HamiltonianBuilder"><span class="pre">HamiltonianBuilder</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.bind_builder" title="Link to this definition">#</a></dt>
-<dd><p>binds a HamiltonianBuilder to the director. If force is True, then the
-current HamiltonianBuilder is replaced with the new builder. If force is
-False, then an error is raised if a HamiltonianBuilder is already bound to
-the director.</p>
-</dd></dl>
-
-<p class="rubric">Notes</p>
-<p>The Hamiltonian is built by a sequence of build steps which are specified
-in the source input. Build steps are specified as key-value pairs in the
-‘hamiltonian’ section of the input file or in the source dict.
-By default, nearest-neighbor hopping is included in the Hamiltonian; but
-all interaction terms must be explicitly included in the input.</p>
-<p>The following build steps are supported, and are listed as <cite>key : description</cite>.
-Also see the <cite>HamiltonianBuilder</cite> class for more details on the build steps,
-and for finer control over Hamiltonian construction. The acceptable input dimensions
-are also listed for each build step; other input dimensions will raise an error.</p>
-<ul class="simple">
-<li><p>t : nth-order neighbor hopping term; input convention are as follows:</p>
-<ul>
-<li><p>if t is a scalar, then nearest-neighbor hopping is included with strength t</p></li>
-<li><p>if t is a 1-dimensional list (i.e. [t1,t2,…,tn]), then up to nth-order hopping is included</p></li>
-<li><p>if t is a 2-dimensional with shape (nbands, nbands), then
-the t is interpreted as an on-site inter-band hopping matrix</p></li>
-<li><p>if t is a list of 2-dimensional arrays, then each element is interpreted as an on-site
-inter-band hopping matrix. This is functionally the same as <span class="math notranslate nohighlight">\(t_{mn} = \sum t^{(i)}_{mn}\)</span>
-where <span class="math notranslate nohighlight">\(t^{(i)}\)</span> is the ith element of the list and <span class="math notranslate nohighlight">\(m,n\)</span> are band indices.</p></li>
-</ul>
-</li>
-<li><p>U : onsite Hubbard interaction term; input convention are as follows:</p>
-<ul>
-<li><p>if U is a scalar, then the onsite Hubbard interaction term is included with strength U
-and applied to all sites and bands.</p></li>
-<li><p>if U is 1-dimensional with length nbands (i.e. [U1,U2,…,Um] where for an m-band model),
-then the onsite Hubbard interaction term is included with strength U_i applied to band i
-and uniformly across sites.</p></li>
-<li><p>if U is 1-dimensional with length nsites (i.e. [U1,U2,…,Un] where n is the number of sites),
-then the onsite Hubbard interaction term is included with strength U_i applied to site i
-and uniformly across bands.</p></li>
-</ul>
-</li>
-<li><p>U1 : Hubbard density-density interaction term. Input convention are as follows:</p>
-<ul>
-<li><p>if U1 is a scalar, then the Hubbard density-density interaction term is included with strength U1
-and is applied to all sites, and is uniform across bands.</p></li>
-<li><p>if U1 is a 2-dimensional with shape (nbands, nbands), then U1 is used as an intrasite density-density
-interaction, and is applied uniformly across sites.</p></li>
-</ul>
-</li>
-<li><p>U2 : Hubbard spin-spin interaction term. Input convention are as follows:</p>
-<ul>
-<li><p>if U2 is a scalar, then the Hubbard spin-spin interaction term is included with strength U2
-and is applied to all sites, and is uniform across bands.</p></li>
-<li><p>if U2 is a 2-dimensional with shape (nbands, nbands), then U2 is used as an intrasite spin-spin
-interaction, and is applied uniformly across sites.</p></li>
-</ul>
-</li>
-<li><p>J : Hund’s coupling interaction term. Input convention are as follows:</p>
-<ul>
-<li><p>if J is a scalar, then the Hund’s coupling interaction term is included with strength J
-and is applied to all sites, and is uniform across bands.</p></li>
-<li><p>if J is a 2-dimensional with shape (nbands, nbands), then J is used as an intrasite
-Hund’s coupling interaction, and is applied uniformly across sites.</p></li>
-</ul>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="afqmctools.hamiltonian.model.director.InputFileDirector">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.hamiltonian.model.director.</span></span><span class="sig-name descname"><span class="pre">InputFileDirector</span></span><a class="headerlink" href="#afqmctools.hamiltonian.model.director.InputFileDirector" title="Link to this definition">#</a></dt>
-<dd><p>alias of <a class="reference internal" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector" title="afqmctools.hamiltonian.model.director.HamiltonianDirector"><code class="xref py py-class docutils literal notranslate"><span class="pre">HamiltonianDirector</span></code></a></p>
-</dd></dl>
-
-</section>
 <section id="module-afqmctools.hamiltonian.model.ham_class">
 <span id="afqmctools-hamiltonian-model-ham-class-module"></span><h2>afqmctools.hamiltonian.model.ham_class module<a class="headerlink" href="#module-afqmctools.hamiltonian.model.ham_class" title="Link to this heading">#</a></h2>
 <dl class="py class">
@@ -1093,7 +1063,7 @@ will append an additional term to the relevant list.</p>
 <p>Design notes for Developers:</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>should serve only as a container for Hamiltonian terms</dt><dd><p>which are built via the Director-Builder pattern.</p>
+<dt>should serve only as a container for Hamiltonian terms</dt><dd><p>which are built via the HamiltonianBuilder.</p>
 </dd>
 </dl>
 </li>
@@ -1243,6 +1213,7 @@ to individual Hamiltonian components.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.edge_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.edge_pinning()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.finalize"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.finalize()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.fm_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.fm_pinning()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.from_input"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.heisenberg_J"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.heisenberg_J()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hubbard_Jij"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hubbard_Jij()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.HamiltonianBuilder.hubbard_U1_density_density"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.hubbard_U1_density_density()</span></code></a></li>
@@ -1257,16 +1228,6 @@ to individual Hamiltonian components.</p>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.iterate_nth_order"><code class="docutils literal notranslate"><span class="pre">iterate_nth_order()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.builder.skip_empty_params"><code class="docutils literal notranslate"><span class="pre">skip_empty_params()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.model.director">afqmctools.hamiltonian.model.director module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.build"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.build()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.release_builder"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.release_builder()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.director.HamiltonianDirector.bind_builder"><code class="docutils literal notranslate"><span class="pre">HamiltonianDirector.bind_builder()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.hamiltonian.model.director.InputFileDirector"><code class="docutils literal notranslate"><span class="pre">InputFileDirector</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.hamiltonian.model.ham_class">afqmctools.hamiltonian.model.ham_class module</a><ul class="nav section-nav flex-column">

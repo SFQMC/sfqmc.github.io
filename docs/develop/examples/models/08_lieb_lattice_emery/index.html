@@ -530,13 +530,15 @@
 <h2><span class="section-number">8.1. </span>Set up the lattice<a class="headerlink" href="#set-up-the-lattice" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'square'</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'custom'</span><span class="p">,</span>   <span class="c1"># a basis of our own choosing means a custom lattice</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],</span>    <span class="c1"># Cu 3d_{x^2 - y^2}</span>
         <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># O 2p_x</span>
@@ -544,7 +546,7 @@
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -635,8 +637,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatticeHamiltonian</span>
 
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
@@ -646,15 +647,12 @@
     <span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span>
 <span class="p">)</span>
+
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -777,9 +775,7 @@ on the lattice.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatticeHamiltonian</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
@@ -799,7 +795,7 @@ on the lattice.</p>
     <span class="n">boundary2</span> <span class="o">=</span> <span class="s1">'PBC'</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -869,16 +865,12 @@ on the lattice.</p>
     <span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"lieb.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
+
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"lieb.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -893,15 +885,10 @@ on the lattice.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ham</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span><span class="p">,</span> <span class="n">SpinSymm</span><span class="p">,</span>
+                         <span class="n">Wavefunction</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">modified_gram_schmidt</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.ham_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianComponent</span><span class="p">,</span><span class="n">SpinSymm</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span><span class="p">;</span> <span class="n">faulthandler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 
@@ -1012,15 +999,16 @@ on the lattice.</p>
     <span class="n">hopping</span> <span class="o">=</span> <span class="n">hopping</span> <span class="o">+</span> <span class="n">hopping</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
 
 
-    <span class="c1"># add in on-site energies</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">))</span>
+    <span class="c1"># add in on-site energies. U is one value per site, which is the input</span>
+    <span class="c1">#   convention onsite_hubbard() takes for a site-dependent Hubbard U.</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon_d</span>
-            <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ud</span>
+            <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ud</span>
         <span class="k">elif</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">hopping</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon_p</span>
-            <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Up</span>
+            <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Up</span>
 
     <span class="k">if</span> <span class="n">show_mats</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">hopping</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
@@ -1030,57 +1018,38 @@ on the lattice.</p>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">show_mats</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"U matrix"</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    <span class="n">hopping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">(</span>
-        <span class="p">[[</span><span class="n">hopping</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hopping_shape</span><span class="p">)]</span>
-        <span class="p">,[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hopping_shape</span><span class="p">),</span><span class="n">hopping</span><span class="p">]]</span>
-    <span class="p">)</span>
-
-    <span class="c1"># 3. save the Hamiltonian</span>
-    <span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span>
-    <span class="n">hopping</span> <span class="o">=</span> <span class="n">sps</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">hopping</span><span class="p">)</span>
-    <span class="n">custom_one_body</span> <span class="o">=</span> <span class="n">HamiltonianComponent</span><span class="p">(</span>
-        <span class="n">csr_array</span><span class="o">=</span><span class="n">hopping</span><span class="p">,</span>
-        <span class="n">model_type</span><span class="o">=</span><span class="s1">'one_body'</span><span class="p">,</span>
-        <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span>
-    <span class="p">)</span>
-
-    <span class="c1"># manually add the custom term</span>
-    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">"tij"</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_one_body</span>
-    <span class="n">custom_hubbard</span> <span class="o">=</span> <span class="n">HamiltonianComponent</span><span class="p">(</span>
-        <span class="n">csr_array</span><span class="o">=</span><span class="n">U</span><span class="p">,</span>
-        <span class="n">model_type</span><span class="o">=</span><span class="s1">'hubbard_u'</span><span class="p">,</span>
-        <span class="n">hst_type</span><span class="o">=</span><span class="s1">'discrete_spin'</span>
-    <span class="p">)</span>
-    <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">[</span><span class="s2">"Uij"</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_hubbard</span>
+    <span class="c1"># 3. save the Hamiltonian. The build steps take care of the spin structure,</span>
+    <span class="c1">#   so hand them the plain (nsites,nsites) hopping and the per-site U.</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">custom_one_body</span><span class="p">(</span><span class="n">hopping</span><span class="p">,</span> <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
-    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span>
+    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
-    <span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
-        <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-        <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-    <span class="p">)</span>
+    <span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">hamiltonian</span>
 
 <span class="c1"># 1. define the lattice</span>
 <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">]</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">lat</span><span class="o">.</span><span class="n">CustomLattice</span><span class="p">(</span>
-    <span class="n">L</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">'custom'</span><span class="p">,</span>
     <span class="n">a1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)),</span>
     <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
     <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span>
-    <span class="n">axis1_boundary</span><span class="o">=</span><span class="n">lat</span><span class="o">.</span><span class="n">PBCBoundary</span><span class="p">,</span>
-    <span class="n">axis2_boundary</span><span class="o">=</span><span class="n">lat</span><span class="o">.</span><span class="n">PBCBoundary</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">boundary1</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">,</span>
+    <span class="n">boundary2</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">,</span>
+<span class="p">))</span>
 
 <span class="k">if</span> <span class="n">show_lattice_before</span><span class="p">:</span>
     <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
@@ -1098,25 +1067,26 @@ on the lattice.</p>
 <span class="n">THETA_Y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">47603</span><span class="p">)</span>     <span class="c1"># 47603 is prime</span>
 <span class="n">twist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">THETA_X</span><span class="p">,</span><span class="n">THETA_Y</span><span class="p">))</span>
 
-<span class="n">lattice_wt_twist</span> <span class="o">=</span> <span class="n">lat</span><span class="o">.</span><span class="n">CustomLattice</span><span class="p">(</span>
-    <span class="n">L</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+<span class="n">lattice_wt_twist</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">L1</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">L2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">'custom'</span><span class="p">,</span>
     <span class="n">a1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)),</span>
     <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
     <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span>
-    <span class="n">twist</span><span class="o">=</span><span class="n">twist</span>
-<span class="p">)</span>
+    <span class="n">twist</span><span class="o">=</span><span class="n">twist</span><span class="p">,</span>
+<span class="p">))</span>
 
 <span class="n">hamiltonian2</span> <span class="o">=</span> <span class="n">make_emery</span><span class="p">(</span><span class="n">lattice_wt_twist</span><span class="p">)</span>
 
-<span class="n">wfn</span><span class="p">,</span><span class="n">spin_symm</span> <span class="o">=</span> <span class="n">free_electron</span><span class="p">(</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian2</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span>
 <span class="p">)</span>
 
 <span class="c1"># add noise to the initial guess</span>
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span><span class="n">wfn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">wfn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">annealing_amplitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">wfn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="n">wfn</span><span class="o">.</span><span class="n">dets</span> <span class="o">+=</span> <span class="n">annealing_amplitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="c1"># 4. run autohf</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
@@ -1124,7 +1094,7 @@ on the lattice.</p>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">annealing_steps</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Annealing step </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="n">slater_det</span> <span class="o">=</span> <span class="n">wfn</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">slater_det</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span><span class="c1">#'SD_Rot',</span>
@@ -1161,11 +1131,16 @@ on the lattice.</p>
     <span class="n">orbitals</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">'orbitals'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">slater_det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">orbitals</span><span class="p">[:,:</span><span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">)])</span>
-    <span class="c1"># orthonormalize!</span>
-    <span class="n">slater_det</span> <span class="o">=</span> <span class="n">modified_gram_schmidt</span><span class="p">(</span><span class="n">slater_det</span><span class="p">)</span>
-    <span class="n">slater_det</span> <span class="o">=</span> <span class="n">slater_det</span> <span class="o">+</span> <span class="n">annealing_amplitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">slater_det</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-    <span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span><span class="n">wfn</span><span class="p">[</span><span class="mi">0</span><span class="p">],[</span><span class="n">slater_det</span><span class="p">])</span>
+    <span class="c1"># orthonormalize! (orthonormalize() returns a new, orthonormal wavefunction)</span>
+    <span class="n">wfn</span> <span class="o">=</span> <span class="n">NOMSDWavefunction</span><span class="p">(</span>
+        <span class="n">coeffs</span><span class="o">=</span><span class="n">wfn</span><span class="o">.</span><span class="n">coeffs</span><span class="p">,</span>
+        <span class="n">dets</span><span class="o">=</span><span class="n">slater_det</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+        <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">orthonormalize</span><span class="p">()</span>
+
+    <span class="n">wfn</span><span class="o">.</span><span class="n">dets</span> <span class="o">+=</span> <span class="n">annealing_amplitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="n">L</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">L</span>
 

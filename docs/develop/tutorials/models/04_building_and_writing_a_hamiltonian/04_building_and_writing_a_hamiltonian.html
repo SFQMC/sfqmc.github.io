@@ -502,21 +502,16 @@ extended Hubbard with nearest-neighbor <span class="math notranslate nohighlight
 SAFIRE is agnostic to the details of the compound indices.
 It simply accepts Hamiltonian “components” which are interpreted as above.
 This provides great flexibility in specifying Hamiltonians, however care must be taken outside of SAFIRE to ensure that consistent index conventions are used.</p>
-<p>afqmctools provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
+<p>safiretools provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
 on a variety of lattices, using consistent conventions for indexing.
 The framework consists of a Lattice class which is responsible for geometry (see <a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Lattice class tutorial</span></a>),
-a Hamiltonian builder which is responsible for generating specific Hamiltonian terms on demand given a specific Lattice instance,
-and a Hamiltonian “Director” which is responsible for choosing which build steps to perform based on
-a set of input Hamiltonian parameters.
-Each component of the framework can be used directly; however
-the Director class represents the highest-level interface of the lattice Hamiltonian framework and
-can manage the underlying Lattice instance and Builder instance.
-Users who want direct control over the Hamiltonian build steps can directly
-use the Hamiltonian “Builder”. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for
-more detail.
-It is recommended to use the Director whenever possible.</p>
-<p><img alt="" src="../../../_images/HamilDirectorSystem.png" /></p>
-<p><b>In this tutorial, we focus on building Hamiltonian terms via the Hamiltonian “Director”.</b>
+and a Hamiltonian “Builder” which is responsible for generating specific Hamiltonian terms given a specific Lattice instance.
+The <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> classmethod accepts a set of input Hamiltonian parameters (as a Python
+dict or a toml file) and automatically runs the corresponding build steps, which covers most use cases.
+Users who want direct control over the Hamiltonian build steps can instead construct a <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code>
+and invoke build steps directly. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for
+more detail.</p>
+<p><b>In this tutorial, we focus on building Hamiltonian terms via <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code>.</b>
 We will explore the possible input parameters and their respective meanings/conventions.</p>
 <section id="setup-run-me">
 <h2><span class="section-number">4.1. </span>▶️ Setup : Run me<a class="headerlink" href="#setup-run-me" title="Link to this heading">#</a></h2>
@@ -534,23 +529,23 @@ We will explore the possible input parameters and their respective meanings/conv
 </div>
 </div>
 </section>
-<section id="hamiltonian-director-tutorial">
-<h2><span class="section-number">4.2. </span>Hamiltonian Director Tutorial<a class="headerlink" href="#hamiltonian-director-tutorial" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> Python package provides a framework for generating lattice model Hamiltonians.
-The Hamiltonian Director is the highest-level interface to this framework.
+<section id="building-hamiltonians-from-input-parameters">
+<h2><span class="section-number">4.2. </span>Building Hamiltonians from Input Parameters<a class="headerlink" href="#building-hamiltonians-from-input-parameters" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Python package provides a framework for generating lattice model Hamiltonians.
+<code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> is the highest-level interface to this framework.
 It may be invoked as a command line tool using an input file, or a directly within a Python script.
-We will briefly demonstrate the command line tool, but we will focus on using the Director within a Python script for most of this tutorial.</p>
-<p>The Hamiltonian Director is meant to handle building Hamiltonians which can be expressed in terms of a few simple parameters on relatively simple lattices.
+We will briefly demonstrate the command line tool, but we will focus on using <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> within a Python script for most of this tutorial.</p>
+<p><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> is meant to handle building Hamiltonians which can be expressed in terms of a few simple parameters on relatively simple lattices.
 While SAFIRE supports any combination of lattice, sublattice, and band degrees-of-freedom in the Hamiltonian, it is not always feasible to map such general models onto a few simple parameters.
 For these cases, we provide lower-level classes to assist as much as possible. See <a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Lattice class tutorial</span></a> for example.
 For example, the Hubbard model only needs a single parameter, <span class="math notranslate nohighlight">\(U/t\)</span>, and a lattice / boundary conditions in order to be fully specified.
-More general Hamiltonians can also be built using the Director; however, it may be useful to some users to work directly with the Lattice and Hamiltonian Builder in a Python script. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for more advance uses.</p>
-<p>In this tutorial, we will cover how to request specific Hamiltonian terms from the Hamiltonian Director.
+More general Hamiltonians can also be built via <code class="docutils literal notranslate"><span class="pre">from_input()</span></code>; however, it may be useful to some users to work directly with the Lattice and Hamiltonian Builder in a Python script. See <a class="reference internal" href="../05_hamiltonian_builder/05_hamiltonian_builder.html"><span class="doc">The Hamiltonian Builder</span></a> for more advance uses.</p>
+<p>In this tutorial, we will cover how to request specific Hamiltonian terms via <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code>.
 We will also cover the details of the input conventions for each of the terms needed to build these Hamiltonians.</p>
 </section>
-<section id="invoking-the-hamiltonian-director-via-the-cli">
-<h2><span class="section-number">4.3. </span>Invoking the Hamiltonian Director via the CLI<a class="headerlink" href="#invoking-the-hamiltonian-director-via-the-cli" title="Link to this heading">#</a></h2>
-<p>In addition to the ability to invoke the Hamiltonian director directly within a Python script, afqmctools provides a command line tool that invokes the Hamiltonian director.
+<section id="invoking-the-hamiltonian-builder-via-the-cli">
+<h2><span class="section-number">4.3. </span>Invoking the Hamiltonian Builder via the CLI<a class="headerlink" href="#invoking-the-hamiltonian-builder-via-the-cli" title="Link to this heading">#</a></h2>
+<p>In addition to the ability to invoke the Hamiltonian builder directly within a Python script, afqmctools provides a command line tool that invokes it.
 If you installed <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> using the official instructions, you can run the following to see possible options</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make_model_ham<span class="w"> </span>--help
 
@@ -575,7 +570,7 @@ options:
 </pre></div>
 </div>
 <p>The primary option that we are interested in here is <code class="docutils literal notranslate"><span class="pre">-i</span></code> which allows an input file (in .toml format) containing Hamiltonian parameters to be specified.
-The parameter input conventions are the same whether we use the <code class="docutils literal notranslate"><span class="pre">make_model_ham</span></code> CLI tool, or use the Hamiltonian Director within a Python script.</p>
+The parameter input conventions are the same whether we use the <code class="docutils literal notranslate"><span class="pre">make_model_ham</span></code> CLI tool, or use <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> within a Python script.</p>
 <p>Here is a sample input file which will generate a Hubbard model with nearest-neighbor hopping, on a 4x4 square lattice with periodic boundary conditions.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[hamiltonian]</span>
 <span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
@@ -616,7 +611,7 @@ For example, we can see from the line,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>running<span class="w"> </span>build<span class="w"> </span>step<span class="w"> </span>nth_neighbor_hopping<span class="o">((</span><span class="m">1</span>.0,<span class="o">))</span>
 </pre></div>
 </div>
-<p>that the director called the nth_neighbor_hopping() build step with an argument of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.
+<p>that the builder called the nth_neighbor_hopping() build step with an argument of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.
 We will see below that this generates nearest-neighbor hopping with t=1.0 (minus sign is implicit).
 We also see that an onsite Hubbard interaction with <span class="math notranslate nohighlight">\(U = 4\)</span> was also generated.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">make_model_ham</span></code> saves the Hamiltonian in a file called <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code>, but you can change this with the <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">[output</span> <span class="pre">name]</span></code> option.
@@ -625,8 +620,8 @@ For example,</p>
 </pre></div>
 </div>
 <p>will save the Hamiltonian in <code class="docutils literal notranslate"><span class="pre">example.h5</span></code>.</p>
-<p>We note that the in Python, the Hamiltonian Director can be given either the name of an input file or a Python dictionary containing the Hamiltonian parameters.
-The Director will interpret the parameters using the same conventions regardless of which input method is used.
+<p>We note that the in Python, <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> can be given either the name of an input file or a Python dictionary containing the Hamiltonian parameters.
+It will interpret the parameters using the same conventions regardless of which input method is used.
 We refer you to the <a class="reference external" href="https://toml.io/en/v1.0.0">TOML specification</a> for clarification on the TOML format.
 For the remainder of the tutorial, we will be working directly with Python within this notebook.</p>
 <section id="example-standard-hubbard-model">
@@ -636,8 +631,7 @@ We plot the hopping matrix to demonstrate that the Hamiltonian includes both ter
 Note that the default hopping matrix shape is <span class="math notranslate nohighlight">\(2N_{sites} \times N_{sites}\)</span> where the first <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-up sector and the last <span class="math notranslate nohighlight">\(N_{sites}\)</span> rows correspond to the spin-down sector.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="c1"># Define the lattice parameters</span>
@@ -658,10 +652,10 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
     <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -672,16 +666,29 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <h2><span class="section-number">4.4. </span>Writing Hamiltonians to HDF5<a class="headerlink" href="#writing-hamiltonians-to-hdf5" title="Link to this heading">#</a></h2>
 <p>In the code block below, we demonstrate how to save a lattice model Hamiltonian
 to an HDF5 file that can be read by SAFIRE.
-This works the same way for all Hamiltonians generated by afqmctools.
-We will not repeat this below.</p>
+Every Hamiltonian class in safiretools has a <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> method that writes the
+format SAFIRE reads for that kind of Hamiltonian, so this works the same way for
+all of them. We will not repeat this below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamiltonian.h5"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> takes only the file name — the electron count and spin symmetry are
+properties of the Hamiltonian itself, set when it is built. Give <code class="docutils literal notranslate"><span class="pre">nelec</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> section of the input parameters (or to <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code>) if you
+want them recorded in the file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_with_nelec</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">,</span> <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))},</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
-<span class="n">write_model_hamiltonian</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamiltonian.h5"</span>
-<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"nelec      :"</span><span class="p">,</span> <span class="n">hamiltonian_with_nelec</span><span class="o">.</span><span class="n">nelec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"spin_symm  :"</span><span class="p">,</span> <span class="n">hamiltonian_with_nelec</span><span class="o">.</span><span class="n">spin_symm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +706,7 @@ We will not repeat this below.</p>
 <h2><span class="section-number">4.5. </span>Adding more terms to the Hamiltonian<a class="headerlink" href="#adding-more-terms-to-the-hamiltonian" title="Link to this heading">#</a></h2>
 <section id="adding-hopping">
 <h3><span class="section-number">4.5.1. </span>Adding Hopping<a class="headerlink" href="#adding-hopping" title="Link to this heading">#</a></h3>
-<p>The Hamiltonian Director supports nth-order neighbor hopping and band-dependent hopping.
+<p><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> supports nth-order neighbor hopping and band-dependent hopping.
 <span class="math notranslate nohighlight">\(n\)</span> is limited by the condition that sites are not allowed to be their own neighbors via
 periodic boundary conditions.
 In this case, an error will be raised.</p>
@@ -748,8 +755,7 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
@@ -767,7 +773,7 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="n">hopping</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">hopping</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
@@ -803,8 +809,7 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 <p>In the example below, we build a site-dependent U with a checkerboard pattern.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -816,7 +821,7 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
     <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 
 <span class="c1"># define Hamiltonian parameters</span>
@@ -830,7 +835,7 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
@@ -854,8 +859,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <p>As a bonus, we also demonstrate how to include a band-dependent hopping.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -866,7 +870,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
     <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
     <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 
 <span class="c1"># define Hamiltonian parameters</span>
@@ -881,7 +885,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
@@ -906,8 +910,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -918,7 +921,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
     <span class="s1">'boundary1'</span><span class="p">:</span> <span class="s1">'PBC'</span><span class="p">,</span>
     <span class="s1">'boundary2'</span><span class="p">:</span> <span class="s1">'PBC'</span>
 <span class="p">}</span>
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 
 <span class="c1"># define Hamiltonian parameters</span>
@@ -933,7 +936,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="p">}</span>
 
 <span class="c1"># this will make a Hubbard model on a 4x4 lattice with PBCs</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
@@ -1066,8 +1069,7 @@ See the density-density section above for more details.</p>
 <p>Below we construct a 3-band Hubbard-Kanamori model using uniform values for U,U1,U2, and J as in Table I of <a class="reference external" href="https://doi.org/10.1103/PhysRevB.99.235142">PRB 99, 235142 (2019)</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="c1"># Define the lattice parameters</span>
@@ -1092,10 +1094,10 @@ See the density-density section above for more details.</p>
     <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="n">hamiltonian_params</span>
 <span class="p">}</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 <span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1131,8 +1133,7 @@ same input conventions as for <span class="math notranslate nohighlight">\(\hat{
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
@@ -1150,7 +1151,7 @@ same input conventions as for <span class="math notranslate nohighlight">\(\hat{
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1208,8 +1209,8 @@ same input conventions as for <span class="math notranslate nohighlight">\(\hat{
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-run-me">4.1. ▶️ Setup : Run me</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-director-tutorial">4.2. Hamiltonian Director Tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking-the-hamiltonian-director-via-the-cli">4.3. Invoking the Hamiltonian Director via the CLI</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-hamiltonians-from-input-parameters">4.2. Building Hamiltonians from Input Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking-the-hamiltonian-builder-via-the-cli">4.3. Invoking the Hamiltonian Builder via the CLI</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-standard-hubbard-model">4.3.1. ✨ Example : Standard Hubbard Model</a></li>
 </ul>
 </li>

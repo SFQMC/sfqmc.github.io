@@ -469,15 +469,16 @@
 <section class="tex2jax_ignore mathjax_ignore" id="lattice-class-tutorial">
 <h1><span class="section-number">3. </span>Lattice class tutorial<a class="headerlink" href="#lattice-class-tutorial" title="Link to this heading">#</a></h1>
 <p>In this tutorial, we will learn how to set up a lattice to define a Model Hamiltonian (See <strong>LATTICE_HAMIL_TUTORIAL</strong> for details on building a Hamiltonian).
-The <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> Python package implements a Lattice class which is responsible for answering geometric questions about a specific lattice such as:</p>
+The <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Python package implements a Lattice class which is responsible for answering geometric questions about a specific lattice such as:</p>
 <ul class="simple">
 <li><p>what are the boundary conditions</p></li>
 <li><p>what are the <span class="math notranslate nohighlight">\(n^{th}\)</span>-nearest neighbors</p></li>
 <li><p>which of those neighbors are “direct” neighbors, and which are image neighbors</p></li>
 </ul>
 <p>and more.
-<code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a convenience function, <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code> to build a Lattice instance given a set of geometric parameters.
-In this tutorial, we will explore how the Lattice class works, and the available options for building a Lattice via <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">Lattice</span></code> is an abstract base class with one concrete subclass per lattice type; its
+<code class="docutils literal notranslate"><span class="pre">Lattice.from_dict()</span></code> classmethod builds the right one for you given a set of geometric parameters.
+In this tutorial, we will explore how the Lattice class works, and the available options for building a Lattice via <code class="docutils literal notranslate"><span class="pre">Lattice.from_dict()</span></code>.</p>
 <section id="lattice-formalism">
 <h2><span class="section-number">3.1. </span>Lattice formalism<a class="headerlink" href="#lattice-formalism" title="Link to this heading">#</a></h2>
 <p>We consider lattices with primitive lattice vectors <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>, and <span class="math notranslate nohighlight">\(\vec{a}_2\)</span> (as determined by the lattice “type”) which may have a basis, <span class="math notranslate nohighlight">\(\{ \delta_p \}\)</span> where <span class="math notranslate nohighlight">\(p\)</span> runs over sub-lattice degrees of freedom, and the full cell has dimension <span class="math notranslate nohighlight">\(L_1\)</span> x <span class="math notranslate nohighlight">\(L_2\)</span>.
@@ -499,9 +500,9 @@ is used to apply a phase where <span class="math notranslate nohighlight">\(\the
 </div>
 <p>TODO add a figure illustrating this.</p>
 </section>
-<section id="summary-of-get-lattice">
-<h2><span class="section-number">3.2. </span>Summary of get_lattice()<a class="headerlink" href="#summary-of-get-lattice" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_lattice()</span></code> function takes a Python dictionary containing “lattice parameters” as an argument and returns a Lattice instance based on the provided “lattice parameters”.</p>
+<section id="summary-of-lattice-from-dict">
+<h2><span class="section-number">3.2. </span>Summary of Lattice.from_dict()<a class="headerlink" href="#summary-of-lattice-from-dict" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Lattice.from_dict()</span></code> classmethod takes a Python dictionary containing “lattice parameters” as an argument and returns a Lattice instance based on the provided “lattice parameters”.</p>
 <p>We’ll explore the available options individually, but possible lattice parameters are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> : specifying the lattice type; <code class="docutils literal notranslate"><span class="pre">square</span></code> by default</p></li>
@@ -510,13 +511,17 @@ is used to apply a phase where <span class="math notranslate nohighlight">\(\the
 <li><p><code class="docutils literal notranslate"><span class="pre">boundary1</span></code> : the boundary <em>type</em> of the boundary normal to <span class="math notranslate nohighlight">\(\vec{a}_1\)</span> (at <span class="math notranslate nohighlight">\(0 * \vec{a}_1\)</span> and <span class="math notranslate nohighlight">\(L_1 * \vec{a}_1\)</span> ). Defaults to an open boundary if not specified.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">boundary2</span></code> : the boundary <em>type</em> of the boundary normal to <span class="math notranslate nohighlight">\(\vec{a}_2\)</span> (at <span class="math notranslate nohighlight">\(0 * \vec{a}_2\)</span> and <span class="math notranslate nohighlight">\(L_2 * \vec{a}_2\)</span> ). Defaults to an open boundary if not specified.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">twist</span></code> : the twist angle to apply, given as <span class="math notranslate nohighlight">\(\vec{\theta} = (\theta_1,\theta_2)\)</span> in units of radians. Defaults to (0.0,0.0)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">basis</span></code> : the set of lattice basis vectors, <span class="math notranslate nohighlight">\(\delta_{n}\)</span>. Defaults to {(0.0,0.0)}</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a1</span></code>, <code class="docutils literal notranslate"><span class="pre">a2</span></code>, <code class="docutils literal notranslate"><span class="pre">basis</span></code> : the lattice vectors and basis. <strong>Only for <code class="docutils literal notranslate"><span class="pre">type='custom'</span></code></strong> — every other type
+defines its own geometry, and setting these for one of them is an error. See
+<a class="reference internal" href="#lattice-basis">Lattice basis</a> and <a class="reference internal" href="#custom-lattices">Custom lattices</a> below.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cyl_mode</span></code> : reshape the unit cell to be rectangular, <code class="docutils literal notranslate"><span class="pre">'XC'</span></code> or <code class="docutils literal notranslate"><span class="pre">'YC'</span></code>. <strong>Only for
+<code class="docutils literal notranslate"><span class="pre">type='triangular'</span></code></strong>, since the reshaping is hardcoded for hexagonal geometry.</p></li>
 </ul>
 <p>Below is a minimal example of building a lattice allowing most parameters to take on default values.
 We also use <code class="docutils literal notranslate"><span class="pre">afqmctool</span></code>’s <code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code> function so that we can visualize what we have made.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -524,7 +529,7 @@ We also use <code class="docutils literal notranslate"><span class="pre">afqmcto
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -603,7 +608,7 @@ The <code class="docutils literal notranslate"><span class="pre">plot_lattice()<
 neighbors with a black dotted line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -613,7 +618,7 @@ neighbors with a black dotted line.</p>
     <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -654,7 +659,7 @@ if they are set.</p>
 it will be saved as the relative phase between image neighbors
 consistent with the boundaries.</p>
 <p>For example, in the code block</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -665,7 +670,7 @@ consistent with the boundaries.</p>
     <span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"1/2 Pi"</span><span class="p">,</span> <span class="s2">"1/2 Pi"</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 </pre></div>
@@ -682,7 +687,7 @@ boundary 1 is not periodic.</p>
 <p>Try building a few of these in the code block below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -693,7 +698,7 @@ boundary 1 is not periodic.</p>
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">"honeycomb"</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -705,53 +710,48 @@ boundary 1 is not periodic.</p>
 </section>
 <section id="lattice-basis">
 <h2><span class="section-number">3.5. </span>Lattice basis<a class="headerlink" href="#lattice-basis" title="Link to this heading">#</a></h2>
-<p>For the <code class="docutils literal notranslate"><span class="pre">square</span></code> lattice type, a lattice basis can be optionally supplied
-by setting <code class="docutils literal notranslate"><span class="pre">basis</span></code> in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> to a list of vectors which
-represent the basis vectors <strong>in spatial coordinates</strong>.
-Currently only 2-dimensional lattices are supported, and all basis vectors
-must be 2-dimensional.</p>
-<p>Note that the honeycomb lattice and the kagome lattice are both special cases
-of the triangular lattice with a basis that has been predefined.
-If a basis is provided in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> for either of these lattices, it will
-be ignored.</p>
-<section id="exercise">
-<h3><span class="section-number">3.5.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
-<p>Play around with setting a basis.</p>
+<p>The lattice vectors <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>, <span class="math notranslate nohighlight">\(\vec{a}_2\)</span> and the basis <span class="math notranslate nohighlight">\(\{ \delta_p \}\)</span> are
+fixed by the lattice <code class="docutils literal notranslate"><span class="pre">type</span></code> — they are what <em>makes</em> a type that type.
+A <code class="docutils literal notranslate"><span class="pre">square</span></code> lattice is square precisely because its lattice vectors are the unit
+x- and y-vectors and it has one site per cell; the honeycomb and kagome lattices
+are the triangular lattice with a predefined 2- and 3-site basis, respectively.</p>
+<p>Consequently, setting <code class="docutils literal notranslate"><span class="pre">a1</span></code>, <code class="docutils literal notranslate"><span class="pre">a2</span></code> or <code class="docutils literal notranslate"><span class="pre">basis</span></code> in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> for any of these
+types raises an error rather than being silently ignored:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 
-<span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
-    <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"pbc"</span><span class="p">,</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s2">"square"</span><span class="p">,</span>
-    <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">]]</span>
-<span class="p">)</span>
-
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
-    <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
-<span class="p">)</span>
-
-<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">"Square lattice with a basis"</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">L1</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">L2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"square"</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]]))</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ValueError:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>To choose your own lattice vectors and basis, use the <code class="docutils literal notranslate"><span class="pre">custom</span></code> lattice type
+described in the next section.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+    Earlier versions of this tooling accepted <code>a1</code>/<code>a2</code>/<code>basis</code>
+    for the built-in types and then discarded them, so a lattice could quietly
+    differ from the one you asked for. Those keys are now rejected.
+</div>
+<section id="exercise">
+<h3><span class="section-number">3.5.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p>Play around with setting a basis, using the <code class="docutils literal notranslate"><span class="pre">custom</span></code> type below.</p>
 </section>
 </section>
 <section id="custom-lattices">
 <h2><span class="section-number">3.6. </span>Custom lattices<a class="headerlink" href="#custom-lattices" title="Link to this heading">#</a></h2>
 <p>If the lattice that you want is not specifically implemented, you can use the
 “custom” lattice.
-You will need to specify the lattice vectors, <span class="math notranslate nohighlight">\(\vec{a}_1\)</span>, and <span class="math notranslate nohighlight">\(\vec{a}_2\)</span>,
-and the lattice basis, <span class="math notranslate nohighlight">\(\{ \delta_p \}\)</span>.</p>
+This is the one type for which <code class="docutils literal notranslate"><span class="pre">a1</span></code>, <code class="docutils literal notranslate"><span class="pre">a2</span></code> and <code class="docutils literal notranslate"><span class="pre">basis</span></code> are accepted; <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code>
+are required, and <code class="docutils literal notranslate"><span class="pre">basis</span></code> defaults to a single site at the cell origin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">]</span>
@@ -767,7 +767,7 @@ and the lattice basis, <span class="math notranslate nohighlight">\(\{ \delta_p 
     <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">lattice_params</span>
 <span class="p">)</span>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">"Lieb lattice with tilted cell"</span><span class="p">,</span><span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -799,7 +799,7 @@ especially when dealing with complicated lattices.</p>
     <span class="n">a2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)),</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">lattice_params</span>
 <span class="p">)</span>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
@@ -821,17 +821,19 @@ especially when dealing with complicated lattices.</p>
 about mapping atoms in a solid onto a lattice model without the complication of multiple sites.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'square'</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'custom'</span><span class="p">,</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">]]</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -847,17 +849,19 @@ about mapping atoms in a solid onto a lattice model without the complication of 
 The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'square'</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s1">'custom'</span><span class="p">,</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]]</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -871,7 +875,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <h3><span class="section-number">3.8.3. </span>Kagome Lattice<a class="headerlink" href="#kagome-lattice" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -882,7 +886,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
     <span class="nb">type</span> <span class="o">=</span> <span class="s1">'kagome'</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -893,7 +897,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -904,7 +908,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
     <span class="nb">type</span> <span class="o">=</span> <span class="s1">'triangular'</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -915,7 +919,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -926,7 +930,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
     <span class="nb">type</span> <span class="o">=</span> <span class="s1">'honeycomb'</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -937,7 +941,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -948,7 +952,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
     <span class="nb">type</span> <span class="o">=</span> <span class="s1">'square'</span>
 <span class="p">)</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -1009,7 +1013,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-formalism">3.1. Lattice formalism</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-get-lattice">3.2. Summary of get_lattice()</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-lattice-from-dict">3.2. Summary of Lattice.from_dict()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-play-with-dimensions">3.2.1. Exercise 1: Play with dimensions</a></li>
 </ul>
 </li>

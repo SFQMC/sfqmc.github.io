@@ -529,12 +529,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup the Hamiltonian</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -557,13 +556,13 @@
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># save for AFQMC</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -589,10 +588,10 @@
 <span class="p">}</span>
 
 <span class="c1"># make the Hamiltonian</span>
-<span class="n">effective_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">effective_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># convert afqmctools Hamitlonian to AutoHFHamiltonian</span>
 <span class="n">autohf_hamiltonian</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">effective_hamiltonian</span><span class="p">)</span>

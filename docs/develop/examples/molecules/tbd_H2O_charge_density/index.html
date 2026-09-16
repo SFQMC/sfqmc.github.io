@@ -447,9 +447,7 @@ the water molecule at its equilibrium geometry.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
@@ -565,7 +563,7 @@ the water molecule at its equilibrium geometry.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.scf.hf</span><span class="w"> </span><span class="kn">import</span> <span class="n">dip_moment</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 
 <span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./scratch"</span><span class="p">)</span>
 <span class="n">scratch</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -581,7 +579,7 @@ the water molecule at its equilibrium geometry.</p>
 <span class="n">dft_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"dft_pbe.h5"</span>
 <span class="n">cc_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"cc.h5"</span>
 
-<span class="n">scf_data_basis</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">"rhf.chk"</span><span class="p">)</span>
+<span class="n">scf_data_basis</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">"rhf.chk"</span><span class="p">)</span>
 
 <span class="n">mo_coeff</span> <span class="o">=</span> <span class="n">scf_data_basis</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span>
 

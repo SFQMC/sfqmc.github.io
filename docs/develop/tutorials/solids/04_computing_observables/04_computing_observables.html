@@ -886,7 +886,10 @@ This dramatically reduces the memory needed to analyze the AFQMC results from SA
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span>
 
-<span class="c1"># read the Hamiltonian</span>
+<span class="c1"># read the Hamiltonian. The provided "hamil.h5" is in CoQuí's format, which</span>
+<span class="c1">#   safiretools' Hamiltonian.from_hdf5() does not read yet, so we use afqmctools'</span>
+<span class="c1">#   reader here. For SAFIRE-native Hamiltonian files, prefer</span>
+<span class="c1">#   `Hamiltonian.from_hdf5(path)` from safiretools.</span>
 <span class="n">H</span> <span class="o">=</span> <span class="n">read_hamiltonian</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"hamil.h5"</span><span class="p">)</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="s2">"nmo"</span><span class="p">]</span>
 <span class="n">Econst</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="s2">"enuc"</span><span class="p">]</span>

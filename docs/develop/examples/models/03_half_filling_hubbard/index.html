@@ -532,13 +532,10 @@
 
 <span class="c1"># all the imports used later in the tutorial, but put here for convenience</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ham</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_free_electron_wfn</span><span class="p">,</span> <span class="n">make_free_elec</span><span class="p">,</span><span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
 
@@ -594,7 +591,7 @@ DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">lat</span><span class="o">.</span><span class="n">get_lattice</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span><span class="p">)</span>
 
 <span class="n">Ne</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span><span class="n">Ne</span><span class="p">)</span>
@@ -622,9 +619,10 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -636,9 +634,10 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builderHF</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">HamiltonianBuilder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builderHF</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
-          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span> <span class="c1"># we have no spin-flip terms</span>
+          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builderHF</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -651,7 +650,7 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the 1 body Hamiltonian</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">builderHF</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -741,7 +740,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 
 <span class="n">dataHFC</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">),</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()),</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
@@ -798,7 +797,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 
 <span class="n">dataHFC2</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">),</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">builderHF</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()),</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
@@ -870,8 +869,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ham_fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"hamU</span><span class="si">{</span><span class="n">U</span><span class="si">}</span><span class="s2">_afqmc.h5"</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">builder</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">,</span>
-                        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">ham_fname</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -963,7 +961,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <li><p>What if we didn’t use the correct signs (<span class="math notranslate nohighlight">\(M_i = (-1)^i\Delta_i\)</span>) for the HF ansatz? Could we construct an even more constrained wave function?</p></li>
 <li><p>What do the local spin/charge observables of the optimized ansatz look like?</p></li>
 <li><p>What happens for <span class="math notranslate nohighlight">\(U=8\)</span>? Do we need a different wave function?</p></li>
-<li><p>What happens if you start from a free electron state instead of the HF state? (<code class="docutils literal notranslate"><span class="pre">(coeffs,free_wfn),spin_symm</span> <span class="pre">=</span> <span class="pre">make_free_elec(ham_fname,nelec,spin_symm=&quot;nc&quot;)</span></code>)</p></li>
+<li><p>What happens if you start from a free electron state instead of the HF state? (<code class="docutils literal notranslate"><span class="pre">free_wfn</span> <span class="pre">=</span> <span class="pre">Wavefunction.from_free_electron(builder.get_hamiltonian(),</span> <span class="pre">nelec,</span> <span class="pre">spin_symm=&quot;nc&quot;)</span></code>) — at half filling the untwisted lattice is open-shell, so this warns; build the trial’s Hamiltonian on a lattice with a small twist to make the determinant well defined.</p></li>
 </ul>
 </section>
 </section>

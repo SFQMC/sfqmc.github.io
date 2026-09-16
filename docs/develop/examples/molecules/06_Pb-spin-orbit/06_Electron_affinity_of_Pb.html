@@ -687,7 +687,7 @@ well as the corresponding augmented cGTO basis sets [2-5].</p>
 <section id="generate-and-write-hamiltonian-and-trial-wavefunction-for-neutral-atom">
 <h3><span class="section-number">6.3.2. </span>▶️ Generate and Write Hamiltonian and Trial wavefunction for Neutral Atom<a class="headerlink" href="#generate-and-write-hamiltonian-and-trial-wavefunction-for-neutral-atom" title="Link to this heading">#</a></h3>
 <p>We generate the Hamiltonian and trial wavefunction in the usual way
-with the exception that <code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk_mol()</span></code> must be explicitly
+with the exception that <code class="docutils literal notranslate"><span class="pre">load_pyscf_chk_mol()</span></code> must be explicitly
 told to load ECP type spin-orbit coupling integrals via the <code class="docutils literal notranslate"><span class="pre">soc_type=&quot;ecp&quot;</span></code>
 keyword argument.</p>
 <p>For the initial wavefunction, we use the ground state of the non-interacting Hamiltonian
@@ -698,9 +698,9 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 
 <span class="c1"># inputs</span>
 <span class="n">local_scratch_dir</span> <span class="o">=</span> <span class="n">neutral_scratch_dir</span>
@@ -720,21 +720,21 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1">#####################################</span>
 
 <span class="c1"># Save the Hamiltonian</span>
-<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
-    <span class="n">soc_type</span><span class="o">=</span><span class="s1">'ecp'</span><span class="p">,</span>
+    <span class="n">soc_type</span> <span class="o">=</span> <span class="s2">"ecp"</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
-<span class="n">write_hamil_mol</span><span class="p">(</span>
+<span class="c1"># The SOC integrals come from load_pyscf_chk_mol(soc_type='ecp') above, which</span>
+<span class="c1">#   makes hcore a spin-orbital matrix. That requires a noncollinear spin symmetry</span>
+<span class="c1">#   and the orthogonalized-AO basis.</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
     <span class="n">basis_scf_data</span><span class="p">,</span>
-    <span class="n">fout_soc</span><span class="p">,</span>
-    <span class="n">chol_tol</span><span class="p">,</span>
+    <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span>
     <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
-    <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
     <span class="n">ortho_ao</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout_soc</span><span class="p">)</span>
 
 <span class="c1">#####################################</span>
 <span class="c1">#                                   #</span>
@@ -742,15 +742,10 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1">#                                   #</span>
 <span class="c1">#####################################</span>
 
-<span class="n">wfn_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
-    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">write_wfn_mol</span><span class="p">(</span>
-    <span class="n">wfn_scf_data</span><span class="p">,</span>
-    <span class="n">fout_soc</span><span class="p">,</span>
-    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">basis_scf_data</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+    <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="n">basis_scf_data</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout_soc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -876,9 +871,9 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 
 
 <span class="c1"># inputs</span>
@@ -899,20 +894,21 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1">#####################################</span>
 
 <span class="c1"># Save the Hamiltonian</span>
-<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">basis_chk</span><span class="p">,</span>
     <span class="n">soc_type</span> <span class="o">=</span> <span class="s2">"ecp"</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># for SOC, we need to request that SOC integrals be included.</span>
-<span class="n">write_hamil_mol</span><span class="p">(</span>
+<span class="c1"># The SOC integrals come from load_pyscf_chk_mol(soc_type='ecp') above, which</span>
+<span class="c1">#   makes hcore a spin-orbital matrix. That requires a noncollinear spin symmetry</span>
+<span class="c1">#   and the orthogonalized-AO basis.</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
     <span class="n">basis_scf_data</span><span class="p">,</span>
-    <span class="n">fout_soc</span><span class="p">,</span>
-    <span class="n">chol_tol</span><span class="p">,</span>
+    <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span>
     <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
-    <span class="n">with_soc</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s1">'noncollinear'</span><span class="p">,</span>
+    <span class="n">ortho_ao</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout_soc</span><span class="p">)</span>
 
 <span class="c1">#####################################</span>
 <span class="c1">#                                   #</span>
@@ -920,15 +916,10 @@ the SOC-GHF or ROHF solution for the initial wavefunction.</p>
 <span class="c1">#                                   #</span>
 <span class="c1">#####################################</span>
 
-<span class="n">wfn_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
-    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">write_wfn_mol</span><span class="p">(</span>
-    <span class="n">wfn_scf_data</span><span class="p">,</span>
-    <span class="n">fout_soc</span><span class="p">,</span>
-    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">basis_scf_data</span>
-<span class="p">)</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+    <span class="n">ghf_soc_chkfile</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="n">basis_scf_data</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout_soc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

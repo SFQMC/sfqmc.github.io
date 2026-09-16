@@ -509,56 +509,47 @@
 using autoHF on a Hubbard model Hamiltonian on square lattice as a test case.
 We note that autohf can handle general lattice model Hamiltonians just
 as SAFIRE can.</p>
-<p>A lattice model Hamiltonian can be generated using afqmctools and
+<p>A lattice model Hamiltonian can be generated using safiretools and
 a toml-based input file.
 Below is a sample input file, which we name <cite>input.toml</cite>, for a Hubbard model
 on a 2x3 square lattice with periodic boundary conditions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">hamiltonian</span><span class="p">]</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># defaults to 1.0</span>
 <span class="n">U</span> <span class="o">=</span> <span class="mf">2.0</span> 
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="p">[</span><span class="n">lattice</span><span class="p">]</span>
 <span class="n">L1</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
 <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span> <span class="c1"># or "open" for open boundaries</span>
-
-<span class="p">[</span><span class="n">misc_params</span><span class="p">]</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>if no “type” is specified in the “lattice” section, then a square lattice is used.</p>
-<p>autohf and afqmctools can be invoked within a Python script as</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lattice_hf</span>
+<p>autohf and safiretools can be invoked within a Python script as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span><span class="p">,</span> <span class="n">lattice_hf</span>
 
 <span class="n">infile</span> <span class="o">=</span> <span class="s2">"input.toml"</span>
 
 <span class="c1"># Build and save a lattice model Hamiltonian</span>
-<span class="n">hamiltonian_dir</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span>
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">lattice</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_dir</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">hamiltonian_builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">infile</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">get_lattice</span><span class="p">()</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
-
-<span class="n">nelec</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read_input_params</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="s2">"misc_params"</span><span class="p">][</span><span class="s2">"nelec"</span><span class="p">]</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltion</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-<span class="p">)</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 
 <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD_ROT'</span><span class="p">,</span>
     <span class="n">numSteps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="n">output</span> <span class="o">=</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
+    <span class="n">nelec</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">nelec</span><span class="p">,</span>
     <span class="n">numTrials</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="p">)</span>
 
 <span class="n">lattice_hf</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">),</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">settings</span>
 <span class="p">)</span>

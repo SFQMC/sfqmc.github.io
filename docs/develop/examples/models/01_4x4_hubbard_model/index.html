@@ -570,7 +570,7 @@ which will facilitate visualizing the charge and spin densities latter on,
 so we will use this approach.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
 
 <span class="c1"># Step 1. define the lattice parameters</span>
@@ -582,7 +582,7 @@ so we will use this approach.</p>
 <span class="p">)</span>
 
 <span class="c1"># Step 3.a. build the lattice</span>
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
     <span class="n">params</span><span class="o">=</span><span class="n">lattice_params</span>
 <span class="p">)</span>
 
@@ -593,37 +593,33 @@ so we will use this approach.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">scratch_dir</span><span class="p">)</span>
 
 <span class="n">fe_scratch_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"fe"</span>
 <span class="n">fe_scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
+<span class="c1"># set the number of electrons - we'll use this again</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+
 <span class="c1"># Step 2. define Hamiltonian parameters</span>
 <span class="n">hamiltonian_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="p">{</span>
         <span class="s2">"t"</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
-        <span class="s2">"U"</span> <span class="p">:</span> <span class="mf">4.0</span>
+        <span class="s2">"U"</span> <span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s2">"nelec"</span> <span class="p">:</span> <span class="n">nelec</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1"># Step 3.b. build the lattice model Ha</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian_params</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="c1"># set the number of electrons - we'll use this again</span>
-<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 
 <span class="c1"># AND save it!</span>
-<span class="n">io</span><span class="o">.</span><span class="n">write_model_hamiltonian</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
-    <span class="n">fname</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
-<span class="p">)</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -659,59 +655,78 @@ In this walk through, we will compare free-electron trial wavefunctions
 to unrestricted Hartree-Fock trial wavefunctions.</p>
 <section id="free-electron-trial-wavefunction">
 <h3><span class="section-number">1.2.1. </span>Free-electron Trial Wavefunction<a class="headerlink" href="#free-electron-trial-wavefunction" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a convenience function, <code class="docutils literal notranslate"><span class="pre">free_electron()</span></code> ,for calculating free-electron trial wavefunctions.
-Internally, <code class="docutils literal notranslate"><span class="pre">free_electron()</span></code> applies a small twist in order to break k-space degeneracy for open-shell systems.
-It also accepts a user-supplied twist angle to used instead.
-<code class="docutils literal notranslate"><span class="pre">free_electron()</span></code> will print the actual twist used in units of radians as, for example,</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generating</span> <span class="n">free</span><span class="o">-</span><span class="n">electron</span> <span class="n">trial</span> <span class="n">wavefunction</span> <span class="k">with</span> <span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.10803005e-06</span> <span class="mf">4.58334805e-04</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>We note that, because of the twist angle, the Hamiltonian will typically need to be rebuilt.
-All of this is done internally if <code class="docutils literal notranslate"><span class="pre">free_electron()</span></code> is given the original lattice, and hamiltonian parameters
-as shown below.</p>
-<p>… do we want to have a diagram here of k-space, and the expected one-body</p>
+<p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides a convenience classmethod, <code class="docutils literal notranslate"><span class="pre">Wavefunction.from_free_electron()</span></code>,
+for calculating free-electron trial wavefunctions.</p>
+<p>At half filling this 4x4 lattice is open-shell: the highest occupied level is
+six-fold degenerate and holds only three electrons per spin, so <em>which</em> three you
+occupy is arbitrary. A small twist on the
+lattice breaks that degeneracy and fixes the choice.</p>
+<p>The twist is a property of the <strong>lattice</strong>, so it has to be applied when the
+Hamiltonian is built. <code class="docutils literal notranslate"><span class="pre">from_free_electron()</span></code> uses whatever Hamiltonian it is given.
+We therefore build a <em>second</em>, Hamiltonian with a twist
+for the trial wavefunction alone; the untwisted one from step 2. is what AFQMC
+actually runs, and is also what we hand the Hartree-Fock solver further down.
+<code class="docutils literal notranslate"><span class="pre">from_free_electron()</span></code> warns if you hand it a Hamiltonian whose shells are still
+degenerate at the fill level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, let's compute the Free-Electron trial wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_TWIST</span>
 
 <span class="n">input_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">lattice</span> <span class="o">=</span> <span class="n">lattice_params</span><span class="p">,</span>                           <span class="c1"># from step 1. above</span>
     <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">"hamiltonian"</span><span class="p">]</span>     <span class="c1"># from step 2. above</span>
 <span class="p">)</span>
 
+<span class="c1"># a small irrational twist, in radians per axis, breaks the k-space degeneracy</span>
+<span class="n">twist</span> <span class="o">=</span> <span class="n">DEFAULT_TWIST</span>
 
-<span class="n">wfn</span><span class="p">,</span><span class="n">spin_symm</span><span class="p">,</span><span class="n">autohf_results</span> <span class="o">=</span> <span class="n">free_electron</span><span class="p">(</span>
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">twist</span><span class="p">)))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">input_params</span><span class="p">,</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">fe_lattice</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">twist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                          <span class="c1"># (optional) using the default small twist</span>
-    <span class="n">return_autohf</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">filling_strategy</span><span class="o">=</span><span class="s2">"balanced"</span>
 <span class="p">)</span>
 
 <span class="c1"># and write the wavefunction for use in SAFIRE</span>
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"free_electron.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="n">spin_symm</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
-<span class="p">)</span>
+<span class="n">wfn</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fe_scratch_dir</span><span class="o">/</span><span class="s2">"free_electron.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Now that we have computed a free-electron wavefunction, we can inspect the results to validate it.
-Internally, <code class="docutils literal notranslate"><span class="pre">free_electron()</span></code> uses the <code class="docutils literal notranslate"><span class="pre">autohf</span></code> HF solver in order to evaluate the energy of the free-electron trial wavefunction
-for the interacting Hamiltonian.
-In this case, for <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} = 8\)</span>, we see that the total energy is
-Etotal = Etotal=-5.18522319306247 <span class="math notranslate nohighlight">\(t\)</span> with a one-body contribution of EK = -22.69026695983466 <span class="math notranslate nohighlight">\(t\)</span>,
+Building a wavefunction and evaluating its energy are separate calls, so we run the
+<code class="docutils literal notranslate"><span class="pre">autohf</span></code> HF solver explicitly to evaluate the energy of the free-electron trial
+wavefunction for the interacting Hamiltonian — passing <code class="docutils literal notranslate"><span class="pre">steps=-1</span></code> so that it reports
+the reference energy of the determinant we give it rather than optimizing it.
+For <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} = 8\)</span>, the total energy is
+Etotal = -5.18522319306247 <span class="math notranslate nohighlight">\(t\)</span> with a one-body contribution of EK = -22.69026695983466 <span class="math notranslate nohighlight">\(t\)</span>,
 and a Hubbard U contribution of EU=17.50504376677219.</p>
 <p>Next, let’s take a look at the charge and spin densities of the trial wavefunction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">autohf_results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span><span class="p">,</span> <span class="n">lattice_hf</span>
+
+<span class="n">autohf_results</span> <span class="o">=</span> <span class="n">lattice_hf</span><span class="p">(</span>
+    <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">),</span>
+    <span class="n">settings</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">ansatz</span><span class="o">=</span><span class="s1">'SD'</span><span class="p">,</span>
+        <span class="n">steps</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># report the reference energy; do not optimize</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">),</span>
+    <span class="n">initial_guess</span><span class="o">=</span><span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">suppress_logo</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">autohf_results</span>
 
 <span class="c1"># get the density from autohf</span>
 <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
@@ -1198,7 +1213,6 @@ We will use the <code class="docutils literal notranslate"><span class="pre">her
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_hamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">hermitize_factory</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">WALKER_TYPE</span><span class="p">,</span><span class="n">get_metadata</span><span class="p">,</span><span class="n">average_observable</span>
 

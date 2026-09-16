@@ -498,21 +498,15 @@ SAFIRE is agnostic to the details of the compound indices.
 It simply accepts Hamiltonian “components” which are interpreted as above.
 This provides great flexibility in specifying Hamiltonians; however, if Hamiltonians are generated externally, care must be taken
 to ensure that consistent index conventions are used.</p>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
+<p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
 on a variety of lattices, using consistent conventions for indexing.
 The framework consists of a Lattice class which is responsible for geometry (see the <a class="reference external" href="03_setting_up_a_lattice/03_setting_up_a_lattice_executed.html">lattice tutorial</a>),
-a Hamiltonian builder which is responsible for generating specific Hamiltonian terms on demand given a specific Lattice instance,
-and a Hamiltonian <em>Director</em> which is responsible for choosing which build steps to perform based on
-a set of input Hamiltonian parameters.
-Each component of the framework can be used directly; however
-the Director class represents the highest-level interface of the lattice Hamiltonian framework and
-can manage the underlying Lattice instance and Builder instance.
-Users who want direct control over the Hamiltonian build steps can directly
-use the Hamiltonian <em>Builder</em>. See the <a class="reference external" href="05_hamiltonian_builder/05_hamiltonian_builder.html">Hamiltonian Builder</a> for
-more detail.
-It is recommended to use the Director whenever possible.</p>
-<a class="reference internal image-reference" href="../../_images/HamilDirectorSystem.png"><img alt="../../_images/HamilDirectorSystem.png" src="../../_images/HamilDirectorSystem.png" width="1000" />
-</a>
+and a Hamiltonian <em>Builder</em> which is responsible for generating specific Hamiltonian terms given a specific Lattice instance.
+The <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input()</span></code> classmethod accepts a set of input Hamiltonian parameters (as a Python
+dict or a toml file) and automatically runs the corresponding build steps, which covers most use cases.
+Users who want direct control over the Hamiltonian build steps can instead construct a <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code>
+and invoke build steps directly. See the <a class="reference external" href="05_hamiltonian_builder/05_hamiltonian_builder.html">Hamiltonian Builder</a> for
+more detail.</p>
 <section id="imaginary-time-propagation">
 <h2>Imaginary-Time Propagation<a class="headerlink" href="#imaginary-time-propagation" title="Link to this heading">#</a></h2>
 <p>Explain the Trotterization, and Hubbard-Stratonovich transformation for the lattice Hamiltonian.
@@ -546,7 +540,7 @@ Care must always be taken to ensure that the trial wavefunction has the desired 
 </section>
 <section id="software-prerequisites">
 <h1>Software prerequisites<a class="headerlink" href="#software-prerequisites" title="Link to this heading">#</a></h1>
-<p>The afqmctools Python package provides tools for generating a broad range of lattice model Hamiltonians.
+<p>The safiretools Python package provides tools for generating a broad range of lattice model Hamiltonians.
 Additionally, afqmctools and the autoHF Hartree-Fock solver allow single-Slater determinant trial wavefunctions to be computed.
 In these tutorials, we will use these tools exclusively;
 however, from the tutorials, it should also be clear how to import

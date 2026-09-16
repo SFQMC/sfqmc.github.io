@@ -475,7 +475,7 @@ Become acquainted with how to write a Hamiltonian to the SAFIRE HDF5 format.</p>
 <ol class="arabic simple">
 <li><p>How to write a Hamiltonian to the SAFIRE HDF5 format starting from one-body, and two-body integrals</p></li>
 <li><p>How to convert from a FCIDUMP file to the SAFIRE HDF5 format both using the CLI tools and within a Python script</p></li>
-<li><p>(For convenience) How to use PySCF and afqmctools to generate and write the Hamiltonian</p></li>
+<li><p>(For convenience) How to use PySCF and safiretools to generate and write the Hamiltonian</p></li>
 </ol>
 </section>
 <section id="introduction">
@@ -504,8 +504,8 @@ the minimal basis hydrogen dimer with a bond length of 1.4 Bohr radii.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
@@ -589,7 +589,7 @@ bond length of <span class="math notranslate nohighlight">\(\delta_{H-H} = 1.4\)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
 <span class="n">number_of_electrons</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># up, down</span>
 <span class="n">number_of_orbitals</span> <span class="o">=</span> <span class="mi">2</span>
@@ -632,7 +632,7 @@ bond length of <span class="math notranslate nohighlight">\(\delta_{H-H} = 1.4\)
 </div>
 <section id="save-the-hamiltonian">
 <h3><span class="section-number">3.4.1. </span>Save the Hamiltonian<a class="headerlink" href="#save-the-hamiltonian" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides Python functions for writing Hamiltonians in an HDF5 file that can be read by the SAFIRE executable as
+<p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides Hamiltonian classes that write themselves into an HDF5 file that can be read by the SAFIRE executable, as
 shown in the code block below.
 AFQMC uses a factorized form of the electron-electron interaction tensor,</p>
 <div class="math notranslate nohighlight">
@@ -644,19 +644,22 @@ Density fitting integrals, for example can be written in this form.
 A typical strategy in the AFQMC literature is to perform a Cholesky decomposition of the super-matrix <span class="math notranslate nohighlight">\(H^2_{(i,l),(j,k)}\)</span>
 using a Cholesky tolerance of <span class="math notranslate nohighlight">\(\delta_{Chol}\)</span> where a smaller
 value of <span class="math notranslate nohighlight">\(\delta_{Chol}\)</span> produces a more accurate representation.</p>
-<p>The Cholesky decomposition is automatically performed within <code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> if you
-provide it with the electron Coulomb interaction tensor.
+<p>The Cholesky decomposition is automatically performed within
+<code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_integrals()</span></code> if you provide it with the electron Coulomb
+interaction tensor via the <code class="docutils literal notranslate"><span class="pre">eri</span></code> argument.
 Alternatively, 3-index integrals (from density fitting, for example) can be provided to use
 directly with no further modifications.</p>
 <p><strong>Run the following codeblock to output the Hamiltonian to an HDF5 file</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamil.h5"</span><span class="p">,</span>
-    <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
-    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
-    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_integrals</span><span class="p">(</span>
+    <span class="n">hcore</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+    <span class="n">eri</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
+    <span class="n">enuc</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span>
 <span class="p">)</span>
+
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"hamil.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -681,7 +684,7 @@ in the same HDF5 file as the Hamiltonian.</strong></p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="c1"># RHF orbtials represented in the basis of RHF orbitals</span>
@@ -695,15 +698,13 @@ in the same HDF5 file as the Hamiltonian.</strong></p>
 <span class="p">])</span>
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">,</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_0</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">)</span>
 
 <span class="n">write_json</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"wfn.h5"</span><span class="p">,</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"hamil.h5"</span><span class="p">,</span> <span class="n">exec_opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">timestep</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">20000</span><span class="p">))</span>
 </pre></div>
@@ -831,86 +832,45 @@ It is also possible to explicitly specify orbital occupancies with the <code cla
 </section>
 <section id="python-covert-from-fcidump-to-the-safire-format">
 <h2><span class="section-number">3.9. </span>Python: Covert from FCIDUMP to the SAFIRE format.<a class="headerlink" href="#python-covert-from-fcidump-to-the-safire-format" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">afmctools</span></code> Python package provides the following functions which allow us to convert form FCIDUMP to
-the SAFIRE format.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code> in the <code class="docutils literal notranslate"><span class="pre">afqmctools.hamiltonian.converter</span></code> module</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> in the <code class="docutils literal notranslate"><span class="pre">afqmctools.hamiltonian.mol</span></code> module</p></li>
-</ul>
-<section id="read-fcidump">
-<h3><span class="section-number">3.9.1. </span>read_fcidump()<a class="headerlink" href="#read-fcidump" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">read_fcidump()</span></code> function reads the Hamiltonian from the FCIDUMP file
-with name <code class="docutils literal notranslate"><span class="pre">filename</span></code>, and separately returns the 1-body, 2-body, and constant Hamiltonian
-terms as well as the number of electrons.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
+<p><code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_fcidump()</span></code> does the conversion in the <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Python package:
+it builds a Hamiltonian from a FCIDUMP file, which <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> then writes in the form the
+SAFIRE executable reads.</p>
+<section id="molecularhamiltonian-from-fcidump">
+<h3><span class="section-number">3.9.1. </span>MolecularHamiltonian.from_fcidump()<a class="headerlink" href="#molecularhamiltonian-from-fcidump" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">from_fcidump()</span></code> reads the one-body, two-body and constant terms from the file, along with
+the number of electrons in its header, and Cholesky-decomposes the two-electron integrals
+to the accuracy asked for by <code class="docutils literal notranslate"><span class="pre">cholesky_tol</span></code> — the same decomposition
+<code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_integrals()</span></code> performs for an <code class="docutils literal notranslate"><span class="pre">eri</span></code> tensor above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
-    <span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="s2">"H2_FCIDUMP"</span>
-    <span class="p">)</span>
+    <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_fcidump</span><span class="p">(</span>
+        <span class="s2">"H2_FCIDUMP"</span><span class="p">,</span>
+        <span class="n">cholesky_tol</span><span class="o">=</span><span class="mf">1.0e-5</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>see the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/api/afqmctools.hamiltonian.html#afqmctools.hamiltonian.converter.read_fcidump">API documentation for more</a></p>
-</section>
-<section id="write-hamiltonian-generic">
-<h3><span class="section-number">3.9.2. </span>write_hamiltonian_generic()<a class="headerlink" href="#write-hamiltonian-generic" title="Link to this heading">#</a></h3>
-<p>As we saw above, the <code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code> function will generate an HDF5 file that can
-be read by the SAFIRE executable containing the Hamiltonian.
-It will automatically generate a Cholesky decomposed form of the interaction if electron-repulsion integrals are provided via the <code class="docutils literal notranslate"><span class="pre">coulomb_repulsion_tensor</span></code> keyword argument.
-Alternatively, any 3-index factorized form of the electron interaction can be provided
-via the <code class="docutils literal notranslate"><span class="pre">cholesky_vectors</span></code> input parameter.
-Exactly one of <code class="docutils literal notranslate"><span class="pre">cholesky_vectors</span></code> or <code class="docutils literal notranslate"><span class="pre">coulomb_repulsion_tensor</span></code> must be provided to
-<code class="docutils literal notranslate"><span class="pre">write_hamiltonian_generic()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-    <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
-
-
-    <span class="c1"># transopose to match conventions for write_hamiltonian_generic</span>
-    <span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-
-    <span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
-        <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
-        <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
-        <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
-        <span class="n">cholesky_delta</span><span class="o">=</span><span class="mf">1.0e-5</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-<p>see the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/api/afqmctools.hamiltonian.html#afqmctools.hamiltonian.mol.write_hamiltonian_generic">API documentation for more</a>.</p>
+<p>see the <a class="reference internal" href="../../../afqmctools/lattice_models.html"><span class="doc">Hamiltonian reference</span></a> for more.</p>
 </section>
 <section id="your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format">
-<h3><span class="section-number">3.9.3. </span>Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format<a class="headerlink" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.9.2. </span>Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format<a class="headerlink" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_fcidump</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
-<span class="n">H1_ij</span><span class="p">,</span> <span class="n">H2_ijkl</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">read_fcidump</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="s2">"files/H2_FCIDUMP"</span>
-<span class="p">)</span>
-
-<span class="c1"># transopose to match conventions for write_hamiltonian_generic</span>
-<span class="n">H2_ijkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">H2_ijkl</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-
-<span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
-    <span class="n">E0</span><span class="o">=</span><span class="n">E0</span><span class="p">,</span>
-    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
-    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
-    <span class="n">cholesky_delta</span><span class="o">=</span><span class="mf">1.0e-5</span>
-<span class="p">)</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_fcidump</span><span class="p">(</span>
+    <span class="s2">"files/H2_FCIDUMP"</span><span class="p">,</span>
+    <span class="n">cholesky_tol</span><span class="o">=</span><span class="mf">1.0e-5</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools">
-<h2><span class="section-number">3.10. </span>Generate and write the Hamiltonian using PySCF and afqmctools<a class="headerlink" href="#generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools" title="Link to this heading">#</a></h2>
+<section id="generate-and-write-the-hamiltonian-using-pyscf-and-safiretools">
+<h2><span class="section-number">3.10. </span>Generate and write the Hamiltonian using PySCF and safiretools<a class="headerlink" href="#generate-and-write-the-hamiltonian-using-pyscf-and-safiretools" title="Link to this heading">#</a></h2>
 <p>Instead of defining the Hamiltonian and the wavefunction from scratch, one can also utilize <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to obtain the Hamiltonian in a given basis (in this case, the molecular orbital basis) and the trial wavefunction.
-Here, we use <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to run RHF for the hydrogen dimer and export to a chkfile <code class="docutils literal notranslate"><span class="pre">h2_rhf.h5</span></code>, then use <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> to obtain the Hamiltonian and the trial wavefunction from the chkfile.
+Here, we use <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to run RHF for the hydrogen dimer and export to a chkfile <code class="docutils literal notranslate"><span class="pre">h2_rhf.h5</span></code>, then use <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to obtain the Hamiltonian and the trial wavefunction from the chkfile.
 After this, you may follow the same steps as above to run AFQMC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -930,28 +890,24 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
-<span class="c1"># reload the mf data</span>
-<span class="n">mf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
+<span class="c1"># both factories read the PySCF checkpoint themselves</span>
+<span class="n">mf_chk</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span>
 
 <span class="c1"># dump the Hamiltonian and the wavefunction to the same h5df</span>
 <span class="n">fout</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_from_pyscf.h5"</span>
-<span class="n">write_hamil_mol</span><span class="p">(</span>
-    <span class="n">mf_data</span><span class="p">,</span>
-    <span class="n">fout</span><span class="p">,</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+    <span class="n">mf_chk</span><span class="p">,</span>
     <span class="n">chol_cut</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
     <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
-<span class="n">write_wfn_mol</span><span class="p">(</span>
-    <span class="n">mf_data</span><span class="p">,</span>
-    <span class="n">fout</span><span class="p">,</span>
-    <span class="n">basis_scf_data</span><span class="o">=</span><span class="n">mf_data</span>
-<span class="p">)</span>
+<span class="c1"># `basis` defaults to `source`, i.e. the wavefunction is expressed in the</span>
+<span class="c1">#   orbitals of the same SCF solution it is built from</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span><span class="n">mf_chk</span><span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -977,8 +933,8 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamiltonian_generic</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
 
@@ -1023,12 +979,12 @@ After this, you may follow the same steps as above to run AFQMC.</p>
                 <span class="p">[</span><span class="mf">0.65931821</span><span class="p">,</span> <span class="mf">1.</span>        <span class="p">]])</span>
 
 <span class="c1"># Save the Hamiltonian to HDF5</span>
-<span class="n">write_hamiltonian_generic</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">,</span>
-    <span class="n">E0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
-    <span class="n">H_one_body</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
-    <span class="n">coulomb_repulsion_tensor</span><span class="o">=</span><span class="n">H2_ijkl</span>
-<span class="p">)</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_integrals</span><span class="p">(</span>
+    <span class="n">hcore</span><span class="o">=</span><span class="n">H1_ij</span><span class="p">,</span>
+    <span class="n">eri</span><span class="o">=</span><span class="n">H2_ijkl</span><span class="p">,</span>
+    <span class="n">enuc</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_hamiltonian.h5"</span><span class="p">)</span>
 
 <span class="c1"># make and save a trial wavefunction</span>
 <span class="n">orbitals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -1040,15 +996,13 @@ After this, you may follow the same steps as above to run AFQMC.</p>
     <span class="n">orbitals</span><span class="p">[:,</span> <span class="p">:</span><span class="n">number_of_electrons</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
 <span class="p">])</span>
 <span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">wfn</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span> <span class="n">phi_0</span><span class="p">)</span>
-
-<span class="n">write_wfn</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_rhf_wfn.h5"</span><span class="p">,</span> <span class="c1"># this is the name of the file that will be created</span>
-    <span class="n">wfn</span><span class="o">=</span><span class="n">wfn</span><span class="p">,</span>
-    <span class="n">walker_type</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
+<span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="n">phi_0</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"rhf"</span><span class="p">,</span>
     <span class="n">nelec</span><span class="o">=</span><span class="n">number_of_electrons</span><span class="p">,</span>
-    <span class="n">norb</span><span class="o">=</span><span class="n">number_of_orbitals</span>
-<span class="p">)</span>
+    <span class="n">nmo</span><span class="o">=</span><span class="n">number_of_orbitals</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"H2_rhf_wfn.h5"</span><span class="p">)</span>  <span class="c1"># this is the name of the file that will be created</span>
 
 <span class="c1"># make an input file</span>
 
@@ -1162,12 +1116,11 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-covert-from-fcidump-to-the-safire-format">3.9. Python: Covert from FCIDUMP to the SAFIRE format.</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-fcidump">3.9.1. read_fcidump()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-hamiltonian-generic">3.9.2. write_hamiltonian_generic()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format">3.9.3. Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#molecularhamiltonian-from-fcidump">3.9.1. MolecularHamiltonian.from_fcidump()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-the-following-code-block-to-convert-from-the-provided-fcidump-file-to-the-safire-format">3.9.2. Your Turn: Run the following code block to convert from the provided FCIDUMP file to the SAFIRE format</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-write-the-hamiltonian-using-pyscf-and-afqmctools">3.10. Generate and write the Hamiltonian using PySCF and afqmctools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-write-the-hamiltonian-using-pyscf-and-safiretools">3.10. Generate and write the Hamiltonian using PySCF and safiretools</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.11. Summary</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">3.11.1. What you learned</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-script-full-workflow">3.11.2. Sample Script - Full workflow</a></li>

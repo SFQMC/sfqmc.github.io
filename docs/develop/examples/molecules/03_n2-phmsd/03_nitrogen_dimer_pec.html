@@ -532,9 +532,9 @@ using an appropriate trial wavefunction.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span><span class="p">,</span><span class="n">lib</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.pyscf_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_pyscf_chk_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_cas_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
@@ -661,13 +661,12 @@ as a basis.</p>
 <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
 
 <span class="c1"># write the CAS wavefunction to a file</span>
-<span class="n">write_cas_wfn</span><span class="p">(</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
     <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
     <span class="n">cas_chkfile</span><span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-    <span class="n">tol_trunc</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="c1"># use a small value to save *many* determinants.</span>
-    <span class="n">outname</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="c1"># use a small value to save *many* determinants.</span>
     <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -684,25 +683,27 @@ In PySCF, these are simply saved within the Checkpoint (*.chk) file.</p>
 <h2><span class="section-number">3.5. </span>Save the Hamiltonian<a class="headerlink" href="#save-the-hamiltonian" title="Link to this heading">#</a></h2>
 <p>We have already chosen the set of CASSCF orbitals as a trial wavefunction.
 We will now build the Hamiltonian in the basis of CASSCF orbitals, and save it to an SAFIRE HDF5 Hamiltonian file.</p>
-<p>afqmctools provides a helper function, <code class="docutils literal notranslate"><span class="pre">load_from_pyscf_chk_mol()</span></code>,  to read all of the necessary information from a PySCF checkpoint file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_pyscf()</span></code> reads a PySCF checkpoint file directly, and <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code>
+writes the result out.
+<code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> replaces only the Hamiltonian in the file it is given, so it can be added to the
+file that already holds the trial wavefunction.</p>
 <div class="alert alert-block alert-info">
 <b>Note:</b>
-    By default, load_from_pyscf_chk_mol() will try to read data from an "scf" group in a PySCF checkpoint file. Set the "base" parameter to "mcscf" to read a CASSCF wavefunction.
+    Handed a checkpoint path, from_pyscf() reads the "scf" group. To build the Hamiltonian in the CASSCF orbital basis instead, load the checkpoint yourself with load_pyscf_chk_mol(base='mcscf') and pass the result.
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Hamiltonian</span>
-<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Hamiltonian, in the basis of the CASSCF orbitals</span>
+<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
     <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
     <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
 <span class="p">)</span>
 
 <span class="c1"># write Hamiltonian</span>
-<span class="n">write_hamil_mol</span><span class="p">(</span>
+<span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
     <span class="n">basis_scf_data</span><span class="p">,</span>
-    <span class="n">hamil_file</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">,</span>
     <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -884,26 +885,22 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
     <span class="c1"># write the CAS wavefunction to a file</span>
     <span class="n">fout</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span>
 
-    <span class="n">write_cas_wfn</span><span class="p">(</span>
+    <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
         <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
         <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-        <span class="n">tol_trunc</span><span class="o">=</span> <span class="mf">1.0e-4</span><span class="p">,</span>
-        <span class="n">outname</span><span class="o">=</span><span class="n">fout</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span> <span class="mf">1.0e-4</span><span class="p">,</span>
         <span class="n">max_det</span><span class="o">=</span><span class="mi">10000</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
-    <span class="c1"># 2. write the Hamiltonian</span>
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_from_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span> <span class="s1">'scf'</span><span class="p">)</span>
-
+    <span class="c1"># 2. write the Hamiltonian, into the same file as the wavefunction</span>
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
     <span class="c1"># write Hamiltonian</span>
-    <span class="n">write_hamil_mol</span><span class="p">(</span>
-        <span class="n">basis_scf_data</span><span class="p">,</span>
-        <span class="n">fout</span><span class="p">,</span>
-        <span class="n">chol_tol</span><span class="p">,</span>
+    <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
+        <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
     <span class="c1"># write json file</span>
     <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>

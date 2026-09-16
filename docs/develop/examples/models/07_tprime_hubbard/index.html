@@ -552,7 +552,7 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
 <h2><span class="section-number">7.1. </span>Setup - Make a lattice<a class="headerlink" href="#setup-make-a-lattice" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.systems.lattice</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lattice</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
@@ -562,7 +562,7 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
     <span class="s2">"boundary2"</span> <span class="p">:</span> <span class="s2">"open"</span>
 <span class="p">}</span>
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">get_lattice</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
 
 <span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="n">show_coords</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -575,8 +575,7 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
 <p>…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.model.director</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianDirector</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_model_hamiltonian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">SpinSymm</span>
 
 <span class="c1">#TODO: need AFM (staggered) pinning at y=1 and  y=Ly with h_pin = 0.25 only for AFQMC!!</span>
 
@@ -587,17 +586,16 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">director</span> <span class="o">=</span> <span class="n">HamiltonianDirector</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">,</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span>
-
-<span class="c1"># we can take more direct control of build steps like this</span>
-<span class="n">builder</span> <span class="o">=</span> <span class="n">director</span><span class="o">.</span><span class="n">release_builder</span><span class="p">()</span>
+<span class="c1"># afm_pinning() needs axis=1 and pin_type="same", which HamiltonianBuilder.from_input()</span>
+<span class="c1"># cannot express, so we call the build steps directly instead and finalize once at the end</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span><span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">COLLINEAR</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">"hamiltonian"</span><span class="p">][</span><span class="s2">"t"</span><span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">"hamiltonian"</span><span class="p">][</span><span class="s2">"U"</span><span class="p">])</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">afm_pinning</span><span class="p">(</span><span class="n">h_afm_pin</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">pin_type</span><span class="o">=</span><span class="s2">"same"</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
 
-<span class="c1"># ... and we can resume using the director as usual</span>
-<span class="n">director</span><span class="o">.</span><span class="n">bind_builder</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
-
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">director</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-<span class="n">write_model_hamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"Hubbard_tprime0.4_U4.0.h5"</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"Hubbard_tprime0.4_U4.0.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -608,8 +606,7 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, let's compute the Free-Electron trial wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.free_electron</span><span class="w"> </span><span class="kn">import</span> <span class="n">free_electron</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.wavefunction.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_wfn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
 
@@ -618,19 +615,30 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
     <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian_params</span><span class="p">[</span><span class="s2">"hamiltonian"</span><span class="p">]</span>     <span class="c1"># from step 2. above</span>
 <span class="p">)</span>
 
-<span class="c1"># twist from ref 1:</span>
-<span class="n">twist</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span> <span class="c1">#(0.01,0.01) # this twist was used for 4x16 with t' = 0.3t</span>
-<span class="n">wfn</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">results</span> <span class="o">=</span> <span class="n">free_electron</span><span class="p">(</span>
+<span class="c1"># twist from ref 1: this twist was used for 4x16 with t' = 0.3t</span>
+<span class="n">twist</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># The trial wavefunction is built from the *un-pinned* Hamiltonian - the pinning</span>
+<span class="c1"># field added above is only wanted for the AFQMC run itself - and on a *twisted*</span>
+<span class="c1"># lattice. Without the twist the highest occupied level here is 4-fold</span>
+<span class="c1"># degenerate and only partly filled, so the determinant would not be well</span>
+<span class="c1"># defined and from_free_electron() would warn. Build it explicitly so that the</span>
+<span class="c1"># same Hamiltonian can be handed to the HF solver below.</span>
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twist</span><span class="o">=</span><span class="n">twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">input_params</span><span class="p">,</span>
-    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
-    <span class="n">twist</span><span class="o">=</span><span class="n">twist</span><span class="p">,</span>                          <span class="c1"># (optional) using the default small twist</span>
-    <span class="n">return_autohf</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">fe_lattice</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
 <span class="p">)</span>
 
 <span class="c1"># get lattice dimensions from the Lattice instance</span>
 <span class="n">L</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">L</span>
 
-<span class="n">write_wfn</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"free_elec_wfn.h5"</span><span class="p">,</span> <span class="n">wfn</span><span class="p">,</span> <span class="n">walker_type</span><span class="o">=</span><span class="s1">'collinear'</span><span class="p">,</span> <span class="n">norb</span><span class="o">=</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">)</span>
+<span class="n">wfn</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"free_elec_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -638,6 +646,22 @@ with <span class="math notranslate nohighlight">\(N_{\uparrow} = N_{\downarrow} 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span><span class="p">,</span> <span class="n">lattice_hf</span>
+
+<span class="c1"># building the wavefunction does not measure anything, so run the HF solver</span>
+<span class="c1"># explicitly to get the trial wavefunction's density matrices</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">lattice_hf</span><span class="p">(</span>
+    <span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">),</span>
+    <span class="n">settings</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">ansatz</span><span class="o">=</span><span class="s1">'SD'</span><span class="p">,</span>
+        <span class="n">steps</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>          <span class="c1"># report the reference energy; do not optimize</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">),</span>
+    <span class="n">initial_guess</span><span class="o">=</span><span class="n">wfn</span><span class="o">.</span><span class="n">dets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">suppress_logo</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
 <span class="c1"># convert the 'results' from autohf to a charge density</span>
 <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
