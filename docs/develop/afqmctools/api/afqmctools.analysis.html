@@ -994,8 +994,9 @@ to be replaced by a more carefully considered analysis interface.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>{name: (mean, stochastic error)}, keyed as in <cite>read_measurements</cite>. The error is the
-one the old stats module computed, std / sqrt(N / kappa), with kappa the
-autocorrelation length of the real part.</p>
+one the old stats module computed, std / sqrt(N / kappa), with the standard deviation
+taken separately for the real and the imaginary part and returned as the two parts of
+a complex error.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
