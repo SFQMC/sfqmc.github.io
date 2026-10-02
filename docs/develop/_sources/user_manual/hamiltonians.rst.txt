@@ -17,6 +17,10 @@ Several generic classes of Hamiltonians are implemented and described in detail 
 #. :ref:`Lattice Model Hamiltonian <lattice_model_hamiltonian>`
 #. :ref:`THC Hamiltonian <thc_hamiltonian>`
 
+Every format below carries a ``format_version`` integer attribute on ``/Hamiltonian``, which
+SAFIRE checks against the version it reads; a file without one, or with another version, is
+rejected and has to be regenerated. CoQuí files have no ``/Hamiltonian`` group and are exempt.
+
 .. _dense-cholesky:
 
 Dense Cholesky
@@ -54,30 +58,27 @@ format is given as follows:
       FILE_CONTENTS {
           group      /
           group      /Hamiltonian
-          dataset    /Hamiltonian/dims
-          dataset    /Hamiltonian/Energies
           dataset    /Hamiltonian/hcore
           group      /Hamiltonian/DenseFactorized
           dataset    /Hamiltonian/DenseFactorized/L
       }
   }
 
+The number of basis functions :math:`M` and of Cholesky vectors :math:`N_\mathrm{chol}` are read
+from the shapes of ``hcore`` and ``L``. The Hamiltonian records no electron count; it is taken
+from the trial wavefunction.
+
 **Required datasets:**
 
--  ``/Hamiltonian/dims`` Descriptor array of length 8 containing :math:`[0,0,0,M,N_\alpha,N_\beta,0,N_\mathrm{chol}]`. :math:`M` is the number of basis functions, :math:`N_\alpha` and :math:`N_\beta` are the numbers of spin-up and spin-down electrons, and :math:`N_\mathrm{chol}` is the number of Cholesky vectors.
+-  ``/Hamiltonian/hcore`` One-body Hamiltonian matrix elements :math:`h^{s}_{\sigma p,\tau r}`, with dimensions :math:`[N_s, N_p, M, N_p, M]`. :math:`N_s = 2` for collinear systems (spin up first) and 1 otherwise, and :math:`N_p = 2` for noncollinear systems and 1 otherwise. For **complex integrals**, an additional dimension of size 2 is added to store real and imaginary parts separately.
 
--  ``/Hamiltonian/Energies`` Array containing :math:`[E_{II}, E_{\mathrm{core}}]`. :math:`E_{II}` should contain ion-ion repulsion energy and any additional constant terms which have to be added to the total energy. :math:`E_{\mathrm{core}}` is deprecated and not used.
-
--  ``/Hamiltonian/hcore`` One-body Hamiltonian matrix elements. For **real integrals**, dimensions are :math:`[M_{spin}, M]` where :math:`M_{spin}` depends on the spin symmetry: :math:`M` for closed-shell, :math:`2M` for collinear, or :math:`2M` for noncollinear systems. For **complex integrals**, an additional dimension of size 2 is added to store real and imaginary parts separately.
-
--  ``/Hamiltonian/DenseFactorized/L`` The Cholesky decomposition tensor :math:`L_{pr,n}`. Dimensions are :math:`[M \times M, N_\mathrm{chol}]` where the first dimension represents the flattened orbital pair indices :math:`(p,r)` and the second dimension represents the Cholesky vector index :math:`n`. Only real-valued Cholesky vectors are supported for the Dense Cholesky format.
+-  ``/Hamiltonian/DenseFactorized/L`` The Cholesky decomposition tensor :math:`L^{s,n}_{\sigma p,\tau r}`, with dimensions :math:`[N_s, N_p, M, N_p, M, N_\mathrm{chol}]`. :math:`N_s` is either 1, for vectors shared by every spin sector, or that of ``hcore``, for one set per spin sector. Only :math:`N_p = 1` is supported, including for noncollinear systems, whose Cholesky vectors are spin independent.
 
 **Storage conventions:**
 
 - The Dense Cholesky format only supports real-valued Cholesky vectors.
 - Complex one-body Hamiltonians should be stored with an additional dimension of size 2, where ``array[..., 0]`` contains real parts and ``array[..., 1]`` contains imaginary parts.
-- The Cholesky tensor :math:`L` is stored in column-major order with orbital pairs :math:`(p,r)` flattened into a single index.
-- For collinear systems, the one-body Hamiltonian should have the spin-up block in the upper half and spin-down block in the lower half.
+- All arrays are stored in row-major order, the last index running fastest.
 
 .. seealso::
 
@@ -117,13 +118,15 @@ origin and at high symmetry points on the edge of the 1BZ), we have
 which requires us to store Cholesky vectors for either one of the
 :math:`(\textbf{Q},-\textbf{Q})` pair, but not both.
 
-In what follows let :math:`m_{\mathbf{k}}` denote the number of basis
-functions for basis functions of a given :math:`k`-point (these can in
-principle differ for different :math:`k`-points due to linear
-dependencies), :math:`n^{\alpha}_{\mathbf{k}}` the number of
-:math:`\alpha` electrons in a given :math:`k`-point and
+In what follows let :math:`m` denote the number of basis functions per
+:math:`k`-point, which has to be the same at every :math:`k`-point,
+:math:`N_k` the number of :math:`k`-points and
 :math:`n_{\mathrm{chol}}^{\mathbf{Q}_n}` the number of Cholesky vectors
-for momentum transfer :math:`\mathbf{Q}_n`. The file format for this
+for momentum transfer :math:`\mathbf{Q}_n`. The one-body Hamiltonian and
+the Cholesky vectors take the layouts of the
+:ref:`Dense Cholesky <dense-cholesky>` format with a leading
+:math:`k`-point axis; the format holds only spin-independent
+Hamiltonians, so :math:`N_s = N_p = 1` throughout. The file format for this
 factorization is as follows (for a :math:`2\times2\times2`
 :math:`k`-point mesh, for denser meshes generally there will be far
 fewer symmetry inequivalent momentum transfer vectors than there are
@@ -147,72 +150,40 @@ fewer symmetry inequivalent momentum transfer vectors than there are
           dataset    /Hamiltonian/KPFactorized/L5
           dataset    /Hamiltonian/KPFactorized/L6
           dataset    /Hamiltonian/KPFactorized/L7
-          dataset    /Hamiltonian/NCholPerKP
-          dataset    /Hamiltonian/MinusK
-          dataset    /Hamiltonian/NMOPerKP
-          dataset    /Hamiltonian/QKTok2
-          dataset    /Hamiltonian/H1_kp0
-          dataset    /Hamiltonian/H1_kp1
-          dataset    /Hamiltonian/H1_kp2
-          dataset    /Hamiltonian/H1_kp3
-          dataset    /Hamiltonian/H1_kp4
-          dataset    /Hamiltonian/H1_kp5
-          dataset    /Hamiltonian/H1_kp6
-          dataset    /Hamiltonian/H1_kp7
-          dataset    /Hamiltonian/ComplexIntegrals
           dataset    /Hamiltonian/KPoints
-          dataset    /Hamiltonian/dims
-          dataset    /Hamiltonian/Energies
+          dataset    /Hamiltonian/MinusK
+          dataset    /Hamiltonian/QKTok2
+          dataset    /Hamiltonian/hcore
       }
   }
 
--  ``/Hamiltonian/KPFactorized/L[n]`` This series of datasets store elements of the Cholesky tensors
-   :math:`L[\mathbf{Q}_n,\mathbf{k},pr,n]`. Each data set is of
-   dimension
-   :math:`[N_k,m_{\mathbf{k}}\times m_{\mathbf{k}'},n^{\mathbf{Q}_n}_\mathrm{chol}]`,
-   where, again, :math:`k` is the :math:`k`-point associated with basis
-   function :math:`p`, the :math:`k`-point of basis function :math:`r`
-   is defined via the mapping ``QKtok2``.
+-  ``/Hamiltonian/hcore`` One-body Hamiltonian matrix elements
+   :math:`h_{(\mathbf{k}p)(\mathbf{k}r)}`, with dimensions :math:`[N_k, 1, 1, m, 1, m]`.
 
--  ``/Hamiltonian/NCholPerKP`` :math:`N_k` length array giving number of Cholesky vectors per
-   :math:`k`-point.
+-  ``/Hamiltonian/KPFactorized/L[n]`` This series of datasets store elements of the Cholesky tensors
+   :math:`L[\mathbf{Q}_n,\mathbf{k},pr,n]`, each with dimensions
+   :math:`[N_k, 1, 1, m, 1, m, n^{\mathbf{Q}_n}_\mathrm{chol}]`, where :math:`\mathbf{k}` is the
+   :math:`k`-point of basis function :math:`p`; that of basis function :math:`r` is given by the
+   mapping ``QKTok2``. Only one of each :math:`(\mathbf{Q}, -\mathbf{Q})` pair, the one with
+   :math:`n \le` ``MinusK[n]``, has to be stored. The normalization :math:`1/\sqrt{N_k}` is
+   included.
 
 -  ``/Hamiltonian/MinusK``: :math:`N_k` length array mapping a
    :math:`k`-point to its inverse: :math:`\mathbf{k}_i+`\ ``MinusK[i]``
    :math:`= \mathbf{0} \mod \mathbf{G}`.
 
--  ``/Hamiltonian/NMOPerKP``: :math:`N_k` length array listing number of
-   basis functions per :math:`k`-point.
-
 -  ``/Hamiltonian/QKTok2``: :math:`[N_k,N_k]` dimensional array.
    ``QKtok2[i,j]`` yields the :math:`k` point index satisfying
    :math:`\mathbf{k}=\mathbf{Q}_i-\mathbf{k}_j+\mathbf{G}`.
 
--  ``/Hamiltonian/dims``: Descriptor array of length 8 containing
-   :math:`[0,0,0,M,N_\alpha,N_\beta,0,0]`.
-
--  ``/Hamiltonian/H1_kp[n]`` Contains the :math:`[m_{\mathbf{k}_n},m_{\mathbf{k}_n}]`
-   dimensional one-body Hamiltonian matrix elements
-   :math:`h_{(\mathbf{k}_{n}p)(\mathbf{k}_{n}q)}`.
-
--  ``/Hamiltonian/ComplexIntegrals`` Length 1 array that specifies if integrals are complex valued. 1
-   for complex integrals, 0 for real integrals.
-
 -  ``/Hamiltonian/KPoints`` :math:`[N_k,3]` Dimensional array containing :math:`k`-points used to
    sample Brillouin zone.
 
--  ``/Hamiltonian/dims`` Descriptor array of length 8 containing
-   :math:`[0,0,N_k,M,N_\alpha,N_\beta,0,N_\mathrm{nchol}]`. Note that
-   :math:`M` is the total number of basis functions, i.e.
-   :math:`M=\sum_\mathbf{k} m_\mathbf{k}`, and likewise for the number
-   of electrons.
-
--  ``/Hamiltonian/Energies`` Array containing :math:`[E_{II}, E_{\mathrm{core}}]`.
-   :math:`E_{II}` should contain ion-ion repulsion energy and any
-   additional constant terms which have to be added to the total energy
-   (such as the electron-electron interaction Madelung contribution of
-   :math:`\frac{1}{2} N \xi )`. :math:`E_{\mathrm{core}}` is deprecated
-   and not used.
+No sizes are stored separately: :math:`N_k` and :math:`m` are read off ``hcore``, and
+:math:`n^{\mathbf{Q}_n}_\mathrm{chol}` off ``L[n]``. The total number of basis functions is
+:math:`M = N_k m`. The electron count is taken from the trial wavefunction, and so is the
+:math:`N_e` in the electron self-interaction :math:`-N_e \times` ``madelung_constant``, an optional
+attribute of ``/Hamiltonian`` named as in CoQuí files.
 
 Complex integrals should be written as an array with an additional dimension, e.g., a 1D array should be written as a 2D array with ``array_hdf5[:,0]=real(1d_array)`` and ``array_hdf5[:,1]=imag(1d_array)``. The functions ``afqmctools.utils.misc.from_complex`` and ``afqmctools.utils.misc.to_complex`` can be used to transform from the internal complex format to complex valued numpy arrays of the appropriate shape and vice versa.
 
@@ -271,97 +242,73 @@ Model Hamiltonians are saved in HDF5 using the following format.
       FILE_CONTENTS {
           group      /
           group      /Hamiltonian
-          dataset    /Hamiltonian/Energies
           group      /Hamiltonian/ModelHamiltonian
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_0
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/model_type
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/spin_type
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/data_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/dims
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/jdata_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/pointers_begin_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/pointers_end_
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/column_indices
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/row_pointers
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/shape
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_0/tij/values
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_1
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/data_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/dims
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/jdata_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/pointers_begin_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/pointers_end_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/hst_type
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/model_type
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/spin_type
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/column_indices
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/row_pointers
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/shape
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_1/Jij/values
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_2
           group      /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/data_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/dims
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/jdata_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/pointers_begin_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/pointers_end_
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/hst_type
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/model_type
-          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/spin_type
-          dataset    /Hamiltonian/ModelHamiltonian/maximum_connectivity
-          dataset    /Hamiltonian/ModelHamiltonian/number_of_components
-          dataset    /Hamiltonian/dims
-          dataset    /Hamiltonian/spin_type
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/column_indices
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/row_pointers
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/shape
+          dataset    /Hamiltonian/ModelHamiltonian/ModelComponent_2/Uij/values
     }
   }
 
--  ``/Hamiltonian/Energies``: Array containing :math:`[E_{II}, E_{\mathrm{core}}]`.
-   :math:`E_{II}` should contain ion-ion repulsion energy and any
-   additional constant terms which have to be added to the total energy
-   (such as the electron-electron interaction Madelung contribution of
-   :math:`\frac{1}{2} N \xi )`. :math:`E_{\mathrm{core}}` is deprecated
-   and not used. In the context of lattice models, both :math:`E_{II}` and 
-   :math:`E_{\mathrm{core}}` while generally be set to 0.0.
+``h5dump -n`` lists no attributes; the ones a model Hamiltonian carries are described below.
+For a lattice model the energy attributes are generally left out, i.e. 0.
 
--  ``/Hamiltonian/dims``: Descriptor array of length 8 containing
-   :math:`[0,0,0,M,M,0,0,0]`. Note that
-   :math:`M` is the total number of basis functions, i.e. number of sites * number of bands
+-  ``number_of_sites`` and ``number_of_bands`` attributes of ``/Hamiltonian/ModelHamiltonian``:
+   integers giving the number of lattice sites and of bands per site. The number of basis
+   functions is :math:`M = n_\mathrm{sites} n_\mathrm{bands}`. The electron count is taken from
+   the trial wavefunction.
 
--  ``/Hamiltonian/spin_type``: Is a string containing the spin symmetry type of the Hamiltonian.
-   possible values are "collinear", or "noncollinear".
+-  ``spin_type`` attribute of ``/Hamiltonian``: a string containing the spin symmetry type of the
+   Hamiltonian. Possible values are "collinear", or "noncollinear".
 
--  ``/Hamiltonian/ModelHamiltonian/maximum_connectivity``: A scalar integer containing the maximum 
-   number of possible connections in the Hamiltonian. If in doubt, the number of non-zero elements
-   can be safely used here.
+-  ``/Hamiltonian/ModelHamiltonian/ModelComponent_n``: (where :math:`n` are replaced by a specific integer index)
+   are HDF5 groups, numbered from 0 without gaps; the number of components is where the numbering
+   stops. Each contains a Hamiltonian component (i.e. a term), which consists of some metadata
+   and a compressed sparse row (CSR) matrix representation of that Hamiltonian component. Each group has the
+   following attributes and groups.
 
--  ``/Hamiltonian/ModelHamiltonian/number_of_components``: A scalar integer containing the number 
-   of "components" (i.e. terms) in the Hamiltonian. This should be consistent with the number of 
-   :math:` /Hamiltonian/ModelHamiltonian/ModelComponent_n/` groups, where :math:`n` is replaced with an
-   integer.
-
--  ``/Hamiltonian/ModelHamiltonian/ModelComponent_n``: (where :math:`n` are replaced by a specific integer index) 
-   are HDF5 groups which contain a Hamiltonian component (i.e. a term). Each component consists of some metadata
-   and a compressed sparse row (CSR) matrix representation of that Hamiltonian component. Each group has the 
-   following datasets and groups.
-
-    -  ``/spin_type``: a string containing the spin symmetry type of the component.
+    -  ``spin_type`` attribute: a string containing the spin symmetry type of the component.
        Possible values are "collinear", or "noncollinear".
 
-    -  ``/model_type``: a string describing the type of model term. 
+    -  ``model_type`` attribute: a string describing the type of model term.
        Possible values are: "one_body", "hubbard_u", and "hubbard_j".
 
-    -  a matrix group. The name of the group depends on the ``/model_type``. 
+    -  ``hst_type`` attribute, for "hubbard_u" and "hubbard_j" only: the Hubbard-Stratonovich
+       transformation, one of "continuous_charge", "continuous_spin", "discrete_charge" and
+       "discrete_spin" (the discrete ones for "hubbard_u" only).
+
+    -  a matrix group. The name of the group depends on ``model_type``.
        Possible values are: ``/tij/`` (``"one_body"``), ``/Uij/`` (``"hubbard_u"``), 
        and ``/Jij/`` (``"hubbard_j"``). Conventions for the shape of each matrix are
        described below. The matrix group will always have the following datasets:
     
-      -  ``dims``:  Descriptor array of length 3 containing :math:`[M_1,M_2,N_{nz}]`. 
-         where :math:`M_1` and :math:`M_2` are the dimensions of the CSR matrix, and
-         :math:`N_{nz}` is the number of non-zero entries.
+      -  ``shape``: :math:`[M_1, M_2]`, the dimensions of the CSR matrix.
 
-      -  ``data_``: an array containing the non-zero matrix elements.
+      -  ``values``: an array containing the :math:`N_{nz}` non-zero matrix elements.
 
-      -  ``jdata_``: an array containing the column indices of each non-zero matrix element.
+      -  ``column_indices``: an array containing the column index of each non-zero matrix element.
 
-      -  ``pointers_begin_``: an array containing "pointers" to the beginning of each row
-         within ``data_`` / ``jdata_``.
+      -  ``row_pointers``: an array of length :math:`M_1 + 1`; row :math:`i` holds the entries
+         ``row_pointers[i]`` up to (not including) ``row_pointers[i+1]`` of ``values`` and
+         ``column_indices``, so ``row_pointers[0] = 0`` and ``row_pointers[M_1] = N_{nz}``.
 
-      -  ``pointers_end_``: an array containing "pointers" to the end of each row
-         within ``data_`` / ``jdata_``.
+      The reader also accepts the legacy layout CoQuí writes, told apart by the absence of
+      ``shape``: ``dims`` (:math:`[M_1, M_2, N_{nz}]`), ``data_``, ``jdata_``, and one
+      ``pointers_begin_`` and ``pointers_end_`` offset per row.
 
 Model Component Conventions
 ___________________________

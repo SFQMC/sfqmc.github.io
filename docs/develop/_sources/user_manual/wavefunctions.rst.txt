@@ -46,6 +46,12 @@ AFQMC allows for two types of multi-determinant trial wavefunctions: non-orthogo
 Slater determinants (NOMSD) or SHCI/CASSCF style particle-hole multi Slater determinants
 (PHMSD).
 
+Both carry a ``format_version`` integer attribute on ``/Wavefunction/NOMSD`` or
+``/Wavefunction/PHMSD``, which SAFIRE checks against the version it reads; a file without one,
+or with another version, is rejected and has to be regenerated. The one exception is the legacy
+layout CoQuí writes, recognized by a ``dims`` array in place of ``format_version`` and
+``spin_type``, which is still read.
+
 
 .. _nomsd_wavefunction:
 
@@ -61,45 +67,45 @@ NOMSD
             group      /
             group      /Wavefunction
             group      /Wavefunction/NOMSD
-            dataset    /Wavefunction/NOMSD/Psi0_alpha
-            dataset    /Wavefunction/NOMSD/Psi0_beta
             group      /Wavefunction/NOMSD/PsiT_0
-            dataset    /Wavefunction/NOMSD/PsiT_0/data_
-            dataset    /Wavefunction/NOMSD/PsiT_0/dims
-            dataset    /Wavefunction/NOMSD/PsiT_0/jdata_
-            dataset    /Wavefunction/NOMSD/PsiT_0/pointers_begin_
-            dataset    /Wavefunction/NOMSD/PsiT_0/pointers_end_
+            dataset    /Wavefunction/NOMSD/PsiT_0/column_indices
+            dataset    /Wavefunction/NOMSD/PsiT_0/row_pointers
+            dataset    /Wavefunction/NOMSD/PsiT_0/shape
+            dataset    /Wavefunction/NOMSD/PsiT_0/values
             group      /Wavefunction/NOMSD/PsiT_1
-            dataset    /Wavefunction/NOMSD/PsiT_1/data_
-            dataset    /Wavefunction/NOMSD/PsiT_1/dims
-            dataset    /Wavefunction/NOMSD/PsiT_1/jdata_
-            dataset    /Wavefunction/NOMSD/PsiT_1/pointers_begin_
-            dataset    /Wavefunction/NOMSD/PsiT_1/pointers_end_
+            dataset    /Wavefunction/NOMSD/PsiT_1/column_indices
+            dataset    /Wavefunction/NOMSD/PsiT_1/row_pointers
+            dataset    /Wavefunction/NOMSD/PsiT_1/shape
+            dataset    /Wavefunction/NOMSD/PsiT_1/values
             dataset    /Wavefunction/NOMSD/ci_coeffs
-            dataset    /Wavefunction/NOMSD/dims
         }
     }
 
 Note that the :math:`\alpha` components of the trial wavefunction are stored under
 ``PsiT_{2n}`` and the :math:`\beta` components are stored under ``PsiT_{2n+1}``.
 
--  ``/Wavefunction/NOMSD/Psi0_alpha`` :math:`[M,N_\alpha]` dimensional array :math:`\alpha`
-   component of initial walker wavefunction.
--  ``/Wavefunction/NOMSD/Psi0_beta`` :math:`[M,N_\beta]` dimensional array for :math:`\beta`
-   initial walker wavefunction.
--  ``/Wavefunction/NOMSD/PsiT_{2n}/data_`` Array of length :math:`nnz` containing non-zero
-   elements of :math:`n`-th :math:`\alpha` component of trial wavefunction walker
-   wavefunction. Note the **conjugate transpose** of the Slater matrix is stored.
--  ``/Wavefunction/NOMSD/PsiT_{2n}/dims`` Array of length 3 containing
-   :math:`[M,N_{\alpha},nnz]` where :math:`nnz` is the number of non-zero elements of this
-   Slater matrix
--  ``/Wavefunction/NOMSD/PsiT_{2n}/jdata_`` CSR indices array.
--  ``/Wavefunction/NOMSD/PsiT_{2n}/pointers_begin_`` CSR format begin index pointer array.
--  ``/Wavefunction/NOMSD/PsiT_{2n}/pointers_end_`` CSR format end index pointer array.
+-  ``/Wavefunction/NOMSD/PsiT_{2n}`` The :math:`n`-th :math:`\alpha` Slater matrix as a CSR
+   matrix. Note the **conjugate transpose** of the Slater matrix is stored, so it has
+   :math:`N_\alpha` rows and :math:`N_p M` columns (:math:`N_p = 2` for noncollinear
+   wavefunctions, 1 otherwise). Its datasets are
+
+   -  ``shape``: :math:`[N_\alpha, N_p M]`.
+   -  ``values``: the :math:`nnz` non-zero elements.
+   -  ``column_indices``: the column index of each non-zero element.
+   -  ``row_pointers``: :math:`N_\alpha + 1` offsets; row :math:`i` holds entries
+      ``row_pointers[i]`` up to (not including) ``row_pointers[i+1]`` of ``values`` and
+      ``column_indices``.
+
+   The legacy layout CoQuí writes (``dims``, ``data_``, ``jdata_``, ``pointers_begin_``,
+   ``pointers_end_``) is read as well.
 -  ``/Wavefunction/NOMSD/ci_coeffs`` :math:`N_D` length array of ci coefficients. Stored
    as complex numbers.
--  ``/Wavefunction/NOMSD/dims`` Integer array of length 5 containing
-   :math:`[M,N_\alpha,N_\beta,` walker_type :math:`,N_D]`
+-  ``spin_type`` attribute of ``/Wavefunction/NOMSD``: ``"closed"``, ``"collinear"`` or
+   ``"noncollinear"``.
+
+No sizes are stored separately. :math:`N_D` is the length of ``ci_coeffs``, :math:`M` and
+:math:`N_\alpha` are the columns and rows of ``PsiT_0``, and :math:`N_\beta` the rows of
+``PsiT_1``.
 
 
 .. _phmsd_wavefunction:
@@ -116,30 +122,63 @@ PHMSD
             group      /
             group      /Wavefunction
             group      /Wavefunction/PHMSD
-            dataset    /Wavefunction/PHMSD/Psi0_alpha
-            dataset    /Wavefunction/PHMSD/Psi0_beta
             dataset    /Wavefunction/PHMSD/ci_coeffs
-            dataset    /Wavefunction/PHMSD/dims
-            dataset    /Wavefunction/PHMSD/occs
-            dataset    /Wavefunction/PHMSD/type
+            dataset    /Wavefunction/PHMSD/occa
+            dataset    /Wavefunction/PHMSD/occb
         }
     }
 
--  ``/Wavefunction/NOMSD/Psi0_alpha`` :math:`[M,N_\alpha]` dimensional array :math:`\alpha`
-   component of initial walker wavefunction.
--  ``/Wavefunction/NOMSD/Psi0_beta`` :math:`[M,N_\beta]` dimensional array for :math:`\beta`
-   initial walker wavefunction.
 -  ``/Wavefunction/PHMSD/ci_coeffs`` :math:`N_D` length array of ci coefficients. Stored
    as complex numbers.
--  ``/Wavefunction/PHMSD/dims`` Integer array of length 5 containing
-   :math:`[M,N_\alpha,N_\beta,` walker_type :math:`,N_D]`
--  ``/Wavefunction/PHMSD/occs`` Integer array of length :math:`(N_\alpha+N_\beta)*N_D`
-   describing the determinant occupancies. For example if :math:`(N_\alpha=N_\beta=2)` and
-   :math:`N_D=2`, :math:`M=4`, and if :math:`|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle>` then
-   occs = :math:`[0, 1, 4, 5, 0, 1, 4, 6]`. Note that :math:`\beta` occupancies are
-   displaced by :math:`M`.
--  ``/Wavefunction/PHMSD/type`` integer 0/1. 1 implies trial wavefunction is written in
-   different basis than the underlying basis used for the integrals. If so a matrix of
-   orbital coefficients is required to be written in the NOMSD format. If 0 then assume
-   wavefunction is in same basis as integrals.
+-  ``spin_type`` attribute of ``/Wavefunction/PHMSD``: ``"collinear"``.
+-  ``number_of_orbitals`` attribute of ``/Wavefunction/PHMSD``: the number of spatial
+   orbitals :math:`M`.
+-  ``/Wavefunction/PHMSD/occa``, ``/Wavefunction/PHMSD/occb`` Integer arrays of shape
+   :math:`[N_D,N_\alpha]` and :math:`[N_D,N_\beta]` describing the determinant occupancies.
+   For example if :math:`(N_\alpha=N_\beta=2)`, :math:`N_D=2`, :math:`M=4`, and
+   :math:`|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle` then
+   occa = :math:`[[0, 1], [0, 1]]` and occb = :math:`[[0, 1], [0, 2]]`.
+-  ``/Wavefunction/PHMSD/PsiT_0``, ``/Wavefunction/PHMSD/PsiT_1`` (optional) Orbital
+   references, if the occupancies refer to a different basis than the one the integrals are
+   written in. Each is the matrix of reference orbitals in the integrals' basis, stored as the
+   CSR matrix of its conjugate transpose, so it has one row per reference orbital and
+   :math:`N_p M` columns (the same datasets as a NOMSD ``PsiT``). There is either one, ``PsiT_0``, shared by both spins, or
+   ``PsiT_0`` (:math:`\alpha`) and ``PsiT_1`` (:math:`\beta`) for a spin-resolved reference.
+   Without any, the occupancies refer to the integrals' basis.
+
+:math:`N_D` is the length of ``ci_coeffs``, :math:`N_\alpha` and :math:`N_\beta` the widths of
+``occa`` and ``occb``, and the number of orbital references the number of ``PsiT_<n>`` groups.
+:math:`M` is the one size that is stored explicitly, since the occupancies alone do not span the
+orbitals.
+
+
+.. _initial_walkers:
+
+Initial walkers
+~~~~~~~~~~~~~~~
+
+A trial wavefunction file does not store an initial walker. Every walker of a walker set starts
+out as a determinant derived from a wavefunction instead: the determinant with the largest
+coefficient of a NOMSD wavefunction, or the reference determinant of a PHMSD one. By default
+that is the wavefunction of the execute block that introduces the walker set; the ``from``
+parameter of the walker set names a different one, either by name or as an inline block:
+
+.. code-block:: json
+
+    {
+      "wavefunctions": [
+        {"name": "uhf", "filename": "wfn_uhf.h5"},
+        {"name": "rohf", "filename": "wfn_rohf.h5"}
+      ],
+      "execute": [
+        {
+          "wavefunction": "uhf",
+          "walker_set": {"from": {"wavefunction": "rohf"}}
+        }
+      ]
+    }
+
+Starting from an ROHF determinant rather than the UHF trial itself can speed up equilibration
+considerably. Only the first execute block falls back to a default walker set; a later execute
+block without a ``walker_set`` continues with the walker set of the one before it.
 

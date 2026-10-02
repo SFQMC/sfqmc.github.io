@@ -1026,7 +1026,7 @@ on the lattice.</p>
 
     <span class="c1"># 3. save the Hamiltonian. The build steps take care of the spin structure,</span>
     <span class="c1">#   so hand them the plain (nsites,nsites) hopping and the per-site U.</span>
-    <span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span><span class="p">)</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">custom_one_body</span><span class="p">(</span><span class="n">hopping</span><span class="p">,</span> <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span><span class="p">)</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>

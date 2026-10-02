@@ -700,44 +700,13 @@ td, th {
 <td class="text-center"><p>False</p></td>
 <td class="text-left"><p>If True, print the one-body, two-body coulomb, and two-body exchange contributions to the energy in the <code class="docutils literal notranslate"><span class="pre">*.scalar.dat</span></code> file</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p><b> equil_multiplier </b></p></td>
-<td class="text-center"><p>0</p></td>
-<td class="text-left"><p>The multiplier that determines the length of the equilibration phase. The equilibration phase length is computed as <span class="math notranslate nohighlight">\((equilibration\_length) = (equil\_multiplier) * (population\_control\_inveral)\)</span> where the population control interval is defined in the execute block. During the equilibration phase, observables are not computed.</p></td>
+<tr class="row-odd"><td class="text-right"><p><b> measure_interval </b></p></td>
+<td class="text-center"><p>inherited from the execute block (10)</p></td>
+<td class="text-left"><p>The number of projection steps between measurements. During the equilibration phase, whose length is the execute block’s <code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>, observables are not computed.</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><b>        overwrite</b></p></td>
 <td class="text-center"><p>False</p></td>
 <td class="text-left"><p>If True, overwrite the default energy estimator with the explicitly defined energy estimator</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="less-common-settings">
-<h3><span class="section-number">8.7.2. </span>Less Common Settings<a class="headerlink" href="#less-common-settings" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>setting</b></p></th>
-<th class="head text-center"><p><b>default</b></p></th>
-<th class="head text-left"><p><b>description</b></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>        print_sign</b></p></td>
-<td class="text-center"><p>False</p></td>
-<td class="text-left"><p>If True, print various quantities related to the sign/phase of random walkers in the <code class="docutils literal notranslate"><span class="pre">*.scalar.dat</span></code> file</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>        remove</b></p></td>
-<td class="text-center"><p>False</p></td>
-<td class="text-left"><p>If True, remove the default energy estimator. <strong>Note that the explicitly defined energy estimator will not be used in the calculation!</strong></p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>        truncate</b></p></td>
-<td class="text-center"><p>False</p></td>
-<td class="text-left"><p>If True, truncate the energy such that data that fall outside of the range <span class="math notranslate nohighlight">\([-3 var, 3 var]\)</span>, with <span class="math notranslate nohighlight">\(var\)</span> being the variance, are set to either <span class="math notranslate nohighlight">\(-3 var\)</span> or <span class="math notranslate nohighlight">\(3 var\)</span>, whichever is closer</p></td>
 </tr>
 </tbody>
 </table>
@@ -754,7 +723,7 @@ td, th {
     <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
@@ -778,7 +747,7 @@ td, th {
 </div>
 </section>
 <section id="your-turn-run-safire-with-an-explicit-energy-estimator-block">
-<h3><span class="section-number">8.7.3. </span><strong>Your Turn:</strong> Run SAFIRE with an explicit energy estimator block<a class="headerlink" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.7.2. </span><strong>Your Turn:</strong> Run SAFIRE with an explicit energy estimator block<a class="headerlink" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block" title="Link to this heading">#</a></h3>
 <p>Now you can run AFQMC, and you should see the following column headers in the <code class="docutils literal notranslate"><span class="pre">*scalar.dat</span></code> file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">block</span>  <span class="n">time</span>  <span class="n">nWalkers</span> <span class="n">weight</span> <span class="n">PseudoEloc</span> <span class="n">LogOvlpFactor</span> <span class="n">EnergyEstim__nume_real</span>  <span class="n">EnergyEstim__nume_imag</span> <span class="n">EnergyEstim__deno_real</span>  <span class="n">EnergyEstim__deno_imag</span> <span class="n">EnergyEstim__timer</span> <span class="n">OneBodyEnergyEstim__nume_real</span> <span class="n">EXXEnergyEstim__nume_real</span> <span class="n">ECoulEnergyEstim__nume_real</span> <span class="n">MixedEstim_timer</span> <span class="n">Eshift</span> <span class="n">freeMemory</span>
 </pre></div>
@@ -923,7 +892,7 @@ We can then directly compute each contribution to the AFQMC energy,</p>
     <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
@@ -1178,8 +1147,7 @@ afqmctools provides tools for automatically computing the auto-correlation time 
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">200</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1189,26 +1157,27 @@ afqmctools provides tools for automatically computing the auto-correlation time 
 </div>
 <p>Observables are added to the BP block in the same way as for mixed estimators.</p>
 </section>
-<section id="measurement-intervals">
-<h3><span class="section-number">8.11.2. </span>Measurement Intervals<a class="headerlink" href="#measurement-intervals" title="Link to this heading">#</a></h3>
-<p>Since BP involves an additional projection, the measurement interval controls the number of back-propagated steps.
-Just as in the execute block or a mixed estimator block, the input file includes a measurement interval “multiplier”, and the actual measurement interval, <span class="math notranslate nohighlight">\(m\)</span>, is determined as:</p>
-<div class="math notranslate nohighlight">
-\[m = (\text{measure\_interval\_multiplier}) \times (\text{population\_control\_interval})\]</div>
+<section id="back-propagation-lengths">
+<h3><span class="section-number">8.11.2. </span>Back-Propagation Lengths<a class="headerlink" href="#back-propagation-lengths" title="Link to this heading">#</a></h3>
+<p>Since BP involves an additional projection, a BP estimator has no <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code>: what it is
+given instead is <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code>, the number of steps to project back over, in steps. That
+length doubles as the measurement interval, because a new BP window starts as soon as the
+previous one has been covered.</p>
+<p><code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> has no default – a back-propagation length is a property of the estimate and
+is never inherited from the execute block – so a BP estimator has to state it.</p>
 </section>
 <section id="multiple-bp-lengths">
 <h3><span class="section-number">8.11.3. </span>Multiple BP Lengths<a class="headerlink" href="#multiple-bp-lengths" title="Link to this heading">#</a></h3>
 <p>SAFIRE implements the capability of running BP with multiple BP measurement lengths.
 We call each measurement with a different BP length an “average”.
 This allows the forward projection to be reused while checking for convergence in the BP length.
-To define multiple BP lengths/averages, simply provide a JSON array for measure_interval_multiplier corresponding to all of the BP lengths that you would like to use:</p>
+To define multiple BP lengths/averages, simply list all of the BP lengths that you would like to use, in steps:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1219,11 +1188,10 @@ To define multiple BP lengths/averages, simply provide a JSON array for measure_
 </section>
 <section id="equilibration-phase">
 <h3><span class="section-number">8.11.4. </span>Equilibration Phase<a class="headerlink" href="#equilibration-phase" title="Link to this heading">#</a></h3>
-<p>The BP estimator implements an equilibration phase at the beginning of the AFQMC calculation where no BP is performed.
+<p>No observable is measured during the equilibration phase at the beginning of an AFQMC calculation,
+back-propagated ones included.
 This is recommended since computing observables is expensive and since AFQMC needs to equilibrate before samples can meaningfully contribute to the average.
-Similarly to the measure_interval_multiplier, the equilibration time is specified as an equilibration multiplier (<code class="docutils literal notranslate"><span class="pre">&quot;equil_multiplier&quot;</span></code>) and the actual equilibration time is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{equil\_time} = (\text{equil\_multiplier}) \times (\text{population\_control\_interval})\]</div>
+The length of that phase is the execute block’s <code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>, in steps; back propagation anchors its first window at the end of it.</p>
 </section>
 <section id="all-settings">
 <h3><span class="section-number">8.11.5. </span>All Settings<a class="headerlink" href="#all-settings" title="Link to this heading">#</a></h3>
@@ -1240,27 +1208,19 @@ td, th {
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-right"><p><b>        measure_interval_multiplier</b></p></td>
-<td class="text-center"><p>1</p></td>
-<td class="text-left"><p>controls the number of back propagation steps which are determined as <div class="math notranslate nohighlight">
-\[(\text{number of BP steps}) = (\text{measure\_interval\_multiplier}) \times (\text{population\_control\_interval})\]</div>
-. Can be either a single value or multiple values. If multiple values are provided, BP will be performed with each corresponding number of BP steps and observables are accumulated and saved for each distinct BP length.</p></td>
+<tr class="row-even"><td class="text-right"><p><b>        propagation_steps</b></p></td>
+<td class="text-center"><p>required</p></td>
+<td class="text-left"><p>The back propagation lengths, in steps. If several values are provided, BP is performed with each of them and observables are accumulated and saved for each distinct BP length; the longest one is how often a new BP window starts.</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p><b> equil_multiplier </b></p></td>
-<td class="text-center"><p>0</p></td>
-<td class="text-left"><p>The multiplier that determines the length of the equilibration phase. The equilibration phase length is computed as <div class="math notranslate nohighlight">
-\[(equilibration\_length) = (equil\_multiplier) * (population\_control\_inveral)\]</div>
- where the population control interval is defined in the execute block. During the equilibration phase, observables are not computed.</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>        bp_walker_ortho_interval</b></p></td>
+<tr class="row-odd"><td class="text-right"><p><b>        bp_walker_ortho_interval</b></p></td>
 <td class="text-center"><p>1</p></td>
 <td class="text-left"><p>interval for performing walker orthonormalization during back-propagation (i.e. for the left-hand side Walkers)</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p><b>        path_restoration</b></p></td>
+<tr class="row-even"><td class="text-right"><p><b>        path_restoration</b></p></td>
 <td class="text-center"><p>false</p></td>
 <td class="text-left"><p>If true, perform path restoration.</p></td>
 </tr>
-<tr class="row-even"><td class="text-right"><p><b>        extra_path_restoration</b></p></td>
+<tr class="row-odd"><td class="text-right"><p><b>        extra_path_restoration</b></p></td>
 <td class="text-center"><p>false</p></td>
 <td class="text-left"><p>If true, perform an extra path restoration.</p></td>
 </tr>
@@ -1289,7 +1249,8 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
     <span class="p">},</span>
     <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
@@ -1298,8 +1259,7 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
         <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"back_propagation"</span><span class="p">,</span>
         <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>  <span class="c1"># Multiple BP lengths</span>
-        <span class="s2">"equil_multiplier"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>  <span class="c1"># Equilibration phase</span>
+        <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>  <span class="c1"># Multiple BP lengths, in steps</span>
         <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"one_rdm"</span>
         <span class="p">}</span>
@@ -1316,11 +1276,9 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Back-propagation input file created with the following BP parameters:"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Multiple BP lengths: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'measure_interval_multiplier'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Equilibration multiplier: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'equil_multiplier'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- BP lengths (steps): </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'propagation_steps'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Population control interval: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Actual BP lengths: </span><span class="si">{</span><span class="p">[</span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'measure_interval_multiplier'</span><span class="p">]]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Equilibration time: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'equil_multiplier'</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- Equilibration steps: </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'equilibration_steps'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1360,12 +1318,11 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
 <span class="c1"># Extract one-RDM data from all BP averages</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Extracting one-RDM data from back-propagation averages..."</span><span class="p">)</span>
 
-<span class="c1"># We specified 3 BP lengths: [5, 8, 10] * population_control_interval</span>
-<span class="n">bp_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'estimator'</span><span class="p">][</span><span class="s1">'propagation_steps'</span><span class="p">]</span>
 <span class="n">bp_onerdm_data</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">for</span> <span class="n">iav</span><span class="p">,</span> <span class="n">bp_length</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Extracting average </span><span class="si">{</span><span class="n">iav</span><span class="si">}</span><span class="s2"> (BP length = </span><span class="si">{</span><span class="n">bp_length</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">bp_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span><span class="si">}</span><span class="s2"> steps)"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Extracting average </span><span class="si">{</span><span class="n">iav</span><span class="si">}</span><span class="s2"> (BP length = </span><span class="si">{</span><span class="n">bp_length</span><span class="si">}</span><span class="s2"> steps)"</span><span class="p">)</span>
 
     <span class="c1"># Extract the one-RDM for this average</span>
     <span class="n">onerdm_bp</span> <span class="o">=</span> <span class="n">extract_observable</span><span class="p">(</span>
@@ -1399,13 +1356,12 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
     <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
-<span class="n">pop_control</span> <span class="o">=</span>  <span class="n">execute_options</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">]</span>
-<span class="n">measure_interval_multiplier</span> <span class="o">=</span> <span class="n">execute_options</span><span class="p">[</span><span class="s1">'measure_interval_multiplier'</span><span class="p">]</span>
+<span class="n">measure_interval</span> <span class="o">=</span> <span class="n">execute_options</span><span class="p">[</span><span class="s1">'measure_interval'</span><span class="p">]</span>
 <span class="n">tau</span> <span class="o">=</span> <span class="n">execute_options</span><span class="p">[</span><span class="s1">'timestep'</span><span class="p">]</span>
 <span class="n">nsamples</span> <span class="o">=</span> <span class="n">onerdm_mixed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">nsamples</span> <span class="o">*</span> <span class="n">measure_interval_multiplier</span> <span class="o">*</span> <span class="n">pop_control</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">nsamples</span> <span class="o">*</span> <span class="n">measure_interval</span>
 
-<span class="n">measure_time</span> <span class="o">=</span> <span class="n">pop_control</span><span class="o">*</span><span class="n">measure_interval_multiplier</span><span class="o">*</span><span class="n">tau</span>
+<span class="n">measure_time</span> <span class="o">=</span> <span class="n">measure_interval</span><span class="o">*</span><span class="n">tau</span>
 <span class="c1"># Compute one-body energies for all BP averages</span>
 <span class="n">bp_energies</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">iav</span><span class="p">,</span> <span class="n">bp_length</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">):</span>
@@ -1449,7 +1405,7 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
     <span class="n">bp_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bp_energies</span><span class="p">[</span><span class="n">iav</span><span class="p">][</span><span class="n">skip_samples</span><span class="p">:])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bp_energies</span><span class="p">[</span><span class="n">iav</span><span class="p">][</span><span class="n">skip_samples</span><span class="p">:]))</span>
     <span class="n">means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bp_mean</span><span class="p">)</span>
     <span class="n">stds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bp_std</span><span class="p">)</span>
-    <span class="n">bp_length_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bp_length</span> <span class="o">*</span> <span class="n">execute_options_bp</span><span class="p">[</span><span class="s1">'population_control_interval'</span><span class="p">])</span>
+    <span class="n">bp_length_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bp_length</span><span class="p">)</span>
 
 <span class="c1"># Plot convergence</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">bp_length_values</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stds</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">capthick</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'BP Estimator'</span><span class="p">)</span>
@@ -1487,7 +1443,7 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
 </ol>
 <p><strong>Important BP Configuration Points:</strong></p>
 <ul class="simple">
-<li><p><strong>Equilibration</strong>: Always include an equilibration phase (<code class="docutils literal notranslate"><span class="pre">equil_multiplier</span></code>) to allow AFQMC to reach equilibrium before BP measurements begin.</p></li>
+<li><p><strong>Equilibration</strong>: Always include an equilibration phase (<code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>) to allow AFQMC to reach equilibrium before BP measurements begin.</p></li>
 <li><p><strong>Multiple BP Lengths</strong>: Use multiple BP lengths to check convergence. Longer BP lengths generally provide more accurate results up to a point. BP is unstable for excessively large BP length. This manifests as a sharp increase in stochastic uncertainty.</p></li>
 <li><p><strong>Computational Cost</strong>: BP calculations are significantly more expensive than mixed estimators due to the additional back-propagation steps.</p></li>
 </ul>
@@ -1562,8 +1518,7 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-perform-all-of-the-steps-above">8.6. ▶️ Run the code block below to perform all of the steps above</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-estimator">8.7. The “Energy” Estimator</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-settings">8.7.1. Most Common Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-common-settings">8.7.2. Less Common Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block">8.7.3. <strong>Your Turn:</strong> Run SAFIRE with an explicit energy estimator block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-run-safire-with-an-explicit-energy-estimator-block">8.7.2. <strong>Your Turn:</strong> Run SAFIRE with an explicit energy estimator block</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-and-analyzing-the-afqmc-energy">8.8. Extracting and Analyzing the AFQMC energy.</a></li>
@@ -1577,7 +1532,7 @@ The BP-estimated one-body energy is unbiased, and represents a better estimate o
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-observables">8.10. Averaging Observables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-in-safire">8.11. Back-Propagation (BP) in SAFIRE</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-bp-configuration">8.11.1. Basic BP Configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-intervals">8.11.2. Measurement Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-lengths">8.11.2. Back-Propagation Lengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-bp-lengths">8.11.3. Multiple BP Lengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibration-phase">8.11.4. Equilibration Phase</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-settings">8.11.5. All Settings</a></li>

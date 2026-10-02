@@ -870,7 +870,7 @@ to the accuracy asked for by <code class="docutils literal notranslate"><span cl
 <section id="generate-and-write-the-hamiltonian-using-pyscf-and-safiretools">
 <h2><span class="section-number">3.10. </span>Generate and write the Hamiltonian using PySCF and safiretools<a class="headerlink" href="#generate-and-write-the-hamiltonian-using-pyscf-and-safiretools" title="Link to this heading">#</a></h2>
 <p>Instead of defining the Hamiltonian and the wavefunction from scratch, one can also utilize <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to obtain the Hamiltonian in a given basis (in this case, the molecular orbital basis) and the trial wavefunction.
-Here, we use <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to run RHF for the hydrogen dimer and export to a chkfile <code class="docutils literal notranslate"><span class="pre">h2_rhf.h5</span></code>, then use <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to obtain the Hamiltonian and the trial wavefunction from the chkfile.
+Here, we use <code class="docutils literal notranslate"><span class="pre">PySCF</span></code> to run RHF for the hydrogen dimer, then hand the SCF object to <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to obtain the Hamiltonian and the trial wavefunction.
 After this, you may follow the same steps as above to run AFQMC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -887,27 +887,22 @@ After this, you may follow the same steps as above to run AFQMC.</p>
 
 <span class="c1"># run RHF</span>
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 
-<span class="c1"># both factories read the PySCF checkpoint themselves</span>
-<span class="n">mf_chk</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_rhf.h5"</span>
-
 <span class="c1"># dump the Hamiltonian and the wavefunction to the same h5df</span>
 <span class="n">fout</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">scratch_dir</span><span class="si">}</span><span class="s2">/h2_from_pyscf.h5"</span>
 <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-    <span class="n">mf_chk</span><span class="p">,</span>
+    <span class="n">mf</span><span class="p">,</span>
     <span class="n">chol_cut</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
-    <span class="n">real_chol</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
-<span class="c1"># `basis` defaults to `source`, i.e. the wavefunction is expressed in the</span>
-<span class="c1">#   orbitals of the same SCF solution it is built from</span>
-<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span><span class="n">mf_chk</span><span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
+<span class="c1"># `basis` defaults to `mf`'s own orbitals, for the Hamiltonian and the</span>
+<span class="c1">#   wavefunction alike</span>
+<span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1010,7 +1005,7 @@ After this, you may follow the same steps as above to run AFQMC.</p>
     <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># in units of steps</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>   <span class="c1"># in units of population_control_interval</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>             <span class="c1"># in units of steps</span>
     <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>      <span class="c1"># in units of steps</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span>

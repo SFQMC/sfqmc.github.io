@@ -478,8 +478,7 @@ Formally, mixed estimators evaluate an observable <span class="math notranslate 
 <div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Sample input block for Mixed Estimator.</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mixed"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"equil_multiplier"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measure_interval_multiplier"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"measure_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span><span class="p">,</span>
 <span class="w">  </span><span class="p">}</span>
@@ -500,24 +499,12 @@ Formally, mixed estimators evaluate an observable <span class="math notranslate 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>equil_multiplier</strong></p></td>
-<td><p>0</p></td>
-<td><p>Used to determine the number of projection steps in the equilibration phase using the formula below. Measurement is the most expensive operation in AFQMC.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>measure_interval_multiplier</strong></p></td>
-<td><p>Inherited from execute block (default: 1)</p></td>
-<td><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+<tr class="row-even"><td><p><strong>measure_interval</strong></p></td>
+<td><p>Inherited from execute block (default: 10)</p></td>
+<td><p>Number of projection steps between measurements. Measurement is the most expensive operation in AFQMC, so a larger “measure_interval” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The measurement interval and equilibration lengths are specified indirectly using the <code class="docutils literal notranslate"><span class="pre">measure_interval_multiplier</span></code> and <code class="docutils literal notranslate"><span class="pre">equil_multiplier</span></code> parameters, respectively.
-They are computed using the <code class="docutils literal notranslate"><span class="pre">population_control_interval</span></code> according to the formula</p>
-<div class="math notranslate nohighlight">
-\[\text{measure\_interval} = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}\]</div>
-<p>and similarly for the equilibration time.</p>
 </div>
 </section>
 </section>
@@ -536,7 +523,7 @@ Formally, it evaluates</p>
 <div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Sample input block for Energy Estimator.</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"energy"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"print_components"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -555,9 +542,9 @@ Formally, it evaluates</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>measure_interval_multiplier</strong></p></td>
-<td><p>Inherited from execute block (default: 1)</p></td>
-<td><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+<tr class="row-even"><td><p><strong>measure_interval</strong></p></td>
+<td><p>Inherited from execute block (default: 10)</p></td>
+<td><p>Number of projection steps between measurements. Measurement is the most expensive operation in AFQMC, so a larger “measure_interval” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>print_components</strong></p></td>
 <td><p>false</p></td>
@@ -591,8 +578,7 @@ which share the same path in auxiliary-field space.</p>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">800</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">    </span><span class="p">}</span>
@@ -606,29 +592,29 @@ which share the same path in auxiliary-field space.</p>
 <p>BP is invoked in SAFIRE by including a “back_propagation” estimator in the input file.
 Observables are added to the BP block in the same way as for mixed estimators.</p>
 </section>
-<section id="measurement-intervals">
-<h3>Measurement Intervals<a class="headerlink" href="#measurement-intervals" title="Link to this heading">#</a></h3>
-<p>Since BP involves an additional projection, the measurement interval controls the number of back-propagated steps.
-Just as in the execute block or a mixed estimator block, the input file includes a measurement interval “multiplier”,
-and the actual measurement interval, <span class="math notranslate nohighlight">\(m\)</span>, is determined as:</p>
-<div class="math notranslate nohighlight">
-\[m = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}\]</div>
+<section id="back-propagation-lengths">
+<h3>Back-Propagation Lengths<a class="headerlink" href="#back-propagation-lengths" title="Link to this heading">#</a></h3>
+<p>Since BP involves an additional projection, a BP estimator has no <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code>: what it
+is given instead is <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code>, the number of steps to project back over. That
+length doubles as the measurement interval, because a new BP window starts as soon as the
+previous one has been covered.</p>
+<p><code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> has no default – a back-propagation length is a property of the estimate
+and is never inherited from the execute block – so a BP estimator has to state it.</p>
 </section>
 <section id="multiple-bp-lengths">
 <h3>Multiple BP Lengths<a class="headerlink" href="#multiple-bp-lengths" title="Link to this heading">#</a></h3>
 <p>SAFIRE implements the capability of running BP with multiple BP measurement lengths within the same calculation.
 We call each measurement with a different BP length an “average”.
 This allows the forward projection to be reused while checking for convergence in the BP length.
-To define multiple BP lengths/averages, simply provide a JSON array for measure_interval_multiplier corresponding to all of the BP lengths
-that you would like to use:</p>
+To define multiple BP lengths/averages, simply list all of the BP lengths that you would like
+to use, in steps. The longest one is how often a new window starts:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Sample input block for Back-Propagation (BP) Estimator with multiple BP lengths.</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">    </span><span class="p">}</span>
@@ -639,13 +625,11 @@ that you would like to use:</p>
 </section>
 <section id="equilibration">
 <h3>Equilibration<a class="headerlink" href="#equilibration" title="Link to this heading">#</a></h3>
-<p>The BP estimator implements an equilibration phase at the beginning of the AFQMC calculation where no BP is performed.
-This is recommended since computing observables is typically expensive and since AFQMC needs to equilibrate before
-samples can meaningfully contribute to the average.
-Similarly to the measure_interval_multiplier, the equilibration time is specified as an equilibration multiplier
-(<code class="docutils literal notranslate"><span class="pre">&quot;equil_multiplier&quot;</span></code>) and the actual equilibration time is given by:</p>
-<div class="math notranslate nohighlight">
-\[\text{equil\_time} = \text{equil\_multiplier} \times \text{population\_control\_interval}\]</div>
+<p>No observable is measured during the equilibration phase at the beginning of an AFQMC
+calculation, back-propagated ones included. This is recommended since computing observables is
+typically expensive and since AFQMC needs to equilibrate before samples can meaningfully
+contribute to the average. The length of that phase is the execute block’s
+<code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>, in steps; back propagation anchors its first window at the end of it.</p>
 </section>
 <section id="id3">
 <h3>Settings<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -670,13 +654,9 @@ Similarly to the measure_interval_multiplier, the equilibration time is specifie
 <td><p>10</p></td>
 <td><p>Interval for walker orthogonalization during back-propagation.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>measure_interval_multiplier</strong></p></td>
-<td><p>Inherited from execute block (default: 1)</p></td>
-<td><p>Either a single integer or an array of integers. Used to determine the number of back-propagation steps between measurements using the formula below. A larger value will use longer back-propagation lengths. If an array is provided, multiple back-propagation lengths will be used within the same calculation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>equil_multiplier</strong></p></td>
-<td><p>0</p></td>
-<td><p>Used to determine the number of projection steps in the equilibration phase before back-propagation measurements begin.</p></td>
+<tr class="row-even"><td><p><strong>propagation_steps</strong></p></td>
+<td><p>required</p></td>
+<td><p>An array of back-propagation lengths, in steps. Each one is measured on its own, and the longest one is how often a new back-propagation window starts.</p></td>
 </tr>
 </tbody>
 </table>
@@ -743,7 +723,7 @@ Similarly to the measure_interval_multiplier, the equilibration time is specifie
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-estimators">Back-Propagation (BP) Estimators</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-input-file">Sample Input File</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-intervals">Measurement Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-lengths">Back-Propagation Lengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-bp-lengths">Multiple BP Lengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibration">Equilibration</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Settings</a></li>

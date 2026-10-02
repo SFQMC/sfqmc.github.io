@@ -530,19 +530,21 @@ example is shown here.</p>
       <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"filename"</span><span class="p">:</span> <span class="s2">"afqmc.h5"</span>
       <span class="p">},</span>
+      <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"filename"</span><span class="p">:</span> <span class="s2">"afqmc.h5"</span>
+      <span class="p">},</span>
       <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
       <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
       <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
       <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
       <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-      <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
       <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
       <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"back_propagation"</span><span class="p">,</span>
         <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
         <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
-        <span class="s2">"equil_multiplier"</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">],</span>
         <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{</span>
           <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"one_rdm"</span>
         <span class="p">}</span>

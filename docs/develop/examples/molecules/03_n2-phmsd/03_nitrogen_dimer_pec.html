@@ -530,11 +530,10 @@ using an appropriate trial wavefunction.</p>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span><span class="p">,</span><span class="n">lib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
@@ -608,6 +607,9 @@ If we start with a decent CASSCF or SCI wavefunction, then we can characterize t
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_wfn_file.h5"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"ndets_to_read"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
 <span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_hamiltonian_file.h5"</span>
+<span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
@@ -650,20 +652,13 @@ as a basis.</p>
 <span class="p">)</span>
 
 <span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
-<span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'rhf_chkfile.h5'</span>
-<span class="n">casscf_chkfile</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># delete if already exists</span>
-
 <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-<span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span>
 <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
-<span class="c1"># save the ci to the chkfile too</span>
-<span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
 
 <span class="c1"># write the CAS wavefunction to a file</span>
 <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
-    <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
-    <span class="n">cas_chkfile</span><span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+    <span class="n">mc</span><span class="p">,</span>
     <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span> <span class="c1"># use a small value to save *many* determinants.</span>
     <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
 <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
@@ -676,31 +671,26 @@ as a basis.</p>
 <h3><span class="section-number">3.4.2. </span>Checkpoint<a class="headerlink" href="#checkpoint" title="Link to this heading">#</a></h3>
 <p>At this point, you should have a CASSCF trial wavefunction saved in an SAFIRE HDF5 file (we used “afqmc.h5” as our filename, but you are free to use whatever name you would like).</p>
 <p>You will also need the CASSCF orbitals in order to represent the Hamiltonian in that basis.
-In PySCF, these are simply saved within the Checkpoint (*.chk) file.</p>
+They are held by the <code class="docutils literal notranslate"><span class="pre">mc</span></code> object itself.</p>
 </section>
 </section>
 <section id="save-the-hamiltonian">
 <h2><span class="section-number">3.5. </span>Save the Hamiltonian<a class="headerlink" href="#save-the-hamiltonian" title="Link to this heading">#</a></h2>
 <p>We have already chosen the set of CASSCF orbitals as a trial wavefunction.
 We will now build the Hamiltonian in the basis of CASSCF orbitals, and save it to an SAFIRE HDF5 Hamiltonian file.</p>
-<p><code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_pyscf()</span></code> reads a PySCF checkpoint file directly, and <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code>
-writes the result out.
+<p><code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_pyscf()</span></code> takes the SCF object whose one-body Hamiltonian it uses, and
+<code class="docutils literal notranslate"><span class="pre">basis=</span></code> the object whose orbitals it is expressed in; <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> writes the result out.
 <code class="docutils literal notranslate"><span class="pre">.to_hdf5()</span></code> replaces only the Hamiltonian in the file it is given, so it can be added to the
 file that already holds the trial wavefunction.</p>
 <div class="alert alert-block alert-info">
 <b>Note:</b>
-    Handed a checkpoint path, from_pyscf() reads the "scf" group. To build the Hamiltonian in the CASSCF orbital basis instead, load the checkpoint yourself with load_pyscf_chk_mol(base='mcscf') and pass the result.
+    Without basis=mc, from_pyscf() would use the RHF orbitals, while the CAS determinants are occupations of the CASSCF ones. The Hamiltonian and the trial wavefunction must share a basis.
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Hamiltonian, in the basis of the CASSCF orbitals</span>
-<span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
-    <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
-<span class="p">)</span>
-
-<span class="c1"># write Hamiltonian</span>
 <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-    <span class="n">basis_scf_data</span><span class="p">,</span>
+    <span class="n">rhf</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="n">mc</span><span class="p">,</span>
     <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
@@ -745,6 +735,9 @@ For example,</p>
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"ndets_to_read"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
 <span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
+<span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
@@ -761,7 +754,7 @@ Note: This might take some time. You might want to run this on a computing clust
 <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
@@ -873,31 +866,28 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
     <span class="p">)</span>
 
 
-    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="s1">'rhf_chkfile.h5'</span>
-
     <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-    <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span>
     <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
     <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1"># (12o,6e)</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
 
     <span class="c1"># write the CAS wavefunction to a file</span>
     <span class="n">fout</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span>
 
     <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
-        <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
-        <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">mc</span><span class="p">,</span>
         <span class="n">tol</span><span class="o">=</span> <span class="mf">1.0e-4</span><span class="p">,</span>
         <span class="n">max_det</span><span class="o">=</span><span class="mi">10000</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
 
-    <span class="c1"># 2. write the Hamiltonian, into the same file as the wavefunction</span>
+    <span class="c1"># 2. write the Hamiltonian, into the same file as the wavefunction,</span>
+    <span class="c1">#    in the CASSCF orbital basis the determinants are expressed in</span>
     <span class="n">chol_tol</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
     <span class="c1"># write Hamiltonian</span>
     <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-        <span class="n">scratch_dir</span> <span class="o">/</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">rhf</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="n">mc</span><span class="p">,</span>
         <span class="n">chol_cut</span><span class="o">=</span><span class="n">chol_tol</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">fout</span><span class="p">)</span>
@@ -906,7 +896,7 @@ Run the cell block below in order to load the "run_afqmc_on_dimer()" function in
     <span class="n">afqmc_execution_options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
         <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>

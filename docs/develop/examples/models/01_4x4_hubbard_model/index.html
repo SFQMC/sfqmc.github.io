@@ -608,7 +608,6 @@ so we will use this approach.</p>
     <span class="s1">'hamiltonian'</span> <span class="p">:</span> <span class="p">{</span>
         <span class="s2">"t"</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># note: we could omit this, nearest-neighbor hoping with t=1 is included by default</span>
         <span class="s2">"U"</span> <span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
-        <span class="s2">"nelec"</span> <span class="p">:</span> <span class="n">nelec</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -795,7 +794,7 @@ We have included reasonable AFQMC run parameters for this calculation below.</p>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -952,7 +951,7 @@ We will use autoHF to accomplish this.</p>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -1032,7 +1031,7 @@ amount of statistics.</p>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -1103,6 +1102,7 @@ Here is a sample input file where an ellipsis has been used to hide the rest of 
 <span class="w">      </span><span class="cm">/* ... */</span>
 
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/* ... */</span>
 
@@ -1111,8 +1111,7 @@ Here is a sample input file where an ellipsis has been used to hide the rest of 
 <span class="w">        </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"extra_path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span>
-<span class="w">        </span><span class="nt">"equil_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
 <span class="w">        </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1122,10 +1121,11 @@ Here is a sample input file where an ellipsis has been used to hide the rest of 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>For back-propagation (BP), we will need to provide a BP time interval.
+<p>For back-propagation (BP), we will need to provide a BP length.
 We will need to check for convergence in this parameter.
-Notice that, just like the default estimator which measures and prints the energy, the number of steps is determined indirectly using the “measure_interval_multiplier” parameter;
-however, unlike the default estimator, the BP estimator accepts multiple integr values for “measure_interval_multiplier” as shown in the example above.
+Notice that a BP estimator has no “measure_interval”: the back-propagation length, in steps, is
+given by “propagation_steps”, and it doubles as the measurement interval;
+unlike the default estimator, the BP estimator accepts several values as shown in the example above.
 In this case, BP will be run with each of the BP lengths provided and saved in an output HDF5 file separately.
 This simplifies checking for convergence in the BP length by allowing us to re-use the “forward” propagation run for each BP length.</p>
 <section id="run-afqmc-with-back-propagation">
@@ -1142,7 +1142,8 @@ This simplifies checking for convergence in the BP length by allowing us to re-u
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">4200</span><span class="p">,</span>
     <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"propagator"</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">"use_cp_constraint"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -1153,8 +1154,7 @@ This simplifies checking for convergence in the BP length by allowing us to re-u
           <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
           <span class="s2">"extra_path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
           <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-          <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span> <span class="c1"># 🚧 Under construction 🚧 : Kyle is working on a good set of values here.</span>
-          <span class="s2">"equil_multiplier"</span><span class="p">:</span> <span class="mi">420</span><span class="p">,</span>
+          <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">600</span><span class="p">],</span> <span class="c1"># 🚧 Under construction 🚧 : Kyle is working on a good set of values here.</span>
           <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{</span>
               <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"one_rdm"</span>
         <span class="p">}</span>

@@ -604,27 +604,24 @@ We will explore this in more detail below.</p>
 <section id="saving-index-offsets-in-the-hdf5-input">
 <h2><span class="section-number">4.4. </span>Saving index offsets in the HDF5 input<a class="headerlink" href="#saving-index-offsets-in-the-hdf5-input" title="Link to this heading">#</a></h2>
 <p>The Lattice class from safiretools can be directly used to find the pairs that we need via the <code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> function.
-<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of “directions”, and it will return a dictionary where the keys are the requested directions, and the values are a list of index offsets, <span class="math notranslate nohighlight">\(\bar{i}_\alpha [i]\)</span>, such that <span class="math notranslate nohighlight">\(\bar{i}_{\alpha} [i] = i + e_\alpha\)</span>.</p>
+<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of “directions”, and it returns a <code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> whose <code class="docutils literal notranslate"><span class="pre">.offsets</span></code> maps each requested direction to a list of index offsets, <span class="math notranslate nohighlight">\(\bar{i}_\alpha [i]\)</span>, such that <span class="math notranslate nohighlight">\(\bar{i}_{\alpha} [i] = i + e_\alpha\)</span>.</p>
+<p>Every direction has to run along a periodic axis. Stepping off an open edge would wrap around to the far side and pair sites that are not neighbours at all, so that is rejected rather than quietly measured.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs_dict</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">get_directed_pairs</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">get_directed_pairs</span><span class="p">(</span>
   <span class="n">directions</span><span class="o">=</span><span class="p">[</span><span class="s2">"s"</span><span class="p">,</span><span class="s2">"+x"</span><span class="p">,</span><span class="s2">"-x"</span><span class="p">,</span><span class="s2">"+y"</span><span class="p">,</span><span class="s2">"-y"</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">pairs_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">pairs</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>afqmctools also provides a function for saving these pairs to HDF5 in the appropriate format.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> writes itself to HDF5 in the format the estimator reads. It may go in the same file as the Wavefunction and Hamiltonian, or in one of its own.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_pair_correlators</span>
-
-<span class="n">write_pair_correlators</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span><span class="n">pairs_dict</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -632,13 +629,13 @@ We will explore this in more detail below.</p>
 <section id="adding-custom-pairings">
 <h3><span class="section-number">4.4.1. </span>Adding Custom Pairings<a class="headerlink" href="#adding-custom-pairings" title="Link to this heading">#</a></h3>
 <p>We note that custom pairings can be added by simply inserting a list of offsets with a new key.
-For example, we can manually add “+x+y” pairing to the <code class="docutils literal notranslate"><span class="pre">pairs_dict</span></code> dictionary as</p>
+For example, we can manually add “+x+y” pairing to <code class="docutils literal notranslate"><span class="pre">pairs.offsets</span></code> as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs_dict</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">offsets</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># update hdf5</span>
-<span class="n">write_pair_correlators</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span><span class="n">pairs_dict</span><span class="p">)</span>
+<span class="c1"># update hdf5 - the whole map is rewritten, so every direction is still there</span>
+<span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -698,10 +695,13 @@ A back-propagated estimator block with pair correlation functions would look lik
 <span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
 <span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
+<span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
@@ -709,6 +709,7 @@ A back-propagated estimator block with pair correlation functions would look lik
 <span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">],</span>
 <span class="w">        </span><span class="nt">"equil"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"pair_correlators"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_pair_correlators"</span><span class="p">,</span>
@@ -760,11 +761,12 @@ A back-propagated estimator block with pair correlation functions would look lik
     <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-    <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
+    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"back_propagation"</span><span class="p">,</span>
         <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span>
         <span class="s2">"equil"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
         <span class="s2">"pair_correlators"</span> <span class="p">:</span> <span class="p">{</span>
             <span class="s2">"name"</span> <span class="p">:</span> <span class="s2">"my_pair_correlators"</span><span class="p">,</span>

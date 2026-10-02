@@ -559,11 +559,9 @@ the water molecule at its equilibrium geometry.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">lib</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.scf.hf</span><span class="w"> </span><span class="kn">import</span> <span class="n">dip_moment</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 
 <span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./scratch"</span><span class="p">)</span>
 <span class="n">scratch</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -579,9 +577,7 @@ the water molecule at its equilibrium geometry.</p>
 <span class="n">dft_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"dft_pbe.h5"</span>
 <span class="n">cc_results</span> <span class="o">=</span> <span class="n">reference</span> <span class="o">/</span> <span class="s2">"cc.h5"</span>
 
-<span class="n">scf_data_basis</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">"rhf.chk"</span><span class="p">)</span>
-
-<span class="n">mo_coeff</span> <span class="o">=</span> <span class="n">scf_data_basis</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span>
+<span class="n">mo_coeff</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">scratch</span> <span class="o">/</span> <span class="s2">"rhf.chk"</span><span class="p">,</span> <span class="s2">"scf/mo_coeff"</span><span class="p">)</span>
 
 <span class="n">a0</span> <span class="o">=</span> <span class="mf">0.9572</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mf">104.52</span>

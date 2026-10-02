@@ -511,48 +511,40 @@ vectors and basis; everything else lives on the ABC.</p>
 for the full rule.</p>
 <p>Lattices are never serialized on their own. They are persisted as embedded
 state inside a <code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian</span></code>’s HDF5 file, so there is no
-<code class="docutils literal notranslate"><span class="pre">to_hdf5</span></code>/<code class="docutils literal notranslate"><span class="pre">from_hdf5</span></code> here.</p>
+<code class="docutils literal notranslate"><span class="pre">to_hdf5</span></code>/<code class="docutils literal notranslate"><span class="pre">from_hdf5</span></code> here. The exception is <cite>DirectedPairs</cite>, which is
+derived from a lattice but written as an estimator’s own input file.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">Boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">Boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="simple">
-<dt>Base class for representing a boundary.</dt><dd><p>Encapsulates the boundary condition.</p>
+<p>The boundary condition along one lattice axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L</strong> (<em>int</em>) – Size of the lattice along the axis.</p></li>
+<li><p><strong>direction</strong> (<em>int</em>) – The axis, 0 for a1 and 1 for a2.</p></li>
+<li><p><strong>phase</strong> (<em>float</em><em>, </em><em>optional</em>) – Twist angle picked up when crossing the boundary. Default 0.0.</p></li>
+</ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary.is_allowed">
-<span class="sig-name descname"><span class="pre">is_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary.is_allowed" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>returns True if the site at a given position is allowed by the boundaries.</dt><dd><p>all cites within the cell are “allowed”, but some image sites may not
-be “allowed” if there is one or more open boundary.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary.is_image">
 <span class="sig-name descname"><span class="pre">is_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary.is_image" title="Link to this definition">#</a></dt>
-<dd><p>returns <cite>True</cite> if the site at a given coordinate is an image.</p>
-<p>Note: coordinate is expressed in units of the lattice vectors hat{a}_1, hat{a}_2</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary.is_valid">
-<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary.is_valid" title="Link to this definition">#</a></dt>
-<dd><p>returns True if the site at a given position is a valid image</p>
+<dd><p>True if <cite>coordinate</cite>, in units of the lattice vectors <span class="math notranslate nohighlight">\(\hat{a}_1,
+\hat{a}_2\)</span>, lies outside the lattice along this axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>( checks if site is an image first, a site that is not an image</dt><dd><p>is not a valid image )</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary.is_valid" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -560,7 +552,13 @@ be “allowed” if there is one or more open boundary.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Boundary.is_valid_image">
 <span class="sig-name descname"><span class="pre">is_valid_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Boundary.is_valid_image" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>True if <cite>coordinate</cite> is an image this boundary connects to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -583,7 +581,7 @@ constructor’s; <cite>from_dict</cite> spells the lattice size <code class="doc
 <li><p><strong>a2</strong> (<em>array_like</em>) – The two lattice vectors. Required.</p></li>
 <li><p><strong>basis</strong> (<em>list</em><em>(</em><em>array_like</em><em>)</em><em>, </em><em>optional</em>) – Basis vectors within the unit cell. Default is a single site at the
 cell origin.</p></li>
-<li><p><strong>**kwargs</strong> – Forwarded to <cite>Lattice</cite>; see that constructor for <cite>metric</cite>, <cite>build</cite>,
+<li><p><strong>**kwargs</strong> – Forwarded to <cite>Lattice</cite>; see that constructor for <cite>build</cite>,
 <cite>axis1_boundary</cite>/<cite>axis2_boundary</cite>, <cite>twist</cite> and <cite>cyl_mode</cite>.</p></li>
 </ul>
 </dd>
@@ -605,14 +603,58 @@ cell origin.</p></li>
 <p class="rubric">Notes</p>
 <p>Currently only supports 2D lattices. Higher dimensions will be added in the
 future. Please contact the developers if you need this feature.</p>
-<p>Only basis vectors that are inside the unit cell are allowed.
-<cite>build()</cite> checks for basis vectors that are outside the unit cell and raises
-<cite>ValueError</cite> if any are found.</p>
+<p><cite>build()</cite> raises <cite>ValueError</cite> for a basis the neighbor search cannot handle:
+two basis vectors differing by a lattice translation, or an offset reaching
+a full supercell. See <cite>Lattice._validate_basis</cite>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.DIRECTION_STEPS">
+<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">DIRECTION_STEPS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'':</span> <span class="pre">(0,</span> <span class="pre">0),</span> <span class="pre">'+x':</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">'+x+y':</span> <span class="pre">(1,</span> <span class="pre">1),</span> <span class="pre">'+x-y':</span> <span class="pre">(1,</span> <span class="pre">-1),</span> <span class="pre">'+y':</span> <span class="pre">(0,</span> <span class="pre">1),</span> <span class="pre">'+y+x':</span> <span class="pre">(1,</span> <span class="pre">1),</span> <span class="pre">'+y-x':</span> <span class="pre">(-1,</span> <span class="pre">1),</span> <span class="pre">'-x':</span> <span class="pre">(-1,</span> <span class="pre">0),</span> <span class="pre">'-x+y':</span> <span class="pre">(-1,</span> <span class="pre">1),</span> <span class="pre">'-x-y':</span> <span class="pre">(-1,</span> <span class="pre">-1),</span> <span class="pre">'-y':</span> <span class="pre">(0,</span> <span class="pre">-1),</span> <span class="pre">'-y+x':</span> <span class="pre">(1,</span> <span class="pre">-1),</span> <span class="pre">'-y-x':</span> <span class="pre">(-1,</span> <span class="pre">-1),</span> <span class="pre">'0':</span> <span class="pre">(0,</span> <span class="pre">0),</span> <span class="pre">'s':</span> <span class="pre">(0,</span> <span class="pre">0)}</span></span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.DIRECTION_STEPS" title="Link to this definition">#</a></dt>
+<dd><p>Unit step along each named direction, in lattice coordinates.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.DirectedPairs">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">DirectedPairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offsets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.DirectedPairs" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>For each direction, the orbital every orbital is paired with — what the
+<code class="docutils literal notranslate"><span class="pre">PairCorrelator</span></code> estimator reads.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.DirectedPairs.offsets">
+<span class="sig-name descname"><span class="pre">offsets</span></span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.DirectedPairs.offsets" title="Link to this definition">#</a></dt>
+<dd><p>Direction name to its <code class="docutils literal notranslate"><span class="pre">(nbands*nsites,)</span></code> array of orbital indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">offsets</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.DirectedPairs.to_hdf5">
+<span class="sig-name descname"><span class="pre">to_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.DirectedPairs.to_hdf5" title="Link to this definition">#</a></dt>
+<dd><p>Write the offsets to <cite>path</cite>, replacing any already in the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em> or </em><em>pathlib.Path</em>) – HDF5 file to write into. Created if it does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.HoneycombLattice">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">HoneycombLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">euclid_nd&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.HoneycombLattice" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">HoneycombLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.HoneycombLattice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></p>
 <p>Specialization of Lattice to a Honeycomb lattice.
 The underlying lattice is a triangular lattice with an “extra”
@@ -621,7 +663,7 @@ site per cell</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.KagomeLattice">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">KagomeLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">euclid_nd&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.KagomeLattice" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">KagomeLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.KagomeLattice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></p>
 <p>Specialization of Lattice to a Kagome lattice.
 The underlying lattice is a triangular lattice with 3
@@ -630,7 +672,7 @@ site per cell</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">Lattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">euclid_nd&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">Lattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Base class for representing lattices.</p>
 <p><strong>The unit-cell geometry belongs to the lattice type, not to the caller.</strong>
@@ -643,7 +685,7 @@ one subclass whose constructor accepts <code class="docutils literal notranslate
 supported way to build a lattice whose geometry is not one of the built-in
 types. Passing <code class="docutils literal notranslate"><span class="pre">a1</span></code>/<code class="docutils literal notranslate"><span class="pre">a2</span></code>/<code class="docutils literal notranslate"><span class="pre">basis</span></code> to any other type raises <cite>TypeError</cite>,
 and <cite>Lattice.from_dict</cite> raises <cite>ValueError</cite> for the equivalent keys in a
-parameter dict; both used to be silently discarded.</p>
+parameter dict.</p>
 <p><code class="docutils literal notranslate"><span class="pre">a1</span></code>, <code class="docutils literal notranslate"><span class="pre">a2</span></code> and <code class="docutils literal notranslate"><span class="pre">basis</span></code> are read-only properties, and the arrays they
 return are themselves immutable, so the geometry cannot be replaced or
 edited in place after construction. <cite>build()</cite> applying <cite>cyl_mode</cite> is
@@ -763,12 +805,12 @@ periodic:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.get_nth_image_neighbors">
-<span class="sig-name descname"><span class="pre">get_nth_image_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.get_nth_image_neighbors" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_nth_image_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.get_nth_image_neighbors" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.get_nth_neighbors">
-<span class="sig-name descname"><span class="pre">get_nth_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.get_nth_neighbors" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_nth_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.get_nth_neighbors" title="Link to this definition">#</a></dt>
 <dd><p>High-Level interface to get all nth-nearest neighbors</p>
 </dd></dl>
 
@@ -805,12 +847,13 @@ positions for all sites in the lattice. Default is None.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.is_image">
 <span class="sig-name descname"><span class="pre">is_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.is_image" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.metric">
-<span class="sig-name descname"><span class="pre">metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.metric" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>True if <cite>r</cite>, in lattice coordinates, lies outside the lattice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.nb">
@@ -822,13 +865,6 @@ positions for all sites in the lattice. Default is None.</p>
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.num_sublattice">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_sublattice</span></span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.num_sublattice" title="Link to this definition">#</a></dt>
 <dd><p>Number of sublattices; alias of <cite>nb</cite>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.Lattice.remove_distances">
-<span class="sig-name descname"><span class="pre">remove_distances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.Lattice.remove_distances" title="Link to this definition">#</a></dt>
-<dd><p>Removes cached distance matrix.
-Useful if low on memory and the lattice is large</p>
 </dd></dl>
 
 </dd></dl>
@@ -860,7 +896,7 @@ Useful if low on memory and the lattice is large</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.NeighborPair">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">NeighborPair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_abs_r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.NeighborPair" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">NeighborPair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.NeighborPair" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="simple">
 <dt>Simple dataclass to relate a phase, given as <cite>phase</cite>, and used as</dt><dd><p>Exp[-i*phase], with a pair of neighbor indices, (i,j).</p>
@@ -893,36 +929,15 @@ own neighbor.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.OpenBoundary">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">OpenBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.OpenBoundary" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">OpenBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.OpenBoundary" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Boundary" title="safiretools.hamiltonian.model.lattice.Boundary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boundary</span></code></a></p>
-<p>concrete class for open boundary</p>
-<p>all images are invalid for open b.c.</p>
+<p>An open boundary: no image is valid, so a twist has no effect.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.OpenBoundary.is_allowed">
-<span class="sig-name descname"><span class="pre">is_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.OpenBoundary.is_allowed" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.OpenBoundary.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.OpenBoundary.is_valid" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>returns True if the site at a given position is allowed by the boundaries.</dt><dd><p>all cites within the cell are “allowed”, but some image sites may not
-be “allowed” if there is one or more open boundary.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.OpenBoundary.is_valid">
-<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.OpenBoundary.is_valid" title="Link to this definition">#</a></dt>
-<dd><p>returns True if the site at a given position is a valid image</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>( checks if site is an image first, a site that is not an image</dt><dd><p>is not a valid image )</p>
 </dd>
 </dl>
 </dd></dl>
@@ -931,43 +946,15 @@ be “allowed” if there is one or more open boundary.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.PBCBoundary">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">PBCBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.PBCBoundary" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">PBCBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.PBCBoundary" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Boundary" title="safiretools.hamiltonian.model.lattice.Boundary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Boundary</span></code></a></p>
-<p>Concrete class for periodic boundary condition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>L</strong> (<em>int</em>) – size of the lattice in the direction of the boundary</p></li>
-<li><p><strong>direction</strong> (<em>int</em>) – direction of the boundary (i.e. along a1 or a2)</p></li>
-<li><p><strong>phase</strong> (<em>iterable</em><em>(</em><em>ints</em><em>)</em>) – phase angle for the boundary (i.e. the twist angle)
-if phase is not given, it is assumed to be (0,0);
-if phase is a 1-d iterable of length 2, it is interpreted as (phase1,phase2)
-where phase1 is applied when crossing the boundary along the a1 direction
-and phase2 is applied when crossing the boundary along the a2 direction.</p></li>
-</ul>
-</dd>
-</dl>
+<p>A periodic, optionally twisted, boundary: every image is valid.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.PBCBoundary.is_allowed">
-<span class="sig-name descname"><span class="pre">is_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.PBCBoundary.is_allowed" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.PBCBoundary.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.PBCBoundary.is_valid" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>returns True if the site at a given position is allowed by the boundaries.</dt><dd><p>all cites within the cell are “allowed”, but some image sites may not
-be “allowed” if there is one or more open boundary.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.PBCBoundary.is_valid">
-<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.PBCBoundary.is_valid" title="Link to this definition">#</a></dt>
-<dd><p>returns True if the site at a given position is a valid image</p>
-<dl class="simple">
-<dt>( checks if site is an image first, a site that is not an image</dt><dd><p>is not a valid image )</p>
 </dd>
 </dl>
 </dd></dl>
@@ -976,7 +963,7 @@ be “allowed” if there is one or more open boundary.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.SquareLattice">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">SquareLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">euclid_nd&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.SquareLattice" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">SquareLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.SquareLattice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></p>
 <p>Specialization of Lattice to a square lattice.</p>
 <dl class="simple">
@@ -985,25 +972,23 @@ be “allowed” if there is one or more open boundary.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.SquareLattice.get_directed_pairs">
-<span class="sig-name descname"><span class="pre">get_directed_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.SquareLattice.get_directed_pairs" title="Link to this definition">#</a></dt>
-<dd><p>Get directed pairs - i.e. for making pair correlators</p>
-<dl class="simple">
-<dt>for now, we only have square lattice pair ‘directions’ implemented</dt><dd><p>i.e. +/-x, +/-y. will need to work out the Triangular lattice
-possibilities.</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">get_directed_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.SquareLattice.get_directed_pairs" title="Link to this definition">#</a></dt>
+<dd><p>The <cite>DirectedPairs</cite> the <code class="docutils literal notranslate"><span class="pre">PairCorrelator</span></code> estimator reads — see
+<cite>get_directed_pairs</cite>.</p>
+<p>Only the square lattice has directions defined; the triangular ones
+still need working out.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.TriangularLattice">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">TriangularLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">euclid_nd&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.TriangularLattice" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">TriangularLattice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyl_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_dist_map_min_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.TriangularLattice" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></p>
 <p>Specialization of Lattice to a triangular lattice.</p>
 <p>For a triangular Bravais lattice with a multi-site basis, use
 <cite>HoneycombLattice</cite> or <cite>KagomeLattice</cite>, which are implemented separately;
-<cite>CustomLattice</cite> can express other bases, with the caveat noted there.</p>
+<cite>CustomLattice</cite> can express other bases.</p>
 <p>This is the only lattice type that accepts <cite>cyl_mode</cite>: the XC/YC cell
 reshaping <cite>build()</cite> performs is hardcoded for hexagonal geometry.</p>
 </dd></dl>
@@ -1015,21 +1000,30 @@ reshaping <cite>build()</cite> performs is hardcoded for hexagonal geometry.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.euclid_nd">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">euclid_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.euclid_nd" title="Link to this definition">#</a></dt>
-<dd><p>Compute the N-dimensional Euclidean distance between coordinate 1 and
-coordinate 2.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.get_directed_pairs">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">get_directed_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.get_directed_pairs" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice.valid_L">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">valid_L</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.valid_L" title="Link to this definition">#</a></dt>
-<dd><p>True if <cite>L</cite> is a 2-element specification of the lattice size.</p>
+<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice.</span></span><span class="sig-name descname"><span class="pre">get_directed_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice.get_directed_pairs" title="Link to this definition">#</a></dt>
+<dd><p>Pair every orbital with the one <cite>directions</cite> away from it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – Lattice to walk. Every direction must lie along periodic axes — see
+Raises.</p></li>
+<li><p><strong>directions</strong> (<em>sequence</em><em> of </em><em>str</em>) – Direction names, as <cite>DIRECTION_STEPS</cite> spells them: <code class="docutils literal notranslate"><span class="pre">'s'</span></code> for the site
+itself, <code class="docutils literal notranslate"><span class="pre">'+x'</span></code>, <code class="docutils literal notranslate"><span class="pre">'-y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'+x-y'</span></code> and so on.</p></li>
+<li><p><strong>nbands</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Bands per site. Sites are expanded into orbitals as
+<code class="docutils literal notranslate"><span class="pre">site*nbands</span> <span class="pre">+</span> <span class="pre">band</span></code>, matching the Hamiltonian’s basis order.
+Default 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#safiretools.hamiltonian.model.lattice.DirectedPairs" title="safiretools.hamiltonian.model.lattice.DirectedPairs">DirectedPairs</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If a direction is not a recognized name, or if it steps along an axis
+with an open boundary. Stepping off an open edge would wrap around to
+the far side and pair two sites that are not neighbors at all.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1106,12 +1100,6 @@ second Hamiltonian replaces the first rather than adding to it.</p>
 different storage formats, so each subclass implements its own
 <code class="docutils literal notranslate"><span class="pre">to_hdf5</span></code>/<code class="docutils literal notranslate"><span class="pre">from_hdf5</span></code>. Spin symmetry is a plain attribute, not a subclass
 axis.</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.base.HAMILTONIAN_GROUP">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">HAMILTONIAN_GROUP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Hamiltonian'</span></span><a class="headerlink" href="#safiretools.hamiltonian.base.HAMILTONIAN_GROUP" title="Link to this definition">#</a></dt>
-<dd><p>Top-level HDF5 group every Hamiltonian format writes into.</p>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.base.Hamiltonian">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">Hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.CLOSED</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.Hamiltonian" title="Link to this definition">#</a></dt>
@@ -1147,8 +1135,9 @@ hold a format that subclass reads.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#safiretools.hamiltonian.base.Hamiltonian" title="safiretools.hamiltonian.base.Hamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the file holds no recognized Hamiltonian, or holds one that the
-subclass this was called on does not read.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If the file holds no recognized Hamiltonian, holds one that the
+subclass this was called on does not read, or was written in another
+format version.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1173,26 +1162,6 @@ executable reads for this Hamiltonian’s domain.</p>
 
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.base.TYPE_DATASET">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">TYPE_DATASET</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Hamiltonian/type'</span></span><a class="headerlink" href="#safiretools.hamiltonian.base.TYPE_DATASET" title="Link to this definition">#</a></dt>
-<dd><p>Dataset a writer records its on-disk format in; see <cite>write_hamiltonian_format</cite>.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.base.clear_hamiltonian">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">clear_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.clear_hamiltonian" title="Link to this definition">#</a></dt>
-<dd><p>Remove the Hamiltonian already in the open HDF5 file <cite>fh5</cite>, if there is one.</p>
-<p>A SAFIRE input file holds at most one Hamiltonian and at most one
-wavefunction, so writing a Hamiltonian replaces any Hamiltonian already
-present while leaving everything else — notably <code class="docutils literal notranslate"><span class="pre">Wavefunction</span></code> — alone.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.base.hamiltonian_format">
 <span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">hamiltonian_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.hamiltonian_format" title="Link to this definition">#</a></dt>
@@ -1209,60 +1178,39 @@ safiretools name (<code class="docutils literal notranslate"><span class="pre">'
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the file records a format safiretools does not know, or records none
-and matches none of the known layouts.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If the file matches none of the known formats.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>A file written by <cite>write_hamiltonian_format</cite> says outright which format it
-holds. Files written before that key existed do not, so their format is
-inferred from which datasets are present — see <cite>_format_from_layout</cite>.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.base.open_for_hamiltonian">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">open_for_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.open_for_hamiltonian" title="Link to this definition">#</a></dt>
-<dd><p>Open <cite>path</cite> for writing one Hamiltonian, creating the file if needed.</p>
-<p>Anything else already in the file is preserved; only a Hamiltonian already
-present is replaced. This is what lets a Hamiltonian and a wavefunction
-share one file in either order.</p>
+<dt class="sig sig-object py" id="safiretools.hamiltonian.base.read_hamiltonian_header">
+<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">read_hamiltonian_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.read_hamiltonian_header" title="Link to this definition">#</a></dt>
+<dd><p>The nuclear energy <cite>write_hamiltonian_header</cite> recorded in <cite>group</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em> or </em><em>pathlib.Path</em>) – HDF5 file to write into.</p>
-</dd>
-<dt class="field-even">Yields<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>h5py.File</em> – The open file, with no <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code> group in it.</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>HDF5 unlinks rather than reclaims, so repeatedly rewriting a Hamiltonian
-into the same file grows it. Write to a fresh path if that matters.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.base.write_hamiltonian_format">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">write_hamiltonian_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fh5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.write_hamiltonian_format" title="Link to this definition">#</a></dt>
-<dd><p>Record <cite>fmt</cite> as the on-disk format of the Hamiltonian being written into
-<cite>fh5</cite>, so that a reader does not have to infer it from the layout.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>fh5</strong> (<em>h5py.File</em>) – Destination, open for writing. The <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code> group is created if
-it does not exist yet, so this can be called before or after the rest of
-the Hamiltonian is written.</p></li>
-<li><p><strong>fmt</strong> (<em>HamiltonianFormat</em><em> or </em><em>str</em>) – The format being written, or its safiretools name.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If <cite>fmt</cite> names no known format, or names one that is never recorded.</p>
-</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The tag is a variable-length string, as <code class="docutils literal notranslate"><span class="pre">spin_type</span></code> is, so the C++ side
-reads it the way it already reads that.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.base.write_hamiltonian_header">
+<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.base.</span></span><span class="sig-name descname"><span class="pre">write_hamiltonian_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enuc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.write_hamiltonian_header" title="Link to this definition">#</a></dt>
+<dd><p>Write what every Hamiltonian format starts with into the (empty)
+<code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code> <cite>group</cite>: the <code class="docutils literal notranslate"><span class="pre">format_version</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code> and
+<code class="docutils literal notranslate"><span class="pre">nuclear_energy</span></code> attributes, the last named as CoQuí names it.</p>
+<p>No sizes are recorded; each format’s arrays carry their own. Nor is an
+electron count: the AFQMC executable takes it from the wavefunction.
+Nothing reads <code class="docutils literal notranslate"><span class="pre">type</span></code> yet; <cite>hamiltonian_format</cite> goes by the layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If <cite>fmt</cite> names no known format.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <p id="module-safiretools.hamiltonian.model.builder"><cite>HamiltonianBuilder</cite> — composes a <cite>LatticeHamiltonian</cite> term by term on a
@@ -1283,7 +1231,7 @@ The order also fixes the order combined Hubbard components are written in.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.HamiltonianBuilder">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.builder.</span></span><span class="sig-name descname"><span class="pre">HamiltonianBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.COLLINEAR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.builder.</span></span><span class="sig-name descname"><span class="pre">HamiltonianBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.COLLINEAR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">afm_pin_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'staggered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fm_pin_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'staggered'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Builds a <cite>LatticeHamiltonian</cite> on a <cite>Lattice</cite>, one term at a time.</p>
 <dl class="field-list simple">
@@ -1293,7 +1241,10 @@ The order also fixes the order combined Hubbard components are written in.</p>
 <li><p><strong>nbands</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of bands. Default 1.</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry the Hamiltonian is expressed in. Default
 <cite>SpinSymm.COLLINEAR</cite>.</p></li>
-<li><p><strong>nelec</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">(nup,</span> <span class="pre">ndown)</span></code>, recorded on the Hamiltonian for writing.</p></li>
+<li><p><strong>afm_pin_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Default <code class="docutils literal notranslate"><span class="pre">pin_type</span></code> of <cite>afm_pinning</cite> and <cite>fm_pinning</cite>. Default
+<code class="docutils literal notranslate"><span class="pre">'staggered'</span></code>.</p></li>
+<li><p><strong>fm_pin_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Default <code class="docutils literal notranslate"><span class="pre">pin_type</span></code> of <cite>afm_pinning</cite> and <cite>fm_pinning</cite>. Default
+<code class="docutils literal notranslate"><span class="pre">'staggered'</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1320,18 +1271,18 @@ and adds it to the Hamiltonian.</p>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
-<li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the Hamiltonian’s <code class="docutils literal notranslate"><span class="pre">afm_pin_type</span></code>.</p></li>
+<li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the builder’s <code class="docutils literal notranslate"><span class="pre">afm_pin_type</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – when the Hamiltonian has an invalid <cite>afm_pin_type</cite></p>
+<dd class="field-even"><p><strong>ValueError</strong> – when the pin type is invalid</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>available pinning functions:</p>
 <ul class="simple">
 <li><p>staggered: <span class="math notranslate nohighlight">\(h(i) = i_1+i_2\)</span></p></li>
-<li><p>fm: <span class="math notranslate nohighlight">\(h(i) = i_2\)</span></p></li>
+<li><p>same: <span class="math notranslate nohighlight">\(h(i)\)</span> is the coordinate along the other axis</p></li>
 </ul>
 <p>pinning is applied to an edge,
 with lattice coordinate 0 or L-1, on the given axis.</p>
@@ -1343,7 +1294,7 @@ with lattice coordinate 0 or L-1, on the given axis.</p>
 <dd><p>Adds charge pinning to the Hamiltonian</p>
 <p>builds a charge pinning term of the type:
 <span class="math notranslate nohighlight">\(\sum_{i \sigma} v_{i\sigma} \hat{n}_{i\sigma}\)</span>,
-where <span class="math notranslate nohighlight">\(v_{i \downarrow} = v_{i \uparrow} = h_charge_pin\)</span>
+where <span class="math notranslate nohighlight">\(v_{i \downarrow} = v_{i \uparrow} = 1/2 h_charge_pin\)</span>
 and h_charge_pin is the pinning field strength.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1375,9 +1326,10 @@ If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>The <cite>in_mat</cite> must have a valid shape for the Hamiltonian and spin symmetry. For
-COLLINEAR spin symmetry, the matrix must have shape (nbasis,nbasis) or
-(2*nbasis,nbasis), and for NONCOLLINEAR spin symmetry, the matrix must have shape
-(nbasis,nbasis), (2*nbasis,nbasis) or (2*nbasis,2*nbasis).</p>
+CLOSED spin symmetry that is (nbasis,nbasis); for COLLINEAR also the stacked
+up/down sectors (2*nbasis,nbasis); for NONCOLLINEAR also the full spinor
+matrix (2*nbasis,2*nbasis). A single (nbasis,nbasis) matrix is used for both
+spin sectors.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
@@ -1449,18 +1401,18 @@ and h_fm_pin is the pinning field strength.</p>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
-<li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the Hamiltonian’s <code class="docutils literal notranslate"><span class="pre">fm_pin_type</span></code>.</p></li>
+<li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the builder’s <code class="docutils literal notranslate"><span class="pre">fm_pin_type</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – when the Hamiltonian has an invalid <cite>fm_pin_type</cite></p>
+<dd class="field-even"><p><strong>ValueError</strong> – when the pin type is invalid</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>available functions:</p>
 <ul class="simple">
-<li><p>staggered: <span class="math notranslate nohighlight">\(h(i) = (-1)^{(i_1==0)}\)</span></p></li>
-<li><p>fm: <span class="math notranslate nohighlight">\(h(i) = +0.5\)</span></p></li>
+<li><p>staggered: <span class="math notranslate nohighlight">\(h(i) = (-1)^{(i_\text{axis}==0)}\)</span></p></li>
+<li><p>same: <span class="math notranslate nohighlight">\(h(i) = 1\)</span></p></li>
 </ul>
 <p>pinning is applied to an edge,
 with lattice coordinate 0 or L-1, on the given axis.</p>
@@ -1665,7 +1617,7 @@ assumed to be on-site.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping">
-<span class="sig-name descname"><span class="pre">nth_neighbor_hopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opposite_twists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_herm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">nth_neighbor_hopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nth_neighbor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opposite_twists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.nth_neighbor_hopping" title="Link to this definition">#</a></dt>
 <dd><p>adds an nth-order neighbor hopping term to the Hamiltonian</p>
 <div class="math notranslate nohighlight">
 \[\sum_{\langle ij\rangle^n} (-t) \hat{c}^\dagger_i \hat{c}_j\]</div>
@@ -1685,12 +1637,11 @@ If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 <li><p><strong>opposite_twists</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – if True, the hopping matrix is constructed using opposite twists, for the up and down
 spins (i.e. twist_down = -twist_up ). If False, the hopping matrix is constructed
 using the same twist for both spins.</p></li>
-<li><p><strong>force_herm</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – symmetrize a non-Hermitian band-hopping matrix rather than raising. See
-<cite>force_hermitian</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – when the hopping matrix can’t be constructed for the combination of <cite>t</cite> and <cite>nth_neighbor</cite></p>
+<dd class="field-even"><p><strong>ValueError</strong> – when the hopping matrix can’t be constructed for the combination of <cite>t</cite> and <cite>nth_neighbor</cite>,
+or when a band-dependent <cite>t</cite> is not Hermitian</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1716,7 +1667,7 @@ using the same twist for both spins.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite">
-<span class="sig-name descname"><span class="pre">onebody_onsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_herm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">onebody_onsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.onebody_onsite" title="Link to this definition">#</a></dt>
 <dd><dl class="simple">
 <dt>Adds an onsite one-body term to the Hamiltonian (for example, a chemical potential,</dt><dd><p>band energies, interband hopping, etc.)</p>
 </dd>
@@ -1732,8 +1683,10 @@ for site i and band m.</p>
 If epsilon is a numpy.ndarray, it must have shape (nbands,nbands) and is interpreted as a band-dependent
 onsite energy. In all cases, epsilon is applied uniformly to all sites.</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry of the term.</p></li>
-<li><p><strong>force_herm</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – symmetrize a non-Hermitian <cite>epsilon</cite> rather than raising. See <cite>force_hermitian</cite>.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – when a band-dependent <cite>epsilon</cite> is not Hermitian</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1787,31 +1740,6 @@ is the relative position between sites i and j.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.force_hermitian">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.builder.</span></span><span class="sig-name descname"><span class="pre">force_hermitian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper_triangular'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.force_hermitian" title="Link to this definition">#</a></dt>
-<dd><p>Force a matrix to be Hermitian.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy.ndarray</em><em> or </em><em>scipy.sparse matrix</em>) – Matrix to symmetrize.</p></li>
-<li><p><strong>method</strong> (<em>{'upper_triangular'</em><em>, </em><em>'triu'</em><em>, </em><em>'average'</em><em>, </em><em>'avg'}</em><em>, </em><em>optional</em>) – How to symmetrize. Default <code class="docutils literal notranslate"><span class="pre">'upper_triangular'</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A Hermitian matrix.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy.ndarray or scipy.sparse matrix</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p><code class="docutils literal notranslate"><span class="pre">'upper_triangular'</span></code> (<code class="docutils literal notranslate"><span class="pre">'triu'</span></code>) discards the lower triangle and mirrors
-the upper one, keeping the diagonal:
-<span class="math notranslate nohighlight">\(M \rightarrow \mathrm{triu}(M, 0) + \mathrm{triu}(M, 1)^\dagger\)</span>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">'average'</span></code> (<code class="docutils literal notranslate"><span class="pre">'avg'</span></code>) takes <span class="math notranslate nohighlight">\(\frac{1}{2}(M + M^\dagger)\)</span>.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.intersite_band_matrix">
 <span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.builder.</span></span><span class="sig-name descname"><span class="pre">intersite_band_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.intersite_band_matrix" title="Link to this definition">#</a></dt>
 <dd><p>Build the <code class="docutils literal notranslate"><span class="pre">(nbands,</span> <span class="pre">nbands)</span></code> band matrix carrying a single <em>inter-site</em>
@@ -1854,16 +1782,10 @@ entirely.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.builder.is_hermitian">
 <span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.builder.</span></span><span class="sig-name descname"><span class="pre">is_hermitian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.builder.is_hermitian" title="Link to this definition">#</a></dt>
-<dd><p>True if the dense or sparse matrix <cite>M</cite> equals its conjugate transpose.</p>
+<dd><p>True if the dense or sparse <cite>M</cite> equals its conjugate transpose (to <cite>tol</cite>, dense only).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>numpy.ndarray</em><em> or </em><em>scipy.sparse matrix</em>) – Matrix to check.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Absolute tolerance, dense inputs only. Default 1e-10.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1911,8 +1833,6 @@ interaction amplitude: strictly upper-triangular, <code class="docutils literal 
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p><strong>This convention is not `force_hermitian`, and the two must not be
-merged.</strong></p>
 <p>The AFQMC executable has no notion of sites versus bands: it reads a
 <em>triangle of the whole interaction matrix</em>, indexed by the combined
 <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">=</span> <span class="pre">site</span> <span class="pre">*</span> <span class="pre">nbands</span> <span class="pre">+</span> <span class="pre">band</span></code>. Per <code class="docutils literal notranslate"><span class="pre">ModelHamOpsGenerator</span></code>, the
@@ -1947,16 +1867,9 @@ sparse terms, plus the sparse on-disk format the AFQMC executable’s
 <cite>HamiltonianBuilder</cite>; it never reaches back into the <cite>Lattice</cite> it was built on.
 It does record the lattice’s shape as metadata, so a file can say what lattice
 it came from (see <cite>LatticeHamiltonian.lattice_params</cite>).</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice_hamiltonian.HDF5_PREFIX">
-<span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">HDF5_PREFIX</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Hamiltonian/ModelHamiltonian'</span></span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HDF5_PREFIX" title="Link to this definition">#</a></dt>
-<dd><p>Group the model Hamiltonian is written under. The AFQMC executable’s
-<code class="docutils literal notranslate"><span class="pre">ModelHamOpsGenerator</span></code> reads this path, so it is not configurable.</p>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">HamiltonianComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csr_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.CLOSED</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">HamiltonianComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csr_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.CLOSED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hst_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>One sparse term of a lattice-model Hamiltonian, with the metadata the AFQMC
 executable needs to interpret it.</p>
@@ -1967,8 +1880,8 @@ executable needs to interpret it.</p>
 <li><p><strong>model_type</strong> (<em>str</em>) – Term type as the AFQMC executable names it, e.g. <code class="docutils literal notranslate"><span class="pre">'one_body'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'hubbard_u'</span></code>, <code class="docutils literal notranslate"><span class="pre">'hubbard_j'</span></code>, <code class="docutils literal notranslate"><span class="pre">'heisenberg_j'</span></code>.</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry this term is expressed in. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
-<li><p><strong>**kwargs</strong> – Extra per-component metadata written alongside the matrix, most
-importantly <code class="docutils literal notranslate"><span class="pre">hst_type</span></code> (the Hubbard-Stratonovich transformation).</p></li>
+<li><p><strong>hst_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Hubbard-Stratonovich transformation of an interaction term, written
+alongside the matrix.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1994,7 +1907,7 @@ for the whole Hamiltonian from this.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">LatticeHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nsites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.CLOSED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">safiretools.hamiltonian.model.lattice_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">LatticeHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nsites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_symm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SpinSymm.CLOSED</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#safiretools.hamiltonian.base.Hamiltonian" title="safiretools.hamiltonian.base.Hamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a></p>
 <p>A lattice-model Hamiltonian: a dictionary of sparse terms keyed by the names
 the AFQMC executable uses.</p>
@@ -2016,8 +1929,6 @@ be combined.</p>
 <li><p><strong>nsites</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of lattice sites.</p></li>
 <li><p><strong>nbands</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of bands per site. Default 1.</p></li>
 <li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry of the Hamiltonian. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
-<li><p><strong>nelec</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">(nup,</span> <span class="pre">ndown)</span></code>, written into the file’s <code class="docutils literal notranslate"><span class="pre">dims</span></code>. Default <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>.</p></li>
-<li><p><strong>twist</strong> (<em>optional</em>) – Twist passed through to the lattice when building hopping terms.</p></li>
 <li><p><strong>lattice_metadata</strong> (<em>dict</em><em>, </em><em>optional</em>) – Shape of the lattice this Hamiltonian was built on — see
 <cite>lattice_metadata_from</cite>. Recorded on disk; not used for any computation.</p></li>
 </ul>
@@ -2060,7 +1971,7 @@ TOML file holding the same.</p></li>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
 <span class="gp">... </span>    <span class="s1">'lattice'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">L1</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">L2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">boundary1</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">,</span> <span class="n">boundary2</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">),</span>
 <span class="gp">... </span><span class="p">})</span>
 </pre></div>
 </div>
@@ -2166,9 +2077,9 @@ wavefunction can share one file in either order.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Set <cite>nelec</cite> and <cite>spin_symm</cite> on the instance before calling; both are
-recorded in the file. For <cite>SpinSymm.NONCOLLINEAR</cite> the two spin sectors
-are merged, so <code class="docutils literal notranslate"><span class="pre">dims</span></code> records <code class="docutils literal notranslate"><span class="pre">(sum(nelec),</span> <span class="pre">0)</span></code>.</p>
+<p>Set <cite>spin_symm</cite> on the instance before calling; it is recorded in the
+file. No electron count is recorded: the AFQMC executable takes it
+from the wavefunction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2455,13 +2366,19 @@ of boundary to use in the direction perpendicular to
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-class">Lattice Class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Boundary"><code class="docutils literal notranslate"><span class="pre">Boundary</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Boundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">Boundary.is_allowed()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Boundary.is_image"><code class="docutils literal notranslate"><span class="pre">Boundary.is_image()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Boundary.is_valid"><code class="docutils literal notranslate"><span class="pre">Boundary.is_valid()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Boundary.is_valid_image"><code class="docutils literal notranslate"><span class="pre">Boundary.is_valid_image()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.CustomLattice"><code class="docutils literal notranslate"><span class="pre">CustomLattice</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.DIRECTION_STEPS"><code class="docutils literal notranslate"><span class="pre">DIRECTION_STEPS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.DirectedPairs"><code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.DirectedPairs.offsets"><code class="docutils literal notranslate"><span class="pre">DirectedPairs.offsets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">DirectedPairs.offsets</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.DirectedPairs.to_hdf5"><code class="docutils literal notranslate"><span class="pre">DirectedPairs.to_hdf5()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.HoneycombLattice"><code class="docutils literal notranslate"><span class="pre">HoneycombLattice</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.KagomeLattice"><code class="docutils literal notranslate"><span class="pre">KagomeLattice</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice"><code class="docutils literal notranslate"><span class="pre">Lattice</span></code></a><ul class="nav section-nav flex-column">
@@ -2479,10 +2396,8 @@ of boundary to use in the direction perpendicular to
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.get_positions"><code class="docutils literal notranslate"><span class="pre">Lattice.get_positions()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.get_sites"><code class="docutils literal notranslate"><span class="pre">Lattice.get_sites()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.is_image"><code class="docutils literal notranslate"><span class="pre">Lattice.is_image()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.metric"><code class="docutils literal notranslate"><span class="pre">Lattice.metric()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.nb"><code class="docutils literal notranslate"><span class="pre">Lattice.nb</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.num_sublattice"><code class="docutils literal notranslate"><span class="pre">Lattice.num_sublattice</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.Lattice.remove_distances"><code class="docutils literal notranslate"><span class="pre">Lattice.remove_distances()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.LatticeSite"><code class="docutils literal notranslate"><span class="pre">LatticeSite</span></code></a><ul class="nav section-nav flex-column">
@@ -2499,12 +2414,10 @@ of boundary to use in the direction perpendicular to
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.OpenBoundary"><code class="docutils literal notranslate"><span class="pre">OpenBoundary</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.OpenBoundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">OpenBoundary.is_allowed()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.OpenBoundary.is_valid"><code class="docutils literal notranslate"><span class="pre">OpenBoundary.is_valid()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.PBCBoundary"><code class="docutils literal notranslate"><span class="pre">PBCBoundary</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.PBCBoundary.is_allowed"><code class="docutils literal notranslate"><span class="pre">PBCBoundary.is_allowed()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.PBCBoundary.is_valid"><code class="docutils literal notranslate"><span class="pre">PBCBoundary.is_valid()</span></code></a></li>
 </ul>
 </li>
@@ -2514,26 +2427,21 @@ of boundary to use in the direction perpendicular to
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.TriangularLattice"><code class="docutils literal notranslate"><span class="pre">TriangularLattice</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.UNITCELL_KEYS"><code class="docutils literal notranslate"><span class="pre">UNITCELL_KEYS</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.euclid_nd"><code class="docutils literal notranslate"><span class="pre">euclid_nd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.get_directed_pairs"><code class="docutils literal notranslate"><span class="pre">get_directed_pairs()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice.valid_L"><code class="docutils literal notranslate"><span class="pre">valid_L()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-builder">Hamiltonian Builder</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.HAMILTONIAN_GROUP"><code class="docutils literal notranslate"><span class="pre">HAMILTONIAN_GROUP</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.from_hdf5"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.from_hdf5()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.spin_symm"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.spin_symm</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.to_hdf5"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.to_hdf5()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.TYPE_DATASET"><code class="docutils literal notranslate"><span class="pre">TYPE_DATASET</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.clear_hamiltonian"><code class="docutils literal notranslate"><span class="pre">clear_hamiltonian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.hamiltonian_format"><code class="docutils literal notranslate"><span class="pre">hamiltonian_format()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.open_for_hamiltonian"><code class="docutils literal notranslate"><span class="pre">open_for_hamiltonian()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.write_hamiltonian_format"><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_format()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.read_hamiltonian_header"><code class="docutils literal notranslate"><span class="pre">read_hamiltonian_header()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.write_hamiltonian_header"><code class="docutils literal notranslate"><span class="pre">write_hamiltonian_header()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.HST_TYPES"><code class="docutils literal notranslate"><span class="pre">HST_TYPES</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.afm_pinning"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.afm_pinning()</span></code></a></li>
@@ -2557,13 +2465,11 @@ of boundary to use in the direction perpendicular to
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.HamiltonianBuilder.rashba_soc"><code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.rashba_soc()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.force_hermitian"><code class="docutils literal notranslate"><span class="pre">force_hermitian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.intersite_band_matrix"><code class="docutils literal notranslate"><span class="pre">intersite_band_matrix()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.is_hermitian"><code class="docutils literal notranslate"><span class="pre">is_hermitian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.iterate_nth_order"><code class="docutils literal notranslate"><span class="pre">iterate_nth_order()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.onsite_band_matrix"><code class="docutils literal notranslate"><span class="pre">onsite_band_matrix()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.builder.skip_empty_params"><code class="docutils literal notranslate"><span class="pre">skip_empty_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HDF5_PREFIX"><code class="docutils literal notranslate"><span class="pre">HDF5_PREFIX</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent.is_complex"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent.is_complex</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.HamiltonianComponent.shape"><code class="docutils literal notranslate"><span class="pre">HamiltonianComponent.shape</span></code></a></li>

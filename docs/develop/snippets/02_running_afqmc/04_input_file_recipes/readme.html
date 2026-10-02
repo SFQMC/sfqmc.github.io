@@ -510,14 +510,13 @@
   <section id="input-file-recipes">
 <span id="run-afqmc-ex-4"></span><h1><span class="section-number">4. </span>Input File Recipes<a class="headerlink" href="#input-file-recipes" title="Link to this heading">#</a></h1>
 <p>This example shows a few recipes for input files to run SAFIRE.</p>
-<section id="nested-structure-with-default-hamiltonian-location">
-<h2><span class="section-number">4.1. </span>Nested structure with default hamiltonian location<a class="headerlink" href="#nested-structure-with-default-hamiltonian-location" title="Link to this heading">#</a></h2>
+<section id="nested-structure-with-a-single-hdf5-file">
+<h2><span class="section-number">4.1. </span>Nested structure with a single HDF5 file<a class="headerlink" href="#nested-structure-with-a-single-hdf5-file" title="Link to this heading">#</a></h2>
 <p>In this input file, we use a “nested” structure in which we
-define the “walker_set” and the “wavefunction” within the “execute”
+define the “walker_set”, the “wavefunction” and the “hamiltonian” within the “execute”
 block.
 This is the simplest input file layout if you don’t need to reuse the “walker_set” in a second “execute” block.
-Additionally, we allow the “hamiltonian” to default to the “filename” found in the “wavefunction” block by not
-defining an explicit “hamiltonian” block.
+The Hamiltonian and the trial wavefunction are stored in the same HDF5 file, which both blocks name.
 If you will only be trying one trial wavefunction, this can be simpler than saving the Hamiltonian and trial
 wavefunctions in separate HDF5 files.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -533,6 +532,9 @@ wavefunctions in separate HDF5 files.</p>
 <span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input.h5"</span>
 <span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input.h5"</span>
+<span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
@@ -546,31 +548,38 @@ wavefunctions in separate HDF5 files.</p>
 <section id="flat-structure-with-multiple-execute-blocks">
 <h2><span class="section-number">4.2. </span>Flat structure with multiple “execute” blocks<a class="headerlink" href="#flat-structure-with-multiple-execute-blocks" title="Link to this heading">#</a></h2>
 <p>In the input file below we use a “flat” input structure in the
-sense that the “walker_set” and “wavefunction” blocks are defined
-outside of the “execute” blocks and are referenced by name within the “execute” blocks.
+sense that the “walker_set”, “wavefunction” and “hamiltonian” blocks are defined
+outside of the “execute” blocks, in the “walker_sets”, “wavefunctions” and “hamiltonians” lists,
+and are referenced by name within the “execute” blocks.
 This input file contains two execute blocks.
 The first is used to quickly equilibrate using a fairly large step size.
 The second resumes that calculation using an equilibrated population, and a smaller Trotter step size in order to perform measurements.</p>
-<p>In this case, it is strictly necessary to define at least the “walker_set” outside of each “execute” block since it is shared between both.
-While not functionally necessary, defining the “wavefunction”and “hamiltonian” blocks outside of the “execute” blocks prevents the trial wavefunction and Hamiltonian from being constructed more than once.</p>
+<p>The second “execute” block would continue with the walkers of the first one even without naming the “walker_set”, since an “execute” block that names none carries over the one of the block before it; naming it makes the sharing explicit.
+While not functionally necessary, defining the “wavefunction” and “hamiltonian” blocks outside of the “execute” blocks prevents the trial wavefunction and Hamiltonian from being constructed more than once.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"walker_set"</span><span class="p">:{</span>
+<span class="w">    </span><span class="nt">"walker_sets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"walkers"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"wavefunction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"wavefunctions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_wavefunction"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files/input.h5"</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"hamiltonians"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_hamiltonian"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files/input.h5"</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="s2">"walkers"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_wavefunction"</span><span class="p">,</span>
@@ -578,7 +587,7 @@ While not functionally necessary, defining the “wavefunction”and “hamilton
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
@@ -590,7 +599,7 @@ While not functionally necessary, defining the “wavefunction”and “hamilton
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span>
@@ -622,14 +631,16 @@ We use ellipses ( <cite>…</cite>)  in some of the advanced input blocks within
 <span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walkers"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"load_balance_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"pop_control_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pair"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"min_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"max_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"walker_sets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walkers"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"load_balance_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"pop_control_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pair"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"min_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"max_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"walker_set"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walkers"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -642,7 +653,7 @@ We use ellipses ( <cite>…</cite>)  in some of the advanced input blocks within
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"checkpoint_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"hdf_write_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
@@ -665,7 +676,7 @@ We use ellipses ( <cite>…</cite>)  in some of the advanced input blocks within
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>For pedagogical reasons, we have defined a “walker_set” block outside of the “execute” block and have named it “my_walkers”.
+<p>For pedagogical reasons, we have defined a “walker_set” block outside of the “execute” block, in the “walker_sets” list, and have named it “my_walkers”.
 Notice that within “execute” we are able to reference this “walker_set” by its name using “walker_set” : “my_walkers”
 instead of supplying a json input block.</p>
 </section>
@@ -718,7 +729,7 @@ instead of supplying a json input block.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-structure-with-default-hamiltonian-location">4.1. Nested structure with default hamiltonian location</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-structure-with-a-single-hdf5-file">4.1. Nested structure with a single HDF5 file</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flat-structure-with-multiple-execute-blocks">4.2. Flat structure with multiple “execute” blocks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-file-with-most-parameters-exposed">4.3. Input file with most parameters exposed</a></li>
 </ul>

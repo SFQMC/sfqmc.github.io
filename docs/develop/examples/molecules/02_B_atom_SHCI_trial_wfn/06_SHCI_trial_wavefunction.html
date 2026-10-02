@@ -633,7 +633,7 @@ for this case.</p>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
@@ -695,11 +695,7 @@ AFQMC<span class="w"> </span>Energy<span class="w">   </span>-24.602724<span cla
     <span class="n">spin</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Nup - Ndown</span>
 <span class="p">)</span>
 
-<span class="n">atom_chkfile</span> <span class="o">=</span> <span class="s2">"B.chk"</span>
-
-
 <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-<span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="c1"># perform stability analysis - see PySCF example:</span>
@@ -711,9 +707,9 @@ AFQMC<span class="w"> </span>Energy<span class="w">   </span>-24.602724<span cla
 <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
 
 <span class="c1">### Step 2. use safiretools to generate and save the Hamiltonian</span>
-<span class="c1"># directly from the PySCF checkpoint file.</span>
+<span class="c1"># directly from the PySCF SCF object.</span>
 <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-    <span class="n">atom_chkfile</span><span class="p">,</span>
+    <span class="n">mf</span><span class="p">,</span>
     <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>

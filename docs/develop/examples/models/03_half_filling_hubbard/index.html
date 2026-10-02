@@ -622,7 +622,6 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
           <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span> <span class="c1"># we have no spin-flip terms</span>
-          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -637,7 +636,6 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">builderHF</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
           <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
           <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">,</span> <span class="c1"># we have no spin-flip terms</span>
-          <span class="n">nelec</span><span class="o">=</span><span class="n">nelec</span>
               <span class="p">)</span>
 <span class="c1"># add standard Hubbard terms</span>
 <span class="n">builderHF</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
@@ -882,7 +880,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
         <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>    
+        <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"energy"</span><span class="p">,</span>
             <span class="s2">"overwrite"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>

@@ -154,7 +154,7 @@ for this case.
       "timestep": 0.01,
       "steps": 10000,
       "n_walkers_per_mpi_task": 20,
-      "measure_interval_multiplier": 1,
+      "measure_interval": 10,
       "population_control_interval": 10,
       "walker_ortho_interval": 10,
       "seed": 42
@@ -225,11 +225,7 @@ mol = gto.M(
     spin = 1  # Nup - Ndown
 )
 
-atom_chkfile = "B.chk"
-
-
 mf = scf.ROHF(mol).newton()
-mf.chkfile = atom_chkfile
 mf.kernel()
 
 # perform stability analysis - see PySCF example:
@@ -241,9 +237,9 @@ mf.stability()
 mf.kernel()
 
 ### Step 2. use safiretools to generate and save the Hamiltonian
-# directly from the PySCF checkpoint file.
+# directly from the PySCF SCF object.
 MolecularHamiltonian.from_pyscf(
-    atom_chkfile,
+    mf,
     chol_cut = 1e-6,
     verbose=True
 ).to_hdf5("afqmc.h5")

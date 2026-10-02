@@ -7,15 +7,14 @@ This example shows a few recipes for input files to run SAFIRE.
 
 
 
-Nested structure with default hamiltonian location
---------------------------------------------------
+Nested structure with a single HDF5 file
+----------------------------------------
 
 In this input file, we use a "nested" structure in which we
-define the "walker_set" and the "wavefunction" within the "execute"
-block. 
+define the "walker_set", the "wavefunction" and the "hamiltonian" within the "execute"
+block.
 This is the simplest input file layout if you don't need to reuse the "walker_set" in a second "execute" block.
-Additionally, we allow the "hamiltonian" to default to the "filename" found in the "wavefunction" block by not 
-defining an explicit "hamiltonian" block.
+The Hamiltonian and the trial wavefunction are stored in the same HDF5 file, which both blocks name.
 If you will only be trying one trial wavefunction, this can be simpler than saving the Hamiltonian and trial
 wavefunctions in separate HDF5 files.
 
@@ -34,6 +33,9 @@ wavefunctions in separate HDF5 files.
           "wavefunction": {
             "filename": "input.h5"
           },
+          "hamiltonian": {
+            "filename": "input.h5"
+          },
           "timestep": 0.01,
           "steps": 10000,
           "n_walkers_per_mpi_task": 200,
@@ -46,14 +48,15 @@ Flat structure with multiple "execute" blocks
 ---------------------------------------------
 
 In the input file below we use a "flat" input structure in the
-sense that the "walker_set" and "wavefunction" blocks are defined
-outside of the "execute" blocks and are referenced by name within the "execute" blocks.
+sense that the "walker_set", "wavefunction" and "hamiltonian" blocks are defined
+outside of the "execute" blocks, in the "walker_sets", "wavefunctions" and "hamiltonians" lists,
+and are referenced by name within the "execute" blocks.
 This input file contains two execute blocks.
 The first is used to quickly equilibrate using a fairly large step size.
 The second resumes that calculation using an equilibrated population, and a smaller Trotter step size in order to perform measurements.
 
-In this case, it is strictly necessary to define at least the "walker_set" outside of each "execute" block since it is shared between both.
-While not functionally necessary, defining the "wavefunction"and "hamiltonian" blocks outside of the "execute" blocks prevents the trial wavefunction and Hamiltonian from being constructed more than once.
+The second "execute" block would continue with the walkers of the first one even without naming the "walker_set", since an "execute" block that names none carries over the one of the block before it; naming it makes the sharing explicit.
+While not functionally necessary, defining the "wavefunction" and "hamiltonian" blocks outside of the "execute" blocks prevents the trial wavefunction and Hamiltonian from being constructed more than once.
 
 .. code-block:: json
 
@@ -63,18 +66,24 @@ While not functionally necessary, defining the "wavefunction"and "hamiltonian" b
           "id": "qmc",
           "series": 0
         },
-        "walker_set":{
+        "walker_sets": [
+          {
             "name" : "walkers",
             "walker_type": "CLOSED"
-        },
-        "wavefunction" : {
+          }
+        ],
+        "wavefunctions" : [
+          {
             "name" : "my_wavefunction",
             "filename": "files/input.h5"
-        },
-        "hamiltonian" : {
+          }
+        ],
+        "hamiltonians" : [
+          {
             "name" : "my_hamiltonian",
             "filename": "files/input.h5"
-        },
+          }
+        ],
         "execute": {
           "walker_set": "walkers",
           "wavefunction": "my_wavefunction",
@@ -82,7 +91,7 @@ While not functionally necessary, defining the "wavefunction"and "hamiltonian" b
           "timestep": 0.05,
           "steps": 20,
           "n_walkers_per_mpi_task": 200,
-          "measure_interval_multiplier": 1,
+          "measure_interval": 1,
           "population_control_interval": 1,
           "walker_ortho_interval": 1,
           "seed": 42
@@ -94,7 +103,7 @@ While not functionally necessary, defining the "wavefunction"and "hamiltonian" b
           "timestep": 0.01,
           "steps": 10000,
           "n_walkers_per_mpi_task": 200,
-          "measure_interval_multiplier": 1,
+          "measure_interval": 10,
           "population_control_interval": 10,
           "walker_ortho_interval": 10,
           "seed": 43
@@ -131,14 +140,16 @@ We use ellipses ( `...`)  in some of the advanced input blocks within some input
         "id": "qmc",
         "series": 0
       },
-      "walker_set": {
-        "name" : "my_walkers",
-        "walker_type": "CLOSED",
-        "load_balance_type": "async",
-        "pop_control_type": "pair",
-        "min_weight": "0.05",
-        "max_weight": "4"
-      },
+      "walker_sets": [
+        {
+          "name" : "my_walkers",
+          "walker_type": "CLOSED",
+          "load_balance_type": "async",
+          "pop_control_type": "pair",
+          "min_weight": "0.05",
+          "max_weight": "4"
+        }
+      ],
       "execute": {
         "walker_set" : "my_walkers",
         "wavefunction": {
@@ -151,7 +162,7 @@ We use ellipses ( `...`)  in some of the advanced input blocks within some input
         "timestep": "0.01",
         "steps": "1",
         "population_control_interval": "10",
-        "measure_interval_multiplier": "2",
+        "measure_interval": "20",
         "walker_ortho_interval": "10",
         "checkpoint_interval": "-1",
         "hdf_write_file": "",
@@ -174,7 +185,7 @@ We use ellipses ( `...`)  in some of the advanced input blocks within some input
   }
 
 
-For pedagogical reasons, we have defined a "walker_set" block outside of the "execute" block and have named it "my_walkers".
+For pedagogical reasons, we have defined a "walker_set" block outside of the "execute" block, in the "walker_sets" list, and have named it "my_walkers".
 Notice that within "execute" we are able to reference this "walker_set" by its name using "walker_set" : "my_walkers"
 instead of supplying a json input block.
 

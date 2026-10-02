@@ -569,7 +569,6 @@ which, among other things, provides tools to analyze the locality of a set of or
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">lo</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
@@ -590,7 +589,6 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="n">local_scratch</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">local_scratch</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">atom_chkfile</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"rhf_h=</span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5.5f</span><span class="si">}</span><span class="s2">.chk"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_atomic_positions</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
@@ -628,7 +626,6 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="c1"># run HF</span>
     <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">newton</span><span class="p">()</span>
-    <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
     <span class="c1"># it turns out to be helpful to initialize each HF calculation from the final solution of the</span>
     <span class="c1"># previous geometry</span>
     <span class="n">dm0</span> <span class="o">=</span> <span class="n">rhf_guess_rdm</span> <span class="k">if</span> <span class="n">rhf_guess_rdm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
@@ -698,18 +695,11 @@ which, among other things, provides tools to analyze the locality of a set of or
 
     <span class="n">afqmc_hamil_file</span> <span class="o">=</span> <span class="n">local_scratch</span> <span class="o">/</span> <span class="s2">"local_embedding_H.h5"</span>
 
-    <span class="c1"># loaded explicitly so the orbitals can be replaced below; with no such</span>
-    <span class="c1">#   edit, from_pyscf() takes the checkpoint path directly</span>
-    <span class="n">scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
-        <span class="n">chkfile</span> <span class="o">=</span> <span class="n">atom_chkfile</span>
-    <span class="p">)</span>
-
-    <span class="c1"># edit the orbitals!</span>
-    <span class="n">scf_data</span><span class="p">[</span><span class="s2">"mo_coeff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_basis</span>
-
+    <span class="c1"># the localized orbitals are the basis, rather than the RHF ones</span>
     <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-        <span class="n">scf_data</span><span class="p">,</span>
-        <span class="n">cas</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">N_active_occ</span><span class="p">),</span><span class="n">ncas</span><span class="p">),</span>
+        <span class="n">mf</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="n">local_basis</span><span class="p">,</span>
+        <span class="n">active_space</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">N_active_occ</span><span class="p">),</span><span class="n">ncas</span><span class="p">),</span>
         <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">afqmc_hamil_file</span><span class="p">)</span>
@@ -735,7 +725,7 @@ which, among other things, provides tools to analyze the locality of a set of or
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
         <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
         <span class="s2">"seed"</span> <span class="p">:</span> <span class="mi">42</span><span class="p">,</span>

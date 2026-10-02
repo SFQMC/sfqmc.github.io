@@ -475,8 +475,8 @@ Currently, “afqmc” is the only supported option.</p>
 <p><em>Input file structure overview</em></p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The wavefunction, hamiltonian, and walker_set blocks may be defined either within an execute block or outside of an execute block.
-If defined outside of an execute block, they must be given a name via the “name” parameter.
+<p>The wavefunction, hamiltonian, walker_set, and propagator blocks may be defined either within an execute block or outside of an execute block.
+Outside of an execute block, they are listed under “wavefunctions”, “hamiltonians”, “walker_sets”, and “propagators”, and must be given a name via the “name” parameter.
 They can then be referenced by name within an execute block.</p>
 </div>
 <p>Below is a sample input file for an AFQMC calculation in SAFIRE.
@@ -527,17 +527,19 @@ which are used in AFQMC such as the Hamiltonian and the trial wavefunction.</p>
 <p><em>Execute block structure overview</em></p>
 <section id="externally-defined-blocks">
 <h3>Externally defined blocks<a class="headerlink" href="#externally-defined-blocks" title="Link to this heading">#</a></h3>
-<p>The wavefunction, hamiltonian, and walker_set blocks may be defined either within an execute block or outside of an execute block.
-If defined outside of an execute block, they must be given a name via the “name” parameter.
+<p>The wavefunction, hamiltonian, walker_set, and propagator blocks may be defined either within an execute block or outside of an execute block.
+Outside of an execute block, they are listed under “wavefunctions”, “hamiltonians”, “walker_sets”, and “propagators”, and must be given a name via the “name” parameter.
 They can then be referenced by name within an execute block instead of defining a json block.
-For example, in the input file below, the walker_set is defined outside of the execute block and given the name “my_walkers”.</p>
+For example, in the input file below, the walker_set is defined in the “walker_sets” list outside of the execute block and given the name “my_walker_set”.</p>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Sample input file for AFQMC with Externally Defined Blocks</span><a class="headerlink" href="#id13" title="Link to this code">#</a></div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"walker_sets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walker_set"</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"walker_set"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walker_set"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -549,7 +551,7 @@ For example, in the input file below, the walker_set is defined outside of the e
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
@@ -601,9 +603,9 @@ Propagators carry no state worth keeping and are rebuilt for every execute block
 <td><p>10</p></td>
 <td><p>The number of projection steps between population control operations. Population control is relatively inexpensive, and it is typically okay to allow this interval to remain small.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>measure_interval_multiplier</strong></p></td>
-<td><p>1</p></td>
-<td><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+<tr class="row-odd"><td><p><strong>measure_interval</strong></p></td>
+<td><p>10</p></td>
+<td><p>The number of projection steps between measurements, for every estimator that does not set one of its own. Measurement is the most expensive operation in AFQMC, so a larger “measure_interval” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>binsize</strong></p></td>
 <td><p>1</p></td>
@@ -623,14 +625,6 @@ Propagators carry no state worth keeping and are rebuilt for every execute block
 </tr>
 </tbody>
 </table>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The measurement interval and equilibration lengths are specified indirectly using the <code class="docutils literal notranslate"><span class="pre">measure_interval_multiplier</span></code> and <code class="docutils literal notranslate"><span class="pre">equil_multiplier</span></code> parameters, respectively.
-They are computed using the <code class="docutils literal notranslate"><span class="pre">population_control_interval</span></code> according to the formula</p>
-<div class="math notranslate nohighlight">
-\[\text{measure\_interval} = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}\]</div>
-<p>and similarly for the equilibration time.</p>
 </div>
 </section>
 </section>
@@ -730,9 +724,16 @@ Below is a sample “walker_set” block with all settings explicitly set.</p>
 <td><p>4.0</p></td>
 <td><p>Maximum walker weight for population control</p></td>
 </tr>
+<tr class="row-even"><td><p><strong>from</strong></p></td>
+<td><p>the execute block’s wavefunction</p></td>
+<td><p>What the walkers are initialized from, as an object with a single key. <code class="docutils literal notranslate"><span class="pre">{&quot;wavefunction&quot;:</span> <span class="pre">...}</span></code> starts every walker from the determinant with the largest coefficient of a NOMSD wavefunction, or the reference of a PHMSD one; the wavefunction is given by name or as an inline block. Defaults to the wavefunction of the execute block that introduces the walker set. See <a class="reference internal" href="wavefunctions.html#initial-walkers"><span class="std std-ref">Initial walkers</span></a>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
+<p>Only the first execute block falls back to a default walker set. A later execute block that
+names no walker set continues with the one of the execute block before it, so consecutive
+stages share their walkers unless a stage asks for a walker set of its own.</p>
 </section>
 </section>
 <section id="hamiltonian-block">
@@ -762,9 +763,9 @@ The main purpose of the block is to tell the AFQMC code which file to find the H
 <td></td>
 <td><p>The name to assign to the current walker_set block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>filename</strong></p></td>
+<tr class="row-odd"><td><p><strong>filename</strong> (<strong>mandatory</strong>)</p></td>
 <td></td>
-<td><p>name of the HDF5 file containing the hamiltonian. If not specified, then the hamiltonian must exist within the same hdf5 file as the trial wavefun. See <a class="reference internal" href="#wavefunction-block"><span class="std std-ref">Wavefunction block</span></a>.</p></td>
+<td><p>name of the HDF5 file containing the hamiltonian. It may be the same file as the one of the trial wavefunction, but it is never taken from the wavefunction block implicitly. See <a class="reference internal" href="#wavefunction-block"><span class="std std-ref">Wavefunction block</span></a>.</p></td>
 </tr>
 </tbody>
 </table>

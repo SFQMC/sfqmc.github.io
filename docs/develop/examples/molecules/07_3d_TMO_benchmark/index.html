@@ -626,14 +626,13 @@ If you used all of the same settings as us, running the analysis script should g
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span><span class="p">,</span><span class="n">lib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">jax.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jnp</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools.convert.pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_pyscf_chk_mol</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolecularHamiltonian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
@@ -790,11 +789,9 @@ If you used all of the same settings as us, running the analysis script should g
 
     <span class="c1"># run HF to generate a starting point</span>
     <span class="c1"># run CASSCF to get an orbital basis AND a CAS wavefunction</span>
-    <span class="n">casscf_chkfile</span> <span class="o">=</span> <span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'rhf_chkfile.h5'</span>
 
     <span class="c1"># quick run</span>
     <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
-    <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span>
     <span class="n">rhf</span><span class="o">.</span><span class="n">max_cycle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">rhf</span><span class="o">.</span><span class="n">init_guess</span> <span class="o">=</span> <span class="n">guess_ao_uhf</span>
     <span class="n">E</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">kernel</span><span class="p">(</span><span class="n">guess_ao_uhf</span><span class="p">)</span>
@@ -810,26 +807,19 @@ If you used all of the same settings as us, running the analysis script should g
 
     <span class="c1"># run CASSCF to get a basis / trial wavefunction</span>
     <span class="n">mc</span> <span class="o">=</span> <span class="n">mcscf</span><span class="o">.</span><span class="n">CASSCF</span><span class="p">(</span><span class="n">rhf</span><span class="p">,</span> <span class="n">ncas</span><span class="p">,</span> <span class="n">nelec_cas</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">chkfile</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'mcscf/ci'</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">ci</span><span class="p">)</span>
-    
+
     <span class="c1"># write the CAS wavefunction to a file</span>
     <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_pyscf_cas</span><span class="p">(</span>
-        <span class="n">mol</span><span class="o">=</span><span class="n">mol</span><span class="p">,</span>
-        <span class="n">cas_chkfile</span><span class="o">=</span><span class="n">casscf_chkfile</span><span class="p">,</span>
+        <span class="n">mc</span><span class="p">,</span>
         <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="c1"># from the PRX</span>
         <span class="n">max_det</span><span class="o">=</span><span class="mi">2000</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
-    
-    <span class="c1"># the CASSCF orbital basis, so the checkpoint is loaded explicitly;</span>
-    <span class="c1">#   handed a path, from_pyscf() would read the "scf" group</span>
-    <span class="n">basis_scf_data</span> <span class="o">=</span> <span class="n">load_pyscf_chk_mol</span><span class="p">(</span>
-        <span class="n">chkfile</span> <span class="o">=</span> <span class="n">casscf_chkfile</span><span class="p">,</span>
-        <span class="n">base</span> <span class="o">=</span> <span class="s1">'mcscf'</span>
-    <span class="p">)</span>
 
-    <span class="c1"># write Hamiltonian</span>
+    <span class="c1"># write Hamiltonian in the CASSCF orbital basis, which the CAS</span>
+    <span class="c1">#   wavefunction's determinants are occupations of</span>
     <span class="n">MolecularHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span>
-        <span class="n">basis_scf_data</span><span class="p">,</span>
+        <span class="n">rhf</span><span class="p">,</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="n">mc</span><span class="p">,</span>
         <span class="n">chol_cut</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="c1"># from the PRX</span>
         <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">local_scratch_dir</span> <span class="o">/</span> <span class="s1">'afqmc.h5'</span><span class="p">)</span>
@@ -837,7 +827,7 @@ If you used all of the same settings as us, running the analysis script should g
     <span class="n">execute_options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
-        <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
         <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>

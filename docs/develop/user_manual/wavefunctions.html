@@ -489,6 +489,11 @@ and since, in some cases, fast Woodbury updates can be applied.</p>
 <p>AFQMC allows for two types of multi-determinant trial wavefunctions: non-orthogonal multi
 Slater determinants (NOMSD) or SHCI/CASSCF style particle-hole multi Slater determinants
 (PHMSD).</p>
+<p>Both carry a <code class="docutils literal notranslate"><span class="pre">format_version</span></code> integer attribute on <code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD</span></code> or
+<code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>, which SAFIRE checks against the version it reads; a file without one,
+or with another version, is rejected and has to be regenerated. The one exception is the legacy
+layout CoQuí writes, recognized by a <code class="docutils literal notranslate"><span class="pre">dims</span></code> array in place of <code class="docutils literal notranslate"><span class="pre">format_version</span></code> and
+<code class="docutils literal notranslate"><span class="pre">spin_type</span></code>, which is still read.</p>
 <section id="nomsd">
 <span id="nomsd-wavefunction"></span><h2>NOMSD<a class="headerlink" href="#nomsd" title="Link to this heading">#</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>h5dump -n wfn.h5
@@ -498,47 +503,47 @@ HDF5 "wfn.h5" {
         group      /
         group      /Wavefunction
         group      /Wavefunction/NOMSD
-        dataset    /Wavefunction/NOMSD/Psi0_alpha
-        dataset    /Wavefunction/NOMSD/Psi0_beta
         group      /Wavefunction/NOMSD/PsiT_0
-        dataset    /Wavefunction/NOMSD/PsiT_0/data_
-        dataset    /Wavefunction/NOMSD/PsiT_0/dims
-        dataset    /Wavefunction/NOMSD/PsiT_0/jdata_
-        dataset    /Wavefunction/NOMSD/PsiT_0/pointers_begin_
-        dataset    /Wavefunction/NOMSD/PsiT_0/pointers_end_
+        dataset    /Wavefunction/NOMSD/PsiT_0/column_indices
+        dataset    /Wavefunction/NOMSD/PsiT_0/row_pointers
+        dataset    /Wavefunction/NOMSD/PsiT_0/shape
+        dataset    /Wavefunction/NOMSD/PsiT_0/values
         group      /Wavefunction/NOMSD/PsiT_1
-        dataset    /Wavefunction/NOMSD/PsiT_1/data_
-        dataset    /Wavefunction/NOMSD/PsiT_1/dims
-        dataset    /Wavefunction/NOMSD/PsiT_1/jdata_
-        dataset    /Wavefunction/NOMSD/PsiT_1/pointers_begin_
-        dataset    /Wavefunction/NOMSD/PsiT_1/pointers_end_
+        dataset    /Wavefunction/NOMSD/PsiT_1/column_indices
+        dataset    /Wavefunction/NOMSD/PsiT_1/row_pointers
+        dataset    /Wavefunction/NOMSD/PsiT_1/shape
+        dataset    /Wavefunction/NOMSD/PsiT_1/values
         dataset    /Wavefunction/NOMSD/ci_coeffs
-        dataset    /Wavefunction/NOMSD/dims
     }
 }
 </pre></div>
 </div>
 <p>Note that the <span class="math notranslate nohighlight">\(\alpha\)</span> components of the trial wavefunction are stored under
 <code class="docutils literal notranslate"><span class="pre">PsiT_{2n}</span></code> and the <span class="math notranslate nohighlight">\(\beta\)</span> components are stored under <code class="docutils literal notranslate"><span class="pre">PsiT_{2n+1}</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}</span></code> The <span class="math notranslate nohighlight">\(n\)</span>-th <span class="math notranslate nohighlight">\(\alpha\)</span> Slater matrix as a CSR
+matrix. Note the <strong>conjugate transpose</strong> of the Slater matrix is stored, so it has
+<span class="math notranslate nohighlight">\(N_\alpha\)</span> rows and <span class="math notranslate nohighlight">\(N_p M\)</span> columns (<span class="math notranslate nohighlight">\(N_p = 2\)</span> for noncollinear
+wavefunctions, 1 otherwise). Its datasets are</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/Psi0_alpha</span></code> <span class="math notranslate nohighlight">\([M,N_\alpha]\)</span> dimensional array <span class="math notranslate nohighlight">\(\alpha\)</span>
-component of initial walker wavefunction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/Psi0_beta</span></code> <span class="math notranslate nohighlight">\([M,N_\beta]\)</span> dimensional array for <span class="math notranslate nohighlight">\(\beta\)</span>
-initial walker wavefunction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}/data_</span></code> Array of length <span class="math notranslate nohighlight">\(nnz\)</span> containing non-zero
-elements of <span class="math notranslate nohighlight">\(n\)</span>-th <span class="math notranslate nohighlight">\(\alpha\)</span> component of trial wavefunction walker
-wavefunction. Note the <strong>conjugate transpose</strong> of the Slater matrix is stored.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}/dims</span></code> Array of length 3 containing
-<span class="math notranslate nohighlight">\([M,N_{\alpha},nnz]\)</span> where <span class="math notranslate nohighlight">\(nnz\)</span> is the number of non-zero elements of this
-Slater matrix</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}/jdata_</span></code> CSR indices array.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}/pointers_begin_</span></code> CSR format begin index pointer array.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}/pointers_end_</span></code> CSR format end index pointer array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code>: <span class="math notranslate nohighlight">\([N_\alpha, N_p M]\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">values</span></code>: the <span class="math notranslate nohighlight">\(nnz\)</span> non-zero elements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column_indices</span></code>: the column index of each non-zero element.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">row_pointers</span></code>: <span class="math notranslate nohighlight">\(N_\alpha + 1\)</span> offsets; row <span class="math notranslate nohighlight">\(i\)</span> holds entries
+<code class="docutils literal notranslate"><span class="pre">row_pointers[i]</span></code> up to (not including) <code class="docutils literal notranslate"><span class="pre">row_pointers[i+1]</span></code> of <code class="docutils literal notranslate"><span class="pre">values</span></code> and
+<code class="docutils literal notranslate"><span class="pre">column_indices</span></code>.</p></li>
+</ul>
+<p>The legacy layout CoQuí writes (<code class="docutils literal notranslate"><span class="pre">dims</span></code>, <code class="docutils literal notranslate"><span class="pre">data_</span></code>, <code class="docutils literal notranslate"><span class="pre">jdata_</span></code>, <code class="docutils literal notranslate"><span class="pre">pointers_begin_</span></code>,
+<code class="docutils literal notranslate"><span class="pre">pointers_end_</span></code>) is read as well.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/ci_coeffs</span></code> <span class="math notranslate nohighlight">\(N_D\)</span> length array of ci coefficients. Stored
 as complex numbers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/dims</span></code> Integer array of length 5 containing
-<span class="math notranslate nohighlight">\([M,N_\alpha,N_\beta,\)</span> walker_type <span class="math notranslate nohighlight">\(,N_D]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;closed&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;noncollinear&quot;</span></code>.</p></li>
 </ul>
+<p>No sizes are stored separately. <span class="math notranslate nohighlight">\(N_D\)</span> is the length of <code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code>, <span class="math notranslate nohighlight">\(M\)</span> and
+<span class="math notranslate nohighlight">\(N_\alpha\)</span> are the columns and rows of <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, and <span class="math notranslate nohighlight">\(N_\beta\)</span> the rows of
+<code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code>.</p>
 </section>
 <section id="phmsd">
 <span id="phmsd-wavefunction"></span><h2>PHMSD<a class="headerlink" href="#phmsd" title="Link to this heading">#</a></h2>
@@ -549,35 +554,61 @@ HDF5 "wfn.h5" {
         group      /
         group      /Wavefunction
         group      /Wavefunction/PHMSD
-        dataset    /Wavefunction/PHMSD/Psi0_alpha
-        dataset    /Wavefunction/PHMSD/Psi0_beta
         dataset    /Wavefunction/PHMSD/ci_coeffs
-        dataset    /Wavefunction/PHMSD/dims
-        dataset    /Wavefunction/PHMSD/occs
-        dataset    /Wavefunction/PHMSD/type
+        dataset    /Wavefunction/PHMSD/occa
+        dataset    /Wavefunction/PHMSD/occb
     }
 }
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/Psi0_alpha</span></code> <span class="math notranslate nohighlight">\([M,N_\alpha]\)</span> dimensional array <span class="math notranslate nohighlight">\(\alpha\)</span>
-component of initial walker wavefunction.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/Psi0_beta</span></code> <span class="math notranslate nohighlight">\([M,N_\beta]\)</span> dimensional array for <span class="math notranslate nohighlight">\(\beta\)</span>
-initial walker wavefunction.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/ci_coeffs</span></code> <span class="math notranslate nohighlight">\(N_D\)</span> length array of ci coefficients. Stored
 as complex numbers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/dims</span></code> Integer array of length 5 containing
-<span class="math notranslate nohighlight">\([M,N_\alpha,N_\beta,\)</span> walker_type <span class="math notranslate nohighlight">\(,N_D]\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/occs</span></code> Integer array of length <span class="math notranslate nohighlight">\((N_\alpha+N_\beta)*N_D\)</span>
-describing the determinant occupancies. For example if <span class="math notranslate nohighlight">\((N_\alpha=N_\beta=2)\)</span> and
-<span class="math notranslate nohighlight">\(N_D=2\)</span>, <span class="math notranslate nohighlight">\(M=4\)</span>, and if <span class="math notranslate nohighlight">\(|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle&gt;\)</span> then
-occs = <span class="math notranslate nohighlight">\([0, 1, 4, 5, 0, 1, 4, 6]\)</span>. Note that <span class="math notranslate nohighlight">\(\beta\)</span> occupancies are
-displaced by <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/type</span></code> integer 0/1. 1 implies trial wavefunction is written in
-different basis than the underlying basis used for the integrals. If so a matrix of
-orbital coefficients is required to be written in the NOMSD format. If 0 then assume
-wavefunction is in same basis as integrals.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number_of_orbitals</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>: the number of spatial
+orbitals <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/occa</span></code>, <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/occb</span></code> Integer arrays of shape
+<span class="math notranslate nohighlight">\([N_D,N_\alpha]\)</span> and <span class="math notranslate nohighlight">\([N_D,N_\beta]\)</span> describing the determinant occupancies.
+For example if <span class="math notranslate nohighlight">\((N_\alpha=N_\beta=2)\)</span>, <span class="math notranslate nohighlight">\(N_D=2\)</span>, <span class="math notranslate nohighlight">\(M=4\)</span>, and
+<span class="math notranslate nohighlight">\(|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle\)</span> then
+occa = <span class="math notranslate nohighlight">\([[0, 1], [0, 1]]\)</span> and occb = <span class="math notranslate nohighlight">\([[0, 1], [0, 2]]\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/PsiT_0</span></code>, <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/PsiT_1</span></code> (optional) Orbital
+references, if the occupancies refer to a different basis than the one the integrals are
+written in. Each is the matrix of reference orbitals in the integrals’ basis, stored as the
+CSR matrix of its conjugate transpose, so it has one row per reference orbital and
+<span class="math notranslate nohighlight">\(N_p M\)</span> columns (the same datasets as a NOMSD <code class="docutils literal notranslate"><span class="pre">PsiT</span></code>). There is either one, <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, shared by both spins, or
+<code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code> (<span class="math notranslate nohighlight">\(\alpha\)</span>) and <code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code> (<span class="math notranslate nohighlight">\(\beta\)</span>) for a spin-resolved reference.
+Without any, the occupancies refer to the integrals’ basis.</p></li>
 </ul>
+<p><span class="math notranslate nohighlight">\(N_D\)</span> is the length of <code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code>, <span class="math notranslate nohighlight">\(N_\alpha\)</span> and <span class="math notranslate nohighlight">\(N_\beta\)</span> the widths of
+<code class="docutils literal notranslate"><span class="pre">occa</span></code> and <code class="docutils literal notranslate"><span class="pre">occb</span></code>, and the number of orbital references the number of <code class="docutils literal notranslate"><span class="pre">PsiT_&lt;n&gt;</span></code> groups.
+<span class="math notranslate nohighlight">\(M\)</span> is the one size that is stored explicitly, since the occupancies alone do not span the
+orbitals.</p>
+</section>
+<section id="initial-walkers">
+<span id="id1"></span><h2>Initial walkers<a class="headerlink" href="#initial-walkers" title="Link to this heading">#</a></h2>
+<p>A trial wavefunction file does not store an initial walker. Every walker of a walker set starts
+out as a determinant derived from a wavefunction instead: the determinant with the largest
+coefficient of a NOMSD wavefunction, or the reference determinant of a PHMSD one. By default
+that is the wavefunction of the execute block that introduces the walker set; the <code class="docutils literal notranslate"><span class="pre">from</span></code>
+parameter of the walker set names a different one, either by name or as an inline block:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"wavefunctions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhf"</span><span class="p">,</span><span class="w"> </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wfn_uhf.h5"</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rohf"</span><span class="p">,</span><span class="w"> </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wfn_rohf.h5"</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhf"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rohf"</span><span class="p">}}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Starting from an ROHF determinant rather than the UHF trial itself can speed up equilibration
+considerably. Only the first execute block falls back to a default walker set; a later execute
+block without a <code class="docutils literal notranslate"><span class="pre">walker_set</span></code> continues with the walker set of the one before it.</p>
 </section>
 </section>
 
@@ -630,6 +661,7 @@ wavefunction is in same basis as integrals.</p></li>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomsd">NOMSD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phmsd">PHMSD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-walkers">Initial walkers</a></li>
 </ul>
   </nav></div>
 
