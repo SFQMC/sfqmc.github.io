@@ -113,7 +113,7 @@ This input block will be explored in more detail in later tutorials.
         "population_control_interval": "10",
         "measure_interval": "10",
         "walker_ortho_interval": "10",
-        "n_walkers_per_mpi_task": "10",
+        "num_walkers": "200",
         "seed": "42",
         "estimator" : {
           "name" : "mixed",
@@ -229,7 +229,7 @@ Here is a sample execute block with options exposed and default values where app
   "propagator" : { /* ... */ },
   "timestep": "0.01",
   "steps": "1",
-  "n_walkers_per_mpi_task": "10",
+  "num_walkers": "200",
   "measure_interval": "10",
   "population_control_interval": "10",
   "walker_ortho_interval": "10",
@@ -253,7 +253,7 @@ td, th {
 |--:|---|:--|
 | <b>timestep</b> |  0.01  |  The trotter step size in units of inverse energy (depending on the Hamiltonian's units)  |
 | <b>steps</b> |  1  |   The number of imaginary time steps to take  |
-| <b>n_walkers_per_mpi_task</b> |  10  |   number of Slater determinant random walkers to use per MPI task  |
+| <b>num_walkers</b> |  required  |   total number of Slater determinant random walkers over all MPI tasks, split evenly so that the walker counts of two tasks differ by at most one  |
 | <b>measure_interval</b> |  10  |  The number of projection steps between measurements, for every estimator that does not set one of its own. Measurement is the most expensive operation in AFQMC, so a larger "measure_interval" will reduce the CPU time necessary to perform AFQMC calculations.  |
 | <b>population_control_interval</b> |  10  |  Interval to perform population control at in units of steps.  |
 | <b>walker_ortho_interval</b> | 10  |  Interval to stabilize walkers at via a modified Gram-Schmidt procedure in units of steps |
@@ -362,11 +362,7 @@ Here is a sample walker_set block with options exposed and default values where 
 ```json
 "walker_set" : {
     "name": "your_walker_name",
-    "walker_type": "COLLINEAR",
-    "load_balance_type": "async",
-    "pop_control_type": "pair",
-    "min_weight": "0.05",
-    "max_weight": "4"
+    "walker_type": "COLLINEAR"
 }
 ```
 
@@ -390,21 +386,6 @@ td, th {
 |--:|---|:--|
 |<b>walker_type</b> |  Collinear  | The type of walker to use in AFQMC. Options are Closed, Collinear, Noncollinear |
 |<b>name</b> | n/a  | The name to assign to the current walker_set block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here. |
-
-### Less Common Settings
-
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-
-| <b>        Parameter</b>   |  Default | Description |
-|--:|---|:--|
-| <b>load_balance_type</b> |  "async"  |  Choose which load balancing algorithm to use, Choices are "async" for the asynchronous non-block swap load balancing algorithm and "simple" for a blocking (1-1) swap load balancing algorithm.  |
-| <b>pop_control_type</b> |"pair"  |   choose population control algorithm to use. Choices are "pair", AND "serial_comb". The "pair" algorithm uses paired walker branching. The "serial_comb" algorithm uses the comb method from Booth, Gubernatis, PRE 2009. |
-| <b>min_weight</b> | 0.05 |   Minimum walker weight for population control  |
-| <b>max_weight</b> |4 |  Maximum walker weight for population control  |
 | <b>from</b> | the execute block's wavefunction |  What the walkers are initialized from, e.g. `{"wavefunction": "rohf"}` to start from the determinant with the largest coefficient of another wavefunction.  |
 
 +++ {"id": "b003de2e"}

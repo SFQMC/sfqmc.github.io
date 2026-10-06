@@ -558,7 +558,7 @@ For example, in the input file below, the walker_set is defined in the “walker
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="cm">/* ... */</span>
@@ -620,9 +620,9 @@ Propagators carry no state worth keeping and are rebuilt for every execute block
 <td><p>10</p></td>
 <td><p>The number of projection steps between application of the modified Gram-Schmidt (mGS) orthogonalization procedure. The mGS procedure is relatively inexpensive computationally and frequent orthogonalization is recommended.</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>n_walkers_per_mpi_task</strong></p></td>
-<td><p>10</p></td>
-<td><p>The number of random walkers to use per MPI task. This value should be chosen such that the total population is reasonably large. The choice also depends on whether SAFIRE has been compiled for CPUs or GPUs. For GPUs, the goal is to saturate the device memory and could be on the order of 10000 for small systems. For CPUs and many MPI tasks, this value will typically be on the order of 10.</p></td>
+<tr class="row-even"><td><p><strong>num_walkers</strong></p></td>
+<td><p>required</p></td>
+<td><p>The total number of random walkers, summed over all MPI tasks. The walkers are split evenly over the tasks, so that the walker counts of two tasks differ by at most one, and there have to be at least as many walkers as tasks. This value should be chosen such that the total population is reasonably large. The choice also depends on whether SAFIRE has been compiled for CPUs or GPUs. For GPUs, the goal is to saturate the device memory, which could take on the order of 10000 walkers per GPU for small systems. For CPUs and many MPI tasks, a share on the order of 10 walkers per task is typical.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>seed</strong></p></td>
 <td></td>
@@ -712,22 +712,6 @@ Below is a sample “walker_set” block with all settings explicitly set.</p>
 <tr class="row-odd"><td><p><strong>name</strong></p></td>
 <td><p>n/a</p></td>
 <td><p>The name to assign to the current walker_set block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>load_balance_type</strong></p></td>
-<td><p>async</p></td>
-<td><p>Choose which load balancing algorithm to use. Choices are “async” for the asynchronous non-block swap load balancing algorithm and “simple” for a blocking (1-1) swap load balancing algorithm.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>pop_control_type</strong></p></td>
-<td><p>pair</p></td>
-<td><p>Choose population control algorithm to use. Choices are “pair” and “serial_comb”. The “pair” algorithm uses paired walker branching. The “serial_comb” algorithm uses the comb method from Booth, Gubernatis, PRE 2009.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>min_weight</strong></p></td>
-<td><p>0.05</p></td>
-<td><p>Minimum walker weight for population control</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>max_weight</strong></p></td>
-<td><p>4.0</p></td>
-<td><p>Maximum walker weight for population control</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>from</strong></p></td>
 <td><p>the execute block’s wavefunction</p></td>

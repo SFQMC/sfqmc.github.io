@@ -537,7 +537,7 @@ wavefunctions in separate HDF5 files.</p>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -586,7 +586,7 @@ While not functionally necessary, defining the “wavefunction” and “hamilto
 <span class="w">      </span><span class="nt">"hamiltonian"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_hamiltonian"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
@@ -598,7 +598,7 @@ While not functionally necessary, defining the “wavefunction” and “hamilto
 <span class="w">      </span><span class="nt">"hamiltonian"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_hamiltonian"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
@@ -634,11 +634,7 @@ We use ellipses ( <cite>…</cite>)  in some of the advanced input blocks within
 <span class="w">    </span><span class="nt">"walker_sets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_walkers"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"load_balance_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"pop_control_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pair"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"min_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"max_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
+<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -658,7 +654,7 @@ We use ellipses ( <cite>…</cite>)  in some of the advanced input blocks within
 <span class="w">      </span><span class="nt">"checkpoint_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"hdf_write_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"hdf_read_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"propagator"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="cm">/* ... */</span>
