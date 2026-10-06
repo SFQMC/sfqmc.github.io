@@ -567,7 +567,7 @@ We will explore this in more detail below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
@@ -584,7 +584,7 @@ We will explore this in more detail below.</p>
 <span class="p">)</span>
 
 <span class="c1"># plot the lattice for reality checks!</span>
-<span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
@@ -810,7 +810,7 @@ A back-propagated estimator block with pair correlation functions would look lik
 <span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_pair_correlation</span>
 
 
@@ -832,7 +832,7 @@ A back-propagated estimator block with pair correlation functions would look lik
 <span class="c1"># use the first site as the reference site</span>
 <span class="n">P_s_x_0j</span> <span class="o">=</span> <span class="n">P_s_x_ij</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
 
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P_s_x_0j</span><span class="o">.</span><span class="n">real</span><span class="p">),</span>
     <span class="n">norm_type</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span>

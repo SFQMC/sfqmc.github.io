@@ -632,7 +632,7 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="c1"># Define the lattice parameters</span>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
@@ -653,7 +653,7 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <span class="p">}</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
@@ -756,7 +756,7 @@ Note that the default hopping matrix shape is <span class="math notranslate nohi
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -810,7 +810,7 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -840,7 +840,7 @@ We’ve already seen how to add a basic nearest-neighbor onsite Hubbard U, now w
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
 
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -860,7 +860,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -890,14 +890,14 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 0'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 1'</span><span class="p">,</span>
@@ -911,7 +911,7 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -941,14 +941,14 @@ and the second will have <span class="math notranslate nohighlight">\(U/t = 2\)<
 <span class="c1"># let's take a look at the U term:</span>
 <span class="n">U_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">hamiltonian_params</span><span class="p">[</span><span class="s1">'nbands'</span><span class="p">])</span>
 <span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U_shape</span><span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 0'</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">3.0</span>
 <span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">U</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">'U for band 1'</span><span class="p">,</span>
@@ -1070,7 +1070,7 @@ See the density-density section above for more details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="c1"># Define the lattice parameters</span>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="p">{</span>
@@ -1095,7 +1095,7 @@ See the density-density section above for more details.</p>
 <span class="p">}</span>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">lattice_params</span><span class="p">)</span>
-<span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
 <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
@@ -1134,7 +1134,7 @@ same input conventions as for <span class="math notranslate nohighlight">\(\hat{
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_lattice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="c1"># define Hamiltonian parameters</span>
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>

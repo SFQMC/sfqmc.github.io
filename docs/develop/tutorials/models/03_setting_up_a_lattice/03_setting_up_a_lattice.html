@@ -518,11 +518,11 @@ defines its own geometry, and setting these for one of them is an error. See
 <code class="docutils literal notranslate"><span class="pre">type='triangular'</span></code></strong>, since the reshaping is hardcoded for hexagonal geometry.</p></li>
 </ul>
 <p>Below is a minimal example of building a lattice allowing most parameters to take on default values.
-We also use <code class="docutils literal notranslate"><span class="pre">afqmctool</span></code>’s <code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code> function so that we can visualize what we have made.</p>
+We also use <code class="docutils literal notranslate"><span class="pre">vis.plot_lattice()</span></code> so that we can visualize what we have made.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -604,12 +604,12 @@ This can be made explicit by setting</p>
 <h3><span class="section-number">3.3.1. </span>Exercise 2: Play with boundary conditions<a class="headerlink" href="#exercise-2-play-with-boundary-conditions" title="Link to this heading">#</a></h3>
 <p>Try setting different combinations of boundary conditions
 in <code class="docutils literal notranslate"><span class="pre">lattice_params</span></code> in the code block below.
-The <code class="docutils literal notranslate"><span class="pre">plot_lattice()</span></code> function will indicate the position of nearest image
+The <code class="docutils literal notranslate"><span class="pre">vis.plot_lattice()</span></code> function will indicate the position of nearest image
 neighbors with a black dotted line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -660,7 +660,7 @@ it will be saved as the relative phase between image neighbors
 consistent with the boundaries.</p>
 <p>For example, in the code block</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -688,7 +688,7 @@ boundary 1 is not periodic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -752,7 +752,7 @@ are required, and <code class="docutils literal notranslate"><span class="pre">b
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">]</span>
 
@@ -822,7 +822,7 @@ about mapping atoms in a solid onto a lattice model without the complication of 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -850,7 +850,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -876,7 +876,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -898,7 +898,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -920,7 +920,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -942,7 +942,7 @@ The Cu and O atoms are arranged in the Lieb lattice as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>

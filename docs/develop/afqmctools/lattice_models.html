@@ -1107,7 +1107,7 @@ axis.</p>
 <p>Base class for all SAFIRE Hamiltonians.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry of the Hamiltonian. Coerced through
+<dd class="field-odd"><p><strong>spin_symm</strong> (<em>SpinSymm</em><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry of the Hamiltonian. Coerced through
 <cite>SpinSymm.from_input</cite>, so <code class="docutils literal notranslate"><span class="pre">'uhf'</span></code>, <code class="docutils literal notranslate"><span class="pre">'collinear'</span></code> and
 <code class="docutils literal notranslate"><span class="pre">SpinSymm.COLLINEAR</span></code> are all accepted.</p>
 </dd>
@@ -1117,6 +1117,15 @@ axis.</p>
 Hamiltonian from an external description with one of the classmethod
 factories on the concrete subclasses (<code class="docutils literal notranslate"><span class="pre">from_dict</span></code>, <code class="docutils literal notranslate"><span class="pre">from_hdf5</span></code>,
 …).</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.base.Hamiltonian.basis_rotation">
+<span class="property"><span class="k"><span class="pre">abstract</span></span><span class="w"> </span><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">basis_rotation</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#safiretools.hamiltonian.base.Hamiltonian.basis_rotation" title="Link to this definition">#</a></dt>
+<dd><p>The transformation from the basis this Hamiltonian was given (e.g. atomic orbitals)
+in to the basis the AFQMC executable computes in (e.g. molecular or Löwdin orbitals).</p>
+<p>Its columns are the computational orbitals expanded in the input basis,
+so a one-body operator transforms as <span class="math notranslate nohighlight">\(h' = R^\dagger h R\)</span>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.base.Hamiltonian.from_hdf5">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_hdf5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.base.Hamiltonian.from_hdf5" title="Link to this definition">#</a></dt>
@@ -1239,7 +1248,7 @@ The order also fixes the order combined Hubbard components are written in.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – Lattice describing the geometry the Hamiltonian is defined on.</p></li>
 <li><p><strong>nbands</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of bands. Default 1.</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry the Hamiltonian is expressed in. Default
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry the Hamiltonian is expressed in. Default
 <cite>SpinSymm.COLLINEAR</cite>.</p></li>
 <li><p><strong>afm_pin_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Default <code class="docutils literal notranslate"><span class="pre">pin_type</span></code> of <cite>afm_pinning</cite> and <cite>fm_pinning</cite>. Default
 <code class="docutils literal notranslate"><span class="pre">'staggered'</span></code>.</p></li>
@@ -1269,7 +1278,7 @@ and adds it to the Hamiltonian.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>h_afm_pin</strong> (<em>float</em>) – the amplitude of the pinning field</p></li>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 <li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the builder’s <code class="docutils literal notranslate"><span class="pre">afm_pin_type</span></code>.</p></li>
 </ul>
@@ -1301,7 +1310,7 @@ and h_charge_pin is the pinning field strength.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>h_charge_pin</strong> (<em>float</em>) – the amplitude of the pinning field</p></li>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 </ul>
 </dd>
@@ -1319,7 +1328,7 @@ with lattice coordinate 0 or L-1, on the given axis.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>in_mat</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – the one-body term to add to the Hamiltonian</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerated type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerated type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 </ul>
 </dd>
@@ -1355,12 +1364,12 @@ spin sectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pinning_func</strong> (<em>callable</em><em>(</em><a class="reference internal" href="api/afqmctools.systems.html#afqmctools.systems.lattice.LatticeSite.coord" title="afqmctools.systems.lattice.LatticeSite.coord"><em>coord</em></a><em>) </em><em>-&gt; float</em>) – a modulation function for the pinning field</p></li>
+<li><p><strong>pinning_func</strong> (<em>callable</em><em>(</em><a class="reference internal" href="#safiretools.hamiltonian.model.lattice.LatticeSite.coord" title="safiretools.hamiltonian.model.lattice.LatticeSite.coord"><em>coord</em></a><em>) </em><em>-&gt; float</em>) – a modulation function for the pinning field</p></li>
 <li><p><strong>h_pin</strong> (<em>float</em>) – the amplitude of the pinning field</p></li>
 <li><p><strong>same_sign</strong> (<em>bool</em>) – if True, spin up and spin down sectors have the same sign.
 if False, spin up and spin down sectors have opposite signs.</p></li>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 </ul>
 </dd>
@@ -1399,7 +1408,7 @@ and h_fm_pin is the pinning field strength.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>h_fm_pin</strong> (<em>float</em>) – the amplitude of the pinning field</p></li>
 <li><p><strong>axis</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 0</em>) – the axis to apply pinning along</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerate type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 <li><p><strong>pin_type</strong> (<em>str</em><em>, </em><em>optional</em>) – overrides the builder’s <code class="docutils literal notranslate"><span class="pre">fm_pin_type</span></code>.</p></li>
 </ul>
@@ -1429,8 +1438,7 @@ runs the corresponding build steps, and finalizes. Use
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<em>dict</em><em> or </em><em>str</em><em> or </em><em>pathlib.Path</em>) – Hamiltonian (and possibly lattice) parameters. A str/Path is read as
-a TOML input file.</p></li>
+<li><p><strong>source</strong> (<em>dict</em>) – Hamiltonian (and possibly lattice) parameters.</p></li>
 <li><p><strong>lattice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lattice</span></code></a></span>) – Lattice describing the geometry. Built from <code class="docutils literal notranslate"><span class="pre">source['lattice']</span></code> if
 omitted.</p></li>
 </ul>
@@ -1496,7 +1504,10 @@ Hund’s coupling interaction, and is applied uniformly across sites.</p></li>
 </li>
 </ul>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="s2">"input.toml"</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">'lattice'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">L1</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">L2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">boundary1</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">,</span> <span class="n">boundary2</span><span class="o">=</span><span class="s1">'pbc'</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">'hamiltonian'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1632,7 +1643,7 @@ dependent hopping.</p></li>
 <li><p><strong>nth_neighbor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – the order of neighbor to use for hopping. <cite>nth_neighbor</cite> equal to 1 is nearest-neighbors.
 If <cite>nth_neighbor</cite> is not given, and <cite>t</cite> is an iterable, <cite>t</cite> is iterated over and <cite>nth_neighbor</cite> is
 inferred from the array index, <cite>i</cite>, of each entry in <cite>t</cite> as <cite>nth_neighbor=i+1</cite></p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerated type for the hopping matrix.
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry enumerated type for the hopping matrix.
 If not given, the spin symmetry of the Hamiltonian will be used.</p></li>
 <li><p><strong>opposite_twists</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default: False</em>) – if True, the hopping matrix is constructed using opposite twists, for the up and down
 spins (i.e. twist_down = -twist_up ). If False, the hopping matrix is constructed
@@ -1682,7 +1693,7 @@ for site i and band m.</p>
 <li><p><strong>epsilon</strong> (<em>float</em><em> | </em><em>numpy.ndarray</em>) – the onsite energy. If epsilon is a float, it is interpreted as a band-independent onsite energy.
 If epsilon is a numpy.ndarray, it must have shape (nbands,nbands) and is interpreted as a band-dependent
 onsite energy. In all cases, epsilon is applied uniformly to all sites.</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em>, </em><em>optional</em>) – an override for the default spin symmetry of the term.</p></li>
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em>, </em><em>optional</em>) – an override for the default spin symmetry of the term.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1879,7 +1890,7 @@ executable needs to interpret it.</p>
 <li><p><strong>csr_array</strong> (<em>scipy.sparse.csr_array</em><em> or </em><em>array_like</em>) – Matrix elements. Converted to <cite>scipy.sparse.csr_array</cite> if needed.</p></li>
 <li><p><strong>model_type</strong> (<em>str</em>) – Term type as the AFQMC executable names it, e.g. <code class="docutils literal notranslate"><span class="pre">'one_body'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'hubbard_u'</span></code>, <code class="docutils literal notranslate"><span class="pre">'hubbard_j'</span></code>, <code class="docutils literal notranslate"><span class="pre">'heisenberg_j'</span></code>.</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry this term is expressed in. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry this term is expressed in. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
 <li><p><strong>hst_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Hubbard-Stratonovich transformation of an interaction term, written
 alongside the matrix.</p></li>
 </ul>
@@ -1928,7 +1939,7 @@ be combined.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nsites</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of lattice sites.</p></li>
 <li><p><strong>nbands</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of bands per site. Default 1.</p></li>
-<li><p><strong>spin_symm</strong> (<a class="reference internal" href="api/afqmctools.utils.html#afqmctools.utils.types.SpinSymm" title="afqmctools.utils.types.SpinSymm"><em>SpinSymm</em></a><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry of the Hamiltonian. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
+<li><p><strong>spin_symm</strong> (<em>SpinSymm</em><em> or </em><em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – Spin symmetry of the Hamiltonian. Default <cite>SpinSymm.CLOSED</cite>.</p></li>
 <li><p><strong>lattice_metadata</strong> (<em>dict</em><em>, </em><em>optional</em>) – Shape of the lattice this Hamiltonian was built on — see
 <cite>lattice_metadata_from</cite>. Recorded on disk; not used for any computation.</p></li>
 </ul>
@@ -1948,6 +1959,17 @@ terms are built by <cite>HamiltonianBuilder</cite>.</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.basis_rotation">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">basis_rotation</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.basis_rotation" title="Link to this definition">#</a></dt>
+<dd><p>a lattice model is computed in the basis it is given in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The identity</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.from_dict">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.from_dict" title="Link to this definition">#</a></dt>
@@ -1958,9 +1980,8 @@ the input, runs the build steps it names, and finalizes. Use
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<em>dict</em><em> or </em><em>str</em><em> or </em><em>pathlib.Path</em>) – Input parameters, as a dict with a <code class="docutils literal notranslate"><span class="pre">'hamiltonian'</span></code> section (and a
-<code class="docutils literal notranslate"><span class="pre">'lattice'</span></code> section unless <cite>lattice</cite> is given), or the path to a
-TOML file holding the same.</p></li>
+<li><p><strong>source</strong> (<em>dict</em>) – Input parameters, with a <code class="docutils literal notranslate"><span class="pre">'hamiltonian'</span></code> section (and a
+<code class="docutils literal notranslate"><span class="pre">'lattice'</span></code> section unless <cite>lattice</cite> is given).</p></li>
 <li><p><strong>lattice</strong> (<a class="reference internal" href="#safiretools.hamiltonian.model.lattice.Lattice" title="safiretools.hamiltonian.model.lattice.Lattice"><em>Lattice</em></a><em>, </em><em>optional</em>) – Lattice to build on. Built from <code class="docutils literal notranslate"><span class="pre">source['lattice']</span></code> if omitted.</p></li>
 </ul>
 </dd>
@@ -2434,6 +2455,7 @@ of boundary to use in the direction perpendicular to
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.basis_rotation"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.basis_rotation</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.from_hdf5"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.from_hdf5()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.spin_symm"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.spin_symm</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.base.Hamiltonian.to_hdf5"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.to_hdf5()</span></code></a></li>
@@ -2478,6 +2500,7 @@ of boundary to use in the direction perpendicular to
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.add_term"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.add_term()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.basis_rotation"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.basis_rotation</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.from_dict"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.from_dict()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.get"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.get()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safiretools.hamiltonian.model.lattice_hamiltonian.LatticeHamiltonian.get_J"><code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.get_J()</span></code></a></li>

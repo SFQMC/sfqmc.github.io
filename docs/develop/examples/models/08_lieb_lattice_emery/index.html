@@ -531,7 +531,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -777,7 +777,7 @@ on the lattice.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatticeHamiltonian</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 
 <span class="c1"># define the problem</span>
@@ -887,7 +887,7 @@ on the lattice.</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span><span class="p">,</span> <span class="n">SpinSymm</span><span class="p">,</span>
                          <span class="n">Wavefunction</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">afqmctools.utils.visualize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
 
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span><span class="p">;</span> <span class="n">faulthandler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
@@ -1209,23 +1209,23 @@ on the lattice.</p>
 
 
 <span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
         <span class="n">lattice</span><span class="p">,</span>
         <span class="n">density</span><span class="o">=</span><span class="n">rho_charge</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
         <span class="n">density_label</span><span class="o">=</span><span class="s2">"charge density"</span><span class="p">,</span>
         <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
         <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">save</span><span class="o">=</span><span class="s2">"charge.png"</span>
     <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">"charge.png"</span><span class="p">)</span>
 
-    <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
         <span class="n">lattice</span><span class="p">,</span>
         <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
         <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
         <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'bwr'</span><span class="p">,</span>
         <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">save</span><span class="o">=</span><span class="s2">"spin.png"</span>
     <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">"spin.png"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

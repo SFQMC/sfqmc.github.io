@@ -472,113 +472,20 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-afqmctools.inputs.energy">
-<span id="afqmctools-inputs-energy-module"></span><h2>afqmctools.inputs.energy module<a class="headerlink" href="#module-afqmctools.inputs.energy" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.energy.calculate_hf_energy">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.energy.</span></span><span class="sig-name descname"><span class="pre">calculate_hf_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.energy.calculate_hf_energy" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.energy.local_energy_mol">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.energy.</span></span><span class="sig-name descname"><span class="pre">local_energy_mol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hcore</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enuc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nelec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.energy.local_energy_mol" title="Link to this definition">#</a></dt>
-<dd><p>Calculate local for generic two-body hamiltonian.</p>
-<p>This uses the cholesky decomposed two-electron integrals.</p>
-</dd></dl>
-
+<section id="afqmctools-inputs-energy-module">
+<h2>afqmctools.inputs.energy module<a class="headerlink" href="#afqmctools-inputs-energy-module" title="Link to this heading">#</a></h2>
 </section>
 <section id="afqmctools-inputs-from-autohf-module">
 <h2>afqmctools.inputs.from_autohf module<a class="headerlink" href="#afqmctools-inputs-from-autohf-module" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-afqmctools.inputs.from_hdf">
-<span id="afqmctools-inputs-from-hdf-module"></span><h2>afqmctools.inputs.from_hdf module<a class="headerlink" href="#module-afqmctools.inputs.from_hdf" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.back_propagation_steps">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">back_propagation_steps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tbp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.back_propagation_steps" title="Link to this definition">#</a></dt>
-<dd><p>The back propagation lengths that reach <cite>tbp</cite>, in steps: <cite>num_bp</cite> evenly spaced
-averages, the longest of them the requested time.</p>
-<p>The spacing is what gets rounded, so that every average is a whole multiple of the
-shortest one, as it was when the input took a step count and a number of averages.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.default_inputs">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">default_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwfn0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fham0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.default_inputs" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.get_estimator_settings">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">get_estimator_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.get_estimator_settings" title="Link to this definition">#</a></dt>
-<dd><p>The “estimators” block the given arguments ask for, empty if they ask for none.</p>
-<p>The energy estimator is not in it: it is measured unless the input removes it with
-“energy”: null.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.read_info">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">read_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwfn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.read_info" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_hdf.write_json">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_hdf.</span></span><span class="sig-name descname"><span class="pre">write_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwfn0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fham0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exec_opts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_hdf.write_json" title="Link to this definition">#</a></dt>
-<dd><p>Write JSON input file for AuxiliaryFiles.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>fout</strong> (<em>str</em>) – Output JSON file name.</p></li>
-<li><p><strong>fwfn0</strong> (<em>str</em>) – Name of HDF5 file containing the trial wavefunction.</p></li>
-<li><p><strong>fham0</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of HDF5 file containing the Hamiltonian.</p></li>
-<li><p><strong>relpath</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, use relative path for the wavefunction and Hamiltonian files.</p></li>
-<li><p><strong>exec_opts</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary containing execution options using the same keys as in the
-JSON file. This will be written into an “execute” node in the JSON file,
-except for the parameters of the run as a whole listed in
-JSON_TOP_LEVEL_KEYS, which are written next to it.</p></li>
-<li><p><strong>args_namespace</strong> (<em>argparse.Namespace</em><em>, </em><em>optional</em>) – Command line arguments parsed by argparse.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">write_json</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
-</pre></div>
-</div>
-<p class="rubric">Notes</p>
-<p>For parameters that may be set in both args_namespace and kwargs, the values in
-args_namespace will take precedence. The only parameter to which this applies is
-output_name, which names the results file. When it is left out, AFQMC names the
-results after the input file itself.</p>
-<p>For input blocks provided in exec_opts, each parameter is appended into the
-corresponding block in the JSON file. For example, if exec_opts contains
-<code class="docutils literal notranslate"><span class="pre">{&quot;execute&quot;:</span> <span class="pre">{&quot;walker_set&quot;:</span> <span class="pre">{&quot;min_weight&quot;:</span> <span class="pre">0.01}}}</span></code>, the resulting JSON
-file will contain the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">"driver"</span><span class="p">:</span> <span class="s2">"afqmc"</span><span class="p">,</span>
-    <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"walker_set"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"walker_type"</span><span class="p">:</span> <span class="s2">"COLLINEAR"</span><span class="p">,</span>
-            <span class="s2">"min_weight"</span><span class="p">:</span> <span class="mf">0.01</span>
-        <span class="p">},</span>
-        <span class="o">...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>since COLLINEAR is the default walker type.</p>
-</dd></dl>
-
+<section id="afqmctools-inputs-from-hdf-module">
+<h2>afqmctools.inputs.from_hdf module<a class="headerlink" href="#afqmctools-inputs-from-hdf-module" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-afqmctools.inputs.from_pyscf">
-<span id="afqmctools-inputs-from-pyscf-module"></span><h2>afqmctools.inputs.from_pyscf module<a class="headerlink" href="#module-afqmctools.inputs.from_pyscf" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="afqmctools.inputs.from_pyscf.pyscf_to_afqmc">
-<span class="sig-prename descclassname"><span class="pre">afqmctools.inputs.from_pyscf.</span></span><span class="sig-name descname"><span class="pre">pyscf_to_afqmc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chkfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hamil_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ortho_ao</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wfn_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_hamil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndet_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">real_chol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_sfx2c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_x2c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afqmctools.inputs.from_pyscf.pyscf_to_afqmc" title="Link to this definition">#</a></dt>
-<dd><p>Dispatching routine dependent on options.</p>
-<p>This needs documentation badly!! many options, none are documented …</p>
-</dd></dl>
-
+<section id="afqmctools-inputs-from-pyscf-module">
+<h2>afqmctools.inputs.from_pyscf module<a class="headerlink" href="#afqmctools-inputs-from-pyscf-module" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-afqmctools.inputs">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-afqmctools.inputs" title="Link to this heading">#</a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -630,25 +537,11 @@ file will contain the following:</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.inputs.energy">afqmctools.inputs.energy module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.energy.calculate_hf_energy"><code class="docutils literal notranslate"><span class="pre">calculate_hf_energy()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.energy.local_energy_mol"><code class="docutils literal notranslate"><span class="pre">local_energy_mol()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-inputs-energy-module">afqmctools.inputs.energy module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-inputs-from-autohf-module">afqmctools.inputs.from_autohf module</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.inputs.from_hdf">afqmctools.inputs.from_hdf module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.back_propagation_steps"><code class="docutils literal notranslate"><span class="pre">back_propagation_steps()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.default_inputs"><code class="docutils literal notranslate"><span class="pre">default_inputs()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.get_estimator_settings"><code class="docutils literal notranslate"><span class="pre">get_estimator_settings()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.read_info"><code class="docutils literal notranslate"><span class="pre">read_info()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_hdf.write_json"><code class="docutils literal notranslate"><span class="pre">write_json()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.inputs.from_pyscf">afqmctools.inputs.from_pyscf module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools.inputs.from_pyscf.pyscf_to_afqmc"><code class="docutils literal notranslate"><span class="pre">pyscf_to_afqmc()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-afqmctools.inputs">Module contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-inputs-from-hdf-module">afqmctools.inputs.from_hdf module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-inputs-from-pyscf-module">afqmctools.inputs.from_pyscf module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-contents">Module contents</a></li>
 </ul>
   </nav></div>
 
