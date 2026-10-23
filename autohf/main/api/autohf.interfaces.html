@@ -79,54 +79,25 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
+<section id="module-autohf.interfaces.safiretools">
+<span id="autohf-interfaces-safiretools-module"></span><h2>autohf.interfaces.safiretools module<a class="headerlink" href="#module-autohf.interfaces.safiretools" title="Link to this heading"></a></h2>
+<p>Interface to the lattice Hamiltonians of safiretools.</p>
+<p>The helpers only use accessors that the legacy afqmctools Hamiltonian shares, so they read both.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="autohf.interfaces.safiretools.LatticeHamiltonian">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.interfaces.safiretools.</span></span><span class="sig-name descname"><span class="pre">LatticeHamiltonian</span></span><a class="headerlink" href="#autohf.interfaces.safiretools.LatticeHamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
 <section id="module-autohf.interfaces.afqmctools">
 <span id="autohf-interfaces-afqmctools-module"></span><h2>autohf.interfaces.afqmctools module<a class="headerlink" href="#module-autohf.interfaces.afqmctools" title="Link to this heading"></a></h2>
+<p>Legacy interface to afqmctools, superseded by <a class="reference internal" href="#module-autohf.interfaces.safiretools" title="autohf.interfaces.safiretools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">autohf.interfaces.safiretools</span></code></a>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="autohf.interfaces.afqmctools.Hamiltonian">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">Hamiltonian</span></span><a class="headerlink" href="#autohf.interfaces.afqmctools.Hamiltonian" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.SpinSymm">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">SpinSymm</span></span><a class="headerlink" href="#autohf.interfaces.afqmctools.SpinSymm" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.SpinSymm.CLOSED">
-<span class="sig-name descname"><span class="pre">CLOSED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#autohf.interfaces.afqmctools.SpinSymm.CLOSED" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.SpinSymm.COLLINEAR">
-<span class="sig-name descname"><span class="pre">COLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#autohf.interfaces.afqmctools.SpinSymm.COLLINEAR" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.SpinSymm.NONCOLLINEAR">
-<span class="sig-name descname"><span class="pre">NONCOLLINEAR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#autohf.interfaces.afqmctools.SpinSymm.NONCOLLINEAR" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.fail_without_afqmctools">
-<span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">fail_without_afqmctools</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.interfaces.afqmctools.fail_without_afqmctools" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.skip_without_afqmctools">
-<span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">skip_without_afqmctools</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.interfaces.afqmctools.skip_without_afqmctools" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.spin_squared">
-<span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">spin_squared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.interfaces.afqmctools.spin_squared" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="autohf.interfaces.afqmctools.spin_z">
-<span class="sig-prename descclassname"><span class="pre">autohf.interfaces.afqmctools.</span></span><span class="sig-name descname"><span class="pre">spin_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#autohf.interfaces.afqmctools.spin_z" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 </section>
 <section id="module-autohf.interfaces">
