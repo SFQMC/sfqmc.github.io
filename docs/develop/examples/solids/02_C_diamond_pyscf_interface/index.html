@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. C ground state energy and Density &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>2. Diamond Ground State Energy and Charge Density from PySCF &#8212; SAFIRE 0.1.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,10 +50,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/solids/02_C_diamond_pyscf_interface/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/solids/02_C_diamond_pyscf_interface/index.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="3. Momentum distribution of solid Na" href="../03_Na_momentum_distribution/index.html" />
-    <link rel="prev" title="1. Si ground state energy and charge density" href="../01_Si_density_coqui_interface/index.html" />
+    <link rel="next" title="3. Momentum Distribution of Solid Na" href="../03_Na_momentum_distribution/index.html" />
+    <link rel="prev" title="1. Si Ground State Energy and Charge Density" href="../01_Si_density_coqui_interface/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -172,42 +165,32 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -296,13 +279,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../tutorials.html">
     Tutorials
   </a>
@@ -317,15 +293,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -388,62 +364,31 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: Spin-Orbit Coupling (SOC) in Ab Initio AFQMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. C ground state energy and Density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03_Na_momentum_distribution/index.html">3. Momentum distribution of solid Na</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06_magnetization/index.html">6. Magnetization of ???</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_Si_density_coqui_interface/index.html">1. Si Ground State Energy and Charge Density</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Diamond Ground State Energy and Charge Density from PySCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_Na_momentum_distribution/index.html">3. Momentum Distribution of Solid Na</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4×4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the Square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The Square Hubbard Model at Half Filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater Determinant Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard Model on a Honeycomb Lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
-</ul>
-</details></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery Model on the Lieb Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/09_useful_snippets/index.html">9. Useful Snippets for Various Lattice Models</a></li>
 </ul>
 </details></li>
 </ul>
@@ -490,9 +435,9 @@
     <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Ab initio solids</a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Ab Initio Solids</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>C ground state energy and Density</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>Diamond Ground State Energy and Charge Density from PySCF</span></li>
   </ul>
 </nav>
 </div>
@@ -510,128 +455,65 @@
                 <article class="bd-article">
                   
   <p class="notebook-download"><a class="reference external" href="index.zip">Download this notebook (.ipynb + data files)</a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="c-ground-state-energy-and-density">
-<h1><span class="section-number">2. </span>C ground state energy and Density<a class="headerlink" href="#c-ground-state-energy-and-density" title="Link to this heading">#</a></h1>
-<p>In this example, we will compute the ground state energy and charge density
-of C diamond in the primitive cell cell.</p>
-<section id="dev-todo">
-<h2><span class="section-number">2.1. </span>DEV TODO<a class="headerlink" href="#dev-todo" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>update image to C primitive cell.</p></li>
-<li><p>update the following sections to use C / PySCF</p>
-<ul>
-<li><p>“run AFQMC”</p></li>
-<li><p>“Analyze”</p></li>
-<li><p>“converge in basis set size”</p></li>
-</ul>
-</li>
-</ul>
-<p><img alt="Si_conv_cell.png" src="../../../_images/image_01.png" /></p>
-</section>
-<section id="external-software">
-<h2><span class="section-number">2.2. </span>External Software<a class="headerlink" href="#external-software" title="Link to this heading">#</a></h2>
-<p>In addition to SAFIRE and afqmctools, we will be using the following software packages:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.quantum-espresso.org/">PySCF</a> for density functional theory (DFT) calculations, integrals, and some post-processing tools.</p></li>
-<li><p><a class="reference external" href="https://jp-minerals.org/vesta/en/">VESTA</a> for visualizing the final density.</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="diamond-ground-state-energy-and-charge-density-from-pyscf">
+<h1><span class="section-number">2. </span>Diamond Ground State Energy and Charge Density from PySCF<a class="headerlink" href="#diamond-ground-state-energy-and-charge-density-from-pyscf" title="Link to this heading">#</a></h1>
+<p>In this example, we compute the ground state energy and the real-space charge density of diamond,
+starting from a periodic Hartree-Fock calculation in <a class="reference external" href="https://pyscf.org">PySCF</a> instead of Quantum ESPRESSO and CoQuí.
+safiretools converts the PySCF solution into a k-point Hamiltonian and a trial wavefunction for SAFIRE,
+and PySCF evaluates the Gaussian basis functions to put the density on a real-space grid.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">AFQMC_EXEC</span></code> to the SAFIRE executable.
+All calculations run in a scratch directory <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Example of setting up a solids calculation starting</span>
-<span class="sd">from PySCF.</span>
-<span class="sd">"""</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create scratch directory in notebook path</span>
+<span class="o">%</span><span class="k">mkdir</span> -p {_dh[0]}/data
+<span class="o">%</span><span class="k">cd</span> -q {_dh[0]}/data
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span> <span class="k">as</span> <span class="n">pgto</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">scf</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.pbc.dft.numint</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNumInt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMSDWavefunction</span><span class="p">,</span> <span class="n">PeriodicHamiltonian</span><span class="p">,</span> <span class="n">Results</span><span class="p">,</span> <span class="n">vis</span><span class="p">,</span> <span class="n">write_jobfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hartree-fock-with-pyscf">
+<h2><span class="section-number">2.1. </span>Hartree-Fock with PySCF<a class="headerlink" href="#hartree-fock-with-pyscf" title="Link to this heading">#</a></h2>
+<p>We use the 2-atom primitive cell of diamond at the experimental lattice constant, with GTH pseudopotentials and the minimal
+<code class="docutils literal notranslate"><span class="pre">gth-szv</span></code> basis of 4 orbitals per atom, on a <span class="math notranslate nohighlight">\(2\times2\times2\)</span> k-point mesh.
+The <code class="docutils literal notranslate"><span class="pre">mesh</span></code> of the cell sets the plane-wave grid on which the two-electron integrals are evaluated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.567</span>  <span class="c1"># lattice constant in Angstrom</span>
+<span class="n">cell</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+    <span class="n">atom</span><span class="o">=</span><span class="sa">f</span><span class="s2">"C 0 0 0; C </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">basis</span><span class="o">=</span><span class="s2">"gth-szv"</span><span class="p">,</span>
+    <span class="n">pseudo</span><span class="o">=</span><span class="s2">"gth-pade"</span><span class="p">,</span>
+    <span class="n">mesh</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.utils.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_ortho_ao</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyscf_to_afqmc</span>
-
-<span class="c1">### Some parameters for the calculation ###</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span>  <span class="c1"># defines ecut</span>
-<span class="n">alat</span> <span class="o">=</span> <span class="mf">3.6</span>  <span class="c1"># angstrom</span>
-<span class="n">nkx</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># kmesh</span>
-<span class="n">basis</span> <span class="o">=</span> <span class="s1">'gth-szv'</span>
-<span class="n">pseudo</span> <span class="o">=</span> <span class="s1">'gth-pade'</span>
-<span class="n">chkfile</span> <span class="o">=</span> <span class="s1">'diamond_2x2x2_rhf.h5'</span>
-<span class="n">verbose</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="n">rerun</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="c1">###########################################</span>
-
-
-<span class="n">kpoint_grid_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">nkx</span><span class="p">,)</span><span class="o">*</span><span class="mi">3</span>  <span class="c1"># kmesh in 3D</span>
-
-<span class="n">axes</span> <span class="o">=</span> <span class="n">alat</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-
-<span class="n">atoms</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
-<span class="s1">C 0. 0. 0.0</span>
-<span class="s1">C </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="mf">0.25</span><span class="o">*</span><span class="n">alat</span><span class="si">}</span>
-<span class="s1">'''</span>
-
-<span class="n">cell</span> <span class="o">=</span> <span class="n">pgto</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">axes</span><span class="p">,</span>
-    <span class="n">atom</span> <span class="o">=</span> <span class="n">atoms</span><span class="p">,</span>
-    <span class="n">basis</span> <span class="o">=</span> <span class="n">basis</span><span class="p">,</span>
-    <span class="n">pseudo</span> <span class="o">=</span> <span class="n">pseudo</span><span class="p">,</span>
-    <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
-<span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">mesh</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">rerun</span><span class="p">:</span>
-    <span class="n">kpts</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">make_kpts</span><span class="p">(</span><span class="n">kpoint_grid_size</span><span class="p">)</span>
-    <span class="n">rhf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">KRHF</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="n">kpts</span><span class="p">)</span>
-    <span class="n">rhf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">chkfile</span>
-    <span class="n">rhf</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-
-    <span class="c1"># get and store rotation matrix X to produce orthonormal basis</span>
-
-    <span class="n">X</span><span class="p">,</span> <span class="n">nmo_per_kpt</span> <span class="o">=</span> <span class="n">get_ortho_ao</span><span class="p">(</span><span class="n">rhf</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="n">rhf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)</span>
-
-    <span class="n">hcore</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">get_hcore</span><span class="p">()</span>
-    <span class="n">fock</span> <span class="o">=</span> <span class="n">hcore</span><span class="o">+</span><span class="n">rhf</span><span class="o">.</span><span class="n">get_veff</span><span class="p">()</span>
-    <span class="c1"># make conversion</span>
-    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">chkfile</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/orthoAORot'</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/nmo_per_kpt'</span><span class="p">]</span> <span class="o">=</span> <span class="n">nmo_per_kpt</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/hcore'</span><span class="p">]</span> <span class="o">=</span> <span class="n">hcore</span>
-        <span class="n">fp</span><span class="p">[</span><span class="s1">'scf/fock'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fock</span>
-
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cubegen</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.rhonk</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_gaussian_cube</span>
-
-<span class="n">rdm</span> <span class="o">=</span> <span class="n">rhf</span><span class="o">.</span><span class="n">make_rdm1</span><span class="p">()</span>
-
-<span class="n">nx</span><span class="o">=</span><span class="n">ny</span><span class="o">=</span><span class="n">nz</span><span class="o">=</span><span class="mi">50</span>
-
-<span class="c1"># the normalization is missing a factor of V / ( nx * ny * nz )</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="n">cubegen</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="s1">'diamond_den.cube'</span><span class="p">,</span> <span class="n">rdm</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-
-<span class="n">V</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">vol</span>
-<span class="n">nkpts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)</span>
-
-<span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">nkpts</span> <span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="n">V</span> <span class="o">/</span> <span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># normalized s.t. $\sum_{\vec{n}} rho_{\vec{n}} = N_{elec} $</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="s2">"axes"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
-     <span class="s2">"data"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="c1"># Volumetric data!</span>
-     <span class="s2">"elem"</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-     <span class="s2">"pos"</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
-     <span class="s2">"origin"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-     <span class="s2">"two_line_comment"</span><span class="p">:</span> <span class="s2">"This is a test cube file</span><span class="se">\n</span><span class="s2">Generated by write_gaussian_cube</span><span class="se">\n</span><span class="s2">"</span>
-<span class="p">}</span>
-
-<span class="n">write_gaussian_cube</span><span class="p">(</span><span class="s2">"diamond_den_afqmctools.cube"</span><span class="p">,</span><span class="n">rho</span><span class="p">)</span>
-
-<span class="n">ngrids</span> <span class="o">=</span> <span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Integrated charge = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Number of grid points = </span><span class="si">{</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Charge per grid point = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="n">ngrids</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">kmf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">KRHF</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">kpts</span><span class="o">=</span><span class="n">cell</span><span class="o">.</span><span class="n">make_kpts</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hamiltonian-and-trial-wavefunction">
+<h2><span class="section-number">2.2. </span>Hamiltonian and Trial Wavefunction<a class="headerlink" href="#hamiltonian-and-trial-wavefunction" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">PeriodicHamiltonian.from_pyscf</span></code> Cholesky-decomposes the two-electron integrals for each momentum transfer,
+in the basis of the Hartree-Fock orbitals at each k-point.
+<code class="docutils literal notranslate"><span class="pre">NOMSDWavefunction.from_pbc_scf</span></code> takes the Hartree-Fock determinant as the trial wavefunction.
+The conversion runs serially in Python, so it takes a little while.
+For production-sized solids, CoQuí is the supported route.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ham</span> <span class="o">=</span> <span class="n">PeriodicHamiltonian</span><span class="o">.</span><span class="n">from_pyscf</span><span class="p">(</span><span class="n">kmf</span><span class="p">)</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">NOMSDWavefunction</span><span class="o">.</span><span class="n">from_pbc_scf</span><span class="p">(</span><span class="n">kmf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ham</span><span class="o">.</span><span class="n">nkpts</span><span class="si">}</span><span class="s2"> k-points, </span><span class="si">{</span><span class="n">ham</span><span class="o">.</span><span class="n">nmo</span><span class="si">}</span><span class="s2"> orbitals per k-point"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -639,237 +521,147 @@ of C diamond in the primitive cell cell.</p>
 </section>
 <section id="run-afqmc">
 <h2><span class="section-number">2.3. </span>Run AFQMC<a class="headerlink" href="#run-afqmc" title="Link to this heading">#</a></h2>
-<p>Next, we’ll run SAFIRE using the Hamiltonian and trial wavefunction that we wrote using CoQuí.
-We’ve provided an input file in <code class="docutils literal notranslate"><span class="pre">3_afqmc</span></code> for this example.
-To learn more about the input file, see <a class="reference internal" href="../../../tutorials/solids/02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the input file</span></a>.</p>
-<p>The input file assumes that you ran CoQuí within the <code class="docutils literal notranslate"><span class="pre">2_hamiltonian_coqui</span></code> directory.
-If you ran it elsewhere, you will need to update the path to the HDF5 file
-in <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> accordingly</p>
-<p>A key part of the input file is the “estimator” block for the
-back-propagation algorithm.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"back_propagation"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"extra_path_restoration"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"ortho"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"nsteps"</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"naverages"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"equil"</span><span class="p">:</span><span class="mi">400</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"onerdm"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"onerdm"</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">},</span>
-</pre></div>
-</div>
-<p>The “name” parameter tells SAFIRE what kind of estimator to use (<code class="docutils literal notranslate"><span class="pre">&quot;back_propagation&quot;</span></code> in this case).
-The “nsteps” parameter determines the number of back propagation steps to use.</p>
-<p>To check for convergence in the number of back propagation steps, SAFIRE allows multiple “averages” to be set up which each use a different number of steps.
-This feature is controlled by setting <code class="docutils literal notranslate"><span class="pre">&quot;naverages&quot;</span></code> to a value greater than one.
-The number of steps that will be used in each average is given by,</p>
-<div class="math notranslate nohighlight">
-\[
-N^{step}_a = \frac{nsteps}{naverages - a},
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(a\)</span> is the 0-based index of the “average”, and “nsteps” and “naverages” are corresponding values from the input file.
-So, for the example here,</p>
-<div class="math notranslate nohighlight">
-\[
-N^{step}_0= 200
-\]</div>
-<p>and</p>
-<div class="math notranslate nohighlight">
-\[
-N^{step}_1 = 400.
-\]</div>
-<p>Now we can run SAFIRE using this input file.
-We provided a sample Slurm script.
-In practice, the slurm details will depend on your specific cluster.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
-<span class="c1">#SBATCH -J afqmc</span>
-<span class="c1">#! Number of MPI ranks (= tasks for Slurm)</span>
-<span class="c1">#SBATCH --ntasks=192</span>
-<span class="c1">#SBATCH --time=2:00:00</span>
-
-<span class="c1"># set up your enviornment as needed here</span>
-<span class="c1">#</span>
-<span class="c1"># source /path/to/env.sh</span>
-
-<span class="c1"># Launch MPI code...</span>
-date
-srun<span class="w"> </span>--cpu-bind<span class="o">=</span>cores<span class="w"> </span>/path/to/safire<span class="w"> </span>afqmc.json<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>afqmc.out
-date
-</pre></div>
-</div>
-<p>Or, you can run locally with,</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="o">[</span>number<span class="w"> </span>of<span class="w"> </span>processes<span class="o">]</span><span class="w"> </span>/path/to/safire<span class="w"> </span>afqmc.json<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>afqmc.out<span class="w"> </span><span class="p">&amp;</span>
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">[number</span> <span class="pre">of</span> <span class="pre">processes]</span></code> depends on how many tasks can be run on your local machine.</p>
-<p>We’ve included some of the output below.
-You should see similar numbers in your output.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">****************************************************</span>
-               <span class="n">Initializing</span> <span class="n">Hamiltonian</span>
-
-<span class="o">****************************************************</span>
-
- <span class="n">Hamiltonian</span> <span class="n">Factory</span> <span class="nb">input</span><span class="p">:</span>
-<span class="n">system</span><span class="p">:</span> <span class="n">sysid_2</span>
-<span class="n">filename</span><span class="p">:</span> <span class="o">../</span><span class="mi">2</span><span class="n">_hamiltonian_coqui</span><span class="o">/</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">h5</span>
-<span class="n">name</span><span class="p">:</span> <span class="n">hamiltonian_unique_id_5</span>
-
- <span class="n">Initializing</span> <span class="n">Hamiltonian</span> <span class="kn">from</span><span class="w"> </span><span class="nn">file</span><span class="p">:</span> <span class="o">../</span><span class="mi">2</span><span class="n">_hamiltonian_coqui</span><span class="o">/</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">h5</span>
- <span class="n">Found</span> <span class="n">hamiltonian</span> <span class="k">with</span> <span class="nb">format</span><span class="p">:</span> <span class="n">coqui</span>
-
- <span class="o">-</span> <span class="n">Nuclear</span> <span class="n">coulomb</span> <span class="n">energy</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
- <span class="o">-</span> <span class="n">Frozen</span> <span class="n">Core</span> <span class="n">energy</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
- <span class="o">-</span> <span class="n">Electron</span> <span class="bp">self</span><span class="o">-</span><span class="n">interaction</span> <span class="n">energy</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">8.846596</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
-
-<span class="n">KPFactorizedHamiltonian</span> <span class="nb">input</span><span class="p">:</span>
-<span class="n">name</span><span class="p">:</span> <span class="n">hamiltonian_unique_id_5</span>
-<span class="n">filename</span><span class="p">:</span> <span class="o">../</span><span class="mi">2</span><span class="n">_hamiltonian_coqui</span><span class="o">/</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">h5</span>
-<span class="n">batched</span><span class="p">:</span> <span class="n">false</span>
-<span class="n">out_of_core</span><span class="p">:</span> <span class="n">false</span>
-<span class="n">cutoff_cholesky</span><span class="p">:</span> <span class="mf">9.9999999999999995e-07</span>
-<span class="n">memory</span><span class="p">:</span> <span class="mi">4096</span>
-<span class="n">nsampleQ</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
-
-
-<span class="o">****************************************************</span>
-               <span class="n">Initializing</span> <span class="n">Wavefunction</span>
-
-<span class="o">****************************************************</span>
- <span class="n">Wavefunction</span> <span class="nb">type</span><span class="p">:</span> <span class="n">NOMSD</span>
- <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">determinants</span> <span class="ow">in</span> <span class="n">trial</span> <span class="n">wavefunction</span><span class="p">:</span> <span class="mi">1</span>
- <span class="o">-</span> <span class="n">Coefficient</span> <span class="n">of</span> <span class="n">first</span> <span class="n">determinant</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.000000</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
- <span class="n">getHamOps</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scratch</span>
- <span class="n">nkpts</span><span class="p">:</span> <span class="mi">1</span>
-
-<span class="n">NOMSD</span> <span class="nb">input</span><span class="p">:</span>
-<span class="n">nbatch</span><span class="p">:</span> <span class="mi">0</span>
-<span class="n">number_of_references</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">rediag</span><span class="p">:</span> <span class="n">false</span>
-
-
-
-<span class="o">****************************************************</span>
-               <span class="n">Initializing</span> <span class="n">Propagator</span>
-
-<span class="o">****************************************************</span>
-
-<span class="n">BasePropagator</span> <span class="nb">input</span><span class="p">:</span>
-
-<span class="n">nbatch</span><span class="p">:</span> <span class="mi">0</span>
-<span class="n">nbatch_qr</span><span class="p">:</span> <span class="mi">0</span>
-<span class="n">i</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">a</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">vbias_bound</span><span class="p">:</span> <span class="mi">50</span>
-<span class="n">external_field_scale</span><span class="p">:</span> <span class="mi">1</span>
-<span class="n">upper_cutoff_scale</span><span class="p">:</span> <span class="mi">10</span>
-<span class="n">lower_cutoff_scale</span><span class="p">:</span> <span class="mi">1</span>
-<span class="n">apply_constraint</span><span class="p">:</span> <span class="n">true</span>
-<span class="n">importance_sampling</span><span class="p">:</span> <span class="n">true</span>
-<span class="n">subtractMF</span><span class="p">:</span> <span class="n">true</span>
-<span class="n">hybrid</span><span class="p">:</span> <span class="n">true</span>
-<span class="n">printP1eigval</span><span class="p">:</span> <span class="n">false</span>
-<span class="n">free_projection</span><span class="p">:</span> <span class="n">false</span>
-<span class="n">denseP1</span><span class="p">:</span> <span class="n">false</span>
-<span class="n">external_field</span><span class="p">:</span>
-<span class="n">excited</span><span class="p">:</span>
-<span class="n">debug_verbosity</span><span class="p">:</span> <span class="n">false</span>
-
-
-
-
- <span class="o">---------------</span> <span class="n">Constructing</span> <span class="n">Propagator</span> <span class="o">------------------</span>
-
- <span class="n">Using</span> <span class="n">sequential</span> <span class="n">propagation</span><span class="o">.</span>
- <span class="n">vbias_bound</span><span class="p">:</span> <span class="mi">50</span>
- <span class="n">Using</span> <span class="n">sparse</span> <span class="mi">1</span><span class="o">-</span><span class="n">body</span> <span class="n">propagator</span>
- <span class="n">Using</span> <span class="n">hybrid</span> <span class="n">method</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">weights</span> <span class="n">during</span> <span class="n">the</span> <span class="n">propagation</span><span class="o">.</span>
- <span class="n">Local</span> <span class="n">Energy</span> <span class="n">of</span> <span class="n">starting</span> <span class="n">determinant</span>
-  <span class="o">-</span> <span class="n">Total</span> <span class="n">energy</span>    <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.191595</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
-  <span class="o">-</span> <span class="n">One</span><span class="o">-</span><span class="n">body</span> <span class="n">energy</span> <span class="p">:</span> <span class="p">(</span><span class="mf">0.800315</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
-  <span class="o">-</span> <span class="n">Coulomb</span> <span class="n">energy</span>  <span class="p">:</span> <span class="p">(</span><span class="mf">2.632165</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
-  <span class="o">-</span> <span class="n">Exchange</span> <span class="n">energy</span> <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">4.624075</span><span class="p">,</span> <span class="mf">0.000000</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p>When SAFIRE has finished running, you should see the <code class="docutils literal notranslate"><span class="pre">qmc.s000.scalar.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">qmc.s000.stat.h5</span></code> output data files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls 3_afqmc
-afqmc.json  afqmc.out  qmc.s000.scalar.dat  qmc.s000.stat.h5
-</pre></div>
-</div>
-</section>
-<section id="analyze">
-<h2><span class="section-number">2.4. </span>Analyze<a class="headerlink" href="#analyze" title="Link to this heading">#</a></h2>
-<section id="ground-state-energy">
-<h3><span class="section-number">2.4.1. </span>Ground state energy<a class="headerlink" href="#ground-state-energy" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> includes a command line tool for analyzing the scalar data output.
-Fun the following command.
-If you are running locally, the <code class="docutils literal notranslate"><span class="pre">-t</span></code> option will cause a plot of the scalar data samples versus total projection time to be generated as seen below.
-If you are running remotely, you can add the <code class="docutils literal notranslate"><span class="pre">--savefig</span> <span class="pre">[filename].png</span></code> option to save the figure.
-Note, you must still use <code class="docutils literal notranslate"><span class="pre">-t</span></code> to generate the plot.</p>
+<p>The energy estimator is on by default.
+The <code class="docutils literal notranslate"><span class="pre">backprop</span></code> block measures the back-propagated one-body density matrix at each back-propagation length in <code class="docutils literal notranslate"><span class="pre">bp_lengths</span></code>, given in steps
+(see <a class="reference internal" href="../../../tutorials/solids/04_computing_observables/04_computing_observables.html"><span class="doc">Computing General Observables</span></a>).
+<code class="docutils literal notranslate"><span class="pre">write_jobfile</span></code> writes the Hamiltonian and the wavefunction to HDF5 files next to the job file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>scalar_stats<span class="w"> </span>3_afqmc/qmc.s000.scalar.dat<span class="w"> </span>-s<span class="w"> </span><span class="nb">time</span><span class="w"> </span>-t<span class="w"> </span>-e<span class="w"> </span><span class="m">5</span>.0<span class="w"> </span>--savefig<span class="w"> </span>3_afqmc/energy_vs_beta.png
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">write_jobfile</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">ham</span><span class="p">,</span>
+        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">wfn</span><span class="p">,</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="n">dt</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">320</span><span class="p">,</span>
+        <span class="s2">"estimators"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"backprop"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="n">bp_lengths</span><span class="p">,</span> <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{}},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Your plot should look similar to the following.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc.json
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ground-state-energy">
+<h2><span class="section-number">2.4. </span>Ground State Energy<a class="headerlink" href="#ground-state-energy" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc.results.h5"</span><span class="p">)</span>
+
+<span class="n">energy</span><span class="p">,</span> <span class="n">energy_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="s2">"Energy"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"E_HF    = </span><span class="si">{</span><span class="n">kmf</span><span class="o">.</span><span class="n">e_tot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">kmf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Ha"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"E_AFQMC = </span><span class="si">{</span><span class="n">energy</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">energy_err</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Ha"</span><span class="p">)</span>
+
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_timeseries</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The energies are those of the supercell spanned by the k-point mesh, 8 primitive cells.</p>
 </section>
 <section id="charge-density">
-<h3><span class="section-number">2.4.2. </span>Charge Density<a class="headerlink" href="#charge-density" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a function for generating the real-space charge density
-given the one-body reduced density matrix (1rdm), and its stochastic uncertainty from AFQMC, as well as the orbitals from Quantum Espresso.
-It will output the resulting 1rdm in a standard *.cube file.
-The *.cube file can then be opened in one of several
-software packages.</p>
-<p>The provided script <code class="docutils literal notranslate"><span class="pre">analysis.py</span></code> demonstrates how to call the <code class="docutils literal notranslate"><span class="pre">charge_density()</span></code> function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<h2><span class="section-number">2.5. </span>Charge Density<a class="headerlink" href="#charge-density" title="Link to this heading">#</a></h2>
+<p>SAFIRE measures the density matrix <span class="math notranslate nohighlight">\(\rho_{ij} = \langle c^\dagger_i c_j \rangle\)</span> in the working basis,
+whose orbital <span class="math notranslate nohighlight">\(i\)</span> at k-point <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> has index <span class="math notranslate nohighlight">\(k M + i\)</span>, with <span class="math notranslate nohighlight">\(M\)</span> orbitals per k-point.
+<code class="docutils literal notranslate"><span class="pre">ham.basis_rotation</span></code> holds the transformation <span class="math notranslate nohighlight">\(X_\mathbf{k}\)</span> from the Bloch atomic orbitals <span class="math notranslate nohighlight">\(\chi_{\mu\mathbf{k}}\)</span> at each k-point to the working basis,
+<span class="math notranslate nohighlight">\(\phi_{i\mathbf{k}} = \sum_\mu \chi_{\mu\mathbf{k}} (X_\mathbf{k})_{\mu i}\)</span>.
+The density matrix is diagonal in <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>, so the density is</p>
+<div class="math notranslate nohighlight">
+\[
+n(\mathbf{r}) = \frac{1}{N_\mathbf{k}} \sum_\mathbf{k} \sum_{\mu\nu} \chi_{\mu\mathbf{k}}(\mathbf{r})\, D^\mathbf{k}_{\mu\nu}\, \chi^*_{\nu\mathbf{k}}(\mathbf{r}),
+\qquad D^\mathbf{k} = X_\mathbf{k}\, (\rho^\mathbf{k})^T X_\mathbf{k}^\dagger,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D^\mathbf{k}\)</span> is in the convention of PySCF’s <code class="docutils literal notranslate"><span class="pre">make_rdm1</span></code>, which lets PySCF’s <code class="docutils literal notranslate"><span class="pre">KNumInt</span></code> evaluate the density.
+The walkers are closed shell, so SAFIRE stores one spin channel, which we double.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">ham</span><span class="o">.</span><span class="n">nmo</span><span class="p">,</span> <span class="n">ham</span><span class="o">.</span><span class="n">basis_rotation</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.rdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_afqmc_rdm</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.observables.rhonk</span><span class="w"> </span><span class="kn">import</span> <span class="n">charge_density</span>
 
-<span class="n">qe_output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./1_dft_quantum_espresso/OUT"</span><span class="p">)</span>
-<span class="n">afqmc_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./3_afqmc"</span><span class="p">)</span>
-
-<span class="n">mean_rdms</span><span class="p">,</span><span class="n">err_rdms</span> <span class="o">=</span> <span class="n">average_afqmc_rdm</span><span class="p">(</span><span class="n">rdm_file</span><span class="o">=</span><span class="n">afqmc_path</span> <span class="o">/</span> <span class="s2">"qmc.s000.stat.h5"</span><span class="p">)</span>
-
-<span class="n">num_avgs</span> <span class="o">=</span> <span class="n">mean_rdms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_avgs</span><span class="p">):</span>
-    <span class="n">charge_density</span><span class="p">(</span>
-        <span class="n">mean_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="n">err_rdms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-        <span class="n">orbital_source</span><span class="o">=</span><span class="n">qe_output</span><span class="p">,</span>
-        <span class="n">rho_outfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">"rho_avg</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_qe_orbs.cube"</span>
-    <span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ao_density_matrix</span><span class="p">(</span><span class="n">rdm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Spin-summed density matrix in the Bloch atomic orbitals at each k-point."""</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">rdm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">rdm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X_k</span> <span class="o">@</span> <span class="n">rho</span><span class="p">[</span><span class="n">k</span> <span class="o">*</span> <span class="n">M</span><span class="p">:(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">M</span><span class="p">,</span> <span class="n">k</span> <span class="o">*</span> <span class="n">M</span><span class="p">:(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">M</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_k</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">X_k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">)])</span>
 </pre></div>
 </div>
-<p>Finally, we can open the charge density for visualization.
-Here we used Vesta to make the following isosurface plot (using an isosurface value of 0.0023)</p>
-<p><img alt="image_02.png" src="../../../_images/image_02.png" /></p>
-</section>
-</section>
-<section id="converging-in-the-basis-set-size">
-<h2><span class="section-number">2.5. </span>Converging in the basis set size<a class="headerlink" href="#converging-in-the-basis-set-size" title="Link to this heading">#</a></h2>
-<p>Accurately capturing electron correlation effects requires a large basis.
-Here, we are working the basis of Kohn-Sham bands.
-We will now converge the AFQMC ground state energy, and the charge density in the number of bands used to form the basis,<span class="math notranslate nohighlight">\(N_{bands}\)</span>.
-We have already seen how to perform each step individually above;
-We will simply need to run AFQMC for a few choices of <span class="math notranslate nohighlight">\(N_{bands}\)</span>.</p>
-<p>As <span class="math notranslate nohighlight">\(E_\mathrm{AFQMC}\)</span> and <span class="math notranslate nohighlight">\(\rho_\mathrm{AFQMC}(\vec{r})\)</span> begin to converge,
-each additional band will individually make only a small contribution.
-It can be useful, then, to choose a logarithmic set of <span class="math notranslate nohighlight">\(\N_{bands}\)</span> to actually run AFQMC for.
-For example,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">nbands_log</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">20</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nbands_log</span>
-<span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">640</span><span class="p">]</span>
+</div>
+</div>
+<p>We evaluate the density in the <span class="math notranslate nohighlight">\((1\bar{1}0)\)</span> plane, which contains the zigzag chains of C-C bonds,
+over a <span class="math notranslate nohighlight">\(\sqrt{2}a \times a\)</span> section spanned by the <span class="math notranslate nohighlight">\([110]\)</span> and <span class="math notranslate nohighlight">\([001]\)</span> directions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_bohr</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">lib</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">BOHR</span>
+<span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_bohr</span><span class="p">,</span> <span class="mi">141</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a_bohr</span><span class="p">,</span> <span class="mi">101</span><span class="p">),</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">"ij"</span><span class="p">)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ni</span> <span class="o">=</span> <span class="n">KNumInt</span><span class="p">()</span>
+<span class="n">ao</span> <span class="o">=</span> <span class="n">ni</span><span class="o">.</span><span class="n">eval_ao</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">coords</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">kpts</span><span class="o">=</span><span class="n">kmf</span><span class="o">.</span><span class="n">kpts</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">density</span><span class="p">(</span><span class="n">rdm</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ni</span><span class="o">.</span><span class="n">eval_rho</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">ao</span><span class="p">,</span> <span class="n">ao_density_matrix</span><span class="p">(</span><span class="n">rdm</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>would allow you to see large changes between each successive run.
-More points can be added in between these if needed.</p>
-<p>DEV TODO: add in results form this.</p>
+</div>
+</div>
+<p>For reference, the Hartree-Fock density follows from the density matrix of the trial determinant <span class="math notranslate nohighlight">\(\Phi\)</span>,
+<span class="math notranslate nohighlight">\(\rho_{ij} = \sum_n \Phi^*_{in} \Phi_{jn}\)</span>.
+We take the average back-propagated density matrix at each length from <code class="docutils literal notranslate"><span class="pre">Results.average</span></code>.
+Each sample is separated by a window, so for long windows we can assume they are weakly correlated and set <code class="docutils literal notranslate"><span class="pre">rebinsize=1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi</span> <span class="o">=</span> <span class="n">wfn</span><span class="o">.</span><span class="n">determinant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">n_hf</span> <span class="o">=</span> <span class="n">density</span><span class="p">((</span><span class="n">phi</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">phi</span><span class="o">.</span><span class="n">T</span><span class="p">)[</span><span class="kc">None</span><span class="p">])</span>
+
+<span class="n">dn</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">bp_lengths</span><span class="p">:</span>
+    <span class="n">rdm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">,</span> <span class="n">rebinsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dn</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">density</span><span class="p">(</span><span class="n">rdm</span><span class="p">)</span> <span class="o">-</span> <span class="n">n_hf</span>
+<span class="n">dn_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dn</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">)),</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n_hf</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s2">"gouraud"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Hartree-Fock"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">bp_lengths</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dn</span><span class="p">[</span><span class="n">L</span><span class="p">],</span> <span class="n">shading</span><span class="o">=</span><span class="s2">"gouraud"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"RdBu_r"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">dn_max</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">dn_max</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s2">"AFQMC $-$ HF, $\tau_\mathrm</span><span class="se">{{</span><span class="s2">BP</span><span class="se">}}</span><span class="s2"> = </span><span class="si">{</span><span class="n">L</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2">$ Ha$^</span><span class="se">{{</span><span class="s2">-1</span><span class="se">}}</span><span class="s2">$"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">"equal"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"$[110]$ (Bohr)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"$[001]$ (Bohr)"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The pseudopotential has no core electrons, so the valence density has a hole at each nucleus and piles up on the bonds.
+The difference shows how correlation redistributes the charge.
+It should agree between the back-propagation lengths within the noise; otherwise, increase <code class="docutils literal notranslate"><span class="pre">bp_lengths</span></code>.</p>
+</section>
+<section id="converging-the-calculation">
+<h2><span class="section-number">2.6. </span>Converging the Calculation<a class="headerlink" href="#converging-the-calculation" title="Link to this heading">#</a></h2>
+<p>The minimal <code class="docutils literal notranslate"><span class="pre">gth-szv</span></code> basis captures little of the correlation energy.
+For quantitative results, converge in the basis set (e.g. <code class="docutils literal notranslate"><span class="pre">gth-dzvp</span></code>, <code class="docutils literal notranslate"><span class="pre">gth-tzv2p</span></code>), in the k-point mesh,
+in the <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, and in the Cholesky threshold <code class="docutils literal notranslate"><span class="pre">chol_cut</span></code> of <code class="docutils literal notranslate"><span class="pre">PeriodicHamiltonian.from_pyscf</span></code>.</p>
 </section>
 </section>
 
@@ -889,7 +681,7 @@ More points can be added in between these if needed.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Si ground state energy and charge density</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Si Ground State Energy and Charge Density</p>
       </div>
     </a>
     <a class="right-next"
@@ -897,7 +689,7 @@ More points can be added in between these if needed.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Momentum distribution of solid Na</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Momentum Distribution of Solid Na</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -920,15 +712,12 @@ More points can be added in between these if needed.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dev-todo">2.1. DEV TODO</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-software">2.2. External Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-with-pyscf">2.1. Hartree-Fock with PySCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-and-trial-wavefunction">2.2. Hamiltonian and Trial Wavefunction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-afqmc">2.3. Run AFQMC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze">2.4. Analyze</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-state-energy">2.4.1. Ground state energy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-density">2.4.2. Charge Density</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converging-in-the-basis-set-size">2.5. Converging in the basis set size</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ground-state-energy">2.4. Ground State Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-density">2.5. Charge Density</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converging-the-calculation">2.6. Converging the Calculation</a></li>
 </ul>
   </nav></div>
 

@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,14 +42,13 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/index.html" />
+    <link rel="icon" href="_static/favicon.svg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installation" href="installation.html" />
@@ -107,7 +107,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -132,7 +132,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -143,13 +143,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -169,42 +162,32 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -295,13 +278,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="tutorials.html">
     Tutorials
   </a>
@@ -316,15 +292,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -410,18 +386,18 @@ The first is the SAFIRE executable which is a high-performance code
 implemented in terms of generic classes of interacting many-electron Hamiltonians
 and wavefunctions. It is designed as generically as possible to take full advantage of
 AFQMC’s flexibility in treating general interacting electron systems.
-The second component is the afqmctools Python package which allows users to both generate the inputs used
+The second component is the <a class="reference internal" href="safiretools/safiretools.html#safiretools"><span class="std std-ref">safiretools</span></a> Python package which allows users to both generate the inputs used
 by SAFIRE and analyze the outputs.
 A formal overview of AFQMC is provided in <a class="reference internal" href="afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a>.</p>
 <section id="how-to-run-an-afqmc-calculation">
-<h2>How to run an AFQMC calculation<a class="headerlink" href="#how-to-run-an-afqmc-calculation" title="Link to this heading">#</a></h2>
+<h2>How to Run an AFQMC Calculation<a class="headerlink" href="#how-to-run-an-afqmc-calculation" title="Link to this heading">#</a></h2>
 <p>After installing SAFIRE (see <a class="reference internal" href="installation.html#install"><span class="std std-ref">Installation</span></a>), a basic AFQMC calculation
 can be performed by following the steps below.
-A set of examples is provided for each step in the <a class="reference internal" href="examples.html#user-examples"><span class="std std-ref">Examples</span></a>.</p>
+The <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> walk through each step, and the <a class="reference internal" href="examples.html#user-examples"><span class="std std-ref">Examples</span></a> show them in complete workflows.</p>
 <ol class="arabic simple">
-<li><p>Set up the AFQMC calculation by specifying a Hamiltonian and a trial wavefunction using afqmctools. See <a class="reference internal" href="snippets/01_setting_up/setup_examples.html#setup-exs"><span class="std std-ref">Setting Up AFQMC</span></a></p></li>
-<li><p>Run the SAFIRE executable. See <a class="reference internal" href="snippets/02_running_afqmc/afqmc_examples.html#run-afqmc-exs"><span class="std std-ref">Running SAFIRE</span></a></p></li>
-<li><p>Analyze the stochastic data. See <a class="reference internal" href="snippets/03_analyzing_results/analysis_examples.html#analysis-exs"><span class="std std-ref">Analyzing AFQMC Results</span></a></p></li>
+<li><p>Set up the AFQMC calculation by specifying a Hamiltonian and a trial wavefunction using safiretools.</p></li>
+<li><p>Run the SAFIRE executable.</p></li>
+<li><p>Analyze the stochastic data.</p></li>
 </ol>
 </section>
 <section id="tutorials">
@@ -434,18 +410,8 @@ in order to illustrate the practical knowledge necessary to perform high-quality
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
-<p>The SAFIRE manual provides two different types of examples:</p>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="examples.html#walkthrough-examples"><span class="std std-ref">Walkthroughs</span></a> which illustrate complete workflows in various application domains.</p></li>
-<li><p><a class="reference internal" href="examples.html#snippet-examples"><span class="std std-ref">Snippets</span></a> which focus on specific actions or settings.</p></li>
-</ol>
+<p>The <a class="reference internal" href="examples.html#user-examples"><span class="std std-ref">Examples</span></a> illustrate complete workflows in various application domains.</p>
 <p>Exploring the examples is a great way to familiarize yourself with the capabilities of SAFIRE and see how to apply them to your own problems.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="features.html#features"><span class="std std-ref">Current SAFIRE Features</span></a></p></li>
-</ul>
-</div>
 </section>
 </section>
 
@@ -487,7 +453,7 @@ in order to illustrate the practical knowledge necessary to perform high-quality
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run-an-afqmc-calculation">How to run an AFQMC calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run-an-afqmc-calculation">How to Run an AFQMC Calculation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

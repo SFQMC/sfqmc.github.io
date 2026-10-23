@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Observables: Pair Correlation functions &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>4. Observables: Pair Correlation Functions &#8212; SAFIRE 0.1.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,10 +50,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/models/04_pair_correlators/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/models/04_pair_correlators/index.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="5. Multi-Slater determinant trial wavefunction" href="../05_multi_slater_trial/index.html" />
-    <link rel="prev" title="3. The square Hubbard Model at half filling" href="../03_half_filling_hubbard/index.html" />
+    <link rel="next" title="5. Multi-Slater Determinant Trial Wavefunction" href="../05_multi_slater_trial/index.html" />
+    <link rel="prev" title="3. The Square Hubbard Model at Half Filling" href="../03_half_filling_hubbard/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -172,42 +165,32 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -296,13 +279,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../tutorials.html">
     Tutorials
   </a>
@@ -317,15 +293,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -388,62 +364,31 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: Spin-Orbit Coupling (SOC) in Ab Initio AFQMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum distribution of solid Na</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si Ground State Energy and Charge Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. Diamond Ground State Energy and Charge Density from PySCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of Solid Na</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Observables: Pair Correlation functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_4x4_hubbard_model/index.html">1. 4×4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_stripes/index.html">2. Stripes and the Square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_half_filling_hubbard/index.html">3. The Square Hubbard Model at Half Filling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Observables: Pair Correlation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_multi_slater_trial/index.html">5. Multi-Slater Determinant Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_honeycomb_hubbard/index.html">6. Hubbard Model on a Honeycomb Lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
-</ul>
-</details></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_lieb_lattice_emery/index.html">8. Emery Model on the Lieb Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../09_useful_snippets/index.html">9. Useful Snippets for Various Lattice Models</a></li>
 </ul>
 </details></li>
 </ul>
@@ -490,9 +435,9 @@
     <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Lattice models</a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Lattice Models</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>Observables: Pair Correlation functions</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>Observables: Pair Correlation Functions</span></li>
   </ul>
 </nav>
 </div>
@@ -511,55 +456,38 @@
                   
   <p class="notebook-download"><a class="reference external" href="index.zip">Download this notebook (.ipynb + data files)</a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="observables-pair-correlation-functions">
-<h1><span class="section-number">4. </span>Observables: Pair Correlation functions<a class="headerlink" href="#observables-pair-correlation-functions" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Observables: Pair Correlation Functions<a class="headerlink" href="#observables-pair-correlation-functions" title="Link to this heading">#</a></h1>
 <p><b>Goal:</b>
 At the end of this tutorial, you will know how to measure pair correlation functions using SAFIRE for a lattice models.</p>
 <section id="what-you-will-learn">
-<h2><span class="section-number">4.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>How to set up the HDF5 and json input files to request pair correlation functions</p></li>
+<li><p>How to set up the HDF5 and JSON job files to request pair correlation functions</p></li>
 <li><p>how to post process the correlation functions</p></li>
 </ol>
 </section>
 <section id="introduction">
 <h2><span class="section-number">4.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>By pair correlation functions, we mean</p>
+<p>By pair correlation functions, we mean the singlet pair correlation functions</p>
 <div class="math notranslate nohighlight">
 \[
-P^{\alpha \beta}_{ij} ≡ ⟨ Δ^†_{i,\alpha}Δ_{j,\beta} ⟩,
+\mathtt{PairCorr/}\alpha\mathtt{\_}\beta[i, j] = \langle \Delta^\dagger_{i,\alpha} \Delta_{j,\beta} \rangle
 \]</div>
-<p>where  <span class="math notranslate nohighlight">\(i,j\)</span> are basis set indices,
-<span class="math notranslate nohighlight">\(α, β\)</span> are spatial offset indices, and</p>
+<p>between the pair creation and annihilation operators</p>
 <div class="math notranslate nohighlight">
 \[
-Δ^†_{i,\alpha} \equiv \frac{1}{\sqrt{2}} \left(c^{\dagger}_{i⇑} c^{†}_{i + e_α ⇓} -  c^{\dagger}_{i⇓} c^{†}_{i + e_α ⇑} \right),
+\Delta^\dagger_{i,\alpha} = \frac{1}{\sqrt{2}} \left(c^{\dagger}_{i\uparrow} c^{\dagger}_{\bar{i}_\alpha \downarrow} -  c^{\dagger}_{i\downarrow} c^{\dagger}_{\bar{i}_\alpha \uparrow} \right), \qquad
+\Delta_{j,\beta} = \frac{1}{\sqrt{2}} \left( c_{\bar{j}_\beta\downarrow} c_{j \uparrow}  - c_{\bar{j}_\beta \uparrow} c_{j \downarrow} \right).
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(e_α\)</span> is the <em>index offset</em> associated with the spatial offset.
-For example, <span class="math notranslate nohighlight">\(e_\alpha\)</span> may correspond to a <span class="math notranslate nohighlight">\(+x\)</span> offset.
-For convenience, we define,</p>
+<p>Here <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> are orbitals, and <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are <em>pair maps</em> that assign every orbital <span class="math notranslate nohighlight">\(i\)</span> a partner orbital <span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span>.
+On a lattice, a pair map typically pairs each site with its neighbor at a fixed offset such as <span class="math notranslate nohighlight">\(+x\)</span>, and the pair map <span class="math notranslate nohighlight">\(\bar{i}_\alpha = i\)</span> gives on-site (s-wave) pairs.
+Written out, the pair correlation function is</p>
 <div class="math notranslate nohighlight">
 \[
-\bar{i}_α \equiv i + e_\alpha,
+\mathtt{PairCorr/}\alpha\mathtt{\_}\beta[i, j] = \frac{1}{2} \left\langle \left(c^{\dagger}_{i\uparrow} c^{\dagger}_{\bar{i}_\alpha \downarrow} -  c^{\dagger}_{i\downarrow} c^{\dagger}_{\bar{i}_\alpha \uparrow} \right) \left( c_{\bar{j}_\beta\downarrow} c_{j \uparrow}  - c_{\bar{j}_\beta \uparrow} c_{j \downarrow} \right) \right\rangle.
 \]</div>
-<p>such that,</p>
-<div class="math notranslate nohighlight">
-\[
-Δ^†_{i,\alpha} \equiv \frac{1}{\sqrt{2}} \left(c^{\dagger}_{i⇑} c^{†}_{\bar{i}_α ⇓} -  c^{\dagger}_{i⇓} c^{†}_{\bar{i}_α ⇑} \right),
-\]</div>
-<p>and</p>
-<div class="math notranslate nohighlight">
-\[
-Δ_{j,\beta} \equiv \frac{1}{\sqrt{2}} \left( c_{\bar{j}_\beta⇓} c_{j ⇑}  - c_{\bar{j}_\beta ⇑} c_{j ⇓} \right),
-\]</div>
-<p>Using this language, the pair correlation function can be written as,</p>
-<div class="math notranslate nohighlight">
-\[
-P^{\alpha \beta}_{ij} ≡ \frac{1}{2} ⟨ \left(c^{\dagger}_{i⇑} c^{†}_{\bar{i}_α ⇓} -  c^{\dagger}_{i⇓} c^{†}_{\bar{i}_α ⇑} \right)  \left( c_{\bar{j}_\beta⇓} c_{j ⇑}  - c_{\bar{j}_\beta ⇑} c_{j ⇓} \right) ⟩.
-\]</div>
-<p>SAFIRE implements this form of pair correlation function.
-It requires a set of <span class="math notranslate nohighlight">\(\bar{i}_\alpha = i + e_\alpha\)</span>, in the HDF5 input file.
-Additionally, specific pairings may be selected in the json input file.
-This allows the user to skip some of the offsets saved in the HDF5 file if desired.
+<p>SAFIRE reads the pair maps from the HDF5 input file.
+It measures every pair map saved in the group the JSON job file points to, so a subset of pair maps is selected by saving it to a group of its own.
 We will explore this in more detail below.</p>
 </section>
 <section id="defining-the-hamiltonian">
@@ -568,43 +496,30 @@ We will explore this in more detail below.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatticeHamiltonian</span>
 
-<span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># create scratch directory in notebook path</span>
+<span class="o">%</span><span class="k">mkdir</span> -p {_dh[0]}/data
+<span class="o">%</span><span class="k">cd</span> -q {_dh[0]}/data
 
-<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-    <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">L1</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">L2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">boundary1</span> <span class="o">=</span> <span class="s2">"PBC"</span><span class="p">,</span>
-        <span class="n">boundary2</span> <span class="o">=</span> <span class="s2">"PBC"</span>
-    <span class="p">)</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="c1"># plot the lattice for reality checks!</span>
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
 
-<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="o">.</span><span class="n">from_input</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">)</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
-
-<span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span><span class="o">/</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="saving-index-offsets-in-the-hdf5-input">
-<h2><span class="section-number">4.4. </span>Saving index offsets in the HDF5 input<a class="headerlink" href="#saving-index-offsets-in-the-hdf5-input" title="Link to this heading">#</a></h2>
-<p>The Lattice class from safiretools can be directly used to find the pairs that we need via the <code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> function.
-<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of “directions”, and it returns a <code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> whose <code class="docutils literal notranslate"><span class="pre">.offsets</span></code> maps each requested direction to a list of index offsets, <span class="math notranslate nohighlight">\(\bar{i}_\alpha [i]\)</span>, such that <span class="math notranslate nohighlight">\(\bar{i}_{\alpha} [i] = i + e_\alpha\)</span>.</p>
+<section id="saving-pair-maps-in-the-hdf5-input">
+<h2><span class="section-number">4.4. </span>Saving Pair Maps in the HDF5 Input<a class="headerlink" href="#saving-pair-maps-in-the-hdf5-input" title="Link to this heading">#</a></h2>
+<p>The Lattice class from safiretools can be directly used to find the pair maps that we need via the <code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of <code class="docutils literal notranslate"><span class="pre">directions</span></code>, and it returns a <code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> whose <code class="docutils literal notranslate"><span class="pre">.offsets</span></code> maps each requested direction <span class="math notranslate nohighlight">\(\alpha\)</span> to its pair map, the list of partner orbitals <span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span> indexed by <span class="math notranslate nohighlight">\(i\)</span>.
+The direction <code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code> is the on-site pair map <span class="math notranslate nohighlight">\(\bar{i}_\alpha = i\)</span>.</p>
 <p>Every direction has to run along a periodic axis. Stepping off an open edge would wrap around to the far side and pair sites that are not neighbours at all, so that is rejected rather than quietly measured.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,100 +536,97 @@ We will explore this in more detail below.</p>
 <p><code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> writes itself to HDF5 in the format the estimator reads. It may go in the same file as the Wavefunction and Hamiltonian, or in one of its own.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="adding-custom-pairings">
-<h3><span class="section-number">4.4.1. </span>Adding Custom Pairings<a class="headerlink" href="#adding-custom-pairings" title="Link to this heading">#</a></h3>
-<p>We note that custom pairings can be added by simply inserting a list of offsets with a new key.
-For example, we can manually add “+x+y” pairing to <code class="docutils literal notranslate"><span class="pre">pairs.offsets</span></code> as</p>
+<section id="adding-custom-pair-maps">
+<h3><span class="section-number">4.4.1. </span>Adding Custom Pair Maps<a class="headerlink" href="#adding-custom-pair-maps" title="Link to this heading">#</a></h3>
+<p>We note that custom pair maps can be added by simply inserting a list of partner orbitals with a new key.
+For example, we can manually add the <span class="math notranslate nohighlight">\(+x+y\)</span> pair map to <code class="docutils literal notranslate"><span class="pre">pairs.offsets</span></code> as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">offsets</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># update hdf5 - the whole map is rewritten, so every direction is still there</span>
-<span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">)</span>
+<span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="requesting-the-pair-correlation-function-in-the-json-input-file">
-<h2><span class="section-number">4.5. </span>Requesting the pair correlation function in the json input file<a class="headerlink" href="#requesting-the-pair-correlation-function-in-the-json-input-file" title="Link to this heading">#</a></h2>
+<section id="requesting-the-pair-correlation-function-in-the-json-job-file">
+<h2><span class="section-number">4.5. </span>Requesting the Pair Correlation Function in the JSON Job File<a class="headerlink" href="#requesting-the-pair-correlation-function-in-the-json-job-file" title="Link to this heading">#</a></h2>
 <p>The pair correlation function observable may be requested as any other observable within an estimator block.
-However, the pair correlation function observable has a few unique parameters that must be set.
-They are:</p>
+However, the pair correlation function observable has one unique parameter that must be set,
+<code class="docutils literal notranslate"><span class="pre">pairs</span></code>, which locates the pair maps with</p>
 <ul class="simple">
-<li><p>“filename” which is the name of the HDF5 file where the pairing offsets were saved. These can saved in the same file as the Wavefunction, and/or Hamiltonian or in their own independent input file. Whichever you prefer.</p></li>
-<li><p>“pair_type” is a list of the names of the types of pairing you want to measure. For example, to measure all of the types of pairing that we defined above, we would use <code class="docutils literal notranslate"><span class="pre">&quot;pair_type&quot;</span> <span class="pre">:</span> <span class="pre">[&quot;s&quot;,&quot;+x&quot;,&quot;-x&quot;,&quot;+y&quot;,&quot;-y&quot;,&quot;xy&quot;]</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>, the name of the HDF5 file where the pair maps were saved. These can be saved in the same file as the Wavefunction, and/or Hamiltonian or in their own independent input file. Whichever you prefer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">group</span></code>, the HDF5 group holding them. <code class="docutils literal notranslate"><span class="pre">DirectedPairs.to_hdf5()</span></code> writes them to <code class="docutils literal notranslate"><span class="pre">PairCorrelator/orbital_map</span></code>.</p></li>
 </ul>
 <div class="alert alert-block alert-info">
 <b>Note:</b>
-  SAFIRE will measure all combinations of pairings that you request.
-  i.e. it will compute $P^{\alpha \beta}_{ij}$ where both $\alpha$ and $\beta$ run over the full set of pairing definitions.
+<p>SAFIRE will measure all combinations of the pair maps in the group,
+i.e. every ordered pair of maps <span class="math notranslate nohighlight">\((\alpha, \beta)\)</span> is measured and stored as its own <span class="math notranslate nohighlight">\((M, M)\)</span> array <code class="docutils literal notranslate"><span class="pre">PairCorr/&lt;α&gt;_&lt;β&gt;</span></code>, where <span class="math notranslate nohighlight">\(M\)</span> is the number of orbitals.</p>
 </div>
 <p>Since the pair correlation functions do not generally commute with the Hamiltonian, we should use a back-propagated estimator.
 A back-propagated estimator block with pair correlation functions would look like the following,</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"equil"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pair_correlators"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_pair_correlators"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"filename"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"pair_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"s"</span><span class="p">,</span><span class="s2">"+x"</span><span class="p">,</span><span class="s2">"-x"</span><span class="p">,</span><span class="s2">"+y"</span><span class="p">,</span><span class="s2">"-y"</span><span class="p">,</span><span class="s2">"xy"</span><span class="p">]</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"backprop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"paircorr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PairCorrelator/orbital_map"</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>If we decided we only wanted s-wave pair correlations, we could use</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"pair_correlators"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_pair_correlators"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"filename"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"pair_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"s"</span><span class="p">,</span><span class="s2">"+x"</span><span class="p">,</span><span class="s2">"-x"</span><span class="p">,</span><span class="s2">"+y"</span><span class="p">,</span><span class="s2">"-y"</span><span class="p">,</span><span class="s2">"xy"</span><span class="p">]</span>
+<p>If we decided we only wanted s-wave pair correlations, we could save only that pair map to a file of its own,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span><span class="o">.</span><span class="n">get_directed_pairs</span><span class="p">(</span><span class="n">directions</span><span class="o">=</span><span class="p">[</span><span class="s2">"s"</span><span class="p">])</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"pairs_s.h5"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and use</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"paircorr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pairs_s.h5"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PairCorrelator/orbital_map"</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>instead of the above.</p>
 <section id="full-sample-input-file">
-<h3><span class="section-number">4.5.1. </span>Full sample input file<a class="headerlink" href="#full-sample-input-file" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.5.1. </span>Full Sample Input File<a class="headerlink" href="#full-sample-input-file" title="Link to this heading">#</a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="nt">"output_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONCOLLINEAR"</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"estimators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backprop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">],</span>
-<span class="w">        </span><span class="nt">"equil"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"pair_correlators"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_pair_correlators"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"filename"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"pair_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"s"</span><span class="p">,</span><span class="s2">"+x"</span><span class="p">,</span><span class="s2">"-x"</span><span class="p">,</span><span class="s2">"+y"</span><span class="p">,</span><span class="s2">"-y"</span><span class="p">,</span><span class="s2">"xy"</span><span class="p">]</span>
+<span class="w">        </span><span class="nt">"paircorr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PairCorrelator/orbital_map"</span>
+<span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -724,11 +636,12 @@ A back-propagated estimator block with pair correlation functions would look lik
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">autohf_to_afqmc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">autohf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span><span class="p">,</span> <span class="n">write_jobfile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
 
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span>
 
 <span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
@@ -743,100 +656,81 @@ A back-propagated estimator block with pair correlation functions would look lik
     <span class="s2">"nelec"</span><span class="p">:</span> <span class="n">nelec</span><span class="p">,</span>
 <span class="p">}</span>
     
-<span class="n">wfn</span> <span class="o">=</span> <span class="n">autohf</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">lattice_hf</span><span class="p">(</span>
-    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">autohf</span><span class="o">.</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">),</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">),</span>
     <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">autohf_to_afqmc</span><span class="p">(</span>
-    <span class="n">wfn</span><span class="p">,</span>
-    <span class="n">output_fname</span> <span class="o">=</span> <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span>
+<span class="c1"># the noncollinear orbitals are spinors, spin-up components first</span>
+<span class="n">orbitals</span><span class="p">,</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"orbitals"</span><span class="p">]</span>
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_single_determinant</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">orbitals</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">))</span>
 <span class="p">)</span>
 
-
-<span class="n">afqmc_params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
-    <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span>
-    <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"back_propagation"</span><span class="p">,</span>
-        <span class="s2">"path_restoration"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s2">"bp_walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span>
-        <span class="s2">"equil"</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="s2">"pair_correlators"</span> <span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"name"</span> <span class="p">:</span> <span class="s2">"my_pair_correlators"</span><span class="p">,</span>
-            <span class="s2">"filename"</span> <span class="p">:</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-            <span class="s2">"pair_type"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"s"</span><span class="p">,</span><span class="s2">"+x"</span><span class="p">,</span><span class="s2">"-x"</span><span class="p">,</span><span class="s2">"+y"</span><span class="p">,</span><span class="s2">"-y"</span><span class="p">,</span><span class="s2">"xy"</span><span class="p">]</span>
+<span class="n">write_jobfile</span><span class="p">(</span>
+    <span class="s2">"afqmc.json"</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">wavefunction</span><span class="p">,</span>
+            <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
+            <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+            <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+            <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span>
+            <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">"estimators"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"backprop"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="n">bp_lengths</span><span class="p">,</span>
+                    <span class="s2">"paircorr"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"pairs"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"filename"</span><span class="p">:</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
+                            <span class="s2">"group"</span><span class="p">:</span> <span class="s2">"PairCorrelator/orbital_map"</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">write_json</span><span class="p">(</span>
-    <span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
-    <span class="n">fwfn0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">fham0</span><span class="o">=</span><span class="n">scratch_dir</span> <span class="o">/</span> <span class="s2">"afqmc.h5"</span><span class="p">,</span>
-    <span class="n">exec_opts</span><span class="o">=</span><span class="n">afqmc_params</span><span class="p">,</span>
-    <span class="n">series</span><span class="o">=</span><span class="mi">0</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
-<span class="n">run_afqmc</span><span class="p">(</span>
-        <span class="n">run_dir</span> <span class="o">=</span> <span class="n">scratch_dir</span><span class="p">,</span>
-        <span class="n">input_file</span> <span class="o">=</span> <span class="s2">"afqmc.json"</span><span class="p">,</span>
-        <span class="n">np</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
-        <span class="n">output_file</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span>   
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc.json
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="post-processing-pair-correlations-functions">
-<h2><span class="section-number">4.6. </span>Post-processing pair correlations functions<a class="headerlink" href="#post-processing-pair-correlations-functions" title="Link to this heading">#</a></h2>
+<section id="post-processing-pair-correlation-functions">
+<h2><span class="section-number">4.6. </span>Post-Processing Pair Correlation Functions<a class="headerlink" href="#post-processing-pair-correlation-functions" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Results</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.analysis.average</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_pair_correlation</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc.results.h5"</span><span class="p">)</span>
 
-
-<span class="n">P</span><span class="p">,</span><span class="n">dP</span><span class="p">,</span><span class="n">correlator_names</span> <span class="o">=</span> <span class="n">average_pair_correlation</span><span class="p">(</span><span class="s2">"qmc.s000.stat.h5"</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">correlator_names</span><span class="p">)):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"correlator name: </span><span class="si">{</span><span class="n">correlator_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">correlator_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">"s"</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">correlator_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">"+x"</span><span class="p">)</span>
-<span class="n">iav</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="n">n_correlators</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">correlator_names</span><span class="p">)</span>
-
-<span class="n">P_ab_ij</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">iav</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_correlators</span><span class="p">,</span><span class="n">n_correlators</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">observable_names</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s2">"PairCorr"</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"correlator name: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># take the s, +x correlator</span>
-<span class="n">P_s_x_ij</span> <span class="o">=</span> <span class="n">P_ab_ij</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
+<span class="n">P_s_x_ij</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">bp_lengths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">/PairCorr/s_+x"</span><span class="p">)</span>
 <span class="c1"># use the first site as the reference site</span>
-<span class="n">P_s_x_0j</span> <span class="o">=</span> <span class="n">P_s_x_ij</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
+<span class="n">P_s_x_0j</span> <span class="o">=</span> <span class="n">P_s_x_ij</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
 
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
     <span class="n">density</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P_s_x_0j</span><span class="o">.</span><span class="n">real</span><span class="p">),</span>
+    <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">norm_type</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">"plasma"</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">"viridis"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -846,9 +740,9 @@ A back-propagated estimator block with pair correlation functions would look lik
 <section id="summary">
 <h2><span class="section-number">4.7. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <section id="what-you-learned">
-<h3><span class="section-number">4.7.1. </span>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.7.1. </span>What You Learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>How to set up the HDF5 and json input files to request pair correlation functions</p></li>
+<li><p>How to set up the HDF5 and JSON job files to request pair correlation functions</p></li>
 <li><p>how to post process the correlation functions</p></li>
 </ol>
 </section>
@@ -871,7 +765,7 @@ A back-propagated estimator block with pair correlation functions would look lik
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>The square Hubbard Model at half filling</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>The Square Hubbard Model at Half Filling</p>
       </div>
     </a>
     <a class="right-next"
@@ -879,7 +773,7 @@ A back-propagated estimator block with pair correlation functions would look lik
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Multi-Slater determinant trial wavefunction</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Multi-Slater Determinant Trial Wavefunction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -902,20 +796,20 @@ A back-propagated estimator block with pair correlation functions would look lik
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">4.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">4.1. What You Will Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">4.2. Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-hamiltonian">4.3. Defining the Hamiltonian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-index-offsets-in-the-hdf5-input">4.4. Saving index offsets in the HDF5 input</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-custom-pairings">4.4.1. Adding Custom Pairings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-pair-maps-in-the-hdf5-input">4.4. Saving Pair Maps in the HDF5 Input</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-custom-pair-maps">4.4.1. Adding Custom Pair Maps</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-the-pair-correlation-function-in-the-json-input-file">4.5. Requesting the pair correlation function in the json input file</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-sample-input-file">4.5.1. Full sample input file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-the-pair-correlation-function-in-the-json-job-file">4.5. Requesting the Pair Correlation Function in the JSON Job File</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-sample-input-file">4.5.1. Full Sample Input File</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-pair-correlations-functions">4.6. Post-processing pair correlations functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">4.7. Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">4.7.1. What you learned</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-pair-correlation-functions">4.6. Post-Processing Pair Correlation Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">4.7. Summary</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">4.7.1. What You Learned</a></li>
 </ul>
 </li>
 </ul>

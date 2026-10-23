@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Computing General Observables &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/07_computing_observables/07_computing_observables';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/models/07_computing_observables/07_computing_observables.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Examples" href="../../../examples.html" />
+    <link rel="prev" title="6. AutoHF Crash Course" href="../06_autohf_crash_course/06_autohf_crash_course.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.html">3. Writing a Hamiltonian File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html">4. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/05_computing_observables/05_computing_observables.html">5. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/overview.html">SAFIRE for Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html">3. Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/04_computing_observables/04_computing_observables.html">4. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../overview.html">SAFIRE for Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Defining a Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_writing_a_trial_wavefunction/05_writing_a_trial_wavefunction.html">5. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_autohf_crash_course/06_autohf_crash_course.html">6. AutoHF Crash Course</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">7. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for Lattice Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">7. </span>Computing General Observables</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="07_computing_observables.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="computing-general-observables">
+<h1><span class="section-number">7. </span>Computing General Observables<a class="headerlink" href="#computing-general-observables" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+Become acquainted with how to compute general observables with SAFIRE.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">7.1. </span>What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What an estimator is and how to set one up in the JSON job file</p></li>
+<li><p>What a mixed estimator is and when to use one to compute an observable</p></li>
+<li><p>What a back-propagated estimator is and when to use one to compute an observable</p></li>
+<li><p>How to compute observables in post-processing with safiretools</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2><span class="section-number">7.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In the previous tutorials, we were content with just computing the energy of a system. SAFIRE does this automatically without the need to configure anything.</p>
+<p>In this tutorial, we will use SAFIRE to compute other observables beyond the energy. SAFIRE gives us the choice between two different estimators to compute such observables: The <em>mixed</em> estimator and the <em>back-propagation</em> estimator. The mixed estimator evaluates a one-sided expectation value with the trial wavefunction,</p>
+<div class="math notranslate nohighlight">
+\[ ⟨O⟩_\text{Mixed} = \frac{⟨Ψ_\text{T}|O|Ψ_\text{AFQMC}⟩}{⟨Ψ_\text{T}|Ψ_\text{AFQMC}⟩}, \]</div>
+<p>and is therefore biased if the observable <span class="math notranslate nohighlight">\(O\)</span> does not commute with the Hamiltonian of the system. The back-propagation estimator evaluates</p>
+<div class="math notranslate nohighlight">
+\[ ⟨O⟩_\text{BP} = \frac{⟨Ψ_\text{T}|e^{-β_\text{BP} H} O|Ψ_\text{AFQMC}⟩}{⟨Ψ_\text{T}|e^{-β_\text{BP} H}|Ψ_\text{AFQMC}⟩}\]</div>
+<p>with a back-propagation length <span class="math notranslate nohighlight">\(\beta_\text{BP}\)</span> to eliminate this bias.</p>
+<p>See <a class="reference internal" href="../../../user_manual/estimators.html#mixed-estimators"><span class="std std-ref">Mixed Estimator</span></a> and <a class="reference internal" href="../../../user_manual/estimators.html#backprop-estimator"><span class="std std-ref">Back-Propagation Estimator</span></a> for a more detailed definition of both estimators.</p>
+</section>
+<section id="set-up-the-system">
+<h2><span class="section-number">7.3. </span>Set Up the System<a class="headerlink" href="#set-up-the-system" title="Link to this heading">#</a></h2>
+<p>For this tutorial, our starting point will be to use safiretools to generate a Hamiltonian and AutoHF to generate a trial wavefunction for the Hubbard model with <span class="math notranslate nohighlight">\(U/t = 4\)</span> on a 4×4 lattice with periodic boundary conditions and <span class="math notranslate nohighlight">\(n_\uparrow = n_\downarrow = 5\)</span>. For details on the set up steps, refer to the previous tutorials.</p>
+<p><img alt="" src="../../../_images/Hubbard_4x4_tutorial.png" /></p>
+<section id="run-the-code-block-to-set-up-the-hamiltonian-and-wavefunction">
+<h3><span class="section-number">7.3.1. </span>Run the Code Block to Set Up the Hamiltonian and Wavefunction<a class="headerlink" href="#run-the-code-block-to-set-up-the-hamiltonian-and-wavefunction" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create scratch directory in notebook path</span>
+<span class="o">%</span><span class="k">mkdir</span> -p {_dh[0]}/data
+<span class="o">%</span><span class="k">cd</span> -q {_dh[0]}/data
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">LatticeHamiltonian</span><span class="p">,</span> <span class="n">NOMSDWavefunction</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
+
+<span class="c1"># some jax initialization for autohf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jax</span>
+<span class="n">jax</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">'jax_platform_name'</span><span class="p">,</span> <span class="s1">'cpu'</span><span class="p">)</span>
+
+<span class="c1"># define the system</span>
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span><span class="s1">'square'</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s1">'periodic'</span><span class="p">,</span> <span class="s1">'periodic'</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"closed"</span><span class="p">)</span>
+
+<span class="c1"># AutoHF needs the Hamiltonian in collinear form, so build it again and convert it</span>
+<span class="n">hamiltonian_for_autohf</span> <span class="o">=</span> <span class="n">AutoHFHamiltonian</span><span class="p">(</span>
+    <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">spin_symm</span><span class="o">=</span><span class="s2">"collinear"</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">hf_settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">ansatz</span> <span class="o">=</span> <span class="s1">'SD'</span><span class="p">,</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="n">nelec</span> <span class="o">=</span> <span class="n">nelec</span><span class="p">,</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">measure_spin</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">random_initial_phi0</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">noncollinear</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">hf_data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">=</span><span class="n">hamiltonian_for_autohf</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">)</span>
+
+<span class="c1"># AutoHF returns the orbitals as (spin, orbital, electron)</span>
+<span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hf_data</span><span class="p">[</span><span class="s2">"orbitals"</span><span class="p">])</span>
+<span class="n">wfn</span> <span class="o">=</span> <span class="n">NOMSDWavefunction</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span>
+    <span class="n">dets</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">beta</span><span class="p">[</span><span class="kc">None</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="using-the-mixed-estimator">
+<h2><span class="section-number">7.4. </span>Using the Mixed Estimator<a class="headerlink" href="#using-the-mixed-estimator" title="Link to this heading">#</a></h2>
+<p>To enable the <a class="reference internal" href="../../../user_manual/estimators.html#mixed-estimators"><span class="std std-ref">Mixed Estimator</span></a>, we need to add it to the <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#estimator-block"><span class="std std-ref">estimators</span></a> block of the job file along with the observables we want to measure.</p>
+<p>In this tutorial we want to measure the one-body reduced-density matrix (1-rdm), <span class="math notranslate nohighlight">\(\langle c^\dagger_{i\sigma} c_{j\sigma} \rangle\)</span>, and the two-body reduced-density matrix (2-rdm), <span class="math notranslate nohighlight">\(\langle c^\dagger_{i\sigma} c^\dagger_{j\sigma'} c_{l\sigma'} c_{k\sigma} \rangle\)</span>, from which all one- and two-body observables can be calculated.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mixed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">"twordm"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Setting the observable to <code class="docutils literal notranslate"><span class="pre">{}</span></code> means to measure it with its default settings.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+<p>Computing the 2-rdm is very time and memory intensive; this should only be done for small systems.</p>
+</div>
+<p>It is also possible to compute only the <em>diagonal</em> 2-rdm,
+<span class="math notranslate nohighlight">\(D^{\sigma\sigma'}_{ij} = \langle c^\dagger_{i\sigma} c^\dagger_{j\sigma'} c_{j\sigma'} c_{i\sigma} \rangle\)</span> (see <a class="reference internal" href="../../../user_manual/estimators.html#diag-twordm-obs"><span class="std std-ref">DiagonalTwoRDM: Diagonal Two-Body Reduced Density Matrix</span></a>).
+This requires significantly less compute time and memory usage than the full 2-rdm and should be preferred whenever possible!
+It is requested with a <code class="docutils literal notranslate"><span class="pre">diag_twordm</span></code> observable block.</p>
+<section id="pedagogical-example-calculating-the-energy-from-the-mixed-estimator">
+<h3><span class="section-number">7.4.1. </span>Pedagogical Example: Calculating the Energy from the Mixed Estimator<a class="headerlink" href="#pedagogical-example-calculating-the-energy-from-the-mixed-estimator" title="Link to this heading">#</a></h3>
+<p>Below, we will use a mixed estimator to compute the 1-rdm, and the diagonal 2-rdm.
+We can then directly compute each contribution to the AFQMC energy,</p>
+<div class="math notranslate nohighlight">
+\[\langle H_1 \rangle = \sum_{ij} h_{ij} \langle c^\dagger_i c_j \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\langle H_2 \rangle = U \sum_{i} D^{\uparrow\downarrow}_{ii}\]</div>
+<p>where the indices of the one-body term are combined orbital and spin indices,
+and compare with the results from the energy estimator. The two should agree exactly.</p>
+</section>
+<section id="run-the-code-block-below-to-write-a-json-job-file-with-a-mixed-estimator">
+<h3><span class="section-number">7.4.2. </span>Run the Code Block Below to Write a JSON Job File with a Mixed Estimator<a class="headerlink" href="#run-the-code-block-below-to-write-a-json-job-file-with-a-mixed-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_jobfile</span>
+
+<span class="n">write_jobfile</span><span class="p">(</span>
+    <span class="s2">"afqmc_mixed.json"</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">wfn</span><span class="p">,</span>
+            <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
+            <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+            <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+            <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+            <span class="s2">"estimators"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"mixed"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{},</span>
+                    <span class="s2">"diag_twordm"</span><span class="p">:</span> <span class="p">{}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can run SAFIRE with this configuration.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc_mixed.json
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-extraction-and-analysis">
+<h3><span class="section-number">7.4.3. </span>Data Extraction and Analysis<a class="headerlink" href="#data-extraction-and-analysis" title="Link to this heading">#</a></h3>
+<p>After the calculation is over, an <code class="docutils literal notranslate"><span class="pre">afqmc_mixed.results.h5</span></code> file should have been written containing the measurements of the energy and the mixed estimator.</p>
+<p>To extract the averages, we can use the same <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Results" title="safiretools.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">safiretools.Results</span></code></a> class we have been using in previous examples. Additionally the function <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Results.evaluate" title="safiretools.Results.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">safiretools.Results.evaluate()</span></code></a> will be useful to evaluate a function of observables and obtain the correct errorbars in the result through a jackknife analysis. The jackknife takes care e.g. of correlations between RDM components or between different observables. For nonlinear functions, it would also add a bias correction.</p>
+</section>
+<section id="run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator">
+<h3><span class="section-number">7.4.4. </span>Run the Code Below to Evaluate the One-Body Energy from the One-RDM and Compare with the Energy Estimator<a class="headerlink" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Results</span>
+
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">onebody_energy</span><span class="p">(</span><span class="n">onerdm</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">"ij,sij-&gt;"</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">onerdm</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc_mixed.results.h5"</span><span class="p">)</span>
+
+<span class="n">rebinsize</span> <span class="o">=</span> <span class="mi">90</span> <span class="c1"># chosen automatically by default. only required here to get exact numerical agreement between different observables</span>
+
+<span class="n">onerdm</span><span class="p">,</span> <span class="n">onerdm_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="s2">"MixedEstimator/OneRDM"</span><span class="p">,</span> <span class="n">rebinsize</span><span class="o">=</span><span class="n">rebinsize</span><span class="p">)</span>
+<span class="n">E1_rdm</span> <span class="o">=</span> <span class="n">onebody_energy</span><span class="p">(</span><span class="n">onerdm</span><span class="p">)</span>
+
+<span class="n">E1_default</span><span class="p">,</span> <span class="n">E1_default_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="s2">"OnebodyEnergy"</span><span class="p">,</span> <span class="n">rebinsize</span><span class="o">=</span><span class="n">rebinsize</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"one-body energy, mixed estimator:  </span><span class="si">{</span><span class="n">E1_rdm</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"one-body energy, energy estimator: </span><span class="si">{</span><span class="n">E1_default</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">E1_default_err</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># to get the correct errorbar use results.evaluate()!</span>
+<span class="n">E1_jackknife</span><span class="p">,</span> <span class="n">E1_jackknife_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">onebody_energy</span><span class="p">,</span> <span class="p">[</span><span class="s2">"MixedEstimator/OneRDM"</span><span class="p">],</span> <span class="n">rebinsize</span><span class="o">=</span><span class="n">rebinsize</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"one-body energy, mixed estimator (jackknife):  </span><span class="si">{</span><span class="n">E1_jackknife</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">E1_jackknife_err</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, the energy computed using the one-body reduced density matrix with a mixed estimator yields the exact same one-body energies as the energy estimator to very high precision.
+This is no surprise since the energy estimator is simply a specialized mixed estimator.</p>
+</section>
+<section id="your-turn-extract-the-diagonal-2-rdm-and-compute-the-two-body-energy">
+<h3><span class="section-number">7.4.5. </span>Your Turn: Extract the Diagonal 2-RDM and Compute the Two-Body Energy<a class="headerlink" href="#your-turn-extract-the-diagonal-2-rdm-and-compute-the-two-body-energy" title="Link to this heading">#</a></h3>
+<p>In this section it is your turn to repeat the above for the two-body energy from the diagonal 2-rdm.</p>
+<p>We provide code for setting up the appropriate transform function in the code block below.
+Note that <code class="docutils literal notranslate"><span class="pre">DiagonalTwoRDM</span></code> is stored as a flat array that holds only the upper triangle of the same-spin blocks (see <a class="reference internal" href="../../../user_manual/estimators.html#diag-twordm-obs"><span class="std std-ref">DiagonalTwoRDM: Diagonal Two-Body Reduced Density Matrix</span></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">get_U</span><span class="p">()</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
+<span class="c1"># position of D^{up,down}_{ii} in the flat DiagonalTwoRDM: row i holds M-1-i same-spin</span>
+<span class="c1"># elements followed by the M elements of the up-down block</span>
+<span class="n">ud_diagonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">twobody_energy</span><span class="p">(</span><span class="n">diag_twordm</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">diag_twordm</span><span class="p">[</span><span class="n">ud_diagonal</span><span class="p">])</span>
+
+<span class="n">E2_default</span><span class="p">,</span> <span class="n">E2_default_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">eH</span><span class="p">,</span> <span class="n">eF</span><span class="p">:</span> <span class="n">eH</span> <span class="o">+</span> <span class="n">eF</span><span class="p">,</span> <span class="p">[</span><span class="s2">"CoulombEnergy"</span><span class="p">,</span> <span class="s2">"ExchangeEnergy"</span><span class="p">],</span> <span class="n">rebinsize</span><span class="o">=</span><span class="n">rebinsize</span><span class="p">)</span>
+
+<span class="c1">############</span>
+<span class="c1"># YOUR TURN: Calculate the twobody-energy using results.evaluate</span>
+<span class="n">E2_rdm</span><span class="p">,</span> <span class="n">E2_rdm_err</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
+<span class="c1">############</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"two-body energy, mixed estimator: </span><span class="si">{</span><span class="n">E2_rdm</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">E2_rdm_err</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"two-body energy, energy estimator: </span><span class="si">{</span><span class="n">E2_default</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">E2_default_err</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the two-body energy implemented, we once again see that the two body energy computed from the two-body reduced density matrix samples is the same as the two body energy from the energy estimator (after adding the exchange and direct Coulomb contributions together, of course).</p>
+</section>
+</section>
+<section id="back-propagation-bp-in-safire">
+<h2><span class="section-number">7.5. </span>Back-Propagation (BP) in SAFIRE<a class="headerlink" href="#back-propagation-bp-in-safire" title="Link to this heading">#</a></h2>
+<p>Mixed estimators are biased for observables <span class="math notranslate nohighlight">\(O\)</span> such that <span class="math notranslate nohighlight">\([O,H] \neq 0\)</span>.
+The back-propagation (BP) estimator mitigates this bias (see <a class="reference internal" href="../../../user_manual/estimators.html#backprop-estimator"><span class="std std-ref">Back-Propagation Estimator</span></a>).</p>
+<section id="basic-bp-configuration">
+<h3><span class="section-number">7.5.1. </span>Basic BP Configuration<a class="headerlink" href="#basic-bp-configuration" title="Link to this heading">#</a></h3>
+<p>BP is invoked in SAFIRE by including a <code class="docutils literal notranslate"><span class="pre">backprop</span></code> estimator in the job file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"estimators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"backprop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Observables are added to the BP block in the same way as for mixed estimators.
+The required <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> setting lists the back-propagation lengths, in steps.</p>
+</section>
+<section id="back-propagation-lengths">
+<h3><span class="section-number">7.5.2. </span>Back-Propagation Lengths<a class="headerlink" href="#back-propagation-lengths" title="Link to this heading">#</a></h3>
+<p>The result of the BP estimator depends on the back-propagation length:
+short lengths approach the mixed estimator, while long ones are costly and noisy.
+SAFIRE measures every listed length in the same calculation, reusing the forward projection,
+so that you can check the convergence in the back-propagation length.
+Each length is written to its own group, <code class="docutils literal notranslate"><span class="pre">BackPropEstimator/Steps=&lt;length&gt;</span></code>, in the results file.
+The longest length also acts as the measurement interval of the estimator.</p>
+<p>Like all other observables, back-propagated ones are not measured during the equilibration phase
+whose length is the execute block’s <code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>.</p>
+<p>See <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#backprop-block"><span class="std std-ref">backprop</span></a> for all settings of the BP estimator.</p>
+</section>
+<section id="demonstration-of-bp">
+<h3><span class="section-number">7.5.3. </span>Demonstration of BP<a class="headerlink" href="#demonstration-of-bp" title="Link to this heading">#</a></h3>
+<p>For the sake of execution time, we will compute only the one-rdm using the back-propagation estimator.
+We will find that the one-body energy computed using the BP one-rdm will <em>not</em> agree with the one computed using a mixed estimator.
+The BP-estimated one-body energy is unbiased, and represents a better estimate of the one-body energy than that provided by the mixed estimator.</p>
+</section>
+<section id="run-the-code-block-below-to-write-a-json-job-file-with-a-bp-estimator">
+<h3><span class="section-number">7.5.4. </span>Run the Code Block Below to Write a JSON Job File with a BP Estimator<a class="headerlink" href="#run-the-code-block-below-to-write-a-json-job-file-with-a-bp-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Setting up a BP calculation with multiple BP lengths</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">bp_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>  <span class="c1"># Multiple BP lengths, in steps</span>
+<span class="c1"># Set up AFQMC parameters with back-propagation</span>
+<span class="n">write_jobfile</span><span class="p">(</span>
+    <span class="s2">"afqmc_bp.json"</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">wfn</span><span class="p">,</span>
+            <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
+            <span class="s2">"timestep"</span><span class="p">:</span> <span class="n">dt</span><span class="p">,</span>
+            <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+            <span class="s2">"measure_interval"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+            <span class="s2">"population_control_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+            <span class="s2">"estimators"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"backprop"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"walker_ortho_interval"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"propagation_steps"</span><span class="p">:</span> <span class="n">bp_lengths</span><span class="p">,</span>
+                    <span class="s2">"onerdm"</span><span class="p">:</span> <span class="p">{}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-safire-with-bp">
+<h3><span class="section-number">7.5.5. </span>Run SAFIRE with BP<a class="headerlink" href="#run-safire-with-bp" title="Link to this heading">#</a></h3>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run AFQMC with back-propagation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Running AFQMC with back-propagation estimator..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This will take longer than mixed estimators due to the additional back-propagation steps."</span><span class="p">)</span>
+<span class="o">!</span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc_bp.json
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator">
+<h3><span class="section-number">7.5.6. </span>Run the Code Below to Evaluate the One-Body Energy from the One-RDM and Compare with the BP Estimator<a class="headerlink" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">results_bp</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc_bp.results.h5"</span><span class="p">)</span>
+
+<span class="n">bp_onebody_energy</span><span class="p">,</span> <span class="n">bp_onebody_energy_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span>
+   <span class="n">results_bp</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">onebody_energy</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">bp_length</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">])</span>
+   <span class="k">for</span> <span class="n">bp_length</span> <span class="ow">in</span> <span class="n">bp_lengths</span>
+<span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">bp_onebody_energy</span><span class="p">,</span> <span class="n">bp_onebody_energy_err</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"BackProp Estimator"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">E1_default</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Mixed Estimator"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"BP length $β_\mathrm</span><span class="si">{BP}</span><span class="s2">$ ($t^{-1}$)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$E_1$ ($t$)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways-from-back-propagation-analysis">
+<h3><span class="section-number">7.5.7. </span>Key Takeaways from Back-Propagation Analysis<a class="headerlink" href="#key-takeaways-from-back-propagation-analysis" title="Link to this heading">#</a></h3>
+<p><strong>When to Use BP vs Mixed Estimators:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Mixed Estimators</strong>: Use for observables that commute with the Hamiltonian (like energy). They are computationally cheaper and provide unbiased estimates.</p></li>
+<li><p><strong>Back-Propagation</strong>: Required for observables that do not commute with the Hamiltonian (like the one-body reduced density matrix). BP provides pure estimators that are unbiased.</p></li>
+</ol>
+<p><strong>Important BP Configuration Points:</strong></p>
+<ul class="simple">
+<li><p><strong>Multiple BP Lengths</strong>: Use multiple BP lengths to check convergence. Longer BP lengths generally provide more accurate results but are more expensive. However, BP is unstable for long back propagation times. This is reflected in the large stochastic uncertainty for large BP length.</p></li>
+<li><p><strong>Computational Cost</strong>: BP calculations are significantly more expensive than mixed estimators due to the additional back-propagation steps.</p></li>
+</ul>
+<p><strong>Convergence Analysis:</strong></p>
+<p>The plots above show how the BP estimator converges with increasing BP length. For observables that don’t commute with the Hamiltonian, you should see:</p>
+<ul class="simple">
+<li><p>Different results between mixed and BP estimators (showing the bias in mixed estimators)</p></li>
+<li><p>Dependence of BP estimators on back-propagation length. It is important to note that BP does not necessarily converge and is unstable for large total imaginary time.</p></li>
+</ul>
+<p>This demonstrates why BP is essential for computing unbiased estimates of observables like charge densities, spin densities, and other quantities derived from the one-body reduced density matrix.</p>
+</section>
+</section>
+<section id="summary">
+<h2><span class="section-number">7.6. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, you were acquainted with how to compute general observables with SAFIRE.</p>
+</section>
+<section id="what-you-learned">
+<h2><span class="section-number">7.7. </span>What You Learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What an estimator is and how to set one up in the JSON job file</p></li>
+<li><p>What a mixed estimator is and when to use one to compute an observable</p></li>
+<li><p>What a back-propagated estimator is and when to use one to compute an observable</p></li>
+<li><p>How to compute observables in post-processing with safiretools</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../06_autohf_crash_course/06_autohf_crash_course.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>AutoHF Crash Course</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../examples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">7.1. What You Will Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">7.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-system">7.3. Set Up the System</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-to-set-up-the-hamiltonian-and-wavefunction">7.3.1. Run the Code Block to Set Up the Hamiltonian and Wavefunction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-mixed-estimator">7.4. Using the Mixed Estimator</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pedagogical-example-calculating-the-energy-from-the-mixed-estimator">7.4.1. Pedagogical Example: Calculating the Energy from the Mixed Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-write-a-json-job-file-with-a-mixed-estimator">7.4.2. Run the Code Block Below to Write a JSON Job File with a Mixed Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-extraction-and-analysis">7.4.3. Data Extraction and Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-energy-estimator">7.4.4. Run the Code Below to Evaluate the One-Body Energy from the One-RDM and Compare with the Energy Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn-extract-the-diagonal-2-rdm-and-compute-the-two-body-energy">7.4.5. Your Turn: Extract the Diagonal 2-RDM and Compute the Two-Body Energy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-in-safire">7.5. Back-Propagation (BP) in SAFIRE</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-bp-configuration">7.5.1. Basic BP Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-lengths">7.5.2. Back-Propagation Lengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstration-of-bp">7.5.3. Demonstration of BP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-write-a-json-job-file-with-a-bp-estimator">7.5.4. Run the Code Block Below to Write a JSON Job File with a BP Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-safire-with-bp">7.5.5. Run SAFIRE with BP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-below-to-evaluate-the-one-body-energy-from-the-one-rdm-and-compare-with-the-bp-estimator">7.5.6. Run the Code Below to Evaluate the One-Body Energy from the One-RDM and Compare with the BP Estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways-from-back-propagation-analysis">7.5.7. Key Takeaways from Back-Propagation Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">7.6. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-learned">7.7. What You Learned</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

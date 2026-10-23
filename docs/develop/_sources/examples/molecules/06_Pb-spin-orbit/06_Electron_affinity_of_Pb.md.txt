@@ -13,7 +13,7 @@ kernelspec:
 
 +++ {"id": "bxazkxe2X9Wx"}
 
-# Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC
+# Electron Affinity of Pb: Spin-Orbit Coupling (SOC) in Ab Initio AFQMC
 
 At the end of this example, you will know how to include SOC in ab initio AFQMC calculations.
 
@@ -47,18 +47,15 @@ We we will use the relativistic Stuttgart effective core potentials (ECPs), in o
 capture both spin-orbit coupling (SOC) and scalar relativistic effects, as
 well as the corresponding augmented cGTO basis sets [2-5].
 
-### ▶️ Run the code block below to load the ECP and basis definitions
+### Run the Code Block Below to Load the ECP and Basis Definitions
 
 ```{code-cell} ipython3
 :id: XSXP8e2IYxFb
 :outputId: 6c4e562d-b891-4890-fe3c-45c7898cfbfd
 
-# setup the tutorials by runnig this block
-from pathlib import Path
-from tutorial_utils import run_afqmc
-
-scratch_dir = Path("data")
-scratch_dir.mkdir(parents=True, exist_ok=True)
+# create scratch directory in notebook path
+%mkdir -p {_dh[0]}/data
+%cd -q {_dh[0]}/data
 
 ecp_soc = {
     'Pb' : '''
@@ -125,20 +122,17 @@ END
 
 +++ {"id": "WFTquom2i2Xb"}
 
-## Generate inputs for the Neutral atom
+## Generate Inputs for the Neutral Atom
 
 We will begin by generating the Hamiltonian and trial wavefunction for the neutral Pb atom.
 
-### ▶️ Run PySCF for the neutral atom to generate a basis and SOC-GHF trial wavefunction
+### Run PySCF for the Neutral Atom to Generate a Basis and SOC-GHF Trial Wavefunction
 
 ```{code-cell} ipython3
 :id: FZrF4OuWi2Xc
 :outputId: 658445dd-675a-4c26-8533-a309538529e1
 
 from pyscf import gto, scf
-
-neutral_scratch_dir = scratch_dir / "neutral_atom"
-neutral_scratch_dir.mkdir(exist_ok=True, parents=True)
 
 ## Run SOC-GHF using PySCF
 mol = gto.M(
@@ -192,7 +186,7 @@ print(f"SOC-GHF electronic energy: {ghf_soc.energy_elec()}")
 
 +++ {"id": "H-m_KAsri2Xc"}
 
-### ▶️ Generate and Write Hamiltonian and Trial wavefunction for Neutral Atom
+### Generate and Write Hamiltonian and Trial Wavefunction for Neutral Atom
 
 We generate the Hamiltonian and trial wavefunction in the usual way. The spin-orbit
 coupling enters through the SCF object the Hamiltonian is built from: the SOC-GHF
@@ -208,19 +202,15 @@ the SOC-GHF or ROHF solution for the initial wavefunction.
 :id: 8I_FH4jPi2Xc
 :outputId: 308f3c0b-a95a-4fac-bb4f-10a6a5c45241
 
-import h5py as h5
-import numpy as np
-
 from safiretools import MolecularHamiltonian
 from safiretools import Wavefunction
 
 # inputs
-local_scratch_dir = neutral_scratch_dir
 chol_tol = 1e-5
 
 # output
-fout = local_scratch_dir / 'afqmc_sf.h5'
-fout_soc = local_scratch_dir / 'afqmc_soc.h5'
+fout = 'neutral_afqmc_sf.h5'
+fout_soc = 'neutral_afqmc_soc.h5'
 
 #####################################
 #                                   #
@@ -230,11 +220,11 @@ fout_soc = local_scratch_dir / 'afqmc_soc.h5'
 
 # The SOC-GHF object's hcore carries the ECP spin-orbit term, which makes the
 #   Hamiltonian noncollinear
-MolecularHamiltonian.from_pyscf(
+hamiltonian = MolecularHamiltonian.from_pyscf(
     ghf_soc,
     basis=rohf,
     chol_cut=chol_tol,
-).to_hdf5(fout_soc)
+)
 
 #####################################
 #                                   #
@@ -242,64 +232,56 @@ MolecularHamiltonian.from_pyscf(
 #                                   #
 #####################################
 
-Wavefunction.from_pyscf(
+wavefunction = Wavefunction.from_pyscf(
     ghf_soc,
     basis=rohf
-).to_hdf5(fout_soc)
+)
 ```
 
 +++ {"id": "atWbeuX8i2Xd"}
 
-### ▶️ Run SAFIRE
+### Run SAFIRE
 
 ```{code-cell} ipython3
 :id: PsAy09S7i2Xd
 :outputId: 1ef1d7f2-a846-4794-b2cd-1d91df0bf49d
+:tags: [scroll-output]
+:scrolled: true
 
-from afqmctools.inputs.from_hdf import write_json
-from stats.scalar_dat import analyze_scalar_data
+from safiretools import write_jobfile
+from safiretools import Results, vis
 
-# Write json input file
-execute_options = {
-    "timestep": 0.005,
-    "steps": 7000,
-    "measure_interval": 5,
-    "population_control_interval" : 5,
-    "walker_ortho_interval" : 10 ,
-    "num_walkers": 1280,
-    "seed" : 42
-}
-write_json(
-    local_scratch_dir/ "afqmc.json",
-    fwfn0=fout_soc,
-    exec_opts=execute_options
+# Write JSON job file, which also writes the wavefunction and the Hamiltonian to HDF5
+write_jobfile(
+    "neutral_afqmc.json",
+    {
+        "seed": 42,
+        "execute": {
+            "wavefunction": wavefunction,
+            "hamiltonian": hamiltonian,
+            "timestep": 0.005,
+            "steps": 7000,
+            "equilibration_steps": 1600,
+            "measure_interval": 5,
+            "population_control_interval": 5,
+            "walker_ortho_interval": 10,
+            "num_walkers": 1280
+        }
+    }
 )
 
-# run AFQMC
-run_afqmc(
-    run_dir=local_scratch_dir,
-    run_mode="local_cpu",
-    timeout_mins=100,
-    input_file="afqmc.json",
-    np=16,             # number of MPI tasks
-    output_file=None,
-)
+!mpirun -n 16 $AFQMC_EXEC neutral_afqmc.json
 
-settings = dict(
-    fname = local_scratch_dir/"qmc.s000.scalar.dat",
-    xaxis = "time",
-    nequil = 8,
-    trace = True
-)
-
-E,dE = analyze_scalar_data(settings)
+results = Results("neutral_afqmc.results.h5")
+vis.plot_timeseries(results)
+E, dE = results.average("Energy")
 ```
 
 +++ {"id": "QnNlY3KVi2Xd"}
 
-## Repeat for Charged $Pb^-$ ion
+## Repeat for Charged $Pb^-$ Ion
 
-### ▶️ Run PySCF
+### Run PySCF
 
 ```{code-cell} ipython3
 ---
@@ -308,11 +290,6 @@ colab:
 id: 8rI2HhjiZRWO
 outputId: 4d9b87d0-91f6-4828-9d9a-67d86d9730a4
 ---
-from pyscf import gto, scf
-
-charged_scratch_dir = scratch_dir / "charged_atoms"
-charged_scratch_dir.mkdir(exist_ok=True, parents=True)
-
 ## Run SOC-GHF using PySCF
 mol = gto.M(
     atom="Pb 0. 0. 0.",
@@ -365,7 +342,7 @@ print(f"SOC-GHF electronic energy: {ghf_soc.energy_elec()}")
 
 +++ {"id": "ivaijztJi2Xe"}
 
-### ▶️ Generate and Write Hamiltonian and trial wavefunction
+### Generate and Write Hamiltonian and Trial Wavefunction
 
 ```{code-cell} ipython3
 ---
@@ -374,19 +351,12 @@ colab:
 id: gAqSvXG3aB8I
 outputId: 8a825787-6626-44d1-97c4-ee738d109252
 ---
-import numpy as np
-
-from safiretools import MolecularHamiltonian
-from safiretools import Wavefunction
-
-
 # inputs
-local_scratch_dir = charged_scratch_dir
 chol_tol = 1e-5
 
 # output
-fout = local_scratch_dir / 'afqmc_sf.h5'
-fout_soc = local_scratch_dir / 'afqmc_soc.h5'
+fout = 'charged_afqmc_sf.h5'
+fout_soc = 'charged_afqmc_soc.h5'
 
 #####################################
 #                                   #
@@ -396,11 +366,11 @@ fout_soc = local_scratch_dir / 'afqmc_soc.h5'
 
 # The SOC-GHF object's hcore carries the ECP spin-orbit term, which makes the
 #   Hamiltonian noncollinear
-MolecularHamiltonian.from_pyscf(
+hamiltonian = MolecularHamiltonian.from_pyscf(
     ghf_soc,
     basis=rohf,
     chol_cut=chol_tol,
-).to_hdf5(fout_soc)
+)
 
 #####################################
 #                                   #
@@ -408,63 +378,46 @@ MolecularHamiltonian.from_pyscf(
 #                                   #
 #####################################
 
-Wavefunction.from_pyscf(
+wavefunction = Wavefunction.from_pyscf(
     ghf_soc,
     basis=rohf
-).to_hdf5(fout_soc)
-```
-
-```{code-cell} ipython3
-:id: pN8NwsiSi2Xe
-
-charged_scratch_dir = scratch_dir / "charged_atoms"
-local_scratch_dir = charged_scratch_dir
-fout_soc = local_scratch_dir / 'afqmc_soc.h5'
+)
 ```
 
 +++ {"id": "6RUWlygXi2Xe"}
 
-### ▶️ Run SAFIRE
+### Run SAFIRE
 
 ```{code-cell} ipython3
 :id: JWAr64xIi2Xe
 :outputId: 0f831053-5571-4d5f-88ca-1a7c8f7edd61
+:tags: [scroll-output]
+:scrolled: true
 
-### from afqmctools.inputs.from_hdf import write_json
-from stats.scalar_dat import analyze_scalar_data
-
-# Write json input file
-execute_options = {
-    "timestep": 0.005,
-    "steps": 7000,
-    "measure_interval": 5,
-    "population_control_interval" : 5,
-    "walker_ortho_interval" : 10 ,
-    "num_walkers": 1120,
-    "seed" : 42
-}
-write_json(
-    local_scratch_dir/ "afqmc.json",
-    fwfn0=fout_soc,
-    exec_opts=execute_options
+# Write JSON job file
+write_jobfile(
+    "charged_afqmc.json",
+    {
+        "seed": 42,
+        "execute": {
+            "wavefunction": wavefunction,
+            "hamiltonian": hamiltonian,
+            "timestep": 0.005,
+            "steps": 7000,
+            "equilibration_steps": 1600,
+            "measure_interval": 5,
+            "population_control_interval": 5,
+            "walker_ortho_interval": 10,
+            "num_walkers": 1120
+        }
+    }
 )
 
-# run AFQMC
-run_afqmc(
-    run_dir=local_scratch_dir,
-    input_file="afqmc.json",
-    np=16,
-    output_file=None
-)
+!mpirun -n 16 $AFQMC_EXEC charged_afqmc.json
 
-settings = dict(
-    fname = local_scratch_dir/"qmc.s000.scalar.dat",
-    xaxis = "time",
-    nequil = 8,
-    trace = True
-)
-
-E_charged,dE_charged = analyze_scalar_data(settings)
+results = Results("charged_afqmc.results.h5")
+vis.plot_timeseries(results)
+E_charged, dE_charged = results.average("Energy")
 ```
 
 +++ {"id": "bM8pXy_ui2Xe"}
@@ -482,8 +435,8 @@ import numpy as np
 
 eV = 27.211407953
 
-EA = E - E_charged
-dEA = np.sqrt( np.power(dE,2) + np.power(dE_charged,2))
+EA = (E - E_charged).real
+dEA = np.sqrt(dE.real**2 + dE_charged.real**2)
 
 print(f"The electron affinity is {EA*eV} +/- {dEA*eV} eV")
 ```

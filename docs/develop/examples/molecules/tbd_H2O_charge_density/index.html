@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,6 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/tbd_H2O_charge_density/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/molecules/tbd_H2O_charge_density/index.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -108,7 +108,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -133,7 +133,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -144,13 +144,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -170,42 +163,32 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -296,13 +279,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../tutorials.html">
     Tutorials
   </a>
@@ -317,15 +293,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -437,22 +413,11 @@ the water molecule at its equilibrium geometry.</p>
 </ul>
 </section>
 <section id="run-the-code-block-below-to-set-up-the-example">
-<h2><strong>Run the code block below to set up the example</strong><a class="headerlink" href="#run-the-code-block-below-to-set-up-the-example" title="Link to this heading">#</a></h2>
+<h2><strong>Run the Code Block Below to Set Up the Example</strong><a class="headerlink" href="#run-the-code-block-below-to-set-up-the-example" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run me (shift+enter or click the play button) to setup the tutorial!</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span><span class="p">,</span><span class="n">mcscf</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wavefunction</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.inputs.from_hdf</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_json</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">stats.scalar_dat</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_scalar_data</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_afqmc</span>
 
 <span class="n">scratch_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
 <span class="n">scratch_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -473,12 +438,9 @@ the water molecule at its equilibrium geometry.</p>
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span><span class="n">scf</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.scf.hf</span><span class="w"> </span><span class="kn">import</span> <span class="n">dip_moment</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cubegen</span>
 
 <span class="n">scratch</span> <span class="o">=</span> <span class="n">scratch_dir</span>
@@ -550,17 +512,12 @@ the water molecule at its equilibrium geometry.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="analyze-with-afqmctools">
-<h1>analyze with afqmctools<a class="headerlink" href="#analyze-with-afqmctools" title="Link to this heading">#</a></h1>
+<h1>Analyze with afqmctools<a class="headerlink" href="#analyze-with-afqmctools" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cubegen</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">lib</span>
-
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.scf.hf</span><span class="w"> </span><span class="kn">import</span> <span class="n">dip_moment</span>
 
 <span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"./scratch"</span><span class="p">)</span>
@@ -832,11 +789,11 @@ the water molecule at its equilibrium geometry.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><span class="math notranslate nohighlight">\(H_2O\)</span> Molecule: Charge Density</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-development">In Development!!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-set-up-the-example"><strong>Run the code block below to set up the example</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-code-block-below-to-set-up-the-example"><strong>Run the Code Block Below to Set Up the Example</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-water-molecule">The Water Molecule</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-with-afqmctools">analyze with afqmctools</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-with-afqmctools">Analyze with afqmctools</a></li>
 </ul>
 
   </nav></div>

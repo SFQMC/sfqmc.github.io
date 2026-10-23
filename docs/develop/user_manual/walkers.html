@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Walker Classes &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>Walkers &#8212; SAFIRE 0.1.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,10 +50,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual/walkers';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual/walkers.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Estimators" href="estimators.html" />
-    <link rel="prev" title="Input file" href="input_description_afqmc.html" />
+    <link rel="next" title="Results File" href="output.html" />
+    <link rel="prev" title="Estimators" href="estimators.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -171,43 +164,33 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -295,13 +278,6 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../tutorials.html">
     Tutorials
@@ -316,16 +292,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -386,12 +362,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">Input file</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Walker Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">The Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="estimators.html">Estimators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian File formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction File formats</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Results File</a></li>
 </ul>
 </div>
 </nav></div>
@@ -435,7 +411,7 @@
     
     <li class="breadcrumb-item"><a href="../user_manual.html" class="nav-link">User Manual</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Walker Classes</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Walkers</span></li>
   </ul>
 </nav>
 </div>
@@ -452,70 +428,51 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="walker-classes">
-<span id="id1"></span><h1>Walker Classes<a class="headerlink" href="#walker-classes" title="Link to this heading">#</a></h1>
-<p>Several types of Slater determinant random walkers are implemented
-based on how spin-symmetry is handled.
-Each type is described below.
-The following list includes all walker types.</p>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="#closed-walker"><span class="std std-ref">RHF/Closed Walkers</span></a></p></li>
-<li><p><a class="reference internal" href="#collinear-walker"><span class="std std-ref">UHF/Collinear Walkers</span></a></p></li>
-<li><p><a class="reference internal" href="#noncollinear-walker"><span class="std std-ref">GHF/Noncollinear Walkers</span></a></p></li>
-</ol>
-<p>The walker type can be set in the AFQMC input file using the <code class="docutils literal notranslate"><span class="pre">walker_type</span></code> keyword
-within a “walker_set” input block.
-The walker type can be set to one of the following values:</p>
-<section id="rhf-closed-walkers">
-<span id="closed-walker"></span><h2>RHF/Closed Walkers<a class="headerlink" href="#rhf-closed-walkers" title="Link to this heading">#</a></h2>
-<p>RHF/Closed walkers are treated as having identical spin-up and spin-down channels.
-Formally,</p>
+  <section id="walkers">
+<span id="walker-classes"></span><h1>Walkers<a class="headerlink" href="#walkers" title="Link to this heading">#</a></h1>
+<p>SAFIRE supports several representations of walkers in the <a class="reference internal" href="../afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a> algorithm. Unless <code class="docutils literal notranslate"><span class="pre">walker_type</span></code> is set in the <a class="reference internal" href="input_description_afqmc.html#walker-set-block"><span class="std std-ref">walker_sets</span></a> block of the job file, the code infers the walker type from the input files described in <a class="reference internal" href="hamiltonians.html#hamiltonian-classes"><span class="std std-ref">Hamiltonian Files</span></a> and <a class="reference internal" href="wavefunctions.html#wavefunction-classes"><span class="std std-ref">Wavefunction Files</span></a>, choosing the highest spin symmetry that all of them allow.</p>
+<p>The currently supported walkers are all Slater determinants of different spin symmetries.</p>
+<section id="closed-walkers">
+<span id="closed-walker"></span><h2>Closed Walkers<a class="headerlink" href="#closed-walkers" title="Link to this heading">#</a></h2>
+<p>Closed walkers have identical spin-up and spin-down orbitals,</p>
 <div class="math notranslate nohighlight">
-\[|\Phi_k\rangle = |\Phi_{k \uparrow}\rangle \otimes |\Phi_{k \tilde{\uparrow}}\rangle,\]</div>
-<p>where <span class="math notranslate nohighlight">\(|\Phi_{k \uparrow}\rangle\)</span> is the spin-up channel walker with walker index <span class="math notranslate nohighlight">\(k\)</span>, and
-<span class="math notranslate nohighlight">\(|\Phi_{k \tilde{\uparrow}}\rangle\)</span> is the spin-down channel walker with walker index <span class="math notranslate nohighlight">\(k\)</span>.
-The notation <span class="math notranslate nohighlight">\(\tilde{\uparrow}\)</span> is used to denote that the spin-down channel Slater matrix is identical to
-the spin-up channel Slater matrix.</p>
+\[|\Phi_\mathrm{closed}\rangle = |\Phi\rangle \otimes |\Phi\rangle
+= \prod_{\sigma} \prod_{k=1}^{N_\uparrow} \Big( \sum_{i} \Phi_{ik} \, c^\dagger_{i\sigma} \Big) |0\rangle,\]</div>
+<p>where both spins share the same
+<span class="math notranslate nohighlight">\(M \times N_\uparrow\)</span> Slater matrix <span class="math notranslate nohighlight">\(\Phi\)</span>, and <span class="math notranslate nohighlight">\(N_\uparrow = N_\downarrow\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Closed walkers can only be used with Hamiltonians that have a “Closed” representation.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Closed walkers are not allowed in calculations using Lattice Model Hamiltonians.</p>
+<p>Closed walkers are also called restricted Hartree-Fock (RHF) walkers due to their resemblance to the RHF wavefunction.</p>
 </div>
 </section>
-<section id="uhf-collinear-walkers">
-<span id="collinear-walker"></span><h2>UHF/Collinear Walkers<a class="headerlink" href="#uhf-collinear-walkers" title="Link to this heading">#</a></h2>
-<p>UHF/Collinear walkers are treated as having independent spin-up and spin-down channels.
-Formally,</p>
+<section id="collinear-walkers">
+<span id="collinear-walker"></span><h2>Collinear Walkers<a class="headerlink" href="#collinear-walkers" title="Link to this heading">#</a></h2>
+<p>Collinear walkers have <span class="math notranslate nohighlight">\(N_\uparrow\)</span> spin-up and <span class="math notranslate nohighlight">\(N_\downarrow\)</span> spin-down orbitals,</p>
 <div class="math notranslate nohighlight">
-\[|\Phi_k\rangle = |\Phi_{k \uparrow}\rangle \otimes |\Phi_{k \downarrow}\rangle,\]</div>
-<p>where <span class="math notranslate nohighlight">\(|\Phi_{k \uparrow}\rangle\)</span> is the spin-up channel walker with walker index <span class="math notranslate nohighlight">\(k\)</span>, and
-<span class="math notranslate nohighlight">\(|\Phi_{k \downarrow}\rangle\)</span> is the spin-down channel walker with walker index <span class="math notranslate nohighlight">\(k\)</span>.
-Both spin channels have independent Slater matrices which are separately updated during
-the random walk.</p>
+\[|\Phi_\mathrm{collinear}\rangle = |\Phi^{\uparrow}\rangle \otimes |\Phi^{\downarrow}\rangle
+= \prod_{\sigma} \prod_{k=1}^{N_\sigma} \Big( \sum_{i} \Phi^{\sigma}_{ik} \, c^\dagger_{i\sigma} \Big) |0\rangle,\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\Phi^{\uparrow}\rangle\)</span> is the spin-up and <span class="math notranslate nohighlight">\(|\Phi^{\downarrow}\rangle\)</span> the spin-down Slater
+determinant, with the <span class="math notranslate nohighlight">\(M \times N_\sigma\)</span> Slater matrices <span class="math notranslate nohighlight">\(\Phi^\sigma\)</span>. This structure causes all electron spins to be collinear, i.e. aligned with the quantization axis.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Collinear walkers can only be used with Hamiltonians that have a “Collinear” or “Closed” representation.</p>
+<p>Collinear walkers are also called unrestricted Hartree-Fock (UHF) walkers due to their resemblance to the UHF wavefunction.</p>
 </div>
 </section>
-<section id="ghf-noncollinear-walkers">
-<span id="noncollinear-walker"></span><h2>GHF/Noncollinear Walkers<a class="headerlink" href="#ghf-noncollinear-walkers" title="Link to this heading">#</a></h2>
-<p>GHF/Noncollinear walkers include both spin-up, spin-down channels as well as spin-flip channels within
-a single Slater matrix.
-Formally,</p>
+<section id="noncollinear-walkers">
+<span id="noncollinear-walker"></span><h2>Noncollinear Walkers<a class="headerlink" href="#noncollinear-walkers" title="Link to this heading">#</a></h2>
+<p>Noncollinear walkers include spinor orbitals that mix spin flavor. There is no clear notion of spin-up or down electrons.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}|\Phi_k\rangle = \begin{bmatrix}
-\Phi^{\uparrow \uparrow}_k &amp; \Phi^{\uparrow \downarrow}_k \\
-\Phi^{\downarrow \uparrow}_k &amp; \Phi^{\downarrow \downarrow}_k
-\end{bmatrix}\end{split}\]</div>
-<p>where $Phi^{sigma sigma’}_k$ represent each respective spin channel.
-In practice, the entire Slater matrix is stored and propagated during the random walk
-with no partitioning between spin channels.</p>
+\[\begin{split}|\Phi_\mathrm{noncollinear}\rangle = \Bigg|\begin{matrix}
+\Phi^{\uparrow} \\
+\Phi^{\downarrow}
+\end{matrix} \Bigg\rangle
+= \prod_{k=1}^{N} \Big( \sum_{i\sigma} \Phi^{\sigma}_{ik} \, c^\dagger_{i\sigma} \Big) |0\rangle,\end{split}\]</div>
+<p>where the <span class="math notranslate nohighlight">\(M \times N\)</span> blocks <span class="math notranslate nohighlight">\(\Phi^{\sigma}\)</span> of the <span class="math notranslate nohighlight">\(2M \times N\)</span> Slater matrix represent the
+spin-up and spin-down parts of each of the <span class="math notranslate nohighlight">\(N\)</span> spinor orbitals. Unlike for the
+collinear walker, every orbital <span class="math notranslate nohighlight">\(k\)</span> is a superposition of both spins.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Noncollinear walkers can be used with Hamiltonians that have any spin symmetry representation (“Closed”, “Collinear”, “Noncollinear”).</p>
+<p>Noncollinear walkers are also called general Hartree-Fock (GHF) walkers due to their resemblance to the GHF wavefunction.</p>
 </div>
 </section>
 </section>
@@ -531,20 +488,20 @@ with no partitioning between spin channels.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="input_description_afqmc.html"
+       href="estimators.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Input file</p>
+        <p class="prev-next-title">Estimators</p>
       </div>
     </a>
     <a class="right-next"
-       href="estimators.html"
+       href="output.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Estimators</p>
+        <p class="prev-next-title">Results File</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -567,9 +524,9 @@ with no partitioning between spin channels.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rhf-closed-walkers">RHF/Closed Walkers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uhf-collinear-walkers">UHF/Collinear Walkers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ghf-noncollinear-walkers">GHF/Noncollinear Walkers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closed-walkers">Closed Walkers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collinear-walkers">Collinear Walkers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noncollinear-walkers">Noncollinear Walkers</a></li>
 </ul>
   </nav></div>
 

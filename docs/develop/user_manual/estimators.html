@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,10 +50,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual/estimators';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual/estimators.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Observables" href="observables.html" />
-    <link rel="prev" title="Walker Classes" href="walkers.html" />
+    <link rel="next" title="Walkers" href="walkers.html" />
+    <link rel="prev" title="Wavefunction Files" href="wavefunctions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -171,43 +164,33 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -295,13 +278,6 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../tutorials.html">
     Tutorials
@@ -316,16 +292,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -386,12 +362,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">Input file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walker Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">The Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction Files</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Estimators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian File formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wavefunctions.html">Wavefunction File formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walkers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Results File</a></li>
 </ul>
 </div>
 </nav></div>
@@ -454,213 +430,372 @@
                   
   <section id="estimators">
 <span id="id1"></span><h1>Estimators<a class="headerlink" href="#estimators" title="Link to this heading">#</a></h1>
-<p>This page is organized as follows.
-We begin by explaining the different types of estimators available in SAFIRE.
-Estimators are used to compute observables.
-An estimator requires at least one observable to compute.
-Below, we explain each <a class="reference internal" href="observables.html#observables"><span class="std std-ref">type of observable</span></a> that can be computed using these estimators.
-All observables can be used with any of the estimators.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Unlike all other types of input blocks, the “name” parameter is used to determine the type of estimator - i.e.
-NOT to define an identifier that can be used elsewhere in the input file.</p>
-</div>
-<section id="mixed-estimators">
-<h2>Mixed Estimators<a class="headerlink" href="#mixed-estimators" title="Link to this heading">#</a></h2>
-<p>SAFIRE implements mixed estimators, which are used to compute observables <span class="math notranslate nohighlight">\(\hat{O}\)</span> such that <span class="math notranslate nohighlight">\([\hat{O},\hat{H}] = 0\)</span>.
-In this case, a mixed estimator is an unbiased estimator.
-Formally, mixed estimators evaluate an observable <span class="math notranslate nohighlight">\(\hat{O}\)</span> as</p>
-<div class="math notranslate nohighlight">
-\[\langle \hat{O} \rangle_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}\]</div>
-<section id="settings">
-<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">#</a></h3>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Sample input block for Mixed Estimator.</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mixed"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measure_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span><span class="p">,</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="pst-scrollable-table-container"><table class="table">
-<colgroup>
-<col style="width: 25.0%" />
-<col style="width: 20.0%" />
-<col style="width: 55.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
-<th class="head"><p><strong>Default</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>measure_interval</strong></p></td>
-<td><p>Inherited from execute block (default: 10)</p></td>
-<td><p>Number of projection steps between measurements. Measurement is the most expensive operation in AFQMC, so a larger “measure_interval” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
+<p>The results of a SAFIRE calculation are obtained by performing stochastic measurements on the <a class="reference internal" href="../afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a> random walk. For this purpose SAFIRE implements different estimators.</p>
+<p>Estimators are enabled, disabled, and configured in the <a class="reference internal" href="input_description_afqmc.html#estimator-block"><span class="std std-ref">estimators</span></a> block of the job file. Their measurement results are written to the <a class="reference internal" href="output.html#output-afqmc"><span class="std std-ref">Results File</span></a>. Refer to these sections for details on the input and output and the <a class="reference internal" href="../tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> and <a class="reference internal" href="../examples.html#user-examples"><span class="std std-ref">Examples</span></a> for practical use cases. On this page, we will instead describe the behavior of each estimator and the definitions of the observables that can be measured.</p>
+<p>Each estimator uses the trial wavefunction <span class="math notranslate nohighlight">\(\Psi_\mathrm{T}\)</span> and Hamiltonian <span class="math notranslate nohighlight">\(H\)</span> of its execute block, unless it names different ones with its own <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> entries.</p>
 <section id="energy-estimator">
-<h2>Energy Estimator<a class="headerlink" href="#energy-estimator" title="Link to this heading">#</a></h2>
-<p>SAFIRE implements a specialized mixed estimator for the energy, which is always added
-to an execute block by default.
-The only reason to explicitly define it is to customize its settings.
-Formally, it evaluates</p>
+<span id="id2"></span><h2>Energy Estimator<a class="headerlink" href="#energy-estimator" title="Link to this heading">#</a></h2>
+<p>The energy estimator is the only estimator that is enabled by default. It measures the local energy</p>
 <div class="math notranslate nohighlight" id="energyestimator">
-<span id="equation-energyestimator"></span><span class="eqno">(1)<a class="headerlink" href="#energyestimator" title="Link to this equation">#</a></span>\[E = \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Psi^s \rangle}{\langle \Psi_\mathrm{T} | \Psi^s \rangle} \approx
-\frac{1}{\sum_n W^s_n} \sum_n W^s_n \frac{\langle \Psi_\mathrm{T} | \hat{H} | \Phi^s_n \rangle}{\langle \Psi_\mathrm{T} | \Phi^s_n \rangle},\]</div>
-<section id="id2">
-<h3>Settings<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Sample input block for Energy Estimator.</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"energy"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"print_components"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
+<span id="equation-energyestimator"></span><span class="eqno">(6)<a class="headerlink" href="#energyestimator" title="Link to this equation">#</a></span>\[E = \frac{\langle \Psi_\mathrm{T} | H | \Psi(\tau) \rangle}{\langle \Psi_\mathrm{T} | \Psi(\tau) \rangle} \approx
+\frac{1}{\sum_n W_n(\tau)} \sum_n W_n(\tau) \frac{\langle \Psi_\mathrm{T} | H | \Phi_n(\tau) \rangle}{\langle \Psi_\mathrm{T} | \Phi_n(\tau) \rangle},\]</div>
+<p>of the walkers and its components for a given Hamiltonian <span class="math notranslate nohighlight">\(H\)</span> and trial wavefunction <span class="math notranslate nohighlight">\(\Psi_\mathrm{T}\)</span>,
+where <span class="math notranslate nohighlight">\(|\Phi_n(\tau)\rangle\)</span> are the walkers at imaginary time <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(W_n(\tau)\)</span> their weights.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
-<col style="width: 25.0%" />
-<col style="width: 20.0%" />
-<col style="width: 55.0%" />
+<col style="width: 31.2%" />
+<col style="width: 68.8%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
-<th class="head"><p><strong>Default</strong></p></th>
+<tr class="row-odd"><th class="head"><p><strong>Observable</strong></p></th>
 <th class="head"><p><strong>Description</strong></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>measure_interval</strong></p></td>
-<td><p>Inherited from execute block (default: 10)</p></td>
-<td><p>Number of projection steps between measurements. Measurement is the most expensive operation in AFQMC, so a larger “measure_interval” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Energy</span></code></p></td>
+<td><p>The total local energy <span class="math notranslate nohighlight">\(E\)</span>, the sum of the three components below.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>print_components</strong></p></td>
-<td><p>false</p></td>
-<td><p>if true, print the one-body and two-body direct, and two-body exchange components of the energy separately (in addition to the total energy). Note: the one-body energy also includes any constant energy contributions.</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OnebodyEnergy</span></code></p></td>
+<td><p>The one-body part of the local energy. It also includes the constant energy offset of the
+Hamiltonian.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CoulombEnergy</span></code></p></td>
+<td><p>The direct (Hartree) part of the two-body local energy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExchangeEnergy</span></code></p></td>
+<td><p>The exchange part of the two-body local energy.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ProjectionTime</span></code></p></td>
+<td><p>The imaginary time <span class="math notranslate nohighlight">\(\tau\)</span> of the measurement, counted from the start of the
+execution stage: <span class="math notranslate nohighlight">\(\tau = s\Delta\tau\)</span> after <span class="math notranslate nohighlight">\(s\)</span> propagation steps. Useful for plotting time series.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the one and two-body terms of the Hamiltonian generally do not commute, the <code class="docutils literal notranslate"><span class="pre">OnebodyEnergy</span></code>, <code class="docutils literal notranslate"><span class="pre">CoulombEnergy</span></code> and <code class="docutils literal notranslate"><span class="pre">ExchangeEnergy</span></code> component estimators carry a mixed-estimator bias that the total energy does not. See <a class="reference internal" href="#mixed-estimators"><span class="std std-ref">Mixed Estimator</span></a>.</p>
+</div>
+<p>Additionally, the following diagnostic observables are available.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 31.2%" />
+<col style="width: 68.8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Observable</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Overlap</span></code></p></td>
+<td><p>The weighted average
+<span class="math notranslate nohighlight">\(\sum_n W_n(\tau) \langle \Psi_\mathrm{T} | \Phi_n(\tau) \rangle / \sum_n W_n(\tau)\)</span> of the
+walker overlaps with the trial wavefunction. Reset by reorthogonalization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TotalWeight</span></code></p></td>
+<td><p>The total walker weight <span class="math notranslate nohighlight">\(\sum_n W_n(\tau)\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Phase</span></code></p></td>
+<td><p>The average phase <span class="math notranslate nohighlight">\(\sum_n W_n(\tau) / \sum_n |W_n(\tau)|\)</span> of the walker weights. A
+magnitude well below one signals a phase problem. As long as a constraint is active, this is one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EffectiveNumWalkers</span></code></p></td>
+<td><p>The effective number of walkers
+<span class="math notranslate nohighlight">\(\left(\sum_n |W_n(\tau)|\right)^2 / \sum_n |W_n(\tau)|^2\)</span>, which equals the number of
+walkers for uniform weights and drops as the weights spread out.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
+<section id="mixed-estimator">
+<span id="mixed-estimators"></span><h2>Mixed Estimator<a class="headerlink" href="#mixed-estimator" title="Link to this heading">#</a></h2>
+<p>SAFIRE implements more general mixed estimators,</p>
+<div class="math notranslate nohighlight">
+\[\langle O \rangle_\mathrm{Mixed} = \frac{1}{\sum_n W_n(\tau)} \sum_n W_n(\tau) \frac{\langle \Psi_\mathrm{T} | O | \Phi_n(\tau) \rangle }{\langle \Psi_\mathrm{T} | \Phi_n(\tau) \rangle},\]</div>
+<p>where <span class="math notranslate nohighlight">\(O\)</span> is one of several <a class="reference internal" href="#observables"><span class="std std-ref">Observables</span></a> described below.</p>
+<p>In the output file, all mixed observables are saved under a <code class="docutils literal notranslate"><span class="pre">MixedEstimator/</span></code> prefix.</p>
+<section id="mixed-estimator-bias">
+<h3>Mixed Estimator Bias<a class="headerlink" href="#mixed-estimator-bias" title="Link to this heading">#</a></h3>
+<p>Because the mixed estimator is based on a one-sided projection, even if the walker ensemble exactly represents the ground-state wavefunction, the mixed average will generally not match the true ground-state average. This bias vanishes only when <span class="math notranslate nohighlight">\([O,H] = 0\)</span>, such as for the total energy, <span class="math notranslate nohighlight">\(O=H\)</span>, or when <span class="math notranslate nohighlight">\(O\)</span> represents a symmetry of the Hamiltonian. The latter property means that mixed averages — despite being numerically biased — can still be used to detect the symmetry sector of the ground state.</p>
+<p>The mixed estimator bias can be mitigated by using the back-propagation estimator described in the next section.</p>
 </section>
-<section id="back-propagation-bp-estimators">
-<h2>Back-Propagation (BP) Estimators<a class="headerlink" href="#back-propagation-bp-estimators" title="Link to this heading">#</a></h2>
-<p>Mixed estimators are biased for observables <span class="math notranslate nohighlight">\(\hat{O}\)</span> such that <span class="math notranslate nohighlight">\([\hat{O},\hat{H}] \neq 0\)</span>,
-which requires the use of pure estimators. The Back-Propagation (BP) algorithm is used to compute pure estimators in SAFIRE.
-The back-propagated estimator has the form,</p>
+</section>
+<section id="back-propagation-estimator">
+<span id="backprop-estimator"></span><h2>Back-Propagation Estimator<a class="headerlink" href="#back-propagation-estimator" title="Link to this heading">#</a></h2>
+<p>The Back-Propagation (BP) estimator <span class="bibtex-citation" id="id3">[<a class="reference internal" href="../afqmc.html#id12" title="Shiwei Zhang, J. Carlson, and J. E. Gubernatis. Constrained path Monte Carlo method for fermion ground states. Phys. Rev. B, 55(12):7464–7477, March 1997. doi:10.1103/PhysRevB.55.7464.">12</a>, <a class="reference internal" href="../afqmc.html#id33" title="Mario Motta and Shiwei Zhang. Computation of ground-state properties in molecular systems: back-propagation with auxiliary-field quantum Monte Carlo. Journal of Chemical Theory and Computation, 13(11):5367–5378, 2017. doi:10.1021/acs.jctc.7b00730.">13</a>]</span> replaces the one-sided projection of the mixed estimator by a two-sided projection of the form</p>
 <div class="math notranslate nohighlight">
-\[\langle \hat{O} \rangle_\mathrm{BP} = \frac{1}{\sum_k W_{s+m,k}} \sum_k W_{s+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{s,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{s,k}\rangle}\]</div>
-<p>where <span class="math notranslate nohighlight">\(| \Phi_{s,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
-and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,</p>
+\[\langle O \rangle_\mathrm{BP} = \frac{1}{\sum_n W_n(\tau+\tau_\mathrm{BP})} \sum_n W_n(\tau+\tau_\mathrm{BP}) \frac{\langle \tilde{\Phi}_n(\tau_\mathrm{BP}) | O | \Phi_n(\tau) \rangle }{\langle \tilde{\Phi}_n(\tau_\mathrm{BP}) |\Phi_n(\tau)\rangle}\]</div>
+<p>where <span class="math notranslate nohighlight">\(| \Phi_n(\tau) \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
+and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_n(\tau_\mathrm{BP}) \rangle\)</span> are the back-propagated walkers given by,</p>
 <div class="math notranslate nohighlight">
-\[| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{s,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{s+m-1,k} ) | \Psi_\mathrm{T} \rangle.\]</div>
-<p>The index <span class="math notranslate nohighlight">\(s\)</span> corresponds to the current forward projection step,
-and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.
+\[| \tilde{\Phi}_n(\tau_\mathrm{BP}) \rangle = B^\dagger\big( x_n(\tau)\big) \cdots B^\dagger\big(x_n(\tau+\tau_\mathrm{BP}-\Delta\tau) \big) | \Psi_\mathrm{T} \rangle.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\tau\)</span> is the imaginary time of the forward walkers,
+and <span class="math notranslate nohighlight">\(\tau_\mathrm{BP} = m_\mathrm{BP}\Delta\tau\)</span> is the back-propagation time over <span class="math notranslate nohighlight">\(m_\mathrm{BP}\)</span> steps.
 We note that each random walker has a corresponding back-propagated partner
-which share the same path in auxiliary-field space.</p>
-<section id="sample-input-file">
-<h3>Sample Input File<a class="headerlink" href="#sample-input-file" title="Link to this heading">#</a></h3>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Sample input block for Back-Propagation (BP) Estimator.</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">800</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
-<p>BP is invoked in SAFIRE by including a “back_propagation” estimator in the input file.
-Observables are added to the BP block in the same way as for mixed estimators.</p>
+which shares the same path in auxiliary-field space.</p>
+<section id="path-restoration">
+<h3>Path Restoration<a class="headerlink" href="#path-restoration" title="Link to this heading">#</a></h3>
+<p>In every propagation step, the phaseless approximation (see <a class="reference internal" href="../afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a>) multiplies the walker weights by the
+cosine projection factor <span class="math notranslate nohighlight">\(\max\{0, \cos\Delta\theta\}\)</span> and keeps only the magnitude of the local energy
+factor <span class="math notranslate nohighlight">\(e^{-\Delta\tau (E_\mathrm{L} - E_\mathrm{shift})}\)</span>. Along the back-propagation path, both
+modifications bias the back-propagated observables. With <code class="docutils literal notranslate"><span class="pre">path_restoration</span></code>, which is enabled by default, the
+weights <span class="math notranslate nohighlight">\(W_n(\tau+\tau_\mathrm{BP})\)</span> in the back-propagated average are multiplied by</p>
+<div class="math notranslate nohighlight">
+\[\prod_{\tau'} \frac{e^{-i \Delta\tau \, \mathrm{Im} E_{\mathrm{L},n}(\tau')}}{\max\{0, \cos\Delta\theta_n(\tau')\}},\]</div>
+<p>with the product running over the <span class="math notranslate nohighlight">\(m_\mathrm{BP}\)</span> steps
+<span class="math notranslate nohighlight">\(\tau' = \tau, \dots, \tau + \tau_\mathrm{BP} - \Delta\tau\)</span> of the back-propagation path. This restores the
+phase of the local energy factor and undoes the cosine projection <span class="bibtex-citation" id="id4">[<a class="reference internal" href="../afqmc.html#id33" title="Mario Motta and Shiwei Zhang. Computation of ground-state properties in molecular systems: back-propagation with auxiliary-field quantum Monte Carlo. Journal of Chemical Theory and Computation, 13(11):5367–5378, 2017. doi:10.1021/acs.jctc.7b00730.">13</a>]</span>. A walker whose weight the projection has set
+to zero keeps a zero weight. <code class="docutils literal notranslate"><span class="pre">extra_path_restoration</span></code> extends the product to the <span class="math notranslate nohighlight">\(2 m_\mathrm{BP}\)</span> steps
+<span class="math notranslate nohighlight">\(\tau' = \tau - \tau_\mathrm{BP}, \dots, \tau + \tau_\mathrm{BP} - \Delta\tau\)</span>, so that it also covers the
+<span class="math notranslate nohighlight">\(m_\mathrm{BP}\)</span> steps before the forward walkers <span class="math notranslate nohighlight">\(|\Phi_n(\tau)\rangle\)</span>.</p>
 </section>
 <section id="back-propagation-lengths">
 <h3>Back-Propagation Lengths<a class="headerlink" href="#back-propagation-lengths" title="Link to this heading">#</a></h3>
-<p>Since BP involves an additional projection, a BP estimator has no <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code>: what it
-is given instead is <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code>, the number of steps to project back over. That
-length doubles as the measurement interval, because a new BP window starts as soon as the
-previous one has been covered.</p>
-<p><code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> has no default – a back-propagation length is a property of the estimate
-and is never inherited from the execute block – so a BP estimator has to state it.</p>
+<p>The result of the back-propagation estimator depends on the correct choice of the back-propagation length. Short back-propagation lengths will approach the mixed estimator while setting the length too long is costly. Therefore, it is advisable to calculate multiple back-propagation lengths at the same time and check their convergence. SAFIRE supports calculating multiple lengths in a single calculation (see <a class="reference internal" href="input_description_afqmc.html#backprop-block"><span class="std std-ref">backprop</span></a>). The longest back-propagation length of a simulation simultaneously acts as the measurement interval of the estimator.</p>
+<p>In the output file, all back-propagated observables are saved under a <code class="docutils literal notranslate"><span class="pre">BackPropEstimator/Steps=&lt;m_BP&gt;/</span></code> prefix.</p>
 </section>
-<section id="multiple-bp-lengths">
-<h3>Multiple BP Lengths<a class="headerlink" href="#multiple-bp-lengths" title="Link to this heading">#</a></h3>
-<p>SAFIRE implements the capability of running BP with multiple BP measurement lengths within the same calculation.
-We call each measurement with a different BP length an “average”.
-This allows the forward projection to be reused while checking for convergence in the BP length.
-To define multiple BP lengths/averages, simply list all of the BP lengths that you would like
-to use, in steps. The longest one is how often a new window starts:</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Sample input block for Back-Propagation (BP) Estimator with multiple BP lengths.</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"back_propagation"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"path_restoration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"bp_walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"propagation_steps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">600</span><span class="p">,</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">"onerdm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"one_rdm"</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
 </section>
-<section id="equilibration">
-<h3>Equilibration<a class="headerlink" href="#equilibration" title="Link to this heading">#</a></h3>
-<p>No observable is measured during the equilibration phase at the beginning of an AFQMC
-calculation, back-propagated ones included. This is recommended since computing observables is
-typically expensive and since AFQMC needs to equilibrate before samples can meaningfully
-contribute to the average. The length of that phase is the execute block’s
-<code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code>, in steps; back propagation anchors its first window at the end of it.</p>
-</section>
-<section id="id3">
-<h3>Settings<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="observables">
+<span id="id5"></span><h2>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h2>
+<p>Mixed and back-propagated estimators share a set of general observables they can measure. Here we give the definition of each of them. The most important observables are the one- and two-body reduced density matrices <code class="docutils literal notranslate"><span class="pre">OneRDM</span></code>, <code class="docutils literal notranslate"><span class="pre">DiagonalTwoRDM</span></code>, and <code class="docutils literal notranslate"><span class="pre">TwoRDM</span></code> from which all one-body and two-body properties can be calculated. Additional, more specialized observables are defined for subclasses of systems that can be simulated with SAFIRE.</p>
+<p>Below, <span class="math notranslate nohighlight">\(\langle \cdot \rangle\)</span> is the mixed or back-propagated average of the estimator measuring the
+observable. The orbital indices <span class="math notranslate nohighlight">\(i, j, k, l\)</span> run over the <span class="math notranslate nohighlight">\(M\)</span> orbitals of the Hamiltonian
+and <span class="math notranslate nohighlight">\(\sigma, \sigma'\)</span> over the spins. For noncollinear walkers, spin and orbital are combined into a
+single spin-orbital index <span class="math notranslate nohighlight">\(\sigma M + i\)</span> with <span class="math notranslate nohighlight">\(\uparrow = 0\)</span> and <span class="math notranslate nohighlight">\(\downarrow = 1\)</span>.</p>
+<p>Every observable can be measured with any Hamiltonian. The wavefunctions and walker spin symmetries it
+supports are listed with each one.</p>
+<section id="onerdm-one-body-reduced-density-matrix">
+<span id="onerdm-obs"></span><h3><code class="docutils literal notranslate"><span class="pre">OneRDM</span></code>: One-Body Reduced Density Matrix<a class="headerlink" href="#onerdm-one-body-reduced-density-matrix" title="Link to this heading">#</a></h3>
+<p>Computes the spin blocks of the one-particle reduced density matrix,</p>
+<div class="math notranslate nohighlight">
+\[\mathtt{OneRDM}[s, i, j] = \langle c^\dagger_{i\sigma} c_{j\sigma} \rangle,\]</div>
+<p>where <span class="math notranslate nohighlight">\(s = 0\)</span> is <span class="math notranslate nohighlight">\(\sigma = \uparrow\)</span> and <span class="math notranslate nohighlight">\(s = 1\)</span> is <span class="math notranslate nohighlight">\(\sigma = \downarrow\)</span>.
+Closed walkers store only the <span class="math notranslate nohighlight">\(\uparrow\)</span> block, which equals the <span class="math notranslate nohighlight">\(\downarrow\)</span> block.
+Noncollinear walkers store a single block over spin-orbitals that includes the spin-flip elements,
+<span class="math notranslate nohighlight">\(\mathtt{OneRDM}[0, \sigma M + i, \sigma' M + j] = \langle c^\dagger_{i\sigma} c_{j\sigma'} \rangle\)</span>.</p>
+<p>If a <code class="docutils literal notranslate"><span class="pre">RotationMatrix</span></code> <span class="math notranslate nohighlight">\(R\)</span> is given, the density matrix is measured in the rotated basis
+<span class="math notranslate nohighlight">\(d_{s,a} = \sum_i R_{s,a,i} c_{i\sigma}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\mathtt{OneRDM}[s, a, b] = \langle d^\dagger_{s,a} d_{s,b} \rangle = \sum_{ij} R^*_{s,a,i} R_{s,b,j} \langle c^\dagger_{i\sigma} c_{j\sigma} \rangle.\]</div>
+<p>For noncollinear walkers, the sums run over all <span class="math notranslate nohighlight">\(2M\)</span> spin-orbitals, so the rotation can mix the spins.</p>
+<section id="compatibility">
+<h4>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading">#</a></h4>
 <div class="pst-scrollable-table-container"><table class="table">
 <colgroup>
-<col style="width: 25.0%" />
-<col style="width: 20.0%" />
-<col style="width: 55.0%" />
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
-<th class="head"><p><strong>Default</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
+<tr class="row-odd"><th class="head"><p><strong>Wavefunctions</strong></p></th>
+<th class="head"><p><strong>Spin Symmetry</strong></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong>path_restoration</strong></p></td>
-<td><p>false</p></td>
-<td><p>if true, use path restoration in the back-propagation algorithm.</p></td>
+<tr class="row-even"><td><p>NOMSD</p></td>
+<td><p>closed, collinear, noncollinear</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>bp_walker_ortho_interval</strong></p></td>
-<td><p>10</p></td>
-<td><p>Interval for walker orthogonalization during back-propagation.</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>propagation_steps</strong></p></td>
-<td><p>required</p></td>
-<td><p>An array of back-propagation lengths, in steps. Each one is measured on its own, and the longest one is how often a new back-propagation window starts.</p></td>
+<tr class="row-odd"><td><p>PHMSD</p></td>
+<td><p>collinear</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+</section>
+<section id="twordm-two-body-reduced-density-matrix">
+<span id="twordm-obs"></span><h3><code class="docutils literal notranslate"><span class="pre">TwoRDM</span></code>: Two-Body Reduced Density Matrix<a class="headerlink" href="#twordm-two-body-reduced-density-matrix" title="Link to this heading">#</a></h3>
+<p>Calculates the full two-particle reduced density matrix,</p>
+<div class="math notranslate nohighlight">
+\[\mathtt{TwoRDM}[b, i, k, j, l] = \langle c^\dagger_{i\sigma} c^\dagger_{j\sigma'} c_{l\sigma'} c_{k\sigma} \rangle,\]</div>
+<p>where the spin block <span class="math notranslate nohighlight">\(b = 0, 1, 2\)</span> is <span class="math notranslate nohighlight">\(\sigma\sigma' = {\uparrow\uparrow}, {\uparrow\downarrow}, {\downarrow\downarrow}\)</span>.
+Note the index order: the pair <span class="math notranslate nohighlight">\((i, k)\)</span> belongs to spin <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\((j, l)\)</span> to <span class="math notranslate nohighlight">\(\sigma'\)</span>.
+The <span class="math notranslate nohighlight">\({\downarrow\uparrow}\)</span> block follows from
+<span class="math notranslate nohighlight">\(\langle c^\dagger_{i\downarrow} c^\dagger_{j\uparrow} c_{l\uparrow} c_{k\downarrow} \rangle = \mathtt{TwoRDM}[1, j, l, i, k]\)</span>.
+Closed walkers omit the <span class="math notranslate nohighlight">\({\downarrow\downarrow}\)</span> block, which equals the <span class="math notranslate nohighlight">\({\uparrow\uparrow}\)</span> block, so
+only <span class="math notranslate nohighlight">\(b = 0, 1\)</span> are stored.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Computing and storing the full 2-RDM can be very memory intensive and greatly increases the run time.
+Use only when absolutely necessary, and restrict to small systems.</p>
+</div>
+<section id="id6">
+<h4>Compatibility<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Wavefunctions</strong></p></th>
+<th class="head"><p><strong>Spin Symmetry</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NOMSD</p></td>
+<td><p>closed, collinear</p></td>
+</tr>
+<tr class="row-odd"><td><p>PHMSD</p></td>
+<td><p>collinear</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="diagonaltwordm-diagonal-two-body-reduced-density-matrix">
+<span id="diag-twordm-obs"></span><h3><code class="docutils literal notranslate"><span class="pre">DiagonalTwoRDM</span></code>: Diagonal Two-Body Reduced Density Matrix<a class="headerlink" href="#diagonaltwordm-diagonal-two-body-reduced-density-matrix" title="Link to this heading">#</a></h3>
+<p>Computes the diagonal elements of the two-particle reduced density matrix (2-RDM),</p>
+<div class="math notranslate nohighlight">
+\[D^{\sigma\sigma'}_{ij} = \langle c^\dagger_{i\sigma} c^\dagger_{j\sigma'} c_{j\sigma'} c_{i\sigma} \rangle
+= \langle n_{i\sigma} n_{j\sigma'} \rangle - \delta_{ij} \delta_{\sigma\sigma'} \langle n_{i\sigma} \rangle.\]</div>
+<p>The same-spin blocks are symmetric, <span class="math notranslate nohighlight">\(D^{\sigma\sigma}_{ij} = D^{\sigma\sigma}_{ji}\)</span>, and vanish for
+<span class="math notranslate nohighlight">\(i = j\)</span>, so only their symmetrized upper triangle <span class="math notranslate nohighlight">\(i &lt; j\)</span> is stored. The <span class="math notranslate nohighlight">\({\uparrow\downarrow}\)</span>
+block is stored whole. <code class="docutils literal notranslate"><span class="pre">DiagonalTwoRDM</span></code> is a flat array that holds, for collinear and closed walkers,</p>
+<ol class="arabic simple">
+<li><p>for each <span class="math notranslate nohighlight">\(i = 0, \dots, M-1\)</span> in turn: <span class="math notranslate nohighlight">\(D^{\uparrow\uparrow}_{ij}\)</span> for <span class="math notranslate nohighlight">\(j = i+1, \dots, M-1\)</span>,
+followed by <span class="math notranslate nohighlight">\(D^{\uparrow\downarrow}_{ij}\)</span> for <span class="math notranslate nohighlight">\(j = 0, \dots, M-1\)</span>,</p></li>
+<li><p>then, for collinear walkers only, <span class="math notranslate nohighlight">\(D^{\downarrow\downarrow}_{ij}\)</span> for <span class="math notranslate nohighlight">\(i &lt; j\)</span>, row by row.</p></li>
+</ol>
+<p>Closed walkers omit the <span class="math notranslate nohighlight">\({\downarrow\downarrow}\)</span> block, which equals the <span class="math notranslate nohighlight">\({\uparrow\uparrow}\)</span> block.
+Noncollinear walkers have a single block over spin-orbitals, <span class="math notranslate nohighlight">\(D_{pq} = \langle c^\dagger_p c^\dagger_q c_q c_p \rangle\)</span>
+with <span class="math notranslate nohighlight">\(p, q = 0, \dots, 2M-1\)</span>, which is stored as its upper triangle <span class="math notranslate nohighlight">\(p &lt; q\)</span>, row by row.</p>
+<section id="id7">
+<h4>Compatibility<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Wavefunctions</strong></p></th>
+<th class="head"><p><strong>Spin Symmetry</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NOMSD</p></td>
+<td><p>closed, collinear, noncollinear</p></td>
+</tr>
+<tr class="row-odd"><td><p>PHMSD</p></td>
+<td><p>collinear</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="spincorr-spin-spin-correlation">
+<span id="spincorr-obs"></span><h3><code class="docutils literal notranslate"><span class="pre">SpinCorr</span></code>: Spin-Spin Correlation<a class="headerlink" href="#spincorr-spin-spin-correlation" title="Link to this heading">#</a></h3>
+<p>Computes the spin-spin correlation function <span class="math notranslate nohighlight">\(\langle \vec{S}_i \cdot \vec{S}_j \rangle\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\vec{S}_i = \frac{1}{2} \sum_{\sigma,\sigma'} c_{i\sigma}^\dagger \vec{\sigma}_{\sigma\sigma'} c_{i\sigma'},\]</div>
+<p>split into the XY and the Z channel,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathtt{SpinCorr}[0, n] &amp;= \langle S^x_i S^x_j + S^y_i S^y_j \rangle = \frac{1}{2} \langle S^+_i S^-_j + S^-_i S^+_j \rangle, \\
+\mathtt{SpinCorr}[1, n] &amp;= \langle S^z_i S^z_j \rangle,\end{split}\]</div>
+<p>so that <span class="math notranslate nohighlight">\(\langle \vec{S}_i \cdot \vec{S}_j \rangle = \mathtt{SpinCorr}[0, n] + \mathtt{SpinCorr}[1, n]\)</span>.
+Since the correlation is symmetric in <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, only the upper triangle <span class="math notranslate nohighlight">\(i \le j\)</span> is
+stored, row by row, at <span class="math notranslate nohighlight">\(n = iM - i(i-1)/2 + j - i\)</span>.</p>
+<section id="id8">
+<h4>Compatibility<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Wavefunctions</strong></p></th>
+<th class="head"><p><strong>Spin Symmetry</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NOMSD</p></td>
+<td><p>closed, collinear, noncollinear</p></td>
+</tr>
+<tr class="row-odd"><td><p>PHMSD</p></td>
+<td><p>collinear</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="paircorr-pair-correlation-functions">
+<span id="paircorr-obs"></span><h3><code class="docutils literal notranslate"><span class="pre">PairCorr</span></code>: Pair Correlation Functions<a class="headerlink" href="#paircorr-pair-correlation-functions" title="Link to this heading">#</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Pair correlation functions are an experimental feature.</p>
+</div>
+<p>Calculates singlet pair correlation functions</p>
+<div class="math notranslate nohighlight">
+\[\mathtt{PairCorr/}\alpha\mathtt{\_}\beta[i, j] = \langle \Delta^\dagger_{i,\alpha} \Delta_{j,\beta} \rangle\]</div>
+<p>between the pair creation and annihilation operators</p>
+<div class="math notranslate nohighlight">
+\[\Delta^\dagger_{i,\alpha} = \frac{1}{\sqrt{2}} \left(c^{\dagger}_{i\uparrow} c^{\dagger}_{\bar{i}_\alpha \downarrow} -  c^{\dagger}_{i\downarrow} c^{\dagger}_{\bar{i}_\alpha \uparrow} \right), \qquad
+\Delta_{j,\beta} = \frac{1}{\sqrt{2}} \left( c_{\bar{j}_\beta\downarrow} c_{j \uparrow}  - c_{\bar{j}_\beta \uparrow} c_{j \downarrow} \right).\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are <em>pair maps</em> that assign every orbital <span class="math notranslate nohighlight">\(i\)</span> a partner orbital
+<span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span>. On a lattice, a pair map typically pairs each site with its neighbor at a fixed
+offset such as <span class="math notranslate nohighlight">\(+x\)</span>, and the pair map <span class="math notranslate nohighlight">\(\bar{i}_\alpha = i\)</span> gives on-site (s-wave) pairs.</p>
+<p>The pair maps are read from the HDF5 file and group given by the <code class="docutils literal notranslate"><span class="pre">pairs</span></code> entry of the <a class="reference internal" href="input_description_afqmc.html#observables-block"><span class="std std-ref">paircorr input block</span></a>.</p>
+<p class="filetree-caption"><code class="docutils literal notranslate"><span class="pre">pairs.h5</span></code></p>
+<ul class="filetree simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;group&gt;/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;α&gt;</span></code> <span class="math notranslate nohighlight">\((M, 1)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;β&gt;</span></code> <span class="math notranslate nohighlight">\((M, 1)\)</span></p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Entry</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;α&gt;</span></code></p></td>
+<td><p>One pair map, named freely: the partner orbital <span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span> of each orbital <span class="math notranslate nohighlight">\(i\)</span>,
+integers. A negative entry means <span class="math notranslate nohighlight">\(i\)</span> has no partner, which leaves the corresponding row and
+column of the correlation function zero.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every ordered pair of maps <span class="math notranslate nohighlight">\((\alpha, \beta)\)</span> is measured and stored as its own
+<span class="math notranslate nohighlight">\((M, M)\)</span> array <code class="docutils literal notranslate"><span class="pre">PairCorr/&lt;α&gt;_&lt;β&gt;</span></code>.</p>
+<p>For collinear walkers, only the elements <span class="math notranslate nohighlight">\(i &lt; j\)</span> are measured, and the diagonal and lower triangle are
+zero. Noncollinear walkers measure all <span class="math notranslate nohighlight">\(i, j\)</span>.</p>
+<section id="id9">
+<h4>Compatibility<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Wavefunctions</strong></p></th>
+<th class="head"><p><strong>Spin Symmetry</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NOMSD</p></td>
+<td><p>collinear, noncollinear</p></td>
+</tr>
+<tr class="row-odd"><td><p>PHMSD</p></td>
+<td><p>collinear</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pair correlation functions are most useful for lattice models, but they can be measured with any
+Hamiltonian for which pair maps are provided.</p>
+</section>
 </section>
 </section>
 </section>
@@ -676,20 +811,20 @@ contribute to the average. The length of that phase is the execute block’s
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="walkers.html"
+       href="wavefunctions.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Walker Classes</p>
+        <p class="prev-next-title">Wavefunction Files</p>
       </div>
     </a>
     <a class="right-next"
-       href="observables.html"
+       href="walkers.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Observables</p>
+        <p class="prev-next-title">Walkers</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -712,21 +847,37 @@ contribute to the average. The length of that phase is the execute block’s
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-estimators">Mixed Estimators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">Settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-estimator">Energy Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-estimator">Mixed Estimator</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-estimator-bias">Mixed Estimator Bias</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-estimator">Energy Estimator</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-bp-estimators">Back-Propagation (BP) Estimators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-input-file">Sample Input File</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-estimator">Back-Propagation Estimator</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-restoration">Path Restoration</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#back-propagation-lengths">Back-Propagation Lengths</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-bp-lengths">Multiple BP Lengths</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibration">Equilibration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Settings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onerdm-one-body-reduced-density-matrix"><code class="docutils literal notranslate"><span class="pre">OneRDM</span></code>: One-Body Reduced Density Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compatibility">Compatibility</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twordm-two-body-reduced-density-matrix"><code class="docutils literal notranslate"><span class="pre">TwoRDM</span></code>: Two-Body Reduced Density Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Compatibility</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagonaltwordm-diagonal-two-body-reduced-density-matrix"><code class="docutils literal notranslate"><span class="pre">DiagonalTwoRDM</span></code>: Diagonal Two-Body Reduced Density Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Compatibility</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spincorr-spin-spin-correlation"><code class="docutils literal notranslate"><span class="pre">SpinCorr</span></code>: Spin-Spin Correlation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Compatibility</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paircorr-pair-correlation-functions"><code class="docutils literal notranslate"><span class="pre">PairCorr</span></code>: Pair Correlation Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Compatibility</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,9 +50,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/01_O-atom/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/molecules/01_O-atom/index.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html" />
+    <link rel="next" title="2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html" />
     <link rel="prev" title="Quantum Chemistry / Molecules" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -172,42 +165,32 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -296,13 +279,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../tutorials.html">
     Tutorials
   </a>
@@ -317,15 +293,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -388,62 +364,31 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ molecule: bond stretching and multi-Slater trial wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: spin-orbit coupling (SOC) in ab initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: Spin-Orbit Coupling (SOC) in Ab Initio AFQMC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab initio solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si ground state energy and charge density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. C ground state energy and Density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum distribution of solid Na</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/04_NaCl_bulk_modulus/index.html">4. Bulk modulus of NaCl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/05_LiH_band_gap/index.html">5. Band gap of LiH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../solids/06_magnetization/index.html">6. Magnetization of ???</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si Ground State Energy and Charge Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. Diamond Ground State Energy and Charge Density from PySCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of Solid Na</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4x4 Square Lattice Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the square Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The square Hubbard Model at half filling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater determinant trial wavefunction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard model on a honeycomb lattice</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/index.html">Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_4x4_hubbard_model/index.html">1. 4×4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_stripes/index.html">2. Stripes and the Square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_half_filling_hubbard/index.html">3. The Square Hubbard Model at Half Filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_pair_correlators/index.html">4. Observables: Pair Correlation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_multi_slater_trial/index.html">5. Multi-Slater Determinant Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_honeycomb_hubbard/index.html">6. Hubbard Model on a Honeycomb Lattice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../models/07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery model on the Lieb lattice</a></li>
-</ul>
-</details></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/01_setting_up/setup_examples.html">Setting Up AFQMC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/01_hubbard_model/readme.html">1. Rectangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/02_three_band_hubbard/readme.html">2. Three-Band Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/03_hubbard_kanamori/readme.html">3. Hubbard-Kanamori Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/04_hubbard_nth_order_hop/readme.html">4. Hubbard with nth-order hopping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/05_pinning_field/readme.html">5. Hubbard with Pinning Fields</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/06_twist_angle/readme.html">6. Adding twist angles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/07_hubbard_strat_type_override/readme.html">7. Hubbard-Stratonovich Transformation Type Override</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/08_triangular_lattice/readme.html">8. Triangular Hubbard Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/09_autoHF_trial_wfn/readme.html">9. Hartree-Fock trial wavefunctions with autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/10_autoHF_effective_H/readme.html">10. using an effective H for autoHF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/11_custom_terms/readme.html">11. Adding Custom Terms to the Hamiltonian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/01_setting_up/12_rashba_soc/readme.html">12. Adding Rashba SOC to the Hamiltonian</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/02_running_afqmc/afqmc_examples.html">Running SAFIRE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/01_basic_ground_state_energy/readme.html">1. Basic Ground State Energy with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/02_basic_back_propagation/readme.html">2. Basic Back-propagation with CPU build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/03_generating_json_input/readme.html">3. Generating a JSON input file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/02_running_afqmc/04_input_file_recipes/readme.html">4. Input File Recipes</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../snippets/03_analyzing_results/analysis_examples.html">Analyzing AFQMC Results</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/01_analyze_scalar_data/readme.html">1. Analyzing Scalar Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../snippets/03_analyzing_results/02_analyze_1rdm/readme.html">2. Analyzing One-Body Reduced Density Matrix Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/08_lieb_lattice_emery/index.html">8. Emery Model on the Lieb Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/09_useful_snippets/index.html">9. Useful Snippets for Various Lattice Models</a></li>
 </ul>
 </details></li>
 </ul>
@@ -527,42 +472,24 @@ The UHF wavefunction will be used as the trial wavefunction for AFQMC.
 <div><p>this example. This produces <code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code> containing the Hamiltonian and trial wavefunction.</p>
 </div></blockquote>
 </li>
-<li><p><strong>Run SAFIRE</strong>: Run SAFIRE using the provided json input file (see below):</p>
+<li><p><strong>Run SAFIRE</strong>: Run SAFIRE using the provided JSON job file (see below):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>safire<span class="w"> </span>afqmc.json
 </pre></div>
 </div>
 <p>The AFQMC calculation will perform sampling and output energy estimates and other observables.</p>
 </li>
-<li><p><strong>analyze the results</strong>: Use the <cite>scalar_stats</cite> command-line tool from afqmctools to analyze the energy output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>scalar_stats<span class="w"> </span>qmc.s000.scalar.dat<span class="w"> </span>-s<span class="w"> </span><span class="nb">time</span><span class="w"> </span>-e<span class="w"> </span><span class="m">5</span>.0<span class="w"> </span>-t
+<li><p><strong>Analyze the results</strong>: Use <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to analyze the energy in the results file <code class="docutils literal notranslate"><span class="pre">qmc.results.h5</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Results</span><span class="p">,</span> <span class="n">vis</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"qmc.results.h5"</span><span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_timeseries</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This will compute the average AFQMC energy and stochastic uncertainty, using an equilibration time of 5.0 <span class="math notranslate nohighlight">\(Ha^{-1}\)</span>.
-The <cite>-t</cite> flag will generate a plot of the energy as a function of imaginary time if running locally.
-If running remotely, you can save the plot of the energy vs imaginary time to a file using the <cite>–savefig [name].png</cite> option.
-In either case, you should see the following output if you used the same settings as in the provided <cite>afqmc.json</cite> file and
-above.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>====== [analyze_scalar_data Settings] ======
-
-[+] fname            = qmc.s000.scalar.dat
-[+] mark_header      = #
-[+] series_column    = time
-[+] nequil           = 5.0
-[+] estimate_equil   = False
-[+] column           = LocalEnergy
-[+] reblock          = 1
-[+] ndiscard         = None
-[+] list             = False
-[+] trace            = False
-[+] append           = None
-[+] dump             = False
-[+] dump_fname       = trace.dat
-[+] verbose          = True
-[+] autocorr         = None
-[+] savefig          = None
-[+] dump_avail_columns = False
-
-AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
+<p>This prints the average AFQMC energy and its stochastic uncertainty and plots the energy as a function of imaginary time.
+The first 500 steps (an imaginary time of 5.0 <span class="math notranslate nohighlight">\(\mathrm{Ha}^{-1}\)</span>) are discarded as equilibration, as set by
+<code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code> in the provided <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>.
+If you used the same settings, you should get an output compatible with</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Energy = -74.90960 ± 0.00033
 </pre></div>
 </div>
 </li>
@@ -648,28 +575,21 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
 </div>
 <p><strong>AFQMC Input File</strong> (<code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"afqmc"</span><span class="w"> </span><span class="p">:{</span>
-<span class="w">        </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="nt">"output_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../ham/afqmc.h5"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">    </span>
-<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COLLINEAR"</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">       </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../ham/afqmc.h5"</span>
-<span class="w">       </span><span class="p">},</span>
-<span class="w">       </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../ham/afqmc.h5"</span>
-<span class="w">       </span><span class="p">},</span>
-<span class="w">       </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6000"</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600"</span><span class="p">,</span>
-<span class="w">       </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../ham/afqmc.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -701,7 +621,7 @@ AFQMC Energy   -74.909596 +/-   0.000328 4.22  5.0/60.0
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>B atom – Semistochastic heatbath CI (SHCI) trial wavefunction</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

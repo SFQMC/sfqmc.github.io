@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Wavefunction File formats &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>Wavefunction Files &#8212; SAFIRE 0.1.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,8 +42,6 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
@@ -51,10 +50,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual/wavefunctions';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual/wavefunctions.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorials" href="../tutorials.html" />
-    <link rel="prev" title="Hamiltonian File formats" href="hamiltonians.html" />
+    <link rel="next" title="Estimators" href="estimators.html" />
+    <link rel="prev" title="Hamiltonian Files" href="hamiltonians.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -135,7 +135,7 @@
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -171,43 +164,33 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
-                </ul>
-            </li>
-            
   </ul>
 </nav></div>
       
@@ -295,13 +278,6 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../tutorials.html">
     Tutorials
@@ -316,16 +292,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -386,12 +362,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">Input file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walker Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_description_afqmc.html">The Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian Files</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Wavefunction Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="estimators.html">Estimators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="observables.html">Observables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hamiltonians.html">Hamiltonian File formats</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Wavefunction File formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walkers.html">Walkers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Results File</a></li>
 </ul>
 </div>
 </nav></div>
@@ -435,7 +411,7 @@
     
     <li class="breadcrumb-item"><a href="../user_manual.html" class="nav-link">User Manual</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Wavefunction File formats</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Wavefunction Files</span></li>
   </ul>
 </nav>
 </div>
@@ -452,164 +428,126 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="wavefunction-file-formats">
-<span id="wavefunction-classes"></span><h1>Wavefunction File formats<a class="headerlink" href="#wavefunction-file-formats" title="Link to this heading">#</a></h1>
-<p>The trial wavefunction in AFQMC is typically a linear combination of Slater determinants,</p>
+  <section id="wavefunction-files">
+<span id="wavefunction-classes"></span><h1>Wavefunction Files<a class="headerlink" href="#wavefunction-files" title="Link to this heading">#</a></h1>
+<p>The wavefunction input to SAFIRE determines how the <a class="reference internal" href="../afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a> random walk is importance-sampled and constrained. Wavefunctions also define the initial condition of the <a class="reference internal" href="walkers.html#walker-classes"><span class="std std-ref">Walkers</span></a>.</p>
+<p>SAFIRE supports wavefunctions which are linear combinations</p>
 <div class="math notranslate nohighlight">
 \[|\Psi_\mathrm{T} \rangle = \sum^{N_\mathrm{det}}_n C_n | \Phi_n \rangle\]</div>
-<p>where <span class="math notranslate nohighlight">\(C_n\)</span> is a complex-valued coefficient, and <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> are Slater determinants which are not necessarily orthogonal to each other. Of course, each Slater determinant consists of some set of single-particle orbitals, <span class="math notranslate nohighlight">\(\{ \psi_p \}\)</span>, such that,</p>
-<div class="math notranslate nohighlight">
-\[\psi_{p} = \sum_i \bar{C}_{ip} \phi_i\]</div>
-<p>where <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> are the chosen orthonormal basis set orbitals. Slater determinants can either be represented explicitly as a Slater matrix,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\Phi = \begin{bmatrix}
-  \bar{C}_{00} &amp;\bar{C}_{01} &amp; \bar{C}_{02} &amp; \dots  &amp; \bar{C}_{0N} \\
-  \bar{C}_{10} &amp; \bar{C}_{11} &amp; \bar{C}_{12} &amp; \dots  &amp; \bar{C}_{1N} \\
-  \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-  \bar{C}_{M0} &amp; \bar{C}_{M1} &amp; \bar{C}_{M2} &amp; \dots  &amp; \bar{C}_{MN}
-\end{bmatrix}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(M,N\)</span> are the number of basis functions and electrons, respectively, or in terms of an “occupation vector”, which is simply a list of orbital indices which should be occupied.
-See the <a class="reference internal" href="../tutorials.html#tutorials"><span class="std std-ref">SAFIRE tutorials</span></a> for tutorials and examples on generating and writing trial wavefunctions.</p>
-<p>SAFIRE implements two basic types of trial wavefunction:</p>
+<p>of Slater determinants <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> with complex coefficients <span class="math notranslate nohighlight">\(C_n\)</span>.</p>
+<p>There are two kinds of these multi determinant wavefunctions:</p>
 <ol class="arabic simple">
-<li><p><strong>“particle-hole” multi-Slater determinant (ph-mSD) trial wavefunctions</strong> which is a configuration interaction-like wavefunction where <span class="math notranslate nohighlight">\(\langle \Phi_n |\Phi_m\rangle = \delta_{nm} \forall n,m\)</span>.
-In this case, the Slater determinants are specified in terms of a set of orbitals, and a list of <span class="math notranslate nohighlight">\(C_n\)</span> and corresponding occupancy vectors. See the HDF5 file format description in <a class="reference internal" href="#phmsd-wavefunction"><span class="std std-ref">PHMSD</span></a> for more.</p></li>
-<li><p><strong>non-orthogonal multi-slater Determinant (NOMSD) trial wavefunction</strong> where <em>strictly</em> <span class="math notranslate nohighlight">\(\langle \Phi_n |\Phi_m\rangle \neq 0 \forall n,m\)</span>. In this case, the Slater determinants are specified as a list of <span class="math notranslate nohighlight">\(C_n\)</span> and corresponding Slater matrices. See the HDF5 file format description in <a class="reference internal" href="#nomsd-wavefunction"><span class="std std-ref">NOMSD</span></a> for more.</p></li>
+<li><p><strong>Nonorthogonal multi-Slater determinant (NOMSD) wavefunctions</strong>
+consist of <em>strictly</em> nonorthogonal Slater determinants. Each individual determinant is specified as a complete matrix of orbitals.</p></li>
+<li><p><strong>Particle-hole multi-Slater determinant (PHMSD) wavefunctions</strong>
+are configuration-interaction-like wavefunctions where all individual Slater determinants are mutually orthogonal and specified in terms of occupancy vectors of a set of reference orbitals.</p></li>
 </ol>
-<p>We’ll explore each of these wavefunction types in more detail below.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Using the ph-mSD trial wavefunction is recommended when using a large number of determinants since it is significantly more memory efficient than the NOMSD trial wavefunction,
-and since, in some cases, fast Woodbury updates can be applied.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When using NOMSD trial wavefunctions, it is important that each Slater determinant has a non-zero overlap with all other Slater determinants to avoid singular values. Use ph-mSD for orthogonal expansions of Slater determinants.</p>
-</div>
-<p>AFQMC allows for two types of multi-determinant trial wavefunctions: non-orthogonal multi
-Slater determinants (NOMSD) or SHCI/CASSCF style particle-hole multi Slater determinants
-(PHMSD).</p>
-<p>Both carry a <code class="docutils literal notranslate"><span class="pre">format_version</span></code> integer attribute on <code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD</span></code> or
-<code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>, which SAFIRE checks against the version it reads; a file without one,
-or with another version, is rejected and has to be regenerated. The one exception is the legacy
-layout CoQuí writes, recognized by a <code class="docutils literal notranslate"><span class="pre">dims</span></code> array in place of <code class="docutils literal notranslate"><span class="pre">format_version</span></code> and
-<code class="docutils literal notranslate"><span class="pre">spin_type</span></code>, which is still read.</p>
+<section id="general-storage-conventions">
+<h2>General Storage Conventions<a class="headerlink" href="#general-storage-conventions" title="Link to this heading">#</a></h2>
+<p>For general HDF5 format conventions, see <a class="reference internal" href="hamiltonians.html#storage-conventions"><span class="std std-ref">General Storage Conventions</span></a> in <a class="reference internal" href="hamiltonians.html#hamiltonian-classes"><span class="std std-ref">Hamiltonian Files</span></a>.</p>
+</section>
 <section id="nomsd">
 <span id="nomsd-wavefunction"></span><h2>NOMSD<a class="headerlink" href="#nomsd" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>h5dump -n wfn.h5
-
-HDF5 "wfn.h5" {
-    FILE_CONTENTS {
-        group      /
-        group      /Wavefunction
-        group      /Wavefunction/NOMSD
-        group      /Wavefunction/NOMSD/PsiT_0
-        dataset    /Wavefunction/NOMSD/PsiT_0/column_indices
-        dataset    /Wavefunction/NOMSD/PsiT_0/row_pointers
-        dataset    /Wavefunction/NOMSD/PsiT_0/shape
-        dataset    /Wavefunction/NOMSD/PsiT_0/values
-        group      /Wavefunction/NOMSD/PsiT_1
-        dataset    /Wavefunction/NOMSD/PsiT_1/column_indices
-        dataset    /Wavefunction/NOMSD/PsiT_1/row_pointers
-        dataset    /Wavefunction/NOMSD/PsiT_1/shape
-        dataset    /Wavefunction/NOMSD/PsiT_1/values
-        dataset    /Wavefunction/NOMSD/ci_coeffs
-    }
-}
-</pre></div>
-</div>
-<p>Note that the <span class="math notranslate nohighlight">\(\alpha\)</span> components of the trial wavefunction are stored under
-<code class="docutils literal notranslate"><span class="pre">PsiT_{2n}</span></code> and the <span class="math notranslate nohighlight">\(\beta\)</span> components are stored under <code class="docutils literal notranslate"><span class="pre">PsiT_{2n+1}</span></code>.</p>
+<p class="filetree-caption"><code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code></p>
+<ul class="filetree simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Wavefunction/</span></code></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/PsiT_{2n}</span></code> The <span class="math notranslate nohighlight">\(n\)</span>-th <span class="math notranslate nohighlight">\(\alpha\)</span> Slater matrix as a CSR
-matrix. Note the <strong>conjugate transpose</strong> of the Slater matrix is stored, so it has
-<span class="math notranslate nohighlight">\(N_\alpha\)</span> rows and <span class="math notranslate nohighlight">\(N_p M\)</span> columns (<span class="math notranslate nohighlight">\(N_p = 2\)</span> for noncollinear
-wavefunctions, 1 otherwise). Its datasets are</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code>: <span class="math notranslate nohighlight">\([N_\alpha, N_p M]\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">values</span></code>: the <span class="math notranslate nohighlight">\(nnz\)</span> non-zero elements.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">column_indices</span></code>: the column index of each non-zero element.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">row_pointers</span></code>: <span class="math notranslate nohighlight">\(N_\alpha + 1\)</span> offsets; row <span class="math notranslate nohighlight">\(i\)</span> holds entries
-<code class="docutils literal notranslate"><span class="pre">row_pointers[i]</span></code> up to (not including) <code class="docutils literal notranslate"><span class="pre">row_pointers[i+1]</span></code> of <code class="docutils literal notranslate"><span class="pre">values</span></code> and
-<code class="docutils literal notranslate"><span class="pre">column_indices</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOMSD/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">🏷️</span> <span class="pre">format_version</span></code> 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">🏷️</span> <span class="pre">spin_type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code> <span class="math notranslate nohighlight">\((N_\mathrm{det},)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PsiT_&lt;k&gt;/</span></code> <span class="math notranslate nohighlight">\((N_\sigma, n_\mathrm{pol} M)\)</span>, a <a class="reference internal" href="hamiltonians.html#csr-storage"><span class="std std-ref">CSR matrix</span></a></p></li>
 </ul>
-<p>The legacy layout CoQuí writes (<code class="docutils literal notranslate"><span class="pre">dims</span></code>, <code class="docutils literal notranslate"><span class="pre">data_</span></code>, <code class="docutils literal notranslate"><span class="pre">jdata_</span></code>, <code class="docutils literal notranslate"><span class="pre">pointers_begin_</span></code>,
-<code class="docutils literal notranslate"><span class="pre">pointers_end_</span></code>) is read as well.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD/ci_coeffs</span></code> <span class="math notranslate nohighlight">\(N_D\)</span> length array of ci coefficients. Stored
-as complex numbers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/NOMSD</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;closed&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code> or
-<code class="docutils literal notranslate"><span class="pre">&quot;noncollinear&quot;</span></code>.</p></li>
 </ul>
-<p>No sizes are stored separately. <span class="math notranslate nohighlight">\(N_D\)</span> is the length of <code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code>, <span class="math notranslate nohighlight">\(M\)</span> and
-<span class="math notranslate nohighlight">\(N_\alpha\)</span> are the columns and rows of <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, and <span class="math notranslate nohighlight">\(N_\beta\)</span> the rows of
-<code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code>.</p>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Entry</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code></p></td>
+<td><p>The spin symmetry of the wavefunction, <code class="docutils literal notranslate"><span class="pre">&quot;closed&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;noncollinear&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code></p></td>
+<td><p>The complex coefficients <span class="math notranslate nohighlight">\(C_n\)</span> of the determinants.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PsiT_&lt;k&gt;</span></code></p></td>
+<td><p>The <strong>conjugate transpose</strong> of the orbital matrix of spin <span class="math notranslate nohighlight">\(\sigma\)</span> of determinant
+<span class="math notranslate nohighlight">\(n\)</span>, with <span class="math notranslate nohighlight">\(k = n_\mathrm{spin} n + \sigma\)</span>: <code class="docutils literal notranslate"><span class="pre">PsiT_&lt;2n&gt;</span></code> (<span class="math notranslate nohighlight">\(\uparrow\)</span>) and
+<code class="docutils literal notranslate"><span class="pre">PsiT_&lt;2n+1&gt;</span></code> (<span class="math notranslate nohighlight">\(\downarrow\)</span>) for collinear wavefunctions, <code class="docutils literal notranslate"><span class="pre">PsiT_&lt;n&gt;</span></code> otherwise. It has one
+row per electron of that spin, <span class="math notranslate nohighlight">\(N_\sigma = N_\uparrow\)</span> or <span class="math notranslate nohighlight">\(N_\downarrow\)</span>, and one row per
+electron, <span class="math notranslate nohighlight">\(N_\sigma = N\)</span>, for noncollinear wavefunctions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="phmsd">
 <span id="phmsd-wavefunction"></span><h2>PHMSD<a class="headerlink" href="#phmsd" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>h5dump -n wfn.h5
-
-HDF5 "wfn.h5" {
-    FILE_CONTENTS {
-        group      /
-        group      /Wavefunction
-        group      /Wavefunction/PHMSD
-        dataset    /Wavefunction/PHMSD/ci_coeffs
-        dataset    /Wavefunction/PHMSD/occa
-        dataset    /Wavefunction/PHMSD/occb
-    }
-}
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/ci_coeffs</span></code> <span class="math notranslate nohighlight">\(N_D\)</span> length array of ci coefficients. Stored
-as complex numbers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">number_of_orbitals</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD</span></code>: the number of spatial
-orbitals <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/occa</span></code>, <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/occb</span></code> Integer arrays of shape
-<span class="math notranslate nohighlight">\([N_D,N_\alpha]\)</span> and <span class="math notranslate nohighlight">\([N_D,N_\beta]\)</span> describing the determinant occupancies.
-For example if <span class="math notranslate nohighlight">\((N_\alpha=N_\beta=2)\)</span>, <span class="math notranslate nohighlight">\(N_D=2\)</span>, <span class="math notranslate nohighlight">\(M=4\)</span>, and
-<span class="math notranslate nohighlight">\(|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle\)</span> then
-occa = <span class="math notranslate nohighlight">\([[0, 1], [0, 1]]\)</span> and occb = <span class="math notranslate nohighlight">\([[0, 1], [0, 2]]\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/PsiT_0</span></code>, <code class="docutils literal notranslate"><span class="pre">/Wavefunction/PHMSD/PsiT_1</span></code> (optional) Orbital
-references, if the occupancies refer to a different basis than the one the integrals are
-written in. Each is the matrix of reference orbitals in the integrals’ basis, stored as the
-CSR matrix of its conjugate transpose, so it has one row per reference orbital and
-<span class="math notranslate nohighlight">\(N_p M\)</span> columns (the same datasets as a NOMSD <code class="docutils literal notranslate"><span class="pre">PsiT</span></code>). There is either one, <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, shared by both spins, or
-<code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code> (<span class="math notranslate nohighlight">\(\alpha\)</span>) and <code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code> (<span class="math notranslate nohighlight">\(\beta\)</span>) for a spin-resolved reference.
-Without any, the occupancies refer to the integrals’ basis.</p></li>
+<p class="filetree-caption"><code class="docutils literal notranslate"><span class="pre">afqmc.h5</span></code></p>
+<ul class="filetree simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Wavefunction/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">PHMSD/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">🏷️</span> <span class="pre">format_version</span></code> 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">🏷️</span> <span class="pre">spin_type</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">🏷️</span> <span class="pre">number_of_orbitals</span></code> <span class="math notranslate nohighlight">\(M\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code> <span class="math notranslate nohighlight">\((N_\mathrm{det},)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occa</span></code> <span class="math notranslate nohighlight">\((N_\mathrm{det}, N_\uparrow)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">occb</span></code> <span class="math notranslate nohighlight">\((N_\mathrm{det}, N_\downarrow)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PsiT_&lt;k&gt;/</span></code> <span class="math notranslate nohighlight">\((M_\mathrm{ref}, n_\mathrm{pol} M)\)</span>, optional, a
+<a class="reference internal" href="hamiltonians.html#csr-storage"><span class="std std-ref">CSR matrix</span></a></p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(N_D\)</span> is the length of <code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code>, <span class="math notranslate nohighlight">\(N_\alpha\)</span> and <span class="math notranslate nohighlight">\(N_\beta\)</span> the widths of
-<code class="docutils literal notranslate"><span class="pre">occa</span></code> and <code class="docutils literal notranslate"><span class="pre">occb</span></code>, and the number of orbital references the number of <code class="docutils literal notranslate"><span class="pre">PsiT_&lt;n&gt;</span></code> groups.
-<span class="math notranslate nohighlight">\(M\)</span> is the one size that is stored explicitly, since the occupancies alone do not span the
-orbitals.</p>
-</section>
-<section id="initial-walkers">
-<span id="id1"></span><h2>Initial walkers<a class="headerlink" href="#initial-walkers" title="Link to this heading">#</a></h2>
-<p>A trial wavefunction file does not store an initial walker. Every walker of a walker set starts
-out as a determinant derived from a wavefunction instead: the determinant with the largest
-coefficient of a NOMSD wavefunction, or the reference determinant of a PHMSD one. By default
-that is the wavefunction of the execute block that introduces the walker set; the <code class="docutils literal notranslate"><span class="pre">from</span></code>
-parameter of the walker set names a different one, either by name or as an inline block:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"wavefunctions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhf"</span><span class="p">,</span><span class="w"> </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wfn_uhf.h5"</span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rohf"</span><span class="p">,</span><span class="w"> </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wfn_rohf.h5"</span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhf"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rohf"</span><span class="p">}},</span>
-<span class="w">      </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.3%" />
+<col style="width: 64.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Entry</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">spin_type</span></code></p></td>
+<td><p>The spin symmetry of the wavefunction, <code class="docutils literal notranslate"><span class="pre">&quot;collinear&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">number_of_orbitals</span></code></p></td>
+<td><p>The number of spatial orbitals <span class="math notranslate nohighlight">\(M\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ci_coeffs</span></code></p></td>
+<td><p>The complex coefficients <span class="math notranslate nohighlight">\(C_n\)</span> of the determinants.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">occa</span></code>, <code class="docutils literal notranslate"><span class="pre">occb</span></code></p></td>
+<td><p>The occupied orbitals of each determinant, integers. For example if <span class="math notranslate nohighlight">\(N_\uparrow=N_\downarrow=2\)</span>,
+<span class="math notranslate nohighlight">\(N_\mathrm{det}=2\)</span>, <span class="math notranslate nohighlight">\(M=4\)</span>, and
+<span class="math notranslate nohighlight">\(|\Psi_\mathrm{T}\rangle = |0,1\rangle|0,1\rangle + |0,1\rangle|0,2\rangle\)</span> then
+<code class="docutils literal notranslate"><span class="pre">occa</span></code> = <span class="math notranslate nohighlight">\([[0, 1], [0, 1]]\)</span> and <code class="docutils literal notranslate"><span class="pre">occb</span></code> = <span class="math notranslate nohighlight">\([[0, 1], [0, 2]]\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PsiT_&lt;k&gt;</span></code></p></td>
+<td><p>By default, the occupancies refer to the basis the Hamiltonian is written in. If these entries are present, they specify orbitals that should be used instead.
+Each is the <strong>conjugate transpose</strong> of the matrix of the <span class="math notranslate nohighlight">\(M_\mathrm{ref}\)</span>
+reference orbitals in the basis of the Hamiltonian. There is either one, <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code>, shared by both
+spins, or <code class="docutils literal notranslate"><span class="pre">PsiT_0</span></code> (<span class="math notranslate nohighlight">\(\uparrow\)</span>) and <code class="docutils literal notranslate"><span class="pre">PsiT_1</span></code> (<span class="math notranslate nohighlight">\(\downarrow\)</span>) for a spin-resolved
+reference.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Starting from an ROHF determinant rather than the UHF trial itself can speed up equilibration
-considerably. Only the first execute block falls back to a default walker set; a later execute
-block without a <code class="docutils literal notranslate"><span class="pre">walker_set</span></code> continues with the walker set of the one before it.</p>
 </section>
 </section>
 
@@ -629,15 +567,15 @@ block without a <code class="docutils literal notranslate"><span class="pre">wal
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Hamiltonian File formats</p>
+        <p class="prev-next-title">Hamiltonian Files</p>
       </div>
     </a>
     <a class="right-next"
-       href="../tutorials.html"
+       href="estimators.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorials</p>
+        <p class="prev-next-title">Estimators</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -660,9 +598,9 @@ block without a <code class="docutils literal notranslate"><span class="pre">wal
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-storage-conventions">General Storage Conventions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nomsd">NOMSD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phmsd">PHMSD</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-walkers">Initial walkers</a></li>
 </ul>
   </nav></div>
 

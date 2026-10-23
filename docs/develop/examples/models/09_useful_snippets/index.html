@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Useful Snippets for Various Lattice Models &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/models/09_useful_snippets/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/examples/models/09_useful_snippets/index.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="User Manual" href="../../../user_manual.html" />
+    <link rel="prev" title="8. Emery Model on the Lieb Lattice" href="../08_lieb_lattice_emery/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/04_V-fully_polarized/index.html">4. Vanadium Atom (Fully Polarized)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/05_Li2_frozen_core/index.html">5. Li₂ Molecule with Frozen Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/06_Pb-spin-orbit/06_Electron_affinity_of_Pb.html">6. Electron Affinity of Pb: Spin-Orbit Coupling (SOC) in Ab Initio AFQMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/07_3d_TMO_benchmark/index.html">7. 3d Transition Metal Oxide Benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/08_local_embedding/08_local_embedding.html">8. Local Embedding</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../solids/index.html">Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/01_Si_density_coqui_interface/index.html">1. Si Ground State Energy and Charge Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/02_C_diamond_pyscf_interface/index.html">2. Diamond Ground State Energy and Charge Density from PySCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../solids/03_Na_momentum_distribution/index.html">3. Momentum Distribution of Solid Na</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_4x4_hubbard_model/index.html">1. 4×4 Square Lattice Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_stripes/index.html">2. Stripes and the Square Hubbard Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_half_filling_hubbard/index.html">3. The Square Hubbard Model at Half Filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_pair_correlators/index.html">4. Observables: Pair Correlation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_multi_slater_trial/index.html">5. Multi-Slater Determinant Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06_honeycomb_hubbard/index.html">6. Hubbard Model on a Honeycomb Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07_tprime_hubbard/index.html">7. Hubbard Model with <span class="math notranslate nohighlight">\(t'\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08_lieb_lattice_emery/index.html">8. Emery Model on the Lieb Lattice</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9. Useful Snippets for Various Lattice Models</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Lattice Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">9. </span>Useful Snippets for Various Lattice Models</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="index.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="useful-snippets-for-various-lattice-models">
+<h1><span class="section-number">9. </span>Useful Snippets for Various Lattice Models<a class="headerlink" href="#useful-snippets-for-various-lattice-models" title="Link to this heading">#</a></h1>
+<p>This example collects short recipes for setting up common lattice model Hamiltonians and their free-electron trial wavefunctions.</p>
+<p>Each section builds a Hamiltonian and a free-electron trial wavefunction.
+Each snippet illustrates one aspect of the setup, but they can be combined: for example, a pinning field can be added to the three-band model in the same way as to the single-band one.
+The lattices are explained in <a class="reference internal" href="../../../tutorials/models/03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Defining a Lattice</span></a>, and the Hamiltonian terms in <a class="reference internal" href="../../../tutorials/models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html"><span class="doc">Building Lattice Model Hamiltonians</span></a>.</p>
+<section id="setup">
+<h2><span class="section-number">9.1. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">HamiltonianBuilder</span><span class="p">,</span> <span class="n">Lattice</span><span class="p">,</span> <span class="n">LatticeHamiltonian</span><span class="p">,</span> <span class="n">PinningField</span><span class="p">,</span> <span class="n">SpinSymm</span><span class="p">,</span> <span class="n">Wavefunction</span><span class="p">,</span> <span class="n">vis</span>
+
+<span class="n">default_twist</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">592560607</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">47603</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rectangular-hubbard-model">
+<h2><span class="section-number">9.2. </span>Rectangular Hubbard Model<a class="headerlink" href="#rectangular-hubbard-model" title="Link to this heading">#</a></h2>
+<p>A Hubbard model on a 2 × 3 square lattice with periodic boundary conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># The trial wavefunction needs its own Hamiltonian, built on a lattice</span>
+<span class="c1">#   carrying a small irrational twist.</span>
+<span class="c1">#   The AFQMC run itself uses the untwisted Hamiltonian above.</span>
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Wavefunction.from_free_electron()</span></code> uses the Hamiltonian exactly as given and applies no twist of its own, so the twist belongs on the lattice you build that Hamiltonian from.
+For an open-shell filling, an untwisted lattice leads to an arbitrary choice of which degenerate orbitals are occupied, and <code class="docutils literal notranslate"><span class="pre">from_free_electron()</span></code> warns when that happens.
+The following snippets use the same pattern.</p>
+</section>
+<section id="three-band-hubbard-model">
+<h2><span class="section-number">9.3. </span>Three-Band Hubbard Model<a class="headerlink" href="#three-band-hubbard-model" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">nbands</span></code> sets the number of orbitals per lattice site.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nbands</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hubbard-kanamori-model">
+<h2><span class="section-number">9.4. </span>Hubbard-Kanamori Model<a class="headerlink" href="#hubbard-kanamori-model" title="Link to this heading">#</a></h2>
+<p>A two-band Hubbard-Kanamori model on a 6 × 1 square lattice.
+With periodic boundary conditions only along the long direction, the system is effectively one-dimensional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nbands</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">U1</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">U2</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"open"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hubbard-model-with-nth-order-hopping">
+<h2><span class="section-number">9.5. </span>Hubbard Model with nth-Order Hopping<a class="headerlink" href="#hubbard-model-with-nth-order-hopping" title="Link to this heading">#</a></h2>
+<p>A list <code class="docutils literal notranslate"><span class="pre">t</span></code> of length <span class="math notranslate nohighlight">\(n\)</span> gives hopping up to the <span class="math notranslate nohighlight">\(n\)</span>th-order neighbors.
+Here, <code class="docutils literal notranslate"><span class="pre">t=[1.0,</span> <span class="pre">0.5]</span></code> adds a next-nearest-neighbor hopping <span class="math notranslate nohighlight">\(t' = 0.5\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pinning-fields">
+<h2><span class="section-number">9.6. </span>Pinning Fields<a class="headerlink" href="#pinning-fields" title="Link to this heading">#</a></h2>
+<p>A <span class="math notranslate nohighlight">\(t\)</span>-<span class="math notranslate nohighlight">\(t'\)</span> Hubbard model on an 8 × 4 square lattice with an antiferromagnetic pinning field on the two edges at the ends of axis 0.
+The pinning field is a one-body term, so the trial wavefunction Hamiltonian has to carry it too.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">pinning</span><span class="o">=</span><span class="p">(</span><span class="n">PinningField</span><span class="o">.</span><span class="n">afm</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">staggered</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A charge pinning field <span class="math notranslate nohighlight">\(\frac{h}{2} \hat{n}_i\)</span>, constant along the edge, is set up the same way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">pinning</span><span class="o">=</span><span class="p">(</span><span class="n">PinningField</span><span class="o">.</span><span class="n">charge</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">staggered</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="twist-angles">
+<h2><span class="section-number">9.7. </span>Twist Angles<a class="headerlink" href="#twist-angles" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">twists</span></code> holds the twist angles <span class="math notranslate nohighlight">\(\vec{\theta}=(\theta_1,\theta_2)\)</span> in radians, with both components given even if one of them is 0.
+Here, the lattice we want to simulate at the AFQMC level is already twisted, so one Hamiltonian serves both the trial wavefunction and the AFQMC run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="overriding-the-hubbard-stratonovich-transformation-type">
+<h2><span class="section-number">9.8. </span>Overriding the Hubbard-Stratonovich Transformation Type<a class="headerlink" href="#overriding-the-hubbard-stratonovich-transformation-type" title="Link to this heading">#</a></h2>
+<div class="alert alert-block alert-warning">
+<b>Warning:</b>
+<p>This functionality is for experts only. Use at your own risk.</p>
+</div>
+<p>By default, the Hamiltonian builder chooses a Hubbard-Stratonovich transformation (HST) type from the sign of each interaction.
+For band-dependent interactions, it splits each interaction into two separate terms if there are both positive and negative interaction strengths and assigns an HST type to each.
+<code class="docutils literal notranslate"><span class="pre">hst_types</span></code> forces a specific HST type for the interaction terms it names, regardless of the sign of the interaction strength.
+The other terms keep their default.
+The choices are <code class="docutils literal notranslate"><span class="pre">&quot;discrete_spin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;discrete_charge&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;continuous_spin&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;continuous_charge&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">nbands</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">U</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>      <span class="c1"># defaults to "discrete_spin" for U &gt; 0</span>
+    <span class="n">U1</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">,</span>    <span class="c1"># defaults to "discrete_charge" for U1 &lt; 0</span>
+    <span class="n">U2</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">J</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">hst_types</span><span class="o">=</span><span class="p">{</span><span class="s2">"U1"</span><span class="p">:</span> <span class="s2">"discrete_spin"</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="triangular-lattice">
+<h2><span class="section-number">9.9. </span>Triangular Lattice<a class="headerlink" href="#triangular-lattice" title="Link to this heading">#</a></h2>
+<p>The first argument of <code class="docutils literal notranslate"><span class="pre">Lattice.from_type()</span></code> selects the unit cell: <code class="docutils literal notranslate"><span class="pre">&quot;square&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;triangular&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;honeycomb&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;kagome&quot;</span></code>.
+Below, a Hubbard model on a 3 × 3 triangular lattice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"triangular"</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">fe_lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">lattice_params</span><span class="p">,</span> <span class="n">twists</span><span class="o">=</span><span class="n">default_twist</span><span class="p">))</span>
+<span class="n">fe_hamiltonian</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span><span class="n">fe_lattice</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">fe_hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rashba-spin-orbit-coupling">
+<h2><span class="section-number">9.10. </span>Rashba Spin-Orbit Coupling<a class="headerlink" href="#rashba-spin-orbit-coupling" title="Link to this heading">#</a></h2>
+<p>Rashba spin-orbit coupling mixes the spin sectors, so the Hamiltonian is built in noncollinear form.
+Here, it is added step by step with a <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span>
+    <span class="s2">"square"</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s2">"periodic"</span><span class="p">,</span> <span class="s2">"periodic"</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># hopping[0] is t, hopping[1] is t', and so on</span>
+<span class="n">hopping</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+
+<span class="n">builder</span> <span class="o">=</span> <span class="n">HamiltonianBuilder</span><span class="p">(</span>
+    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
+    <span class="n">spin_symm</span><span class="o">=</span><span class="n">SpinSymm</span><span class="o">.</span><span class="n">NONCOLLINEAR</span>
+<span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">nth_neighbor_hopping</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">hopping</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">onsite_hubbard</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
+
+<span class="c1"># add Rashba SOC consistent with the hopping</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">rashba_soc</span><span class="p">(</span><span class="n">rashba_lambda</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">hopping</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_hamiltonian</span><span class="p">()</span>
+
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">nelec</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../08_lieb_lattice_emery/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Emery Model on the Lieb Lattice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../user_manual.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">User Manual</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">9.1. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-hubbard-model">9.2. Rectangular Hubbard Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-band-hubbard-model">9.3. Three-Band Hubbard Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hubbard-kanamori-model">9.4. Hubbard-Kanamori Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hubbard-model-with-nth-order-hopping">9.5. Hubbard Model with nth-Order Hopping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pinning-fields">9.6. Pinning Fields</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twist-angles">9.7. Twist Angles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-hubbard-stratonovich-transformation-type">9.8. Overriding the Hubbard-Stratonovich Transformation Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triangular-lattice">9.9. Triangular Lattice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rashba-spin-orbit-coupling">9.10. Rashba Spin-Orbit Coupling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

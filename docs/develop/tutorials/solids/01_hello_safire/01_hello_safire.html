@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Hello SAFIRE &#8212; SAFIRE 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/solids/01_hello_safire/01_hello_safire';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/solids/01_hello_safire/01_hello_safire.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2. Understanding the JSON Job File" href="../02_understanding_the_input_file/02_understanding_the_input_file.html" />
+    <link rel="prev" title="SAFIRE for Ab Initio Solids" href="../overview.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://safire.flatironinstitute.org/">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Changelog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../afqmc.html">
+    Auxiliary-Field Quantum Monte Carlo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SFQMC/SAFIRE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.html">3. Writing a Hamiltonian File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html">4. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/05_computing_observables/05_computing_observables.html">5. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../overview.html">SAFIRE for Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html">3. Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_computing_observables/04_computing_observables.html">4. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/overview.html">SAFIRE for Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Defining a Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_writing_a_trial_wavefunction/05_writing_a_trial_wavefunction.html">5. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_autohf_crash_course/06_autohf_crash_course.html">6. AutoHF Crash Course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_computing_observables/07_computing_observables.html">7. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for Ab Initio Solids</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">1. </span>Hello SAFIRE</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p class="notebook-download"><a class="reference external" href="01_hello_safire.zip">Download this notebook (.ipynb + data files)</a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="hello-safire">
+<h1><span class="section-number">1. </span>Hello SAFIRE<a class="headerlink" href="#hello-safire" title="Link to this heading">#</a></h1>
+<p><b>Goal:</b>
+At the end of this tutorial, you will know how to run an AFQMC calculation using SAFIRE and extract the AFQMC energy from the output
+given all necessary inputs.</p>
+<section id="what-you-will-learn">
+<h2><span class="section-number">1.1. </span>What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>what are the inputs and outputs of SAFIRE.</p></li>
+<li><p>how to invoke the SAFIRE executable from the command line in serial, using MPI, and using GPU(s)</p></li>
+<li><p>how to extract the AFQMC energy from the outputs of SAFIRE using safiretools</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2><span class="section-number">1.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The purpose of this tutorial is to run a first AFQMC simulation without going into low-level details.</p>
+<p>In order to run a simulation, SAFIRE needs at least three inputs: A Hamiltonian, a trial wavefunction, and a job file defining all run parameters. The output of a simulation is a single HDF5 file containing the Monte Carlo samples of observables such as the energy.</p>
+<p>We will learn more about the details of all of these files in future tutorials. For this tutorial, pregenerated input files are provided together with the <code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code> file.</p>
+<section id="hamiltonian-file-hamiltonian-h5">
+<h3><span class="section-number">1.2.1. </span>Hamiltonian File: <code class="docutils literal notranslate"><span class="pre">hamiltonian.h5</span></code><a class="headerlink" href="#hamiltonian-file-hamiltonian-h5" title="Link to this heading">#</a></h3>
+<p>This HDF5 file contains the second-quantized Hamiltonian <span class="math notranslate nohighlight">\(\hat{H}\)</span>.</p>
+<p>For this tutorial, we have supplied an HDF5 file containing the Born-Oppenheimer
+Hamiltonian for Si in its primitive cell at equilibrium
+in <code class="docutils literal notranslate"><span class="pre">hamiltonian.h5</span></code>.</p>
+<p><img alt="" src="../../../_images/Si_primitive.png" /></p>
+<p>For technical details on the Hamiltonian HDF5 format, see <a class="reference internal" href="../../../user_manual.html"><span class="doc">User Manual</span></a>.</p>
+</section>
+<section id="wavefunction-file-wavefunction-h5">
+<h3><span class="section-number">1.2.2. </span>Wavefunction File: <code class="docutils literal notranslate"><span class="pre">wavefunction.h5</span></code><a class="headerlink" href="#wavefunction-file-wavefunction-h5" title="Link to this heading">#</a></h3>
+<p>This HDF5 file contains the trial wavefunction, <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span>.</p>
+<p>For this tutorial, we have supplied an HDF5 file containing the Kohn-Sham Slater determinant
+of a Quantum ESPRESSO DFT calculation as the trial wavefunction.</p>
+<div class="math notranslate nohighlight">
+\[
+| \Psi_\mathrm{T} \rangle = | \Phi_\mathrm{DFT} \rangle
+\]</div>
+<p>For technical details on the wavefunction HDF5 format, see <a class="reference internal" href="../../../user_manual.html"><span class="doc">User Manual</span></a>.</p>
+</section>
+<section id="job-file-afqmc-json">
+<h3><span class="section-number">1.2.3. </span>Job File: <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code><a class="headerlink" href="#job-file-afqmc-json" title="Link to this heading">#</a></h3>
+<p>The JSON job file sets AFQMC run parameters and references the locations of the Hamiltonian and trial wavefunction files. It is organized into a hierarchy of input blocks which each control specific details of the calculation.</p>
+<p><strong>For now, we focus on the <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> blocks.</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> input block is used to tell SAFIRE where to find the HDF5 file containing the trial wavefunction.
+Similarly, the <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> input block is used to tell SAFIRE where to find the HDF5 file containing the Hamiltonian.</p>
+<p>The sample JSON job file that we have provided is reproduced here.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wavefunction.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> input blocks point to the HDF5 files where we have saved the trial
+wavefunction and second-quantized Hamiltonian, respectively.</p>
+</section>
+</section>
+<section id="running-safire">
+<h2><span class="section-number">1.3. </span>Running SAFIRE<a class="headerlink" href="#running-safire" title="Link to this heading">#</a></h2>
+<p>Now that we have learned what the inputs of SAFIRE are,
+we are ready to learn how to run the SAFIRE executable given the inputs.</p>
+<p>Because the path to the SAFIRE executable depends on your installation, in the tutorials, we will assume that you have defined the environment variable
+<code class="docutils literal notranslate"><span class="pre">$AFQMC_EXEC</span></code> that contains <code class="docutils literal notranslate"><span class="pre">/path/to/SAFIRE/build/bin/safire</span></code>. So the following should print the path to SAFIRE and then display the help.</p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+<p>In a Jupyter notebook, the <code class="docutils literal notranslate"><span class="pre">!</span></code> symbol will run commands in
+a shell instead of in Python.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span><span class="w"> </span>Path<span class="w"> </span>to<span class="w"> </span>SAFIRE:<span class="w"> </span><span class="nv">$AFQMC_EXEC</span>
+<span class="o">!</span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+</div>
+<section id="running-safire-in-serial">
+<h3><span class="section-number">1.3.1. </span>Running SAFIRE in Serial<a class="headerlink" href="#running-safire-in-serial" title="Link to this heading">#</a></h3>
+<p>SAFIRE takes the JSON job file as its only positional argument,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc.json
+</pre></div>
+</div>
+<p>When you run the above, an AFQMC calculation will be performed based on the contents of <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>,
+using the Hamiltonian and trial wavefunction specified there.</p>
+</section>
+<section id="running-safire-in-parallel">
+<h3><span class="section-number">1.3.2. </span>Running SAFIRE in Parallel<a class="headerlink" href="#running-safire-in-parallel" title="Link to this heading">#</a></h3>
+<p>SAFIRE can be run with MPI in the usual ways.
+For example, using mpirun, we could run SAFIRE with 64 MPI tasks as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>afqmc.json
+</pre></div>
+</div>
+<p>It is important to note that <code class="docutils literal notranslate"><span class="pre">num_walkers</span></code> in the job file is the total number of walkers
+over all MPI tasks.
+SAFIRE splits them evenly over the tasks, so that the walker counts of two tasks differ by at
+most one.
+So, running the sample job file above with 64 MPI tasks gives each task 3 or 4 of its 200
+walkers.
+For calculations that run on a CPU only build of SAFIRE, <code class="docutils literal notranslate"><span class="pre">num_walkers</span></code> is typically chosen
+such that every task carries on the order of 10-50 walkers.</p>
+</section>
+<section id="running-safire-on-gpus">
+<h3><span class="section-number">1.3.3. </span>Running SAFIRE on GPUs<a class="headerlink" href="#running-safire-on-gpus" title="Link to this heading">#</a></h3>
+<p>To run on GPUs, you must compile SAFIRE for the GPU (See <a class="reference internal" href="../../../installation.html#install"><span class="std std-ref">Installation</span></a> for instructions).</p>
+<p>GPU builds of SAFIRE run on the GPU by default, but using the <code class="docutils literal notranslate"><span class="pre">--compute</span> <span class="pre">cpu</span></code> command line flag, it is possible to run on the CPU without rebuilding. When running on the GPU, it is important to saturate the compute bandwidth to gain an advantage. This requires calculations on large systems or with a high number of walkers (<code class="docutils literal notranslate"><span class="pre">num_walkers</span></code> in the job file). For small systems, this could mean using on the order of 1000 walkers or more per GPU. For very large systems, 10 walkers per GPU may be enough.</p>
+<p>Multi GPU calculations are supported and should use one MPI task per GPU.</p>
+</section>
+<section id="your-turn">
+<h3><span class="section-number">1.3.4. </span>Your Turn<a class="headerlink" href="#your-turn" title="Link to this heading">#</a></h3>
+<p>Run SAFIRE with the provided input files on 4 MPI tasks.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="nv">$AFQMC_EXEC</span><span class="w"> </span>files/afqmc.json
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see the following at the top of the
+output after running SAFIRE.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>███████╗ █████╗ ███████╗██╗██████╗ ███████╗
+██╔════╝██╔══██╗██╔════╝██║██╔══██╗██╔════╝
+███████╗███████║█████╗  ██║██████╔╝█████╗
+╚════██║██╔══██║██╔══╝  ██║██╔══██╗██╔══╝
+███████║██║  ██║██║     ██║██║  ██║███████╗
+╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝
+
+Version:     &lt;version&gt;
+Git branch:  &lt;branch&gt;
+Git commit:  &lt;commit&gt; (&lt;date&gt;)
+Build type:  &lt;build type&gt;
+Features:    &lt;features&gt;
+
+Compute device:    cpu
+MPI ranks:         4
+MPI nodes:         1
+MPI ranks/node:    4
+OMP_NUM_THREADS:   1 (default)
+TBLIS_NUM_THREADS: (unset)
+</pre></div>
+</div>
+<p>Congratulations, you have now run an AFQMC calculation using SAFIRE!
+In the directory that you ran this notebook from, you should see a file called
+<code class="docutils literal notranslate"><span class="pre">afqmc.results.h5</span></code>.
+We will return to how to use <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to extract the AFQMC energy later in this tutorial.</p>
+</section>
+</section>
+<section id="basic-post-processing">
+<h2><span class="section-number">1.4. </span>Basic Post-Processing<a class="headerlink" href="#basic-post-processing" title="Link to this heading">#</a></h2>
+<p>Now that we’ve learned how to invoke the SAFIRE executable from the command line in serial, using MPI, and using GPU(s),
+we are ready to learn how to extract the AFQMC energy from the outputs using safiretools.</p>
+<p>The run above generated a results file, <code class="docutils literal notranslate"><span class="pre">afqmc.results.h5</span></code>, which contains the measurement data that was accumulated during the AFQMC simulation, including the total energy of the system.</p>
+<p>safiretools provides the <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Results" title="safiretools.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">safiretools.Results</span></code></a> class to extract this information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Results</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc.results.h5"</span><span class="p">)</span>
+
+<span class="n">energy</span><span class="p">,</span> <span class="n">energy_err</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="s2">"Energy"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"E = </span><span class="si">{</span><span class="n">energy</span><span class="o">.</span><span class="n">real</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">energy_err</span><span class="o">.</span><span class="n">real</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a good idea to not take this value blindly but to instead inspect the Monte Carlo timeseries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># manual</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">timeseries</span><span class="p">(</span><span class="s2">"ProjectionTime"</span><span class="p">),</span> <span class="n">results</span><span class="o">.</span><span class="n">timeseries</span><span class="p">(</span><span class="s2">"Energy"</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># visualization helper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">vis</span>
+<span class="n">vis</span><span class="o">.</span><span class="n">plot_timeseries</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should get an output compatible with <code class="docutils literal notranslate"><span class="pre">Energy</span> <span class="pre">=</span> <span class="pre">-0.7299</span> <span class="pre">±</span> <span class="pre">0.0017</span></code>.</p>
+<p>The time series should be converged to that energy. If it is not, we can pass the <code class="docutils literal notranslate"><span class="pre">skip</span></code> parameter to the <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Results" title="safiretools.Results"><code class="xref py py-class docutils literal notranslate"><span class="pre">safiretools.Results</span></code></a> functions or increase <code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code> in the job file. Note also that the bin axis in the timeseries plot does not coincide with the number of steps. This is because SAFIRE measures only every <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code> steps (10 in this job file). You are encouraged to play with these values and rerun the simulation.</p>
+<p>You will learn how to measure observables other than the energy in <a class="reference internal" href="../04_computing_observables/04_computing_observables.html"><span class="doc">Computing General Observables</span></a>.</p>
+</section>
+<section id="summary">
+<h2><span class="section-number">1.5. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial we have learned,</p>
+<ol class="arabic simple">
+<li><p>what are the inputs and outputs of SAFIRE.</p></li>
+<li><p>how to invoke the SAFIRE executable from the command line in serial, using MPI, and using GPU(s)</p></li>
+<li><p>how to extract the AFQMC energy from the outputs of SAFIRE using safiretools</p></li>
+</ol>
+<hr class="docutils" />
+<p>Next, we will take a more detailed look at the JSON job file in <a class="reference internal" href="../02_understanding_the_input_file/02_understanding_the_input_file.html"><span class="doc">Understanding the JSON Job File</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../overview.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SAFIRE for Ab Initio Solids</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02_understanding_the_input_file/02_understanding_the_input_file.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Understanding the JSON Job File</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">1.1. What You Will Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1.2. Introduction</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-file-hamiltonian-h5">1.2.1. Hamiltonian File: <code class="docutils literal notranslate"><span class="pre">hamiltonian.h5</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavefunction-file-wavefunction-h5">1.2.2. Wavefunction File: <code class="docutils literal notranslate"><span class="pre">wavefunction.h5</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-file-afqmc-json">1.2.3. Job File: <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-safire">1.3. Running SAFIRE</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-safire-in-serial">1.3.1. Running SAFIRE in Serial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-safire-in-parallel">1.3.2. Running SAFIRE in Parallel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-safire-on-gpus">1.3.3. Running SAFIRE on GPUs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn">1.3.4. Your Turn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-post-processing">1.4. Basic Post-Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">1.5. Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
