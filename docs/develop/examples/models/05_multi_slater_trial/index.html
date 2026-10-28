@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Multi-Slater Determinant Trial Wavefunction &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>5. Multi-Slater Determinant Trial Wavefunction &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="4. Observables: Pair Correlation Functions" href="../04_pair_correlators/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -457,13 +467,13 @@
   <p class="notebook-download"><a class="reference external" href="index.zip">Download this notebook (.ipynb + data files)</a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="multi-slater-determinant-trial-wavefunction">
 <h1><span class="section-number">5. </span>Multi-Slater Determinant Trial Wavefunction<a class="headerlink" href="#multi-slater-determinant-trial-wavefunction" title="Link to this heading">#</a></h1>
-<p>In this example, we will compute the AFQMC energy of the Hubbard model with U=8 on a 6×6 square lattice with open boundary conditions
-at half-filling.
+<p>In this example, we will compute the AFQMC energy of the Hubbard model with <span class="math notranslate nohighlight">\(U=8\)</span> on a 6×6 square lattice with open boundary conditions
+at half filling.
 We will use a trial wavefunction consisting of two Slater determinants.
 Specifically, we will use</p>
 <div class="math notranslate nohighlight">
 \[
-| \Psi_\mathrm{T} \rangle = \frac{1}{\sqrt{2}} \left( |\Phi_{0}\rangle + |\Phi_{1}\rangle \right)
+| \Psi_\mathrm{T} \rangle = |\Phi_{0}\rangle + |\Phi_{1}\rangle
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
@@ -476,7 +486,8 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 \[
 |\Phi_{1}\rangle = |\Phi^{\downarrow}\rangle \otimes |\Phi^{\uparrow}\rangle.
 \]</div>
-<p>Since the Hamiltonian is spin-independent, this trial wavefunction should have the same energy as the UHF ground state.</p>
+<p>Since the Hamiltonian is spin-independent, <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> has the same energy as the UHF ground state <span class="math notranslate nohighlight">\(|\Phi_{0}\rangle\)</span>.
+Their superposition restores the spin-flip symmetry that the UHF solution breaks, and in general its energy differs from the UHF energy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create scratch directory in notebook path</span>
@@ -500,9 +511,13 @@ and <span class="math notranslate nohighlight">\(|\Phi_{1}\rangle\)</span> is th
 </div>
 </div>
 </div>
+<p>Hartree-Fock overestimates magnetic order, so a UHF solution at the bare <span class="math notranslate nohighlight">\(U=8\)</span> is too strongly polarized to be a good trial wavefunction.
+Instead, we solve UHF for a Hubbard model with a smaller effective interaction <span class="math notranslate nohighlight">\(U_\mathrm{eff}\)</span> and use its orbitals as the trial wavefunction.
+The AFQMC run itself still uses the Hamiltonian with <span class="math notranslate nohighlight">\(U=8\)</span>.
+For a way to tune <span class="math notranslate nohighlight">\(U_\mathrm{eff}\)</span> self-consistently, see <a class="reference internal" href="../02_stripes/index.html"><span class="doc">Stripes and the Square Hubbard Model</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run autoHF to get UHF solution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run AutoHF to get UHF solution</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span>
 
 <span class="n">Ueff</span> <span class="o">=</span> <span class="mf">2.75</span>
@@ -543,27 +558,25 @@ In general, the trial wavefunction in AFQMC is a linear combination of Slater de
 \[
 |\Psi_\mathrm{T} \rangle = \sum^{N_\mathrm{det}}_n C_n | \Phi_n \rangle,
 \]</div>
-<p>where</p>
-<p><span class="math notranslate nohighlight">\(C_n\)</span></p>
-<p>is a complex-valued coefficient,
+<p>where <span class="math notranslate nohighlight">\(C_n\)</span> are complex-valued coefficients,
 and <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> are Slater determinants which are not necessarily
 orthogonal to each other.
 Here, we will specify Slater determinants as Slater matrices</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\Phi_{ip} ≐ \begin{bmatrix}
-    \bar{C}_{00} &amp;\bar{C}_{01} &amp; \bar{C}_{02} &amp; \dots  &amp; \bar{C}_{0N} \\
-    \bar{C}_{10} &amp; \bar{C}_{11} &amp; \bar{C}_{12} &amp; \dots  &amp; \bar{C}_{1N} \\
-    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-    \bar{C}_{M0} &amp; \bar{C}_{M1} &amp; \bar{C}_{M2} &amp; \dots  &amp; \bar{C}_{MN}
+\Phi = \begin{bmatrix}
+    \Phi_{0,0} &amp; \Phi_{0,1} &amp; \dots  &amp; \Phi_{0,N-1} \\
+    \Phi_{1,0} &amp; \Phi_{1,1} &amp; \dots  &amp; \Phi_{1,N-1} \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    \Phi_{M-1,0} &amp; \Phi_{M-1,1} &amp; \dots  &amp; \Phi_{M-1,N-1}
 \end{bmatrix},
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(i\)</span> is the basis index, <span class="math notranslate nohighlight">\(p\)</span> is the electron index, and
+<p>where the row index <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(\Phi_{ip}\)</span> is the basis index, the column index <span class="math notranslate nohighlight">\(p\)</span> is the electron index, and
 <span class="math notranslate nohighlight">\(M,N\)</span> are the number of basis functions and electrons, respectively.
 <b>
 SAFIRE uses the convention that orbitals are columns of the Slater matrices.</b>
 A collinear Slater determinant is a pair of Slater matrices, one for the <span class="math notranslate nohighlight">\(N_{\uparrow}\)</span> spin-up electrons and one for the <span class="math notranslate nohighlight">\(N_{\downarrow}\)</span> spin-down electrons.</p>
-<p>In the code block below, we manually construct Slater matrices from the UHF orbitals that we got from autohf above.</p>
+<p>In the code block below, we manually construct Slater matrices from the UHF orbitals that we got from AutoHF above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct the multi-Slater trial AND save</span>
@@ -591,11 +604,9 @@ A collinear Slater determinant is a pair of Slater matrices, one for the <span c
 <span class="n">phi_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">phi_down</span><span class="p">,</span> <span class="n">phi_up</span><span class="p">)</span> <span class="c1"># |phi_1&gt; = |phi_down&gt; X |phi_up&gt;</span>
 
 
-<span class="n">C_0</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
 <span class="c1"># numpy.stack is a convenient way to stack the determinants of each spin channel</span>
 <span class="n">wfn</span> <span class="o">=</span> <span class="n">NOMSDWavefunction</span><span class="p">(</span>
-    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">C_0</span><span class="p">,</span><span class="n">C_0</span><span class="p">]),</span>
+    <span class="n">coeffs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]),</span>
     <span class="n">dets</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">phi_0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">phi_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">phi_0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">phi_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
 <span class="p">)</span>
 </pre></div>

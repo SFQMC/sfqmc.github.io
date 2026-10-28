@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Momentum Distribution of Solid Na &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>3. Momentum Distribution of Solid Na &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="2. Diamond Ground State Energy and Charge Density from PySCF" href="../02_C_diamond_pyscf_interface/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -595,9 +605,7 @@ A new window starts every <code class="docutils literal notranslate"><span class
 <section id="step-4-momentum-distribution">
 <h2><span class="section-number">3.6. </span>Step 4: Momentum Distribution<a class="headerlink" href="#step-4-momentum-distribution" title="Link to this heading">#</a></h2>
 <p>We unfold the Kohn-Sham occupations for the DFT <span class="math notranslate nohighlight">\(n(\mathbf{q})\)</span>, and the back-propagated density matrix inside
-<code class="docutils literal notranslate"><span class="pre">Results.evaluate</span></code> for jackknife error bars on its radial average.
-Each BP sample is separated by a window length, so for long window lengths we can assume they are weakly
-correlated and set <code class="docutils literal notranslate"><span class="pre">rebinsize=1</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">Results.evaluate</span></code> for jackknife error bars on its radial average.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="n">data</span> <span class="o">/</span> <span class="s2">"3_safire/afqmc.results.h5"</span><span class="p">)</span>
@@ -614,7 +622,7 @@ correlated and set <code class="docutils literal notranslate"><span class="pre">
 
 <span class="n">bp</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">bp_lengths</span><span class="p">:</span>
-    <span class="n">bp</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">radial_nq</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">],</span> <span class="n">rebinsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">bp</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">radial_nq</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">])</span>
 <span class="n">above</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_bins</span> <span class="o">&gt;</span> <span class="n">k_F</span><span class="p">)</span>  <span class="c1"># first radial bin above k_F</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n(q) at |q| = </span><span class="si">{</span><span class="n">q_bins</span><span class="p">[</span><span class="n">above</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Bohr^-1: DFT </span><span class="si">{</span><span class="n">n_dft</span><span class="p">[</span><span class="n">above</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">L</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dn</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bp</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -639,7 +647,7 @@ Our cell has the experimental density, so we compare on absolute momentum.</p>
 
 <span class="n">max_bp_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bp_lengths</span><span class="p">)</span>
 
-<span class="n">bp_rdm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">max_bp_length</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">,</span> <span class="n">rebinsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">bp_rdm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BackPropEstimator/Steps=</span><span class="si">{</span><span class="n">max_bp_length</span><span class="si">}</span><span class="s2">/OneRDM"</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
 <span class="n">plot_slab</span><span class="p">(</span><span class="n">ax0</span><span class="p">,</span> <span class="n">qvecs</span><span class="p">,</span> <span class="n">unfold_nq</span><span class="p">(</span><span class="n">bp_rdm</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k_F</span><span class="p">)</span>

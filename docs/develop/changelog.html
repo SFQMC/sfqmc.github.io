@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Changelog &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>Changelog &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,9 +42,11 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'changelog';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/changelog.html" />
@@ -55,7 +57,7 @@
     <link rel="prev" title="safiretools" href="safiretools/safiretools.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -125,8 +127,8 @@
     
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -175,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -417,10 +429,76 @@
                   
   <section id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
-<p>This document describes the main changes in SAFIRE.</p>
-<section id="version-x-y-z">
-<h2>Version X.Y.Z<a class="headerlink" href="#version-x-y-z" title="Link to this heading">#</a></h2>
-<p>Date: YYYY-MM-DD</p>
+<section id="id2">
+<h2>1.0.0 - 2026-10-28<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Python package, replacing <code class="docutils literal notranslate"><span class="pre">afqmctools</span></code></p></li>
+<li><p>Walker weight bound.</p></li>
+<li><p>Versioning of all HDF5 files written by SAFIRE and safiretools. Starting at format version 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binsize</span></code> input parameter.</p></li>
+<li><p>BCC Na momentum distribution example.</p></li>
+</ul>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The executable takes a single positional argument, the job file (<cite>–filenames</cite> is gone).</p></li>
+<li><p>Various changes to the job file format</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestep</span></code> and <code class="docutils literal notranslate"><span class="pre">steps</span></code> are now mandatory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_walkers_per_mpi_task</span></code> was replaced by <code class="docutils literal notranslate"><span class="pre">num_walkers</span></code>, the total number of walkers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">walker_type</span></code> is now optional and inferred from the wavefunction and Hamiltonian.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seed</span></code> moved to the top level. The driver moved from a top-level key into a <code class="docutils literal notranslate"><span class="pre">driver</span></code> field, and <code class="docutils literal notranslate"><span class="pre">project</span></code> was renamed to <code class="docutils literal notranslate"><span class="pre">output_name</span></code>.</p></li>
+<li><p>Out-of-line <code class="docutils literal notranslate"><span class="pre">ham</span></code>, <code class="docutils literal notranslate"><span class="pre">wfn</span></code>, <code class="docutils literal notranslate"><span class="pre">wset</span></code>, and <code class="docutils literal notranslate"><span class="pre">prop</span></code> blocks were renamed to their plurals. Input paths are resolved
+relative to the job file. A wavefunction-only file can fall back to the Hamiltonian filename.</p></li>
+<li><p>New estimator parameter format. <code class="docutils literal notranslate"><span class="pre">measurement_interval</span></code> is decoupled from the population control interval.</p></li>
+<li><p>Renamed <code class="docutils literal notranslate"><span class="pre">use_real_vbias</span></code> to <code class="docutils literal notranslate"><span class="pre">project_force_bias</span></code>, <code class="docutils literal notranslate"><span class="pre">substractMF</span></code> to <code class="docutils literal notranslate"><span class="pre">subtractMF</span></code>, and <code class="docutils literal notranslate"><span class="pre">dshift</span></code> to
+<code class="docutils literal notranslate"><span class="pre">Eshift_relaxation_rate</span></code>. <code class="docutils literal notranslate"><span class="pre">equilibration_time</span></code> has a reasonable default.</p></li>
+</ul>
+</li>
+<li><p>HDF5 formats: scalars are stored as attributes, Cholesky storage is unified, the sparse format is simplified, the
+dense <code class="docutils literal notranslate"><span class="pre">hcore</span></code> is rank 5, and the k-point factorized format resembles the dense one.</p></li>
+<li><p>Walkers are always initialized from a wavefunction. The PHMSD type is inferred from <code class="docutils literal notranslate"><span class="pre">Psi_T</span></code>.</p></li>
+<li><p>All results of a run are written to a single output file in a new measurement format.</p></li>
+<li><p>Population control was simplified to the comb method with asynchronous exchange. <code class="docutils literal notranslate"><span class="pre">serial_comb</span></code> is the automatic
+choice.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(\mathrm{Re}(v_\mathrm{MF}^2/2)\)</span> factori and <span class="math notranslate nohighlight">\(E_0\)</span> are now always included in the hybrid energy so that it matches the local
+energy. <code class="docutils literal notranslate"><span class="pre">Eshift</span></code> is always initialized from the starting energy.</p></li>
+<li><p>The vbias bound no longer includes <span class="math notranslate nohighlight">\(\sqrt{\Delta\tau}\)</span>.</p></li>
+<li><p>Lattice basis vectors are given in fractional coordinates. <code class="docutils literal notranslate"><span class="pre">from_lattice</span></code> exposes all terms, and <code class="docutils literal notranslate"><span class="pre">spin_symm</span></code> is
+inferred in <code class="docutils literal notranslate"><span class="pre">HamiltonianBuilder.from_input</span></code>.</p></li>
+<li><p>PySCF SCF objects are accepted directly instead of checkpoint files.</p></li>
+<li><p>The Python sources moved from <code class="docutils literal notranslate"><span class="pre">utils</span></code> to <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p></li>
+<li><p>The default colormap for lattice visualizations is <code class="docutils literal notranslate"><span class="pre">RdBu_r</span></code>.</p></li>
+<li><p>Functional tests use <code class="docutils literal notranslate"><span class="pre">safiretools</span></code>, with a continuous crossover between machine and statistical tolerance.</p></li>
+<li><p>Documentation was rewritten for <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> and the new input format. The HamiltonianBuilder tutorial was merged
+into the models tutorial on building and writing a Hamiltonian.</p></li>
+</ul>
+</section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--filenames</span></code> command line option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">importance_sampling</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_constraint</span></code>, <code class="docutils literal notranslate"><span class="pre">external_field</span></code>, excitations, and CSAFQMC leftovers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Psi0</span></code>, <code class="docutils literal notranslate"><span class="pre">dims</span></code> arrays, and other unnecessary HDF5 datasets.</p></li>
+<li><p>AutoHF, <code class="docutils literal notranslate"><span class="pre">nelec</span></code> on Hamiltonians, MPI in the periodic Cholesky factorization, the numba dependency, and
+<code class="docutils literal notranslate"><span class="pre">force_hermitian</span></code> from <code class="docutils literal notranslate"><span class="pre">safiretools</span></code>.</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">G_MF</span></code> with multiple determinants.</p></li>
+<li><p>Estimator GPU path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">free_propagation</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Eshift</span></code> initialization.</p></li>
+<li><p>Out-of-bounds PHMSD excitations.</p></li>
+<li><p>SAFIRE now aborts when the Hamiltonian has no interaction.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -471,7 +549,13 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-x-y-z">Version X.Y.Z</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.0.0 - 2026-10-28</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#added">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changed">Changed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removed">Removed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed">Fixed</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Observables: Pair Correlation Functions &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>4. Observables: Pair Correlation Functions &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="3. The Square Hubbard Model at Half Filling" href="../03_half_filling_hubbard/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -458,12 +468,12 @@
 <section class="tex2jax_ignore mathjax_ignore" id="observables-pair-correlation-functions">
 <h1><span class="section-number">4. </span>Observables: Pair Correlation Functions<a class="headerlink" href="#observables-pair-correlation-functions" title="Link to this heading">#</a></h1>
 <p><b>Goal:</b>
-At the end of this tutorial, you will know how to measure pair correlation functions using SAFIRE for a lattice models.</p>
+At the end of this tutorial, you will know how to measure pair correlation functions using SAFIRE for lattice models.</p>
 <section id="what-you-will-learn">
 <h2><span class="section-number">4.1. </span>What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>How to set up the HDF5 and JSON job files to request pair correlation functions</p></li>
-<li><p>how to post process the correlation functions</p></li>
+<li><p>How to post-process the correlation functions</p></li>
 </ol>
 </section>
 <section id="introduction">
@@ -517,10 +527,10 @@ We will explore this in more detail below.</p>
 </section>
 <section id="saving-pair-maps-in-the-hdf5-input">
 <h2><span class="section-number">4.4. </span>Saving Pair Maps in the HDF5 Input<a class="headerlink" href="#saving-pair-maps-in-the-hdf5-input" title="Link to this heading">#</a></h2>
-<p>The Lattice class from safiretools can be directly used to find the pair maps that we need via the <code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> function.
-<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of <code class="docutils literal notranslate"><span class="pre">directions</span></code>, and it returns a <code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> whose <code class="docutils literal notranslate"><span class="pre">.offsets</span></code> maps each requested direction <span class="math notranslate nohighlight">\(\alpha\)</span> to its pair map, the list of partner orbitals <span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span> indexed by <span class="math notranslate nohighlight">\(i\)</span>.
+<p>The <code class="docutils literal notranslate"><span class="pre">Lattice</span></code> class from <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> can be directly used to find the pair maps that we need via its <code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> method.
+<code class="docutils literal notranslate"><span class="pre">.get_directed_pairs()</span></code> needs a list of <code class="docutils literal notranslate"><span class="pre">directions</span></code>, and it returns a <code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> object whose <code class="docutils literal notranslate"><span class="pre">.offsets</span></code> maps each requested direction <span class="math notranslate nohighlight">\(\alpha\)</span> to its pair map, the list of partner orbitals <span class="math notranslate nohighlight">\(\bar{i}_\alpha\)</span> indexed by <span class="math notranslate nohighlight">\(i\)</span>.
 The direction <code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code> is the on-site pair map <span class="math notranslate nohighlight">\(\bar{i}_\alpha = i\)</span>.</p>
-<p>Every direction has to run along a periodic axis. Stepping off an open edge would wrap around to the far side and pair sites that are not neighbours at all, so that is rejected rather than quietly measured.</p>
+<p>Every direction has to run along a periodic axis. Stepping off an open edge would wrap around to the far side and pair sites that are not neighbors at all, so that is rejected rather than quietly measured.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">=</span><span class="n">lattice</span><span class="o">.</span><span class="n">get_directed_pairs</span><span class="p">(</span>
@@ -533,7 +543,7 @@ The direction <code class="docutils literal notranslate"><span class="pre">&quot
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> writes itself to HDF5 in the format the estimator reads. It may go in the same file as the Wavefunction and Hamiltonian, or in one of its own.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DirectedPairs</span></code> writes itself to HDF5 in the format the estimator reads. It may go in the same file as the wavefunction and Hamiltonian, or in a file of its own.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
@@ -544,10 +554,10 @@ The direction <code class="docutils literal notranslate"><span class="pre">&quot
 <section id="adding-custom-pair-maps">
 <h3><span class="section-number">4.4.1. </span>Adding Custom Pair Maps<a class="headerlink" href="#adding-custom-pair-maps" title="Link to this heading">#</a></h3>
 <p>We note that custom pair maps can be added by simply inserting a list of partner orbitals with a new key.
-For example, we can manually add the <span class="math notranslate nohighlight">\(+x+y\)</span> pair map to <code class="docutils literal notranslate"><span class="pre">pairs.offsets</span></code> as</p>
+For example, we can manually add the <span class="math notranslate nohighlight">\(+x+y\)</span> pair map to <code class="docutils literal notranslate"><span class="pre">pairs.offsets</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">offsets</span><span class="p">[</span><span class="s2">"xy"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span><span class="o">.</span><span class="n">offsets</span><span class="p">[</span><span class="s2">"+x+y"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># update hdf5 - the whole map is rewritten, so every direction is still there</span>
 <span class="n">pairs</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"afqmc.h5"</span><span class="p">)</span>
@@ -563,7 +573,7 @@ For example, we can manually add the <span class="math notranslate nohighlight">
 However, the pair correlation function observable has one unique parameter that must be set,
 <code class="docutils literal notranslate"><span class="pre">pairs</span></code>, which locates the pair maps with</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>, the name of the HDF5 file where the pair maps were saved. These can be saved in the same file as the Wavefunction, and/or Hamiltonian or in their own independent input file. Whichever you prefer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>, the name of the HDF5 file where the pair maps were saved. They can be saved in the same file as the wavefunction and/or Hamiltonian, or in a separate input file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">group</span></code>, the HDF5 group holding them. <code class="docutils literal notranslate"><span class="pre">DirectedPairs.to_hdf5()</span></code> writes them to <code class="docutils literal notranslate"><span class="pre">PairCorrelator/orbital_map</span></code>.</p></li>
 </ul>
 <div class="alert alert-block alert-info">
@@ -572,7 +582,7 @@ However, the pair correlation function observable has one unique parameter that 
 i.e. every ordered pair of maps <span class="math notranslate nohighlight">\((\alpha, \beta)\)</span> is measured and stored as its own <span class="math notranslate nohighlight">\((M, M)\)</span> array <code class="docutils literal notranslate"><span class="pre">PairCorr/&lt;α&gt;_&lt;β&gt;</span></code>, where <span class="math notranslate nohighlight">\(M\)</span> is the number of orbitals.</p>
 </div>
 <p>Since the pair correlation functions do not generally commute with the Hamiltonian, we should use a back-propagated estimator.
-A back-propagated estimator block with pair correlation functions would look like the following,</p>
+A back-propagated estimator block with pair correlation functions would look like the following:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimators"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"backprop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
@@ -586,7 +596,7 @@ A back-propagated estimator block with pair correlation functions would look lik
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If we decided we only wanted s-wave pair correlations, we could save only that pair map to a file of its own,</p>
+<p>If we decided we only wanted s-wave pair correlations, we could save only that pair map to a file of its own</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lattice</span><span class="o">.</span><span class="n">get_directed_pairs</span><span class="p">(</span><span class="n">directions</span><span class="o">=</span><span class="p">[</span><span class="s2">"s"</span><span class="p">])</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"pairs_s.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -647,7 +657,6 @@ A back-propagated estimator block with pair correlation functions would look lik
     <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">"plot"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
-    <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">1479</span><span class="p">,</span>
     <span class="s2">"noncollinear"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="s2">"gpu"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="s2">"ansatz"</span><span class="p">:</span> <span class="s2">"SD_ROT"</span><span class="p">,</span>
@@ -655,10 +664,9 @@ A back-propagated estimator block with pair correlation functions would look lik
     <span class="s2">"batch_size"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
     <span class="s2">"nelec"</span><span class="p">:</span> <span class="n">nelec</span><span class="p">,</span>
 <span class="p">}</span>
-    
+
 <span class="n">results</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">),</span>
-    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -743,7 +751,7 @@ A back-propagated estimator block with pair correlation functions would look lik
 <h3><span class="section-number">4.7.1. </span>What You Learned<a class="headerlink" href="#what-you-learned" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>How to set up the HDF5 and JSON job files to request pair correlation functions</p></li>
-<li><p>how to post process the correlation functions</p></li>
+<li><p>How to post-process the correlation functions</p></li>
 </ol>
 </section>
 </section>

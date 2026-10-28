@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Stripes and the Square Hubbard Model &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>2. Stripes and the Square Hubbard Model &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="1. 4×4 Square Lattice Hubbard Model" href="../01_4x4_hubbard_model/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -461,9 +471,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="c1"># This are in case you have a GPU enabled JAX but are running on CPU.</span>
+<span class="c1"># This is in case you have a GPU-enabled JAX but are running on CPU.</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'JAX_PLATFORMS'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'cpu'</span>
-<span class="c1"># If you want to use GPU enabled Jax in multiply notebooks with the same</span>
+<span class="c1"># Don't preallocate GPU memory, so that several notebooks can share the same GPU</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"XLA_PYTHON_CLIENT_PREALLOCATE"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"false"</span>
 
 <span class="c1"># use x64 numbers</span>
@@ -487,16 +497,17 @@
 </div>
 <section id="physics-background">
 <h2><span class="section-number">2.1. </span>Physics Background<a class="headerlink" href="#physics-background" title="Link to this heading">#</a></h2>
-<p>In the paper <em>Stripes and spin-density waves in the doped two-dimensional Hubbard model: Ground state phase diagram</em> [1] we see that for the nearest-neighbor square Hubbard model, the ground state may have a stable staggered stripe ground state order</p>
+<p>In the paper <em>Stripes and spin-density waves in the doped two-dimensional Hubbard model: Ground state phase diagram</em> [1] we see that for the nearest-neighbor square Hubbard model, the ground state may have stable staggered stripe order.</p>
 <p><img alt="" src="../../../_images/fig9.png" /></p>
-<p>We’ll explore how to see this with AFQMC and the role of the trial wave function</p>
+<p>We’ll explore how to see this with AFQMC and the role of the trial wavefunction.</p>
 <hr class="docutils" />
-<p>[1] Hao Xu, Hao Shi, Ettore Vitali, Mingpu Qin, and Shiwei Zhang Phys. Rev. Research 4, 013239 – Published 28 March 2022</p>
+<p>[1] Hao Xu, Hao Shi, Ettore Vitali, Mingpu Qin, and Shiwei Zhang, <em>Stripes and spin-density waves in the doped two-dimensional Hubbard model: Ground state phase diagram</em>, Phys. Rev. Research <strong>4</strong>, 013239, published 28 March 2022.<br />
+DOI: https://doi.org/10.1103/PhysRevResearch.4.013239</p>
 </section>
 <section id="obtaining-the-spin-density">
 <h2><span class="section-number">2.2. </span>Obtaining the Spin Density<a class="headerlink" href="#obtaining-the-spin-density" title="Link to this heading">#</a></h2>
 <p>Let’s look at a 10×4 system with 0.2 doping at <span class="math notranslate nohighlight">\(U=6\)</span> with a staggered AFM pinning field at the edges. The pinning breaks symmetry in order to understand the response of the system to the applied field.</p>
-<p>When confronted with a new problem, the first thing we generally do is use a non-interacting (free electron) wave function as the trial. Let’s do that now</p>
+<p>When confronted with a new problem, the first thing we generally do is use a non-interacting (free-electron) wavefunction as the trial. Let’s do that now.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="mf">6.0</span>
@@ -529,12 +540,12 @@
 \[\begin{split}
 \begin{aligned}
 H &amp;= H_t + H_U + H_\text{pin} \\
-H_t &amp;= -t \sum_{\langle i j\rangle \sigma} c^\dagger_{i\sigma} c_{j\sigma} \\
+H_t &amp;= -t \sum_{\langle i j\rangle \sigma} \left(c^\dagger_{i\sigma} c_{j\sigma} + \mathrm{h.c.}\right) \\
 H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}\\
 H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 \end{aligned}
 \end{split}\]</div>
-<p>and <code class="docutils literal notranslate"><span class="pre">PinningField.afm</span></code> adds the edge pinning as well. We’ll assume <span class="math notranslate nohighlight">\(t=1\)</span>, <span class="math notranslate nohighlight">\(h_i=0.5\)</span> just like in the paper</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">PinningField.afm</span></code> adds the edge pinning. We’ll assume <span class="math notranslate nohighlight">\(t=1\)</span> and <span class="math notranslate nohighlight">\(h_i=0.5\)</span>, just like in the paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">LatticeHamiltonian</span><span class="p">,</span> <span class="n">PinningField</span>
@@ -564,7 +575,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="c1"># get a trial wavefunction: First, let's try a free-electron (i.e. non-interacting) wavefunction.</span>
 <span class="c1"># from_free_electron() takes the Hamiltonian itself.</span>
 <span class="c1">#</span>
-<span class="c1"># No twist is needed here: the open boundary along axis 1 and the pinning field</span>
+<span class="c1"># No twist is needed here: the open boundary along axis 0 and the pinning field</span>
 <span class="c1"># already split the shells, so the determinant is well defined. On a fully</span>
 <span class="c1"># periodic, unpinned lattice it would not be. See the 4×4 Hubbard example.</span>
 <span class="n">wavefunction</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_free_electron</span><span class="p">(</span>
@@ -575,7 +586,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 </div>
 </div>
-<p>Now we’ll write the file to run AFQMC. There are some better tools than this but let’s hard code some things for now</p>
+<p>Now we’ll write the job file to run AFQMC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_jobfile</span>
@@ -638,7 +649,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <section id="analysis">
 <h3><span class="section-number">2.2.1. </span>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h3>
-<p>We’ll now analyze the spin density of the output given the free electron trial</p>
+<p>We’ll now analyze the spin density of the output given the free-electron trial.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -692,10 +703,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dmrg_sz</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"DMRG"</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Col"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered Sz"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered $S^z$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># plt.ylim(-0.3,0.2)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -705,10 +714,10 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </section>
 <section id="self-consistency-with-hartree-fock">
 <h2><span class="section-number">2.3. </span>Self-Consistency with Hartree-Fock<a class="headerlink" href="#self-consistency-with-hartree-fock" title="Link to this heading">#</a></h2>
-<p>The idea behind self-consistent AFQMC is to have the trial wave function match as much as possible the output of AFQMC.</p>
-<p>For this model, we can do this by introducing an effective Hubbard model, where <span class="math notranslate nohighlight">\(U\)</span> is replaced with <span class="math notranslate nohighlight">\(U_\text{eff}\)</span>. By solving Hartree-Fock (mean field theory) for this effective model and using the result as a trial wave function, we can scan through different <span class="math notranslate nohighlight">\(U_\text{eff}\)</span> to find the one that matches the best.</p>
-<p>We’ll use AutoHF to explore creating a trial wave function for AFQMC. Let’s do a few between <span class="math notranslate nohighlight">\(U_\text{eff}=1\)</span> and <span class="math notranslate nohighlight">\(U_\text{eff}=4\)</span></p>
-<p><em>Note:</em> The Hartree-Fock code is faster if you use a GPU</p>
+<p>The idea behind self-consistent AFQMC is to have the trial wavefunction match as much as possible the output of AFQMC.</p>
+<p>For this model, we can do this by introducing an effective Hubbard model, where <span class="math notranslate nohighlight">\(U\)</span> is replaced with <span class="math notranslate nohighlight">\(U_\text{eff}\)</span>. By solving Hartree-Fock (mean-field theory) for this effective model and using the result as a trial wavefunction, we can scan through different <span class="math notranslate nohighlight">\(U_\text{eff}\)</span> to find the one that matches the best.</p>
+<p>We’ll use AutoHF to explore creating a trial wavefunction for AFQMC. Let’s do a few between <span class="math notranslate nohighlight">\(U_\text{eff}=1\)</span> and <span class="math notranslate nohighlight">\(U_\text{eff}=4\)</span>.</p>
+<p><em>Note:</em> The Hartree-Fock code is faster if you use a GPU.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_hf</span><span class="p">,</span> <span class="n">AutoHFHamiltonian</span>
@@ -734,7 +743,6 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="p">)</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span>
         <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian_eff</span><span class="p">),</span>
-        <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
         <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># the trial solves the Ueff model, but AFQMC runs with the original Hamiltonian (U=6)</span>
@@ -745,7 +753,6 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="n">write_jobfile</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json"</span><span class="p">,</span>
         <span class="p">{</span>
-            <span class="s2">"output_name"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
             <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
             <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">trial_wfns</span><span class="p">[</span><span class="n">Ueff</span><span class="p">],</span>
@@ -754,7 +761,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Written </span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.json"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -769,7 +776,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ueff=0 stands for the free electron trial of the first run</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ueff=0 stands for the free-electron trial of the first run</span>
 <span class="n">runs</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">Results</span><span class="p">(</span><span class="s2">"afqmc.results.h5"</span><span class="p">)}</span>
 <span class="k">for</span> <span class="n">Ueff</span> <span class="ow">in</span> <span class="n">Ueffs</span><span class="p">:</span>
     <span class="n">runs</span><span class="p">[</span><span class="n">Ueff</span><span class="p">]</span> <span class="o">=</span> <span class="n">Results</span><span class="p">(</span><span class="sa">f</span><span class="s2">"afqmc_</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">.results.h5"</span><span class="p">)</span>
@@ -788,9 +795,9 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 
 
     <span class="n">p</span> <span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">delta_Sz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$ΔSz$"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\Delta S^z$"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Free Electron"</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Free Electron"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">Ueff</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -801,7 +808,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 </section>
 <section id="self-consistency-condition">
 <h2><span class="section-number">2.4. </span>Self-Consistency Condition<a class="headerlink" href="#self-consistency-condition" title="Link to this heading">#</a></h2>
-<p>We’ll now measure the error between the trial wave function’s observable and the output from AFQMC</p>
+<p>We’ll now measure the error between the trial wavefunction’s observable and the output from AFQMC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trial_sz</span> <span class="o">=</span> <span class="p">{}</span>
@@ -828,7 +835,7 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
     <span class="k">if</span> <span class="n">Ueff</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">label</span> <span class="o">=</span> <span class="s2">"Free Electron"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"HF W/ HF Ueff=</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"HF Ueff=</span><span class="si">{</span><span class="n">Ueff</span><span class="si">}</span><span class="s2">"</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                  <span class="n">sz_cols</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">sz_cols_err</span><span class="p">,</span>
@@ -836,10 +843,8 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dmrg_sz</span><span class="p">,</span><span class="s1">'x-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"DMRG"</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Col"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered Sz"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Staggered $S^z$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># plt.ylim(-0.3,0.2)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -860,11 +865,9 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC"</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Ueff"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$DMRG $S_z - $AFQMC $S_z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$DMRG $S^z - $AFQMC $S^z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
-<span class="c1"># plt.ylim(-0.3,0.2)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
@@ -881,27 +884,25 @@ H_\text{pin} &amp;= \sum_{i\in \text{edge}} (-1)^{i_x+i_y} h_i S^z_i
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">yerr</span><span class="o">=</span><span class="n">yerrs</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">'o-'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"AFQMC"</span><span class="p">,</span><span class="n">capsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Ueff"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$Trial $S_z - $AFQMC $S_z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle |$Trial $S^z - $AFQMC $S^z|\rangle$"</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
-<span class="c1"># plt.ylim(-0.3,0.2)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>So we can see that somewhere around <span class="math notranslate nohighlight">\(U_\text{eff}\approx 3\)</span>
-would have the lowest error for self consistency.
-Despite the difference between DMRG and AFQMC being on average 0.01, there is a clear optimal trial wave function to use. For fine tuning between <span class="math notranslate nohighlight">\(U_\text{eff}\in [2,4]\)</span>, we’ll need more sophisticated methods than presented here.</p>
-<p>In our original study, we found the optimal <span class="math notranslate nohighlight">\(U_\text{eff} \approx 2.77\)</span></p>
+would have the lowest error for self-consistency.
+Despite the difference between DMRG and AFQMC being on average 0.01, there is a clear optimal trial wavefunction to use. For fine-tuning between <span class="math notranslate nohighlight">\(U_\text{eff}\in [2,4]\)</span>, we’ll need more sophisticated methods than presented here.</p>
+<p>Ref. [1] finds the optimal <span class="math notranslate nohighlight">\(U_\text{eff} \approx 2.77\)</span>.</p>
 </section>
 <section id="your-turn">
 <h2><span class="section-number">2.5. </span>Your Turn<a class="headerlink" href="#your-turn" title="Link to this heading">#</a></h2>
 <section id="part-1-recreate-fig-1">
-<h3><span class="section-number">2.5.1. </span>Part 1 - Recreate Fig. 1<a class="headerlink" href="#part-1-recreate-fig-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">2.5.1. </span>Part 1 – Recreate Fig. 1<a class="headerlink" href="#part-1-recreate-fig-1" title="Link to this heading">#</a></h3>
 <p><img alt="" src="../../../_images/fig1.png" /></p>
-<p>Let’s recreate figure 1 from Xu et al, by changing</p>
+<p>Let’s recreate Fig. 1 of Xu et al. [1] by changing</p>
 <ul class="simple">
 <li><p>Lattice size 10 × 4 to 20 × 4</p></li>
 <li><p>Doping 0.2 to 0.1 hole doping</p></li>
@@ -909,14 +910,14 @@ Despite the difference between DMRG and AFQMC being on average 0.01, there is a 
 </ul>
 </section>
 <section id="part-2-try-different-settings">
-<h3><span class="section-number">2.5.2. </span>Part 2 - Try Different Settings<a class="headerlink" href="#part-2-try-different-settings" title="Link to this heading">#</a></h3>
-<p>Lets use this as a test bed to explore how AFQMC responds to different settings. Some questions to consider</p>
+<h3><span class="section-number">2.5.2. </span>Part 2 – Try Different Settings<a class="headerlink" href="#part-2-try-different-settings" title="Link to this heading">#</a></h3>
+<p>Let’s use this as a testbed to explore how AFQMC responds to different settings. Some questions to consider:</p>
 <ul class="simple">
-<li><p>Use <span class="math notranslate nohighlight">\(U_\text{eff} = U\)</span> or the “bare U” Hartree-Fock trial. How does the quality of the results change?</p></li>
-<li><p>We compared spin densities, what about hole density? This is the effectively the same as comparing charge density.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(U_\text{eff} = U\)</span>, the bare <span class="math notranslate nohighlight">\(U\)</span> Hartree-Fock trial. How does the quality of the results change?</p></li>
+<li><p>We compared spin densities; what about the hole density? This is effectively the same as comparing the charge density.</p></li>
 <li><p>Use a trial with a small number of steps so that the solver doesn’t converge. How do the results change? How could you tell this trial isn’t good?</p></li>
-<li><p>The free electron trial isn’t a valid RHF state (why?). What would be the corresponding RHF solution? What does that output look like?</p></li>
-<li><p>Explore the parameters of backpropagation, how does the 1rdm change as a function of the back-propagation length? You can give several lengths in <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> to see the results converge</p></li>
+<li><p>The free-electron trial isn’t a valid RHF state (why?). What would be the corresponding RHF solution? What does that output look like?</p></li>
+<li><p>Explore the parameters of back-propagation: how does the one-body reduced density matrix change as a function of the back-propagation length? You can give several lengths in <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code> to see the results converge.</p></li>
 </ul>
 </section>
 </section>
@@ -977,8 +978,8 @@ Despite the difference between DMRG and AFQMC being on average 0.01, there is a 
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-with-hartree-fock">2.3. Self-Consistency with Hartree-Fock</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-condition">2.4. Self-Consistency Condition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-turn">2.5. Your Turn</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-recreate-fig-1">2.5.1. Part 1 - Recreate Fig. 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-try-different-settings">2.5.2. Part 2 - Try Different Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-recreate-fig-1">2.5.1. Part 1 – Recreate Fig. 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-try-different-settings">2.5.2. Part 2 – Try Different Settings</a></li>
 </ul>
 </li>
 </ul>

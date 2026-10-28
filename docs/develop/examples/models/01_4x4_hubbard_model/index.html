@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. 4×4 Square Lattice Hubbard Model &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>1. 4×4 Square Lattice Hubbard Model &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="Lattice Models" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -463,7 +473,7 @@ a 4×4 lattice.
 The Hamiltonian is given by,
 <div class="math notranslate nohighlight">
 \[
-\hat{H} = -t \sum_{\langle i,j\rangle} \hat{c}^\dagger_i \hat{c}_j + U \sum_{i} \hat{n}^{\uparrow}_i \hat{n}^{\downarrow}_i,
+\hat{H} = -t \sum_{\langle i,j\rangle} \left(\hat{c}^\dagger_i \hat{c}_j + \mathrm{h.c.}\right) + U \sum_{i} \hat{n}^{\uparrow}_i \hat{n}^{\downarrow}_i,
 \]</div>
 
 where <span class="math notranslate nohighlight">\(i,j\)</span> are lattice site indices, angle brackets indicate nearest-neighbors,
@@ -475,13 +485,11 @@ this tutorial.</p>
 <p>The tutorial is structured as follows.
 We will begin with an explanation of how to build lattice model Hamiltonians
 using the <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Python package.
-Next, we will walk through computing the ground state energy of this Hamiltonian for a particular filling and value of U,
+Next, we will walk through computing the ground state energy of this Hamiltonian at half filling and <span class="math notranslate nohighlight">\(U=4\)</span>,
 comparing a couple of options for trial wavefunctions.
-Next, we will continue the walk through by computing the ground state charge,
-and spin density for the same filling and value of U.
-Next, we will demonstrated how to obtain exact results using AFQMC
-for the special case of half filling for which, if care is taken,
-there is no sign problem.</p>
+At half filling there is no sign problem, so, if care is taken, AFQMC reproduces the exact energy.
+Finally, we will compute the ground state charge and spin densities for the same filling and value of <span class="math notranslate nohighlight">\(U\)</span>
+using back-propagation.</p>
 <section id="building-a-lattice-model-hamiltonian">
 <h2><span class="section-number">1.1. </span>Building a Lattice Model Hamiltonian<a class="headerlink" href="#building-a-lattice-model-hamiltonian" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides a convenience lattice model Hamiltonian builder and writer which
@@ -541,11 +549,11 @@ Next, we’ll walk through an AFQMC calculation where we’ll compute the ground
 based on the Hamiltonian that we made previously - i.e.
 <div class="math notranslate nohighlight">
 \[
-\hat{H} = -t \sum_{\langle i,j\rangle} \hat{c}^\dagger_i \hat{c}_j + U \sum_{i} \hat{n}^{\uparrow}_i \hat{n}^{\downarrow}_i,
+\hat{H} = -t \sum_{\langle i,j\rangle} \left(\hat{c}^\dagger_i \hat{c}_j + \mathrm{h.c.}\right) + U \sum_{i} \hat{n}^{\uparrow}_i \hat{n}^{\downarrow}_i,
 \]</div>
 
 with <span class="math notranslate nohighlight">\(t = 1.0\)</span>, and <span class="math notranslate nohighlight">\(U = 4.0\)</span>.
-We will perform the calculation at half-filling.</p>
+We will perform the calculation at half filling.</p>
 <p>AFQMC uses a trial wavefunction to control the sign problem at the cost of introducing a bias;
 however, the bias can be minimized by using a trial wavefunction which accurately captures
 the physics of the target system.
@@ -554,12 +562,12 @@ symmetries, etc. before running an AFQMC calculation.
 In addition to this, some methods for computing a trial wavefunction will lead to better results than
 others for specific problems.
 For example, both free-electron trial wavefunctions and Hartree-Fock (HF) trial wavefunctions
-are reasonable for low-, to intermediate-U values.
+are reasonable for low- to intermediate-U values.
 Assuming that all candidate trial wavefunctions have the desired properties,
 it may be necessary to test which wavefunction is better by running AFQMC calculations with each,
 and comparing the results.
-In this walk through, we will compare free-electron trial wavefunctions
-to unrestricted Hartree-Fock trial wavefunctions.</p>
+In this walkthrough, we will compare free-electron trial wavefunctions
+to generalized Hartree-Fock trial wavefunctions.</p>
 <section id="free-electron-trial-wavefunction">
 <h3><span class="section-number">1.2.1. </span>Free-Electron Trial Wavefunction<a class="headerlink" href="#free-electron-trial-wavefunction" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides a convenience classmethod, <code class="docutils literal notranslate"><span class="pre">Wavefunction.from_free_electron()</span></code>,
@@ -570,8 +578,8 @@ occupy is arbitrary. A small twist on the
 lattice breaks that degeneracy and fixes the choice.</p>
 <p>The twist is a property of the <strong>lattice</strong>, so it has to be applied when the
 Hamiltonian is built. <code class="docutils literal notranslate"><span class="pre">from_free_electron()</span></code> uses whatever Hamiltonian it is given.
-We therefore build a <em>second</em>, Hamiltonian with a twist
-for the trial wavefunction alone; the untwisted one from step 2. is what AFQMC
+We therefore build a <em>second</em> Hamiltonian with a twist
+for the trial wavefunction alone; the untwisted one from Step 2 is what AFQMC
 actually runs, and is also what we hand the Hartree-Fock solver further down.
 <code class="docutils literal notranslate"><span class="pre">from_free_electron()</span></code> warns if you hand it a Hamiltonian whose shells are still
 degenerate at the fill level.</p>
@@ -656,18 +664,18 @@ and a Hubbard U contribution of <span class="math notranslate nohighlight">\(E_U
 </div>
 </div>
 <p>As expected for a free-electron trial wavefunction with an even number of electrons,
-the charge- and spin-densities are uniform.
-For the charge-density, we see that the uniform charge density is 1.0 electron/site,
-consistent with half-filling.
-For the spin-density, we see that the uniform spin density is 0.0 spin/site,
+the charge and spin densities are uniform.
+For the charge density, we see that the uniform charge density is 1.0 electron/site,
+consistent with half filling.
+For the spin density, we see that the uniform spin density is 0.0 spin/site,
 which is expected for an even number of up and down electrons.</p>
 </section>
 <section id="running-afqmc">
 <h3><span class="section-number">1.2.2. </span>Running AFQMC<a class="headerlink" href="#running-afqmc" title="Link to this heading">#</a></h3>
 <p>Next, we will run an AFQMC calculation.
-SAFIRE uses an input file in json format to define AFQMC run parameters.
-<code class="docutils literal notranslate"><span class="pre">safiretools</span></code> comes with a convenience function to generate a JSON job file as demonstrated below.
-We have included reasonable AFQMC run parameters for this calculation below.</p>
+SAFIRE uses an input file in JSON format to define AFQMC run parameters.
+<code class="docutils literal notranslate"><span class="pre">safiretools</span></code> comes with a convenience function to generate a JSON job file.
+Below, we use it with reasonable AFQMC run parameters for this calculation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_jobfile</span>
@@ -716,19 +724,20 @@ We have included reasonable AFQMC run parameters for this calculation below.</p>
 </div>
 </div>
 </div>
-<p>The Hubbard model at half-filling is sign-free, so we would expect numerically exact results; For U/t =4, the exact energy is -13.62185, so why do we disagree?</p>
-<p>Even if the underlying Hamiltonian is sign-free (i.e. <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T}|\Phi\rangle \ge 0\)</span> for all walkers <span class="math notranslate nohighlight">\(|\Phi\rangle\)</span>), in the importance sampled AFQMC random walk, an improperly chosen trial wavefunction can still induce a bias if its nodes <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T}|\Phi\rangle = 0\)</span> do not coincide with those of the ground state. Especially free-electron trial wavefunctions in open-shell geometries are susceptible to this problem.</p>
+<p>The Hubbard model at half filling is sign-free, so we would expect numerically exact results; for <span class="math notranslate nohighlight">\(U/t=4\)</span>, the exact energy is <span class="math notranslate nohighlight">\(-13.62185\)</span>, so why do we disagree?</p>
+<p>Even if the underlying Hamiltonian is sign-free (i.e. <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T}|\Phi\rangle \ge 0\)</span> for all walkers <span class="math notranslate nohighlight">\(|\Phi\rangle\)</span> during the AFQMC propagation), in the importance-sampled AFQMC random walk, an improperly chosen trial wavefunction can still induce a bias if its nodes <span class="math notranslate nohighlight">\(\langle \Psi_\mathrm{T}|\Phi\rangle = 0\)</span> do not coincide with those of the ground state. Especially free-electron trial wavefunctions in open-shell geometries are susceptible to this problem.</p>
 <p>There are different approaches to dealing with this problem. One can either</p>
 <ol class="arabic simple">
 <li><p>move the nodes to the right position by choosing a trial wavefunction with the correct symmetry properties such as particle-hole symmetry or</p></li>
 <li><p>allow the walkers to move around the nodes ergodically by using a noncollinear wavefunction that is not aligned with the spin axis of the Hubbard-Stratonovich decoupling.</p></li>
 </ol>
-<p>Next, we will use a noncollinear Hartree-Fock trial wavefunction.</p>
+<p>Next, we will use a noncollinear Hartree-Fock trial wavefunction.
+For a more detailed treatment of half filling with a particle-hole symmetric trial wavefunction, see <a class="reference internal" href="../03_half_filling_hubbard/index.html"><span class="doc">The Square Hubbard Model at Half Filling</span></a>.</p>
 </section>
 <section id="hartree-fock-trial-wavefunction">
 <h3><span class="section-number">1.2.3. </span>Hartree-Fock Trial Wavefunction<a class="headerlink" href="#hartree-fock-trial-wavefunction" title="Link to this heading">#</a></h3>
-<p>Now, we will compute and characterize an unrestricted Hartree-Fock (UHF) wavefunction.
-We will use autoHF to accomplish this.</p>
+<p>Now, we will compute and characterize a noncollinear, generalized Hartree-Fock (GHF) wavefunction.
+We will use AutoHF to accomplish this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">autohf</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoHFHamiltonian</span><span class="p">,</span> <span class="n">solve_hf</span>
@@ -752,7 +761,7 @@ We will use autoHF to accomplish this.</p>
 
 <span class="c1"># the noncollinear orbitals are spinors, spin-up components first</span>
 <span class="n">orbitals</span><span class="p">,</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"orbitals"</span><span class="p">]</span>
-<span class="n">uhf_wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_single_determinant</span><span class="p">(</span>
+<span class="n">ghf_wfn</span> <span class="o">=</span> <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_single_determinant</span><span class="p">(</span>
     <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">orbitals</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nelec</span><span class="p">))</span>
 <span class="p">)</span>
 </pre></div>
@@ -761,7 +770,7 @@ We will use autoHF to accomplish this.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the density from autohf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the density from AutoHF</span>
 <span class="n">state_results</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">results</span>
 
 <span class="n">makeRDMs</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="s1">'makeRDMs'</span><span class="p">]</span>
@@ -782,7 +791,7 @@ We will use autoHF to accomplish this.</p>
 <span class="c1">#rho_down = rdm[1].diagonal().reshape(*L)</span>
 
 <span class="n">rho_charge</span> <span class="o">=</span> <span class="n">rho_up</span> <span class="o">+</span> <span class="n">rho_down</span>
-<span class="n">rho_spin</span> <span class="o">=</span> <span class="n">rho_up</span> <span class="o">-</span> <span class="n">rho_down</span>
+<span class="n">rho_spin</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">rho_up</span> <span class="o">-</span> <span class="n">rho_down</span><span class="p">)</span>
 
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
@@ -799,7 +808,7 @@ We will use autoHF to accomplish this.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vis</span><span class="o">.</span><span class="n">plot_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
-    <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="n">rho_spin</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
     <span class="n">density_label</span><span class="o">=</span><span class="s2">"spin density"</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span>
@@ -814,7 +823,7 @@ We will use autoHF to accomplish this.</p>
 <span class="n">write_jobfile</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">uhf_wfn</span><span class="p">,</span>
+        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">ghf_wfn</span><span class="p">,</span>
         <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
@@ -853,17 +862,16 @@ We will use autoHF to accomplish this.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Energy = -13.6144 ± 0.0042
 </pre></div>
 </div>
-<p>Again, we expect to achieve very close to the exact energy for the Hubbard model at half filling which is -13.62185 for U/t=4.
+<p>Again, we expect to achieve very close to the exact energy for the Hubbard model at half filling, which is <span class="math notranslate nohighlight">\(-13.62185\)</span> for <span class="math notranslate nohighlight">\(U/t=4\)</span>.
 We see much better agreement now than we did with the free-electron trial wavefunction before; however, we’re still off by about 0.007 t, or about twice
 the stochastic uncertainty of our result. Why do we not quite agree?</p>
 <p>We have residual systematic errors to remove. Specifically, we will want
-to remove the trotter error.
+to remove the Trotter error.
 We can achieve this either by using a very small step size, or by extrapolating to <span class="math notranslate nohighlight">\(\tau = 0\)</span>.</p>
-<p>Let’s rerun with a smaller <span class="math notranslate nohighlight">\(\tau = 0.005\)</span></p>
-</section>
+<p>Let’s rerun with a smaller <span class="math notranslate nohighlight">\(\tau = 0.005\)</span>.</p>
 </section>
 <section id="rerun-afqmc-with-a-smaller">
-<h2><span class="section-number">1.3. </span>Rerun AFQMC with a Smaller τ<a class="headerlink" href="#rerun-afqmc-with-a-smaller" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">1.2.4. </span>Rerun AFQMC with a Smaller τ<a class="headerlink" href="#rerun-afqmc-with-a-smaller" title="Link to this heading">#</a></h3>
 <p>When we decrease the step size, we will
 also need to increase the number of steps, and
 each interval involved in order to maintain the same
@@ -874,7 +882,7 @@ amount of statistics.</p>
 <span class="n">write_jobfile</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">uhf_wfn</span><span class="p">,</span>
+        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">ghf_wfn</span><span class="p">,</span>
         <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
@@ -915,8 +923,9 @@ amount of statistics.</p>
 </div>
 <p>which is off by about 0.0035 t compared with the exact energy, -13.62185. We can continue to smaller step sizes to remove the remaining disagreement.</p>
 </section>
+</section>
 <section id="computing-observables-with-back-propagation">
-<h2><span class="section-number">1.4. </span>Computing Observables with Back-Propagation<a class="headerlink" href="#computing-observables-with-back-propagation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.3. </span>Computing Observables with Back-Propagation<a class="headerlink" href="#computing-observables-with-back-propagation" title="Link to this heading">#</a></h2>
 <p>General second-quantized observables can be computed using AFQMC via the back-propagation algorithm.
 See <a class="reference internal" href="../../../user_manual/estimators.html#backprop-estimator"><span class="std std-ref">Back-Propagation Estimator</span></a> for more information on back-propagated observables.
 To turn on back-propagation, add a <code class="docutils literal notranslate"><span class="pre">backprop</span></code> block to the <code class="docutils literal notranslate"><span class="pre">estimators</span></code> of an <code class="docutils literal notranslate"><span class="pre">execute</span></code>
@@ -948,10 +957,10 @@ Here is a sample input file where an ellipsis has been used to hide the rest of 
 <p>For back-propagation (BP), we will need to provide a BP length.
 We will need to check for convergence in this parameter.
 Notice that a BP estimator has no <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code>: the back-propagation lengths, in steps, are
-given by <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code>, and the longest of them doubles as the measurement interval. Specifying multiple length at once is useful to check the convergence within a single run.
+given by <code class="docutils literal notranslate"><span class="pre">propagation_steps</span></code>, and the longest of them doubles as the measurement interval. Specifying multiple lengths at once is useful to check the convergence within a single run.
 Every BP length is saved as its own observable, <code class="docutils literal notranslate"><span class="pre">BackPropEstimator/Steps=&lt;n&gt;</span></code>, in the results file.</p>
 <section id="run-afqmc-with-back-propagation">
-<h3><span class="section-number">1.4.1. </span>Run AFQMC with Back-Propagation<a class="headerlink" href="#run-afqmc-with-back-propagation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.3.1. </span>Run AFQMC with Back-Propagation<a class="headerlink" href="#run-afqmc-with-back-propagation" title="Link to this heading">#</a></h3>
 <p>Run SAFIRE using the following input file to compute the one-rdm using back-propagation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -961,7 +970,7 @@ Every BP length is saved as its own observable, <code class="docutils literal no
 <span class="n">write_jobfile</span><span class="p">(</span><span class="s2">"afqmc_3.json"</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">"seed"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>                          <span class="c1"># just for reproducibility</span>
     <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">uhf_wfn</span><span class="p">,</span>
+        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">ghf_wfn</span><span class="p">,</span>
         <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
         <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
         <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span>
@@ -996,14 +1005,13 @@ Every BP length is saved as its own observable, <code class="docutils literal no
 </div>
 </section>
 <section id="analyze-the-afqmc-output">
-<h3><span class="section-number">1.4.2. </span>Analyze the AFQMC Output<a class="headerlink" href="#analyze-the-afqmc-output" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.3.2. </span>Analyze the AFQMC Output<a class="headerlink" href="#analyze-the-afqmc-output" title="Link to this heading">#</a></h3>
 <p>SAFIRE saves all of its results in the <code class="docutils literal notranslate"><span class="pre">afqmc_3.results.h5</span></code> file.
 We have already analyzed the energy using <code class="docutils literal notranslate"><span class="pre">safiretools.Results</span></code>.
 We will now focus on analyzing the back-propagated observables.</p>
 </section>
-</section>
 <section id="average-observables">
-<h2><span class="section-number">1.5. </span>Average Observables<a class="headerlink" href="#average-observables" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">1.3.3. </span>Average Observables<a class="headerlink" href="#average-observables" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">safiretools.Results</span></code> reads the back-propagated one-rdm of each BP length from the results file.
 SAFIRE writes the full matrix, with the spin-up block first for a noncollinear calculation.
 The charge and spin densities follow from its diagonal, and <code class="docutils literal notranslate"><span class="pre">results.evaluate()</span></code> computes them
@@ -1043,9 +1051,9 @@ with a jackknife error that accounts for the autocorrelation of the samples.</p>
 </div>
 </section>
 <section id="visualizing-observables-on-the-lattice">
-<h2><span class="section-number">1.6. </span>Visualizing Observables on the Lattice<a class="headerlink" href="#visualizing-observables-on-the-lattice" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">1.3.4. </span>Visualizing Observables on the Lattice<a class="headerlink" href="#visualizing-observables-on-the-lattice" title="Link to this heading">#</a></h3>
 <p>We used <code class="docutils literal notranslate"><span class="pre">vis.plot_lattice()</span></code> earlier in order to visualize the lattice itself.
-The same function allows us to colorize each lattice site based on some observables.
+The same function allows us to colorize each lattice site based on an observable.
 Below, we plot the charge density, then the spin density on the lattice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1077,6 +1085,7 @@ Below, we plot the charge density, then the spin density on the lattice.</p>
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -1132,16 +1141,16 @@ Below, we plot the charge density, then the spin density on the lattice.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#free-electron-trial-wavefunction">1.2.1. Free-Electron Trial Wavefunction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-afqmc">1.2.2. Running AFQMC</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-trial-wavefunction">1.2.3. Hartree-Fock Trial Wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rerun-afqmc-with-a-smaller">1.2.4. Rerun AFQMC with a Smaller τ</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rerun-afqmc-with-a-smaller">1.3. Rerun AFQMC with a Smaller τ</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-observables-with-back-propagation">1.4. Computing Observables with Back-Propagation</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-afqmc-with-back-propagation">1.4.1. Run AFQMC with Back-Propagation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-the-afqmc-output">1.4.2. Analyze the AFQMC Output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-observables-with-back-propagation">1.3. Computing Observables with Back-Propagation</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-afqmc-with-back-propagation">1.3.1. Run AFQMC with Back-Propagation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-the-afqmc-output">1.3.2. Analyze the AFQMC Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-observables">1.3.3. Average Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-observables-on-the-lattice">1.3.4. Visualizing Observables on the Lattice</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-observables">1.5. Average Observables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-observables-on-the-lattice">1.6. Visualizing Observables on the Lattice</a></li>
 </ul>
   </nav></div>
 

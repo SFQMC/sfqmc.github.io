@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>safiretools &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>safiretools &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="Results File" href="../user_manual/output.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -427,15 +437,15 @@
 </ul>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
-<p>safiretools is installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the <code class="docutils literal notranslate"><span class="pre">utils</span></code> directory of the SAFIRE source
+<p>safiretools is installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory of the SAFIRE source
 tree:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install "./utils[GROUPNAME]"
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install "./python[GROUPNAME]"
 </pre></div>
 </div>
 <section id="optional-dependencies">
 <h3>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading">#</a></h3>
 <p>Additional functionality is enabled by optional dependency groups, installed via</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install "./utils[GROUPNAME]"
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install "./python[GROUPNAME]"
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">GROUPNAME</span></code> is one of the groups below.</p>
@@ -2335,9 +2345,7 @@ parts of <cite>mean</cite> rather than one combined magnitude.</p></li>
 </p>
 </dd>
 <dt class="field-even">Warns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>RebinningWarning</strong> – If the series is too short for its autocorrelation time, in which case <cite>error</cite>
-is too small, or if a scalar observable drifts after <cite>skip</cite>, in which case
-<cite>mean</cite> is biased.</p>
+<dd class="field-even"><p><strong>RebinningWarning</strong> – If a scalar observable drifts after <cite>skip</cite>, in which case <cite>mean</cite> is biased.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2383,9 +2391,8 @@ of <cite>error</cite> are the errors of the real and imaginary parts of <cite>va
 two bins are left to resample.</p>
 </dd>
 <dt class="field-odd">Warns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>RebinningWarning</strong> – If one of the series is too short for its autocorrelation time, in which case
-<cite>error</cite> is too small, or if a scalar observable among them drifts after <cite>skip</cite>,
-in which case <cite>value</cite> is biased.</p>
+<dd class="field-odd"><p><strong>RebinningWarning</strong> – If a scalar observable among them drifts after <cite>skip</cite>, in which case <cite>value</cite> is
+biased.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction';</script>
@@ -55,7 +55,7 @@
     <link rel="prev" title="1. Oxygen Atom (UHF Trial Wavefunction)" href="../01_O-atom/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -125,8 +125,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -175,20 +175,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -360,7 +370,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -433,7 +443,7 @@
     <li class="breadcrumb-item"><a href="../../../examples.html" class="nav-link">Examples</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry / Molecules</a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Quantum Chemistry</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</span></li>
   </ul>
@@ -458,8 +468,8 @@
 <p>In this example, we will compute the ground state energy of the Boron (B) atom.
 This is an open-shell atom with a single p-electron.
 We used PySCF and <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> to generate a Hamiltonian and save it the SAFIRE HDF5 format (sample script at the end of this example); however, a FCIDUMP can be used instead.
-If you already have a FCIDUMP, you can skip using the <code class="docutils literal notranslate"><span class="pre">afqmc_to_fcidump</span></code> tool,
-and instead, after running SHCI, you can use the <code class="docutils literal notranslate"><span class="pre">fcidump_to_afqmc</span></code> tool to generate a Hamiltonian for SAFIRE.</p>
+If you already have a FCIDUMP, you can skip the conversion to FCIDUMP below,
+and instead, after running SHCI, use <code class="docutils literal notranslate"><span class="pre">MolecularHamiltonian.from_fcidump</span></code> to generate a Hamiltonian for SAFIRE.</p>
 <p>References:</p>
 <ol class="arabic simple">
 <li><p>https://pubs.acs.org/doi/10.1021/acs.jctc.2c00802</p></li>
@@ -559,10 +569,7 @@ From the example directory, run</p>
 <span class="n">Wavefunction</span><span class="o">.</span><span class="n">from_dice</span><span class="p">(</span><span class="s2">"output.dat"</span><span class="p">,</span> <span class="n">ndets</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">"shci_wfn.h5"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-o</span></code> option sets the output HDF5 file name,
-<code class="docutils literal notranslate"><span class="pre">-i</span></code> sets the input to <code class="docutils literal notranslate"><span class="pre">dice_to_hdf5</span></code> (this will be an output from Dice!),
-<code class="docutils literal notranslate"><span class="pre">-n</span></code> sets the number of Slater determinants to save (currently a required argument!),
-and <code class="docutils literal notranslate"><span class="pre">-v</span></code> turns on verbose output.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ndets</span></code> sets the number of Slater determinants to keep from the Dice output.</p>
 <p>Now, we need to write an SAFIRE input file.
 You can set this up as you choose, here is a sample input file
 for this case.</p>

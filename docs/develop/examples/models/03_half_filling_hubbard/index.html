@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. The Square Hubbard Model at Half Filling &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>3. The Square Hubbard Model at Half Filling &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="2. Stripes and the Square Hubbard Model" href="../02_stripes/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -482,16 +492,15 @@
 </div>
 <section id="physics-background">
 <h2><span class="section-number">3.1. </span>Physics Background<a class="headerlink" href="#physics-background" title="Link to this heading">#</a></h2>
-<p>The Hubbard model at half filling (<span class="math notranslate nohighlight">\(n=1\)</span>) has a special symmetry known as particle-hole symmetry, that allows auxiliary field methods to be sign free. However, care must be taken to make sure that phaseless/constrained path AFQMC is used properly to exploit said symmetry.</p>
-<p>[1]: <em>Benchmark study of the two-dimensional Hubbard model with auxiliary-field quantum Monte Carlo method</em><br />
-M Qin, H Shi, S Zhang Phys. Rev. B 94, 085103 4 August, 2016<br />
+<p>The Hubbard model at half filling (<span class="math notranslate nohighlight">\(n=1\)</span>) has a special symmetry known as particle-hole symmetry, which allows auxiliary-field methods to be sign-free. However, care must be taken to make sure that phaseless/constrained-path AFQMC is used properly to exploit said symmetry.</p>
+<p>[1] M. Qin, H. Shi, and S. Zhang, <em>Benchmark study of the two-dimensional Hubbard model with auxiliary-field quantum Monte Carlo method</em>, Phys. Rev. B <strong>94</strong>, 085103, published 4 August 2016.<br />
 DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
 </section>
 <section id="lattice-and-hamiltonian-setup">
 <h2><span class="section-number">3.2. </span>Lattice and Hamiltonian Setup<a class="headerlink" href="#lattice-and-hamiltonian-setup" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take from 10.1103/PhysRevB.45.10741, U =&gt; E_0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># taken from 10.1103/PhysRevB.45.10741, U =&gt; E_0</span>
 <span class="n">E0_n1_lookup</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span> <span class="p">:</span> <span class="o">-</span><span class="mf">13.62185</span><span class="p">,</span>
                 <span class="mi">8</span> <span class="p">:</span> <span class="o">-</span><span class="mf">8.46888</span><span class="p">}</span>
 </pre></div>
@@ -511,7 +520,7 @@ DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
 
 <span class="n">lattice</span> <span class="o">=</span> <span class="n">Lattice</span><span class="o">.</span><span class="n">from_type</span><span class="p">(</span><span class="s1">'square'</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">(</span><span class="s1">'periodic'</span><span class="p">,</span> <span class="s1">'periodic'</span><span class="p">),</span> <span class="n">twists</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
 
-<span class="n">Ne</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">Ne</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="o">//</span><span class="mi">2</span>
 <span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ne</span><span class="p">,</span><span class="n">Ne</span><span class="p">)</span>
 <span class="n">nelec</span>
 </pre></div>
@@ -533,7 +542,7 @@ DOI: https://doi.org/10.1103/PhysRevB.94.085103</p>
 \[\begin{split}
 \begin{aligned}
 H &amp;= H_t + H_U \\
-H_t &amp;= -t \sum_{\langle i j\rangle \sigma} c^\dagger_{i\sigma} c_{j\sigma} \\
+H_t &amp;= -t \sum_{\langle i j\rangle \sigma} \left(c^\dagger_{i\sigma} c_{j\sigma} + \mathrm{h.c.}\right) \\
 H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 \end{aligned}
 \end{split}\]</div>
@@ -550,7 +559,7 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian_hf</span> <span class="o">=</span> <span class="n">LatticeHamiltonian</span><span class="o">.</span><span class="n">from_lattice</span><span class="p">(</span>
     <span class="n">lattice</span><span class="p">,</span>
-    <span class="n">U</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># if you want an effective U, you can change this</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="c1"># if you want an effective U, you can change this</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -558,30 +567,30 @@ H_U &amp;= U\sum_i n_{i\uparrow}n_{i\downarrow}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the 1 body Hamiltonian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the one-body Hamiltonian</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">hamiltonian_hf</span><span class="o">.</span><span class="n">get_one_body</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">,</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="version-1-ghf-trial">
-<h2><span class="section-number">3.3. </span>Version 1: GHF Trial<a class="headerlink" href="#version-1-ghf-trial" title="Link to this heading">#</a></h2>
-<p>Because of the open shell at half filling, we’ll follow Ref. 1 and use a GHF trial with AFM constrained to the X-Y plane (eq 14)</p>
+<section id="ghf-trial">
+<h2><span class="section-number">3.3. </span>GHF Trial<a class="headerlink" href="#ghf-trial" title="Link to this heading">#</a></h2>
+<p>Because of the open shell at half filling, we’ll follow Ref. [1] and use a GHF trial with AFM constrained to the X-Y plane (Eq. 14),</p>
 <div class="math notranslate nohighlight">
 \[
-H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.} + \sum_{i}M_i c^\dagger_{i\uparrow}c_{i\downarrow} + \text{h.c.}
+H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} \left(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\right) + \sum_{i} \left(M_i c^\dagger_{i\uparrow}c_{i\downarrow} + \text{h.c.}\right),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(M_i= (-1)^i\Delta_i\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(M_i= (-1)^i\Delta_i\)</span>.</p>
 <section id="aside-custom-hartree-fock-solver">
 <h3><span class="section-number">3.3.1. </span>Aside: Custom Hartree-Fock Solver<a class="headerlink" href="#aside-custom-hartree-fock-solver" title="Link to this heading">#</a></h3>
-<p>We’ll want to optimize <span class="math notranslate nohighlight">\(M\)</span> directly, and to do this we’ll use AutoHF’s custom ansatz power to build a modification of the <code class="docutils literal notranslate"><span class="pre">DIAG</span></code> ansatz</p>
+<p>We’ll want to optimize <span class="math notranslate nohighlight">\(M\)</span> directly, and to do this we’ll use AutoHF’s custom ansatz support to build a modification of the <code class="docutils literal notranslate"><span class="pre">DIAG</span></code> ansatz.</p>
 <p>To do that we’ll need:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">orbitalFunc</span></code> This takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the orbitals</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rdmFunc</span></code> this takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the rdm <span class="math notranslate nohighlight">\(\langle c^\dagger_{\sigma i}c_{\sigma^\prime j}\rangle\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">state0</span></code> the initial state</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">state0_ref</span></code> the initial state that should correspond to e.g. <span class="math notranslate nohighlight">\(U=0\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orbitalFunc</span></code>, which takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the orbitals</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rdmFunc</span></code>, which takes a <code class="docutils literal notranslate"><span class="pre">state</span></code> and produces the rdm <span class="math notranslate nohighlight">\(\langle c^\dagger_{\sigma i}c_{\sigma^\prime j}\rangle\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state0</span></code>, the initial state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state0_ref</span></code>, the initial state that should correspond to e.g. <span class="math notranslate nohighlight">\(U=0\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -594,7 +603,6 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <span class="n">signs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lattice</span><span class="o">.</span><span class="n">sites</span><span class="p">])</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span>
 <span class="c1"># convert T -&gt; GHF format</span>
-<span class="c1"># TODO this should be in safiretools</span>
 <span class="n">TGHF_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
                <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
 <span class="n">TGHF_</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TGHF_</span><span class="p">)</span>
@@ -618,7 +626,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">checkPH</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">'''check the spectrum of the 'faux' HF state is PH symmetric'''</span>
+<span class="w">    </span><span class="sd">'''check that the spectrum of the faux HF state is PH symmetric'''</span>
     <span class="c1"># take the hopping matrix TGHF, and "set" M on the off-diagonal blocks</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF_</span><span class="o">+</span><span class="mf">0.0</span>
     <span class="n">TGHF</span> <span class="o">=</span> <span class="n">TGHF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">N</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">signs</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
@@ -652,7 +660,6 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 <span class="n">dataHFC</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian_hf</span><span class="p">),</span>
-    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
     <span class="n">state2rdm</span><span class="o">=</span><span class="n">rdmFunc</span><span class="p">,</span>
@@ -663,7 +670,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 </div>
 </div>
-<p>Let’s check out what M values we got</p>
+<p>Let’s check out what <span class="math notranslate nohighlight">\(M\)</span> values we got.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span>
@@ -679,7 +686,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 </div>
 <p>Hmm… This looks like we haven’t fully converged into a translationally invariant solution, but it’s close. Let’s increase the precision!</p>
-<p><strong>⚠️ Warning</strong> This notebook is set up for the CPU, the following cell takes a while (the GPU is a bit faster if you have one)</p>
+<p><strong>⚠️ Warning</strong> This notebook is set up for the CPU; the following cell takes a while (the GPU is a bit faster if you have one).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hf_settings</span> <span class="o">=</span> <span class="p">{</span>
@@ -702,7 +709,6 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 <span class="n">dataHFC2</span> <span class="o">=</span> <span class="n">solve_hf</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="o">=</span><span class="n">AutoHFHamiltonian</span><span class="p">(</span><span class="n">hamiltonian_hf</span><span class="p">),</span>
-    <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span>
     <span class="n">settings</span><span class="o">=</span><span class="n">hf_settings</span><span class="p">,</span>
     <span class="n">state2orbitals</span><span class="o">=</span><span class="n">orbitalFunc</span><span class="p">,</span>
     <span class="n">state2rdm</span><span class="o">=</span><span class="n">rdmFunc</span><span class="p">,</span>
@@ -735,7 +741,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 </div>
 </div>
-<p>Let’s check that this is a better energy than the previous energy</p>
+<p>Let’s check that this is a better energy than the previous energy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dataHFC</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"E"</span><span class="p">]</span>
@@ -744,7 +750,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 </div>
 <p>Great!</p>
-<p>Now let’s check if we can guess a better state, by explicitly restoring translation invariance</p>
+<p>Now let’s check if we can guess a better state by explicitly restoring translation invariance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uni_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">lattice</span><span class="o">.</span><span class="n">N_sites</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dataHFC2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]))</span>
@@ -753,7 +759,7 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 </div>
 </div>
 </div>
-<p>So we see we’ve reached a minimum, and that a constant <span class="math notranslate nohighlight">\(M\)</span> is the same as our nearly constant optimized <span class="math notranslate nohighlight">\(M_i\)</span></p>
+<p>So we see we’ve reached a minimum, and that a constant <span class="math notranslate nohighlight">\(M\)</span> is the same as our nearly constant optimized <span class="math notranslate nohighlight">\(M_i\)</span>.</p>
 </section>
 <section id="preparing-the-safire-input-files">
 <h3><span class="section-number">3.3.2. </span>Preparing the SAFIRE Input Files<a class="headerlink" href="#preparing-the-safire-input-files" title="Link to this heading">#</a></h3>
@@ -802,7 +808,6 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 
 <span class="n">vis</span><span class="o">.</span><span class="n">plot_timeseries</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 <span class="n">E_ref</span> <span class="o">=</span> <span class="n">E0_n1_lookup</span><span class="p">[</span><span class="n">U</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">E_ref</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">E_ref</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"crimson"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -812,34 +817,12 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
 <section id="for-further-thinking">
 <h3><span class="section-number">3.3.3. </span>For Further Thinking<a class="headerlink" href="#for-further-thinking" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>What if we didn’t use the correct signs (<span class="math notranslate nohighlight">\(M_i = (-1)^i\Delta_i\)</span>) for the HF ansatz? Could we construct an even more constrained wave function?</p></li>
+<li><p>What if we didn’t use the correct signs (<span class="math notranslate nohighlight">\(M_i = (-1)^i\Delta_i\)</span>) for the HF ansatz? Could we construct an even more constrained wavefunction?</p></li>
 <li><p>What do the local spin/charge observables of the optimized ansatz look like?</p></li>
-<li><p>What happens for <span class="math notranslate nohighlight">\(U=8\)</span>? Do we need a different wave function?</p></li>
-<li><p>What happens if you start from a free electron state instead of the HF state? (<code class="docutils literal notranslate"><span class="pre">free_wfn</span> <span class="pre">=</span> <span class="pre">Wavefunction.from_free_electron(hamiltonian,</span> <span class="pre">nelec,</span> <span class="pre">spin_symm=&quot;nc&quot;)</span></code>; this warns, since the untwisted lattice is open-shell at half filling)</p></li>
+<li><p>What happens for <span class="math notranslate nohighlight">\(U=8\)</span>? Do we need a different wavefunction?</p></li>
+<li><p>What happens if you start from a free-electron state instead of the HF state? (<code class="docutils literal notranslate"><span class="pre">free_wfn</span> <span class="pre">=</span> <span class="pre">Wavefunction.from_free_electron(hamiltonian,</span> <span class="pre">nelec,</span> <span class="pre">spin_symm=&quot;nc&quot;)</span></code>; this warns, since the untwisted lattice is open-shell at half filling.)</p></li>
 </ul>
 </section>
-</section>
-<section id="version-2-multi-slater-trial">
-<h2><span class="section-number">3.4. </span>Version 2: Multi-Slater Trial<a class="headerlink" href="#version-2-multi-slater-trial" title="Link to this heading">#</a></h2>
-<p>To take advantage of particle hole symmetry at half filling with a spin decomposition, besides using a GHF in the X-Y plane, we could use two particle-hole symmetric determinants</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO!</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="version-3-charge-decomposition">
-<h2><span class="section-number">3.5. </span>Version 3: Charge Decomposition<a class="headerlink" href="#version-3-charge-decomposition" title="Link to this heading">#</a></h2>
-<p>The last alternative is to use a particle hole symmetry trial with the charge decomposition. Because we are focusing on positive <span class="math notranslate nohighlight">\(U\)</span> interactions, the charge decomposition will create a complex phase. At half-filling, due to the particle symmetry the walker weights will end up being all real and positive so we don’t have to worry about this</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO!</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -892,14 +875,12 @@ H_\mathrm{GHF} = -t\sum_{\langle ij\rangle \sigma} c^\dagger_{i\sigma}c_{j\sigma
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physics-background">3.1. Physics Background</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lattice-and-hamiltonian-setup">3.2. Lattice and Hamiltonian Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-ghf-trial">3.3. Version 1: GHF Trial</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ghf-trial">3.3. GHF Trial</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-custom-hartree-fock-solver">3.3.1. Aside: Custom Hartree-Fock Solver</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-safire-input-files">3.3.2. Preparing the SAFIRE Input Files</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-further-thinking">3.3.3. For Further Thinking</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-2-multi-slater-trial">3.4. Version 2: Multi-Slater Trial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-3-charge-decomposition">3.5. Version 3: Charge Decomposition</a></li>
 </ul>
   </nav></div>
 

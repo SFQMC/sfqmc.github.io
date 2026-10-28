@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Si Ground State Energy and Charge Density &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>1. Si Ground State Energy and Charge Density &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -42,7 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -57,7 +57,7 @@
     <link rel="prev" title="Ab Initio Solids" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -127,8 +127,8 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
@@ -177,20 +177,30 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../changelog.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
     Changelog
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmc.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../afqmc.html">
     Auxiliary-Field Quantum Monte Carlo
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -362,7 +372,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry / Molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/index.html">Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/01_O-atom/index.html">1. Oxygen Atom (UHF Trial Wavefunction)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/02_B_atom_SHCI_trial_wfn/06_SHCI_trial_wavefunction.html">2. B Atom – Semistochastic Heat-Bath CI (SHCI) Trial Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../molecules/03_n2-phmsd/03_nitrogen_dimer_pec.html">3. N₂ Molecule: Bond Stretching and Multi-Slater Trial Wavefunctions</a></li>
@@ -460,7 +470,7 @@
 <p>In this example, we compute the ground state energy and the real-space charge density of Si in the primitive cell.
 The system is the one of <a class="reference internal" href="../../../tutorials/solids/03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html"><span class="doc">Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</span></a>,
 and we use its Quantum ESPRESSO and CoQuí input files, linked in <code class="docutils literal notranslate"><span class="pre">files/qe</span></code> and <code class="docutils literal notranslate"><span class="pre">files/coqui</span></code>.</p>
-<a class="reference internal image-reference" href="examples/solids/01_Si_density_coqui_interface/files/Si_primitive.png"><img alt="examples/solids/01_Si_density_coqui_interface/files/Si_primitive.png" src="examples/solids/01_Si_density_coqui_interface/files/Si_primitive.png" width="400" />
+<a class="reference internal image-reference" href="../../../_images/Si_primitive.png"><img alt="../../../_images/Si_primitive.png" src="../../../_images/Si_primitive.png" width="400" />
 </a>
 <p>Unlike for the energy, a Hamiltonian and trial wavefunction file are not enough for the density:
 we also need the Kohn-Sham orbitals to put it on a real-space grid, and they have to come from the same Quantum ESPRESSO run.
@@ -614,7 +624,6 @@ so the density comes out in electrons per Bohr<span class="math notranslate nohi
 </div>
 <p>The density is linear in the density matrix, so <code class="docutils literal notranslate"><span class="pre">Results.evaluate</span></code> gives its mean and a jackknife error
 directly from the samples at each back-propagation length.
-Each sample is separated by a window, so for long windows we can assume they are weakly correlated and set <code class="docutils literal notranslate"><span class="pre">rebinsize=1</span></code>.
 For reference, the DFT density follows from the density matrix of the trial determinant <span class="math notranslate nohighlight">\(\Phi\)</span>,
 <span class="math notranslate nohighlight">\(\rho^\sigma_{ij} = \sum_n \Phi^{\sigma*}_{in} \Phi^\sigma_{jn}\)</span>, which has no uncertainty.</p>
 <div class="cell docutils container">
@@ -722,7 +731,7 @@ followed by the values with the last grid index running fastest.</p>
 </div>
 <p>For example, this isosurface plot of the charge density of Si was made with VESTA from a calculation in the conventional cell,
 with an isosurface value of 0.0023 electrons per grid point, about 0.042 electrons per Bohr<span class="math notranslate nohighlight">\(^3\)</span> in the units of <code class="docutils literal notranslate"><span class="pre">write_cube</span></code>.</p>
-<p><img alt="" src="examples/solids/01_Si_density_coqui_interface/files/Si_density_vesta.png" /></p>
+<p><img alt="" src="../../../_images/Si_density_vesta.png" /></p>
 </section>
 </section>
 
