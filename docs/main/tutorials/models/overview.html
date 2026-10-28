@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SAFIRE for lattice models &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>SAFIRE for Lattice Models &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,9 +42,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -51,13 +50,14 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/models/overview';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/models/overview.html" />
+    <link rel="icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1. Hello SAFIRE" href="01_hello_safire/01_hello_safire.html" />
-    <link rel="prev" title="4. Computing general observables" href="../solids/04_computing_observables/04_computing_observables.html" />
+    <link rel="prev" title="4. Computing General Observables" href="../solids/04_computing_observables/04_computing_observables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -127,15 +127,15 @@
     
     
     
-    <img src="../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -172,15 +165,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -295,13 +288,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../tutorials.html">
     Tutorials
@@ -317,15 +303,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -385,23 +371,36 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../solids/overview.html">SAFIRE for ab initio solids</a></li>
-
-
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">SAFIRE for lattice models</a></li>
-
-
-
-
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../molecules/overview.html">SAFIRE for Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../molecules/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../molecules/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.html">3. Writing a Hamiltonian File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../molecules/04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html">4. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../molecules/05_computing_observables/05_computing_observables.html">5. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../solids/overview.html">SAFIRE for Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solids/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solids/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solids/03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html">3. Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solids/04_computing_observables/04_computing_observables.html">4. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">SAFIRE for Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Defining a Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_writing_a_trial_wavefunction/05_writing_a_trial_wavefunction.html">5. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_autohf_crash_course/06_autohf_crash_course.html">6. AutoHF Crash Course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_computing_observables/07_computing_observables.html">7. Computing General Observables</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -445,7 +444,7 @@
     
     <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">SAFIRE for lattice models</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">SAFIRE for Lattice Models</span></li>
   </ul>
 </nav>
 </div>
@@ -463,15 +462,14 @@
                 <article class="bd-article">
                   
   <section id="safire-for-lattice-models">
-<span id="lattice-model-overview"></span><h1>SAFIRE for lattice models<a class="headerlink" href="#safire-for-lattice-models" title="Link to this heading">#</a></h1>
+<span id="lattice-model-overview"></span><h1>SAFIRE for Lattice Models<a class="headerlink" href="#safire-for-lattice-models" title="Link to this heading">#</a></h1>
 <a class="reference internal image-reference" href="../../_images/lattice_model.png"><img alt="../../_images/lattice_model.png" src="../../_images/lattice_model.png" width="500" />
 </a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
 <section id="some-preliminaries">
-<h1>Some preliminaries<a class="headerlink" href="#some-preliminaries" title="Link to this heading">#</a></h1>
+<h2>Some Preliminaries<a class="headerlink" href="#some-preliminaries" title="Link to this heading">#</a></h2>
 <p>SAFIRE can handle model Hamiltonians of the form</p>
 <div class="math notranslate nohighlight">
 \[\hat{H} = \hat{H}_t + \hat{H}_U + \hat{H}_J,\]</div>
@@ -479,9 +477,9 @@
 <div class="math notranslate nohighlight">
 \[\hat{H}_t = \sum_{\mu\nu,\sigma \sigma'}t^{\sigma \sigma'}_{\mu\nu}\hat{c}^\dagger_{\mu\sigma}\hat{c}_{\nu\sigma'},\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{H}_U =  \sum_{\mu} U_i \hat{n}_{\mu\uparrow} \hat{n}_{\mu\downarrow}
-+ \sum_{\mu&lt;\nu} U_{\mu\nu}^1 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\downarrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\uparrow} )
-+ \sum_{\mu&lt;\nu} U_{\mu\nu}^2 (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\uparrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\downarrow} ),\]</div>
+\[\hat{H}_U =  \sum_{\mu} U_\mu \hat{n}_{\mu\uparrow} \hat{n}_{\mu\downarrow}
++ \sum_{\mu&lt;\nu} U_{\mu\nu}^{(1)} (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\downarrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\uparrow} )
++ \sum_{\mu&lt;\nu} U_{\mu\nu}^{(2)} (\hat{n}_{\mu\uparrow} \hat{n}_{\nu\uparrow} + \hat{n}_{\mu\downarrow} \hat{n}_{\nu\downarrow} ),\]</div>
 <p>and,</p>
 <div class="math notranslate nohighlight">
 \[\hat{H}_J = \sum_{\mu&lt;\nu} J_{\mu\nu} (
@@ -495,36 +493,22 @@ This is known as the Hubbard-Kanamori Hamiltonian.
 Many standard model Hamiltonians can be written in this language including the standard Hubbard model,
 extended Hubbard with nearest-neighbor <span class="math notranslate nohighlight">\(V\)</span>, etc.
 SAFIRE is agnostic to the details of the compound indices.
-It simply accepts Hamiltonian “components” which are interpreted as above.
+It simply accepts Hamiltonian components which are interpreted as above.
 This provides great flexibility in specifying Hamiltonians; however, if Hamiltonians are generated externally, care must be taken
 to ensure that consistent index conventions are used.</p>
-<p><code class="docutils literal notranslate"><span class="pre">afqmctools</span></code> provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
+<p><code class="docutils literal notranslate"><span class="pre">safiretools</span></code> provides a framework for building lattice model Hamiltonians that can generate broad classes of lattice model Hamiltonians
 on a variety of lattices, using consistent conventions for indexing.
-The framework consists of a Lattice class which is responsible for geometry (see the <a class="reference external" href="03_setting_up_a_lattice/03_setting_up_a_lattice_executed.html">lattice tutorial</a>),
-a Hamiltonian builder which is responsible for generating specific Hamiltonian terms on demand given a specific Lattice instance,
-and a Hamiltonian <em>Director</em> which is responsible for choosing which build steps to perform based on
-a set of input Hamiltonian parameters.
-Each component of the framework can be used directly; however
-the Director class represents the highest-level interface of the lattice Hamiltonian framework and
-can manage the underlying Lattice instance and Builder instance.
-Users who want direct control over the Hamiltonian build steps can directly
-use the Hamiltonian <em>Builder</em>. See the <a class="reference external" href="05_hamiltonian_builder/05_hamiltonian_builder.html">Hamiltonian Builder</a> for
-more detail.
-It is recommended to use the Director whenever possible.</p>
-<a class="reference internal image-reference" href="../../_images/HamilDirectorSystem.png"><img alt="../../_images/HamilDirectorSystem.png" src="../../_images/HamilDirectorSystem.png" width="1000" />
-</a>
-<section id="imaginary-time-propagation">
-<h2>Imaginary-Time Propagation<a class="headerlink" href="#imaginary-time-propagation" title="Link to this heading">#</a></h2>
-<p>Explain the Trotterization, and Hubbard-Stratonovich transformation for the lattice Hamiltonian.
-Be sure to explicitly show each type of Hubbard-Stratonovich transformation (discrete spin, continuous charge, discrete charge, continuous spin).</p>
-</section>
+The framework consists of a Lattice class which is responsible for geometry (see <a class="reference internal" href="03_setting_up_a_lattice/03_setting_up_a_lattice.html"><span class="doc">Defining a Lattice</span></a>),
+and a Hamiltonian <em>Builder</em> which is responsible for generating specific Hamiltonian terms given a specific Lattice instance.
+<code class="docutils literal notranslate"><span class="pre">LatticeHamiltonian.from_lattice()</span></code> takes a lattice and the Hamiltonian parameters as keyword arguments
+and runs the corresponding build steps, which covers most use cases.</p>
 <section id="trial-wavefunctions">
-<h2>Trial wavefunctions<a class="headerlink" href="#trial-wavefunctions" title="Link to this heading">#</a></h2>
+<h3>Trial Wavefunctions<a class="headerlink" href="#trial-wavefunctions" title="Link to this heading">#</a></h3>
 <p>A trial wavefunction is used in AFQMC which is, in general, some linear
 combination of Slater determinants,</p>
 <div class="math notranslate nohighlight">
-\[| \Psi_\mathrm{T} \rangle = \sum_n C_n |\Phi_m\rangle,\]</div>
-<p>where <span class="math notranslate nohighlight">\(|\Phi_m\rangle\)</span> are Slater determinants,
+\[| \Psi_\mathrm{T} \rangle = \sum_n C_n |\Phi_n\rangle,\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> are Slater determinants,
 and <span class="math notranslate nohighlight">\(C_n\)</span> is a coefficient.
 There is no need for the set of Slater determinants to be mutually orthogonal.</p>
 <p>Using a trial wavefunction which accurately captures the ordering and symmetries
@@ -538,47 +522,41 @@ Care must always be taken to ensure that the trial wavefunction has the desired 
 <p>among others.</p>
 </section>
 </section>
-<section id="typical-workflow">
-<h1>Typical Workflow<a class="headerlink" href="#typical-workflow" title="Link to this heading">#</a></h1>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
 <section id="software-prerequisites">
-<h1>Software prerequisites<a class="headerlink" href="#software-prerequisites" title="Link to this heading">#</a></h1>
-<p>The afqmctools Python package provides tools for generating a broad range of lattice model Hamiltonians.
-Additionally, afqmctools and the autoHF Hartree-Fock solver allow single-Slater determinant trial wavefunctions to be computed.
+<h2>Software Prerequisites<a class="headerlink" href="#software-prerequisites" title="Link to this heading">#</a></h2>
+<p>The safiretools Python package provides tools for generating a broad range of lattice model Hamiltonians.
+Additionally, safiretools and the autoHF Hartree-Fock solver allow single-Slater determinant trial wavefunctions to be computed.
 In these tutorials, we will use these tools exclusively;
 however, from the tutorials, it should also be clear how to import
 and use wavefunctions and/or Hamiltonians which are generated externally by the user.</p>
-<p>See the User manual for details on <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/afqmc.html#lattice-model-hamiltonian">the Hamiltonian HDF5 format</a> and the possible <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/afqmc.html#wavefunction-file-formats">Trial wavefunction formats</a>.</p>
+<p>See <a class="reference internal" href="../../user_manual/hamiltonians.html#lattice-model-hamiltonian"><span class="std std-ref">Lattice Model Hamiltonian</span></a> for details on the Hamiltonian HDF5 format and <a class="reference internal" href="../../user_manual/wavefunctions.html#wavefunction-classes"><span class="std std-ref">Wavefunction Files</span></a> for the possible trial wavefunction formats.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="the-tutorials">
-<h1>The Tutorials<a class="headerlink" href="#the-tutorials" title="Link to this heading">#</a></h1>
+<h2>The Tutorials<a class="headerlink" href="#the-tutorials" title="Link to this heading">#</a></h2>
 <p>The following tutorials will guide you through AFQMC calculations
 using SAFIRE in order to teach you the typical workflow,
 and some of the main features of SAFIRE.
-Each “basic” tutorial builds on the previous one.
+Each tutorial builds on the previous one.
 We recommend going through them in order.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the input file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Lattice class tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_hamiltonian_builder/05_hamiltonian_builder.html">5. The Hamiltonian Builder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_writing_a_trial_wavefunction/06_writing_a_trial_wavefunction.html">6. Generating and Writing a Trial Wavefunction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_autohf_crash_course/07_autohf_crash_course.html">7. AutoHF Crash Course</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_computing_observables/08_computing_observables.html">8. Computing general observables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Defining a Lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_writing_a_trial_wavefunction/05_writing_a_trial_wavefunction.html">5. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_autohf_crash_course/06_autohf_crash_course.html">6. AutoHF Crash Course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_computing_observables/07_computing_observables.html">7. Computing General Observables</a></li>
 </ul>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>Worked examples for <a class="reference internal" href="../../examples/models/index.html#examples-models"><span class="std std-ref">Lattice models</span></a></p>
+<p>Worked examples for <a class="reference internal" href="../../examples/models/index.html#examples-models"><span class="std std-ref">Lattice Models</span></a></p>
 </div>
+</section>
 </section>
 
 
@@ -597,7 +575,7 @@ We recommend going through them in order.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Computing general observables</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Computing General Observables</p>
       </div>
     </a>
     <a class="right-next"
@@ -628,17 +606,13 @@ We recommend going through them in order.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SAFIRE for lattice models</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#some-preliminaries">Some preliminaries</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imaginary-time-propagation">Imaginary-Time Propagation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trial-wavefunctions">Trial wavefunctions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-preliminaries">Some Preliminaries</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trial-wavefunctions">Trial Wavefunctions</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-workflow">Typical Workflow</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#software-prerequisites">Software prerequisites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorials">The Tutorials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-prerequisites">Software Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorials">The Tutorials</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

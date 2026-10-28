@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Understanding the input file &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>2. Understanding the JSON Job File &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,9 +42,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -51,13 +50,14 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/solids/02_understanding_the_input_file/02_understanding_the_input_file';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/tutorials/solids/02_understanding_the_input_file/02_understanding_the_input_file.html" />
+    <link rel="icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="3. Writing a Hamiltonian file and a Trial Wavefunction using CoQuí" href="../03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html" />
-    <link rel="prev" title="1. Hello SAFIRE" href="../01_hello_afqmc_solids/01_hello_afqmc_solids.html" />
+    <link rel="next" title="3. Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí" href="../03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html" />
+    <link rel="prev" title="1. Hello SAFIRE" href="../01_hello_safire/01_hello_safire.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -110,7 +110,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -127,15 +127,15 @@
     
     
     
-    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="../../../_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +146,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -172,15 +165,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -295,13 +288,6 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../../tutorials.html">
     Tutorials
@@ -317,15 +303,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="../../../user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="../../../safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -385,23 +371,36 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../overview.html">SAFIRE for ab initio solids</a></li>
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../../models/overview.html">SAFIRE for lattice models</a></li>
-
-
-
-
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../molecules/overview.html">SAFIRE for Quantum Chemistry</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/03_writing_a_hamiltonian/03_writing_a_hamiltonian.html">3. Writing a Hamiltonian File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/04_writing_a_trial_wavefunction/04_writing_a_trial_wavefunction.html">4. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../molecules/05_computing_observables/05_computing_observables.html">5. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../overview.html">SAFIRE for Ab Initio Solids</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_Si_writing_H_and_wfn_coqui/03_Si_writing_H_and_wfn_coqui.html">3. Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_computing_observables/04_computing_observables.html">4. Computing General Observables</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../models/overview.html">SAFIRE for Lattice Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models/01_hello_safire/01_hello_safire.html">1. Hello SAFIRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/02_understanding_the_input_file/02_understanding_the_input_file.html">2. Understanding the JSON Job File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/03_setting_up_a_lattice/03_setting_up_a_lattice.html">3. Defining a Lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/04_building_and_writing_a_hamiltonian/04_building_and_writing_a_hamiltonian.html">4. Building Lattice Model Hamiltonians</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/05_writing_a_trial_wavefunction/05_writing_a_trial_wavefunction.html">5. Writing a Trial Wavefunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/06_autohf_crash_course/06_autohf_crash_course.html">6. AutoHF Crash Course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../models/07_computing_observables/07_computing_observables.html">7. Computing General Observables</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -446,9 +445,9 @@
     <li class="breadcrumb-item"><a href="../../../tutorials.html" class="nav-link">Tutorials</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for ab initio solids</a></li>
+    <li class="breadcrumb-item"><a href="../overview.html" class="nav-link">SAFIRE for Ab Initio Solids</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>Understanding the input file</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>Understanding the JSON Job File</span></li>
   </ul>
 </nav>
 </div>
@@ -466,669 +465,192 @@
                 <article class="bd-article">
                   
   <p class="notebook-download"><a class="reference external" href="02_understanding_the_input_file.zip">Download this notebook (.ipynb + data files)</a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="understanding-the-input-file">
-<h1><span class="section-number">2. </span>Understanding the input file<a class="headerlink" href="#understanding-the-input-file" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="understanding-the-json-job-file">
+<h1><span class="section-number">2. </span>Understanding the JSON Job File<a class="headerlink" href="#understanding-the-json-job-file" title="Link to this heading">#</a></h1>
 <p><b>Goal:</b>
-Understand how to control SAFIRE via the input file.</p>
+Understand how to control SAFIRE via the JSON job file.</p>
 <section id="what-you-will-learn">
-<h2><span class="section-number">2.1. </span>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>The structure of the json input file for SAFIRE</p></li>
+<li><p>The structure of the JSON job file for SAFIRE</p></li>
 <li><p>The minimal amount of information needed to run an AFQMC calculation using SAFIRE</p></li>
 <li><p>The most common parameters that you will interact with as a user</p></li>
+<li><p>How to use the <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.write_jobfile" title="safiretools.write_jobfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">safiretools.write_jobfile()</span></code></a> helper</p></li>
 </ol>
 </section>
 <section id="introduction">
 <h2><span class="section-number">2.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>SAFIRE uses a json-based input file with modular input blocks to control AFQMC calculations.
-The input file is organized into several hierarchical input blocks.
-Certain types of block may be defined at different levels of the
-hierarchy.
-Additionally, some types of block may be defined multiple times.
-We will begin with a brief explanation of how the blocks relate to each other, followed by an explanation
-of each individual input block type.
-We will explore the most common settings in each input block as well.</p>
+<p>As we saw in <a class="reference internal" href="../01_hello_safire/01_hello_safire.html"><span class="doc">Hello SAFIRE</span></a>, SAFIRE simulations are configured via a JSON job file. This job file specifies which Hamiltonian should be simulated with which trial wavefunction for how long. In this tutorial, we will explore this job file further and give some practical tips on how to choose common parameters. For a complete reference of all settings, see <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#input-afqmc"><span class="std std-ref">The Job File</span></a>. Later tutorials will cover how to generate the Hamiltonian and wavefunction inputs.</p>
 </section>
-<section id="input-block-hierarchy">
-<h2><span class="section-number">2.3. </span>Input block hierarchy<a class="headerlink" href="#input-block-hierarchy" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_01_all.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_01_all.png" /></p>
-<p>The name of the highest level block tells SAFIRE which “driver” to run.
-In this case, we are running with the “afqmc” driver.</p>
-<p>Below the “afqmc” block are the “project” block and
-one or more “execute” block(s).
-We saw the “project” block in the previous tutorial,
-where we used it to set the names of the output files via the “id” and “series” parameters.
-As a reminder, the output files are named:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> for scalar output data (energy, overlap, etc.)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> for non-scalar output data (one-body reduced density matrix, etc.)</p></li>
-</ul>
-<p>“execute” block(s) define an actual calculation.
-They consist of both AFQMC runtime parameters and references to the following five low-level blocks:</p>
-<ol class="arabic simple">
-<li><p>wavefunction - <strong>always required!</strong></p></li>
-<li><p>hamiltonian</p></li>
-<li><p>walker_set</p></li>
-<li><p>projector</p></li>
-<li><p>estimator</p></li>
-</ol>
-<p>The wavefunction, hamiltonian, and walker_set blocks can be defined either directly within
-an execute block, by providing a json input block,
-or defined in the “afqmc” block and referenced by “name” within one
-or more “execute” blocks.
-In the later case, these blocks must be named by setting the
-“name” parameter in the corresponding input block.</p>
-<p>We will explain each type of block in more detail below
-including the most common settings that you will use.
-For completeness, we will describe additional settings.
-First, let’s look at a sample input file for a typical calculation.</p>
-</section>
-<section id="sample-input-file-typical-calculation">
-<h2><span class="section-number">2.4. </span>Sample input file - typical calculation<a class="headerlink" href="#sample-input-file-typical-calculation" title="Link to this heading">#</a></h2>
-<p>In a typical calculation. you will only need to set a few parameters.
-In the input file below, we include the default value of each common parameter where possible.
-We use  ellipses ( <code class="docutils literal notranslate"><span class="pre">...</span></code>) for the “estimator” input block for visual simplicity.
-This input block will be explored in more detail in later tutorials.</p>
+<section id="a-minimal-job-file">
+<h2><span class="section-number">2.3. </span>A Minimal Job File<a class="headerlink" href="#a-minimal-job-file" title="Link to this heading">#</a></h2>
+<p>While there are many configuration parameters to customize SAFIRE simulations, most of them have sensible defaults. Therefore, basic simulations of the ground state energy of a system can be run with a minimal job file containing only the most important parameters.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"afqmc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmc"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"walker_set"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">"walker_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span>
-<span class="w">        </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wavefunction.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wavefunction</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> point to the HDF5 files containing the trial wavefunction and the Hamiltonian. The paths are relative to the directory of the job file, not to the directory SAFIRE is launched from. Both blocks may also name the same file if it contains both.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestep</span></code> is the Trotter step size <span class="math notranslate nohighlight">\(\Delta\tau\)</span> in units of inverse energy, where the energy unit is the one the Hamiltonian is written in. Since the Trotter decomposition introduces a timestep error, it is good practice to check that the result does not change within error bars when repeating the calculation with a smaller timestep.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">steps</span></code> is the total number of propagation steps, including the equilibration steps. Together with <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, it sets the total projection time <span class="math notranslate nohighlight">\(\beta = N_\mathrm{steps}\Delta\tau\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">equilibration_steps</span></code> is the number of steps at the start of the calculation during which nothing is measured. During this phase, the walkers are projected towards the ground state and the energy shift of the propagator relaxes to the average energy. The equilibration should be long enough that the energy timeseries has converged, which you can check as in <a class="reference internal" href="../01_hello_safire/01_hello_safire.html"><span class="doc">Hello SAFIRE</span></a>. If you choose this too small, you can always skip more samples using the <code class="docutils literal notranslate"><span class="pre">skip</span></code> parameter in the postprocessing tools.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_walkers</span></code> is the total number of walkers over all MPI tasks. See <a class="reference internal" href="../01_hello_safire/01_hello_safire.html"><span class="doc">Hello SAFIRE</span></a> for typical values on CPUs and GPUs. AFQMC simulations have a small finite-population bias that scales as <span class="math notranslate nohighlight">\(1/N_\text{walkers}\)</span>, so for simulations with few walkers, convergence with number of walkers should be confirmed.</p></li>
+</ul>
+</section>
+<section id="more-advanced-examples">
+<h2><span class="section-number">2.4. </span>More Advanced Examples<a class="headerlink" href="#more-advanced-examples" title="Link to this heading">#</a></h2>
+<p>In the following, we give some common examples of going beyond the minimal configuration.</p>
+<section id="initializing-walkers-from-a-different-wavefunction">
+<h3><span class="section-number">2.4.1. </span>Initializing Walkers from a Different Wavefunction<a class="headerlink" href="#initializing-walkers-from-a-different-wavefunction" title="Link to this heading">#</a></h3>
+<p>By default, all walkers start from the trial wavefunction (or its determinant with the largest coefficient, for multi-determinant trials). The <code class="docutils literal notranslate"><span class="pre">walker_set</span></code> block allows starting them from a different wavefunction instead.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uhf.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"walker_set"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files/input.h5"</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"estimator"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"mixed"</span><span class="p">,</span>
-<span class="w">          </span><span class="cm">/* ... */</span>
+<span class="w">          </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rhf.h5"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
 <span class="w">  </span><span class="p">}</span>
-</pre></div>
-</div>
-<p>Note that we did not define a “hamiltonian” block at all.
-In this case, SAFIRE will look for the Hamiltonian in the same
-file as the trial wavefunction.
-We defined the “walker_set” block within the “execute” block.
-We could have defined it within the “afqmc” block and referenced it by “name”
-within the execute block instead.
-This is only necessary if
-you will use multiple execute blocks and want to use the same walker set in both.
-For example, you may want to continue a
-second AFQMC calculation starting from the final walkers of the
-first AFQMC calculation.</p>
-<div class="alert alert-block alert-info">
-<b>Note:</b>
-  Essentially all parameters are able to default to some value except
-  for the "filename" parameter in the "wavefunction" block. This must always be
-  set to the name of the HDF5 file containing the trial wavefunction.
-</div>
-<section id="minimal-information-needed-to-run">
-<h3><span class="section-number">2.4.1. </span>Minimal information needed to run.<a class="headerlink" href="#minimal-information-needed-to-run" title="Link to this heading">#</a></h3>
-<p>The bare minimum input blocks to run is</p>
-<ol class="arabic simple">
-<li><p>at least one execute block</p></li>
-<li><p>at least wavefunction block with filename set to the HDF5 file containing a trial wavefunction (assuming the Hamiltonian is in the same HDF5 file)</p></li>
-</ol>
-<p>Usually, one will also often provide:</p>
-<ol class="arabic simple">
-<li><p>a “walker_set” block</p></li>
-<li><p>an “estimator” block (for any observables beside the energy)</p></li>
-</ol>
-</section>
-</section>
-<section id="the-project-block">
-<h2><span class="section-number">2.5. </span>The “project” block<a class="headerlink" href="#the-project-block" title="Link to this heading">#</a></h2>
-<p>The project block is used to set some project-level information.
-For example, “id” and “series” are used to make the prefix of output
-files as <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"project"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"your_project_name"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"series"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"ncores"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="most-common-settings">
-<h3><span class="section-number">2.5.1. </span>Most Common Settings<a class="headerlink" href="#most-common-settings" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>id</b></p></td>
-<td><p>“afqmc”</p></td>
-<td class="text-left"><p>The base name for the <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> files</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>series</b></p></td>
-<td><p>0</p></td>
-<td class="text-left"><p>The series number for the <code class="docutils literal notranslate"><span class="pre">[id].s[series].scalar.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">[id].s[series].stat.h5</span></code> files. The filename will print as width three, padded with 0s if needed</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>This is useful when the trial wavefunction breaks a symmetry of the Hamiltonian, as an unrestricted Hartree-Fock (UHF) trial often breaks spin symmetry. Such a trial may give a better description of the ground state than a symmetric one, but walkers started from it are contaminated by soft Goldstone modes. These modes are not present in the ground state, but they are low in energy and therefore take a long projection time to decay. Starting the walkers from a symmetric wavefunction, such as the restricted Hartree-Fock (RHF) determinant, avoids this contamination and can greatly reduce the necessary number of equilibration steps.</p>
+<p>The walker type is chosen automatically as the most symmetric one that can represent all wavefunctions in the job file, here collinear walkers for the UHF trial. See <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#initial-walkers"><span class="std std-ref">Initial Walkers</span></a> for more details.</p>
 </section>
-<section id="less-common-settings">
-<h3><span class="section-number">2.5.2. </span>Less Common Settings<a class="headerlink" href="#less-common-settings" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>ncores</b></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
-<td class="text-left"><p>Set the number of cores to use per MPI task</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="the-execute-block">
-<h2><span class="section-number">2.6. </span>The “execute” block<a class="headerlink" href="#the-execute-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_02_execute.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_02_execute.png" /></p>
-<p>The execute block is used to define an AFQMC calculation.
-As described earlier, it needs a wavefunction, walker_set, hamiltonian,
-projector, and estimator.
-Of these, <strong>the wavefunction must always be defined</strong> while the others have default values.
-The blocks can either be defined within the “execute” block, or defined
-outside and referenced by name.</p>
-<p>In addition to these blocks, the “execute” block is used to define several AFQMC methodological parameters.</p>
-<p>Here is a sample execute block with options exposed and default values where appropriate.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"execute"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"hamiltonian"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"walker_set"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"estimator"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"projector"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"n_walkers_per_mpi_task"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measure_interval_multiplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"checkpoint_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"hdf_write_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"hdf_read_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+<section id="stabilization-and-measurement-intervals">
+<h3><span class="section-number">2.4.2. </span>Stabilization and Measurement Intervals<a class="headerlink" href="#stabilization-and-measurement-intervals" title="Link to this heading">#</a></h3>
+<p>Several operations of the AFQMC algorithm are performed only every few steps. Their intervals are set in the execute block and are given in units of propagation steps.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"measure_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"population_control_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"walker_ortho_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"binsize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="id1">
-<h3><span class="section-number">2.6.1. </span>Most Common Settings<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>timestep</b></p></td>
-<td><p>0.01</p></td>
-<td class="text-left"><p>The trotter step size in units of inverse energy (depending on the Hamiltonian’s units)</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>steps</b></p></td>
-<td><p>1</p></td>
-<td class="text-left"><p>The number of imaginary time steps to take</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>n_walkers_per_mpi_task</b></p></td>
-<td><p>10</p></td>
-<td class="text-left"><p>number of Slater determinant random walkers to use per MPI task</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>measure_interval_multiplier</b></p></td>
-<td><p>20</p></td>
-<td class="text-left"><p>Used to determine the number of projection steps between measurements using the formula below. Measurement is the most expensive operation in AFQMC. A larger “measure_interval_multiplier” will reduce the CPU time necessary to perform AFQMC calculations.</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>population_control_interval</b></p></td>
-<td><p>10</p></td>
-<td class="text-left"><p>Interval to perform population control at in units of steps.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>walker_ortho_interval</b></p></td>
-<td><p>10</p></td>
-<td class="text-left"><p>Interval to stabilize walkers at via a modified Gram-Schmidt procedure in units of steps</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="math notranslate nohighlight">
-\[
-\text{measure\_interval} = \text{measure\_interval\_multiplier} \times \text{population\_control\_interval}
-\]</div>
-</section>
-<section id="id2">
-<h3><span class="section-number">2.6.2. </span>Less Common Settings<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>seed</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>Random seed for auxiliary fields. A seed is generated if not provided.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>checkpoint_interval </b></p></td>
-<td><p>-1</p></td>
-<td class="text-left"><p>Interval at which to write to checkpoint file in units of steps. An interval less than 0 will result in no checkpointing</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>hdf_write_file</b></p></td>
-<td><p>“”</p></td>
-<td class="text-left"><p>Name of checkpoint HDF5 file to write. No checkpoint is written if the name is “”</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>hdf_read_file</b></p></td>
-<td><p>“”</p></td>
-<td class="text-left"><p>Name of checkpoint HDF5 file to restart from. No checkpoint is read if the name is “”</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="the-wavefunction-block">
-<h2><span class="section-number">2.7. </span>The “wavefunction” block<a class="headerlink" href="#the-wavefunction-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_03_wavefunction.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_03_wavefunction.png" /></p>
-<p>The wavefunction block is the only of the 5 low-level blocks
-that must always be specified.
-The wavefunction block is used to point to the input HDF5 file containing
-the desired trial wavefunction via the “filename” keyword.
-If no hamiltonian block is provided, SAFIRE assumes that this HDF5 file
-also contains the Hamiltonian.</p>
-<p>Here is a sample wavefunction block with options exposed and default values where appropriate.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"wavefunction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_wavefunction"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"ndets_to_read"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<section id="id3">
-<h3><span class="section-number">2.7.1. </span>Most Common Settings<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>filename</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p><strong>Required</strong> The name of the file (possibly including a path) to the HDF5 file containing the trial wavefunction, and possibly containing the Hamiltonian as well</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>The name to assign to the current wavefunction block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>ndets_to_read</b></p></td>
-<td><p>-1</p></td>
-<td class="text-left"><p>The number of Slater determinants to read and from the HDF5 file and use in the trial wavefunction. If less than 0, all Slater determinants in the HDF5 file will be read and used. Must be less than or equal to the number of Slater determinants in the input HDF5 file</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="the-walker-set-block">
-<h2><span class="section-number">2.8. </span>The “walker_set” block<a class="headerlink" href="#the-walker-set-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_04_walker.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_04_walker.png" /></p>
-<p>The walker_set block is used to set general properties of the random walkers.
-The most common setting that you will change is the “walker_type” keyword
-which allows you to specify the type of walker to use.
-The possible walker types are as follows:</p>
-<p><b>Closed (i.e. RHF-like) </b></p>
-<div class="math notranslate nohighlight">
-\[
-| \Phi_k \rangle = | \Phi^\uparrow \rangle \otimes | \Phi^{\downarrow = \uparrow} \rangle,
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\downarrow = \uparrow\)</span> indicates that the <span class="math notranslate nohighlight">\(\beta\)</span>-sector is identical to the
-<span class="math notranslate nohighlight">\(\alpha\)</span>-sector.</p>
-<p><b>Collinear (i.e. UHF-like) </b></p>
-<div class="math notranslate nohighlight">
-\[
-| \Phi_k \rangle = | \Phi^\uparrow \rangle \otimes | \Phi^\downarrow \rangle
-\]</div>
-<p><b>Noncollinear (i.e. GHF-like) </b></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-| \Phi_k \rangle = \begin{bmatrix}
-\Phi^{\uparrow \uparrow} &amp; \Phi^{\uparrow \downarrow} \\
-\Phi^{\downarrow \uparrow} &amp; \Phi^{\downarrow \downarrow} \\
-\end{bmatrix}
-\end{split}\]</div>
-<p>Here is a sample walker_set block with options exposed and default values where appropriate.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"walker_set"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_walker_name"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"walker_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COLLINEAR"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"load_balance_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"pop_control_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pair"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"min_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"max_weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="alert alert-block alert-info">
-<b>Note:</b>
-    Setting the "name" parameter allows the current walker_set block to be reference in
-    multiple execute blocks / calculations.
-    This allows one to perform two successive AFQMC calculations which share the same
-    walkers.
-</div>
-<section id="id4">
-<h3><span class="section-number">2.8.1. </span>Most Common Settings<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>walker_type</b></p></td>
-<td><p>Collinear</p></td>
-<td class="text-left"><p>The type of walker to use in AFQMC. Options are Closed, Collinear, Noncollinear</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>The name to assign to the current walker_set block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="id5">
-<h3><span class="section-number">2.8.2. </span>Less Common Settings<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>load_balance_type</b></p></td>
-<td><p>“async”</p></td>
-<td class="text-left"><p>Choose which load balancing algorithm to use, Choices are “async” for the asynchronous non-block swap load balancing algorithm and “simple” for a blocking (1-1) swap load balancing algorithm.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>pop_control_type</b></p></td>
-<td><p>“pair”</p></td>
-<td class="text-left"><p>choose population control algorithm to use. Choices are “pair”, AND “serial_comb”. The “pair” algorithm uses paired walker branching. The “serial_comb” algorithm uses the comb method from Booth, Gubernatis, PRE 2009.</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b>min_weight</b></p></td>
-<td><p>0.05</p></td>
-<td class="text-left"><p>Minimum walker weight for population control</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>max_weight</b></p></td>
-<td><p>4</p></td>
-<td class="text-left"><p>Maximum walker weight for population control</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="the-hamiltonian-block">
-<h2><span class="section-number">2.9. </span>The “hamiltonian” block<a class="headerlink" href="#the-hamiltonian-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_05_hamiltonian.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_05_hamiltonian.png" /></p>
-<p>The hamiltonian block is used to provide settings related to the Hamiltonian.
-This mostly entails pointing to the input HDF5 file containing
-the desired hamiltonian via the “filename” keyword.</p>
-<p>Here is a sample hamiltonian input block with
-options exposed and default values where appropriate.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"hamiltonian"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_hamiltonian"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afqmc.h5"</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<section id="id6">
-<h3><span class="section-number">2.9.1. </span>Most Common Settings<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>filename</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>The name of the file (possibly including a path) to the HDF5 file containing the Hamiltonian</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b>name</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>The name to assign to the current hamiltonian block. This allows it to be referenced by name in execute blocks. A name is generated internally if not set here.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="the-projector-block">
-<h2><span class="section-number">2.10. </span>The “projector” block<a class="headerlink" href="#the-projector-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_06_propagator.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_06_propagator.png" /></p>
-<p>The projector block is used to set properties of the AFQMC projector.
-A typical user will not need to interact with this input block;
-however, we include it here for completeness.</p>
-<p>See the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/input_description_afqmc.html">input file description</a> of the User manual for more information.</p>
-</section>
-<section id="the-estimator-block">
-<h2><span class="section-number">2.11. </span>The “estimator” block<a class="headerlink" href="#the-estimator-block" title="Link to this heading">#</a></h2>
-<!--
-<div>
-<img src="./figs/input_file_07_estimator.png" width="800"/>
-</div>
--->
-<p><img alt="" src="../../../_images/input_file_07_estimator.png" /></p>
-<p>The estimator block is used to specify which
-estimator type(s) to use during a calculation
-as well as which observables to compute.
-This is a complicated topic and we devote
-a later tutorial to Estimators in general,
-and yet another tutorial to the back propagation estimator.</p>
-<p>For now, we will discuss a relatively simple estimator, the Energy estimator,
-in order to give you a sense of how they work.</p>
-<p>Here is a sample input block for the energy estimator with
-options exposed and default values where appropriate.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"energy"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"print_components"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"print_sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"equil"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"skip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><strong>It it important to note that the “name” parameter works very differently in the “estimator” blocks
-than in “wavefunction”, “walker_set”, and “hamiltonian”.</strong>
-In the later cases, “name” is used as an identifier to refer to blocks within a “execute” block.
-For estimators, “name” is used to define the type of estimator being used.
-Valid names include “energy”, “mixed”, and “back_propagated”.</p>
-<section id="estimator-types">
-<h3><span class="section-number">2.11.1. </span>Estimator types<a class="headerlink" href="#estimator-types" title="Link to this heading">#</a></h3>
-<p>The estimator type is selected using the “name” parameter.
-The available “name” / types are:</p>
 <ul class="simple">
-<li><p><strong>“energy”</strong> : this is a specialized mixed-estimator which specifically evaluates the energy. It also provides some granular control over what details of the energy are printed. For example, you can print the 1-body, exchange, and direct Coulomb interaction energies, in addition to the total energy, by setting <code class="docutils literal notranslate"><span class="pre">&quot;print_components&quot;</span> <span class="pre">:</span> <span class="pre">true</span></code> within an energy estimator input block.</p></li>
-<li><p><strong>“mixed”</strong> : This adds a generic mixed estimator where the user may select which observables to compute. For observable, <span class="math notranslate nohighlight">\(\hat{O}\)</span>. the mixed estimator is given by
-<div class="math notranslate nohighlight">
-\[
-\langle \hat{O} ⟩_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}
-\]</div>
-
-where <span class="math notranslate nohighlight">\(n\)</span> is the projection step index,
-<span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are Slater determinant random walkers with weight <span class="math notranslate nohighlight">\(W_{n,k}\)</span> (from importance sampling),
-and <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction.</p></li>
-<li><p><strong>“back-propagated”</strong> : Similar to the “mixed” estimator, but the back-propagation algorithm is used to evaluate user-specified observables. The back-propagated estimator has the form,
-<div class="math notranslate nohighlight">
-\[
-\langle O_\mathrm{BP} \rangle = \frac{1}{\sum_k W_{n+m,k}} \sum_k W_{n+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{n,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{n,k}\rangle}
-\]</div>
-
-where <span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are the usual forward-projected Slater determinant random walkers,
-and <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers given by,
-<div class="math notranslate nohighlight">
-\[
-| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{n,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{n+m-1,k} ) | \Psi_\mathrm{T} \rangle.
-\]</div>
-
-The index <span class="math notranslate nohighlight">\(n\)</span> corresponds to the current forward projection step,
-and <span class="math notranslate nohighlight">\(m\)</span> is the back-propagated step index.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">measure_interval</span></code> (default 10) sets how often the observables are measured. Measurement is usually the most expensive operation in AFQMC, so measuring less often speeds up the calculation. Because consecutive measurements are correlated, there is no benefit to measuring more often than the Monte Carlo autocorrelation time. An estimator can also override this interval with its own <code class="docutils literal notranslate"><span class="pre">measure_interval</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_control_interval</span></code> (default 10) sets how often the walker population is resampled according to the walker weights. Population control is relatively cheap, so this interval can stay small.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">walker_ortho_interval</span></code> (default 10) sets how often the walker Slater determinants are orthogonalized. Without it, the propagation becomes numerically unstable, which happens sooner for large systems and large timesteps. Orthogonalization is relatively cheap, so performing it frequently is recommended.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binsize</span></code> (default 1) sets how many consecutive measurements are averaged into a single bin of the results file. Larger bins reduce the size of the results file, which can become large when measuring large observables such as density matrices.</p></li>
 </ul>
 </section>
-<section id="observables">
-<h3><span class="section-number">2.11.2. </span>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h3>
-<p>For the “mixed” and “back-propagated” estimators, specific observables are selected by defining the corresponding input block within the desired estimator block.
-For example, one can define a mixed estimator which computes the one-body reduces density matrix as</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"estimator"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"mixed"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"onerdm"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"my_onerdm"</span>
+<section id="output-name">
+<h3><span class="section-number">2.4.3. </span>Output Name<a class="headerlink" href="#output-name" title="Link to this heading">#</a></h3>
+<p>By default, the results are written to <code class="docutils literal notranslate"><span class="pre">&lt;job</span> <span class="pre">file</span> <span class="pre">name&gt;.results.h5</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">afqmc.results.h5</span></code> for <code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code>. The <code class="docutils literal notranslate"><span class="pre">output_name</span></code> parameter at the top level of the job file sets a different name.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"output_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dt0.005"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This writes the results to <code class="docutils literal notranslate"><span class="pre">dt0.005.results.h5</span></code>. Unlike all other paths in the job file, <code class="docutils literal notranslate"><span class="pre">output_name</span></code> is relative to the directory SAFIRE is launched from. Be aware that SAFIRE overwrites an existing results file of the same name. See <a class="reference internal" href="../../../user_manual/output.html#output-afqmc"><span class="std std-ref">Results File</span></a> for the content of the results file.</p>
+</section>
+<section id="reproducibility">
+<h3><span class="section-number">2.4.4. </span>Reproducibility<a class="headerlink" href="#reproducibility" title="Link to this heading">#</a></h3>
+<p>AFQMC is a stochastic method, so two runs of the same job file give different, statistically compatible results. To reproduce a calculation exactly, the random seed can be fixed at the top level.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If no seed is given, SAFIRE chooses one at random and prints it in the log. Reusing that seed reproduces the earlier run, provided it is run with the same number of MPI tasks.</p>
+</section>
+<section id="advanced-estimators">
+<h3><span class="section-number">2.4.5. </span>Advanced Estimators<a class="headerlink" href="#advanced-estimators" title="Link to this heading">#</a></h3>
+<p>Measuring observables beyond the energy or switching off energy estimation requires additional settings in the job file that will be covered in a later tutorial. For all estimator settings, see <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#estimator-block"><span class="std std-ref">estimators</span></a>.</p>
+</section>
+<section id="multiple-execute-blocks">
+<h3><span class="section-number">2.4.6. </span>Multiple Execute Blocks<a class="headerlink" href="#multiple-execute-blocks" title="Link to this heading">#</a></h3>
+<p>It is possible to make <code class="docutils literal notranslate"><span class="pre">&quot;execute&quot;</span></code> a list of blocks to carry on simulations in multiple stages. The results of each stage are stored separately in the results file. This is discussed in <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#multi-stage-runs"><span class="std std-ref">Multiple Execution Stages</span></a>.</p>
+</section>
+<section id="out-of-line-definitions">
+<h3><span class="section-number">2.4.7. </span>Out-of-Line Definitions<a class="headerlink" href="#out-of-line-definitions" title="Link to this heading">#</a></h3>
+<p>So far, we have defined the wavefunction and the Hamiltonian inline in the execute block. Alternatively, they can be defined out-of-line with a <code class="docutils literal notranslate"><span class="pre">name</span></code> in the top-level <code class="docutils literal notranslate"><span class="pre">wavefunctions</span></code> and <code class="docutils literal notranslate"><span class="pre">hamiltonians</span></code> lists and referred to by that name elsewhere. This becomes useful in advanced estimator and multiple execute blocks configurations where the same Hamiltonian, wavefunction or walker set may appear more than once.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"wavefunctions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trial"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wavefunction.h5"</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"hamiltonians"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian.h5"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"execute"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"wavefunction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trial"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"hamiltonian"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hamiltonian"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"equilibration_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_walkers"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h3><span class="section-number">2.11.3. </span>Most Common Settings<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-right"><p><b>        Parameter</b></p></th>
-<th class="head"><p>Default</p></th>
-<th class="head text-left"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-right"><p><b>name</b></p></td>
-<td><p>n/a</p></td>
-<td class="text-left"><p>The type of estimator to use. Choices are  “energy”, “mixed”, and “back_propagated” (see brief descriptions above)</p></td>
-</tr>
-<tr class="row-odd"><td class="text-right"><p><b> print_components </b></p></td>
-<td><p>false</p></td>
-<td class="text-left"><p>(energy estimator) If true, print the one-body, direct Coulomb, and exchange energy components to the *.scalar.dat file in addition to the total energy.</p></td>
-</tr>
-<tr class="row-even"><td class="text-right"><p><b> equil </b></p></td>
-<td><p>0</p></td>
-<td class="text-left"><p>The number of initial steps to skip (i.e. the size of the Equilibration phase)</p></td>
-</tr>
-</tbody>
-</table>
+</section>
+<section id="writing-job-files-with-safiretools">
+<h2><span class="section-number">2.5. </span>Writing Job Files with <code class="docutils literal notranslate"><span class="pre">safiretools</span></code><a class="headerlink" href="#writing-job-files-with-safiretools" title="Link to this heading">#</a></h2>
+<p>Rather than writing JSON by hand, it is often useful to generate them using the same python script that generates the Hamiltonian and wavefunction inputs. One way to do this is to just use the <a class="reference external" href="https://docs.python.org/3/library/json.html">json</a> module. Another way is the <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.write_jobfile" title="safiretools.write_jobfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">safiretools.write_jobfile()</span></code></a> helper, which brings some additional convenience features.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">safiretools</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_jobfile</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># covered in following tutorials</span>
+<span class="n">wavefunction</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># covered in following tutorials</span>
+
+<span class="n">write_jobfile</span><span class="p">(</span><span class="s2">"afqmc.json"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="n">wavefunction</span><span class="p">,</span>
+        <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="s2">"equilibration_steps"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">"num_walkers"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
 </div>
-</section>
-</section>
-<section id="some-input-file-recipes">
-<h2><span class="section-number">2.12. </span>Some input file recipes<a class="headerlink" href="#some-input-file-recipes" title="Link to this heading">#</a></h2>
-<p>While there are many possible ways to set up an input file,
-some structures will come up more often than others.
-The <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/examples/02_running_afqmc/04_input_file_recipes/readme.html">User manual</a>
-includes
-several input file “recipes” / templates that you can use as a starting point for your calculations.
-We recommend taking a look at them to complete the information provided here.</p>
+<p>The parameters follow the same structure as the job file, but <code class="docutils literal notranslate"><span class="pre">safiretools</span></code> Hamiltonian and wavefunction objects can be passed directly in place of their blocks or their <code class="docutils literal notranslate"><span class="pre">filename</span></code>. <code class="docutils literal notranslate"><span class="pre">write_jobfile</span></code> writes each of these objects to its own HDF5 file next to the job file and puts the name of that file into the job file. Here, these are <code class="docutils literal notranslate"><span class="pre">afqmc_wavefunction0.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">afqmc_hamiltonian0.h5</span></code>. If a block has a <code class="docutils literal notranslate"><span class="pre">name</span></code>, the file is called <code class="docutils literal notranslate"><span class="pre">afqmc_&lt;name&gt;.h5</span></code> instead. An object that appears in several places is written only once.</p>
+<p>Alternatively, use <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Hamiltonian.to_hdf5" title="safiretools.Hamiltonian.to_hdf5"><code class="xref py py-meth docutils literal notranslate"><span class="pre">safiretools.Hamiltonian.to_hdf5()</span></code></a> and <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.Wavefunction.to_hdf5" title="safiretools.Wavefunction.to_hdf5"><code class="xref py py-meth docutils literal notranslate"><span class="pre">safiretools.Wavefunction.to_hdf5()</span></code></a> to write them to HDF5 files and specify the input path manually.</p>
 </section>
 <section id="summary">
-<h2><span class="section-number">2.13. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.6. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>In this tutorial, you learned</p>
 <ol class="arabic simple">
-<li><p>The structure of the json input file for SAFIRE</p></li>
+<li><p>The structure of the JSON job file for SAFIRE</p></li>
 <li><p>The minimal amount of information needed to run an AFQMC calculation using SAFIRE</p></li>
 <li><p>The most common parameters that you will interact with as a user</p></li>
+<li><p>How to use the <a class="reference internal" href="../../../safiretools/safiretools.html#safiretools.write_jobfile" title="safiretools.write_jobfile"><code class="xref py py-func docutils literal notranslate"><span class="pre">safiretools.write_jobfile()</span></code></a> helper</p></li>
 </ol>
-<p>See the <a class="reference external" href="https://users.flatironinstitute.org/~beskridge/auxiliary_fields/input_description_afqmc.html">input file description</a> of the User manual for more information on the input file.</p>
+<p>See <a class="reference internal" href="../../../user_manual/input_description_afqmc.html#input-afqmc"><span class="std std-ref">The Job File</span></a> for more information on the JSON job file.</p>
 </section>
 </section>
 
@@ -1143,7 +665,7 @@ We recommend taking a look at them to complete the information provided here.</p
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../01_hello_afqmc_solids/01_hello_afqmc_solids.html"
+       href="../01_hello_safire/01_hello_safire.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -1156,7 +678,7 @@ We recommend taking a look at them to complete the information provided here.</p
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Writing a Hamiltonian file and a Trial Wavefunction using CoQuí</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Writing a Hamiltonian File and a Trial Wavefunction Using CoQuí</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1179,45 +701,21 @@ We recommend taking a look at them to complete the information provided here.</p
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">2.1. What you will learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">2.1. What You Will Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">2.2. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-block-hierarchy">2.3. Input block hierarchy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-input-file-typical-calculation">2.4. Sample input file - typical calculation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-information-needed-to-run">2.4.1. Minimal information needed to run.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-job-file">2.3. A Minimal Job File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-advanced-examples">2.4. More Advanced Examples</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-walkers-from-a-different-wavefunction">2.4.1. Initializing Walkers from a Different Wavefunction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stabilization-and-measurement-intervals">2.4.2. Stabilization and Measurement Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-name">2.4.3. Output Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility">2.4.4. Reproducibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-estimators">2.4.5. Advanced Estimators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-execute-blocks">2.4.6. Multiple Execute Blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-line-definitions">2.4.7. Out-of-Line Definitions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-project-block">2.5. The “project” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-common-settings">2.5.1. Most Common Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#less-common-settings">2.5.2. Less Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execute-block">2.6. The “execute” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.6.1. Most Common Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.6.2. Less Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wavefunction-block">2.7. The “wavefunction” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.7.1. Most Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-walker-set-block">2.8. The “walker_set” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.8.1. Most Common Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.8.2. Less Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-block">2.9. The “hamiltonian” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.9.1. Most Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-projector-block">2.10. The “projector” block</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-estimator-block">2.11. The “estimator” block</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimator-types">2.11.1. Estimator types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">2.11.2. Observables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.11.3. Most Common Settings</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-input-file-recipes">2.12. Some input file recipes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">2.13. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-job-files-with-safiretools">2.5. Writing Job Files with <code class="docutils literal notranslate"><span class="pre">safiretools</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">2.6. Summary</a></li>
 </ul>
   </nav></div>
 

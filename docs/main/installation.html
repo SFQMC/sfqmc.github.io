@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Installation &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>Installation &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,21 +42,20 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'installation';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/installation.html" />
+    <link rel="icon" href="_static/favicon.svg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="User Manual" href="user_manual.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
     <link rel="prev" title="Getting Started with SAFIRE" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -108,7 +108,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -125,15 +125,15 @@
     
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -144,13 +144,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="user_manual.html">
-    User Manual
   </a>
 </li>
 
@@ -170,15 +163,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -294,13 +287,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="user_manual.html">
-    User Manual
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="tutorials.html">
     Tutorials
   </a>
@@ -315,15 +301,15 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+  <a class="nav-link nav-internal" href="user_manual.html">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -443,144 +429,96 @@
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
 <p>The installation is performed in two essentially independent steps.
 The SAFIRE executable must be compiled,
-and the afqmctools python package can optionally be installed.</p>
+and the safiretools python package can optionally be installed.</p>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
-<p>You must first ensure that you have all of the dependencies
-and install any that are missing.</p>
-<section id="cpu-build">
-<h3>CPU Build<a class="headerlink" href="#cpu-build" title="Link to this heading">#</a></h3>
+<p>Ensure the following dependencies are installed</p>
 <ul class="simple">
-<li><p>CMake 3.18+</p></li>
-<li><p>a modern C++ compiler with C++20 support. LLVM or GCC are recommended.</p></li>
-<li><p>MPI (OpenMPI or other MPI implementation)</p></li>
-<li><p>HDF5 (parallel HDF5 recommended)</p></li>
-<li><p>Boost 1.61.0+</p></li>
-<li><p>BLAS library</p></li>
-<li><p>LAPACK library</p></li>
+<li><p>CMake ≥3.25</p></li>
+<li><p>C++20 compiler</p></li>
+<li><p>MPI</p></li>
+<li><p>HDF5</p></li>
+<li><p>Boost ≥1.70.0</p></li>
+<li><p>BLAS, LAPACK</p></li>
 <li><p>Intel oneAPI MKL (for sparse matrices on CPU)</p></li>
 </ul>
 <p>The build system will fetch the following dependencies automatically if they are not installed</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/TRIQS/nda">nda</a> (tensor branch)</p></li>
+<li><p><a class="reference external" href="https://github.com/TRIQS/nda">nda</a></p></li>
 <li><p>cxxopts</p></li>
 <li><p>spdlog</p></li>
 <li><p>cpptrace</p></li>
 <li><p>nlohmann_json</p></li>
 <li><p>Catch2 (for tests)</p></li>
 </ul>
-</section>
-<section id="nvidia-gpu-build">
-<h3>NVIDIA GPU-build<a class="headerlink" href="#nvidia-gpu-build" title="Link to this heading">#</a></h3>
-<p>All of the above and</p>
+<p>For NVIDIA GPU support, you additionally need</p>
 <ul class="simple">
-<li><p>CUDA 12+</p></li>
-<li><p>CuTENSOR</p></li>
+<li><p>CUDA ≥12, compute capability ≥8.0</p></li>
+<li><p><a class="reference external" href="https://developer.nvidia.com/cutensor">cuTENSOR</a></p></li>
 <li><p>CCCL (fetched automatically)</p></li>
-<li><p>A GPU with compute compatability &gt;=8</p></li>
 </ul>
 </section>
+<section id="getting-safire">
+<h2>Getting SAFIRE<a class="headerlink" href="#getting-safire" title="Link to this heading">#</a></h2>
+<p>You can download SAFIRE from <a class="reference external" href="https://github.com/SFQMC/SAFIRE">GitHub</a>, either through the latest release tarball or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SFQMC</span><span class="o">/</span><span class="n">SAFIRE</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </section>
 <section id="compiling-safire">
 <h2>Compiling SAFIRE<a class="headerlink" href="#compiling-safire" title="Link to this heading">#</a></h2>
-<p>Assuming that all dependencies are installed and available, use the following steps to compile SAFIRE.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>build
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
-$<span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
-$<span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="m">10</span>
-</pre></div>
-</div>
-<p>to compile for NVIDIA GPUs use the following.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>build
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
-$<span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DENABLE_CUDA<span class="o">=</span>ON
-$<span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="m">10</span>
-</pre></div>
-</div>
-<section id="convenience-build-scripts">
-<h3>Convenience build scripts<a class="headerlink" href="#convenience-build-scripts" title="Link to this heading">#</a></h3>
-<p>For users at Flatiron, we provide compilation scripts for convenience.
-We note that for large system sizes, GPU-accelerated builds are highly recommended,
-but CPU-only builds are also useful for smaller system sizes.</p>
-<section id="cpu-only-build-at-ccq">
-<h4>CPU-only build at CCQ<a class="headerlink" href="#cpu-only-build-at-ccq" title="Link to this heading">#</a></h4>
-<p>For large systems, building and running with GPU acceleration is highly recommended.
-However, for smaller systems, CPU builds are useful.</p>
-<p>If you are rusty or sitting at an SCC-managed workstation, a suitable build script is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>purge
-module<span class="w"> </span>load<span class="w"> </span>slurm
-module<span class="w"> </span>load<span class="w"> </span>cmake
-module<span class="w"> </span>load<span class="w"> </span>gcc
-module<span class="w"> </span>load<span class="w"> </span>openmpi
-module<span class="w"> </span>load<span class="w"> </span>hdf5
-module<span class="w"> </span>load<span class="w"> </span>boost
-module<span class="w"> </span>load<span class="w"> </span>intel-oneapi-mkl
+<p>Assuming that all dependencies are installed and available, go to the SAFIRE source directory and run</p>
+<pre class="literal-block">$ cmake -S . -B build \
+        -DCMAKE_INSTALL_PREFIX=$(pwd)/build/install
+$ cmake --build build -j 10
+$ cmake --install build</pre>
+<p>This installs the <code class="docutils literal notranslate"><span class="pre">safire</span></code> executable to <code class="docutils literal notranslate"><span class="pre">build/install/bin</span></code>.
+To compile with NVIDIA GPU support use the following:</p>
+<pre class="literal-block">$ cmake -S . -B build \
+        -DCMAKE_INSTALL_PREFIX=$(pwd)/build/install \
+        <strong>-DENABLE_CUDA=ON</strong>
+$ cmake --build build -j 10
+$ cmake --install build</pre>
+<p>If CMake does not find <a class="reference external" href="https://developer.nvidia.com/cutensor">cuTENSOR</a>, point it to the unpacked archive with <code class="docutils literal notranslate"><span class="pre">-DCutensor_ROOT=/path/to/libcutensor</span></code>.</p>
+<p>The GPU build can run both CPU and GPU calculations using the <code class="docutils literal notranslate"><span class="pre">--compute</span></code> CLI argument.</p>
+<div class="note admonition">
+<p class="admonition-title">For Flatiron Users</p>
+<p>The following snippet will compile SAFIRE in the Rusty environment. Ensure these modules are also loaded whenever you are running SAFIRE.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module purge
+module load slurm cmake gcc hdf5 boost intel-oneapi-mkl
+module load openmpi            # CPU-only build, or
+module load cuda openmpi/cuda  # GPU build
 
-mkdir<span class="w"> </span>build
-<span class="nb">cd</span><span class="w"> </span>build
-cmake<span class="w"> </span>..<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
-
-make<span class="w"> </span>-j<span class="w"> </span><span class="m">10</span>
+cmake -S . -B build \
+      -DCMAKE_INSTALL_PREFIX=$(pwd)/build/install \
+      -DENABLE_CUDA=ON -DCutensor_ROOT=... # GPU build only
+cmake --build build -j 10
+cmake --install build
+</pre></div>
+</div>
+</div>
+</section>
+<section id="installing-companion-software">
+<h2>Installing Companion Software<a class="headerlink" href="#installing-companion-software" title="Link to this heading">#</a></h2>
+<p>It is highly recommended you install <a class="reference internal" href="safiretools/safiretools.html#safiretools"><span class="std std-ref">safiretools</span></a>, the companion Python package that simplifies
+the generation of input files and the processing of output data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">python</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="s2">".[vis]"</span> <span class="c1"># [vis]ualization support</span>
+</pre></div>
+</div>
+<p>For lattice model calculations, the <a class="reference external" href="https://github.com/SFQMC/AutoHF">AutoHF</a> Hartree-Fock code is very useful.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sfqmc</span><span class="o">-</span><span class="n">autohf</span>
+</pre></div>
+</div>
+<p>For ab-initio solids calculations, see <a class="reference external" href="https://github.com/AbInitioQHub/coqui">CoQuí</a> for installation instructions.</p>
+<p>For chemistry, SAFIRE can interface with various quantum chemistry codes. If you want to use the PySCF backend, install</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyscf</span>
 </pre></div>
 </div>
 </section>
-<section id="gpu-accelerated-build-at-ccq">
-<h4>GPU-accelerated build at CCQ<a class="headerlink" href="#gpu-accelerated-build-at-ccq" title="Link to this heading">#</a></h4>
-<p>Currently the GPU build only works with CUDA 11.
-If you are on rusty or using a rusty connected desktop a suitable build script is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>purge
-module<span class="w"> </span>load<span class="w"> </span>slurm
-module<span class="w"> </span>load<span class="w"> </span>cmake
-module<span class="w"> </span>load<span class="w"> </span>gcc
-module<span class="w"> </span>load<span class="w"> </span>openmpi
-module<span class="w"> </span>load<span class="w"> </span>hdf5
-module<span class="w"> </span>load<span class="w"> </span>boost
-module<span class="w"> </span>load<span class="w"> </span>intel-oneapi-mkl
-module<span class="w"> </span>load<span class="w"> </span>cuda
-
-mkdir<span class="w"> </span>build
-<span class="nb">cd</span><span class="w"> </span>build
-cmake<span class="w"> </span>..<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-DENABLE_CUDA<span class="o">=</span>ON
-
-make<span class="w"> </span>-j<span class="w"> </span><span class="m">10</span>
-</pre></div>
-</div>
-</section>
-<section id="installing-the-afqmctools-python-package">
-<h4>Installing the afqmctools Python package<a class="headerlink" href="#installing-the-afqmctools-python-package" title="Link to this heading">#</a></h4>
-<p>See <a class="reference internal" href="afqmctools/afqmctools.html#afqmctools"><span class="std std-ref">the afqmctools documentation</span></a> for details on installing afqmctools.</p>
-</section>
-<section id="rusty-installation">
-<h4>Rusty Installation<a class="headerlink" href="#rusty-installation" title="Link to this heading">#</a></h4>
-<p>If you are connected to Rusty, you can do the following (tested with <cite>modules-2.3</cite>)
-beginning from the root directory of this repo.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">VENV_DIR</span><span class="o">=</span>~/venvs<span class="w">  </span><span class="c1"># replace this with a good directory to install a virtual environment</span>
-$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">AFQMC_ROOT_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
-$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>openmpi<span class="w"> </span>hdf5<span class="w"> </span>python-mpi/3.11
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$VENV_DIR</span>
-$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>afqmctools
-$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>afqmctools/bin/activate
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AFQMC_ROOT_DIR</span>/utils
-$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="o">[</span>AUTOHF<span class="o">]</span><span class="w"> </span><span class="c1"># add -e to make editable</span>
-<span class="c1"># optional, install jax with gpu support</span>
-<span class="c1"># pip install -U "jax[cuda12]"</span>
-</pre></div>
-</div>
-</section>
-<section id="afqmctools-as-a-library">
-<h4>afqmctools as a library<a class="headerlink" href="#afqmctools-as-a-library" title="Link to this heading">#</a></h4>
-<p>Additionally, the afqmctools library can be imported and used in Python:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">afqmctools.hamiltonian.mol</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_hamil_mol</span>
-
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>See the examples for more.</p>
-</section>
-</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>You should now be ready for your first calculation. Continue to the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a>.</p>
 </section>
 </section>
 
@@ -604,11 +542,11 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
       </div>
     </a>
     <a class="right-next"
-       href="user_manual.html"
+       href="tutorials.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">User Manual</p>
+        <p class="prev-next-title">Tutorials</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -631,22 +569,11 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-build">CPU Build</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpu-build">NVIDIA GPU-build</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-safire">Compiling SAFIRE</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convenience-build-scripts">Convenience build scripts</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-only-build-at-ccq">CPU-only build at CCQ</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-accelerated-build-at-ccq">GPU-accelerated build at CCQ</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-afqmctools-python-package">Installing the afqmctools Python package</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rusty-installation">Rusty Installation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#afqmctools-as-a-library">afqmctools as a library</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-safire">Getting SAFIRE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-safire">Compiling SAFIRE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-companion-software">Installing Companion Software</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
   </nav></div>
 

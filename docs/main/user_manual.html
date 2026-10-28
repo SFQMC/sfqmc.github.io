@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>User Manual &#8212; SAFIRE 0.1.0 documentation</title>
+    <title>User Manual &#8212; SAFIRE 1.0.0 documentation</title>
   
   
   
@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f88e63ea" />
+    <link rel="stylesheet" type="text/css" href="_static/filetree.css?v=b34e2d27" />
   
   <!-- So that users can add custom icons -->
   <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,23 +42,20 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script>window.MathJax = {"chtml": {"mtextInheritFont": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_manual';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://safire.flatironinstitute.org/docs/dev/user_manual.html" />
+    <link rel="icon" href="_static/favicon.svg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Input file" href="user_manual/input_description_afqmc.html" />
-    <link rel="prev" title="Installation" href="installation.html" />
+    <link rel="next" title="The Job File" href="user_manual/input_description_afqmc.html" />
+    <link rel="prev" title="9. Useful Snippets for Various Lattice Models" href="examples/models/09_useful_snippets/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.1.0" />
+  <meta name="docsearch:version" content="1.0.0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -110,7 +108,7 @@
   </button>
   
   
-  <div class=" navbar-header-items__start">
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
@@ -127,15 +125,15 @@
     
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 0.1.0 documentation - Home"/>
-    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 0.1.0 documentation - Home"/>
+    <img src="_static/logo.svg" class="logo__image only-light" alt="SAFIRE 1.0.0 documentation - Home"/>
+    <img src="" class="logo__image only-dark pst-js-only" alt="SAFIRE 1.0.0 documentation - Home"/>
   
   
 </a></div>
     
   </div>
   
-  <div class=" navbar-header-items">
+  <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -146,13 +144,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
     Installation
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    User Manual
   </a>
 </li>
 
@@ -171,16 +162,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -258,10 +249,6 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -295,13 +282,6 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    User Manual
-  </a>
-</li>
-
-
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="tutorials.html">
     Tutorials
@@ -316,16 +296,16 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="afqmctools/afqmctools.html">
-    afqmctools
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Manual
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="features.html">
-    Current Features
+  <a class="nav-link nav-internal" href="safiretools/safiretools.html">
+    safiretools
   </a>
 </li>
 
@@ -386,12 +366,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="user_manual/input_description_afqmc.html">Input file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_manual/walkers.html">Walker Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/input_description_afqmc.html">The Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/hamiltonians.html">Hamiltonian Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/wavefunctions.html">Wavefunction Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_manual/estimators.html">Estimators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_manual/observables.html">Observables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_manual/hamiltonians.html">Hamiltonian File formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_manual/wavefunctions.html">Wavefunction File formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/walkers.html">Walkers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/output.html">Results File</a></li>
 </ul>
 </div>
 </nav></div>
@@ -451,117 +431,36 @@
                   
   <section id="user-manual">
 <span id="id1"></span><h1>User Manual<a class="headerlink" href="#user-manual" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<p>(S)tochastic (A)uxiliary-(F)ields for (I)nte(R)acting (E)lectrons (SAFIRE)
-is a flexible, high-performance implementation of the Auxiliary Field Quantum Monte Carlo (AFQMC) method.
-It is designed to allow users to study a wide range of physical systems.
-This manual provides detailed information on the various components of SAFIRE, including its input parameters,
-Hamiltonian, wavefunction, walker classes, and observables.
-This user manual assumes a basic familiarity with AFQMC.
-For a brief introduction to AFQMC, please see <a class="reference internal" href="afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a>.</p>
-<section id="input-file">
-<h2>Input File<a class="headerlink" href="#input-file" title="Link to this heading">#</a></h2>
-<p>SAFIRE uses a json-based input file to specify the parameters of the AFQMC calculation.
-This section contains parameters that control the calculation including choosing methodological parameters,
-Hamiltonian, trial wavefunction, walker type, and observables.
-A sample input file is shown below.
-See the “<a class="reference internal" href="user_manual/input_description_afqmc.html#input-afqmc"><span class="std std-ref">Input file description</span></a>” for more.</p>
-<div class="literal-block-wrapper docutils container" id="listing-1">
-<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text">Sample input file for SAFIRE.</span><a class="headerlink" href="#listing-1" title="Link to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">"afqmc"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"project"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"my_qmc_run"</span><span class="p">,</span>
-      <span class="s2">"series"</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="s2">"execute"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"walker_set"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"walker_type"</span><span class="p">:</span> <span class="s2">"COLLINEAR"</span>
-      <span class="p">},</span>
-      <span class="s2">"wavefunction"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"filename"</span><span class="p">:</span> <span class="s2">"wfn.h5"</span>
-      <span class="p">},</span>
-      <span class="s2">"hamiltonian"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"filename"</span><span class="p">:</span> <span class="s2">"hamiltonian.h5"</span>
-      <span class="p">},</span>
-      <span class="s2">"timestep"</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-      <span class="s2">"steps"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-      <span class="s2">"measure_interval_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"population_control_interval"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"walker_ortho_interval"</span> <span class="p">:</span> <span class="mi">10</span> <span class="p">,</span>
-      <span class="s2">"n_walkers_per_mpi_task"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s2">"estimator"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mixed"</span><span class="p">,</span>
-        <span class="s2">"onerdm"</span> <span class="p">:</span> <span class="p">{</span>
-          <span class="s2">"name"</span> <span class="p">:</span> <span class="s2">"my_onerdm"</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<p>This user manual is a reference description of the SAFIRE code, its components and their input and output formats. If you are a practitioner interested in running a standard calculation, refer to the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> or <a class="reference internal" href="examples.html#user-examples"><span class="std std-ref">Examples</span></a> first.</p>
+<p>Running an <a class="reference internal" href="afqmc.html#afqmc"><span class="std std-ref">Auxiliary-Field Quantum Monte Carlo</span></a> calculation requires several input files</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls tutorials/solids/01_hello_safire/files/
+
+afqmc.json
+hamiltonian.h5
+wavefunction.h5
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">afqmc.json</span></code> is the <a class="reference internal" href="user_manual/input_description_afqmc.html#input-afqmc"><span class="std std-ref">Job File</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hamiltonian.h5</span></code> is a <a class="reference internal" href="user_manual/hamiltonians.html#hamiltonian-classes"><span class="std std-ref">Hamiltonian File</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wavefunction.h5</span></code> is a <a class="reference internal" href="user_manual/wavefunctions.html#wavefunction-classes"><span class="std std-ref">Wavefunction File</span></a></p></li>
+</ul>
+<p>Running SAFIRE</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ safire afqmc.json
+</pre></div>
 </div>
-</section>
-<section id="hamiltonian-classes">
-<h2>Hamiltonian Classes<a class="headerlink" href="#hamiltonian-classes" title="Link to this heading">#</a></h2>
-<p>AFQMC is formulated in terms of a general second-quantized Hamiltonian,</p>
-<div class="math notranslate nohighlight" id="equation-eq-h012">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eq-h012" title="Link to this equation">#</a></span>\[\begin{split}\hat{H} =&amp; H_0 + \hat{H}_1 + \hat{H}_2 \\
-  =&amp; E_0 + \sum\limits_{il\sigma\sigma'} h^{\sigma \sigma'}_{il} \hat{c}^\dagger_{i\sigma}\hat{c}_{l\sigma'}
-  + \sum\limits_{ijkl\sigma\sigma'\sigma'\sigma} v_{ijkl}^{\sigma\sigma'\sigma'\sigma} \hat{c}^\dagger_{i\sigma}
-    \hat{c}^\dagger_{j\sigma'}\hat{c}_{k\sigma'}\hat{c}_{l\sigma},\end{split}\]</div>
-<p>However, there are class-specific optimizations
-that can be employed for different types of Hamiltonians.
-This is especially true in the case of lattice model Hamiltonians where the form of the interactions is significantly simpler
-than the long-range Coulomb interaction found in ab initio Hamiltonians, for example.</p>
-<p>See the <a class="reference internal" href="user_manual/hamiltonians.html#hamiltonian-classes"><span class="std std-ref">Hamiltonian classes</span></a> reference for more details.</p>
-</section>
-<section id="wavefunction-classes">
-<h2>Wavefunction Classes<a class="headerlink" href="#wavefunction-classes" title="Link to this heading">#</a></h2>
-<p>The trial wavefunction in AFQMC is typically a linear combination of Slater determinants,</p>
-<div class="math notranslate nohighlight" id="equation-eq-trial-wf">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eq-trial-wf" title="Link to this equation">#</a></span>\[|\Psi_\mathrm{T} \rangle = \sum^{N_\mathrm{det}}_n C_n | \Phi_n \rangle\]</div>
-<p>where <span class="math notranslate nohighlight">\(C_n\)</span> is a complex-valued coefficient, and <span class="math notranslate nohighlight">\(|\Phi_n\rangle\)</span> are Slater determinants which are not necessarily orthogonal to each other. Of course, each Slater determinant consists of some set of single-particle orbitals, <span class="math notranslate nohighlight">\(\{ \psi_p \}\)</span>, such that,</p>
-<div class="math notranslate nohighlight" id="equation-eq-orbitals">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eq-orbitals" title="Link to this equation">#</a></span>\[\psi_{p} = \sum_i \bar{C}_{ip} \phi_i\]</div>
-<p>where <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> are the chosen orthonormal basis set orbitals.
-SAFIRE implements a few different forms for the trial wavefunction.</p>
-<p>See the <a class="reference internal" href="user_manual/wavefunctions.html#wavefunction-classes"><span class="std std-ref">Wavefunction classes</span></a> reference for more details.</p>
-</section>
-<section id="walkers">
-<h2>Walkers<a class="headerlink" href="#walkers" title="Link to this heading">#</a></h2>
-<p>In AFQMC, walkers are typically single Slater determinants.</p>
-<div class="math notranslate nohighlight" id="equation-eq-slater-matrix">
-<span class="eqno">(8)<a class="headerlink" href="#equation-eq-slater-matrix" title="Link to this equation">#</a></span>\[\begin{split}\Phi = \begin{bmatrix}
-  \bar{C}_{00} &amp;\bar{C}_{01} &amp; \bar{C}_{02} &amp; \dots  &amp; \bar{C}_{0N} \\
-  \bar{C}_{10} &amp; \bar{C}_{11} &amp; \bar{C}_{12} &amp; \dots  &amp; \bar{C}_{1N} \\
-  \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-  \bar{C}_{M0} &amp; \bar{C}_{M1} &amp; \bar{C}_{M2} &amp; \dots  &amp; \bar{C}_{MN}
-\end{bmatrix}\end{split}\]</div>
-<p>SAFIRE allows one of several type of Slater determinant walkers to be used in calculations based on their spin symmetry.</p>
-<p>See the <a class="reference internal" href="user_manual/walkers.html#walker-classes"><span class="std std-ref">Walker classes</span></a> reference for more details.</p>
-</section>
-<section id="observables">
-<h2>Observables<a class="headerlink" href="#observables" title="Link to this heading">#</a></h2>
-<p>In AFQMC, physical observables are computed on the fly using a Monte Carlo representation of the many-body wavefunction.
-Both mixed estimators of the form,</p>
-<div class="math notranslate nohighlight" id="mixedestimators">
-<span id="equation-mixedestimators"></span><span class="eqno">(9)<a class="headerlink" href="#mixedestimators" title="Link to this equation">#</a></span>\[\langle \hat{O} \rangle_\mathrm{Mixed} = \frac{1}{\sum_k W_{n,k}} \sum_k W_{n,k} \frac{\langle \Psi_\mathrm{T} | \hat{O} | \Phi_{n,k} \rangle }{\langle \Psi_\mathrm{T} | \Phi_{n,k} \rangle}\]</div>
-<p>where <span class="math notranslate nohighlight">\(n\)</span> is the projection step index,
-<span class="math notranslate nohighlight">\(| \Phi_{n,k} \rangle\)</span> are Slater determinant walkers with weight <span class="math notranslate nohighlight">\(W_{n,k}\)</span>,
-and <span class="math notranslate nohighlight">\(| \Psi_\mathrm{T} \rangle\)</span> is the trial wavefunction,
-and pure estimators using the Back-Propagation (BP) algorithm of the form,</p>
-<div class="math notranslate nohighlight" id="equation-bpestimators">
-<span class="eqno">(10)<a class="headerlink" href="#equation-bpestimators" title="Link to this equation">#</a></span>\[\langle \hat{O} \rangle_\mathrm{BP} = \frac{1}{\sum_k W_{n+m,k}} \sum_k W_{n+m,k} \frac{\langle \tilde{\Phi}_{m,k} | \hat{O} | \Phi_{n,k} \rangle }{\langle \tilde{\Phi}_{m,k} |\Phi_{n,k}\rangle},\]</div>
-<p>where <span class="math notranslate nohighlight">\(| \tilde{\Phi}_{m,k} \rangle\)</span> are the back-propagated walkers, given by</p>
-<div class="math notranslate nohighlight">
-\[| \tilde{\Phi}_{m,k} \rangle = \hat{B}^\dagger( (x - \bar{x})_{n,k} ) ... \hat{B}^\dagger( (x - \bar{x})_{n+m-1,k} ) | \Psi_\mathrm{T} \rangle,\]</div>
-<p>are implemented.</p>
-<p>Several observables, <span class="math notranslate nohighlight">\(\hat{O}\)</span>, are implemented in SAFIRE which can each be used with either type of estimator.</p>
-<p>See the <a class="reference internal" href="user_manual/observables.html#observables"><span class="std std-ref">Observables</span></a> reference for more details.</p>
-</section>
+<p>writes <code class="docutils literal notranslate"><span class="pre">afqmc.results.h5</span></code>, the <a class="reference internal" href="user_manual/output.html#output-afqmc"><span class="std std-ref">Results File</span></a> containing all the measurements performed by the <a class="reference internal" href="user_manual/estimators.html#estimators"><span class="std std-ref">Estimators</span></a> during the simulation.</p>
+<p>The following pages go into detail about each of the components.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/input_description_afqmc.html">The Job File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/hamiltonians.html">Hamiltonian Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/wavefunctions.html">Wavefunction Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/estimators.html">Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/walkers.html">Walkers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_manual/output.html">Results File</a></li>
+</ul>
+</div>
 </section>
 
 
@@ -575,12 +474,12 @@ and pure estimators using the Back-Propagation (BP) algorithm of the form,</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="installation.html"
+       href="examples/models/09_useful_snippets/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Installation</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Useful Snippets for Various Lattice Models</p>
       </div>
     </a>
     <a class="right-next"
@@ -588,7 +487,7 @@ and pure estimators using the Back-Propagation (BP) algorithm of the form,</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Input file</p>
+        <p class="prev-next-title">The Job File</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -598,28 +497,6 @@ and pure estimators using the Back-Propagation (BP) algorithm of the form,</p>
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-file">Input File</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamiltonian-classes">Hamiltonian Classes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavefunction-classes">Wavefunction Classes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walkers">Walkers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observables">Observables</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
